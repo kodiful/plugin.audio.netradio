@@ -4,6 +4,7 @@ import sys
 import os
 import json
 import datetime
+import requests
 
 if __name__ == '__main__':
     sys.path.append('..')
@@ -42,6 +43,11 @@ class Scraper(Common, Const, PrefData):
     def __init__(self, region):
         self.URL = self.URL % self.REGION[region]
         super().__init__()
+
+    def load(self):
+        res = requests.get(self.URL)
+        data = res.content.decode('utf-8')
+        return data
 
     def parse(self, data):
         data = json.loads(data)

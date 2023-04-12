@@ -52,7 +52,7 @@ class Directory(Common, PrefData):
 
     def delete_from_top(self, path):
         os.remove(path)
-        xbmc.executebuiltin("Container.Refresh")
+        xbmc.executebuiltin('Container.Refresh')
 
     def _setup_items(self):
         # ユーザが設定した放送局を追加

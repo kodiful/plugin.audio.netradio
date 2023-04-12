@@ -84,8 +84,8 @@ class Service(Common, PrefData):
                 if xbmcgui.getCurrentWindowDialogId() == 9999:
                     path = xbmc.getInfoLabel('Container.FolderPath')
                     argv = 'plugin://%s/' % self.ADDON_ID
-                    if (path == argv and self.GET('download') == 'false') or (path == '%s?action=show' % argv):
-                        xbmc.executebuiltin('Container.Update(%s?action=show,replace)' % argv)
+                    if path == argv or path.startswith(f'{argv}?action=show'):
+                        xbmc.executebuiltin('Container.Refresh')
                     refresh = False
         # 監視終了を通知
         self.log('exit monitor.')
