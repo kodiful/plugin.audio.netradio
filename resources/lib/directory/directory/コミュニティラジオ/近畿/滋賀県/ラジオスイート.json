@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30061",
+    "name": "ラジオスイート",
+    "code": "252131",
+    "region": "近畿",
+    "pref": "滋賀県",
+    "city": "東近江市",
+    "logo": "http://listenradio.jp/img/rslogo/30061s.png",
+    "description": "滋賀県東近江市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30061/livestream/playlist.m3u8"
+}

@@ -1,0 +1,13 @@
+{
+    "type": "siml",
+    "id": "",
+    "name": "中央エフエム",
+    "code": "131024",
+    "region": "関東",
+    "pref": "東京都",
+    "city": "中央区",
+    "logo": "http://www.simulradio.info/data/99.jpg",
+    "description": "",
+    "official": "http://fm840.jp/",
+    "stream": "https://www.simulradio.info/asx/chuo_fm.asx"
+}

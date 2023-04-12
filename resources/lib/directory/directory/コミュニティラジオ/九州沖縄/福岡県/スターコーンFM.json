@@ -1,0 +1,13 @@
+{
+    "type": "csra",
+    "id": "",
+    "name": "スターコーンFM",
+    "code": "406473",
+    "region": "九州沖縄",
+    "pref": "福岡県",
+    "city": "築上町",
+    "logo": "http://csra.fm/logo/starcornfm.png",
+    "description": "",
+    "official": "http://www.starcornfm.com/",
+    "stream": "mms://hdv.nkansai.tv/starcorn"
+}

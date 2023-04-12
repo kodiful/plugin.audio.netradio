@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "FMJ",
+    "name": "J-WAVE",
+    "code": "110001",
+    "region": "関東",
+    "pref": "埼玉県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/FMJ/448x200.png",
+    "description": "",
+    "official": "https://www.j-wave.co.jp/",
+    "stream": ""
+}

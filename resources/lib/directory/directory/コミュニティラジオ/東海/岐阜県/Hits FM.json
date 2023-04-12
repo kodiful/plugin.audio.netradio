@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "hitsfm",
+    "name": "Hits FM",
+    "code": "212032",
+    "region": "東海",
+    "pref": "岐阜県",
+    "city": "高山市",
+    "logo": "https://radimo.s3.amazonaws.com/logo/414d8346aaec9bcbff1f61704c09c7758165cee9fa54472c90a42b8effa65821.png",
+    "description": "日本一広い面積を持つ高山市から飛騨の地域・観光・行政・防災情報を発信。春秋の高山祭は生中継!",
+    "official": "http://www.hidanet.ne.jp/~hitsfm/",
+    "stream": ""
+}

@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30080",
+    "name": "せとラジ",
+    "code": "465259",
+    "region": "九州沖縄",
+    "pref": "鹿児島県",
+    "city": "瀬戸内町",
+    "logo": "http://listenradio.jp/img/rslogo/30080s.png",
+    "description": "鹿児島県大島郡瀬戸内町にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30080/livestream/playlist.m3u8"
+}

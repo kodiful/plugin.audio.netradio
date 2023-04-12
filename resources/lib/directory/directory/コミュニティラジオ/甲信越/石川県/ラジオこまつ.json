@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "radiokomatsu",
+    "name": "ラジオこまつ",
+    "code": "170003",
+    "region": "甲信越",
+    "pref": "石川県",
+    "city": "",
+    "logo": "https://radimo.s3.amazonaws.com/logo/db9c6ddd31862d5a7c46a55101482f858d903cfa7b1a646b745f7f3894567fa9.jpg",
+    "description": "空港の街、歌舞伎の街・小松の情報を中心に放送中。(月〜金6〜19時、土・日7時〜19時)",
+    "official": "https://www.radio-komatsu-new.com/",
+    "stream": ""
+}

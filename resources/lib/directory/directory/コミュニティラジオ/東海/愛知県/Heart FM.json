@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30120",
+    "name": "Heart FM",
+    "code": "231002",
+    "region": "東海",
+    "pref": "愛知県",
+    "city": "名古屋市",
+    "logo": "http://listenradio.jp/img/rslogo/30120s.png",
+    "description": "愛知県名古屋市中区にあるインターネットラジオ局です。",
+    "official": "",
+    "stream": "https://mtist.as.smartstream.ne.jp/30120/livestream/playlist.m3u8"
+}

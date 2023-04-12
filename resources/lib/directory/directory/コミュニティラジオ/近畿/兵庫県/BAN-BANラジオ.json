@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30078",
+    "name": "BAN-BANラジオ",
+    "code": "282103",
+    "region": "近畿",
+    "pref": "兵庫県",
+    "city": "加古川市",
+    "logo": "http://listenradio.jp/img/rslogo/30078s.png",
+    "description": "兵庫県加古川市役所を中心とした、加古川市・高砂市・加古郡稲美町・加古郡播磨町エリアのコミュニティFM局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30078/livestream/playlist.m3u8"
+}

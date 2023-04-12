@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "KBC",
+    "name": "KBCラジオ",
+    "code": "410004",
+    "region": "九州沖縄",
+    "pref": "佐賀県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/KBC/448x200.png",
+    "description": "",
+    "official": "https://kbc.co.jp/radio/",
+    "stream": ""
+}

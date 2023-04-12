@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30030",
+    "name": "FMゆーとぴあ",
+    "code": "052078",
+    "region": "東北",
+    "pref": "秋田県",
+    "city": "湯沢市",
+    "logo": "http://listenradio.jp/img/rslogo/30030s.png",
+    "description": "秋田県湯沢市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30030/livestream/playlist.m3u8"
+}

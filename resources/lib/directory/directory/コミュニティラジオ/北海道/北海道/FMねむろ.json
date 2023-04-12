@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30045",
+    "name": "FMねむろ",
+    "code": "012238",
+    "region": "北海道",
+    "pref": "北海道",
+    "city": "根室市",
+    "logo": "http://listenradio.jp/img/rslogo/30045s.png",
+    "description": "北海道根室市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30045/livestream/playlist.m3u8"
+}

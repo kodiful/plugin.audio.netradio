@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30001",
+    "name": "FM N1",
+    "code": "172120",
+    "region": "甲信越",
+    "pref": "石川県",
+    "city": "野々市市",
+    "logo": "http://listenradio.jp/img/rslogo/30001s.png",
+    "description": "石川県野々市市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30001/livestream/playlist.m3u8"
+}

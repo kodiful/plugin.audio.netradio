@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30038",
+    "name": "FM WING",
+    "code": "012076",
+    "region": "北海道",
+    "pref": "北海道",
+    "city": "帯広市",
+    "logo": "http://listenradio.jp/img/rslogo/30038s.png",
+    "description": "北海道帯広市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30038/livestream/playlist.m3u8"
+}

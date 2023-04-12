@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30013",
+    "name": "FM ジャングル",
+    "code": "282090",
+    "region": "近畿",
+    "pref": "兵庫県",
+    "city": "豊岡市",
+    "logo": "http://listenradio.jp/img/rslogo/30013s.png",
+    "description": "兵庫県豊岡市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30013/livestream/playlist.m3u8"
+}

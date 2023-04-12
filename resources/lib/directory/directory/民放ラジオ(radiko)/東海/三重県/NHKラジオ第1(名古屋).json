@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "JOCK",
+    "name": "NHKラジオ第1(名古屋)",
+    "code": "240001",
+    "region": "東海",
+    "pref": "三重県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/JOCK/448x200.png",
+    "description": "",
+    "official": "https://www.nhk.or.jp/radio/",
+    "stream": ""
+}

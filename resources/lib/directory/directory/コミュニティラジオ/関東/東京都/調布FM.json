@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30039",
+    "name": "調布FM",
+    "code": "132080",
+    "region": "関東",
+    "pref": "東京都",
+    "city": "調布市",
+    "logo": "http://listenradio.jp/img/rslogo/30039s.png",
+    "description": "東京都調布市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30039/livestream/playlist.m3u8"
+}

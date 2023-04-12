@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30074",
+    "name": "FMりべーる",
+    "code": "012041",
+    "region": "北海道",
+    "pref": "北海道",
+    "city": "旭川市",
+    "logo": "http://listenradio.jp/img/rslogo/30074s.png",
+    "description": "北海道旭川市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30074/livestream/playlist.m3u8"
+}

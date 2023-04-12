@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "fmshonan",
+    "name": "FM湘南ナパサ",
+    "code": "140007",
+    "region": "関東",
+    "pref": "神奈川県",
+    "city": "",
+    "logo": "https://radimo.s3.amazonaws.com/logo/4b6a2f8e22aa582b7f45aefa1db34f6c87839b2765896972cf274e65e37e75df.png",
+    "description": "湘南ベルマーレのJリーグ中継、イベント中継、地域情報満載のFM湘南ナパサは78.3MHzで放送中",
+    "official": "http://www.fmshonan783.co.jp/",
+    "stream": ""
+}

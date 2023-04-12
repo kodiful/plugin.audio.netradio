@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30073",
+    "name": "FMたんご",
+    "code": "262129",
+    "region": "近畿",
+    "pref": "京都府",
+    "city": "京丹後市",
+    "logo": "http://listenradio.jp/img/rslogo/30073s.png",
+    "description": "京都府京丹後市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30073/livestream/playlist.m3u8"
+}

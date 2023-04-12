@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "RKK",
+    "name": "RKKラジオ",
+    "code": "430005",
+    "region": "九州沖縄",
+    "pref": "熊本県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/RKK/448x200.png",
+    "description": "",
+    "official": "http://rkk.jp/radio/",
+    "stream": ""
+}

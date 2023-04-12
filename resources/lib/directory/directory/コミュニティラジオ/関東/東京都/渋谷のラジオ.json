@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "shibuyanoradio",
+    "name": "渋谷のラジオ",
+    "code": "130001",
+    "region": "関東",
+    "pref": "東京都",
+    "city": "",
+    "logo": "https://radimo-staging.s3.amazonaws.com/logo/9f48b7aed2adb88e49f6cd94a1a05633fe9eea1acb256083208b0b11a991c490.jpg",
+    "description": "ダイバーシティ、シブヤシティ。渋谷にまつわる多彩なパーソナリティによる地元密着の番組を放送中!",
+    "official": "https://shiburadi.com/",
+    "stream": ""
+}

@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "radiokawagoe",
+    "name": "ラジオ川越",
+    "code": "110001",
+    "region": "関東",
+    "pref": "埼玉県",
+    "city": "",
+    "logo": "https://radimo.s3.amazonaws.com/logo/c009c7147c29d7f78fd5ea1b2c3dfd8c3099800ee0cdbbc79b82adf403e25cdc.jpg",
+    "description": "川越に想いがある人たちで一緒につくる‘みんな’のラジオです。ラジオかわごえを聴いてください!",
+    "official": "https://radiokawagoe.com",
+    "stream": ""
+}

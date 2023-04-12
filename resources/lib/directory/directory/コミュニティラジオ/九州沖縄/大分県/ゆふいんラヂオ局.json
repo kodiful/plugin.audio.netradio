@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "yufuin",
+    "name": "ゆふいんラヂオ局",
+    "code": "440001",
+    "region": "九州沖縄",
+    "pref": "大分県",
+    "city": "",
+    "logo": "https://radimo.s3.amazonaws.com/logo/8b1776ae107f365e1eaba3ac48b2c68861bef5dab220d0e72f6d4bbe809d0133.jpg",
+    "description": "美術館の中にあるラヂオ局。独自選曲を追求しつつ、地域・観光・防災情報を24時間放送!SNSも好評",
+    "official": "http://874.fm/",
+    "stream": ""
+}

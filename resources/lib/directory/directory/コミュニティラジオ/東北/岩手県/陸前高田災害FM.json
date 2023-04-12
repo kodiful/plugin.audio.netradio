@@ -1,0 +1,13 @@
+{
+    "type": "csra",
+    "id": "",
+    "name": "陸前高田災害FM",
+    "code": "032107",
+    "region": "東北",
+    "pref": "岩手県",
+    "city": "陸前高田市",
+    "logo": "http://csra.fm/logo/rikuzentakata-fm.png",
+    "description": "",
+    "official": "http://rikuzentakata-fm.blogspot.com/",
+    "stream": "http://csra.fm/asx/rikuzentakataFM.asx"
+}

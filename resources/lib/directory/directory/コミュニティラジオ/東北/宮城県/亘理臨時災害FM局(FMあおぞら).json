@@ -1,0 +1,13 @@
+{
+    "type": "csra",
+    "id": "",
+    "name": "亘理臨時災害FM局(FMあおぞら)",
+    "code": "043613",
+    "region": "東北",
+    "pref": "宮城県",
+    "city": "亘理町",
+    "logo": "http://csra.fm/logo/fmaozora.png",
+    "description": "",
+    "official": "http://www.town.watari.miyagi.jp/index.cfm/22,21308,126,html",
+    "stream": "http://csra.fm/asx/aozora.asx"
+}

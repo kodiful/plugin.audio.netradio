@@ -1,0 +1,13 @@
+{
+    "type": "nhk1",
+    "id": "",
+    "name": "NHKラジオ第1(大阪)",
+    "code": "271004",
+    "region": "近畿",
+    "pref": "",
+    "city": "大阪市",
+    "logo": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
+    "description": "",
+    "official": "https://www.nhk.or.jp/radio/",
+    "stream": "https://radio-stream.nhk.jp/hls/live/2023508/nhkradirubkr1/master.m3u8"
+}

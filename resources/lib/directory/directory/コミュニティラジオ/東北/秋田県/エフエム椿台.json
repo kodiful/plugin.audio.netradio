@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30014",
+    "name": "エフエム椿台",
+    "code": "052019",
+    "region": "東北",
+    "pref": "秋田県",
+    "city": "秋田市",
+    "logo": "http://listenradio.jp/img/rslogo/30014s.png",
+    "description": "秋田県秋田市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30014/livestream/playlist.m3u8"
+}

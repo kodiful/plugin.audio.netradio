@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30081",
+    "name": "Tokyo Star Radio(八王子FM)",
+    "code": "132012",
+    "region": "関東",
+    "pref": "東京都",
+    "city": "八王子市",
+    "logo": "http://listenradio.jp/img/rslogo/30081s.png",
+    "description": "東京都八王子市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30081/livestream/playlist.m3u8"
+}

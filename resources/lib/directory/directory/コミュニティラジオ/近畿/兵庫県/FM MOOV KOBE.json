@@ -1,0 +1,13 @@
+{
+    "type": "csra",
+    "id": "",
+    "name": "FM MOOV KOBE",
+    "code": "281000",
+    "region": "近畿",
+    "pref": "兵庫県",
+    "city": "神戸市",
+    "logo": "http://csra.fm/logo/fmmoov.png",
+    "description": "",
+    "official": "http://www.fm-moov.com/",
+    "stream": "http://csra.fm/asx/fmmoov.asx"
+}

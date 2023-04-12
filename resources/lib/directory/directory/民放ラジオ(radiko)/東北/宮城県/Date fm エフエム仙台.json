@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "DATEFM",
+    "name": "Date fm エフエム仙台",
+    "code": "040002",
+    "region": "東北",
+    "pref": "宮城県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/DATEFM/448x200.png",
+    "description": "",
+    "official": "http://www.datefm.co.jp/",
+    "stream": ""
+}

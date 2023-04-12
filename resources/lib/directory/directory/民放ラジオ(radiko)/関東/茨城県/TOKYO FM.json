@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "FMT",
+    "name": "TOKYO FM",
+    "code": "080004",
+    "region": "関東",
+    "pref": "茨城県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/FMT/448x200.png",
+    "description": "",
+    "official": "https://www.tfm.co.jp/",
+    "stream": ""
+}

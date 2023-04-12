@@ -1,0 +1,13 @@
+{
+    "type": "csra",
+    "id": "",
+    "name": "FM kaon",
+    "code": "142158",
+    "region": "関東",
+    "pref": "神奈川県",
+    "city": "海老名市",
+    "logo": "http://csra.fm/logo/fmkaon.png",
+    "description": "",
+    "official": "http://www.fmkaon.com/",
+    "stream": "mms://hdv.nkansai.tv/kaon"
+}

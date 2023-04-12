@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "NACK5",
+    "name": "NACK5",
+    "code": "100005",
+    "region": "関東",
+    "pref": "群馬県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/NACK5/448x200.png",
+    "description": "",
+    "official": "https://www.nack5.co.jp/",
+    "stream": ""
+}

@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "TBS",
+    "name": "TBSラジオ",
+    "code": "090000",
+    "region": "関東",
+    "pref": "栃木県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/TBS/448x200.png",
+    "description": "",
+    "official": "https://www.tbsradio.jp/",
+    "stream": ""
+}

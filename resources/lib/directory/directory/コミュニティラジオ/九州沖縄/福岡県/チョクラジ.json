@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30085",
+    "name": "チョクラジ",
+    "code": "402044",
+    "region": "九州沖縄",
+    "pref": "福岡県",
+    "city": "直方市",
+    "logo": "http://listenradio.jp/img/rslogo/30085s.png",
+    "description": "福岡県直方市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "https://mtist.as.smartstream.ne.jp/30085/livestream/playlist.m3u8"
+}

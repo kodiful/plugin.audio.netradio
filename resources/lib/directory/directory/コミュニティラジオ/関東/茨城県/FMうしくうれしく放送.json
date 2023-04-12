@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30021",
+    "name": "FMうしくうれしく放送",
+    "code": "082198",
+    "region": "関東",
+    "pref": "茨城県",
+    "city": "牛久市",
+    "logo": "http://listenradio.jp/img/rslogo/30021s.png",
+    "description": "茨城県牛久市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30021/livestream/playlist.m3u8"
+}

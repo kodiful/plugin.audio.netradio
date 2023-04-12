@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30036",
+    "name": "レインボータウンFM",
+    "code": "131083",
+    "region": "関東",
+    "pref": "東京都",
+    "city": "江東区",
+    "logo": "http://listenradio.jp/img/rslogo/30036s.png",
+    "description": "東京都江東区にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30036/livestream/playlist.m3u8"
+}

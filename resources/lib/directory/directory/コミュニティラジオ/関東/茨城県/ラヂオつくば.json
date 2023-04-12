@@ -1,0 +1,13 @@
+{
+    "type": "csra",
+    "id": "",
+    "name": "ラヂオつくば",
+    "code": "082201",
+    "region": "関東",
+    "pref": "茨城県",
+    "city": "つくば市",
+    "logo": "http://csra.fm/logo/radio-tsukuba.png",
+    "description": "",
+    "official": "http://radio-tsukuba.net",
+    "stream": "http://csra.fm/asx/tsukuba.asx"
+}

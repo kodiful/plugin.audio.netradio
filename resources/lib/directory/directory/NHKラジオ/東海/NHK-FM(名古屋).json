@@ -1,0 +1,13 @@
+{
+    "type": "nhk3",
+    "id": "",
+    "name": "NHK-FM(名古屋)",
+    "code": "231002",
+    "region": "東海",
+    "pref": "",
+    "city": "名古屋市",
+    "logo": "https://www.nhk.or.jp/common/img/media/fm-200x200.png",
+    "description": "",
+    "official": "https://www.nhk.or.jp/radio/",
+    "stream": "https://radio-stream.nhk.jp/hls/live/2023511/nhkradiruckfm/master.m3u8"
+}

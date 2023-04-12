@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "suzuka",
+    "name": "Suzuka Voice FM 78.3MHz",
+    "code": "240001",
+    "region": "東海",
+    "pref": "三重県",
+    "city": "",
+    "logo": "https://radimo.s3.amazonaws.com/logo/027e981fab83e808b045e5a17f138a4d0b8f48fc4de196d35e6ba7d77bcb1fd6.jpg",
+    "description": "モータースポーツの聖地 鈴鹿から地域の話題”鈴鹿の声”を24時間お届け。 レース実況番組も放送!",
+    "official": "https://suzuka-voice.fm/",
+    "stream": ""
+}

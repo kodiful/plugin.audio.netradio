@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30008",
+    "name": "REDS WAVE",
+    "code": "111007",
+    "region": "関東",
+    "pref": "埼玉県",
+    "city": "さいたま市",
+    "logo": "http://listenradio.jp/img/rslogo/30008s.png",
+    "description": "埼玉県さいたま市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30008/livestream/playlist.m3u8"
+}

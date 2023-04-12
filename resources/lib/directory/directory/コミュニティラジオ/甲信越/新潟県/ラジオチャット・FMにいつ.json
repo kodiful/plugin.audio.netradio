@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "radiochat",
+    "name": "ラジオチャット・FMにいつ",
+    "code": "151009",
+    "region": "甲信越",
+    "pref": "新潟県",
+    "city": "新潟市",
+    "logo": "https://radimo.s3.amazonaws.com/logo/d09e24d0fe1a7632f70371a38ca9d82c598c5dacee44cb3e8d53729da4fcd6c3.jpg",
+    "description": "新潟市新津鉄道資料館に隣接するラジオチャット・エフエム新津は、地域に密着した情報をお届けします。",
+    "official": "http://www.chat761.com/index.html",
+    "stream": ""
+}

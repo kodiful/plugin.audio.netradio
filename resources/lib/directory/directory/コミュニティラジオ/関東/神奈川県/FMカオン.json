@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30057",
+    "name": "FMカオン",
+    "code": "142158",
+    "region": "関東",
+    "pref": "神奈川県",
+    "city": "海老名市",
+    "logo": "http://listenradio.jp/img/rslogo/30057s.png",
+    "description": "神奈川県海老名市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30057/livestream/playlist.m3u8"
+}

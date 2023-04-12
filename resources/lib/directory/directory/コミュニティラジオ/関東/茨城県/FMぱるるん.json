@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30022",
+    "name": "FMぱるるん",
+    "code": "082015",
+    "region": "関東",
+    "pref": "茨城県",
+    "city": "水戸市",
+    "logo": "http://listenradio.jp/img/rslogo/30022s.png",
+    "description": "茨城県水戸市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30022/livestream/playlist.m3u8"
+}

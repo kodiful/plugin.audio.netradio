@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30092",
+    "name": "なとらじ801",
+    "code": "042072",
+    "region": "東北",
+    "pref": "宮城県",
+    "city": "名取市",
+    "logo": "http://listenradio.jp/img/rslogo/30092s.png",
+    "description": "宮城県名取市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30092/livestream/playlist.m3u8"
+}

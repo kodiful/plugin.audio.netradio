@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "RKC",
+    "name": "RKC高知放送",
+    "code": "390003",
+    "region": "四国",
+    "pref": "高知県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/RKC/448x200.png",
+    "description": "",
+    "official": "http://www.rkc-kochi.co.jp/",
+    "stream": ""
+}

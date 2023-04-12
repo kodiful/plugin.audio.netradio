@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30009",
+    "name": "FMいわき",
+    "code": "072044",
+    "region": "東北",
+    "pref": "福島県",
+    "city": "いわき市",
+    "logo": "http://listenradio.jp/img/rslogo/30009s.png",
+    "description": "福島県いわき市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30009/livestream/playlist.m3u8"
+}

@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30064",
+    "name": "エフエム戸塚",
+    "code": "141003",
+    "region": "関東",
+    "pref": "神奈川県",
+    "city": "横浜市",
+    "logo": "http://listenradio.jp/img/rslogo/30064s.png",
+    "description": "横浜市戸塚区にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30064/livestream/playlist.m3u8"
+}

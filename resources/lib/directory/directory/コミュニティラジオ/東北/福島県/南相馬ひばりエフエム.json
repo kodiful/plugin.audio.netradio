@@ -1,0 +1,13 @@
+{
+    "type": "csra",
+    "id": "",
+    "name": "南相馬ひばりエフエム",
+    "code": "072125",
+    "region": "東北",
+    "pref": "福島県",
+    "city": "南相馬市",
+    "logo": "http://csra.fm/logo/minamisomasaigaifm.png",
+    "description": "",
+    "official": "http://minamisomasaigaifm.hostei.com/index.html",
+    "stream": "http://csra.fm/asx/MinamisomaFM.asx"
+}

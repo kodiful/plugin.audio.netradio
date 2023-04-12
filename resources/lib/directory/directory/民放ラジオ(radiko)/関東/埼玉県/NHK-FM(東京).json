@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "JOAK-FM",
+    "name": "NHK-FM(東京)",
+    "code": "110001",
+    "region": "関東",
+    "pref": "埼玉県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/JOAK-FM/448x200.png",
+    "description": "",
+    "official": "https://www.nhk.or.jp/radio/",
+    "stream": ""
+}

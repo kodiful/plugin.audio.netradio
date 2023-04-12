@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30063",
+    "name": "FMおとくに",
+    "code": "260002",
+    "region": "近畿",
+    "pref": "京都府",
+    "city": "",
+    "logo": "http://listenradio.jp/img/rslogo/30063s.png",
+    "description": "京都府乙訓地域にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30063/livestream/playlist.m3u8"
+}

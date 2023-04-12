@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "AFB",
+    "name": "エフエム青森",
+    "code": "020001",
+    "region": "東北",
+    "pref": "青森県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/AFB/448x200.png",
+    "description": "",
+    "official": "https://www.afb.co.jp/",
+    "stream": ""
+}

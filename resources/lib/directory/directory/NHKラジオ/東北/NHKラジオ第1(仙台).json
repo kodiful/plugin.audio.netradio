@@ -1,0 +1,13 @@
+{
+    "type": "nhk1",
+    "id": "",
+    "name": "NHKラジオ第1(仙台)",
+    "code": "041009",
+    "region": "東北",
+    "pref": "",
+    "city": "仙台市",
+    "logo": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
+    "description": "",
+    "official": "https://www.nhk.or.jp/radio/",
+    "stream": "https://radio-stream.nhk.jp/hls/live/2023543/nhkradiruhkr1/master.m3u8"
+}

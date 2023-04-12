@@ -1,0 +1,13 @@
+{
+    "type": "nhk3",
+    "id": "",
+    "name": "NHK-FM(広島)",
+    "code": "341002",
+    "region": "中国",
+    "pref": "",
+    "city": "広島市",
+    "logo": "https://www.nhk.or.jp/common/img/media/fm-200x200.png",
+    "description": "",
+    "official": "https://www.nhk.or.jp/radio/",
+    "stream": "https://radio-stream.nhk.jp/hls/live/2023513/nhkradirufkfm/master.m3u8"
+}

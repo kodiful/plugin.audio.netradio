@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30052",
+    "name": "AIR STATION HIBIKI",
+    "code": "401005",
+    "region": "九州沖縄",
+    "pref": "福岡県",
+    "city": "北九州市",
+    "logo": "http://listenradio.jp/img/rslogo/30052s.png",
+    "description": "福岡県北九州市・八幡西区・若松区・遠賀郡の地域に密着した、コミュニティFMラジオ放送局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30052/livestream/playlist.m3u8"
+}

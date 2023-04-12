@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "E-RADIO",
+    "name": "e-radio FM滋賀",
+    "code": "250007",
+    "region": "近畿",
+    "pref": "滋賀県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/E-RADIO/448x200.png",
+    "description": "",
+    "official": "https://www.e-radio.co.jp/",
+    "stream": ""
+}

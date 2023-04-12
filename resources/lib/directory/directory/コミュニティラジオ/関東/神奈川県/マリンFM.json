@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30065",
+    "name": "マリンFM",
+    "code": "141003",
+    "region": "関東",
+    "pref": "神奈川県",
+    "city": "横浜市",
+    "logo": "http://listenradio.jp/img/rslogo/30065s.png",
+    "description": "神奈川県横浜市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30065/livestream/playlist.m3u8"
+}

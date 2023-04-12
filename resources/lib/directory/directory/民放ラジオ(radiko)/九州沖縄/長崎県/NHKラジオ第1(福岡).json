@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "JOLK",
+    "name": "NHKラジオ第1(福岡)",
+    "code": "420000",
+    "region": "九州沖縄",
+    "pref": "長崎県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/JOLK/448x200.png",
+    "description": "",
+    "official": "https://www.nhk.or.jp/radio/",
+    "stream": ""
+}

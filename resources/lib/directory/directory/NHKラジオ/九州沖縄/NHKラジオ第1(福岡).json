@@ -1,0 +1,13 @@
+{
+    "type": "nhk1",
+    "id": "",
+    "name": "NHKラジオ第1(福岡)",
+    "code": "401307",
+    "region": "九州沖縄",
+    "pref": "",
+    "city": "福岡市",
+    "logo": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
+    "description": "",
+    "official": "https://www.nhk.or.jp/radio/",
+    "stream": "https://radio-stream.nhk.jp/hls/live/2023541/nhkradirulkr1/master.m3u8"
+}

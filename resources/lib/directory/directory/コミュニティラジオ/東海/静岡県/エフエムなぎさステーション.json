@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "nagisastation",
+    "name": "エフエムなぎさステーション",
+    "code": "220001",
+    "region": "東海",
+    "pref": "静岡県",
+    "city": "",
+    "logo": "https://radimo.s3.amazonaws.com/logo/e7b2ce6d2b7d313c4e03e46193e17de112ec5a227a6d0c9cff3ff3b4fd79847d.jpg",
+    "description": "伊東を愛する全ての人へ 海山温泉の大自然 人の温もり ​情報・イベント・音楽など ​皆さんと一緒に創る情報局",
+    "official": "https://www.fmito.com/",
+    "stream": ""
+}

@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "applewave",
+    "name": "アップルウェーブ",
+    "code": "020001",
+    "region": "東北",
+    "pref": "青森県",
+    "city": "",
+    "logo": "https://radimo.s3.amazonaws.com/logo/7fb7add4d051c3b6231f3206f8165d08a6e24cba8543279d6d10d628c1b287a1.jpg",
+    "description": "お城と桜とりんごの街ひろさきから、地域情報中心に放送します。災害時などは随時割り込みします。",
+    "official": "http://www.applewave.co.jp/",
+    "stream": ""
+}

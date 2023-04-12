@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30088",
+    "name": "FMのべおか",
+    "code": "452033",
+    "region": "九州沖縄",
+    "pref": "宮崎県",
+    "city": "延岡市",
+    "logo": "http://listenradio.jp/img/rslogo/30088s.png",
+    "description": "宮崎県延岡市内にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30088/livestream/playlist.m3u8"
+}

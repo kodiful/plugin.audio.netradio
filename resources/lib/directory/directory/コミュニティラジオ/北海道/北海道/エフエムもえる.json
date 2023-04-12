@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "moeru",
+    "name": "エフエムもえる",
+    "code": "012122",
+    "region": "北海道",
+    "pref": "北海道",
+    "city": "留萌市",
+    "logo": "https://radimo.s3.amazonaws.com/logo/ffb65db5bfefcc3ae2045c5ead121bebc688e600b6b4570f749acf5c6c418195.png",
+    "description": "北海道の左上、留萌市の『マチの聴こえる回覧版』。ボランティアパーソナリティを中心に毎日情報発信!",
+    "official": "http://www.moeru.fm/",
+    "stream": ""
+}

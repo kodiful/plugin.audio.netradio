@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30076",
+    "name": "横手かまくらエフエム",
+    "code": "052035",
+    "region": "東北",
+    "pref": "秋田県",
+    "city": "横手市",
+    "logo": "http://listenradio.jp/img/rslogo/30076s.png",
+    "description": "秋田県横手市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30076/livestream/playlist.m3u8"
+}

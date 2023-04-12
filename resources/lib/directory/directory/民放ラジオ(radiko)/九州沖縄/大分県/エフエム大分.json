@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "FM_OITA",
+    "name": "エフエム大分",
+    "code": "440001",
+    "region": "九州沖縄",
+    "pref": "大分県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/FM_OITA/448x200.png",
+    "description": "",
+    "official": "http://www.fmoita.co.jp",
+    "stream": ""
+}

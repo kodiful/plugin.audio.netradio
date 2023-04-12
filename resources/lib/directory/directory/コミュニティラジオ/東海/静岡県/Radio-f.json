@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "radiof",
+    "name": "Radio-f",
+    "code": "222101",
+    "region": "東海",
+    "pref": "静岡県",
+    "city": "富士市",
+    "logo": "https://radimo.s3.amazonaws.com/logo/f9fe70c5c74abb2595a8dfa72733b2d120dafc5b2fc16077b5efd16a7d94abbe.jpg",
+    "description": "静岡県富士市から地元らしさにこだわってOA。平日7時〜19時、土9時〜12時、日8時〜9時。",
+    "official": "https://radio-f.jp",
+    "stream": ""
+}

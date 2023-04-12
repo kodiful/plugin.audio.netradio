@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30023",
+    "name": "FMひたち",
+    "code": "082023",
+    "region": "関東",
+    "pref": "茨城県",
+    "city": "日立市",
+    "logo": "http://listenradio.jp/img/rslogo/30023s.png",
+    "description": "茨城県日立市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30023/livestream/playlist.m3u8"
+}

@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "beachstation",
+    "name": "FMビーチステーション",
+    "code": "300004",
+    "region": "近畿",
+    "pref": "和歌山県",
+    "city": "",
+    "logo": "https://radimo.s3.amazonaws.com/logo/df8f7a96e6a9cc22d4cd6aeaabad239873b415facc21ee42e82cbb30890bf90c.png",
+    "description": "パンダのまち南紀白浜から紀南の地域情報・防災情報をお届けしています♪放送時間はHPをご覧ください",
+    "official": "https://www.fm764.com/",
+    "stream": ""
+}

@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "IBC",
+    "name": "IBCラジオ",
+    "code": "030007",
+    "region": "東北",
+    "pref": "岩手県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/IBC/448x200.png",
+    "description": "",
+    "official": "https://www.ibc.co.jp/radio/",
+    "stream": ""
+}

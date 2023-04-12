@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "MBS",
+    "name": "MBSラジオ",
+    "code": "300004",
+    "region": "近畿",
+    "pref": "和歌山県",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/MBS/448x200.png",
+    "description": "",
+    "official": "https://www.mbs1179.com/",
+    "stream": ""
+}

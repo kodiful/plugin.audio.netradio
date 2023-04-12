@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "OBC",
+    "name": "OBCラジオ大阪",
+    "code": "270008",
+    "region": "近畿",
+    "pref": "大阪府",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/OBC/448x200.png",
+    "description": "",
+    "official": "http://www.obc1314.co.jp/",
+    "stream": ""
+}

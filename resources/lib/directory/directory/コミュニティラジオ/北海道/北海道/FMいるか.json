@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "iruka",
+    "name": "FMいるか",
+    "code": "012025",
+    "region": "北海道",
+    "pref": "北海道",
+    "city": "函館市",
+    "logo": "https://radimo.s3.amazonaws.com/logo/8bbf5aef66b4077727a1c84447b0b3fd8506edb5e45ed57e05c48d8be086ab28.png",
+    "description": "夜景でおなじみ北海道函館市から24時間放送中! 函館山のふもとから地域・観光・防災情報を届けます。",
+    "official": "http://www.fmiruka.co.jp/",
+    "stream": ""
+}

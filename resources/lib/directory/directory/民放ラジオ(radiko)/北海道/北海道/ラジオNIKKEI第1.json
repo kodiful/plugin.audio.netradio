@@ -1,0 +1,13 @@
+{
+    "type": "radk",
+    "id": "RN1",
+    "name": "ラジオNIKKEI第1",
+    "code": "010006",
+    "region": "北海道",
+    "pref": "北海道",
+    "city": "",
+    "logo": "http://radiko.jp/v2/static/station/logo/RN1/448x200.png",
+    "description": "",
+    "official": "http://www.radionikkei.jp/",
+    "stream": ""
+}

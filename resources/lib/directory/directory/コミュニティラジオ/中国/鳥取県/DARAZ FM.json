@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30053",
+    "name": "DARAZ FM",
+    "code": "312029",
+    "region": "中国",
+    "pref": "鳥取県",
+    "city": "米子市",
+    "logo": "http://listenradio.jp/img/rslogo/30053s.png",
+    "description": "鳥取県米子市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30053/livestream/playlist.m3u8"
+}

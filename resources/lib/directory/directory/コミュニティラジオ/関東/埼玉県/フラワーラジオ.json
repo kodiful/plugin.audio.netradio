@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30002",
+    "name": "フラワーラジオ",
+    "code": "112178",
+    "region": "関東",
+    "pref": "埼玉県",
+    "city": "鴻巣市",
+    "logo": "http://listenradio.jp/img/rslogo/30002s.png",
+    "description": "埼玉県鴻巣市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30002/livestream/playlist.m3u8"
+}

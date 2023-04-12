@@ -1,0 +1,13 @@
+{
+    "type": "lsnr",
+    "id": "30050",
+    "name": "カシオペアFM",
+    "code": "032131",
+    "region": "東北",
+    "pref": "岩手県",
+    "city": "二戸市",
+    "logo": "http://listenradio.jp/img/rslogo/30050s.png",
+    "description": "岩手県二戸市にあるコミュニティFMラジオ局です。",
+    "official": "",
+    "stream": "http://mtist.as.smartstream.ne.jp/30050/livestream/playlist.m3u8"
+}

@@ -1,0 +1,13 @@
+{
+    "type": "jcba",
+    "id": "sakurafm",
+    "name": "さくらFM",
+    "code": "282049",
+    "region": "近畿",
+    "pref": "兵庫県",
+    "city": "西宮市",
+    "logo": "https://radimo.s3.amazonaws.com/logo/cc217828d5699c8a6481bb77a191d839a99af158b391be6f1c6661ee1527f0e8.png",
+    "description": "甲子園球場のある兵庫県西宮市から78.7MHzで、市民生活に密着した身近な情報を24時間放送中!",
+    "official": "https://sakura-fm.co.jp/",
+    "stream": ""
+}
