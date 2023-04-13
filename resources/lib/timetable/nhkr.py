@@ -44,11 +44,6 @@ class Scraper(Common, Const, PrefData):
         self.URL = self.URL % self.REGION[region]
         super().__init__()
 
-    def load(self):
-        res = requests.get(self.URL)
-        data = res.content.decode('utf-8')
-        return data
-
     def parse(self, data):
         data = json.loads(data)
         data = data['nowonair_list']

@@ -20,6 +20,10 @@ msgctxt "#30400"
 msgid "Download"
 msgstr ""
 
+msgctxt "#30401"
+msgid "Unsupported OS"
+msgstr ""
+
 msgctxt "#30403"
 msgid "Download streaming"
 msgstr ""
@@ -52,20 +56,36 @@ msgctxt "#30412"
 msgid "Number of items"
 msgstr ""
 
-msgctxt "#30600"
-msgid "Local Proxy"
-msgstr ""
-
-msgctxt "#30601"
-msgid "Port number"
-msgstr ""
-
-msgctxt "#30700"
+msgctxt "#30500"
 msgid "Other Settings"
 msgstr ""
 
-msgctxt "#30707"
+msgctxt "#30501"
+msgid "Port number"
+msgstr ""
+
+msgctxt "#30502"
 msgid "Debug"
+msgstr ""
+
+msgctxt "#30600"
+msgid "Station settings"
+msgstr ""
+
+msgctxt "#30601"
+msgid "Name"
+msgstr ""
+
+msgctxt "#30602"
+msgid "Description"
+msgstr ""
+
+msgctxt "#30603"
+msgid "Logo URL"
+msgstr ""
+
+msgctxt "#30604"
+msgid "Stream URL"
 msgstr ""
 
 msgctxt "#30919"

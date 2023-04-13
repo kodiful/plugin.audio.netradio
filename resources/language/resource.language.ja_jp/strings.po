@@ -20,6 +20,10 @@ msgctxt "#30400"
 msgid "Download"
 msgstr "番組保存"
 
+msgctxt "#30401"
+msgid "Unsupported OS"
+msgstr "このOSでは番組保存をサポートしていません"
+
 msgctxt "#30403"
 msgid "Download streaming"
 msgstr "番組保存"
@@ -52,21 +56,37 @@ msgctxt "#30412"
 msgid "Number of items"
 msgstr "アイテム数"
 
-msgctxt "#30600"
-msgid "Local Proxy"
-msgstr "ローカルプロキシ"
-
-msgctxt "#30601"
-msgid "Port number"
-msgstr "ポート番号"
-
-msgctxt "#30700"
+msgctxt "#30500"
 msgid "Other Settings"
 msgstr "その他"
 
-msgctxt "#30707"
+msgctxt "#30501"
+msgid "Port number"
+msgstr "ポート番号"
+
+msgctxt "#30502"
 msgid "Debug"
 msgstr "デバッグ"
+
+msgctxt "#30600"
+msgid "Station settings"
+msgstr "放送局設定"
+
+msgctxt "#30601"
+msgid "Name"
+msgstr "局名"
+
+msgctxt "#30602"
+msgid "Description"
+msgstr "説明"
+
+msgctxt "#30603"
+msgid "Logo URL"
+msgstr "ロゴ画像URL"
+
+msgctxt "#30604"
+msgid "Stream URL"
+msgstr "ストリームURL"
 
 msgctxt "#30919"
 msgid "%Y/%m/%d(%%s) %H:%M"

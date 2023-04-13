@@ -10,8 +10,10 @@ import socket
 socket.setdefaulttimeout(60)
 
 import urllib.parse
+import shutil
 
 import xbmc
+import xbmcgui
 
 from resources.lib.common import Common
 from resources.lib.directory import Directory
@@ -43,10 +45,40 @@ if __name__ == '__main__':
         path = args.get('path')
         Directory().delete_from_top(path)
 
+    # 放送局追加
+    elif action == 'new_station':
+        data = {'name': '', 'description': '', 'logo': 'https://', 'stream': 'https://'}
+        shutil.copy(os.path.join(Common.RESOURCES_PATH, 'station.xml'), os.path.join(Common.RESOURCES_PATH, 'settings.xml'))
+        xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
+        xbmc.sleep(1000)
+        for key in ('name', 'description', 'logo', 'stream'):
+            Common.SET(key, data[key])
+    elif action == 'change_station':
+        data = Common.read_as_json(args.get('path'))
+        shutil.copy(os.path.join(Common.RESOURCES_PATH, 'station.xml'), os.path.join(Common.RESOURCES_PATH, 'settings.xml'))
+        xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
+        xbmc.sleep(1000)
+        for key in ('name', 'description', 'logo', 'stream'):
+            Common.SET(key, data[key])
+    elif action == 'add_station':
+        data = {'type': 'user'}
+        for key in ('name', 'description', 'logo', 'stream'):
+            data[key] = Common.GET(key)
+        Directory().add_station(data)
+
+    # キーワード追加
+    elif action == 'add_keyword':
+        pass
+    # キーワード削除
+    elif action == 'delete_keyword':
+        pass
+
     # アドオン設定
     elif action == 'settings':
-        xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)  
-
+        src = os.path.join(Common.RESOURCES_PATH, 'default.xml')
+        dst = os.path.join(Common.RESOURCES_PATH, 'settings.xml')
+        shutil.copy(src, dst)
+        xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
     # 未定義
     else:
         Common.log('undefined action:', action)

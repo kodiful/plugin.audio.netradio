@@ -32,11 +32,6 @@ class Scraper(Common, Const, PrefData):
         item = self.search_by_pref(pref)
         self.URL = self.URL % item['radiko']
         super().__init__()
-
-    def load(self):
-        res = requests.get(self.URL)
-        data = res.content.decode('utf-8')
-        return data
     
     def parse(self, data):
         data = parse(data)

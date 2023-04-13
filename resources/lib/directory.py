@@ -3,7 +3,6 @@
 import sys
 import os
 import glob
-import json
 import shutil
 import time
 
@@ -12,6 +11,7 @@ from urllib.parse import urlencode
 from resources.lib.common import Common
 from resources.lib.prefdata import PrefData
 from resources.lib.localproxy import LocalProxy
+from resources.lib.stations.common import Common as Stations
 
 import xbmc
 import xbmcgui
@@ -54,6 +54,13 @@ class Directory(Common, PrefData):
         os.remove(path)
         xbmc.executebuiltin('Container.Refresh')
 
+    def add_station(self, data):
+        item = {'type': '', 'id': '', 'name': '', 'code': '', 'region': '', 'pref': '', 'city': '', 'logo': '', 'description': '', 'official': '', 'stream': ''}
+        item.update(data)
+        self.write_as_json(os.path.join(self.DIRECTORY_PATH, '%s.json' % item['name']), item)
+        Stations.load_logo(item, self.LOGO_PATH)
+        xbmc.executebuiltin('Container.Refresh')
+
     def _setup_items(self):
         # ユーザが設定した放送局を追加
         items = glob.glob(os.path.join(self.DIRECTORY_PATH, '*.json'))
@@ -82,8 +89,7 @@ class Directory(Common, PrefData):
 
     def _add_item(self, path, item):
         # jsonファイルからデータを取得する
-        with open(item) as f:
-            data = json.loads(f.read())
+        data = self.read_as_json(item)
         # listitemを追加する
         if data['type'] in ('nhk1', 'nhk2', 'nhk3', 'radk'):
             name = self._name(data)
@@ -102,16 +108,18 @@ class Directory(Common, PrefData):
         li.setInfo(type='music', infoLabels=labels)
         li.setProperty('IsPlayable', 'true')
         # コンテクストメニュー
-        contextmenu = []
+        self.contextmenu = []
         if path is None:
-            query = urlencode({'action': 'delete_from_top', 'path': item})
-            contextmenu.append(('トップから削除する', 'RunPlugin(%s?%s)' % (sys.argv[0], query)))
+            if data['type'] == 'user':
+                self._contextmenu('放送局の設定を変更する', {'action': 'change_station', 'path': item})
+            else:
+                self._contextmenu('放送局を追加する', {'action': 'new_station'})
+            self._contextmenu('トップ画面から削除する', {'action': 'delete_from_top', 'path': item})
         else:
-            query = urlencode({'action': 'add_to_top', 'path': item})
-            contextmenu.append(('トップに追加する', 'RunPlugin(%s?%s)' % (sys.argv[0], query)))
-        contextmenu.append(('アドオン設定', 'RunPlugin(%s?action=settings)' % sys.argv[0]))
-        # コンテクストメニュー設定
-        li.addContextMenuItems(contextmenu, replaceItems=True)
+            self._contextmenu('トップ画面に追加する', {'action': 'add_to_top', 'path': item})
+        self._contextmenu('キーワードを追加する', {'action': 'add_keyword', 'path': item})
+        self._contextmenu('アドオン設定', {'action': 'settings'})
+        li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL
         if data['type'] == 'radk':
             stream = LocalProxy.proxy_radk(data['id'], self.token)
@@ -137,8 +145,7 @@ class Directory(Common, PrefData):
                 'user': 9
             }
             # type, code, nameでソートする
-            with open(item) as f:
-                data = json.loads(f.read())
+            data = self.read_as_json(item)
             key1 = key[data['type']]
             key2 = data['code']
             key3 = data['name']
@@ -149,13 +156,8 @@ class Directory(Common, PrefData):
             return self._sort(min(children))
         
     def _name(self, item):
-        try:
-            filename = os.path.join(self.TIMETABLE_PATH, item['type'], f'%s.json' % item['name'])
-            with open(filename) as f:
-                progs = json.loads(f.read())
-        except Exception:
-            progs = []
         name = item['name']
+        progs = self.read_as_json(os.path.join(self.TIMETABLE_PATH, item['type'], f'%s.json' % name))
         for i, p in enumerate(progs):
             title = '%s (%s～%s)' % (p['title'], self._time(p['start']), self._time(p['end']))
             if i == 0:
@@ -166,4 +168,6 @@ class Directory(Common, PrefData):
     
     def _time(self, t):
         return time.strftime("%H:%M", time.localtime(t))
-
+    
+    def _contextmenu(self, name, args):
+        self.contextmenu.append((name, 'RunPlugin(%s?%s)' % (sys.argv[0], urlencode(args))))

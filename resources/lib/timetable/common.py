@@ -19,63 +19,62 @@ class Common:
         self.SOURCE_FILE = os.path.join(self.SOURCE_PATH, f'{self.TYPE}.txt')
         self.JSON_FILE = os.path.join(self.JSON_PATH, f'{self.TYPE}.json')
 
-    # ページを読み込む
-    def load(self):
-        res = requests.get(self.URL)
-        return res.text
-
-    # ファイルを書き込む
-    def write(self, data):
-        with open(self.SOURCE_FILE, 'w') as f:
-            f.write(data)
-
-    # ファイルを読み込む
-    def read(self):
-        with open(self.SOURCE_FILE, 'r') as f:
-            data = f.read()
-        return data
-
     # ファイルをパースする
     def parse(self, data):
         # to be overwritten
         return []
 
+    # 一連の処理を実行する
     def update(self, force=False):
         # 現在時刻
         now = self.now()
         # 次の番組の開始時刻と比較する
         if force is False and os.path.isfile(self.JSON_FILE):
-            with open(self.JSON_FILE) as f:
-                buf = json.loads(f.read())
+            buf = self.read_as_json(self.JSON_FILE)
             nextaired = self.next_aired(buf)
-            timestamp = self.timestamp(self.JSON_FILE)
             if now < nextaired:
                 return nextaired - now
         # ファイル更新
-        data = self.load()
-        self.write(data)
+        data = self.load(self.URL)
+        self.write(self.SOURCE_FILE, data)
         buf = self.parse(data)
         self.save_as_list(buf)
         self.save_as_file(buf)
         nextaired = self.next_aired(buf)
         return nextaired - now
-
+    
      # リストをJSONとして出力する
     def save_as_list(self, buf):
-        with open(self.JSON_FILE, 'w') as f:
-            f.write(json.dumps(buf, sort_keys=False, ensure_ascii=False, indent=4))
+        self.write_as_json(self.JSON_FILE, buf)
 
-    # リストの要素をJSONとして出力する
+    # リストの要素を個別にJSONとして出力する
     def save_as_file(self, buf):
         for name, progs in buf.items():
             dirname = os.path.join(self.TIMETABLE_PATH, progs[0]['type'])
             os.makedirs(dirname, exist_ok=True)
-            filename = os.path.join(dirname, '%s.json' % name)
-            with open(filename, 'w') as f:
-                f.write(json.dumps(progs, sort_keys=False, ensure_ascii=False, indent=4))
+            path = os.path.join(dirname, '%s.json' % name)
+            self.write_as_json(path, progs)
+
+    # 現在時刻
+    @staticmethod
+    def now():
+        return datetime.datetime.now().timestamp()
     
-    # 文字列正規化する
-    def normalize(self, text):
+    # 次の番組の開始時刻
+    @staticmethod
+    def next_aired(buf, stations=None):
+        if stations is None:
+            stations = buf.keys()
+        # 実在する放送局名に絞る
+        stations = list(filter(lambda x: buf.get(x), stations))
+        # 番組終了時刻を抽出する
+        x = reduce(lambda a, b: a + b, [list(map(lambda x: x['end'], buf[name])) for name in stations])
+        # 抽出した番組終了時刻のうち最も早い時刻を返す
+        return min(x)
+    
+    # 文字列を正規化する
+    @staticmethod
+    def normalize(text):
         if text is None: return ''
         text = re.sub('～', '〜', text)
         text = re.sub('（', '(', text)
@@ -84,28 +83,27 @@ class Common:
         text = unicodedata.normalize('NFKC', text)
         text = re.sub('[ ]{2,}', ' ', text)
         return text.strip()
-    
-    # ファイルのタイムスタンプ
-    def timestamp(self, path):
-        # ファイルの最終更新時刻を取得
-        mtime = os.path.getmtime(path)
-        # 最終更新時刻をUNIX時間に変換
-        unix_time = int(time.mktime(time.gmtime(mtime)))
-        return unix_time
-    
-    # 現在時刻
-    def now(self):
-        return datetime.datetime.now().timestamp()
-    
-    # 次の番組の開始時刻
-    def next_aired(self, buf, stations=None):
-        if stations is None:
-            stations = buf.keys()
-        # 実在する放送局名に絞る
-        stations = list(filter(lambda x: buf.get(x), stations))
-        # 番組終了時間を抽出する
-        x = reduce(lambda a, b: a + b, [list(map(lambda x: x['end'], buf[name])) for name in stations])
-        return min(x)
-    
+      
+    # ファイル入出力
+    @staticmethod
+    def load(url):
+        res = requests.get(url)
+        return res.content.decode('utf-8')
 
+    @staticmethod
+    def write(path, data):
+        with open(path, 'wb') as f:
+            f.write(data.encode('utf-8'))
 
+    @staticmethod
+    def read(path):
+        with open(path, 'rb') as f:
+            return f.read().decode('utf-8')
+
+    @staticmethod
+    def read_as_json(path):
+        return json.loads(Common.read(path))
+
+    @staticmethod
+    def write_as_json(path, data):
+        Common.write(path, json.dumps(data, ensure_ascii=False, indent=4))

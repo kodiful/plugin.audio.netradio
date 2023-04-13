@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings>
+  <!--
+      strings 30000 thru 30999 reserved for plugins and plugin settings
+      strings 31000 thru 31999 reserved for skins
+      strings 32000 thru 32999 reserved for scripts
+      strings 33000 thru 33999 reserved for common strings used in add-ons
+  -->
+  <!--放送局-->
+  <category label="30600">
+    <setting label="30601" id="name" type="text" default=""/>
+    <setting label="30602" id="description" type="text" default=""/>
+    <setting label="30603" id="logo" type="text" default="https://"/>
+    <setting label="30604" id="stream" type="text" default="https://"/>
+  </category>
+</settings>
