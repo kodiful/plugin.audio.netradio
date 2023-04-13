@@ -56,17 +56,81 @@ msgctxt "#30412"
 msgid "Number of items"
 msgstr "アイテム数"
 
-msgctxt "#30500"
+msgctxt "#30300"
 msgid "Other Settings"
 msgstr "その他"
 
-msgctxt "#30501"
+msgctxt "#30301"
 msgid "Port number"
 msgstr "ポート番号"
 
-msgctxt "#30502"
+msgctxt "#30302"
 msgid "Debug"
 msgstr "デバッグ"
+
+msgctxt "#30500"
+msgid "Keyword"
+msgstr "保存キーワード"
+
+msgctxt "#30501"
+msgid "Keyword"
+msgstr "キーワード"
+
+msgctxt "#30502"
+msgid "Search"
+msgstr "検索対象"
+
+msgctxt "#30503"
+msgid "Day"
+msgstr "曜日"
+
+msgctxt "#30504"
+msgid "All station"
+msgstr "放送局を限定する"
+
+msgctxt "#30505"
+msgid "Station"
+msgstr "限定する放送局"
+
+msgctxt "#30511"
+msgid "Title only"
+msgstr "番組名のみ"
+
+msgctxt "#30512"
+msgid "Title & detail info"
+msgstr "番組名と詳細情報"
+
+msgctxt "#30520"
+msgid "Everyday"
+msgstr "毎日"
+
+msgctxt "#30521"
+msgid "Sun"
+msgstr "日"
+
+msgctxt "#30522"
+msgid "Mon"
+msgstr "月"
+
+msgctxt "#30523"
+msgid "Tue"
+msgstr "火"
+
+msgctxt "#30524"
+msgid "Wed"
+msgstr "水"
+
+msgctxt "#30525"
+msgid "Thu"
+msgstr "木"
+
+msgctxt "#30526"
+msgid "Fri"
+msgstr "金"
+
+msgctxt "#30527"
+msgid "Sat"
+msgstr "土"
 
 msgctxt "#30600"
 msgid "Station settings"

@@ -28,6 +28,10 @@ class Monitor(xbmc.Monitor, Common):
                 xbmc.executebuiltin('RunPlugin(plugin://%s?action=add_station)' % Common.ADDON_ID)
                 self.notify('Station settings changed')
                 return
+            if settings == self.read(os.path.join(Common.RESOURCES_PATH, 'keyword.xml')):
+                xbmc.executebuiltin('RunPlugin(plugin://%s?action=add_keyword)' % Common.ADDON_ID)
+                self.notify('Keyword settings changed')
+                return
 
 
 class Service(Common, PrefData):
@@ -43,6 +47,8 @@ class Service(Common, PrefData):
             shutil.copytree(os.path.join(self.RESOURCES_PATH, 'lib', 'stations', 'logo'), self.LOGO_PATH)
         if not os.path.isdir(self.TIMETABLE_PATH):
             os.makedirs(self.TIMETABLE_PATH, exist_ok=True)
+        if not os.path.isdir(self.KEYWORDS_PATH):
+            os.makedirs(self.KEYWORDS_PATH, exist_ok=True)
         if not os.path.isdir(self.HLS_CACHE_PATH):
             os.makedirs(self.HLS_CACHE_PATH, exist_ok=True)
         # OSを判定

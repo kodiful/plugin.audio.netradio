@@ -33,6 +33,8 @@ class Common:
     # timetable
     TIMETABLE_ROOT = os.path.join(PROFILE_PATH, 'timetable')
     TIMETABLE_PATH = os.path.join(TIMETABLE_ROOT, 'timetable')
+    # keywords
+    KEYWORDS_PATH = os.path.join(PROFILE_PATH, 'keywords')
     # HLS chache
     HLS_CACHE_PATH = os.path.join(PROFILE_PATH, 'hls_cache')
     # radiko auth file

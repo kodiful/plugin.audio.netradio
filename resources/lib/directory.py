@@ -11,7 +11,6 @@ from urllib.parse import urlencode
 from resources.lib.common import Common
 from resources.lib.prefdata import PrefData
 from resources.lib.localproxy import LocalProxy
-from resources.lib.stations.common import Common as Stations
 
 import xbmc
 import xbmcgui
@@ -52,13 +51,6 @@ class Directory(Common, PrefData):
 
     def delete_from_top(self, path):
         os.remove(path)
-        xbmc.executebuiltin('Container.Refresh')
-
-    def add_station(self, data):
-        item = {'type': '', 'id': '', 'name': '', 'code': '', 'region': '', 'pref': '', 'city': '', 'logo': '', 'description': '', 'official': '', 'stream': ''}
-        item.update(data)
-        self.write_as_json(os.path.join(self.DIRECTORY_PATH, '%s.json' % item['name']), item)
-        Stations.load_logo(item, self.LOGO_PATH)
         xbmc.executebuiltin('Container.Refresh')
 
     def _setup_items(self):
@@ -111,13 +103,13 @@ class Directory(Common, PrefData):
         self.contextmenu = []
         if path is None:
             if data['type'] == 'user':
-                self._contextmenu('放送局の設定を変更する', {'action': 'change_station', 'path': item})
+                self._contextmenu('放送局の設定を変更する', {'action': 'set_station', 'path': item})
             else:
-                self._contextmenu('放送局を追加する', {'action': 'new_station'})
+                self._contextmenu('放送局を追加する', {'action': 'set_station'})
             self._contextmenu('トップ画面から削除する', {'action': 'delete_from_top', 'path': item})
         else:
             self._contextmenu('トップ画面に追加する', {'action': 'add_to_top', 'path': item})
-        self._contextmenu('キーワードを追加する', {'action': 'add_keyword', 'path': item})
+        self._contextmenu('キーワードを追加する', {'action': 'set_keyword', 'path': os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['name'])})
         self._contextmenu('アドオン設定', {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL

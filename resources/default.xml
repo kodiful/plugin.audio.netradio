@@ -21,8 +21,8 @@
     <setting label="30411" type="action" option="close" action="RunPlugin(plugin://$ID/?action=updateRSS&key=)" enable="eq(-3,true)+!eq(-2,)+eq(-7,true)" visible="eq(-9,Darwin)|eq(-9,Windows)"/>
   </category>
   <!--その他-->
-  <category label="30500">
-    <setting label="30501" id="port" type="number" default="8088"/>
-    <setting label="30502" id="debug" type="bool" default="false"/>
+  <category label="30300">
+    <setting label="30301" id="port" type="number" default="8088"/>
+    <setting label="30302" id="debug" type="bool" default="false"/>
   </category>
 </settings>
