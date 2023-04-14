@@ -108,17 +108,7 @@ class Directory(Common, PrefData):
         # jsonファイルからデータを取得する
         data = self.read_as_json(item)
         # listitemを追加する
-        if data['type'] in ('nhk1', 'nhk2', 'nhk3', 'radk'):
-            name = self._name(data)
-        elif data['type'] in ('csra', 'jcba', 'lsnr', 'siml'):
-            name = f"{data['name']}({data['pref']}{data['city']})"
-            if data['description']:
-                name += f" [COLOR khaki]▶ {data['description']}[/COLOR]"
-        else:
-            name = data['name']
-            if data['description']:
-                name += f" [COLOR khaki]▶ {data['description']}[/COLOR]"
-        li = xbmcgui.ListItem(name)
+        li = xbmcgui.ListItem(self._name(data))
         logo = os.path.join(self.LOGO_PATH, data['type'], '%s.png' % data['name'])
         li.setArt({'thumb': logo, 'poster': logo, 'banner': logo, 'fanart': logo, 'clearart': logo, 'clearlogo': logo, 'landscape': logo, 'icon': logo})
         labels = {'title': data['name']}
@@ -189,23 +179,31 @@ class Directory(Common, PrefData):
             children = glob.glob(os.path.join(item, '*'))
             return self._sort(min(children))
         
-    def _name(self, item):
-        # 放送局名
-        color = None
-        name = item['name']
-        if item['type'] == 'radk' and item['pref'] != self.pref:
-            # 認証された地域と一致しない場合はグレイ表示
-            color = 'gray'
-            name = f'[COLOR {color}]{name}[/COLOR]'
-        progs = self.read_as_json(os.path.join(self.TIMETABLE_PATH, item['type'], f'%s.json' % item['name']))
-        for i, p in enumerate(progs):
-            title = '%s (%s～%s)' % (p['title'], self._time(p['start']), self._time(p['end']))
-            if i == 0:
-                color1 = color or 'khaki'
-                name += f' [COLOR {color1}]▶ {title}[/COLOR]'
-            else:
-                color2 = color or 'lightgreen'
-                name += f' [COLOR {color2}]▶ {title}[/COLOR]'
+    def _name(self, data):
+        if data['type'] in ('nhk1', 'nhk2', 'nhk3', 'radk'):
+            color = None
+            name = data['name']
+            if data['type'] == 'radk' and data['pref'] != self.pref:
+                # 認証された地域と一致しない場合はグレイ表示
+                color = 'gray'
+                name = f'[COLOR {color}]{name}[/COLOR]'
+            progs = self.read_as_json(os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['name']))
+            for i, p in enumerate(progs):
+                title = '%s (%s～%s)' % (p['title'], self._time(p['start']), self._time(p['end']))
+                if i == 0:
+                    color1 = color or 'khaki'
+                    name += f' [COLOR {color1}]▶ {title}[/COLOR]'
+                else:
+                    color2 = color or 'lightgreen'
+                    name += f' [COLOR {color2}]▶ {title}[/COLOR]'
+        elif data['type'] in ('csra', 'jcba', 'lsnr', 'siml'):
+            name = f"{data['name']}({data['pref']}{data['city']})"
+            if data['description']:
+                name += f" [COLOR khaki]▶ {data['description']}[/COLOR]"
+        else:
+            name = data['name']
+            if data['description']:
+                name += f" [COLOR khaki]▶ {data['description']}[/COLOR]"
         return name
     
     def _time(self, t):
