@@ -5,6 +5,10 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
 
+# ffmpegのパスを設定
+from resources.lib.common import Common
+os.environ['PATH'] = Common.GET('ffmpeg').replace('/ffmpeg', '')
+
 # HTTP接続のタイムアウト(秒)を設定
 import socket
 socket.setdefaulttimeout(60)

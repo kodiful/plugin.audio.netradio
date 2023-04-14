@@ -5,15 +5,10 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
 
-# HTTP接続のタイムアウト(秒)を設定
-import socket
-socket.setdefaulttimeout(60)
-
 import urllib.parse
 import shutil
 
 import xbmc
-import xbmcgui
 
 from resources.lib.common import Common
 from resources.lib.directory import Directory

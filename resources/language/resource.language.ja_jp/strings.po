@@ -61,10 +61,14 @@ msgid "Other Settings"
 msgstr "その他"
 
 msgctxt "#30301"
+msgid "Path to ffmpeg"
+msgstr "ffmpegのパス"
+
+msgctxt "#30302"
 msgid "Port number"
 msgstr "ポート番号"
 
-msgctxt "#30302"
+msgctxt "#30303"
 msgid "Debug"
 msgstr "デバッグ"
 

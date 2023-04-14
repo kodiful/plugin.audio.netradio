@@ -29,15 +29,17 @@ class Common:
     # directory
     DIRECTORY_ROOT = os.path.join(PROFILE_PATH, 'stations')
     DIRECTORY_PATH = os.path.join(DIRECTORY_ROOT, 'directory')
+    INDEX_PATH = os.path.join(DIRECTORY_ROOT, 'index')
     LOGO_PATH = os.path.join(DIRECTORY_ROOT, 'logo')
     # timetable
     TIMETABLE_ROOT = os.path.join(PROFILE_PATH, 'timetable')
     TIMETABLE_PATH = os.path.join(TIMETABLE_ROOT, 'timetable')
     # keywords
     KEYWORDS_PATH = os.path.join(PROFILE_PATH, 'keywords')
-    # queue
+    # queue, download
     PENDING_PATH = os.path.join(PROFILE_PATH, 'queue', 'pending')
     PROCESSING_PATH = os.path.join(PROFILE_PATH, 'queue', 'processing')
+    DOWNLOAD_PATH = os.path.join(PROFILE_PATH, 'queue', 'download')
     # HLS chache
     HLS_CACHE_PATH = os.path.join(PROFILE_PATH, 'hls_cache')
     # radiko auth file

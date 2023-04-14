@@ -129,12 +129,7 @@ class Directory(Common, PrefData):
         self._contextmenu('アドオン設定', {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL
-        if data['type'] == 'radk':
-            stream = LocalProxy.proxy_radk(data['id'], self.token)
-        elif data['type'] == 'jcba':
-            stream = LocalProxy.proxy_jcba(data['id'])
-        else:
-            stream = data['stream']
+        stream = self.stream(data)
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), stream, listitem=li, isFolder=False)
 
@@ -208,6 +203,15 @@ class Directory(Common, PrefData):
     
     def _time(self, t):
         return time.strftime("%H:%M", time.localtime(t))
-    
+
+    def stream(self, data):
+        if data['type'] == 'radk':
+            stream = LocalProxy.proxy_radk(data['id'], self.token)
+        elif data['type'] == 'jcba':
+            stream = LocalProxy.proxy_jcba(data['id'])
+        else:
+            stream = data['stream']
+        return stream
+
     def _contextmenu(self, name, args):
         self.contextmenu.append((name, 'RunPlugin(%s?%s)' % (sys.argv[0], urlencode(args))))
