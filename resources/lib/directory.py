@@ -26,19 +26,22 @@ class Directory(Common, PrefData):
 
     def show(self, path=None):
         if path is None:
-            # ユーザアイテムを追加
-            self._setup_items()
-            # ディレクトリを追加
+            # 放送局
+            self._setup_stations()
+            # ディレクトリ
             self._setup_directory()
+            # キーワード
+            self._setup_keywords()
         else:
+            # サブディレクトリ
             items = glob.glob(os.path.join(self.DIRECTORY_PATH, path, '*'))
             for item in sorted(items, key=self._sort):
                 if os.path.isdir(item):
-                    # リストの要素がディレクトリ場合
+                    # リストの要素がディレクトリの場合
                     self._add_directory(path, item)
                 else:
                     # リストの要素がファイルの場合
-                    self._add_item(path, item)
+                    self._add_station(path, item)
         # リストアイテム追加完了
         xbmcplugin.endOfDirectory(int(sys.argv[1]), succeeded=True)
 
@@ -53,33 +56,55 @@ class Directory(Common, PrefData):
         os.remove(path)
         xbmc.executebuiltin('Container.Refresh')
 
-    def _setup_items(self):
+    def _setup_stations(self):
         # ユーザが設定した放送局を追加
         items = glob.glob(os.path.join(self.DIRECTORY_PATH, '*.json'))
         for item in sorted(items, key=self._sort):
-            self._add_item(None, item)
+            self._add_station(None, item)
     
+    def _setup_keywords(self):
+        # キーワードを追加
+        items = glob.glob(os.path.join(self.KEYWORDS_PATH, '*.json'))
+        for item in sorted(items):
+            self._add_keyword(item)
+
     def _setup_directory(self):
         # NHKラジオ
         li = xbmcgui.ListItem('[COLOR orange]NHKラジオ[/COLOR]')
+        # コンテクストメニュー
+        self.contextmenu = []
+        self._contextmenu('アドオン設定', {'action': 'settings'})
+        li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show', 'path': os.path.join('NHKラジオ', self.region)})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # 民放ラジオ(radiko)
         li = xbmcgui.ListItem('[COLOR orange]民放ラジオ(radiko)[/COLOR]')
+        # コンテクストメニュー
+        self.contextmenu = []
+        self._contextmenu('アドオン設定', {'action': 'settings'})
+        li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show', 'path': os.path.join('民放ラジオ(radiko)', self.region, self.pref)})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # コミュニティラジオ
         li = xbmcgui.ListItem('[COLOR orange]コミュニティラジオ[/COLOR]')
-        query = urlencode({'action': 'show', 'path': os.path.join('コミュニティラジオ', self.region, self.pref)})
+        # コンテクストメニュー
+        self.contextmenu = []
+        self._contextmenu('アドオン設定', {'action': 'settings'})
+        li.addContextMenuItems(self.contextmenu, replaceItems=True)
+        query = urlencode({'action': 'show', 'path': os.path.join('コミュニティラジオ')})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
     
     def _add_directory(self, path, item):
         name = os.path.basename(item)
         li = xbmcgui.ListItem(name)
+        # コンテクストメニュー
+        self.contextmenu = []
+        self._contextmenu('アドオン設定', {'action': 'settings'})
+        li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show', 'path': os.path.join(path, name)})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
-    def _add_item(self, path, item):
+    def _add_station(self, path, item):
         # jsonファイルからデータを取得する
         data = self.read_as_json(item)
         # listitemを追加する
@@ -109,7 +134,8 @@ class Directory(Common, PrefData):
             self._contextmenu('トップ画面から削除する', {'action': 'delete_from_top', 'path': item})
         else:
             self._contextmenu('トップ画面に追加する', {'action': 'add_to_top', 'path': item})
-        self._contextmenu('キーワードを追加する', {'action': 'set_keyword', 'path': os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['name'])})
+        if data['type'] in ('nhk1', 'nhk2', 'nhk3', 'radk'):
+            self._contextmenu('キーワードを追加する', {'action': 'set_keyword', 'path': os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['name'])})
         self._contextmenu('アドオン設定', {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL
@@ -121,6 +147,22 @@ class Directory(Common, PrefData):
             stream = data['stream']
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), stream, listitem=li, isFolder=False)
+
+    def _add_keyword(self, item):
+        # jsonファイルからデータを取得する
+        data = self.read_as_json(item)
+        # listitemを追加する
+        name = data['keyword']
+        li = xbmcgui.ListItem(name)
+        # コンテクストメニュー
+        self.contextmenu = []
+        self._contextmenu('キーワードの設定を変更する', {'action': 'set_keyword', 'path': item})
+        self._contextmenu('トップ画面から削除する', {'action': 'delete_from_top', 'path': item})
+        self._contextmenu('アドオン設定', {'action': 'settings'})
+        li.addContextMenuItems(self.contextmenu, replaceItems=True)
+        # リストアイテムを追加
+        query = urlencode({'action': 'show', 'path': os.path.join(self.GET('folder'), name)})
+        xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
     def _sort(self, item):
         if os.path.isfile(item):

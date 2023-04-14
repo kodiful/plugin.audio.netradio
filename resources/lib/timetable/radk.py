@@ -49,6 +49,7 @@ class Scraper(Common, Const, PrefData):
                     'END': p['@to'],  # 20201027005300
                     'start': self.t2unixtime(p['@ft']),  # 20201027000000
                     'end': self.t2unixtime(p['@to']),  # 20201027005300
+                    'weekday': self.t2weekday(p['@ft']),
                     'act': self.normalize(p['pfm']),
                     'info': self.normalize(p['info']),
                     'desc': self.normalize(p['desc']),
@@ -61,6 +62,12 @@ class Scraper(Common, Const, PrefData):
         datetime_obj = datetime.datetime.strptime(t, '%Y%m%d%H%M%S')
         # UNIX時間に変換
         return int(datetime_obj.timestamp())
+
+    def t2weekday(self, t):
+        # datetimeオブジェクトに変換
+        datetime_obj = datetime.datetime.strptime(t, '%Y%m%d%H%M%S')
+        # 曜日の数字に変換
+        return str(datetime_obj.weekday())
 
 
 if __name__ == '__main__':

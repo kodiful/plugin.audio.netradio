@@ -3,6 +3,7 @@
 from resources.lib.common import Common
 from resources.lib.prefdata import PrefData
 from resources.lib.authenticate import Authenticate
+from resources.lib.keyword import Keyword
 from resources.lib.timetable.nhkr import Scraper as Nhkr
 from resources.lib.timetable.radk import Scraper as Radk
 
@@ -10,6 +11,9 @@ import os
 import shutil
 import datetime
 import platform
+import json
+
+from threading import Timer
 
 import xbmc
 import xbmcgui
@@ -26,11 +30,15 @@ class Monitor(xbmc.Monitor, Common):
             settings = self.read(os.path.join(Common.RESOURCES_PATH, 'settings.xml'))
             if settings == self.read(os.path.join(Common.RESOURCES_PATH, 'station.xml')):
                 xbmc.executebuiltin('RunPlugin(plugin://%s?action=add_station)' % Common.ADDON_ID)
-                self.notify('Station settings changed')
+                #self.notify('Station settings changed')
                 return
             if settings == self.read(os.path.join(Common.RESOURCES_PATH, 'keyword.xml')):
                 xbmc.executebuiltin('RunPlugin(plugin://%s?action=add_keyword)' % Common.ADDON_ID)
-                self.notify('Keyword settings changed')
+                #self.notify('Keyword settings changed')
+                return
+            if settings == self.read(os.path.join(Common.RESOURCES_PATH, 'default.xml')):
+                xbmc.executebuiltin('RunPlugin(plugin://%s?action=validate)' % Common.ADDON_ID)
+                #self.notify('Settings changed')
                 return
 
 
@@ -38,6 +46,7 @@ class Service(Common, PrefData):
 
     CHECK_INTERVAL = 30
     AUTH_INTERVAL = 3600
+    DOWNLOAD_MARGIN = 180
 
     def __init__(self):
         # ディレクトリをチェック
@@ -49,8 +58,19 @@ class Service(Common, PrefData):
             os.makedirs(self.TIMETABLE_PATH, exist_ok=True)
         if not os.path.isdir(self.KEYWORDS_PATH):
             os.makedirs(self.KEYWORDS_PATH, exist_ok=True)
-        if not os.path.isdir(self.HLS_CACHE_PATH):
-            os.makedirs(self.HLS_CACHE_PATH, exist_ok=True)
+        # cache, queue
+        if os.path.isdir(self.HLS_CACHE_PATH):
+            shutil.rmtree(self.HLS_CACHE_PATH)
+        os.makedirs(self.HLS_CACHE_PATH)
+        if os.path.isdir(self.PENDING_PATH):
+            shutil.rmtree(self.PENDING_PATH)
+        os.makedirs(self.PENDING_PATH)
+        if os.path.isdir(self.PROCESSING_PATH):
+            shutil.rmtree(self.PROCESSING_PATH)
+        os.makedirs(self.PROCESSING_PATH)
+        # キューを初期化
+        self.pending = []  # ダウンロード待ち
+        self.processing = []  # ダウンロード中
         # OSを判定
         self.SET('os', platform.system())
 
@@ -83,12 +103,14 @@ class Service(Common, PrefData):
         # 番組表取得
         update_nhkr = now + Nhkr(self.region).update(force=True)
         update_radk = now + Radk(self.pref).update(force=True)
+        # 設定されたキーワードと照合してダウンロード準備
+        self.pending = Keyword().match()
         # 監視を開始
         monitor = Monitor()
         while monitor.abortRequested() is False:
             # 現在時刻
             now = self._now()
-            # 現在時刻がRadiko認証更新時刻を過ぎていたら
+            # 現在時刻がradiko認証更新時刻を過ぎていたら
             if now > update_auth:
                 self._authenticate()  # radiko認証
                 update_auth = now + self.AUTH_INTERVAL
@@ -101,14 +123,40 @@ class Service(Common, PrefData):
                 refresh = update_radk > now  # 番組データが更新されたら画面更新
             # 画面更新が検出されたら
             if refresh:
+                # 設定されたキーワードと照合してキューに格納
+                self.pending = self.pending + Keyword().match()
                 # カレントウィンドウをチェック
                 if xbmcgui.getCurrentWindowDialogId() == 9999:
                     path = xbmc.getInfoLabel('Container.FolderPath')
                     argv = 'plugin://%s/' % self.ADDON_ID
                     if path == argv or path.startswith(f'{argv}?action=show'):
                         xbmc.executebuiltin('Container.Refresh')
-                    refresh = False
+                        refresh = False
+            # キューに格納した番組の処理
+            self.do_queue()
             # CHECK_INTERVALの間待機
             monitor.waitForAbort(self.CHECK_INTERVAL)
         # 監視終了を通知
         self.log('exit monitor.')
+
+    def do_queue(self):
+        # 現在時刻
+        now = self._now()
+        # キューをチェック
+        pending = []
+        for p, path in self.pending:
+            if p['end'] < now:
+                # すでに終了している番組はキューから削除
+                os.remove(path)
+            elif p['start']  - self.DOWNLOAD_MARGIN < now:
+                # DOWNLOAD_MARGIN以内に開始する番組はダウンロードを予約
+                Timer(p['start'] - now, self.do_download, args=[p]).start()
+                # キューのファイルを移動
+                shutil.move(path, os.path.join(self.PROCESSING_PATH, os.path.basename(path)))
+            else:
+                # DOWNLOAD_MARGIN以降に開始する番組はキューに残す
+                pending.append((p, path))
+        self.pending = pending
+    
+    def do_download(self, p):
+        self.log(json.dumps(p))

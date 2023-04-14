@@ -65,6 +65,8 @@ if __name__ == '__main__':
         dst = os.path.join(Common.RESOURCES_PATH, 'settings.xml')
         shutil.copy(src, dst)
         xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
+    elif action == 'validate':
+        pass  # 設定のバリデーションはここで行う
 
     # 未定義
     else:

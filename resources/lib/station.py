@@ -16,7 +16,9 @@ class Station(Common):
     
     def set(self, path=None):
         # 設定画面を開く
-        shutil.copy(os.path.join(Common.RESOURCES_PATH, 'station.xml'), os.path.join(Common.RESOURCES_PATH, 'settings.xml'))
+        src = os.path.join(Common.RESOURCES_PATH, 'station.xml')
+        dst = os.path.join(Common.RESOURCES_PATH, 'settings.xml')
+        shutil.copy(src, dst)
         xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
         # 設定画面が最前面になるまで時間をおく
         xbmc.sleep(100)

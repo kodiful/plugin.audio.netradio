@@ -101,36 +101,36 @@ msgid "Title & detail info"
 msgstr "番組名と詳細情報"
 
 msgctxt "#30520"
-msgid "Everyday"
-msgstr "毎日"
-
-msgctxt "#30521"
-msgid "Sun"
-msgstr "日"
-
-msgctxt "#30522"
 msgid "Mon"
 msgstr "月"
 
-msgctxt "#30523"
+msgctxt "#30521"
 msgid "Tue"
 msgstr "火"
 
-msgctxt "#30524"
+msgctxt "#30522"
 msgid "Wed"
 msgstr "水"
 
-msgctxt "#30525"
+msgctxt "#30523"
 msgid "Thu"
 msgstr "木"
 
-msgctxt "#30526"
+msgctxt "#30524"
 msgid "Fri"
 msgstr "金"
 
-msgctxt "#30527"
+msgctxt "#30525"
 msgid "Sat"
 msgstr "土"
+
+msgctxt "#30526"
+msgid "Sun"
+msgstr "日"
+
+msgctxt "#30527"
+msgid "Everyday"
+msgstr "毎日"
 
 msgctxt "#30600"
 msgid "Station settings"
