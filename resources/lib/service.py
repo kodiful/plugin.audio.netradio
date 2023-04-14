@@ -90,7 +90,7 @@ class Service(Common, PrefData):
     def _now(self):
         return datetime.datetime.now().timestamp()
     
-    def monitor(self, refresh=False):
+    def monitor(self, localproxy):
         # 開始
         self.log('enter monitor.')
         # 監視開始を通知
@@ -107,6 +107,7 @@ class Service(Common, PrefData):
         self.pending = Keyword().match()
         # 監視を開始
         monitor = Monitor()
+        refresh = False
         while monitor.abortRequested() is False:
             # 現在時刻
             now = self._now()
@@ -136,6 +137,8 @@ class Service(Common, PrefData):
             self.do_queue()
             # CHECK_INTERVALの間待機
             monitor.waitForAbort(self.CHECK_INTERVAL)
+        # ローカルプロキシを終了
+        localproxy.shutdown()
         # 監視終了を通知
         self.log('exit monitor.')
 
@@ -151,7 +154,7 @@ class Service(Common, PrefData):
             elif p['start']  - self.DOWNLOAD_MARGIN < now:
                 # DOWNLOAD_MARGIN以内に開始する番組はダウンロードを予約
                 Timer(p['start'] - now, self.do_download, args=[p]).start()
-                # キューのファイルを移動
+                # キューから削除（ファイルを移動）
                 shutil.move(path, os.path.join(self.PROCESSING_PATH, os.path.basename(path)))
             else:
                 # DOWNLOAD_MARGIN以降に開始する番組はキューに残す

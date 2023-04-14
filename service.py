@@ -23,4 +23,4 @@ if __name__ == '__main__':
     # サービスを初期化
     service = Service()
     # 別スレッドでサービスを起動
-    threading.Thread(target=service.monitor).start()
+    threading.Thread(target=service.monitor, args=[httpd]).start()
