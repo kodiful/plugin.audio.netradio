@@ -190,14 +190,22 @@ class Directory(Common, PrefData):
             return self._sort(min(children))
         
     def _name(self, item):
+        # 放送局名
+        color = None
         name = item['name']
-        progs = self.read_as_json(os.path.join(self.TIMETABLE_PATH, item['type'], f'%s.json' % name))
+        if item['type'] == 'radk' and item['pref'] != self.pref:
+            # 認証された地域と一致しない場合はグレイ表示
+            color = 'gray'
+            name = f'[COLOR {color}]{name}[/COLOR]'
+        progs = self.read_as_json(os.path.join(self.TIMETABLE_PATH, item['type'], f'%s.json' % item['name']))
         for i, p in enumerate(progs):
             title = '%s (%s～%s)' % (p['title'], self._time(p['start']), self._time(p['end']))
             if i == 0:
-                name += f' [COLOR khaki]▶ {title}[/COLOR]'
+                color1 = color or 'khaki'
+                name += f' [COLOR {color1}]▶ {title}[/COLOR]'
             else:
-                name += f' [COLOR lightgreen]▶ {title}[/COLOR]'
+                color2 = color or 'lightgreen'
+                name += f' [COLOR {color2}]▶ {title}[/COLOR]'
         return name
     
     def _time(self, t):
