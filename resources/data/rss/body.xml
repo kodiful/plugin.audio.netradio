@@ -4,7 +4,6 @@
       <description>{description}</description>
       <category></category>
       <pubDate>{startdate}</pubDate>
-      <guid>{gtvid}</guid>
       <source>{name}</source>
       <author>{name}</author>
       <enclosure url="{root}/{source}" length="{filesize}" type="audio/mp3" />

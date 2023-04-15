@@ -85,7 +85,7 @@ class Keyword(Common):
                     continue
                 if k['search'] == '1' and description.find(k['keyword']) < 0:
                     continue
-                p['matched'] = k['keyword']
+                p['keyword'] = k['keyword']
                 self.write_as_json(path, p)
                 matched.append((p, path))
                 break

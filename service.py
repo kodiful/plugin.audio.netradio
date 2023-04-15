@@ -1,30 +1,28 @@
 # -*- coding: utf-8 -*-
 
-# extディレクトリをパスに追加
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
-
-# ffmpegのパスを設定
-from resources.lib.common import Common
-os.environ['PATH'] = Common.GET('ffmpeg').replace('/ffmpeg', '')
-
-# HTTP接続のタイムアウト(秒)を設定
 import socket
-socket.setdefaulttimeout(60)
-
 import threading
 
+# extディレクトリをパスに追加
+sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
+
+from resources.lib.common import Common
 from resources.lib.service import Service
-from resources.lib.localproxy import LocalProxy
 
 
 if __name__ == '__main__':
-    # ローカルプロキシを初期化
-    httpd = LocalProxy()
-    # 別スレッドでローカルプロキシを起動
-    threading.Thread(target=httpd.serve_forever).start()
+
+    # HTTP接続のタイムアウト(秒)を設定
+    socket.setdefaulttimeout(60)
+
+    # ffmpegのパスを設定
+    os.environ['PATH'] = Common.GET('ffmpeg').replace('/ffmpeg', '')
+
     # サービスを初期化
     service = Service()
+
     # 別スレッドでサービスを起動
-    threading.Thread(target=service.monitor, args=[httpd]).start()
+    thread = threading.Thread(target=service.monitor)
+    thread.start()

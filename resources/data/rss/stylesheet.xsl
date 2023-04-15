@@ -163,7 +163,7 @@
                       &lt;/style&gt;
                       <xsl:value-of select="description" disable-output-escaping="yes"/>
                       &lt;script&gt;
-                        frameElement.style.height = `${document.body.offsetHeight}px`;
+                        frameElement.style.height = `${document.body.offsetHeight + 40}px`;
                       &lt;/script&gt;
                     </xsl:attribute>
                   </iframe>

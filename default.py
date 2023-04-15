@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
 
-# extディレクトリをパスに追加
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
-
 import urllib.parse
 import shutil
 
 import xbmc
 
+# extディレクトリをパスに追加
+sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
+
 from resources.lib.common import Common
 from resources.lib.directory import Directory
 from resources.lib.keyword import Keyword
 from resources.lib.station import Station
+from resources.lib.download import Download
 
 
 if __name__ == '__main__':
@@ -53,6 +54,9 @@ if __name__ == '__main__':
         Keyword().set(args.get('path'))
     elif action == 'add_keyword':
         Keyword().add()
+
+    elif action == 'update_rss':
+        Download().update_rss()
 
     # アドオン設定
     elif action == 'settings':
