@@ -6,7 +6,9 @@ import re
 import json
 import unicodedata
 import shutil
+
 from PIL import Image
+from sqlite3 import dbapi2 as sqlite
 
 
 class Common:
@@ -52,36 +54,51 @@ class Common:
 
     # ロゴ画像をダウンロードする
     @staticmethod
-    def load_logo(item, dir):
+    def load_logo(item, dir, force=False):
         dirname = os.path.join(dir, item['type'])
         os.makedirs(dirname, exist_ok=True)
         path = os.path.join(dirname, '%s.png' % item['station'])
-        if os.path.exists(path) is False:
+        if force:
+            import xbmcaddon
+            import xbmcvfs
+            # ファイルを削除
+            if os.path.exists(path):
+                os.remove(path)
+            # DBから画像のキャッシュを削除
+            DB_PATH = xbmcvfs.translatePath('special://database')
+            CACHE_DB = os.path.join(DB_PATH, 'Textures13.db')
+            conn = sqlite.connect(CACHE_DB)
+            conn.cursor().execute(f"DELETE FROM texture WHERE url = '{path}';")
+            conn.commit()
+            conn.close()
+            # デフォルトアイコンを設定
+            ADDON = xbmcaddon.Addon()
+            PLUGIN_PATH = xbmcvfs.translatePath(ADDON.getAddonInfo('path'))
+            icon = os.path.join(PLUGIN_PATH, 'icon.png')
+        else:
+            icon = None
+        icon = os.path.join('icon.png')
+        if os.path.exists(path):
+            return
+        else:
             if item['logo']:
-                res = requests.get(item['logo'])
-                if res.status_code == 200:
-                    with open(path, 'wb') as f:
-                        f.write(res.content)
-            if os.path.exists(path) is False:
-                # ロゴ画像のダウンロードに失敗したときはfavicon.icoで代用する
-                protocol, _, hostname, _ = item['logo'].split('/', 3)
-                res = requests.get(f'{protocol}//{hostname}/favicon.ico')
-                if res.status_code == 200:
-                    iconame = os.path.join(dirname, '%s.ico' % item['station'])
-                    with open(iconame, 'wb') as f:
-                        f.write(res.content)
-                    img = Image.open(iconame)  # icoファイルを開く
-                    img.save(path)  # pngに変換して保存する
-                else:
-                    # favicon.icoのダウンロードに失敗したときは既定の画像で代用する
-                    shutil.copy('icon.png', path)
+                try:
+                    res = requests.get(item['logo'])
+                    if res.status_code == 200:
+                        with open(path, 'wb') as f:
+                            f.write(res.content)
+                except Exception as e:
+                    pass
+        if os.path.exists(path) is False and icon:
+            shutil.copy(icon, path)
+        if os.path.exists(path):
             # アイコン化
             img = Image.open(path)
             w, h = img.size
-            if w > 216:
-                h = 216 * h // w
-                w = 216
-                img = img.resize((216, h), Image.ANTIALIAS)
+            a = max(w, h)
+            h = h * 200 // a
+            w = w * 200 // a
+            img = img.resize((w, h), Image.ANTIALIAS)
             background = Image.new('RGB', (216, 216), (255, 255, 255))
             try:
                 background.paste(img, ((216 - w) // 2, (216 - h) // 2), img)
