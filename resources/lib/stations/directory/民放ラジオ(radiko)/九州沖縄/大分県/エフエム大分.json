@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "FM_OITA",
-    "name": "エフエム大分",
+    "station": "エフエム大分",
     "code": "440001",
     "region": "九州沖縄",
     "pref": "大分県",

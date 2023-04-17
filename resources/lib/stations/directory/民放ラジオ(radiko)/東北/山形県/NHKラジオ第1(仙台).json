@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JOHK",
-    "name": "NHKラジオ第1(仙台)",
+    "station": "NHKラジオ第1(仙台)",
     "code": "060003",
     "region": "東北",
     "pref": "山形県",

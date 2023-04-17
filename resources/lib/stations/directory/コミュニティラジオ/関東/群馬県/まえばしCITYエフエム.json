@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30043",
-    "name": "まえばしCITYエフエム",
+    "station": "まえばしCITYエフエム",
     "code": "102016",
     "region": "関東",
     "pref": "群馬県",

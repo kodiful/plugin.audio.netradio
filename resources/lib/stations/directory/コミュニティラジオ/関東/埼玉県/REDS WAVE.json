@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30008",
-    "name": "REDS WAVE",
+    "station": "REDS WAVE",
     "code": "111007",
     "region": "関東",
     "pref": "埼玉県",

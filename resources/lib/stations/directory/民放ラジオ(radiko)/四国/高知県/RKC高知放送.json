@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RKC",
-    "name": "RKC高知放送",
+    "station": "RKC高知放送",
     "code": "390003",
     "region": "四国",
     "pref": "高知県",

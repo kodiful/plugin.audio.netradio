@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30035",
-    "name": "FM Kawaguchi",
+    "station": "FM Kawaguchi",
     "code": "112038",
     "region": "関東",
     "pref": "埼玉県",

@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30036",
-    "name": "レインボータウンFM",
+    "station": "レインボータウンFM",
     "code": "131083",
     "region": "関東",
     "pref": "東京都",

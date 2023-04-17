@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "HOUSOU-DAIGAKU",
-    "name": "放送大学",
+    "station": "放送大学",
     "code": "130001",
     "region": "関東",
     "pref": "東京都",

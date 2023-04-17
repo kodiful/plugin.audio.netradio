@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30078",
-    "name": "BAN-BANラジオ",
+    "station": "BAN-BANラジオ",
     "code": "282103",
     "region": "近畿",
     "pref": "兵庫県",

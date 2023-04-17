@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30053",
-    "name": "DARAZ FM",
+    "station": "DARAZ FM",
     "code": "312029",
     "region": "中国",
     "pref": "鳥取県",

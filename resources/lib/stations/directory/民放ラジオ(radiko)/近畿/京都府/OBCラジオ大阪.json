@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "OBC",
-    "name": "OBCラジオ大阪",
+    "station": "OBCラジオ大阪",
     "code": "260002",
     "region": "近畿",
     "pref": "京都府",

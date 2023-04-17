@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JOAK-FM",
-    "name": "NHK-FM(東京)",
+    "station": "NHK-FM(東京)",
     "code": "340006",
     "region": "中国",
     "pref": "広島県",

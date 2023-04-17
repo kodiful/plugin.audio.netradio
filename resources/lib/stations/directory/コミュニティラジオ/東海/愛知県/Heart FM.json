@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30120",
-    "name": "Heart FM",
+    "station": "Heart FM",
     "code": "231002",
     "region": "東海",
     "pref": "愛知県",

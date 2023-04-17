@@ -1,7 +1,7 @@
 {
     "type": "nhk1",
     "id": "",
-    "name": "NHKラジオ第1(仙台)",
+    "station": "NHKラジオ第1(仙台)",
     "code": "041009",
     "region": "東北",
     "pref": "",

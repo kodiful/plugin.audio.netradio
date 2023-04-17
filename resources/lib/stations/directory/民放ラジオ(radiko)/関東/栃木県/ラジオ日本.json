@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JORF",
-    "name": "ラジオ日本",
+    "station": "ラジオ日本",
     "code": "090000",
     "region": "関東",
     "pref": "栃木県",

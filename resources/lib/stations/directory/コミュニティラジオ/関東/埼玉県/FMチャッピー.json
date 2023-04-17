@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "fmchappy",
-    "name": "FMチャッピー",
+    "station": "FMチャッピー",
     "code": "110001",
     "region": "関東",
     "pref": "埼玉県",

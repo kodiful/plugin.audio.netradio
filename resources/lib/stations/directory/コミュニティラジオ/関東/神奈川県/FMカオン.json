@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30057",
-    "name": "FMカオン",
+    "station": "FMカオン",
     "code": "142158",
     "region": "関東",
     "pref": "神奈川県",

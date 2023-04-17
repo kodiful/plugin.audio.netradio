@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "CRT",
-    "name": "CRT栃木放送",
+    "station": "CRT栃木放送",
     "code": "090000",
     "region": "関東",
     "pref": "栃木県",

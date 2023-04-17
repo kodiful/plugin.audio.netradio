@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "FM-SANIN",
-    "name": "エフエム山陰",
+    "station": "エフエム山陰",
     "code": "310000",
     "region": "中国",
     "pref": "鳥取県",

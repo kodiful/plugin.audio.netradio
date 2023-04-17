@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RN2",
-    "name": "ラジオNIKKEI第2",
+    "station": "ラジオNIKKEI第2",
     "code": "070009",
     "region": "東北",
     "pref": "福島県",

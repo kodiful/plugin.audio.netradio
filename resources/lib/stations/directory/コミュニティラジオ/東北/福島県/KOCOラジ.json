@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30020",
-    "name": "KOCOラジ",
+    "station": "KOCOラジ",
     "code": "072036",
     "region": "東北",
     "pref": "福島県",

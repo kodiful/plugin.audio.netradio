@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "DATEFM",
-    "name": "Date fm エフエム仙台",
+    "station": "Date fm エフエム仙台",
     "code": "040002",
     "region": "東北",
     "pref": "宮城県",

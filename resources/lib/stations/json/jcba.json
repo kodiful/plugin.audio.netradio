@@ -2,7 +2,7 @@
     {
         "type": "jcba",
         "id": "fmhana",
-        "name": "FMはな",
+        "station": "FMはな",
         "code": "016926",
         "region": "北海道",
         "pref": "北海道",
@@ -15,7 +15,7 @@
     {
         "type": "jcba",
         "id": "moeru",
-        "name": "エフエムもえる",
+        "station": "エフエムもえる",
         "code": "012122",
         "region": "北海道",
         "pref": "北海道",
@@ -28,7 +28,7 @@
     {
         "type": "jcba",
         "id": "airtesshi",
-        "name": "Airてっし",
+        "station": "Airてっし",
         "code": "012211",
         "region": "北海道",
         "pref": "北海道",
@@ -41,7 +41,7 @@
     {
         "type": "jcba",
         "id": "radioniseko",
-        "name": "ラジオニセコ",
+        "station": "ラジオニセコ",
         "code": "010006",
         "region": "北海道",
         "pref": "北海道",
@@ -54,7 +54,7 @@
     {
         "type": "jcba",
         "id": "iruka",
-        "name": "FMいるか",
+        "station": "FMいるか",
         "code": "012025",
         "region": "北海道",
         "pref": "北海道",
@@ -67,7 +67,7 @@
     {
         "type": "jcba",
         "id": "fmazur",
-        "name": "FM AZUR",
+        "station": "FM AZUR",
         "code": "020001",
         "region": "東北",
         "pref": "青森県",
@@ -80,7 +80,7 @@
     {
         "type": "jcba",
         "id": "applewave",
-        "name": "アップルウェーブ",
+        "station": "アップルウェーブ",
         "code": "020001",
         "region": "東北",
         "pref": "青森県",
@@ -93,7 +93,7 @@
     {
         "type": "jcba",
         "id": "fmgoshogawara",
-        "name": "FMごしょがわら",
+        "station": "FMごしょがわら",
         "code": "022055",
         "region": "東北",
         "pref": "青森県",
@@ -106,7 +106,7 @@
     {
         "type": "jcba",
         "id": "fmone",
-        "name": "FMONE",
+        "station": "FMONE",
         "code": "032051",
         "region": "東北",
         "pref": "岩手県",
@@ -119,7 +119,7 @@
     {
         "type": "jcba",
         "id": "fmiwanuma",
-        "name": "エフエムいわぬま",
+        "station": "エフエムいわぬま",
         "code": "042111",
         "region": "東北",
         "pref": "宮城県",
@@ -132,7 +132,7 @@
     {
         "type": "jcba",
         "id": "hatfm",
-        "name": "H@!FM",
+        "station": "H@!FM",
         "code": "042129",
         "region": "東北",
         "pref": "宮城県",
@@ -145,7 +145,7 @@
     {
         "type": "jcba",
         "id": "radiomonster",
-        "name": "ラジオ モンスター",
+        "station": "ラジオ モンスター",
         "code": "062014",
         "region": "東北",
         "pref": "山形県",
@@ -158,7 +158,7 @@
     {
         "type": "jcba",
         "id": "yonezawancvfm",
-        "name": "エフエムNCV",
+        "station": "エフエムNCV",
         "code": "062022",
         "region": "東北",
         "pref": "山形県",
@@ -171,7 +171,7 @@
     {
         "type": "jcba",
         "id": "orandaradio",
-        "name": "えふえむい〜じゃんおらんだらじお",
+        "station": "えふえむい〜じゃんおらんだらじお",
         "code": "062090",
         "region": "東北",
         "pref": "山形県",
@@ -184,7 +184,7 @@
     {
         "type": "jcba",
         "id": "harborradio",
-        "name": "ハーバーラジオ",
+        "station": "ハーバーラジオ",
         "code": "062049",
         "region": "東北",
         "pref": "山形県",
@@ -197,7 +197,7 @@
     {
         "type": "jcba",
         "id": "ultrafm",
-        "name": "ウルトラFM",
+        "station": "ウルトラFM",
         "code": "072079",
         "region": "東北",
         "pref": "福島県",
@@ -210,7 +210,7 @@
     {
         "type": "jcba",
         "id": "fmpoco",
-        "name": "FMポコ",
+        "station": "FMポコ",
         "code": "072010",
         "region": "東北",
         "pref": "福島県",
@@ -223,7 +223,7 @@
     {
         "type": "jcba",
         "id": "fmkitakata",
-        "name": "エフエムきたかた",
+        "station": "エフエムきたかた",
         "code": "072087",
         "region": "東北",
         "pref": "福島県",
@@ -236,7 +236,7 @@
     {
         "type": "jcba",
         "id": "fmaizu",
-        "name": "FM愛'S",
+        "station": "FM愛'S",
         "code": "072028",
         "region": "東北",
         "pref": "福島県",
@@ -249,7 +249,7 @@
     {
         "type": "jcba",
         "id": "fmdaigo",
-        "name": "FMだいご",
+        "station": "FMだいご",
         "code": "083640",
         "region": "関東",
         "pref": "茨城県",
@@ -262,7 +262,7 @@
     {
         "type": "jcba",
         "id": "fmkashima",
-        "name": "FMかしま",
+        "station": "FMかしま",
         "code": "080004",
         "region": "関東",
         "pref": "茨城県",
@@ -275,7 +275,7 @@
     {
         "type": "jcba",
         "id": "radiotakasaki",
-        "name": "ラジオ高崎",
+        "station": "ラジオ高崎",
         "code": "100005",
         "region": "関東",
         "pref": "群馬県",
@@ -288,7 +288,7 @@
     {
         "type": "jcba",
         "id": "fmtaro",
-        "name": "エフエム太郎",
+        "station": "エフエム太郎",
         "code": "100005",
         "region": "関東",
         "pref": "群馬県",
@@ -301,7 +301,7 @@
     {
         "type": "jcba",
         "id": "fmoze",
-        "name": "FM OZE",
+        "station": "FM OZE",
         "code": "100005",
         "region": "関東",
         "pref": "群馬県",
@@ -314,7 +314,7 @@
     {
         "type": "jcba",
         "id": "radionanami",
-        "name": "ラヂオななみ",
+        "station": "ラヂオななみ",
         "code": "104647",
         "region": "関東",
         "pref": "群馬県",
@@ -327,7 +327,7 @@
     {
         "type": "jcba",
         "id": "fmchappy",
-        "name": "FMチャッピー",
+        "station": "FMチャッピー",
         "code": "110001",
         "region": "関東",
         "pref": "埼玉県",
@@ -340,7 +340,7 @@
     {
         "type": "jcba",
         "id": "miyoshifm",
-        "name": "発するFM",
+        "station": "発するFM",
         "code": "112356",
         "region": "関東",
         "pref": "埼玉県",
@@ -353,7 +353,7 @@
     {
         "type": "jcba",
         "id": "radiokawagoe",
-        "name": "ラジオ川越",
+        "station": "ラジオ川越",
         "code": "110001",
         "region": "関東",
         "pref": "埼玉県",
@@ -366,7 +366,7 @@
     {
         "type": "jcba",
         "id": "ulalafm",
-        "name": "市川うららFM(I&U-LaLaFM)",
+        "station": "市川うららFM(I&U-LaLaFM)",
         "code": "122033",
         "region": "関東",
         "pref": "千葉県",
@@ -379,7 +379,7 @@
     {
         "type": "jcba",
         "id": "kazusafm",
-        "name": "かずさFM",
+        "station": "かずさFM",
         "code": "122068",
         "region": "関東",
         "pref": "千葉県",
@@ -392,7 +392,7 @@
     {
         "type": "jcba",
         "id": "radionarita",
-        "name": "ラジオ成田",
+        "station": "ラジオ成田",
         "code": "120006",
         "region": "関東",
         "pref": "千葉県",
@@ -405,7 +405,7 @@
     {
         "type": "jcba",
         "id": "fmfukuro",
-        "name": "ふくろうFM",
+        "station": "ふくろうFM",
         "code": "122211",
         "region": "関東",
         "pref": "千葉県",
@@ -418,7 +418,7 @@
     {
         "type": "jcba",
         "id": "skywavefm",
-        "name": "SKYWAVE FM",
+        "station": "SKYWAVE FM",
         "code": "121002",
         "region": "関東",
         "pref": "千葉県",
@@ -431,7 +431,7 @@
     {
         "type": "jcba",
         "id": "fmedogawa",
-        "name": "FMえどがわ",
+        "station": "FMえどがわ",
         "code": "130001",
         "region": "関東",
         "pref": "東京都",
@@ -444,7 +444,7 @@
     {
         "type": "jcba",
         "id": "musashinofm",
-        "name": "むさしのFM",
+        "station": "むさしのFM",
         "code": "130001",
         "region": "関東",
         "pref": "東京都",
@@ -457,7 +457,7 @@
     {
         "type": "jcba",
         "id": "fmshinagawa",
-        "name": "FMしながわ",
+        "station": "FMしながわ",
         "code": "131091",
         "region": "関東",
         "pref": "東京都",
@@ -470,7 +470,7 @@
     {
         "type": "jcba",
         "id": "fmkatsushika",
-        "name": "かつしかFM",
+        "station": "かつしかFM",
         "code": "130001",
         "region": "関東",
         "pref": "東京都",
@@ -483,7 +483,7 @@
     {
         "type": "jcba",
         "id": "shibuyanoradio",
-        "name": "渋谷のラジオ",
+        "station": "渋谷のラジオ",
         "code": "130001",
         "region": "関東",
         "pref": "東京都",
@@ -496,7 +496,7 @@
     {
         "type": "jcba",
         "id": "fmblueshonan",
-        "name": "FMブルー湘南",
+        "station": "FMブルー湘南",
         "code": "140007",
         "region": "関東",
         "pref": "神奈川県",
@@ -509,7 +509,7 @@
     {
         "type": "jcba",
         "id": "kamakurafm",
-        "name": "鎌倉FM",
+        "station": "鎌倉FM",
         "code": "140007",
         "region": "関東",
         "pref": "神奈川県",
@@ -522,7 +522,7 @@
     {
         "type": "jcba",
         "id": "fmshonan",
-        "name": "FM湘南ナパサ",
+        "station": "FM湘南ナパサ",
         "code": "140007",
         "region": "関東",
         "pref": "神奈川県",
@@ -535,7 +535,7 @@
     {
         "type": "jcba",
         "id": "fmodawara",
-        "name": "FMおだわら",
+        "station": "FMおだわら",
         "code": "142069",
         "region": "関東",
         "pref": "神奈川県",
@@ -548,7 +548,7 @@
     {
         "type": "jcba",
         "id": "magicwave",
-        "name": "FM湘南マジックウェイブ",
+        "station": "FM湘南マジックウェイブ",
         "code": "140007",
         "region": "関東",
         "pref": "神奈川県",
@@ -561,7 +561,7 @@
     {
         "type": "jcba",
         "id": "fmyamato",
-        "name": "FMやまと",
+        "station": "FMやまと",
         "code": "142131",
         "region": "関東",
         "pref": "神奈川県",
@@ -574,7 +574,7 @@
     {
         "type": "jcba",
         "id": "radioshonan",
-        "name": "レディオ湘南",
+        "station": "レディオ湘南",
         "code": "142051",
         "region": "関東",
         "pref": "神奈川県",
@@ -587,7 +587,7 @@
     {
         "type": "jcba",
         "id": "fmsalus",
-        "name": "FMサルース",
+        "station": "FMサルース",
         "code": "141003",
         "region": "関東",
         "pref": "神奈川県",
@@ -600,7 +600,7 @@
     {
         "type": "jcba",
         "id": "fmkofu",
-        "name": "エフエム甲府",
+        "station": "エフエム甲府",
         "code": "190004",
         "region": "甲信越",
         "pref": "山梨県",
@@ -613,7 +613,7 @@
     {
         "type": "jcba",
         "id": "fmfujiyama",
-        "name": "FMふじやま",
+        "station": "FMふじやま",
         "code": "190004",
         "region": "甲信越",
         "pref": "山梨県",
@@ -626,7 +626,7 @@
     {
         "type": "jcba",
         "id": "fmfujigoko",
-        "name": "エフエム ふじごこ",
+        "station": "エフエム ふじごこ",
         "code": "190004",
         "region": "甲信越",
         "pref": "山梨県",
@@ -639,7 +639,7 @@
     {
         "type": "jcba",
         "id": "fmyatsugatake",
-        "name": "FM八ヶ岳",
+        "station": "FM八ヶ岳",
         "code": "190004",
         "region": "甲信越",
         "pref": "山梨県",
@@ -652,7 +652,7 @@
     {
         "type": "jcba",
         "id": "radiochat",
-        "name": "ラジオチャット・FMにいつ",
+        "station": "ラジオチャット・FMにいつ",
         "code": "151009",
         "region": "甲信越",
         "pref": "新潟県",
@@ -665,7 +665,7 @@
     {
         "type": "jcba",
         "id": "fmuonuma",
-        "name": "FMうおぬま",
+        "station": "FMうおぬま",
         "code": "150002",
         "region": "甲信越",
         "pref": "新潟県",
@@ -678,7 +678,7 @@
     {
         "type": "jcba",
         "id": "fmnagaoka",
-        "name": "エフエムながおか",
+        "station": "エフエムながおか",
         "code": "152021",
         "region": "甲信越",
         "pref": "新潟県",
@@ -691,7 +691,7 @@
     {
         "type": "jcba",
         "id": "fmshibata",
-        "name": "エフエムしばた",
+        "station": "エフエムしばた",
         "code": "152064",
         "region": "甲信越",
         "pref": "新潟県",
@@ -704,7 +704,7 @@
     {
         "type": "jcba",
         "id": "fmkento",
-        "name": "FM KENTO",
+        "station": "FM KENTO",
         "code": "150002",
         "region": "甲信越",
         "pref": "新潟県",
@@ -717,7 +717,7 @@
     {
         "type": "jcba",
         "id": "fmyukiguni",
-        "name": "FMゆきぐに",
+        "station": "FMゆきぐに",
         "code": "152269",
         "region": "甲信越",
         "pref": "新潟県",
@@ -730,7 +730,7 @@
     {
         "type": "jcba",
         "id": "fmjyoetsu",
-        "name": "FMじょうえつ",
+        "station": "FMじょうえつ",
         "code": "152226",
         "region": "甲信越",
         "pref": "新潟県",
@@ -743,7 +743,7 @@
     {
         "type": "jcba",
         "id": "fmpikkara",
-        "name": "FMピッカラ",
+        "station": "FMピッカラ",
         "code": "152056",
         "region": "甲信越",
         "pref": "新潟県",
@@ -756,7 +756,7 @@
     {
         "type": "jcba",
         "id": "lovefm",
-        "name": "LCV FM",
+        "station": "LCV FM",
         "code": "200000",
         "region": "甲信越",
         "pref": "長野県",
@@ -769,7 +769,7 @@
     {
         "type": "jcba",
         "id": "fmkaruizawa",
-        "name": "FM軽井沢",
+        "station": "FM軽井沢",
         "code": "200000",
         "region": "甲信越",
         "pref": "長野県",
@@ -782,7 +782,7 @@
     {
         "type": "jcba",
         "id": "azuminofm",
-        "name": "エフエムあづみの",
+        "station": "エフエムあづみの",
         "code": "200000",
         "region": "甲信越",
         "pref": "長野県",
@@ -795,7 +795,7 @@
     {
         "type": "jcba",
         "id": "shiojirifm",
-        "name": "高ボッチ高原FM",
+        "station": "高ボッチ高原FM",
         "code": "200000",
         "region": "甲信越",
         "pref": "長野県",
@@ -808,7 +808,7 @@
     {
         "type": "jcba",
         "id": "fmpipi",
-        "name": "FMPiPi",
+        "station": "FMPiPi",
         "code": "210005",
         "region": "東海",
         "pref": "岐阜県",
@@ -821,7 +821,7 @@
     {
         "type": "jcba",
         "id": "fmwatch",
-        "name": "FMわっち",
+        "station": "FMわっち",
         "code": "212016",
         "region": "東海",
         "pref": "岐阜県",
@@ -834,7 +834,7 @@
     {
         "type": "jcba",
         "id": "hitsfm",
-        "name": "Hits FM",
+        "station": "Hits FM",
         "code": "212032",
         "region": "東海",
         "pref": "岐阜県",
@@ -847,7 +847,7 @@
     {
         "type": "jcba",
         "id": "haro",
-        "name": "FM Haro!",
+        "station": "FM Haro!",
         "code": "220001",
         "region": "東海",
         "pref": "静岡県",
@@ -860,7 +860,7 @@
     {
         "type": "jcba",
         "id": "fmis",
-        "name": "FM ISみらいずステーション",
+        "station": "FM ISみらいずステーション",
         "code": "222224",
         "region": "東海",
         "pref": "静岡県",
@@ -873,7 +873,7 @@
     {
         "type": "jcba",
         "id": "fmshimada",
-        "name": "g-sky76.5",
+        "station": "g-sky76.5",
         "code": "222097",
         "region": "東海",
         "pref": "静岡県",
@@ -886,7 +886,7 @@
     {
         "type": "jcba",
         "id": "fujiyamagogofm",
-        "name": "富士山GOGOFM",
+        "station": "富士山GOGOFM",
         "code": "222151",
         "region": "東海",
         "pref": "静岡県",
@@ -899,7 +899,7 @@
     {
         "type": "jcba",
         "id": "voicecue",
-        "name": "ボイスキュー",
+        "station": "ボイスキュー",
         "code": "222062",
         "region": "東海",
         "pref": "静岡県",
@@ -912,7 +912,7 @@
     {
         "type": "jcba",
         "id": "fmshimizu",
-        "name": "マリンパル",
+        "station": "マリンパル",
         "code": "220001",
         "region": "東海",
         "pref": "静岡県",
@@ -925,7 +925,7 @@
     {
         "type": "jcba",
         "id": "fmhi",
-        "name": "FM-Hi!",
+        "station": "FM-Hi!",
         "code": "220001",
         "region": "東海",
         "pref": "静岡県",
@@ -938,7 +938,7 @@
     {
         "type": "jcba",
         "id": "radiof",
-        "name": "Radio-f",
+        "station": "Radio-f",
         "code": "222101",
         "region": "東海",
         "pref": "静岡県",
@@ -951,7 +951,7 @@
     {
         "type": "jcba",
         "id": "coastfm",
-        "name": "COAST-FM76.7MH z",
+        "station": "COAST-FM76.7MH z",
         "code": "222038",
         "region": "東海",
         "pref": "静岡県",
@@ -964,7 +964,7 @@
     {
         "type": "jcba",
         "id": "nagisastation",
-        "name": "エフエムなぎさステーション",
+        "station": "エフエムなぎさステーション",
         "code": "220001",
         "region": "東海",
         "pref": "静岡県",
@@ -977,7 +977,7 @@
     {
         "type": "jcba",
         "id": "ciao",
-        "name": "Ciao!",
+        "station": "Ciao!",
         "code": "222054",
         "region": "東海",
         "pref": "静岡県",
@@ -990,7 +990,7 @@
     {
         "type": "jcba",
         "id": "fmizunokuni",
-        "name": "FMいずのくに",
+        "station": "FMいずのくに",
         "code": "220001",
         "region": "東海",
         "pref": "静岡県",
@@ -1003,7 +1003,7 @@
     {
         "type": "jcba",
         "id": "fmnanami",
-        "name": "エフエム ななみ",
+        "station": "エフエム ななみ",
         "code": "230006",
         "region": "東海",
         "pref": "愛知県",
@@ -1016,7 +1016,7 @@
     {
         "type": "jcba",
         "id": "unitednorth",
-        "name": "United North",
+        "station": "United North",
         "code": "232157",
         "region": "東海",
         "pref": "愛知県",
@@ -1029,7 +1029,7 @@
     {
         "type": "jcba",
         "id": "radiosanq",
-        "name": "RADIO SANQ",
+        "station": "RADIO SANQ",
         "code": "230006",
         "region": "東海",
         "pref": "愛知県",
@@ -1042,7 +1042,7 @@
     {
         "type": "jcba",
         "id": "fmichinomiya",
-        "name": "i-wave",
+        "station": "i-wave",
         "code": "232033",
         "region": "東海",
         "pref": "愛知県",
@@ -1055,7 +1055,7 @@
     {
         "type": "jcba",
         "id": "inabefm",
-        "name": "いなべエフエム",
+        "station": "いなべエフエム",
         "code": "242144",
         "region": "東海",
         "pref": "三重県",
@@ -1068,7 +1068,7 @@
     {
         "type": "jcba",
         "id": "suzuka",
-        "name": "Suzuka Voice FM 78.3MHz",
+        "station": "Suzuka Voice FM 78.3MHz",
         "code": "240001",
         "region": "東海",
         "pref": "三重県",
@@ -1081,7 +1081,7 @@
     {
         "type": "jcba",
         "id": "toyamacityfm",
-        "name": "富山シティエフエム株式会社",
+        "station": "富山シティエフエム株式会社",
         "code": "160008",
         "region": "甲信越",
         "pref": "富山県",
@@ -1094,7 +1094,7 @@
     {
         "type": "jcba",
         "id": "fmtonami",
-        "name": "エフエムとなみ",
+        "station": "エフエムとなみ",
         "code": "162086",
         "region": "甲信越",
         "pref": "富山県",
@@ -1107,7 +1107,7 @@
     {
         "type": "jcba",
         "id": "radiotakaoka",
-        "name": "ラジオたかおか",
+        "station": "ラジオたかおか",
         "code": "160008",
         "region": "甲信越",
         "pref": "富山県",
@@ -1120,7 +1120,7 @@
     {
         "type": "jcba",
         "id": "radiokomatsu",
-        "name": "ラジオこまつ",
+        "station": "ラジオこまつ",
         "code": "170003",
         "region": "甲信越",
         "pref": "石川県",
@@ -1133,7 +1133,7 @@
     {
         "type": "jcba",
         "id": "radionanao",
-        "name": "ラジオななお",
+        "station": "ラジオななお",
         "code": "170003",
         "region": "甲信越",
         "pref": "石川県",
@@ -1146,7 +1146,7 @@
     {
         "type": "jcba",
         "id": "radiokanazawa",
-        "name": "ラジオかなざわ",
+        "station": "ラジオかなざわ",
         "code": "170003",
         "region": "甲信越",
         "pref": "石川県",
@@ -1159,7 +1159,7 @@
     {
         "type": "jcba",
         "id": "fmkusatsu",
-        "name": "えふえむ草津",
+        "station": "えふえむ草津",
         "code": "252069",
         "region": "近畿",
         "pref": "滋賀県",
@@ -1172,7 +1172,7 @@
     {
         "type": "jcba",
         "id": "fmikaru",
-        "name": "FMいかる",
+        "station": "FMいかる",
         "code": "262030",
         "region": "近畿",
         "pref": "京都府",
@@ -1185,7 +1185,7 @@
     {
         "type": "jcba",
         "id": "fmuji",
-        "name": "FMうじ",
+        "station": "FMうじ",
         "code": "262048",
         "region": "近畿",
         "pref": "京都府",
@@ -1198,7 +1198,7 @@
     {
         "type": "jcba",
         "id": "fmmaizuru",
-        "name": "FMまいづる",
+        "station": "FMまいづる",
         "code": "260002",
         "region": "近畿",
         "pref": "京都府",
@@ -1211,7 +1211,7 @@
     {
         "type": "jcba",
         "id": "kyotoribingufm",
-        "name": "FM845",
+        "station": "FM845",
         "code": "260002",
         "region": "近畿",
         "pref": "京都府",
@@ -1224,7 +1224,7 @@
     {
         "type": "jcba",
         "id": "fmsenri",
-        "name": "FM千里",
+        "station": "FM千里",
         "code": "272051",
         "region": "近畿",
         "pref": "大阪府",
@@ -1237,7 +1237,7 @@
     {
         "type": "jcba",
         "id": "fmyao",
-        "name": "FMちゃお",
+        "station": "FMちゃお",
         "code": "272124",
         "region": "近畿",
         "pref": "大阪府",
@@ -1250,7 +1250,7 @@
     {
         "type": "jcba",
         "id": "umedafm",
-        "name": "ウメダFM Be Happy!789",
+        "station": "ウメダFM Be Happy!789",
         "code": "270008",
         "region": "近畿",
         "pref": "大阪府",
@@ -1263,7 +1263,7 @@
     {
         "type": "jcba",
         "id": "minofm",
-        "name": "タッキー816みのおエフエム",
+        "station": "タッキー816みのおエフエム",
         "code": "272205",
         "region": "近畿",
         "pref": "大阪府",
@@ -1276,7 +1276,7 @@
     {
         "type": "jcba",
         "id": "fmitami",
-        "name": "エフエムいたみ",
+        "station": "エフエムいたみ",
         "code": "282073",
         "region": "近畿",
         "pref": "兵庫県",
@@ -1289,7 +1289,7 @@
     {
         "type": "jcba",
         "id": "fmtakarazuka",
-        "name": "ハミングFM宝塚",
+        "station": "ハミングFM宝塚",
         "code": "282146",
         "region": "近畿",
         "pref": "兵庫県",
@@ -1302,7 +1302,7 @@
     {
         "type": "jcba",
         "id": "sakurafm",
-        "name": "さくらFM",
+        "station": "さくらFM",
         "code": "282049",
         "region": "近畿",
         "pref": "兵庫県",
@@ -1315,7 +1315,7 @@
     {
         "type": "jcba",
         "id": "fmmiki",
-        "name": "エフエムみっきぃ",
+        "station": "エフエムみっきぃ",
         "code": "280003",
         "region": "近畿",
         "pref": "兵庫県",
@@ -1328,7 +1328,7 @@
     {
         "type": "jcba",
         "id": "tanba",
-        "name": "805たんば",
+        "station": "805たんば",
         "code": "280003",
         "region": "近畿",
         "pref": "兵庫県",
@@ -1341,7 +1341,7 @@
     {
         "type": "jcba",
         "id": "fmgenki",
-        "name": "FM GENKI",
+        "station": "FM GENKI",
         "code": "282014",
         "region": "近畿",
         "pref": "兵庫県",
@@ -1354,7 +1354,7 @@
     {
         "type": "jcba",
         "id": "narafm",
-        "name": "なら どっと FM",
+        "station": "なら どっと FM",
         "code": "292010",
         "region": "近畿",
         "pref": "奈良県",
@@ -1367,7 +1367,7 @@
     {
         "type": "jcba",
         "id": "fmnishiyamato",
-        "name": "エフエムハイホー",
+        "station": "エフエムハイホー",
         "code": "290009",
         "region": "近畿",
         "pref": "奈良県",
@@ -1380,7 +1380,7 @@
     {
         "type": "jcba",
         "id": "fmgojo",
-        "name": "FM五條",
+        "station": "FM五條",
         "code": "290009",
         "region": "近畿",
         "pref": "奈良県",
@@ -1393,7 +1393,7 @@
     {
         "type": "jcba",
         "id": "bananafm",
-        "name": "バナナエフエム",
+        "station": "バナナエフエム",
         "code": "302015",
         "region": "近畿",
         "pref": "和歌山県",
@@ -1406,7 +1406,7 @@
     {
         "type": "jcba",
         "id": "fmtanabe",
-        "name": "FM TANABE",
+        "station": "FM TANABE",
         "code": "300004",
         "region": "近畿",
         "pref": "和歌山県",
@@ -1419,7 +1419,7 @@
     {
         "type": "jcba",
         "id": "fmhashimoto",
-        "name": "FMはしもと",
+        "station": "FMはしもと",
         "code": "302031",
         "region": "近畿",
         "pref": "和歌山県",
@@ -1432,7 +1432,7 @@
     {
         "type": "jcba",
         "id": "beachstation",
-        "name": "FMビーチステーション",
+        "station": "FMビーチステーション",
         "code": "300004",
         "region": "近畿",
         "pref": "和歌山県",
@@ -1445,7 +1445,7 @@
     {
         "type": "jcba",
         "id": "radiomomo",
-        "name": "レディオ モモ",
+        "station": "レディオ モモ",
         "code": "331007",
         "region": "中国",
         "pref": "岡山県",
@@ -1458,7 +1458,7 @@
     {
         "type": "jcba",
         "id": "fmkurashiki",
-        "name": "FMくらしき",
+        "station": "FMくらしき",
         "code": "332020",
         "region": "中国",
         "pref": "岡山県",
@@ -1471,7 +1471,7 @@
     {
         "type": "jcba",
         "id": "bingo",
-        "name": "FMふくやま",
+        "station": "FMふくやま",
         "code": "342076",
         "region": "中国",
         "pref": "広島県",
@@ -1484,7 +1484,7 @@
     {
         "type": "jcba",
         "id": "fmonomichi",
-        "name": "エフエムおのみち",
+        "station": "エフエムおのみち",
         "code": "340006",
         "region": "中国",
         "pref": "広島県",
@@ -1497,7 +1497,7 @@
     {
         "type": "jcba",
         "id": "fmchupea",
-        "name": "FMちゅーピー",
+        "station": "FMちゅーピー",
         "code": "341002",
         "region": "中国",
         "pref": "広島県",
@@ -1510,7 +1510,7 @@
     {
         "type": "jcba",
         "id": "fmhatsukaichi",
-        "name": "FMはつかいち",
+        "station": "FMはつかいち",
         "code": "342131",
         "region": "中国",
         "pref": "広島県",
@@ -1523,7 +1523,7 @@
     {
         "type": "jcba",
         "id": "fmhigashihiroshima",
-        "name": "FM東広島",
+        "station": "FM東広島",
         "code": "340006",
         "region": "中国",
         "pref": "広島県",
@@ -1536,7 +1536,7 @@
     {
         "type": "jcba",
         "id": "fmmihara",
-        "name": "FOR LIFE RADIO",
+        "station": "FOR LIFE RADIO",
         "code": "342041",
         "region": "中国",
         "pref": "広島県",
@@ -1549,7 +1549,7 @@
     {
         "type": "jcba",
         "id": "comeonfm",
-        "name": "COME ON ! FM",
+        "station": "COME ON ! FM",
         "code": "350001",
         "region": "中国",
         "pref": "山口県",
@@ -1562,7 +1562,7 @@
     {
         "type": "jcba",
         "id": "shunanfm",
-        "name": "しゅうなんFM",
+        "station": "しゅうなんFM",
         "code": "352101",
         "region": "中国",
         "pref": "山口県",
@@ -1575,7 +1575,7 @@
     {
         "type": "jcba",
         "id": "radiobird",
-        "name": "RADIO BIRD",
+        "station": "RADIO BIRD",
         "code": "312011",
         "region": "中国",
         "pref": "鳥取県",
@@ -1588,7 +1588,7 @@
     {
         "type": "jcba",
         "id": "fmradiobaribari",
-        "name": "FMラヂオバリバリ",
+        "station": "FMラヂオバリバリ",
         "code": "382027",
         "region": "四国",
         "pref": "愛媛県",
@@ -1601,7 +1601,7 @@
     {
         "type": "jcba",
         "id": "fmgaiya",
-        "name": "FMがいや",
+        "station": "FMがいや",
         "code": "382035",
         "region": "四国",
         "pref": "愛媛県",
@@ -1614,7 +1614,7 @@
     {
         "type": "jcba",
         "id": "niihamafm",
-        "name": "Hello! NEW 新居浜 FM",
+        "station": "Hello! NEW 新居浜 FM",
         "code": "382051",
         "region": "四国",
         "pref": "愛媛県",
@@ -1627,7 +1627,7 @@
     {
         "type": "jcba",
         "id": "dreamsfm",
-        "name": "Dreams FM",
+        "station": "Dreams FM",
         "code": "402036",
         "region": "九州沖縄",
         "pref": "福岡県",
@@ -1640,7 +1640,7 @@
     {
         "type": "jcba",
         "id": "fmyame",
-        "name": "FM八女",
+        "station": "FM八女",
         "code": "402109",
         "region": "九州沖縄",
         "pref": "福岡県",
@@ -1653,7 +1653,7 @@
     {
         "type": "jcba",
         "id": "fmkaratsu",
-        "name": "FMからつ",
+        "station": "FMからつ",
         "code": "412023",
         "region": "九州沖縄",
         "pref": "佐賀県",
@@ -1666,7 +1666,7 @@
     {
         "type": "jcba",
         "id": "fmyatsushiro",
-        "name": "Kappa FM",
+        "station": "Kappa FM",
         "code": "432024",
         "region": "九州沖縄",
         "pref": "熊本県",
@@ -1679,7 +1679,7 @@
     {
         "type": "jcba",
         "id": "kumamotocityfm",
-        "name": "FM791",
+        "station": "FM791",
         "code": "431001",
         "region": "九州沖縄",
         "pref": "熊本県",
@@ -1692,7 +1692,7 @@
     {
         "type": "jcba",
         "id": "yufuin",
-        "name": "ゆふいんラヂオ局",
+        "station": "ゆふいんラヂオ局",
         "code": "440001",
         "region": "九州沖縄",
         "pref": "大分県",
@@ -1705,7 +1705,7 @@
     {
         "type": "jcba",
         "id": "noasfm",
-        "name": "NOASFM",
+        "station": "NOASFM",
         "code": "442038",
         "region": "九州沖縄",
         "pref": "大分県",

@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RNB",
-    "name": "RNB南海放送",
+    "station": "RNB南海放送",
     "code": "380008",
     "region": "四国",
     "pref": "愛媛県",

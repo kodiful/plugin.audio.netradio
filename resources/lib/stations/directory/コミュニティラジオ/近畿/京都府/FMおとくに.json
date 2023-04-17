@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30063",
-    "name": "FMおとくに",
+    "station": "FMおとくに",
     "code": "260002",
     "region": "近畿",
     "pref": "京都府",

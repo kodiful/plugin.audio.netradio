@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "voicecue",
-    "name": "ボイスキュー",
+    "station": "ボイスキュー",
     "code": "222062",
     "region": "東海",
     "pref": "静岡県",

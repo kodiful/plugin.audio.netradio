@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30047",
-    "name": "FMふっかちゃん",
+    "station": "FMふっかちゃん",
     "code": "112186",
     "region": "関東",
     "pref": "埼玉県",

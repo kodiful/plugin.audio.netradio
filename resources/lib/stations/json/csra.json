@@ -2,7 +2,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "e-niwaFM",
+        "station": "e-niwaFM",
         "code": "012319",
         "region": "北海道",
         "pref": "北海道",
@@ -15,7 +15,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMおたる",
+        "station": "FMおたる",
         "code": "012033",
         "region": "北海道",
         "pref": "北海道",
@@ -28,7 +28,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FM WING",
+        "station": "FM WING",
         "code": "012076",
         "region": "北海道",
         "pref": "北海道",
@@ -41,7 +41,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMくしろ",
+        "station": "FMくしろ",
         "code": "012068",
         "region": "北海道",
         "pref": "北海道",
@@ -54,7 +54,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMわっぴ〜",
+        "station": "FMわっぴ〜",
         "code": "012149",
         "region": "北海道",
         "pref": "北海道",
@@ -67,7 +67,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMりべーる",
+        "station": "FMりべーる",
         "code": "012041",
         "region": "北海道",
         "pref": "北海道",
@@ -80,7 +80,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "ラジオニセコ",
+        "station": "ラジオニセコ",
         "code": "013951",
         "region": "北海道",
         "pref": "北海道",
@@ -93,7 +93,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "ラジオカロスサッポロ",
+        "station": "ラジオカロスサッポロ",
         "code": "011002",
         "region": "北海道",
         "pref": "北海道",
@@ -106,7 +106,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "BeFM",
+        "station": "BeFM",
         "code": "022039",
         "region": "東北",
         "pref": "青森県",
@@ -119,7 +119,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "鹿角きりたんぽFM",
+        "station": "鹿角きりたんぽFM",
         "code": "052094",
         "region": "東北",
         "pref": "秋田県",
@@ -132,7 +132,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMたいはく",
+        "station": "FMたいはく",
         "code": "041009",
         "region": "東北",
         "pref": "宮城県",
@@ -145,7 +145,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "エフエム モットコム",
+        "station": "エフエム モットコム",
         "code": "072141",
         "region": "東北",
         "pref": "福島県",
@@ -158,7 +158,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMいわき",
+        "station": "FMいわき",
         "code": "072044",
         "region": "東北",
         "pref": "福島県",
@@ -171,7 +171,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMゆーとぴあ",
+        "station": "FMゆーとぴあ",
         "code": "052078",
         "region": "東北",
         "pref": "秋田県",
@@ -184,7 +184,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "横手かまくらエフエム",
+        "station": "横手かまくらエフエム",
         "code": "052035",
         "region": "東北",
         "pref": "秋田県",
@@ -197,7 +197,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "みやこハーバーラジオ",
+        "station": "みやこハーバーラジオ",
         "code": "032026",
         "region": "東北",
         "pref": "岩手県",
@@ -210,7 +210,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "ラジオ石巻",
+        "station": "ラジオ石巻",
         "code": "042021",
         "region": "東北",
         "pref": "宮城県",
@@ -223,7 +223,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "りんごFM",
+        "station": "りんごFM",
         "code": "043621",
         "region": "東北",
         "pref": "宮城県",
@@ -236,7 +236,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "なとらじ",
+        "station": "なとらじ",
         "code": "042072",
         "region": "東北",
         "pref": "宮城県",
@@ -249,7 +249,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "南相馬ひばりエフエム",
+        "station": "南相馬ひばりエフエム",
         "code": "072125",
         "region": "東北",
         "pref": "福島県",
@@ -262,7 +262,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "郡山コミュニティ放送",
+        "station": "郡山コミュニティ放送",
         "code": "072036",
         "region": "東北",
         "pref": "福島県",
@@ -275,7 +275,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "陸前高田災害FM",
+        "station": "陸前高田災害FM",
         "code": "032107",
         "region": "東北",
         "pref": "岩手県",
@@ -288,7 +288,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "富岡臨時災害FM局(おだがいさまFM)",
+        "station": "富岡臨時災害FM局(おだがいさまFM)",
         "code": "075434",
         "region": "東北",
         "pref": "福島県",
@@ -301,7 +301,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "亘理臨時災害FM局(FMあおぞら)",
+        "station": "亘理臨時災害FM局(FMあおぞら)",
         "code": "043613",
         "region": "東北",
         "pref": "宮城県",
@@ -314,7 +314,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "釜石災害FM",
+        "station": "釜石災害FM",
         "code": "032115",
         "region": "東北",
         "pref": "岩手県",
@@ -327,7 +327,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "たかはぎFM",
+        "station": "たかはぎFM",
         "code": "082147",
         "region": "関東",
         "pref": "茨城県",
@@ -340,7 +340,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FM Kawaguchi",
+        "station": "FM Kawaguchi",
         "code": "112038",
         "region": "関東",
         "pref": "埼玉県",
@@ -353,7 +353,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FM-UU",
+        "station": "FM-UU",
         "code": "082198",
         "region": "関東",
         "pref": "茨城県",
@@ -366,7 +366,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMひたち",
+        "station": "FMひたち",
         "code": "082023",
         "region": "関東",
         "pref": "茨城県",
@@ -379,7 +379,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "775ライブリーFM",
+        "station": "775ライブリーFM",
         "code": "112275",
         "region": "関東",
         "pref": "埼玉県",
@@ -392,7 +392,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMぱるるん",
+        "station": "FMぱるるん",
         "code": "082015",
         "region": "関東",
         "pref": "茨城県",
@@ -405,7 +405,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "フラワーラジオ",
+        "station": "フラワーラジオ",
         "code": "112178",
         "region": "関東",
         "pref": "埼玉県",
@@ -418,7 +418,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "REDS WAVE",
+        "station": "REDS WAVE",
         "code": "111007",
         "region": "関東",
         "pref": "埼玉県",
@@ -431,7 +431,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "ラヂオつくば",
+        "station": "ラヂオつくば",
         "code": "082201",
         "region": "関東",
         "pref": "茨城県",
@@ -444,7 +444,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "エフエムたちかわ",
+        "station": "エフエムたちかわ",
         "code": "132021",
         "region": "関東",
         "pref": "東京都",
@@ -457,7 +457,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "かわさきFM",
+        "station": "かわさきFM",
         "code": "141305",
         "region": "関東",
         "pref": "神奈川県",
@@ -470,7 +470,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FM戸塚",
+        "station": "FM戸塚",
         "code": "141003",
         "region": "関東",
         "pref": "神奈川県",
@@ -483,7 +483,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "調布FM",
+        "station": "調布FM",
         "code": "132080",
         "region": "関東",
         "pref": "東京都",
@@ -496,7 +496,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "かつしかFM",
+        "station": "かつしかFM",
         "code": "131229",
         "region": "関東",
         "pref": "東京都",
@@ -509,7 +509,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "エフエムさがみ",
+        "station": "エフエムさがみ",
         "code": "141500",
         "region": "関東",
         "pref": "神奈川県",
@@ -522,7 +522,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "レインボータウンFM",
+        "station": "レインボータウンFM",
         "code": "131083",
         "region": "関東",
         "pref": "東京都",
@@ -535,7 +535,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FM kaon",
+        "station": "FM kaon",
         "code": "142158",
         "region": "関東",
         "pref": "神奈川県",
@@ -548,7 +548,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "エフエムEGAO",
+        "station": "エフエムEGAO",
         "code": "232025",
         "region": "東海",
         "pref": "愛知県",
@@ -561,7 +561,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMおかざき",
+        "station": "FMおかざき",
         "code": "232025",
         "region": "東海",
         "pref": "愛知県",
@@ -574,7 +574,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "あづみ野FM",
+        "station": "あづみ野FM",
         "code": "202207",
         "region": "甲信越",
         "pref": "長野県",
@@ -587,7 +587,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "京都三条ラジオカフェ",
+        "station": "京都三条ラジオカフェ",
         "code": "261009",
         "region": "近畿",
         "pref": "京都府",
@@ -600,7 +600,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FM MOOV KOBE",
+        "station": "FM MOOV KOBE",
         "code": "281000",
         "region": "近畿",
         "pref": "兵庫県",
@@ -613,7 +613,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "805たんば",
+        "station": "805たんば",
         "code": "282235",
         "region": "近畿",
         "pref": "兵庫県",
@@ -626,7 +626,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "RADIO MIX KYOTO",
+        "station": "RADIO MIX KYOTO",
         "code": "261009",
         "region": "近畿",
         "pref": "京都府",
@@ -639,7 +639,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FM丹波",
+        "station": "FM丹波",
         "code": "262013",
         "region": "近畿",
         "pref": "京都府",
@@ -652,7 +652,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "エフエムわいわい",
+        "station": "エフエムわいわい",
         "code": "281000",
         "region": "近畿",
         "pref": "兵庫県",
@@ -665,7 +665,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMジャングル",
+        "station": "FMジャングル",
         "code": "282090",
         "region": "近畿",
         "pref": "兵庫県",
@@ -678,7 +678,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "BAN-BANラジオ",
+        "station": "BAN-BANラジオ",
         "code": "282103",
         "region": "近畿",
         "pref": "兵庫県",
@@ -691,7 +691,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMはしもと",
+        "station": "FMはしもと",
         "code": "302031",
         "region": "近畿",
         "pref": "和歌山県",
@@ -704,7 +704,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FM SUN",
+        "station": "FM SUN",
         "code": "372030",
         "region": "四国",
         "pref": "香川県",
@@ -717,7 +717,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "DARAZ FM",
+        "station": "DARAZ FM",
         "code": "312029",
         "region": "中国",
         "pref": "鳥取県",
@@ -730,7 +730,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FM高松",
+        "station": "FM高松",
         "code": "372013",
         "region": "四国",
         "pref": "香川県",
@@ -743,7 +743,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMびざん",
+        "station": "FMびざん",
         "code": "362018",
         "region": "四国",
         "pref": "徳島県",
@@ -756,7 +756,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "AIR STATION HIBIKI",
+        "station": "AIR STATION HIBIKI",
         "code": "401005",
         "region": "九州沖縄",
         "pref": "福岡県",
@@ -769,7 +769,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMくめじま",
+        "station": "FMくめじま",
         "code": "473618",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -782,7 +782,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMのべおか",
+        "station": "FMのべおか",
         "code": "452033",
         "region": "九州沖縄",
         "pref": "宮崎県",
@@ -795,7 +795,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMぎんが",
+        "station": "FMぎんが",
         "code": "462012",
         "region": "九州沖縄",
         "pref": "鹿児島県",
@@ -808,7 +808,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMよなばる",
+        "station": "FMよなばる",
         "code": "473481",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -821,7 +821,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "あまみFM",
+        "station": "あまみFM",
         "code": "462225",
         "region": "九州沖縄",
         "pref": "鹿児島県",
@@ -834,7 +834,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMしまばら",
+        "station": "FMしまばら",
         "code": "422037",
         "region": "九州沖縄",
         "pref": "長崎県",
@@ -847,7 +847,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "スターコーンFM",
+        "station": "スターコーンFM",
         "code": "406473",
         "region": "九州沖縄",
         "pref": "福岡県",
@@ -860,7 +860,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FM21",
+        "station": "FM21",
         "code": "472085",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -873,7 +873,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMレキオ",
+        "station": "FMレキオ",
         "code": "472018",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -886,7 +886,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "コミュニティラジオ天神",
+        "station": "コミュニティラジオ天神",
         "code": "401307",
         "region": "九州沖縄",
         "pref": "福岡県",
@@ -899,7 +899,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMなんじょう",
+        "station": "FMなんじょう",
         "code": "472158",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -912,7 +912,7 @@
     {
         "type": "csra",
         "id": "",
-        "name": "FMもとぶ",
+        "station": "FMもとぶ",
         "code": "473081",
         "region": "九州沖縄",
         "pref": "沖縄県",

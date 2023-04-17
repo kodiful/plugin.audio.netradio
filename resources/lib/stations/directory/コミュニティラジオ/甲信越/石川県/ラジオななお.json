@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "radionanao",
-    "name": "ラジオななお",
+    "station": "ラジオななお",
     "code": "170003",
     "region": "甲信越",
     "pref": "石川県",

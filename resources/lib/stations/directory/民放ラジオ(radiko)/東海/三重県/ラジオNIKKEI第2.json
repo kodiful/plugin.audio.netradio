@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RN2",
-    "name": "ラジオNIKKEI第2",
+    "station": "ラジオNIKKEI第2",
     "code": "240001",
     "region": "東海",
     "pref": "三重県",

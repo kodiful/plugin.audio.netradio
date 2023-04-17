@@ -8,7 +8,7 @@
   -->
   <!--放送局-->
   <category label="30600">
-    <setting label="30601" id="name" type="text" default=""/>
+    <setting label="30601" id="station" type="text" default=""/>
     <setting label="30602" id="description" type="text" default=""/>
     <setting label="30603" id="logo" type="text" default="https://"/>
     <setting label="30604" id="stream" type="text" default="https://"/>

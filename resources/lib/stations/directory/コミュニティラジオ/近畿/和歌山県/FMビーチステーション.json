@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "beachstation",
-    "name": "FMビーチステーション",
+    "station": "FMビーチステーション",
     "code": "300004",
     "region": "近畿",
     "pref": "和歌山県",

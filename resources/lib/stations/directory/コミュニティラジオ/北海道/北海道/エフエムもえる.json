@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "moeru",
-    "name": "エフエムもえる",
+    "station": "エフエムもえる",
     "code": "012122",
     "region": "北海道",
     "pref": "北海道",

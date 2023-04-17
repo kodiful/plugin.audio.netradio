@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "nagisastation",
-    "name": "エフエムなぎさステーション",
+    "station": "エフエムなぎさステーション",
     "code": "220001",
     "region": "東海",
     "pref": "静岡県",

@@ -1,7 +1,7 @@
 {
     "type": "nhk1",
     "id": "",
-    "name": "NHKラジオ第1(大阪)",
+    "station": "NHKラジオ第1(大阪)",
     "code": "271004",
     "region": "近畿",
     "pref": "",

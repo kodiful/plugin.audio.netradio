@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "QRR",
-    "name": "文化放送",
+    "station": "文化放送",
     "code": "130001",
     "region": "関東",
     "pref": "東京都",

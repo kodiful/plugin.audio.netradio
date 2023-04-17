@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "HELLOFIVE",
-    "name": "エフエム石川",
+    "station": "エフエム石川",
     "code": "170003",
     "region": "甲信越",
     "pref": "石川県",

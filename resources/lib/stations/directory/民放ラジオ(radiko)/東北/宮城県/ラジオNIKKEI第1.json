@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RN1",
-    "name": "ラジオNIKKEI第1",
+    "station": "ラジオNIKKEI第1",
     "code": "040002",
     "region": "東北",
     "pref": "宮城県",

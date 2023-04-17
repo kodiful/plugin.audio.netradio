@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JOZK",
-    "name": "NHKラジオ第1(松山)",
+    "station": "NHKラジオ第1(松山)",
     "code": "390003",
     "region": "四国",
     "pref": "高知県",

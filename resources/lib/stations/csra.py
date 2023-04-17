@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 if __name__ == '__main__':
     sys.path.append('..')
-    from prefdata import PrefData
+    from prefecture import Prefecture
     from common import Common
     class Const:
         DIRECTORY_ROOT = '.'
@@ -15,14 +15,14 @@ if __name__ == '__main__':
         SOURCE_PATH = 'source'
         JSON_PATH = 'json'
 else:
-    from ..prefdata import PrefData
+    from ..prefecture import Prefecture
     from .common import Common
     from ..common import Common as Const
     Const.SOURCE_PATH = os.path.join(Const.DIRECTORY_ROOT, 'source')
     Const.JSON_PATH = os.path.join(Const.DIRECTORY_ROOT, 'json')
 
 
-class Scraper(Common, Const, PrefData):
+class Scraper(Common, Const, Prefecture):
 
     TYPE = 'csra'
     URL = 'http://csra.fm/stationlist/'
@@ -51,13 +51,13 @@ class Scraper(Common, Const, PrefData):
             </section>
             '''
             try:
-                name = section.h1.string.strip()
+                station = section.h1.string.strip()
                 code, region, pref, city = self.infer_place(section.text.replace('久米島', '久米島町'))
                 logo = 'http://csra.fm%s' % section.img['src'].strip()
                 stream = section.find('a', class_='stm')['href'].strip()
                 official =  section.find('a', class_='site')['href'].strip()
             except Exception:
-                print('[csra] unparsable content:', name, sep='\t')
+                print('[csra] unparsable content:', station, sep='\t')
                 continue
             # ストリーミングURLがListenRadioを参照している場合はスキップ
             if stream.startswith('http://listenradio.jp/'):
@@ -67,7 +67,7 @@ class Scraper(Common, Const, PrefData):
                 buf.append({
                     'type': self.TYPE,
                     'id': '',
-                    'name': self.normalize(name),
+                    'station': self.normalize(station),
                     'code': code,
                     'region': region,
                     'pref': pref,
@@ -78,7 +78,7 @@ class Scraper(Common, Const, PrefData):
                     'stream': stream,
                 })
             else:
-                print('[csra] unsupported protocol:', name, stream, sep='\t')
+                print('[csra] unsupported protocol:', station, stream, sep='\t')
         return buf
 
 

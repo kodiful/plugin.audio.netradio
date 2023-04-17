@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "OBS",
-    "name": "OBSラジオ",
+    "station": "OBSラジオ",
     "code": "440001",
     "region": "九州沖縄",
     "pref": "大分県",

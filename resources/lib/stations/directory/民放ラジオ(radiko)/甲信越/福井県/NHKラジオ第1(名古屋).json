@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JOCK",
-    "name": "NHKラジオ第1(名古屋)",
+    "station": "NHKラジオ第1(名古屋)",
     "code": "180009",
     "region": "甲信越",
     "pref": "福井県",

@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "KBS",
-    "name": "KBS京都ラジオ",
+    "station": "KBS京都ラジオ",
     "code": "250007",
     "region": "近畿",
     "pref": "滋賀県",

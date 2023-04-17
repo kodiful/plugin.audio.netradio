@@ -42,7 +42,7 @@ class Common:
             pref = item['pref']
             dir = os.path.join(self.DIRECTORY_PATH, category, region, pref)
             os.makedirs(dir, exist_ok=True)
-            path = os.path.join(dir, '%s.json' % item['name'])
+            path = os.path.join(dir, '%s.json' % item['station'])
             if os.path.exists(path) is False:
                 self.write_as_json(path, item)
             else:
@@ -55,18 +55,19 @@ class Common:
     def load_logo(item, dir):
         dirname = os.path.join(dir, item['type'])
         os.makedirs(dirname, exist_ok=True)
-        path = os.path.join(dirname, '%s.png' % item['name'])
+        path = os.path.join(dirname, '%s.png' % item['station'])
         if os.path.exists(path) is False:
-            res = requests.get(item['logo'])
-            if res.status_code == 200:
-                with open(path, 'wb') as f:
-                    f.write(res.content)
-            else:
+            if item['logo']:
+                res = requests.get(item['logo'])
+                if res.status_code == 200:
+                    with open(path, 'wb') as f:
+                        f.write(res.content)
+            if os.path.exists(path) is False:
                 # ロゴ画像のダウンロードに失敗したときはfavicon.icoで代用する
                 protocol, _, hostname, _ = item['logo'].split('/', 3)
                 res = requests.get(f'{protocol}//{hostname}/favicon.ico')
                 if res.status_code == 200:
-                    iconame = os.path.join(dirname, '%s.ico' % item['name'])
+                    iconame = os.path.join(dirname, '%s.ico' % item['station'])
                     with open(iconame, 'wb') as f:
                         f.write(res.content)
                     img = Image.open(iconame)  # icoファイルを開く

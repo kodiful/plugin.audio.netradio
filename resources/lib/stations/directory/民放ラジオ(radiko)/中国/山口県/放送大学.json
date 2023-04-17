@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "HOUSOU-DAIGAKU",
-    "name": "放送大学",
+    "station": "放送大学",
     "code": "350001",
     "region": "中国",
     "pref": "山口県",

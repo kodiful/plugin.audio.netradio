@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "ABC",
-    "name": "ABCラジオ",
+    "station": "ABCラジオ",
     "code": "250007",
     "region": "近畿",
     "pref": "滋賀県",

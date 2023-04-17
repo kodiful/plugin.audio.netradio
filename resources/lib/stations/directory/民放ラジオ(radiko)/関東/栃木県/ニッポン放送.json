@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "LFR",
-    "name": "ニッポン放送",
+    "station": "ニッポン放送",
     "code": "090000",
     "region": "関東",
     "pref": "栃木県",

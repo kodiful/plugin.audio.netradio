@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30050",
-    "name": "カシオペアFM",
+    "station": "カシオペアFM",
     "code": "032131",
     "region": "東北",
     "pref": "岩手県",

@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30065",
-    "name": "マリンFM",
+    "station": "マリンFM",
     "code": "141003",
     "region": "関東",
     "pref": "神奈川県",

@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "ABS",
-    "name": "ABS秋田放送",
+    "station": "ABS秋田放送",
     "code": "050008",
     "region": "東北",
     "pref": "秋田県",

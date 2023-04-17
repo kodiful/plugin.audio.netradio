@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "NACK5",
-    "name": "NACK5",
+    "station": "NACK5",
     "code": "110001",
     "region": "関東",
     "pref": "埼玉県",

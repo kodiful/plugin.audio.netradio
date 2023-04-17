@@ -24,18 +24,18 @@ class Station(Common):
         xbmc.sleep(100)
         # 設定画面を書き換える
         if path is None:
-            data = {'name': '', 'description': '', 'logo': 'https://', 'stream': 'https://'}
+            data = {'station': '', 'description': '', 'logo': 'https://', 'stream': 'https://'}
         else:
             data = Common.read_as_json(path)
-        for key in ('name', 'description', 'logo', 'stream'):
+        for key in ('station', 'description', 'logo', 'stream'):
             Common.SET(key, data[key])
 
     def add(self):
         data = {'type': 'user'}
-        for key in ('name', 'description', 'logo', 'stream'):
+        for key in ('station', 'description', 'logo', 'stream'):
             data[key] = Common.GET(key)
-        item = {'type': '', 'id': '', 'name': '', 'code': '', 'region': '', 'pref': '', 'city': '', 'logo': '', 'description': '', 'official': '', 'stream': ''}
+        item = {'type': '', 'id': '', 'station': '', 'code': '', 'region': '', 'pref': '', 'city': '', 'logo': '', 'description': '', 'official': '', 'stream': ''}
         item.update(data)
-        self.write_as_json(os.path.join(self.DIRECTORY_PATH, '%s.json' % item['name']), item)
+        self.write_as_json(os.path.join(self.DIRECTORY_PATH, '%s.json' % item['station']), item)
         Stations.load_logo(item, self.LOGO_PATH)
         xbmc.executebuiltin('Container.Refresh')

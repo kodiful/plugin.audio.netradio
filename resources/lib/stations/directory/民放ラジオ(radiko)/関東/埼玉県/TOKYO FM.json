@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "FMT",
-    "name": "TOKYO FM",
+    "station": "TOKYO FM",
     "code": "110001",
     "region": "関東",
     "pref": "埼玉県",

@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30042",
-    "name": "RadioCity 中央エフエム",
+    "station": "RadioCity 中央エフエム",
     "code": "131024",
     "region": "関東",
     "pref": "東京都",

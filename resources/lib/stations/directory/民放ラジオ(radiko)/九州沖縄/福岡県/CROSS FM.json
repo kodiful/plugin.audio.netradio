@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "CROSSFM",
-    "name": "CROSS FM",
+    "station": "CROSS FM",
     "code": "400009",
     "region": "九州沖縄",
     "pref": "福岡県",

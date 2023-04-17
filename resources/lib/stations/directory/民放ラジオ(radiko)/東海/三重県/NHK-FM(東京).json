@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JOAK-FM",
-    "name": "NHK-FM(東京)",
+    "station": "NHK-FM(東京)",
     "code": "240001",
     "region": "東海",
     "pref": "三重県",

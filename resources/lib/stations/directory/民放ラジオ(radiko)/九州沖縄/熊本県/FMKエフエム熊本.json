@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "FMK",
-    "name": "FMKエフエム熊本",
+    "station": "FMKエフエム熊本",
     "code": "430005",
     "region": "九州沖縄",
     "pref": "熊本県",

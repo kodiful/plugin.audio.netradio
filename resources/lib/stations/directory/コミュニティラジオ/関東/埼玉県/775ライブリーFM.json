@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30026",
-    "name": "775ライブリーFM",
+    "station": "775ライブリーFM",
     "code": "112275",
     "region": "関東",
     "pref": "埼玉県",

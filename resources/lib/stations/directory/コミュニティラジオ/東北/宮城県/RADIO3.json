@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30007",
-    "name": "RADIO3",
+    "station": "RADIO3",
     "code": "041009",
     "region": "東北",
     "pref": "宮城県",

@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30068",
-    "name": "fm那覇",
+    "station": "fm那覇",
     "code": "472018",
     "region": "九州沖縄",
     "pref": "沖縄県",

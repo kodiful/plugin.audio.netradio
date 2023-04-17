@@ -8,7 +8,7 @@ from xmltodict import parse
 
 if __name__ == '__main__':
     sys.path.append('..')
-    from prefdata import PrefData
+    from prefecture import Prefecture
     from common import Common
     class Const:
         TIMETABLE_ROOT = '.'
@@ -16,14 +16,14 @@ if __name__ == '__main__':
         SOURCE_PATH = 'source'
         JSON_PATH = 'json'
 else:
-    from ..prefdata import PrefData
+    from ..prefecture import Prefecture
     from .common import Common
     from ..common import Common as Const
     Const.SOURCE_PATH = os.path.join(Const.TIMETABLE_ROOT, 'source')
     Const.JSON_PATH = os.path.join(Const.TIMETABLE_ROOT, 'json')
 
 
-class Scraper(Common, Const, PrefData):
+class Scraper(Common, Const, Prefecture):
 
     TYPE = 'radk'
     URL = 'http://radiko.jp/v2/api/program/now?area_id=%s'
@@ -37,12 +37,12 @@ class Scraper(Common, Const, PrefData):
         data = parse(data)
         buf = {}
         for s in data['radiko']['stations']['station']:
-            name = self.normalize(s['name'])
+            station = self.normalize(s['name'])
             progs = []
             for p in s['scd']['progs']['prog']:
                 progs.append({
                     'type': 'radk',
-                    'name': name,
+                    'station': station,
                     'title': self.normalize(p['title']),
                     'subtitle': self.normalize(p['sub_title']),
                     'START': p['@ft'],  # 20201027000000
@@ -54,7 +54,7 @@ class Scraper(Common, Const, PrefData):
                     'info': self.normalize(p['info']),
                     'desc': self.normalize(p['desc']),
                 })
-            buf[name] = progs
+            buf[station] = progs
         return buf
 
     def t2unixtime(self, t):

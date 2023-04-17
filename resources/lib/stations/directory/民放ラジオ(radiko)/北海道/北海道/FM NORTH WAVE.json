@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "NORTHWAVE",
-    "name": "FM NORTH WAVE",
+    "station": "FM NORTH WAVE",
     "code": "010006",
     "region": "北海道",
     "pref": "北海道",

@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30040",
-    "name": "エフエムEGAO",
+    "station": "エフエムEGAO",
     "code": "232025",
     "region": "東海",
     "pref": "愛知県",

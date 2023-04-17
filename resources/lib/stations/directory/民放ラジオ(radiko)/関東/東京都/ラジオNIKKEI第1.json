@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RN1",
-    "name": "ラジオNIKKEI第1",
+    "station": "ラジオNIKKEI第1",
     "code": "130001",
     "region": "関東",
     "pref": "東京都",

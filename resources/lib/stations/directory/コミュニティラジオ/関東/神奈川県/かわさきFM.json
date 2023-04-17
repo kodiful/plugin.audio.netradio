@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30046",
-    "name": "かわさきFM",
+    "station": "かわさきFM",
     "code": "141305",
     "region": "関東",
     "pref": "神奈川県",

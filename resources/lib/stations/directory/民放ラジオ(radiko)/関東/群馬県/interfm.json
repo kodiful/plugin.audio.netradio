@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "INT",
-    "name": "interfm",
+    "station": "interfm",
     "code": "100005",
     "region": "関東",
     "pref": "群馬県",

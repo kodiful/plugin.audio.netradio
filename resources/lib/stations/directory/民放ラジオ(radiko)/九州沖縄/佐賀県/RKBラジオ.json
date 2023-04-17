@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RKB",
-    "name": "RKBラジオ",
+    "station": "RKBラジオ",
     "code": "410004",
     "region": "九州沖縄",
     "pref": "佐賀県",

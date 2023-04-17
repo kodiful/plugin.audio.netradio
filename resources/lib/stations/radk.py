@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 if __name__ == '__main__':
     sys.path.append('..')
-    from prefdata import PrefData
+    from prefecture import Prefecture
     from common import Common
     class Const:
         DIRECTORY_ROOT = '.'
@@ -16,14 +16,14 @@ if __name__ == '__main__':
         SOURCE_PATH = 'source'
         JSON_PATH = 'json'
 else:
-    from ..prefdata import PrefData
+    from ..prefecture import Prefecture
     from .common import Common
     from ..common import Common as Const
     Const.SOURCE_PATH = os.path.join(Const.DIRECTORY_ROOT, 'source')
     Const.JSON_PATH = os.path.join(Const.DIRECTORY_ROOT, 'json')
 
 
-class Scraper(Common, Const, PrefData):
+class Scraper(Common, Const, Prefecture):
 
     TYPE = 'radk'
     URL = 'http://radiko.jp/v2/station/list/%s.xml'
@@ -35,8 +35,8 @@ class Scraper(Common, Const, PrefData):
 
     def parse(self, data):
         buf = []
-        stations = BeautifulSoup(data, features='xml').find_all('station')
-        for station in stations:
+        sections = BeautifulSoup(data, features='xml').find_all('station')
+        for section in sections:
             '''
             <station>
                 <id>TBS</id>
@@ -61,18 +61,18 @@ class Scraper(Common, Const, PrefData):
             </station>
             '''
             try:
-                id = station.id.text
-                name = station.find('name').text
+                id = section.id.text
+                station = section.find('name').text
                 code, region, pref = self.radiko_place(self.area)
-                logo = station.find('logo', width='448').text
-                official = station.href.text
+                logo = section.find('logo', width='448').text
+                official = section.href.text
             except Exception:
-                print('[radk] unparsable content:', name, sep='\t')
+                print('[radk] unparsable content:', station, sep='\t')
                 continue
             buf.append({
                 'type': self.TYPE,
                 'id': id,
-                'name': self.normalize(name),
+                'station': self.normalize(station),
                 'code': code,
                 'region': region,
                 'pref': pref,

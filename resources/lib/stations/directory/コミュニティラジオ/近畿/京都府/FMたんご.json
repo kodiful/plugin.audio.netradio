@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30073",
-    "name": "FMたんご",
+    "station": "FMたんご",
     "code": "262129",
     "region": "近畿",
     "pref": "京都府",

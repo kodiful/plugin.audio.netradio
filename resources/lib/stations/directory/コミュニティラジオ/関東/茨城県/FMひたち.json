@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30023",
-    "name": "FMひたち",
+    "station": "FMひたち",
     "code": "082023",
     "region": "関東",
     "pref": "茨城県",

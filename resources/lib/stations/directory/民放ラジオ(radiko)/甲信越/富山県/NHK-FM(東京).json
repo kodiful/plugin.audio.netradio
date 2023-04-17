@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JOAK-FM",
-    "name": "NHK-FM(東京)",
+    "station": "NHK-FM(東京)",
     "code": "160008",
     "region": "甲信越",
     "pref": "富山県",

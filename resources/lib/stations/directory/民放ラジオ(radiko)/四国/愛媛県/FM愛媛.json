@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JOEU-FM",
-    "name": "FM愛媛",
+    "station": "FM愛媛",
     "code": "380008",
     "region": "四国",
     "pref": "愛媛県",

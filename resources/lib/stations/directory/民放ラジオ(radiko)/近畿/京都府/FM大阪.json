@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "FMO",
-    "name": "FM大阪",
+    "station": "FM大阪",
     "code": "260002",
     "region": "近畿",
     "pref": "京都府",

@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "BSS",
-    "name": "BSSラジオ",
+    "station": "BSSラジオ",
     "code": "310000",
     "region": "中国",
     "pref": "鳥取県",

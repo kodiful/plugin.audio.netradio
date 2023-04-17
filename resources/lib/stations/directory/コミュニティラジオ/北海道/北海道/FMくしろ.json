@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30029",
-    "name": "FMくしろ",
+    "station": "FMくしろ",
     "code": "012068",
     "region": "北海道",
     "pref": "北海道",

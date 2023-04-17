@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "AFM",
-    "name": "エフエム秋田",
+    "station": "エフエム秋田",
     "code": "050008",
     "region": "東北",
     "pref": "秋田県",

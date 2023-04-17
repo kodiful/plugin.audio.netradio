@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "ROK",
-    "name": "ラジオ沖縄",
+    "station": "ラジオ沖縄",
     "code": "470007",
     "region": "九州沖縄",
     "pref": "沖縄県",

@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "radiotakasaki",
-    "name": "ラジオ高崎",
+    "station": "ラジオ高崎",
     "code": "100005",
     "region": "関東",
     "pref": "群馬県",

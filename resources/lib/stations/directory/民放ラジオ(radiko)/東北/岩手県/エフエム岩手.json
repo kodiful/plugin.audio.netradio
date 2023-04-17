@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "FMI",
-    "name": "エフエム岩手",
+    "station": "エフエム岩手",
     "code": "030007",
     "region": "東北",
     "pref": "岩手県",

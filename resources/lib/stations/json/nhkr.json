@@ -2,7 +2,7 @@
     {
         "type": "nhk1",
         "id": "",
-        "name": "NHKラジオ第1(札幌)",
+        "station": "NHKラジオ第1(札幌)",
         "code": "011002",
         "region": "北海道",
         "pref": "",
@@ -15,7 +15,7 @@
     {
         "type": "nhk2",
         "id": "",
-        "name": "NHKラジオ第2",
+        "station": "NHKラジオ第2",
         "code": "011002",
         "region": "北海道",
         "pref": "",
@@ -28,7 +28,7 @@
     {
         "type": "nhk3",
         "id": "",
-        "name": "NHK-FM(札幌)",
+        "station": "NHK-FM(札幌)",
         "code": "011002",
         "region": "北海道",
         "pref": "",
@@ -41,7 +41,7 @@
     {
         "type": "nhk1",
         "id": "",
-        "name": "NHKラジオ第1(仙台)",
+        "station": "NHKラジオ第1(仙台)",
         "code": "041009",
         "region": "東北",
         "pref": "",
@@ -54,7 +54,7 @@
     {
         "type": "nhk2",
         "id": "",
-        "name": "NHKラジオ第2",
+        "station": "NHKラジオ第2",
         "code": "041009",
         "region": "東北",
         "pref": "",
@@ -67,7 +67,7 @@
     {
         "type": "nhk3",
         "id": "",
-        "name": "NHK-FM(仙台)",
+        "station": "NHK-FM(仙台)",
         "code": "041009",
         "region": "東北",
         "pref": "",
@@ -80,7 +80,7 @@
     {
         "type": "nhk1",
         "id": "",
-        "name": "NHKラジオ第1(東京)",
+        "station": "NHKラジオ第1(東京)",
         "code": "131130",
         "region": "関東",
         "pref": "",
@@ -93,7 +93,7 @@
     {
         "type": "nhk2",
         "id": "",
-        "name": "NHKラジオ第2",
+        "station": "NHKラジオ第2",
         "code": "131130",
         "region": "関東",
         "pref": "",
@@ -106,7 +106,7 @@
     {
         "type": "nhk3",
         "id": "",
-        "name": "NHK-FM(東京)",
+        "station": "NHK-FM(東京)",
         "code": "131130",
         "region": "関東",
         "pref": "",
@@ -119,7 +119,7 @@
     {
         "type": "nhk1",
         "id": "",
-        "name": "NHKラジオ第1(名古屋)",
+        "station": "NHKラジオ第1(名古屋)",
         "code": "231002",
         "region": "東海",
         "pref": "",
@@ -132,7 +132,7 @@
     {
         "type": "nhk2",
         "id": "",
-        "name": "NHKラジオ第2",
+        "station": "NHKラジオ第2",
         "code": "231002",
         "region": "東海",
         "pref": "",
@@ -145,7 +145,7 @@
     {
         "type": "nhk3",
         "id": "",
-        "name": "NHK-FM(名古屋)",
+        "station": "NHK-FM(名古屋)",
         "code": "231002",
         "region": "東海",
         "pref": "",
@@ -158,7 +158,7 @@
     {
         "type": "nhk1",
         "id": "",
-        "name": "NHKラジオ第1(大阪)",
+        "station": "NHKラジオ第1(大阪)",
         "code": "271004",
         "region": "近畿",
         "pref": "",
@@ -171,7 +171,7 @@
     {
         "type": "nhk2",
         "id": "",
-        "name": "NHKラジオ第2",
+        "station": "NHKラジオ第2",
         "code": "271004",
         "region": "近畿",
         "pref": "",
@@ -184,7 +184,7 @@
     {
         "type": "nhk3",
         "id": "",
-        "name": "NHK-FM(大阪)",
+        "station": "NHK-FM(大阪)",
         "code": "271004",
         "region": "近畿",
         "pref": "",
@@ -197,7 +197,7 @@
     {
         "type": "nhk1",
         "id": "",
-        "name": "NHKラジオ第1(広島)",
+        "station": "NHKラジオ第1(広島)",
         "code": "341002",
         "region": "中国",
         "pref": "",
@@ -210,7 +210,7 @@
     {
         "type": "nhk2",
         "id": "",
-        "name": "NHKラジオ第2",
+        "station": "NHKラジオ第2",
         "code": "341002",
         "region": "中国",
         "pref": "",
@@ -223,7 +223,7 @@
     {
         "type": "nhk3",
         "id": "",
-        "name": "NHK-FM(広島)",
+        "station": "NHK-FM(広島)",
         "code": "341002",
         "region": "中国",
         "pref": "",
@@ -236,7 +236,7 @@
     {
         "type": "nhk1",
         "id": "",
-        "name": "NHKラジオ第1(松山)",
+        "station": "NHKラジオ第1(松山)",
         "code": "382019",
         "region": "四国",
         "pref": "",
@@ -249,7 +249,7 @@
     {
         "type": "nhk2",
         "id": "",
-        "name": "NHKラジオ第2",
+        "station": "NHKラジオ第2",
         "code": "382019",
         "region": "四国",
         "pref": "",
@@ -262,7 +262,7 @@
     {
         "type": "nhk3",
         "id": "",
-        "name": "NHK-FM(松山)",
+        "station": "NHK-FM(松山)",
         "code": "382019",
         "region": "四国",
         "pref": "",
@@ -275,7 +275,7 @@
     {
         "type": "nhk1",
         "id": "",
-        "name": "NHKラジオ第1(福岡)",
+        "station": "NHKラジオ第1(福岡)",
         "code": "401307",
         "region": "九州沖縄",
         "pref": "",
@@ -288,7 +288,7 @@
     {
         "type": "nhk2",
         "id": "",
-        "name": "NHKラジオ第2",
+        "station": "NHKラジオ第2",
         "code": "401307",
         "region": "九州沖縄",
         "pref": "",
@@ -301,7 +301,7 @@
     {
         "type": "nhk3",
         "id": "",
-        "name": "NHK-FM(福岡)",
+        "station": "NHK-FM(福岡)",
         "code": "401307",
         "region": "九州沖縄",
         "pref": "",

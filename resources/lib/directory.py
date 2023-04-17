@@ -9,7 +9,7 @@ import time
 from urllib.parse import urlencode
 
 from resources.lib.common import Common
-from resources.lib.prefdata import PrefData
+from resources.lib.prefecture import Prefecture
 from resources.lib.localproxy import LocalProxy
 
 import xbmc
@@ -17,7 +17,7 @@ import xbmcgui
 import xbmcplugin
 
 
-class Directory(Common, PrefData):
+class Directory(Common, Prefecture):
 
     def __init__(self):
         auth = self.read_as_json(self.AUTH_FILE)
@@ -108,11 +108,10 @@ class Directory(Common, PrefData):
         # jsonファイルからデータを取得する
         data = self.read_as_json(item)
         # listitemを追加する
-        li = xbmcgui.ListItem(self._name(data))
-        logo = os.path.join(self.LOGO_PATH, data['type'], '%s.png' % data['name'])
-        li.setArt({'thumb': logo, 'poster': logo, 'banner': logo, 'fanart': logo, 'clearart': logo, 'clearlogo': logo, 'landscape': logo, 'icon': logo})
-        labels = {'title': data['name']}
-        li.setInfo(type='music', infoLabels=labels)
+        li = xbmcgui.ListItem(self._title(data))
+        logo = os.path.join(self.LOGO_PATH, data['type'], '%s.png' % data['station'])
+        li.setArt({'thumb': logo, 'fanart': logo, 'icon': logo})
+        li.setInfo(type='music', infoLabels={'title': data['station']})
         li.setProperty('IsPlayable', 'true')
         # コンテクストメニュー
         self.contextmenu = []
@@ -125,7 +124,7 @@ class Directory(Common, PrefData):
         else:
             self._contextmenu('トップ画面に追加する', {'action': 'add_to_top', 'path': item})
         if data['type'] in ('nhk1', 'nhk2', 'nhk3', 'radk'):
-            self._contextmenu('キーワードを追加する', {'action': 'set_keyword', 'path': os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['name'])})
+            self._contextmenu('キーワードを追加する', {'action': 'set_keyword', 'path': os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['station'])})
         self._contextmenu('アドオン設定', {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL
@@ -167,50 +166,50 @@ class Directory(Common, PrefData):
             data = self.read_as_json(item)
             key1 = key[data['type']]
             key2 = data['code']
-            key3 = data['name']
+            key3 = data['station']
             return key1, key2, key3
         else:
             # ディレクトリの場合
             children = glob.glob(os.path.join(item, '*'))
             return self._sort(min(children))
         
-    def _name(self, data):
+    def _title(self, data):
         if data['type'] in ('nhk1', 'nhk2', 'nhk3', 'radk'):
             color = None
-            name = data['name']
+            station = data['station']
             if data['type'] == 'radk' and data['pref'] != self.pref:
                 # 認証された地域と一致しない場合はグレイ表示
                 color = 'gray'
-                name = f'[COLOR {color}]{name}[/COLOR]'
-            progs = self.read_as_json(os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['name']))
+                station = f'[COLOR {color}]{station}[/COLOR]'
+            progs = self.read_as_json(os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['station']))
             for i, p in enumerate(progs):
                 title = '%s (%s～%s)' % (p['title'], self._time(p['start']), self._time(p['end']))
                 if i == 0:
                     color1 = color or 'khaki'
-                    name += f' [COLOR {color1}]▶ {title}[/COLOR]'
+                    station += f' [COLOR {color1}]▶ {title}[/COLOR]'
                 else:
                     color2 = color or 'lightgreen'
-                    name += f' [COLOR {color2}]▶ {title}[/COLOR]'
+                    station += f' [COLOR {color2}]▶ {title}[/COLOR]'
         elif data['type'] in ('csra', 'jcba', 'lsnr', 'siml'):
-            name = f"{data['name']}({data['pref']}{data['city']})"
+            station = f"{data['station']}({data['pref']}{data['city']})"
             if data['description']:
-                name += f" [COLOR khaki]▶ {data['description']}[/COLOR]"
+                station += f" [COLOR khaki]▶ {data['description']}[/COLOR]"
         else:
-            name = data['name']
+            station = data['station']
             if data['description']:
-                name += f" [COLOR khaki]▶ {data['description']}[/COLOR]"
-        return name
+                station += f" [COLOR khaki]▶ {data['description']}[/COLOR]"
+        return station
     
     def _time(self, t):
         return time.strftime("%H:%M", time.localtime(t))
 
     def _stream(self, data):
         if data['type'] == 'radk':
-            stream = LocalProxy.proxy_radk(data['id'], self.token)
+            stream = LocalProxy.proxy_radk(data['id'], token=self.token)
         elif data['type'] == 'jcba':
             stream = LocalProxy.proxy_jcba(data['id'])
         else:
-            stream = data['stream']
+            stream = LocalProxy.proxy_redirect(data['stream'])
         return stream
 
     def _contextmenu(self, name, args):

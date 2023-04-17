@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "IBS",
-    "name": "LuckyFM 茨城放送",
+    "station": "LuckyFM 茨城放送",
     "code": "090000",
     "region": "関東",
     "pref": "栃木県",

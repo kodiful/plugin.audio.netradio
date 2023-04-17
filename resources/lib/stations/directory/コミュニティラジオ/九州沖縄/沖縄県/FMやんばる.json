@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30095",
-    "name": "FMやんばる",
+    "station": "FMやんばる",
     "code": "472093",
     "region": "九州沖縄",
     "pref": "沖縄県",

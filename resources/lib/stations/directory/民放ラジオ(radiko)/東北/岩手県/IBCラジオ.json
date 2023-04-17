@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "IBC",
-    "name": "IBCラジオ",
+    "station": "IBCラジオ",
     "code": "030007",
     "region": "東北",
     "pref": "岩手県",

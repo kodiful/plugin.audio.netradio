@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from resources.lib.common import Common
-from resources.lib.prefdata import PrefData
+from resources.lib.prefecture import Prefecture
 from resources.lib.authenticate import Authenticate
 from resources.lib.keyword import Keyword
 from resources.lib.localproxy import LocalProxy
@@ -44,7 +44,7 @@ class Monitor(xbmc.Monitor, Common):
                 return
 
 
-class Service(Common, PrefData):
+class Service(Common, Prefecture):
 
     CHECK_INTERVAL = 30
     AUTH_INTERVAL = 3600
@@ -54,6 +54,18 @@ class Service(Common, PrefData):
         # OSを判定
         self.SET('os', platform.system())
         # ディレクトリをチェック
+        self._setup_userdata()
+        # キューを初期化
+        self.pending = []  # ダウンロード待ち
+        self.processing = []  # ダウンロード中
+        self.queue = queue.Queue()  # ダウンロードプロセス
+        # ローカルプロキシを初期化
+        self.httpd = LocalProxy()
+        # 別スレッドでローカルプロキシを起動
+        thread = threading.Thread(target=self.httpd.serve_forever)
+        thread.start()
+
+    def _setup_userdata(self):
         if not os.path.isdir(self.DIRECTORY_PATH):
             shutil.copytree(os.path.join(self.RESOURCES_PATH, 'lib', 'stations', 'directory'), self.DIRECTORY_PATH)
         if not os.path.isdir(self.INDEX_PATH):
@@ -78,15 +90,6 @@ class Service(Common, PrefData):
         if os.path.isdir(self.DOWNLOAD_PATH):
             shutil.rmtree(self.DOWNLOAD_PATH)
         os.makedirs(self.DOWNLOAD_PATH)
-        # キューを初期化
-        self.pending = []  # ダウンロード待ち
-        self.processing = []  # ダウンロード中
-        self.queue = queue.Queue()  # ダウンロードプロセス
-        # ローカルプロキシを初期化
-        self.httpd = LocalProxy()
-        # 別スレッドでローカルプロキシを起動
-        thread = threading.Thread(target=self.httpd.serve_forever)
-        thread.start()
 
     def _authenticate(self):
         # radiko認証

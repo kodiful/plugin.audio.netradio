@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 if __name__ == '__main__':
     sys.path.append('..')
-    from prefdata import PrefData
+    from prefecture import Prefecture
     from common import Common
     class Const:
         DIRECTORY_ROOT = '.'
@@ -15,14 +15,14 @@ if __name__ == '__main__':
         SOURCE_PATH = 'source'
         JSON_PATH = 'json'
 else:
-    from ..prefdata import PrefData
+    from ..prefecture import Prefecture
     from .common import Common
     from ..common import Common as Const
     Const.SOURCE_PATH = os.path.join(Const.DIRECTORY_ROOT, 'source')
     Const.JSON_PATH = os.path.join(Const.DIRECTORY_ROOT, 'json')
 
 
-class Scraper(Common, Const, PrefData):
+class Scraper(Common, Const, Prefecture):
 
     TYPE = 'nhkr'
     URL = 'https://www.nhk.or.jp/radio/config/config_web.xml'
@@ -52,7 +52,7 @@ class Scraper(Common, Const, PrefData):
     def parse(self, data):
         buf = []
         sections = BeautifulSoup(data, features='xml').find_all('data')
-        for data in sections:
+        for section in sections:
             '''
             <data>
                 <areajp>札幌</areajp>
@@ -65,15 +65,15 @@ class Scraper(Common, Const, PrefData):
             </data>
             '''
             try:
-                name = data.areajp.text
-                code, region, pref, city = self.infer_place(self.AREA[data.areajp.text])
+                station = section.areajp.text
+                code, region, pref, city = self.infer_place(self.AREA[section.areajp.text])
             except Exception:
-                print('[nhkr] unparsable content:', name, sep='\t')
+                print('[nhkr] unparsable content:', station, sep='\t')
                 continue
             buf.append({
                 'type': 'nhk1',
                 'id': '',
-                'name': f'NHKラジオ第1({name})',
+                'station': f'NHKラジオ第1({station})',
                 'code': code,
                 'region': region,
                 'pref': '',  # ディレクトリに都道府県の階層を作成しない
@@ -81,12 +81,12 @@ class Scraper(Common, Const, PrefData):
                 'logo': self.LOGO['r1'],
                 'description': '',
                 'official': 'https://www.nhk.or.jp/radio/',
-                'stream': data.r1hls.text
+                'stream': section.r1hls.text
             })
             buf.append({
                 'type': 'nhk2',
                 'id': '',
-                'name': f'NHKラジオ第2',
+                'station': f'NHKラジオ第2',
                 'code': code,
                 'region': region,
                 'pref': '',  # ディレクトリに都道府県の階層を作成しない
@@ -94,12 +94,12 @@ class Scraper(Common, Const, PrefData):
                 'logo': self.LOGO['r2'],
                 'description': '',
                 'official': 'https://www.nhk.or.jp/radio/',
-                'stream': data.r2hls.text
+                'stream': section.r2hls.text
             })
             buf.append({
                 'type': 'nhk3',
                 'id': '',
-                'name': f'NHK-FM({name})',
+                'station': f'NHK-FM({station})',
                 'code': code,
                 'region': region,
                 'pref': '',  # ディレクトリに都道府県の階層を作成しない
@@ -107,7 +107,7 @@ class Scraper(Common, Const, PrefData):
                 'logo': self.LOGO['fm'],
                 'description': '',
                 'official': 'https://www.nhk.or.jp/radio/',
-                'stream': data.fmhls.text
+                'stream': section.fmhls.text
             })
         return buf
 

@@ -1,7 +1,7 @@
 {
     "type": "nhk3",
     "id": "",
-    "name": "NHK-FM(名古屋)",
+    "station": "NHK-FM(名古屋)",
     "code": "231002",
     "region": "東海",
     "pref": "",

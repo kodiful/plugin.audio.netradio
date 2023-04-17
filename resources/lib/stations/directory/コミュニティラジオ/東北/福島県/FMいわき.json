@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30009",
-    "name": "FMいわき",
+    "station": "FMいわき",
     "code": "072044",
     "region": "東北",
     "pref": "福島県",

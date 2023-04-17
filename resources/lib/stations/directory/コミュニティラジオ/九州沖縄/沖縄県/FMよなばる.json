@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30055",
-    "name": "FMよなばる",
+    "station": "FMよなばる",
     "code": "473481",
     "region": "九州沖縄",
     "pref": "沖縄県",

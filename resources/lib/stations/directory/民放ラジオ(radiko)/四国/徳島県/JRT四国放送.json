@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JRT",
-    "name": "JRT四国放送",
+    "station": "JRT四国放送",
     "code": "360007",
     "region": "四国",
     "pref": "徳島県",

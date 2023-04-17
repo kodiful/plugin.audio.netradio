@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RN1",
-    "name": "ラジオNIKKEI第1",
+    "station": "ラジオNIKKEI第1",
     "code": "150002",
     "region": "甲信越",
     "pref": "新潟県",

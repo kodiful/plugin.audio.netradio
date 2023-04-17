@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "fmis",
-    "name": "FM ISみらいずステーション",
+    "station": "FM ISみらいずステーション",
     "code": "222224",
     "region": "東海",
     "pref": "静岡県",

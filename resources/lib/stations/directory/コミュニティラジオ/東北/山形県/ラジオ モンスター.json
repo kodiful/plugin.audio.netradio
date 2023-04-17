@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "radiomonster",
-    "name": "ラジオ モンスター",
+    "station": "ラジオ モンスター",
     "code": "062014",
     "region": "東北",
     "pref": "山形県",

@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "MBS",
-    "name": "MBSラジオ",
+    "station": "MBSラジオ",
     "code": "260002",
     "region": "近畿",
     "pref": "京都府",

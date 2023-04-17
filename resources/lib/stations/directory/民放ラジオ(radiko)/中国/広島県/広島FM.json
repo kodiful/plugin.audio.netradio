@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "HFM",
-    "name": "広島FM",
+    "station": "広島FM",
     "code": "340006",
     "region": "中国",
     "pref": "広島県",

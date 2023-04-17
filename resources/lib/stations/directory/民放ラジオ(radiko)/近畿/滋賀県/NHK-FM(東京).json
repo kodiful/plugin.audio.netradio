@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JOAK-FM",
-    "name": "NHK-FM(東京)",
+    "station": "NHK-FM(東京)",
     "code": "250007",
     "region": "近畿",
     "pref": "滋賀県",

@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "applewave",
-    "name": "アップルウェーブ",
+    "station": "アップルウェーブ",
     "code": "020001",
     "region": "東北",
     "pref": "青森県",

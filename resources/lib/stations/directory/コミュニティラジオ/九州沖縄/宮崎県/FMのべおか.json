@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30088",
-    "name": "FMのべおか",
+    "station": "FMのべおか",
     "code": "452033",
     "region": "九州沖縄",
     "pref": "宮崎県",

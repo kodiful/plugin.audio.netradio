@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "suzuka",
-    "name": "Suzuka Voice FM 78.3MHz",
+    "station": "Suzuka Voice FM 78.3MHz",
     "code": "240001",
     "region": "東海",
     "pref": "三重県",

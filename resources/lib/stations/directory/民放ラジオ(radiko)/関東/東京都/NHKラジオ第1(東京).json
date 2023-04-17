@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JOAK",
-    "name": "NHKラジオ第1(東京)",
+    "station": "NHKラジオ第1(東京)",
     "code": "130001",
     "region": "関東",
     "pref": "東京都",

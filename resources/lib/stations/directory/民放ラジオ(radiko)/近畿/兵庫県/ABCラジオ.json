@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "ABC",
-    "name": "ABCラジオ",
+    "station": "ABCラジオ",
     "code": "280003",
     "region": "近畿",
     "pref": "兵庫県",

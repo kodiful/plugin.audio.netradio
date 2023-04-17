@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30003",
-    "name": "FMニライ",
+    "station": "FMニライ",
     "code": "473260",
     "region": "九州沖縄",
     "pref": "沖縄県",

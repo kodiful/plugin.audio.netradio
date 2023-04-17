@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "FMJ",
-    "name": "J-WAVE",
+    "station": "J-WAVE",
     "code": "130001",
     "region": "関東",
     "pref": "東京都",

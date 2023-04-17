@@ -1,7 +1,7 @@
 {
     "type": "nhk1",
     "id": "",
-    "name": "NHKラジオ第1(松山)",
+    "station": "NHKラジオ第1(松山)",
     "code": "382019",
     "region": "四国",
     "pref": "",

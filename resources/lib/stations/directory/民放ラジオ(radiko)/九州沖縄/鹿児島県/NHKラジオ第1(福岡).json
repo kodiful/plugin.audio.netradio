@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JOLK",
-    "name": "NHKラジオ第1(福岡)",
+    "station": "NHKラジオ第1(福岡)",
     "code": "460001",
     "region": "九州沖縄",
     "pref": "鹿児島県",

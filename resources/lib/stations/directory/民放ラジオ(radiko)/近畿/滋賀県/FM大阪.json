@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "FMO",
-    "name": "FM大阪",
+    "station": "FM大阪",
     "code": "250007",
     "region": "近畿",
     "pref": "滋賀県",

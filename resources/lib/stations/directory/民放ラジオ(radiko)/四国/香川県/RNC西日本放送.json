@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RNC",
-    "name": "RNC西日本放送",
+    "station": "RNC西日本放送",
     "code": "370002",
     "region": "四国",
     "pref": "香川県",

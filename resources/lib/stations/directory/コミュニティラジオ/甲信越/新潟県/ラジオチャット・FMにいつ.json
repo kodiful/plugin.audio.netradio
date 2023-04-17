@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "radiochat",
-    "name": "ラジオチャット・FMにいつ",
+    "station": "ラジオチャット・FMにいつ",
     "code": "151009",
     "region": "甲信越",
     "pref": "新潟県",

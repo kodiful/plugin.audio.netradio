@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "AFB",
-    "name": "エフエム青森",
+    "station": "エフエム青森",
     "code": "020001",
     "region": "東北",
     "pref": "青森県",

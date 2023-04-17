@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30039",
-    "name": "調布FM",
+    "station": "調布FM",
     "code": "132080",
     "region": "関東",
     "pref": "東京都",

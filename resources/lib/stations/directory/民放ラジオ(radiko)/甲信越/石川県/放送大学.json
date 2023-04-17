@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "HOUSOU-DAIGAKU",
-    "name": "放送大学",
+    "station": "放送大学",
     "code": "170003",
     "region": "甲信越",
     "pref": "石川県",

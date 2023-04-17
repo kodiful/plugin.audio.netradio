@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30024",
-    "name": "FM815(高松)",
+    "station": "FM815(高松)",
     "code": "372013",
     "region": "四国",
     "pref": "香川県",

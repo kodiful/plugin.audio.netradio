@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RN2",
-    "name": "ラジオNIKKEI第2",
+    "station": "ラジオNIKKEI第2",
     "code": "260002",
     "region": "近畿",
     "pref": "京都府",

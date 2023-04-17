@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 if __name__ == '__main__':
     sys.path.append('..')
-    from prefdata import PrefData
+    from prefecture import Prefecture
     from common import Common
     class Const:
         DIRECTORY_ROOT = '.'
@@ -16,14 +16,14 @@ if __name__ == '__main__':
         SOURCE_PATH = 'source'
         JSON_PATH = 'json'
 else:
-    from ..prefdata import PrefData
+    from ..prefecture import Prefecture
     from .common import Common
     from ..common import Common as Const
     Const.SOURCE_PATH = os.path.join(Const.DIRECTORY_ROOT, 'source')
     Const.JSON_PATH = os.path.join(Const.DIRECTORY_ROOT, 'json')
 
 
-class Scraper(Common, Const, PrefData):
+class Scraper(Common, Const, Prefecture):
 
     TYPE = 'siml'
     URL = 'http://www.simulradio.info/'
@@ -33,8 +33,8 @@ class Scraper(Common, Const, PrefData):
 
     def parse(self, data):
         buf = []
-        divs = BeautifulSoup(data, features='lxml').find_all('div', class_='radiobox')
-        for div in divs:
+        sections = BeautifulSoup(data, features='lxml').find_all('div', class_='radiobox')
+        for section in sections:
             '''
             <div class="radiobox">
                 <table>
@@ -75,13 +75,13 @@ class Scraper(Common, Const, PrefData):
             </div>            
             '''
             try:
-                name = div.strong.a.text.strip()
-                code, region, pref, city = self.infer_place(div.text.replace('久米島', '久米島町'))
-                logo = 'http://www.simulradio.info/%s' % div.img['src'].strip()
-                stream = div.a['href'].strip()
-                official = div.strong.a['href'].strip()
+                station = section.strong.a.text.strip()
+                code, region, pref, city = self.infer_place(section.text.replace('久米島', '久米島町'))
+                logo = 'http://www.simulradio.info/%s' % section.img['src'].strip()
+                stream = section.a['href'].strip()
+                official = section.strong.a['href'].strip()
             except Exception:
-                print('[siml] unparsable content:', name, sep='\t')
+                print('[siml] unparsable content:', section, sep='\t')
                 continue
             # ストリーミングURLがListenRadioを参照している場合はスキップ
             if stream.startswith('http://listenradio.jp/'):
@@ -91,7 +91,7 @@ class Scraper(Common, Const, PrefData):
                 buf.append({
                     'type': self.TYPE,
                     'id': '',
-                    'name': self.normalize(name),
+                    'station': self.normalize(station),
                     'code': code,
                     'region': region,
                     'pref': pref,
@@ -102,7 +102,7 @@ class Scraper(Common, Const, PrefData):
                     'stream': stream,
                 })
             else:
-                print('[siml] unsupported protocol:', name, stream, sep='\t')
+                print('[siml] unsupported protocol:', station, stream, sep='\t')
         return buf
 
 

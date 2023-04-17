@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RN1",
-    "name": "ラジオNIKKEI第1",
+    "station": "ラジオNIKKEI第1",
     "code": "320005",
     "region": "中国",
     "pref": "島根県",

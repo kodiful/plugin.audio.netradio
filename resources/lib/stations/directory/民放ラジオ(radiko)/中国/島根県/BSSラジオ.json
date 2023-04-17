@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "BSS",
-    "name": "BSSラジオ",
+    "station": "BSSラジオ",
     "code": "320005",
     "region": "中国",
     "pref": "島根県",

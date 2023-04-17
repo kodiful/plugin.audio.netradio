@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JOFK",
-    "name": "NHKラジオ第1(広島)",
+    "station": "NHKラジオ第1(広島)",
     "code": "350001",
     "region": "中国",
     "pref": "山口県",

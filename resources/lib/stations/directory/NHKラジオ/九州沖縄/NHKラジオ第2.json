@@ -1,7 +1,7 @@
 {
     "type": "nhk2",
     "id": "",
-    "name": "NHKラジオ第2",
+    "station": "NHKラジオ第2",
     "code": "401307",
     "region": "九州沖縄",
     "pref": "",

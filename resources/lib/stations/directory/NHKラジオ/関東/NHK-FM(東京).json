@@ -1,7 +1,7 @@
 {
     "type": "nhk3",
     "id": "",
-    "name": "NHK-FM(東京)",
+    "station": "NHK-FM(東京)",
     "code": "131130",
     "region": "関東",
     "pref": "",

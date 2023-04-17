@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "FM_OKINAWA",
-    "name": "FM沖縄",
+    "station": "FM沖縄",
     "code": "470007",
     "region": "九州沖縄",
     "pref": "沖縄県",

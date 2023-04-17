@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30033",
-    "name": "FMたちかわ",
+    "station": "FMたちかわ",
     "code": "132021",
     "region": "関東",
     "pref": "東京都",

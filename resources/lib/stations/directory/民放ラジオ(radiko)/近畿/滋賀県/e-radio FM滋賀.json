@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "E-RADIO",
-    "name": "e-radio FM滋賀",
+    "station": "e-radio FM滋賀",
     "code": "250007",
     "region": "近畿",
     "pref": "滋賀県",

@@ -6,7 +6,7 @@ import json
 
 if __name__ == '__main__':
     sys.path.append('..')
-    from prefdata import PrefData
+    from prefecture import Prefecture
     from common import Common
     class Const:
         DIRECTORY_ROOT = '.'
@@ -15,14 +15,14 @@ if __name__ == '__main__':
         SOURCE_PATH = 'source'
         JSON_PATH = 'json'
 else:
-    from ..prefdata import PrefData
+    from ..prefecture import Prefecture
     from .common import Common
     from ..common import Common as Const
     Const.SOURCE_PATH = os.path.join(Const.DIRECTORY_ROOT, 'source')
     Const.JSON_PATH = os.path.join(Const.DIRECTORY_ROOT, 'json')
 
 
-class Scraper(Common, Const, PrefData):
+class Scraper(Common, Const, Prefecture):
 
     TYPE = 'lsnr'
     URL = 'http://listenradio.jp/service/categorychannel.aspx?categoryid=10005' # サイマルのみ
@@ -34,7 +34,7 @@ class Scraper(Common, Const, PrefData):
     def parse(self, data):
         buf = []
         data = json.loads(data)
-        for channel in data['Channel']:
+        for section in data['Channel']:
             '''
             {
                 "ChannelId": 30120,
@@ -53,20 +53,20 @@ class Scraper(Common, Const, PrefData):
             }
             '''
             try:
-                id = channel['ChannelId']
-                name = channel['ChannelName']
-                code, region, pref, city = self.infer_place(channel['ChannelDetail'])
-                logo = channel['ChannelImage']
-                stream = channel['ChannelHls']
-                description = channel['ChannelDetail']
+                id = section['ChannelId']
+                station = section['ChannelName']
+                code, region, pref, city = self.infer_place(section['ChannelDetail'])
+                logo = section['ChannelImage']
+                stream = section['ChannelHls']
+                description = section['ChannelDetail']
             except Exception:
-                print('[lsnr] unparsable content:', name, sep='\t')
+                print('[lsnr] unparsable content:', station, sep='\t')
                 continue
             if region:
                 buf.append({
                     'type': self.TYPE,
                     'id': str(id),
-                    'name': self.normalize(name),
+                    'station': self.normalize(station),
                     'code': code,
                     'region': region,
                     'pref': pref,
@@ -77,7 +77,7 @@ class Scraper(Common, Const, PrefData):
                     'stream': stream,
                 })
             else:
-                print('[lsnr] invalid region:', name, stream, sep='\t')
+                print('[lsnr] invalid region:', station, stream, sep='\t')
         return buf
 
 

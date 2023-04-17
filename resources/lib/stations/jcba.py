@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 
 if __name__ == '__main__':
     sys.path.append('..')
-    from prefdata import PrefData
+    from prefecture import Prefecture
     from common import Common
     class Const:
         DIRECTORY_ROOT = '.'
@@ -16,14 +16,14 @@ if __name__ == '__main__':
         SOURCE_PATH = 'source'
         JSON_PATH = 'json'
 else:
-    from ..prefdata import PrefData
+    from ..prefecture import Prefecture
     from .common import Common
     from ..common import Common as Const
     Const.SOURCE_PATH = os.path.join(Const.DIRECTORY_ROOT, 'source')
     Const.JSON_PATH = os.path.join(Const.DIRECTORY_ROOT, 'json')
 
 
-class Scraper(Common, Const, PrefData):
+class Scraper(Common, Const, Prefecture):
 
     TYPE = 'jcba'
     URL = 'http://www.jcbasimul.com'
@@ -35,8 +35,8 @@ class Scraper(Common, Const, PrefData):
         buf = []
         data = BeautifulSoup(data, features='lxml').find('script', id='__NEXT_DATA__')
         data = json.loads(data.decode_contents())
-        for stations in data['props']['pageProps']['stations']:
-            for station in stations['list']:
+        for sections in data['props']['pageProps']['stations']:
+            for section in sections['list']:
                 '''
                 {
                     "id": "fmhana",
@@ -54,19 +54,19 @@ class Scraper(Common, Const, PrefData):
                 }
                 '''
                 try:
-                    id = station['id']
-                    name = station['name']
-                    code, region, pref, city = self.infer_place(station['prefecture'] + station['description'])
-                    logo = station['logoUrl']
-                    description = station['description']
-                    official = station['officialSiteUrl']
+                    id = section['id']
+                    station = section['name']
+                    code, region, pref, city = self.infer_place(section['prefecture'] + section['description'])
+                    logo = section['logoUrl']
+                    description = section['description']
+                    official = section['officialSiteUrl']
                 except Exception:
-                    print('[jcba] unparsable content:', name, sep='\t')
+                    print('[jcba] unparsable content:', station, sep='\t')
                     continue
                 buf.append({
                     'type': self.TYPE,
                     'id': str(id),
-                    'name': self.normalize(name),
+                    'station': self.normalize(station),
                     'code': code,
                     'region': region,
                     'pref': pref,

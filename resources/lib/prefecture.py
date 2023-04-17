@@ -3,7 +3,7 @@
 import re
 
 
-class PrefData:
+class Prefecture:
         
     # cf. https://www.soumu.go.jp/denshijiti/code.html
 

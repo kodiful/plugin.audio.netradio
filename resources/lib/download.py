@@ -2,7 +2,6 @@
 
 import os
 import shutil
-import json
 import ffmpeg
 import glob
 import locale
@@ -25,8 +24,8 @@ class Download(Directory, Common):
         else:
             type_ = program['type']
         index = self.read_as_json(os.path.join(self.INDEX_PATH, '%s.json' % type_))
-        station = list(filter(lambda x: x['name'] == program['name'], index))[0]
-        return self._stream(station)
+        station = list(filter(lambda x: x['station'] == program['station'], index))[0]
+        return self._stream(station, download=True)
 
     def download(self, program, path, queue):
         # ストリームURL
@@ -56,11 +55,11 @@ class Download(Directory, Common):
         # 開始通知
         self.notify('Download started "%s"' % program['title'])
         # ログ
-        self.log(f'[{p.pid}] Download started.')
+        self.log(f'[{process.pid}] Download started.')
         # ダウンロード終了を待つ
-        p.wait()
+        process.wait()
         # ダウンロード結果に応じて後処理
-        if p.returncode == 0:
+        if process.returncode == 0:
             # pathとmp3pathをfolder配下へ移動する
             root = self.GET('folder')
             if os.path.isdir(root):
@@ -77,14 +76,14 @@ class Download(Directory, Common):
             # 完了通知
             self.notify('Download completed "%s"' % program['title'])
             # ログ
-            self.log(f'[{p.pid}] Download completed.')
+            self.log(f'[{process.pid}] Download completed.')
         else:
             # 失敗したときはjsonファイルを削除
             os.remove(path)
             # 完了通知
             self.notify('Download failed "%s"' % program['title'], error=True)
             # ログ
-            self.log(f'[{p.pid}] Download failed (returncode={p.returncode}).')
+            self.log(f'[{process.pid}] Download failed (returncode={process.returncode}).')
 
     def update_rss(self):
         # 全キーワードのrssファイル生成
@@ -163,7 +162,7 @@ class RSS(Common):
                 description += '<p>%s</p>' % p['desc']
             description = escape(description)
             # station
-            station = escape(p['name'])
+            station = escape(p['station'])
             # 各番組情報を書き込む
             buf.append(
                 body.format(
@@ -173,7 +172,7 @@ class RSS(Common):
                     source=source,
                     date=date,
                     startdate=startdate,
-                    name=station,
+                    station=station,
                     duration=duration,
                     filesize=filesize,
                     description=description))

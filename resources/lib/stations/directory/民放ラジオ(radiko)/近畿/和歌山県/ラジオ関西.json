@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "CRK",
-    "name": "ラジオ関西",
+    "station": "ラジオ関西",
     "code": "300004",
     "region": "近畿",
     "pref": "和歌山県",

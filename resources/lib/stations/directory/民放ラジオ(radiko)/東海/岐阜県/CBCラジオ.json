@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "CBC",
-    "name": "CBCラジオ",
+    "station": "CBCラジオ",
     "code": "210005",
     "region": "東海",
     "pref": "岐阜県",

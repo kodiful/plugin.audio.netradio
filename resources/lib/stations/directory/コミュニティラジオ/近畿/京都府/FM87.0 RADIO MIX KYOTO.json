@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30071",
-    "name": "FM87.0 RADIO MIX KYOTO",
+    "station": "FM87.0 RADIO MIX KYOTO",
     "code": "261009",
     "region": "近畿",
     "pref": "京都府",

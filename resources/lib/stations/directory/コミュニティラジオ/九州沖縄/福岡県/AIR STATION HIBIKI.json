@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30052",
-    "name": "AIR STATION HIBIKI",
+    "station": "AIR STATION HIBIKI",
     "code": "401005",
     "region": "九州沖縄",
     "pref": "福岡県",

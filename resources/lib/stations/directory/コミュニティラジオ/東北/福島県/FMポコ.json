@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "fmpoco",
-    "name": "FMポコ",
+    "station": "FMポコ",
     "code": "072010",
     "region": "東北",
     "pref": "福島県",

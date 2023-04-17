@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RFM",
-    "name": "Rhythm Station エフエム山形",
+    "station": "Rhythm Station エフエム山形",
     "code": "060003",
     "region": "東北",
     "pref": "山形県",

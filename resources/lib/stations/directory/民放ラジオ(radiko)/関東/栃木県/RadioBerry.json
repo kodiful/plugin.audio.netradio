@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RADIOBERRY",
-    "name": "RadioBerry",
+    "station": "RadioBerry",
     "code": "090000",
     "region": "関東",
     "pref": "栃木県",

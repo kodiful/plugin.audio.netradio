@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "MRT",
-    "name": "宮崎放送",
+    "station": "宮崎放送",
     "code": "450006",
     "region": "九州沖縄",
     "pref": "宮崎県",

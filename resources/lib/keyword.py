@@ -29,14 +29,13 @@ class Keyword(Common):
         data = Common.read_as_json(path)
         if type(data) == list:
             data = data[0]
-        self.log(data)
-        if data.get('name'):
+        if data.get('station'):
             weekday = datetime.datetime.today().weekday()  # 今日の曜日を月(0)-日(6)で返す
             Common.SET('keyword', data['title'])
             Common.SET('search', '0')  # 番組名のみ
             Common.SET('weekday', str(weekday))
             Common.SET('limit', 'true')  # 放送局を限定する
-            Common.SET('station', data['name'])
+            Common.SET('station', data['station'])
         if data.get('keyword'):
             Common.SET('keyword', data['keyword'])
             Common.SET('search', data['search'])
@@ -79,7 +78,7 @@ class Keyword(Common):
             for k in keywords:
                 if k['weekday'] != '7' and k['weekday'] != p['weekday']:
                     continue
-                if k['limit'] == 'true' and k['station'] != p['name']:
+                if k['limit'] == 'true' and k['station'] != p['station']:
                     continue
                 if k['search'] == '0' and title.find(k['keyword']) < 0:
                     continue

@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "YFM",
-    "name": "FMヨコハマ",
+    "station": "FMヨコハマ",
     "code": "130001",
     "region": "関東",
     "pref": "東京都",

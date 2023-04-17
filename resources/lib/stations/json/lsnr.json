@@ -2,7 +2,7 @@
     {
         "type": "lsnr",
         "id": "30120",
-        "name": "Heart FM",
+        "station": "Heart FM",
         "code": "231002",
         "region": "東海",
         "pref": "愛知県",
@@ -15,7 +15,7 @@
     {
         "type": "lsnr",
         "id": "30041",
-        "name": "練馬放送",
+        "station": "練馬放送",
         "code": "131202",
         "region": "関東",
         "pref": "東京都",
@@ -28,7 +28,7 @@
     {
         "type": "lsnr",
         "id": "30058",
-        "name": "FM ABASHIRI",
+        "station": "FM ABASHIRI",
         "code": "012114",
         "region": "北海道",
         "pref": "北海道",
@@ -41,7 +41,7 @@
     {
         "type": "lsnr",
         "id": "30074",
-        "name": "FMりべーる",
+        "station": "FMりべーる",
         "code": "012041",
         "region": "北海道",
         "pref": "北海道",
@@ -54,7 +54,7 @@
     {
         "type": "lsnr",
         "id": "30045",
-        "name": "FMねむろ",
+        "station": "FMねむろ",
         "code": "012238",
         "region": "北海道",
         "pref": "北海道",
@@ -67,7 +67,7 @@
     {
         "type": "lsnr",
         "id": "30029",
-        "name": "FMくしろ",
+        "station": "FMくしろ",
         "code": "012068",
         "region": "北海道",
         "pref": "北海道",
@@ -80,7 +80,7 @@
     {
         "type": "lsnr",
         "id": "30016",
-        "name": "FM JAGA",
+        "station": "FM JAGA",
         "code": "012076",
         "region": "北海道",
         "pref": "北海道",
@@ -93,7 +93,7 @@
     {
         "type": "lsnr",
         "id": "30038",
-        "name": "FM WING",
+        "station": "FM WING",
         "code": "012076",
         "region": "北海道",
         "pref": "北海道",
@@ -106,7 +106,7 @@
     {
         "type": "lsnr",
         "id": "30032",
-        "name": "さっぽろ村ラジオ",
+        "station": "さっぽろ村ラジオ",
         "code": "011002",
         "region": "北海道",
         "pref": "北海道",
@@ -119,7 +119,7 @@
     {
         "type": "lsnr",
         "id": "30044",
-        "name": "RADIOワンダーストレージ FMドラマシティ",
+        "station": "RADIOワンダーストレージ FMドラマシティ",
         "code": "011002",
         "region": "北海道",
         "pref": "北海道",
@@ -132,7 +132,7 @@
     {
         "type": "lsnr",
         "id": "30005",
-        "name": "三角山放送局(札幌市西区)",
+        "station": "三角山放送局(札幌市西区)",
         "code": "011002",
         "region": "北海道",
         "pref": "北海道",
@@ -145,7 +145,7 @@
     {
         "type": "lsnr",
         "id": "30034",
-        "name": "ラジオカロスサッポロ",
+        "station": "ラジオカロスサッポロ",
         "code": "011002",
         "region": "北海道",
         "pref": "北海道",
@@ -158,7 +158,7 @@
     {
         "type": "lsnr",
         "id": "30090",
-        "name": "FMアップル",
+        "station": "FMアップル",
         "code": "011002",
         "region": "北海道",
         "pref": "北海道",
@@ -171,7 +171,7 @@
     {
         "type": "lsnr",
         "id": "30015",
-        "name": "FMメイプル",
+        "station": "FMメイプル",
         "code": "012343",
         "region": "北海道",
         "pref": "北海道",
@@ -184,7 +184,7 @@
     {
         "type": "lsnr",
         "id": "30087",
-        "name": "wi-radio",
+        "station": "wi-radio",
         "code": "012335",
         "region": "北海道",
         "pref": "北海道",
@@ -197,7 +197,7 @@
     {
         "type": "lsnr",
         "id": "30079",
-        "name": "BeFM",
+        "station": "BeFM",
         "code": "020001",
         "region": "東北",
         "pref": "青森県",
@@ -210,7 +210,7 @@
     {
         "type": "lsnr",
         "id": "30050",
-        "name": "カシオペアFM",
+        "station": "カシオペアFM",
         "code": "032131",
         "region": "東北",
         "pref": "岩手県",
@@ -223,7 +223,7 @@
     {
         "type": "lsnr",
         "id": "30017",
-        "name": "ラヂオもりおか",
+        "station": "ラヂオもりおか",
         "code": "032018",
         "region": "東北",
         "pref": "岩手県",
@@ -236,7 +236,7 @@
     {
         "type": "lsnr",
         "id": "30097",
-        "name": "みやこハーバーラジオ",
+        "station": "みやこハーバーラジオ",
         "code": "032026",
         "region": "東北",
         "pref": "岩手県",
@@ -249,7 +249,7 @@
     {
         "type": "lsnr",
         "id": "30094",
-        "name": "ラヂオ気仙沼",
+        "station": "ラヂオ気仙沼",
         "code": "042056",
         "region": "東北",
         "pref": "宮城県",
@@ -262,7 +262,7 @@
     {
         "type": "lsnr",
         "id": "30037",
-        "name": "ラジオ石巻",
+        "station": "ラジオ石巻",
         "code": "042021",
         "region": "東北",
         "pref": "宮城県",
@@ -275,7 +275,7 @@
     {
         "type": "lsnr",
         "id": "30056",
-        "name": "BAY WAVE",
+        "station": "BAY WAVE",
         "code": "040002",
         "region": "東北",
         "pref": "宮城県",
@@ -288,7 +288,7 @@
     {
         "type": "lsnr",
         "id": "30007",
-        "name": "RADIO3",
+        "station": "RADIO3",
         "code": "041009",
         "region": "東北",
         "pref": "宮城県",
@@ -301,7 +301,7 @@
     {
         "type": "lsnr",
         "id": "30018",
-        "name": "fmいずみ",
+        "station": "fmいずみ",
         "code": "041009",
         "region": "東北",
         "pref": "宮城県",
@@ -314,7 +314,7 @@
     {
         "type": "lsnr",
         "id": "30092",
-        "name": "なとらじ801",
+        "station": "なとらじ801",
         "code": "042072",
         "region": "東北",
         "pref": "宮城県",
@@ -327,7 +327,7 @@
     {
         "type": "lsnr",
         "id": "30089",
-        "name": "鹿角きりたんぽFM",
+        "station": "鹿角きりたんぽFM",
         "code": "052094",
         "region": "東北",
         "pref": "秋田県",
@@ -340,7 +340,7 @@
     {
         "type": "lsnr",
         "id": "30014",
-        "name": "エフエム椿台",
+        "station": "エフエム椿台",
         "code": "052019",
         "region": "東北",
         "pref": "秋田県",
@@ -353,7 +353,7 @@
     {
         "type": "lsnr",
         "id": "30076",
-        "name": "横手かまくらエフエム",
+        "station": "横手かまくらエフエム",
         "code": "052035",
         "region": "東北",
         "pref": "秋田県",
@@ -366,7 +366,7 @@
     {
         "type": "lsnr",
         "id": "30030",
-        "name": "FMゆーとぴあ",
+        "station": "FMゆーとぴあ",
         "code": "052078",
         "region": "東北",
         "pref": "秋田県",
@@ -379,7 +379,7 @@
     {
         "type": "lsnr",
         "id": "30019",
-        "name": "FM Mot.com",
+        "station": "FM Mot.com",
         "code": "072141",
         "region": "東北",
         "pref": "福島県",
@@ -392,7 +392,7 @@
     {
         "type": "lsnr",
         "id": "30020",
-        "name": "KOCOラジ",
+        "station": "KOCOラジ",
         "code": "072036",
         "region": "東北",
         "pref": "福島県",
@@ -405,7 +405,7 @@
     {
         "type": "lsnr",
         "id": "30009",
-        "name": "FMいわき",
+        "station": "FMいわき",
         "code": "072044",
         "region": "東北",
         "pref": "福島県",
@@ -418,7 +418,7 @@
     {
         "type": "lsnr",
         "id": "30023",
-        "name": "FMひたち",
+        "station": "FMひたち",
         "code": "082023",
         "region": "関東",
         "pref": "茨城県",
@@ -431,7 +431,7 @@
     {
         "type": "lsnr",
         "id": "30075",
-        "name": "たかはぎFM",
+        "station": "たかはぎFM",
         "code": "082147",
         "region": "関東",
         "pref": "茨城県",
@@ -444,7 +444,7 @@
     {
         "type": "lsnr",
         "id": "30022",
-        "name": "FMぱるるん",
+        "station": "FMぱるるん",
         "code": "082015",
         "region": "関東",
         "pref": "茨城県",
@@ -457,7 +457,7 @@
     {
         "type": "lsnr",
         "id": "30021",
-        "name": "FMうしくうれしく放送",
+        "station": "FMうしくうれしく放送",
         "code": "082198",
         "region": "関東",
         "pref": "茨城県",
@@ -470,7 +470,7 @@
     {
         "type": "lsnr",
         "id": "30043",
-        "name": "まえばしCITYエフエム",
+        "station": "まえばしCITYエフエム",
         "code": "102016",
         "region": "関東",
         "pref": "群馬県",
@@ -483,7 +483,7 @@
     {
         "type": "lsnr",
         "id": "30047",
-        "name": "FMふっかちゃん",
+        "station": "FMふっかちゃん",
         "code": "112186",
         "region": "関東",
         "pref": "埼玉県",
@@ -496,7 +496,7 @@
     {
         "type": "lsnr",
         "id": "30008",
-        "name": "REDS WAVE",
+        "station": "REDS WAVE",
         "code": "111007",
         "region": "関東",
         "pref": "埼玉県",
@@ -509,7 +509,7 @@
     {
         "type": "lsnr",
         "id": "30035",
-        "name": "FM Kawaguchi",
+        "station": "FM Kawaguchi",
         "code": "112038",
         "region": "関東",
         "pref": "埼玉県",
@@ -522,7 +522,7 @@
     {
         "type": "lsnr",
         "id": "30002",
-        "name": "フラワーラジオ",
+        "station": "フラワーラジオ",
         "code": "112178",
         "region": "関東",
         "pref": "埼玉県",
@@ -535,7 +535,7 @@
     {
         "type": "lsnr",
         "id": "30096",
-        "name": "ハローハッピー・こしがやエフエム",
+        "station": "ハローハッピー・こしがやエフエム",
         "code": "112224",
         "region": "関東",
         "pref": "埼玉県",
@@ -548,7 +548,7 @@
     {
         "type": "lsnr",
         "id": "30026",
-        "name": "775ライブリーFM",
+        "station": "775ライブリーFM",
         "code": "112275",
         "region": "関東",
         "pref": "埼玉県",
@@ -561,7 +561,7 @@
     {
         "type": "lsnr",
         "id": "30042",
-        "name": "RadioCity 中央エフエム",
+        "station": "RadioCity 中央エフエム",
         "code": "131024",
         "region": "関東",
         "pref": "東京都",
@@ -574,7 +574,7 @@
     {
         "type": "lsnr",
         "id": "30036",
-        "name": "レインボータウンFM",
+        "station": "レインボータウンFM",
         "code": "131083",
         "region": "関東",
         "pref": "東京都",
@@ -587,7 +587,7 @@
     {
         "type": "lsnr",
         "id": "30027",
-        "name": "エフエム世田谷",
+        "station": "エフエム世田谷",
         "code": "131121",
         "region": "関東",
         "pref": "東京都",
@@ -600,7 +600,7 @@
     {
         "type": "lsnr",
         "id": "30051",
-        "name": "コマラジ",
+        "station": "コマラジ",
         "code": "132195",
         "region": "関東",
         "pref": "東京都",
@@ -613,7 +613,7 @@
     {
         "type": "lsnr",
         "id": "30039",
-        "name": "調布FM",
+        "station": "調布FM",
         "code": "132080",
         "region": "関東",
         "pref": "東京都",
@@ -626,7 +626,7 @@
     {
         "type": "lsnr",
         "id": "30059",
-        "name": "ラジオフチューズ",
+        "station": "ラジオフチューズ",
         "code": "132063",
         "region": "関東",
         "pref": "東京都",
@@ -639,7 +639,7 @@
     {
         "type": "lsnr",
         "id": "30033",
-        "name": "FMたちかわ",
+        "station": "FMたちかわ",
         "code": "132021",
         "region": "関東",
         "pref": "東京都",
@@ -652,7 +652,7 @@
     {
         "type": "lsnr",
         "id": "30081",
-        "name": "Tokyo Star Radio(八王子FM)",
+        "station": "Tokyo Star Radio(八王子FM)",
         "code": "132012",
         "region": "関東",
         "pref": "東京都",
@@ -665,7 +665,7 @@
     {
         "type": "lsnr",
         "id": "30046",
-        "name": "かわさきFM",
+        "station": "かわさきFM",
         "code": "141305",
         "region": "関東",
         "pref": "神奈川県",
@@ -678,7 +678,7 @@
     {
         "type": "lsnr",
         "id": "30065",
-        "name": "マリンFM",
+        "station": "マリンFM",
         "code": "141003",
         "region": "関東",
         "pref": "神奈川県",
@@ -691,7 +691,7 @@
     {
         "type": "lsnr",
         "id": "30064",
-        "name": "エフエム戸塚",
+        "station": "エフエム戸塚",
         "code": "141003",
         "region": "関東",
         "pref": "神奈川県",
@@ -704,7 +704,7 @@
     {
         "type": "lsnr",
         "id": "30057",
-        "name": "FMカオン",
+        "station": "FMカオン",
         "code": "142158",
         "region": "関東",
         "pref": "神奈川県",
@@ -717,7 +717,7 @@
     {
         "type": "lsnr",
         "id": "30001",
-        "name": "FM N1",
+        "station": "FM N1",
         "code": "172120",
         "region": "甲信越",
         "pref": "石川県",
@@ -730,7 +730,7 @@
     {
         "type": "lsnr",
         "id": "30006",
-        "name": "ラジオ・ミュー",
+        "station": "ラジオ・ミュー",
         "code": "162078",
         "region": "甲信越",
         "pref": "富山県",
@@ -743,7 +743,7 @@
     {
         "type": "lsnr",
         "id": "30012",
-        "name": "敦賀FM",
+        "station": "敦賀FM",
         "code": "182028",
         "region": "甲信越",
         "pref": "福井県",
@@ -756,7 +756,7 @@
     {
         "type": "lsnr",
         "id": "30040",
-        "name": "エフエムEGAO",
+        "station": "エフエムEGAO",
         "code": "232025",
         "region": "東海",
         "pref": "愛知県",
@@ -769,7 +769,7 @@
     {
         "type": "lsnr",
         "id": "30061",
-        "name": "ラジオスイート",
+        "station": "ラジオスイート",
         "code": "252131",
         "region": "近畿",
         "pref": "滋賀県",
@@ -782,7 +782,7 @@
     {
         "type": "lsnr",
         "id": "30071",
-        "name": "FM87.0 RADIO MIX KYOTO",
+        "station": "FM87.0 RADIO MIX KYOTO",
         "code": "261009",
         "region": "近畿",
         "pref": "京都府",
@@ -795,7 +795,7 @@
     {
         "type": "lsnr",
         "id": "30082",
-        "name": "京都三条ラジオカフェ",
+        "station": "京都三条ラジオカフェ",
         "code": "261009",
         "region": "近畿",
         "pref": "京都府",
@@ -808,7 +808,7 @@
     {
         "type": "lsnr",
         "id": "30063",
-        "name": "FMおとくに",
+        "station": "FMおとくに",
         "code": "260002",
         "region": "近畿",
         "pref": "京都府",
@@ -821,7 +821,7 @@
     {
         "type": "lsnr",
         "id": "30073",
-        "name": "FMたんご",
+        "station": "FMたんご",
         "code": "262129",
         "region": "近畿",
         "pref": "京都府",
@@ -834,7 +834,7 @@
     {
         "type": "lsnr",
         "id": "30078",
-        "name": "BAN-BANラジオ",
+        "station": "BAN-BANラジオ",
         "code": "282103",
         "region": "近畿",
         "pref": "兵庫県",
@@ -847,7 +847,7 @@
     {
         "type": "lsnr",
         "id": "30013",
-        "name": "FM ジャングル",
+        "station": "FM ジャングル",
         "code": "282090",
         "region": "近畿",
         "pref": "兵庫県",
@@ -860,7 +860,7 @@
     {
         "type": "lsnr",
         "id": "30053",
-        "name": "DARAZ FM",
+        "station": "DARAZ FM",
         "code": "312029",
         "region": "中国",
         "pref": "鳥取県",
@@ -873,7 +873,7 @@
     {
         "type": "lsnr",
         "id": "30010",
-        "name": "FMびざん",
+        "station": "FMびざん",
         "code": "362018",
         "region": "四国",
         "pref": "徳島県",
@@ -886,7 +886,7 @@
     {
         "type": "lsnr",
         "id": "30024",
-        "name": "FM815(高松)",
+        "station": "FM815(高松)",
         "code": "372013",
         "region": "四国",
         "pref": "香川県",
@@ -899,7 +899,7 @@
     {
         "type": "lsnr",
         "id": "30070",
-        "name": "FM SUN",
+        "station": "FM SUN",
         "code": "372030",
         "region": "四国",
         "pref": "香川県",
@@ -912,7 +912,7 @@
     {
         "type": "lsnr",
         "id": "30052",
-        "name": "AIR STATION HIBIKI",
+        "station": "AIR STATION HIBIKI",
         "code": "401005",
         "region": "九州沖縄",
         "pref": "福岡県",
@@ -925,7 +925,7 @@
     {
         "type": "lsnr",
         "id": "30077",
-        "name": "COMI×TEN",
+        "station": "COMI×TEN",
         "code": "401307",
         "region": "九州沖縄",
         "pref": "福岡県",
@@ -938,7 +938,7 @@
     {
         "type": "lsnr",
         "id": "30085",
-        "name": "チョクラジ",
+        "station": "チョクラジ",
         "code": "402044",
         "region": "九州沖縄",
         "pref": "福岡県",
@@ -951,7 +951,7 @@
     {
         "type": "lsnr",
         "id": "30088",
-        "name": "FMのべおか",
+        "station": "FMのべおか",
         "code": "452033",
         "region": "九州沖縄",
         "pref": "宮崎県",
@@ -964,7 +964,7 @@
     {
         "type": "lsnr",
         "id": "30072",
-        "name": "エフエムたつごう",
+        "station": "エフエムたつごう",
         "code": "465275",
         "region": "九州沖縄",
         "pref": "鹿児島県",
@@ -977,7 +977,7 @@
     {
         "type": "lsnr",
         "id": "30054",
-        "name": "あまみエフエム",
+        "station": "あまみエフエム",
         "code": "462225",
         "region": "九州沖縄",
         "pref": "鹿児島県",
@@ -990,7 +990,7 @@
     {
         "type": "lsnr",
         "id": "30080",
-        "name": "せとラジ",
+        "station": "せとラジ",
         "code": "465259",
         "region": "九州沖縄",
         "pref": "鹿児島県",
@@ -1003,7 +1003,7 @@
     {
         "type": "lsnr",
         "id": "30095",
-        "name": "FMやんばる",
+        "station": "FMやんばる",
         "code": "472093",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -1016,7 +1016,7 @@
     {
         "type": "lsnr",
         "id": "30011",
-        "name": "FMうるま",
+        "station": "FMうるま",
         "code": "472131",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -1029,7 +1029,7 @@
     {
         "type": "lsnr",
         "id": "30003",
-        "name": "FMニライ",
+        "station": "FMニライ",
         "code": "473260",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -1042,7 +1042,7 @@
     {
         "type": "lsnr",
         "id": "30066",
-        "name": "オキラジ",
+        "station": "オキラジ",
         "code": "472115",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -1055,7 +1055,7 @@
     {
         "type": "lsnr",
         "id": "30093",
-        "name": "FMぎのわん",
+        "station": "FMぎのわん",
         "code": "472051",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -1068,7 +1068,7 @@
     {
         "type": "lsnr",
         "id": "30098",
-        "name": "ぎのわんシティFM",
+        "station": "ぎのわんシティFM",
         "code": "472051",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -1081,7 +1081,7 @@
     {
         "type": "lsnr",
         "id": "30068",
-        "name": "fm那覇",
+        "station": "fm那覇",
         "code": "472018",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -1094,7 +1094,7 @@
     {
         "type": "lsnr",
         "id": "30055",
-        "name": "FMよなばる",
+        "station": "FMよなばる",
         "code": "473481",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -1107,7 +1107,7 @@
     {
         "type": "lsnr",
         "id": "30083",
-        "name": "FMとよみ",
+        "station": "FMとよみ",
         "code": "472123",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -1120,7 +1120,7 @@
     {
         "type": "lsnr",
         "id": "30069",
-        "name": "FMいしがきサンサンラジオ",
+        "station": "FMいしがきサンサンラジオ",
         "code": "472077",
         "region": "九州沖縄",
         "pref": "沖縄県",

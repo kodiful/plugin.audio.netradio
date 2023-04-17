@@ -1,7 +1,7 @@
 {
     "type": "nhk1",
     "id": "",
-    "name": "NHKラジオ第1(広島)",
+    "station": "NHKラジオ第1(広島)",
     "code": "341002",
     "region": "中国",
     "pref": "",

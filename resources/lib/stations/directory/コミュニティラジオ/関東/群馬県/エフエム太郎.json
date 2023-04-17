@@ -1,7 +1,7 @@
 {
     "type": "jcba",
     "id": "fmtaro",
-    "name": "エフエム太郎",
+    "station": "エフエム太郎",
     "code": "100005",
     "region": "関東",
     "pref": "群馬県",

@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30075",
-    "name": "たかはぎFM",
+    "station": "たかはぎFM",
     "code": "082147",
     "region": "関東",
     "pref": "茨城県",

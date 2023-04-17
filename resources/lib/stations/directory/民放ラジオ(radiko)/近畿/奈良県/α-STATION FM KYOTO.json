@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "ALPHA-STATION",
-    "name": "α-STATION FM KYOTO",
+    "station": "α-STATION FM KYOTO",
     "code": "290009",
     "region": "近畿",
     "pref": "奈良県",

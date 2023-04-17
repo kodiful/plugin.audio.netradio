@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "RAB",
-    "name": "RAB青森放送",
+    "station": "RAB青森放送",
     "code": "020001",
     "region": "東北",
     "pref": "青森県",

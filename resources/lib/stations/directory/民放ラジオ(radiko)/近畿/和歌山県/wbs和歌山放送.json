@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "WBS",
-    "name": "wbs和歌山放送",
+    "station": "wbs和歌山放送",
     "code": "300004",
     "region": "近畿",
     "pref": "和歌山県",

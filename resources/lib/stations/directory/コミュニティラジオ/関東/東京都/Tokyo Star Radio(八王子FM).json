@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30081",
-    "name": "Tokyo Star Radio(八王子FM)",
+    "station": "Tokyo Star Radio(八王子FM)",
     "code": "132012",
     "region": "関東",
     "pref": "東京都",

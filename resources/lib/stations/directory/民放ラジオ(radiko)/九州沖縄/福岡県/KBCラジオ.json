@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "KBC",
-    "name": "KBCラジオ",
+    "station": "KBCラジオ",
     "code": "400009",
     "region": "九州沖縄",
     "pref": "福岡県",

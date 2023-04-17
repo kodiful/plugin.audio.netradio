@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30083",
-    "name": "FMとよみ",
+    "station": "FMとよみ",
     "code": "472123",
     "region": "九州沖縄",
     "pref": "沖縄県",

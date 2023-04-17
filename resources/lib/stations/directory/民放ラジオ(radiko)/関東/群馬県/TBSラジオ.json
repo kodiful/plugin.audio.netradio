@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "TBS",
-    "name": "TBSラジオ",
+    "station": "TBSラジオ",
     "code": "100005",
     "region": "関東",
     "pref": "群馬県",

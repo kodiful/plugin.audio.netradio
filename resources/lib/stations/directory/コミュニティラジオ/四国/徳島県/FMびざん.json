@@ -1,7 +1,7 @@
 {
     "type": "lsnr",
     "id": "30010",
-    "name": "FMびざん",
+    "station": "FMびざん",
     "code": "362018",
     "region": "四国",
     "pref": "徳島県",

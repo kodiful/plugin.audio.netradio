@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "YBC",
-    "name": "YBC山形放送",
+    "station": "YBC山形放送",
     "code": "060003",
     "region": "東北",
     "pref": "山形県",

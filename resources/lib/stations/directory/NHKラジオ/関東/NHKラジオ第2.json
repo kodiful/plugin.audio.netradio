@@ -1,7 +1,7 @@
 {
     "type": "nhk2",
     "id": "",
-    "name": "NHKラジオ第2",
+    "station": "NHKラジオ第2",
     "code": "131130",
     "region": "関東",
     "pref": "",

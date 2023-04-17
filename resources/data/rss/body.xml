@@ -4,12 +4,12 @@
       <description>{description}</description>
       <category></category>
       <pubDate>{startdate}</pubDate>
-      <source>{name}</source>
-      <author>{name}</author>
+      <source>{station}</source>
+      <author>{station}</author>
       <enclosure url="{root}/{source}" length="{filesize}" type="audio/mp3" />
       <itunes:explicit>no</itunes:explicit>
       <itunes:duration>{duration}</itunes:duration>
       <itunes:summary>{description}</itunes:summary>
-      <itunes:author>{name}</itunes:author>
-      <dc:creator>{name}</dc:creator>
+      <itunes:author>{station}</itunes:author>
+      <dc:creator>{station}</dc:creator>
     </item>

@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "SBS",
-    "name": "SBSラジオ",
+    "station": "SBSラジオ",
     "code": "220001",
     "region": "東海",
     "pref": "静岡県",

@@ -1,7 +1,7 @@
 {
     "type": "radk",
     "id": "JOBK",
-    "name": "NHKラジオ第1(大阪)",
+    "station": "NHKラジオ第1(大阪)",
     "code": "260002",
     "region": "近畿",
     "pref": "京都府",
