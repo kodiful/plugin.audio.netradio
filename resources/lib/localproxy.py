@@ -14,7 +14,6 @@ import time
 import queue
 import ctypes
 
-
 from http.server import HTTPServer
 from http.server import SimpleHTTPRequestHandler
 
@@ -128,12 +127,10 @@ class LocalProxyHandler(SimpleHTTPRequestHandler):
                 # m3u8が生成される時間を待つ
                 time.sleep(3)
                 # m3u8へリダイレクト
-                Common.log('respnding.')
                 self.send_response(302)
                 self.send_header('Location', 'http://127.0.0.1:%s/hls.m3u8' % self.server.port)
                 self.end_headers()
                 self.wfile.write(b'302 Moved Temporarily')
-                Common.log('exit handler.')
             elif request.path == '/plap':
                 params = urllib.parse.parse_qs(request.query)
                 id = params['id'][0]
@@ -153,12 +150,10 @@ class LocalProxyHandler(SimpleHTTPRequestHandler):
                 # m3u8が生成される時間を待つ
                 time.sleep(3)
                 # m3u8へリダイレクト
-                Common.log('respnding.')
                 self.send_response(302)
                 self.send_header('Location', 'http://127.0.0.1:%s/hls.m3u8' % self.server.port)
                 self.end_headers()
                 self.wfile.write(b'302 Moved Temporarily')
-                Common.log('exit handler.')
             elif request.path == '/hls.m3u8':
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/x-mpegurl')
@@ -201,6 +196,9 @@ class LocalProxyHandler(SimpleHTTPRequestHandler):
         # キャッシュをクリア
         for f in os.scandir(self.HLS_CACHE):
             os.remove(f.path)
+        # 再生時間
+        self.duration = int(Common.GET('duration'))
+        self.starttime = time.time()
         # websocketを開始する
         self.ws = websocket.WebSocketApp(
             self.location,
@@ -221,6 +219,9 @@ class LocalProxyHandler(SimpleHTTPRequestHandler):
 
     def on_message(self, ws, message):
         ws.process.stdin.write(message)
+        if self.duration > 0 and time.time() > self.starttime + self.duration:
+            Common.log('websocket timeout.')
+            raise SystemExit
 
     def on_close(self, ws, status, message):
         ws.process.kill()
