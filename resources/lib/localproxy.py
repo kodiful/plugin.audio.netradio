@@ -14,7 +14,6 @@ import time
 import queue
 import ctypes
 
-import xbmc
 
 from http.server import HTTPServer
 from http.server import SimpleHTTPRequestHandler
@@ -54,6 +53,12 @@ class LocalProxy(HTTPServer, Common):
         return url
 
     @staticmethod
+    def proxy_plap(id):
+        port = Common.GET('port')
+        url = 'http://127.0.0.1:%s/plap?%s' % (port, urllib.parse.urlencode({'id': id}))
+        return url
+
+    @staticmethod
     def proxy_redirect(url):
         port = Common.GET('port')
         url = 'http://127.0.0.1:%s/redirect?%s' % (port, urllib.parse.urlencode({'url': url}))
@@ -83,7 +88,7 @@ class LocalProxyHandler(SimpleHTTPRequestHandler):
             # HTTPリクエストをパースする
             request = urllib.parse.urlparse(self.path)
             # スレッドキューのメンテナンス
-            if request.path in ('/redirect', '/radk', '/jcba'):
+            if request.path in ('/redirect', '/radk', '/jcba', '/plap'):
                 self.maintain_queue(request)
             # パスに応じて処理
             if request.path == '/redirect':
@@ -107,8 +112,33 @@ class LocalProxyHandler(SimpleHTTPRequestHandler):
             elif request.path == '/jcba':
                 params = urllib.parse.parse_qs(request.query)
                 id = params['id'][0]
-                url = f"https://api.radimo.smen.biz/api/v1/select_stream?station={id}&channel=0&quality=high&burst=5"
+                url = f'https://api.radimo.smen.biz/api/v1/select_stream?station={id}&channel=0&quality=high&burst=5'
                 req = urllib.request.Request(url)
+                res = urllib.request.urlopen(req)
+                data = res.read()
+                data = json.loads(data)
+                self.location = data['location']
+                self.token = data['token']
+                if self.server.queue.qsize() == 0:
+                    # 別スレッドでwebsocketを起動
+                    thread = self.server.thread = threading.Thread(target=self.start_websocket)
+                    thread.start()
+                    # スレッドキューに格納
+                    self.server.queue.put((thread, request.path, request.query))
+                # m3u8が生成される時間を待つ
+                time.sleep(3)
+                # m3u8へリダイレクト
+                Common.log('respnding.')
+                self.send_response(302)
+                self.send_header('Location', 'http://127.0.0.1:%s/hls.m3u8' % self.server.port)
+                self.end_headers()
+                self.wfile.write(b'302 Moved Temporarily')
+                Common.log('exit handler.')
+            elif request.path == '/plap':
+                params = urllib.parse.parse_qs(request.query)
+                id = params['id'][0]
+                url = f'https://fmplapla.com/api/select_stream?station={id}&burst=5'
+                req = urllib.request.Request(url, headers={'Origin': 'https://fmplapla.com'}, method='POST')
                 res = urllib.request.urlopen(req)
                 data = res.read()
                 data = json.loads(data)

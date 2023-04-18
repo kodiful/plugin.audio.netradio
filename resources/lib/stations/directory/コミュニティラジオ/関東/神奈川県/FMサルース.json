@@ -1,13 +1,13 @@
 {
-    "type": "jcba",
+    "type": "plap",
     "id": "fmsalus",
     "station": "FMサルース",
     "code": "141003",
     "region": "関東",
     "pref": "神奈川県",
     "city": "横浜市",
-    "logo": "https://radimo.s3.amazonaws.com/logo/ea1b3e6e8db36a167f01e98b748e2bd2272894bdcc39604cf9e9b1a8d5f61962.jpg",
-    "description": "横浜市青葉区のコミュニティ放送局です。 地域情報から個性豊かな番組までオンエア中です。",
-    "official": "http://www.fm-salus.jp/",
+    "logo": "https://fmplapla.com/fmsalus/img/artwork.png",
+    "description": "2017年11月23日 放送開始",
+    "official": "",
     "stream": ""
 }

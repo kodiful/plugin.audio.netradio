@@ -157,6 +157,7 @@ class Directory(Common, Prefecture):
                 'nhk3': 3,
                 'radk': 4,
                 'csra': 5,
+                'plap': 5,
                 'jcba': 5,
                 'lsnr': 5,
                 'siml': 5,
@@ -190,7 +191,7 @@ class Directory(Common, Prefecture):
                 else:
                     color2 = color or 'lightgreen'
                     station += f' [COLOR {color2}]▶ {title}[/COLOR]'
-        elif data['type'] in ('csra', 'jcba', 'lsnr', 'siml'):
+        elif data['type'] in ('csra', 'jcba', 'plap', 'lsnr', 'siml'):
             station = f"{data['station']}({data['pref']}{data['city']})"
             if data['description']:
                 station += f" [COLOR khaki]▶ {data['description']}[/COLOR]"
@@ -208,6 +209,8 @@ class Directory(Common, Prefecture):
             stream = LocalProxy.proxy_radk(data['id'], token=self.token)
         elif data['type'] == 'jcba':
             stream = LocalProxy.proxy_jcba(data['id'])
+        elif data['type'] == 'plap':
+            stream = LocalProxy.proxy_plap(data['id'])
         else:
             stream = LocalProxy.proxy_redirect(data['stream'])
         return stream

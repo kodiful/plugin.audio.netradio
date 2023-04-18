@@ -1,13 +1,13 @@
 {
-    "type": "jcba",
+    "type": "plap",
     "id": "radioshonan",
     "station": "レディオ湘南",
     "code": "142051",
     "region": "関東",
     "pref": "神奈川県",
     "city": "藤沢市",
-    "logo": "https://radimo.s3.amazonaws.com/logo/3e8681158ee5c2aaeb2940c0ac00eb53eecaf408c29f45331f059bf0b84dce3f.jpg",
-    "description": "神奈川県藤沢市のラジオ局です。湘南地域の情報や音楽を、多彩なプログラムで24時間お届けします。",
-    "official": "https://www.radioshonan.co.jp/index.html",
+    "logo": "https://fmplapla.com/radioshonan/img/artwork.png",
+    "description": "2018年4月1日 放送開始",
+    "official": "",
     "stream": ""
 }

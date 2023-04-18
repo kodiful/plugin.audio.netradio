@@ -1,13 +1,13 @@
 {
-    "type": "jcba",
-    "id": "fmhashimoto",
+    "type": "csra",
+    "id": "",
     "station": "FMはしもと",
     "code": "302031",
     "region": "近畿",
     "pref": "和歌山県",
     "city": "橋本市",
-    "logo": "https://radimo.s3.amazonaws.com/logo/e1f82a41ca23e8a85225e8c83a38416f48bb33306e09a7d8958c156cb9148fbb.png",
-    "description": "世界遺産高野山麓の橋本市と高野町、九度山町、かつらぎ町の地域密着情報を24時間発信中。",
+    "logo": "http://csra.fm/logo/816fm.png",
+    "description": "",
     "official": "http://816.fm/",
-    "stream": ""
+    "stream": "http://csra.fm/asx/hasimoto.asx"
 }
