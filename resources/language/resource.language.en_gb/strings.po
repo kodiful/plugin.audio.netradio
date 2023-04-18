@@ -68,10 +68,6 @@ msgctxt "#30302"
 msgid "Port number"
 msgstr ""
 
-msgctxt "#30303"
-msgid "WebSocket timeout (sec)"
-msgstr ""
-
 msgctxt "#30304"
 msgid "Debug"
 msgstr ""

@@ -17,6 +17,8 @@ import ctypes
 from http.server import HTTPServer
 from http.server import SimpleHTTPRequestHandler
 
+import xbmc
+
 
 class LocalProxy(HTTPServer, Common):
 
@@ -196,9 +198,6 @@ class LocalProxyHandler(SimpleHTTPRequestHandler):
         # キャッシュをクリア
         for f in os.scandir(self.HLS_CACHE):
             os.remove(f.path)
-        # 再生時間
-        self.duration = int(Common.GET('duration'))
-        self.starttime = time.time()
         # websocketを開始する
         self.ws = websocket.WebSocketApp(
             self.location,
@@ -219,9 +218,16 @@ class LocalProxyHandler(SimpleHTTPRequestHandler):
 
     def on_message(self, ws, message):
         ws.process.stdin.write(message)
-        if self.duration > 0 and time.time() > self.starttime + self.duration:
-            Common.log('websocket timeout.')
-            raise SystemExit
+        # 再生中のコンテンツがwebsocket再生でない場合はwebsocketを終了する
+        if xbmc.Player().isPlaying():
+            item = xbmc.Player().getPlayingItem()
+            path = item.getPath()  # http://127.0.0.1:8088/jcba?id=fmblueshonan
+            type_ = path.split('/')[3]
+            if type_.startswith('jcba?'):
+                return  # jcbaの場合は継続
+            if type_.startswith('plap?'):
+                return  # plapの場合は継続
+        raise SystemExit
 
     def on_close(self, ws, status, message):
         ws.process.kill()

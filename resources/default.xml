@@ -23,7 +23,6 @@
   <category label="30300">
     <setting label="30301" id="ffmpeg" type="file" default=""/>
     <setting label="30302" id="port" type="number" default="8088"/>
-    <setting label="30303" id="duration" type="number" default="3600"/>
     <setting label="30304" id="debug" type="bool" default="false"/>
   </category>
 </settings>
