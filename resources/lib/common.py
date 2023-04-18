@@ -55,6 +55,10 @@ class Common:
     # settings file
     SETTINGS_FILE = os.path.join(PROFILE_PATH, 'settings.xml')
 
+    # image cache
+    IMAGE_CACHE_DB = os.path.join(xbmcvfs.translatePath('special://database'), 'Textures13.db')
+
+
     @staticmethod
     def notify(*messages, **options):
         # アドオン

@@ -7,7 +7,6 @@ import ffmpeg
 import glob
 import locale
 import datetime
-import time
 
 from xml.sax.saxutils import escape
 
@@ -69,7 +68,7 @@ class Download(Directory, Common):
         else:
             title = '%s-%s  [COLOR khaki]%s[/COLOR]' % (date1, end, data['title'])
         return title
-
+    
     def _station(self, program):
         if program['type'] in ('nhk1', 'nhk2', 'nhk3'):
             type_ = 'nhkr'

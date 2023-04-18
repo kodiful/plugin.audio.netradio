@@ -5,8 +5,11 @@ import os
 import glob
 import shutil
 import time
+import re
 
 from urllib.parse import urlencode
+from qrcode import QRCode
+from sqlite3 import dbapi2 as sqlite
 
 from resources.lib.common import Common
 from resources.lib.prefecture import Prefecture
@@ -138,7 +141,7 @@ class Directory(Common, Prefecture):
         # listitemを追加する
         name = data['keyword']
         li = xbmcgui.ListItem(name)
-        logo = 'special://skin/extras/icons/search.png'
+        logo = self._qrcode(data)
         li.setArt({'thumb': logo, 'fanart': logo, 'icon': logo})
         # コンテクストメニュー
         self.contextmenu = []
@@ -219,3 +222,24 @@ class Directory(Common, Prefecture):
 
     def _contextmenu(self, name, args):
         self.contextmenu.append((name, 'RunPlugin(%s?%s)' % (sys.argv[0], urlencode(args))))
+
+    def _qrcode(self, data=None):
+        if self.GET('rss') == 'false':
+            return 'special://skin/extras/icons/search.png'
+        if data is None:
+            url = os.path.join(self.GET('folder'), 'rss.xml')
+        else:
+            url = os.path.join(self.GET('folder'), data['keyword'], 'rss.xml')
+        path = os.path.join(self.KEYWORDS_PATH, '%s.png' % data['keyword'])
+        if os.path.isfile(path) is False:
+            # QRコードを生成
+            qr = QRCode(version=1, box_size=10, border=10)
+            qr.add_data(re.sub(r'^http(s?)://', r'podcast\1://', url))
+            qr.make(fit=True)
+            qr.make_image(fill_color="black", back_color="white").save(path, 'PNG')
+            # DBから画像のキャッシュを削除
+            conn = sqlite.connect(self.IMAGE_CACHE_DB)
+            conn.cursor().execute("DELETE FROM texture WHERE url = '%s';" % path)
+            conn.commit()
+            conn.close()
+        return path
