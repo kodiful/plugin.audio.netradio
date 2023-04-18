@@ -36,6 +36,10 @@ msgctxt "#30405"
 msgid "Path to folder"
 msgstr "保存フォルダのパス"
 
+msgctxt "#30406"
+msgid "[COLOR lightgreen]Open folder[/COLOR]"
+msgstr "[COLOR lightgreen]保存フォルダを開く[/COLOR]"
+
 msgctxt "#30408"
 msgid "[COLOR lightgreen]Clear Folder[/COLOR]"
 msgstr "[COLOR lightgreen]保存フォルダをクリアする[/COLOR]"

@@ -169,7 +169,7 @@ class RSS(Common):
         # アイテムのリスト
         buf = []
         for path in contents:
-            buf.append((self.read_as_json(path.replace('.mp3', '')), path))
+            buf.append((self.read_as_json(path.replace('.mp3', '.json')), path))
         self.contents = sorted(buf, key=lambda x: x[0]['start'], reverse=True)[:limit]  # 開始時間の降順にソート
     
     def create(self):

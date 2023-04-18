@@ -4,6 +4,8 @@ import sys
 import os
 import urllib.parse
 import shutil
+import platform
+import subprocess
 
 import xbmc
 
@@ -28,9 +30,9 @@ if __name__ == '__main__':
     action = args.get('action', 'show_station')
 
     # ログ
-    # Common.log('path=',xbmc.getInfoLabel('Container.FolderPath'))
-    # Common.log('argv=',sys.argv)
-    # Common.log(args)
+    Common.log('path=',xbmc.getInfoLabel('Container.FolderPath'))
+    Common.log('argv=',sys.argv)
+    Common.log(args)
 
     # actionに応じた処理
     if action == 'show_station':
@@ -59,6 +61,13 @@ if __name__ == '__main__':
     elif action == 'show_download':
         path = args.get('path')
         Download().show(path)
+    elif action == "open_folder":
+        path = Common.GET('folder')
+        Common.log(path)
+        if platform.system() == 'Windows':
+            subprocess.Popen(['explorer', path], shell=True)
+        elif platform.system() == 'Darwin':
+            subprocess.call(['/usr/bin/open', path])
     elif action == 'update_rss':
         Download().update_rss()
 

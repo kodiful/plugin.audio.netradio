@@ -36,6 +36,10 @@ msgctxt "#30405"
 msgid "Path to folder"
 msgstr ""
 
+msgctxt "#30406"
+msgid "[COLOR lightgreen]Open folder[/COLOR]"
+msgstr ""
+
 msgctxt "#30408"
 msgid "[COLOR lightgreen]Clear Folder[/COLOR]"
 msgstr ""
