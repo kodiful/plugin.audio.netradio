@@ -69,8 +69,8 @@ msgid "Port number"
 msgstr "ポート番号"
 
 msgctxt "#30303"
-msgid "WebSocket timeout"
-msgstr "WebSocketタイムアウト"
+msgid "WebSocket timeout (sec)"
+msgstr "WebSocketタイムアウト(秒)"
 
 msgctxt "#30304"
 msgid "Debug"
@@ -153,12 +153,16 @@ msgid "Description"
 msgstr "説明"
 
 msgctxt "#30603"
-msgid "Logo URL"
-msgstr "ロゴ画像URL"
-
-msgctxt "#30604"
 msgid "Stream URL"
 msgstr "ストリームURL"
+
+msgctxt "#30604"
+msgid "Image URL"
+msgstr "画像URL"
+
+msgctxt "#30605"
+msgid "Site URL"
+msgstr "サイトURL"
 
 msgctxt "#30919"
 msgid "%Y/%m/%d(%%s) %H:%M"

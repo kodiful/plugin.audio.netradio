@@ -10,7 +10,8 @@
   <category label="30600">
     <setting label="30601" id="station" type="text" default=""/>
     <setting label="30602" id="description" type="text" default=""/>
-    <setting label="30603" id="logo" type="text" default="https://"/>
-    <setting label="30604" id="stream" type="text" default="https://"/>
+    <setting label="30603" id="stream" type="text" default=""/>
+    <setting label="30604" id="logo" type="text" default=""/>
+    <setting label="30605" id="official" type="text" default=""/>
   </category>
 </settings>

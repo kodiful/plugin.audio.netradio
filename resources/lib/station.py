@@ -24,15 +24,15 @@ class Station(Common):
         xbmc.sleep(100)
         # 設定画面を書き換える
         if path is None:
-            data = {'station': '', 'description': '', 'logo': 'https://', 'stream': 'https://'}
+            data = {'station': '', 'description': '',  'stream': '', 'logo': '', 'official': ''}
         else:
             data = Common.read_as_json(path)
-        for key in ('station', 'description', 'logo', 'stream'):
+        for key in ('station', 'description', 'logo', 'stream', 'official'):
             Common.SET(key, data[key])
 
     def add(self):
         data = {'type': 'user'}
-        for key in ('station', 'description', 'logo', 'stream'):
+        for key in ('station', 'description', 'stream', 'logo', 'official'):
             data[key] = Common.GET(key)
         item = {'type': '', 'id': '', 'station': '', 'code': '', 'region': '', 'pref': '', 'city': '', 'logo': '', 'description': '', 'official': '', 'stream': ''}
         item.update(data)

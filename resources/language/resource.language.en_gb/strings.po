@@ -69,7 +69,7 @@ msgid "Port number"
 msgstr ""
 
 msgctxt "#30303"
-msgid "WebSocket timeout"
+msgid "WebSocket timeout (sec)"
 msgstr ""
 
 msgctxt "#30304"
@@ -89,11 +89,15 @@ msgid "Description"
 msgstr ""
 
 msgctxt "#30603"
-msgid "Logo URL"
+msgid "Stream URL"
 msgstr ""
 
 msgctxt "#30604"
-msgid "Stream URL"
+msgid "Image URL"
+msgstr ""
+
+msgctxt "#30605"
+msgid "Site URL"
 msgstr ""
 
 msgctxt "#30919"
