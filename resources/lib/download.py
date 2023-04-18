@@ -1,35 +1,89 @@
 # -*- coding: utf-8 -*-
 
+import sys
 import os
 import shutil
 import ffmpeg
 import glob
 import locale
 import datetime
+import time
 
 from xml.sax.saxutils import escape
 
 from resources.lib.common import Common
 from resources.lib.directory import Directory
+from resources.lib.holiday import Holiday
+
+import xbmcplugin
+import xbmcgui
 
 
 class Download(Directory, Common):
 
     def __init__(self):
+        locale.setlocale(locale.LC_ALL, '')
         super().__init__()
-      
-    def _converted_stream(self, program):
+
+    def show(self, path):
+        # path直下の番組情報ファイルを開始時間の逆順にリスト化する
+        for item in sorted(glob.glob(os.path.join(path, '*.json')), reverse=True):
+            self._add_download(item)
+        # リストアイテム追加完了
+        xbmcplugin.endOfDirectory(int(sys.argv[1]), succeeded=True)
+
+    def _add_download(self, item):
+        data = self.read_as_json(item)
+        li = xbmcgui.ListItem(self._title(data))
+        logo = os.path.join(self.LOGO_PATH, data['type'], '%s.png' % data['station'])
+        li.setArt({'thumb': logo, 'fanart': logo, 'icon': logo})
+        li.setInfo(type='music', infoLabels={'title': data['title']})
+        li.setProperty('IsPlayable', 'true')
+        # ストリームURL
+        stream = os.path.join(os.path.dirname(item), os.path.basename(item).replace('.json', '.mp3'))
+        # リストアイテムを追加
+        xbmcplugin.addDirectoryItem(int(sys.argv[1]), stream, listitem=li, isFolder=False)
+
+    def _title(self, data):
+        # %Y年%m月%d日(%%s) %H:%M
+        format = self.STR(30919)
+        # 月,火,水,木,金,土,日
+        weekdays = self.STR(30920)
+        weekdays = weekdays.split(',')
+        # 放送開始時刻
+        d = datetime.datetime.strptime(data['START'], '%Y%m%d%H%M%S')
+        w = d.weekday()
+        # 放送終了時刻
+        end = '%s:%s' % (data['END'][8:10], data['END'][10:12])
+        # 8月31日(土)
+        format = d.strftime(format)
+        self.log(format, d)
+        date1 = format % weekdays[w]
+        # 2019-08-31
+        date2 = d.strftime('%Y-%m-%d')
+        # カラー
+        if date2 in Holiday.HOLIDAYS or w == 6:
+            title = '[COLOR red]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date1, end, data['title'])
+        elif w == 5:
+            title = '[COLOR blue]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date1, end, data['title'])
+        else:
+            title = '%s-%s  [COLOR khaki]%s[/COLOR]' % (date1, end, data['title'])
+        return title
+
+    def _station(self, program):
         if program['type'] in ('nhk1', 'nhk2', 'nhk3'):
             type_ = 'nhkr'
         else:
             type_ = program['type']
         index = self.read_as_json(os.path.join(self.INDEX_PATH, '%s.json' % type_))
         station = list(filter(lambda x: x['station'] == program['station'], index))[0]
-        return self._stream(station, download=True)
+        return station
 
     def download(self, program, path, queue):
+        # 放送局データ
+        station = self._station(program)
         # ストリームURL
-        stream = self._converted_stream(program)
+        stream = self._stream(station)
         # 時間
         duration = program['end'] - self.now()
         # ビットレート
@@ -46,7 +100,7 @@ class Download(Directory, Common):
             else:
                 bitrate = '64k'
         # 出力ファイル
-        mp3path = os.path.join(self.DOWNLOAD_PATH, '%s.mp3' % os.path.basename(path))
+        mp3path = os.path.join(self.DOWNLOAD_PATH, os.path.basename(path).replace('.json', '.mp3'))
         # ffmpeg実行
         kwargs = {'acodec': 'libmp3lame', 'b:a': bitrate, 'v': 'warning'}
         process = ffmpeg.input(stream, t=duration).output(mp3path, **kwargs).run_async()
@@ -119,8 +173,6 @@ class RSS(Common):
         self.contents = sorted(buf, key=lambda x: x[0]['start'], reverse=True)[:limit]  # 開始時間の降順にソート
     
     def create(self):
-        # 時刻表記のロケール設定                                                                                                                                                             
-        locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
         # テンプレート
         header = self.read(os.path.join(self.RESOURCES_PATH, 'data', 'rss', 'header.xml'))
         body = self.read(os.path.join(self.RESOURCES_PATH, 'data', 'rss', 'body.xml'))

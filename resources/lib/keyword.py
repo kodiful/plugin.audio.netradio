@@ -15,38 +15,38 @@ import xbmc
 class Keyword(Common):
     
     def __init__(self):
-        return
-
+        super().__init__()
+ 
     def set(self, path):
         # 設定画面を開く
-        src = os.path.join(Common.RESOURCES_PATH, 'keyword.xml')
-        dst = os.path.join(Common.RESOURCES_PATH, 'settings.xml')
+        src = os.path.join(self.RESOURCES_PATH, 'keyword.xml')
+        dst = os.path.join(self.RESOURCES_PATH, 'settings.xml')
         shutil.copy(src, dst)
-        xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
+        xbmc.executebuiltin('Addon.OpenSettings(%s)' % self.ADDON_ID)
         # 設定画面が最前面になるまで時間をおく
         xbmc.sleep(100)
         # 設定画面を書き換える
-        data = Common.read_as_json(path)
+        data = self.read_as_json(path)
         if type(data) == list:
             data = data[0]
         if data.get('station'):
             weekday = datetime.datetime.today().weekday()  # 今日の曜日を月(0)-日(6)で返す
-            Common.SET('keyword', data['title'])
-            Common.SET('search', '0')  # 番組名のみ
-            Common.SET('weekday', str(weekday))
-            Common.SET('limit', 'true')  # 放送局を限定する
-            Common.SET('station', data['station'])
+            self.SET('keyword', data['title'])
+            self.SET('search', '0')  # 番組名のみ
+            self.SET('weekday', str(weekday))
+            self.SET('limit', 'true')  # 放送局を限定する
+            self.SET('station', data['station'])
         if data.get('keyword'):
-            Common.SET('keyword', data['keyword'])
-            Common.SET('search', data['search'])
-            Common.SET('weekday', data['weekday'])
-            Common.SET('limit', data['limit']) 
-            Common.SET('station', data['station'])
+            self.SET('keyword', data['keyword'])
+            self.SET('search', data['search'])
+            self.SET('weekday', data['weekday'])
+            self.SET('limit', data['limit']) 
+            self.SET('station', data['station'])
 
     def add(self):
         data = {}
         for key in ('keyword', 'search', 'weekday', 'limit', 'station'):
-            data[key] = Common.GET(key)
+            data[key] = self.GET(key)
         self.write_as_json(os.path.join(self.KEYWORDS_PATH, '%s.json' % data['keyword']), data)
         #Stations.load_logo(item, self.LOGO_PATH)
         xbmc.executebuiltin('Container.Refresh')
@@ -63,14 +63,14 @@ class Keyword(Common):
         # 照合
         matched = []
         for p in programs:
-            # 番組情報のハッシュ
-            md5 = hashlib.md5(json.dumps(p).encode('utf-8')).hexdigest()
+            # 番組情報のハッシュファイル名
+            hash = '%s_%s_%s.json' % (p['START'], p['type'], hashlib.md5(json.dumps(p).encode('utf-8')).hexdigest())
             # 処理中の番組はスキップ
-            path = os.path.join(self.PROCESSING_PATH, md5)
+            path = os.path.join(self.PROCESSING_PATH, hash)
             if os.path.isfile(path):
                 continue
             # 待機中の番組はスキップ
-            path = os.path.join(self.PENDING_PATH, md5)
+            path = os.path.join(self.PENDING_PATH, hash)
             if os.path.isfile(path):
                 continue
             title = p['title']

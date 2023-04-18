@@ -24,7 +24,7 @@ class LocalProxy(HTTPServer, Common):
 
     def __init__(self):
         # ポート番号
-        self.port = Common.GET('port')
+        self.port = self.GET('port')
         # ポート番号が取得できたらHTTPサーバを準備する
         if self.port:
             # ポートが利用可能か確認する
@@ -66,7 +66,7 @@ class LocalProxy(HTTPServer, Common):
         return url
 
 
-class LocalProxyHandler(SimpleHTTPRequestHandler):
+class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
 
     HLS_CACHE = Common.HLS_CACHE_PATH
     HLS_FILE = 'hls.m3u8'
@@ -175,7 +175,7 @@ class LocalProxyHandler(SimpleHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(b'404 Not Found')
         except Exception as e:
-            Common.log(e)
+            self.log(e)
             self.send_response(500)
             self.end_headers()
             self.wfile.write(b'500 Internal Server Error')
@@ -190,7 +190,7 @@ class LocalProxyHandler(SimpleHTTPRequestHandler):
             else:
                 ident = ctypes.c_long(thread.ident)
                 ret = ctypes.pythonapi.PyThreadState_SetAsyncExc(ident, ctypes.py_object(SystemExit))
-                Common.log('thread:', ident, 'status:', ret)
+                self.log('thread:', ident, 'status:', ret)
         if alive:
             q.put(alive)
 
@@ -209,7 +209,7 @@ class LocalProxyHandler(SimpleHTTPRequestHandler):
             self.ws.close()
 
     def on_open(self, ws):
-        Common.log('websocket opened.')
+        self.log('websocket opened:', self.location)
         # 変換プロセスを開始する
         hls_file = os.path.join(self.HLS_CACHE, self.HLS_FILE)
         hls_time = self.HLS_TIME
@@ -230,5 +230,8 @@ class LocalProxyHandler(SimpleHTTPRequestHandler):
         raise SystemExit
 
     def on_close(self, ws, status, message):
+        thread = self.server.queue.get()
+        ident = ctypes.c_long(thread.ident)
+        self.log('thread:', ident, 'status:', -1)
         ws.process.kill()
-        Common.log('websocket closed.')
+        self.log('websocket closed:', status, message)

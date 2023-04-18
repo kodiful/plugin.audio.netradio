@@ -25,7 +25,7 @@ if __name__ == '__main__':
         args[key] = args[key][0]
 
     # action
-    action = args.get('action', 'show')
+    action = args.get('action', 'show_station')
 
     # ログ
     # Common.log('path=',xbmc.getInfoLabel('Container.FolderPath'))
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     # Common.log(args)
 
     # actionに応じた処理
-    if action == 'show':
+    if action == 'show_station':
         path = args.get('path')
         Directory().show(path)
     elif action == 'add_to_top':
@@ -55,6 +55,10 @@ if __name__ == '__main__':
     elif action == 'add_keyword':
         Keyword().add()
 
+    # ダウンロード
+    elif action == 'show_download':
+        path = args.get('path')
+        Download().show(path)
     elif action == 'update_rss':
         Download().update_rss()
 

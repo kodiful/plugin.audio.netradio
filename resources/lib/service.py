@@ -29,17 +29,17 @@ class Monitor(xbmc.Monitor, Common):
     def onSettingsChanged(self):
         # カレントウィンドウをチェック
         if xbmcgui.getCurrentWindowDialogId() != 10140:
-            settings = self.read(os.path.join(Common.RESOURCES_PATH, 'settings.xml'))
-            if settings == self.read(os.path.join(Common.RESOURCES_PATH, 'station.xml')):
-                xbmc.executebuiltin('RunPlugin(plugin://%s?action=add_station)' % Common.ADDON_ID)
+            settings = self.read(os.path.join(self.RESOURCES_PATH, 'settings.xml'))
+            if settings == self.read(os.path.join(self.RESOURCES_PATH, 'station.xml')):
+                xbmc.executebuiltin('RunPlugin(plugin://%s?action=add_station)' % self.ADDON_ID)
                 #self.notify('Station settings changed')
                 return
-            if settings == self.read(os.path.join(Common.RESOURCES_PATH, 'keyword.xml')):
-                xbmc.executebuiltin('RunPlugin(plugin://%s?action=add_keyword)' % Common.ADDON_ID)
+            if settings == self.read(os.path.join(self.RESOURCES_PATH, 'keyword.xml')):
+                xbmc.executebuiltin('RunPlugin(plugin://%s?action=add_keyword)' % self.ADDON_ID)
                 #self.notify('Keyword settings changed')
                 return
-            if settings == self.read(os.path.join(Common.RESOURCES_PATH, 'default.xml')):
-                xbmc.executebuiltin('RunPlugin(plugin://%s?action=validate)' % Common.ADDON_ID)
+            if settings == self.read(os.path.join(self.RESOURCES_PATH, 'default.xml')):
+                xbmc.executebuiltin('RunPlugin(plugin://%s?action=validate)' % self.ADDON_ID)
                 #self.notify('Settings changed')
                 return
 

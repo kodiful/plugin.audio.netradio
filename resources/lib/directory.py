@@ -75,7 +75,7 @@ class Directory(Common, Prefecture):
         self.contextmenu = []
         self._contextmenu('アドオン設定', {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show', 'path': os.path.join('NHKラジオ', self.region)})
+        query = urlencode({'action': 'show_station', 'path': os.path.join('NHKラジオ', self.region)})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # 民放ラジオ(radiko)
         li = xbmcgui.ListItem('[COLOR orange]民放ラジオ(radiko)[/COLOR]')
@@ -83,7 +83,7 @@ class Directory(Common, Prefecture):
         self.contextmenu = []
         self._contextmenu('アドオン設定', {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show', 'path': os.path.join('民放ラジオ(radiko)', self.region, self.pref)})
+        query = urlencode({'action': 'show_station', 'path': os.path.join('民放ラジオ(radiko)', self.region, self.pref)})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # コミュニティラジオ
         li = xbmcgui.ListItem('[COLOR orange]コミュニティラジオ[/COLOR]')
@@ -91,7 +91,7 @@ class Directory(Common, Prefecture):
         self.contextmenu = []
         self._contextmenu('アドオン設定', {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show', 'path': os.path.join('コミュニティラジオ')})
+        query = urlencode({'action': 'show_station', 'path': os.path.join('コミュニティラジオ')})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
     
     def _add_directory(self, path, item):
@@ -101,7 +101,7 @@ class Directory(Common, Prefecture):
         self.contextmenu = []
         self._contextmenu('アドオン設定', {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show', 'path': os.path.join(path, name)})
+        query = urlencode({'action': 'show_station', 'path': os.path.join(path, name)})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
     def _add_station(self, path, item):
@@ -138,6 +138,8 @@ class Directory(Common, Prefecture):
         # listitemを追加する
         name = data['keyword']
         li = xbmcgui.ListItem(name)
+        logo = 'special://skin/extras/icons/search.png'
+        li.setArt({'thumb': logo, 'fanart': logo, 'icon': logo})
         # コンテクストメニュー
         self.contextmenu = []
         self._contextmenu('キーワードの設定を変更する', {'action': 'set_keyword', 'path': item})
@@ -145,7 +147,7 @@ class Directory(Common, Prefecture):
         self._contextmenu('アドオン設定', {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # リストアイテムを追加
-        query = urlencode({'action': 'show', 'path': os.path.join(self.GET('folder'), name)})
+        query = urlencode({'action': 'show_download', 'path': os.path.join(self.GET('folder'), name)})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
     def _sort(self, item):
