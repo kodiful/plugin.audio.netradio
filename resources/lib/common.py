@@ -109,6 +109,14 @@ class Common:
     @staticmethod
     def now():
         return datetime.datetime.now().timestamp()
+
+    @staticmethod
+    def nowplaying():
+        path = None
+        if xbmc.Player().isPlaying():
+            item = xbmc.Player().getPlayingItem()
+            path = item.getPath()  # http://127.0.0.1:8088/jcba?id=fmblueshonan
+        return path
     
     @staticmethod
     def load(url):

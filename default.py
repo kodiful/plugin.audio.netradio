@@ -62,8 +62,8 @@ if __name__ == '__main__':
         path = args.get('path')
         Download().show(path)
     elif action == "open_folder":
-        path = Common.GET('folder')
-        Common.log(path)
+        keyword = args.get('keyword', '')
+        path = os.path.join(Common.GET('folder'), keyword)
         if platform.system() == 'Windows':
             subprocess.Popen(['explorer', path], shell=True)
         elif platform.system() == 'Darwin':

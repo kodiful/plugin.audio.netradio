@@ -73,7 +73,7 @@ class Directory(Common, Prefecture):
 
     def _setup_directory(self):
         # NHKラジオ
-        li = xbmcgui.ListItem('[COLOR orange]NHKラジオ[/COLOR]')
+        li = xbmcgui.ListItem(self.STR(30001))
         # コンテクストメニュー
         self.contextmenu = []
         self._contextmenu('アドオン設定', {'action': 'settings'})
@@ -81,7 +81,7 @@ class Directory(Common, Prefecture):
         query = urlencode({'action': 'show_station', 'path': os.path.join('NHKラジオ', self.region)})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # 民放ラジオ(radiko)
-        li = xbmcgui.ListItem('[COLOR orange]民放ラジオ(radiko)[/COLOR]')
+        li = xbmcgui.ListItem(self.STR(30002))
         # コンテクストメニュー
         self.contextmenu = []
         self._contextmenu('アドオン設定', {'action': 'settings'})
@@ -89,7 +89,7 @@ class Directory(Common, Prefecture):
         query = urlencode({'action': 'show_station', 'path': os.path.join('民放ラジオ(radiko)', self.region, self.pref)})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # コミュニティラジオ
-        li = xbmcgui.ListItem('[COLOR orange]コミュニティラジオ[/COLOR]')
+        li = xbmcgui.ListItem(self.STR(30002))
         # コンテクストメニュー
         self.contextmenu = []
         self._contextmenu('アドオン設定', {'action': 'settings'})
@@ -113,17 +113,17 @@ class Directory(Common, Prefecture):
         # listitemを追加する
         li = xbmcgui.ListItem(self._title(data))
         logo = os.path.join(self.LOGO_PATH, data['type'], '%s.png' % data['station'])
-        li.setArt({'thumb': logo, 'fanart': logo, 'icon': logo})
+        li.setArt({'thumb': logo, 'icon': logo})
         li.setInfo(type='music', infoLabels={'title': data['station']})
         li.setProperty('IsPlayable', 'true')
         # コンテクストメニュー
         self.contextmenu = []
         if path is None:
             if data['type'] == 'user':
-                self._contextmenu('放送局の設定を変更する', {'action': 'set_station', 'path': item})
+                self._contextmenu('放送局を変更する', {'action': 'set_station', 'path': item})
+                self._contextmenu('放送局を削除する', {'action': 'delete_from_top', 'path': item})
             else:
-                self._contextmenu('放送局を追加する', {'action': 'set_station'})
-            self._contextmenu('トップ画面から削除する', {'action': 'delete_from_top', 'path': item})
+                self._contextmenu('トップ画面から削除する', {'action': 'delete_from_top', 'path': item})
         else:
             self._contextmenu('トップ画面に追加する', {'action': 'add_to_top', 'path': item})
         if data['type'] in ('nhk1', 'nhk2', 'nhk3', 'radk'):
@@ -142,11 +142,12 @@ class Directory(Common, Prefecture):
         name = data['keyword']
         li = xbmcgui.ListItem(name)
         logo = self._qrcode(data)
-        li.setArt({'thumb': logo, 'fanart': logo, 'icon': logo})
+        li.setArt({'thumb': logo, 'icon': logo})
         # コンテクストメニュー
         self.contextmenu = []
-        self._contextmenu('キーワードの設定を変更する', {'action': 'set_keyword', 'path': item})
-        self._contextmenu('トップ画面から削除する', {'action': 'delete_from_top', 'path': item})
+        self._contextmenu('キーワードを変更する', {'action': 'set_keyword', 'path': item})
+        self._contextmenu('キーワードを削除する', {'action': 'delete_from_top', 'path': item})
+        self._contextmenu('保存フォルダを開く', {'action': 'open_folder', 'keyword': data['keyword']})
         self._contextmenu('アドオン設定', {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # リストアイテムを追加
@@ -227,19 +228,18 @@ class Directory(Common, Prefecture):
         if self.GET('rss') == 'false':
             return 'special://skin/extras/icons/search.png'
         if data is None:
-            url = os.path.join(self.GET('folder'), 'rss.xml')
+            url = os.path.join(self.GET('rssurl'), 'rss.xml')
         else:
-            url = os.path.join(self.GET('folder'), data['keyword'], 'rss.xml')
+            url = os.path.join(self.GET('rssurl'), data['keyword'], 'rss.xml')
         path = os.path.join(self.KEYWORDS_PATH, '%s.png' % data['keyword'])
-        if os.path.isfile(path) is False:
-            # QRコードを生成
-            qr = QRCode(version=1, box_size=10, border=10)
-            qr.add_data(re.sub(r'^http(s?)://', r'podcast\1://', url))
-            qr.make(fit=True)
-            qr.make_image(fill_color="black", back_color="white").save(path, 'PNG')
-            # DBから画像のキャッシュを削除
-            conn = sqlite.connect(self.IMAGE_CACHE_DB)
-            conn.cursor().execute("DELETE FROM texture WHERE url = '%s';" % path)
-            conn.commit()
-            conn.close()
+        # QRコードを生成
+        qr = QRCode(version=1, box_size=10, border=4)
+        qr.add_data(re.sub(r'^http(s?)://', r'podcast\1://', url))
+        qr.make(fit=True)
+        qr.make_image(fill_color="black", back_color="white").save(path, 'PNG')
+        # DBから画像のキャッシュを削除
+        conn = sqlite.connect(self.IMAGE_CACHE_DB)
+        conn.cursor().execute("DELETE FROM texture WHERE url = '%s';" % path)
+        conn.commit()
+        conn.close()
         return path

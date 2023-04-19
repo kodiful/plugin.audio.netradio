@@ -17,8 +17,6 @@ import ctypes
 from http.server import HTTPServer
 from http.server import SimpleHTTPRequestHandler
 
-import xbmc
-
 
 class LocalProxy(HTTPServer, Common):
 
@@ -219,9 +217,8 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
     def on_message(self, ws, message):
         ws.process.stdin.write(message)
         # 再生中のコンテンツがwebsocket再生でない場合はwebsocketを終了する
-        if xbmc.Player().isPlaying():
-            item = xbmc.Player().getPlayingItem()
-            path = item.getPath()  # http://127.0.0.1:8088/jcba?id=fmblueshonan
+        path = self.nowplaying()  # http://127.0.0.1:8088/jcba?id=fmblueshonan
+        if path:
             type_ = path.split('/')[3]
             if type_.startswith('jcba?'):
                 return  # jcbaの場合は継続

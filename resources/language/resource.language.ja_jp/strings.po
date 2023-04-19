@@ -16,63 +16,100 @@ msgstr ""
 "Language: ja_JP\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgctxt "#30400"
+#
+# for scripts
+#
+
+msgctxt "#30001"
+msgid "[COLOR orange]NHK Radio[/COLOR]"
+msgstr "[COLOR orange]NHKラジオ[/COLOR]"
+
+msgctxt "#30002"
+msgid "[COLOR orange]Commercial Radio(radiko)[/COLOR]"
+msgstr "[COLOR orange]民放ラジオ(radiko)[/COLOR]"
+
+msgctxt "#30003"
+msgid "[COLOR orange]Community Radio[/COLOR]"
+msgstr "[COLOR orange]コミュニティラジオ[/COLOR]"
+
+#
+# for contextmenus
+#
+
+#
+# for settings
+#
+
+
+msgctxt "#30200"
+msgid "General"
+msgstr "一般"
+
+msgctxt "#30201"
+msgid "[COLOR lightgreen]Add station[/COLOR]"
+msgstr "[COLOR lightgreen]放送局を追加する[/COLOR]"
+
+msgctxt "#30202"
+msgid "[COLOR lightgreen]Add keyword[/COLOR]"
+msgstr "[COLORlightgreen]キーワードを追加する[/COLOR]"
+
+msgctxt "#30300"
 msgid "Download"
 msgstr "番組保存"
 
-msgctxt "#30401"
+msgctxt "#30301"
 msgid "Unsupported OS"
 msgstr "このOSでは番組保存をサポートしていません"
 
-msgctxt "#30403"
+msgctxt "#30303"
 msgid "Download streaming"
 msgstr "番組保存"
 
-msgctxt "#30404"
+msgctxt "#30304"
 msgid "Bitrate"
 msgstr "ビットレート"
 
-msgctxt "#30405"
+msgctxt "#30305"
 msgid "Path to folder"
 msgstr "保存フォルダのパス"
 
-msgctxt "#30406"
+msgctxt "#30306"
 msgid "[COLOR lightgreen]Open folder[/COLOR]"
 msgstr "[COLOR lightgreen]保存フォルダを開く[/COLOR]"
 
-msgctxt "#30408"
+msgctxt "#30308"
 msgid "[COLOR lightgreen]Clear Folder[/COLOR]"
 msgstr "[COLOR lightgreen]保存フォルダをクリアする[/COLOR]"
 
-msgctxt "#30409"
+msgctxt "#30309"
 msgid "Create RSS"
 msgstr "RSS生成"
 
-msgctxt "#30410"
+msgctxt "#30310"
 msgid "URL of download folder"
 msgstr "保存フォルダのURL"
 
-msgctxt "#30411"
+msgctxt "#30311"
 msgid "[COLOR lightgreen]Update RSS[/COLOR]"
 msgstr "[COLOR lightgreen]RSSを更新する[/COLOR]"
 
-msgctxt "#30412"
+msgctxt "#30312"
 msgid "Number of items"
 msgstr "アイテム数"
 
-msgctxt "#30300"
+msgctxt "#30400"
 msgid "Other Settings"
 msgstr "その他"
 
-msgctxt "#30301"
+msgctxt "#30401"
 msgid "Path to ffmpeg"
 msgstr "ffmpegのパス"
 
-msgctxt "#30302"
+msgctxt "#30402"
 msgid "Port number"
 msgstr "ポート番号"
 
-msgctxt "#30304"
+msgctxt "#30404"
 msgid "Debug"
 msgstr "デバッグ"
 
@@ -163,6 +200,10 @@ msgstr "画像URL"
 msgctxt "#30605"
 msgid "Site URL"
 msgstr "サイトURL"
+
+#
+# for common use
+#
 
 msgctxt "#30919"
 msgid "%Y/%m/%d(%%s) %H:%M"

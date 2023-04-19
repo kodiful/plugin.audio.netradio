@@ -35,9 +35,14 @@ class Download(Directory, Common):
         data = self.read_as_json(item)
         li = xbmcgui.ListItem(self._title(data))
         logo = os.path.join(self.LOGO_PATH, data['type'], '%s.png' % data['station'])
-        li.setArt({'thumb': logo, 'fanart': logo, 'icon': logo})
+        li.setArt({'thumb': logo, 'icon': logo})
         li.setInfo(type='music', infoLabels={'title': data['title']})
         li.setProperty('IsPlayable', 'true')
+        # コンテクストメニュー
+        self.contextmenu = []
+        self._contextmenu('保存フォルダを開く', {'action': 'open_folder', 'keyword': data['keyword']})
+        self._contextmenu('アドオン設定', {'action': 'settings'})
+        li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL
         stream = os.path.join(os.path.dirname(item), os.path.basename(item).replace('.json', '.mp3'))
         # リストアイテムを追加

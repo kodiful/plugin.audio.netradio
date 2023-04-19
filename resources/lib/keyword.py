@@ -26,22 +26,29 @@ class Keyword(Common):
         # 設定画面が最前面になるまで時間をおく
         xbmc.sleep(100)
         # 設定画面を書き換える
-        data = self.read_as_json(path)
-        if type(data) == list:
-            data = data[0]
-        if data.get('station'):
-            weekday = datetime.datetime.today().weekday()  # 今日の曜日を月(0)-日(6)で返す
-            self.SET('keyword', data['title'])
+        if path is  None:
+            self.SET('keyword', '')
             self.SET('search', '0')  # 番組名のみ
-            self.SET('weekday', str(weekday))
-            self.SET('limit', 'true')  # 放送局を限定する
-            self.SET('station', data['station'])
-        if data.get('keyword'):
-            self.SET('keyword', data['keyword'])
-            self.SET('search', data['search'])
-            self.SET('weekday', data['weekday'])
-            self.SET('limit', data['limit']) 
-            self.SET('station', data['station'])
+            self.SET('weekday', '7')  # 毎日
+            self.SET('limit', 'false')  # 放送局を限定しない
+            self.SET('station', '')
+        else:
+            data = self.read_as_json(path)
+            if type(data) == list:
+                data = data[0]
+            if data.get('keyword'):
+                self.SET('keyword', data['keyword'])
+                self.SET('search', data['search'])
+                self.SET('weekday', data['weekday'])
+                self.SET('limit', data['limit']) 
+                self.SET('station', data['station'])
+            else:
+                weekday = datetime.datetime.today().weekday()  # 今日の曜日を月(0)-日(6)で返す
+                self.SET('keyword', data['title'])
+                self.SET('search', '0')  # 番組名のみ
+                self.SET('weekday', str(weekday))
+                self.SET('limit', 'true')  # 放送局を限定する
+                self.SET('station', data['station'])
 
     def add(self):
         data = {}
