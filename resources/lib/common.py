@@ -5,6 +5,7 @@ import inspect
 import json
 import requests
 import datetime
+import mmap
 
 import xbmc
 import xbmcaddon
@@ -52,12 +53,14 @@ class Common:
     # radiko auth file
     AUTH_FILE = os.path.join(PROFILE_PATH, 'auth.json')
 
+    # mmap file
+    MMAP_FILE = os.path.join(PROFILE_PATH, 'mmap.txt')
+
     # settings file
     SETTINGS_FILE = os.path.join(PROFILE_PATH, 'settings.xml')
 
     # image cache
-    IMAGE_CACHE_DB = os.path.join(xbmcvfs.translatePath('special://database'), 'Textures13.db')
-
+    IMAGE_CACHE = os.path.join(xbmcvfs.translatePath('special://database'), 'Textures13.db')
 
     @staticmethod
     def notify(*messages, **options):
@@ -140,3 +143,16 @@ class Common:
     @staticmethod
     def write_as_json(path, data):
         Common.write(path, json.dumps(data, ensure_ascii=False, indent=4))
+
+    @staticmethod
+    def read_mmap():
+        with open(Common.MMAP_FILE, 'r+b') as f:
+            mm = mmap.mmap(f.fileno(), 0)
+        return mm.readline().decode().strip()
+
+    @staticmethod
+    def write_mmap(data):
+        with open(Common.MMAP_FILE, 'r+b') as f:
+            mm = mmap.mmap(f.fileno(), 0)
+            data = '%s\n' % data
+            mm[:len(data)] = data.encode()

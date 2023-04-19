@@ -40,8 +40,8 @@ class Download(Directory, Common):
         li.setProperty('IsPlayable', 'true')
         # コンテクストメニュー
         self.contextmenu = []
-        self._contextmenu('保存フォルダを開く', {'action': 'open_folder', 'keyword': data['keyword']})
-        self._contextmenu('アドオン設定', {'action': 'settings'})
+        self._contextmenu(self.STR(30109), {'action': 'open_folder', 'keyword': data['keyword']})
+        self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL
         stream = os.path.join(os.path.dirname(item), os.path.basename(item).replace('.json', '.mp3'))

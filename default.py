@@ -30,9 +30,9 @@ if __name__ == '__main__':
     action = args.get('action', 'show_station')
 
     # ログ
-    Common.log('path=',xbmc.getInfoLabel('Container.FolderPath'))
-    Common.log('argv=',sys.argv)
-    Common.log(args)
+    #Common.log('path=',xbmc.getInfoLabel('Container.FolderPath'))
+    #Common.log('argv=',sys.argv)
+    #Common.log(args)
 
     # actionに応じた処理
     if action == 'show_station':

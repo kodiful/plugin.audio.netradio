@@ -4,16 +4,17 @@
       strings 30000 thru 30999 reserved for plugins and plugin settings
       strings 31000 thru 31999 reserved for skins
       strings 32000 thru 32999 reserved for scripts
-      strings 33000 thru 33999 reserved for common strings used in add-ons
+      strings 33000 thru 33999 reserved for common strings used in add-on
   -->
   <!--一般-->
   <category label="30200">
+    <setting id="os" type="text" default="" visible="false"/>
     <setting label="30201" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_station)"/>
-    <setting label="30202" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_keyword)"/>
+    <setting label="30202" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_keyword)" visible="eq(-2,Darwin)|eq(-2,Windows)"/>
     </category>
 <!--番組保存-->
   <category label="30300">
-    <setting id="os" type="text" default="Darwin" visible="false"/>
+    <setting id="os" type="text" default="" visible="false"/>
     <setting label="30301" type="text" enable="false" visible="!eq(-1,Darwin)+!eq(-1,Windows)"/>
     <setting label="30303" id="download" type="bool" default="false" visible="eq(-2,Darwin)|eq(-2,Windows)"/>
     <setting label="30304" id="bitrate" type="labelenum" default="192k" values="auto|192k|160k|128k|96k|64k" enable="eq(-1,true)" visible="eq(-3,Darwin)|eq(-3,Windows)"/>

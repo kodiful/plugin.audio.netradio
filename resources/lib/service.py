@@ -12,7 +12,6 @@ from resources.lib.timetable.radk import Scraper as Radk
 
 import os
 import shutil
-import datetime
 import platform
 import threading
 import queue
@@ -90,6 +89,10 @@ class Service(Common, Prefecture):
         if os.path.isdir(self.DOWNLOAD_PATH):
             shutil.rmtree(self.DOWNLOAD_PATH)
         os.makedirs(self.DOWNLOAD_PATH)
+        # mmap
+        if os.path.isdir(self.MMAP_FILE):
+            os.remove(self.MMAP_FILE)
+        shutil.copy(os.path.join(self.RESOURCES_PATH, 'mmap.txt'), self.MMAP_FILE)
 
     def _authenticate(self):
         # radiko認証
@@ -136,6 +139,9 @@ class Service(Common, Prefecture):
             if now > update_radk:
                 update_radk = now + Radk(self.pref).update()  # radikoの番組データを取得
                 refresh = update_radk > now  # 番組データが更新されたら画面更新
+            # 共有メモリをチェック
+            if self.read_mmap() == 'updated':
+                refresh = True
             # 画面更新が検出されたら
             if refresh:
                 # 設定されたキーワードと照合してキューに格納
@@ -147,6 +153,7 @@ class Service(Common, Prefecture):
                     if path == argv or path.startswith(f'{argv}?action=show'):
                         xbmc.executebuiltin('Container.Refresh')
                         refresh = False
+                        self.write_mmap('unchanged')
             # キューに格納した番組の処理
             self.pending = self._process_queue()
             # CHECK_INTERVALの間待機

@@ -21,20 +21,61 @@ msgstr ""
 #
 
 msgctxt "#30001"
-msgid "[COLOR orange]NHK Radio[/COLOR]"
-msgstr "[COLOR orange]NHKラジオ[/COLOR]"
+msgid "NHK Radio"
+msgstr "NHKラジオ"
 
 msgctxt "#30002"
-msgid "[COLOR orange]Commercial Radio(radiko)[/COLOR]"
-msgstr "[COLOR orange]民放ラジオ(radiko)[/COLOR]"
+msgid "Commercial Radio(radiko)"
+msgstr "民放ラジオ(radiko)"
 
 msgctxt "#30003"
-msgid "[COLOR orange]Community Radio[/COLOR]"
-msgstr "[COLOR orange]コミュニティラジオ[/COLOR]"
+msgid "Community Radio"
+msgstr "コミュニティラジオ"
 
 #
 # for contextmenus
 #
+
+msgctxt "#30100"
+msgid "Addon settings"
+msgstr "アドオン設定"
+
+msgctxt "#30101"
+msgid "Add to top"
+msgstr "トップ画面に追加する"
+
+msgctxt "#30102"
+msgid "Delete from top"
+msgstr "トップ画面から削除する"
+
+msgctxt "#30103"
+msgid "Add station"
+msgstr "放送局を追加する"
+
+msgctxt "#30104"
+msgid "Change station"
+msgstr "放送局を変更する"
+
+msgctxt "#30105"
+msgid "Delete station"
+msgstr "放送局を削除する"
+
+msgctxt "#30106"
+msgid "Add keyword"
+msgstr "キーワードを追加する"
+
+msgctxt "#30107"
+msgid "Change keyword"
+msgstr "キーワードを変更する"
+
+msgctxt "#30108"
+msgid "Delete keyword"
+msgstr "キーワードを削除する"
+
+msgctxt "#30109"
+msgid "Open folder"
+msgstr "保存フォルダを開く"
+
 
 #
 # for settings

@@ -6,12 +6,12 @@
       strings 32000 thru 32999 reserved for scripts
       strings 33000 thru 33999 reserved for common strings used in add-ons
   -->
-  <!--放送局-->
-  <category label="30600">
-    <setting label="30601" id="station" type="text" default=""/>
-    <setting label="30602" id="description" type="text" default=""/>
-    <setting label="30603" id="stream" type="text" default=""/>
-    <setting label="30604" id="logo" type="text" default=""/>
-    <setting label="30605" id="official" type="text" default=""/>
+
+  <category label="30500">
+    <setting label="30501" id="keyword" type="text" default=""/>
+    <setting label="30502" id="search" type="enum" lvalues="30511|30512" default="0"/>
+    <setting label="30503" id="weekday" type="enum" lvalues="30520|30521|30522|30523|30524|30525|30526|30527" default="0"/>
+    <setting label="30504" id="limit" type="bool" default="true"/>
+    <setting label="30505" id="station" type="text" visible="eq(-1,true)" default=""/>
   </category>
 </settings>

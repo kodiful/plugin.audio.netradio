@@ -6,6 +6,7 @@ import glob
 import shutil
 import time
 import re
+import platform
 
 from urllib.parse import urlencode
 from qrcode import QRCode
@@ -23,9 +24,12 @@ import xbmcplugin
 class Directory(Common, Prefecture):
 
     def __init__(self):
+        # radiko認証
         auth = self.read_as_json(self.AUTH_FILE)
         self.token = auth['auth_token']
         _, self.region, self.pref = self.radiko_place(auth['area_id'])
+        # キーワード設定
+        self.dlsupport = platform.system() in ('Windows', 'Darwin')
 
     def show(self, path=None):
         if path is None:
@@ -34,7 +38,8 @@ class Directory(Common, Prefecture):
             # ディレクトリ
             self._setup_directory()
             # キーワード
-            self._setup_keywords()
+            if self.dlsupport:
+                self._setup_keywords()
         else:
             # サブディレクトリ
             items = glob.glob(os.path.join(self.DIRECTORY_PATH, path, '*'))
@@ -73,28 +78,28 @@ class Directory(Common, Prefecture):
 
     def _setup_directory(self):
         # NHKラジオ
-        li = xbmcgui.ListItem(self.STR(30001))
+        li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30001))
         # コンテクストメニュー
         self.contextmenu = []
-        self._contextmenu('アドオン設定', {'action': 'settings'})
+        self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show_station', 'path': os.path.join('NHKラジオ', self.region)})
+        query = urlencode({'action': 'show_station', 'path': os.path.join(self.STR(30001), self.region)})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # 民放ラジオ(radiko)
-        li = xbmcgui.ListItem(self.STR(30002))
+        li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30002))
         # コンテクストメニュー
         self.contextmenu = []
-        self._contextmenu('アドオン設定', {'action': 'settings'})
+        self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show_station', 'path': os.path.join('民放ラジオ(radiko)', self.region, self.pref)})
+        query = urlencode({'action': 'show_station', 'path': os.path.join(self.STR(30002), self.region, self.pref)})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # コミュニティラジオ
-        li = xbmcgui.ListItem(self.STR(30002))
+        li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30003))
         # コンテクストメニュー
         self.contextmenu = []
-        self._contextmenu('アドオン設定', {'action': 'settings'})
+        self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show_station', 'path': os.path.join('コミュニティラジオ')})
+        query = urlencode({'action': 'show_station', 'path': os.path.join(self.STR(30001))})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
     
     def _add_directory(self, path, item):
@@ -102,7 +107,7 @@ class Directory(Common, Prefecture):
         li = xbmcgui.ListItem(name)
         # コンテクストメニュー
         self.contextmenu = []
-        self._contextmenu('アドオン設定', {'action': 'settings'})
+        self._contextmenu('self.STR(30100)', {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show_station', 'path': os.path.join(path, name)})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
@@ -120,15 +125,15 @@ class Directory(Common, Prefecture):
         self.contextmenu = []
         if path is None:
             if data['type'] == 'user':
-                self._contextmenu('放送局を変更する', {'action': 'set_station', 'path': item})
-                self._contextmenu('放送局を削除する', {'action': 'delete_from_top', 'path': item})
+                self._contextmenu(self.STR(30104), {'action': 'set_station', 'path': item})
+                self._contextmenu(self.STR(30105), {'action': 'delete_from_top', 'path': item})
             else:
-                self._contextmenu('トップ画面から削除する', {'action': 'delete_from_top', 'path': item})
+                self._contextmenu(self.STR(30102), {'action': 'delete_from_top', 'path': item})
         else:
-            self._contextmenu('トップ画面に追加する', {'action': 'add_to_top', 'path': item})
-        if data['type'] in ('nhk1', 'nhk2', 'nhk3', 'radk'):
-            self._contextmenu('キーワードを追加する', {'action': 'set_keyword', 'path': os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['station'])})
-        self._contextmenu('アドオン設定', {'action': 'settings'})
+            self._contextmenu(self.STR(30101), {'action': 'add_to_top', 'path': item})
+        if self.dlsupport and data['type'] in ('nhk1', 'nhk2', 'nhk3', 'radk'):
+            self._contextmenu(self.STR(30106), {'action': 'set_keyword', 'path': os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['station'])})
+        self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL
         stream = self._stream(data)
@@ -145,10 +150,10 @@ class Directory(Common, Prefecture):
         li.setArt({'thumb': logo, 'icon': logo})
         # コンテクストメニュー
         self.contextmenu = []
-        self._contextmenu('キーワードを変更する', {'action': 'set_keyword', 'path': item})
-        self._contextmenu('キーワードを削除する', {'action': 'delete_from_top', 'path': item})
-        self._contextmenu('保存フォルダを開く', {'action': 'open_folder', 'keyword': data['keyword']})
-        self._contextmenu('アドオン設定', {'action': 'settings'})
+        self._contextmenu(self.STR(30107), {'action': 'set_keyword', 'path': item})
+        self._contextmenu(self.STR(30108), {'action': 'delete_from_top', 'path': item})
+        self._contextmenu(self.STR(30109), {'action': 'open_folder', 'keyword': data['keyword']})
+        self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # リストアイテムを追加
         query = urlencode({'action': 'show_download', 'path': os.path.join(self.GET('folder'), name)})
@@ -238,7 +243,7 @@ class Directory(Common, Prefecture):
         qr.make(fit=True)
         qr.make_image(fill_color="black", back_color="white").save(path, 'PNG')
         # DBから画像のキャッシュを削除
-        conn = sqlite.connect(self.IMAGE_CACHE_DB)
+        conn = sqlite.connect(self.IMAGE_CACHE)
         conn.cursor().execute("DELETE FROM texture WHERE url = '%s';" % path)
         conn.commit()
         conn.close()
