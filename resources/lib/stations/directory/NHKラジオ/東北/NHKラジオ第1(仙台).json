@@ -1,6 +1,6 @@
 {
-    "type": "nhk1",
-    "id": "",
+    "type": "nhkr",
+    "id": "nhk1",
     "station": "NHKラジオ第1(仙台)",
     "code": "041009",
     "region": "東北",

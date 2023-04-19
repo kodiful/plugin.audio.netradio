@@ -76,6 +76,9 @@ msgctxt "#30109"
 msgid "Open folder"
 msgstr "保存フォルダを開く"
 
+msgctxt "#30110"
+msgid "Update timetable"
+msgstr "番組情報を更新する"
 
 #
 # for settings

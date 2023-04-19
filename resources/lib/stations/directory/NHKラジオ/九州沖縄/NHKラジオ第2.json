@@ -1,6 +1,6 @@
 {
-    "type": "nhk2",
-    "id": "",
+    "type": "nhkr",
+    "id": "nhk2",
     "station": "NHKラジオ第2",
     "code": "401307",
     "region": "九州沖縄",

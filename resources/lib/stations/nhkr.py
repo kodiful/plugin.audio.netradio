@@ -71,8 +71,8 @@ class Scraper(Common, Const, Prefecture):
                 print('[nhkr] unparsable content:', station, sep='\t')
                 continue
             buf.append({
-                'type': 'nhk1',
-                'id': '',
+                'type': 'nhkr',
+                'id': 'nhk1',
                 'station': f'NHKラジオ第1({station})',
                 'code': code,
                 'region': region,
@@ -84,8 +84,8 @@ class Scraper(Common, Const, Prefecture):
                 'stream': section.r1hls.text
             })
             buf.append({
-                'type': 'nhk2',
-                'id': '',
+                'type': 'nhkr',
+                'id': 'nhk2',
                 'station': f'NHKラジオ第2',
                 'code': code,
                 'region': region,
@@ -97,8 +97,8 @@ class Scraper(Common, Const, Prefecture):
                 'stream': section.r2hls.text
             })
             buf.append({
-                'type': 'nhk3',
-                'id': '',
+                'type': 'nhkr',
+                'id': 'nhk3',
                 'station': f'NHK-FM({station})',
                 'code': code,
                 'region': region,

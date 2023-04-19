@@ -75,11 +75,7 @@ class Download(Directory, Common):
         return title
     
     def _station(self, program):
-        if program['type'] in ('nhk1', 'nhk2', 'nhk3'):
-            type_ = 'nhkr'
-        else:
-            type_ = program['type']
-        index = self.read_as_json(os.path.join(self.INDEX_PATH, '%s.json' % type_))
+        index = self.read_as_json(os.path.join(self.INDEX_PATH, '%s.json' % program['type']))
         station = list(filter(lambda x: x['station'] == program['station'], index))[0]
         return station
 

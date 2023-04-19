@@ -1,6 +1,6 @@
 {
-    "type": "nhk3",
-    "id": "",
+    "type": "nhkr",
+    "id": "nhk3",
     "station": "NHK-FM(札幌)",
     "code": "011002",
     "region": "北海道",

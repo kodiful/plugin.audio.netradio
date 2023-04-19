@@ -1,6 +1,6 @@
 {
-    "type": "nhk1",
-    "id": "",
+    "type": "nhkr",
+    "id": "nhk1",
     "station": "NHKラジオ第1(東京)",
     "code": "131130",
     "region": "関東",

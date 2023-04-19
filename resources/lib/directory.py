@@ -20,7 +20,6 @@ import xbmc
 import xbmcgui
 import xbmcplugin
 
-
 class Directory(Common, Prefecture):
 
     def __init__(self):
@@ -29,7 +28,7 @@ class Directory(Common, Prefecture):
         self.token = auth['auth_token']
         _, self.region, self.pref = self.radiko_place(auth['area_id'])
         # キーワード設定
-        self.dlsupport = platform.system() in ('Windows', 'Darwin')
+        self.dlsupport = platform.system() in ('Windows', 'Darwin') and self.GET('download') == 'true'
 
     def show(self, path=None):
         if path is None:
@@ -99,7 +98,7 @@ class Directory(Common, Prefecture):
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show_station', 'path': os.path.join(self.STR(30001))})
+        query = urlencode({'action': 'show_station', 'path': os.path.join(self.STR(30003))})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
     
     def _add_directory(self, path, item):
@@ -124,6 +123,8 @@ class Directory(Common, Prefecture):
         # コンテクストメニュー
         self.contextmenu = []
         if path is None:
+            if data['type'] in ('nhkr', 'radk'):
+                self._contextmenu(self.STR(30110), {'action': 'update_info'})
             if data['type'] == 'user':
                 self._contextmenu(self.STR(30104), {'action': 'set_station', 'path': item})
                 self._contextmenu(self.STR(30105), {'action': 'delete_from_top', 'path': item})
@@ -131,7 +132,7 @@ class Directory(Common, Prefecture):
                 self._contextmenu(self.STR(30102), {'action': 'delete_from_top', 'path': item})
         else:
             self._contextmenu(self.STR(30101), {'action': 'add_to_top', 'path': item})
-        if self.dlsupport and data['type'] in ('nhk1', 'nhk2', 'nhk3', 'radk'):
+        if self.dlsupport and data['type'] in ('nhkr', 'radk'):
             self._contextmenu(self.STR(30106), {'action': 'set_keyword', 'path': os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['station'])})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
@@ -162,31 +163,30 @@ class Directory(Common, Prefecture):
     def _sort(self, item):
         if os.path.isfile(item):
             # ソートキー
+            data = self.read_as_json(item)
             key = {
-                'nhk1': 1,
-                'nhk2': 2,
-                'nhk3': 3,
-                'radk': 4,
-                'csra': 5,
-                'plap': 5,
-                'jcba': 5,
-                'lsnr': 5,
-                'siml': 5,
+                'nhkr': 1,
+                'radk': 2,
+                'csra': 3,
+                'plap': 3,
+                'jcba': 3,
+                'lsnr': 3,
+                'siml': 3,
                 'user': 9
             }
             # type, code, nameでソートする
-            data = self.read_as_json(item)
             key1 = key[data['type']]
-            key2 = data['code']
-            key3 = data['station']
-            return key1, key2, key3
+            key2 = data['id'] if data['type'] == 'nhkr' else ''
+            key3 = data['code']
+            key4 = data['station']
+            return key1, key2, key3, key4
         else:
             # ディレクトリの場合
             children = glob.glob(os.path.join(item, '*'))
             return self._sort(min(children))
         
     def _title(self, data):
-        if data['type'] in ('nhk1', 'nhk2', 'nhk3', 'radk'):
+        if data['type'] in ('nhkr', 'radk'):
             color = None
             station = data['station']
             if data['type'] == 'radk' and data['pref'] != self.pref:

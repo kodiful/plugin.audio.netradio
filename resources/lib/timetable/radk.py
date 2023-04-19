@@ -38,10 +38,12 @@ class Scraper(Common, Const, Prefecture):
         buf = {}
         for s in data['radiko']['stations']['station']:
             station = self.normalize(s['name'])
+            id = s['@id']
             progs = []
             for p in s['scd']['progs']['prog']:
                 progs.append({
                     'type': 'radk',
+                    'id': id,
                     'station': station,
                     'title': self.normalize(p['title']),
                     'subtitle': self.normalize(p['sub_title']),

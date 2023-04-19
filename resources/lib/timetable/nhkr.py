@@ -4,7 +4,6 @@ import sys
 import os
 import json
 import datetime
-import requests
 
 if __name__ == '__main__':
     sys.path.append('..')
@@ -48,23 +47,23 @@ class Scraper(Common, Const, Prefecture):
         data = json.loads(data)
         data = data['nowonair_list']
         station = data['n1']['following']['area']['name']
-        buf1 = self.setup1(data['n1'], 'nhk1', f'NHKラジオ第1({station})')
-        buf2 = self.setup1(data['n2'], 'nhk2', f'NHKラジオ第2')
-        buf3 = self.setup1(data['n3'], 'nhk3', f'NHK-FM({station})')
+        buf1 = self.setup1(data['n1'], 'NHK1', f'NHKラジオ第1({station})')
+        buf2 = self.setup1(data['n2'], 'NHK2', f'NHKラジオ第2')
+        buf3 = self.setup1(data['n3'], 'NHK3', f'NHK-FM({station})')
         return {
             f'NHKラジオ第1({station})': buf1,
             f'NHKラジオ第2': buf2,
             f'NHK-FM({station})': buf3,
         }
 
-    def setup1(self, data, type_, station):
+    def setup1(self, data, id, station):
         return [
-            #self.setup2(data['previous'], type_, station),
-            self.setup2(data['present'], type_, station),
-            self.setup2(data['following'], type_, station),
+            #self.setup2(data['previous'], id, station),
+            self.setup2(data['present'], id, station),
+            self.setup2(data['following'], id, station),
         ]
 
-    def setup2(self, data, type_, station):
+    def setup2(self, data, id, station):
         '''
         "title": "英会話タイムトライアル「１０月ＤＡＹ１８」",
         "subtitle": "【講師】ＢＢＴ大学教授…スティーブ・ソレイシィ，【出演】ジェニー・スキッドモア",
@@ -73,7 +72,8 @@ class Scraper(Common, Const, Prefecture):
         "act": "【講師】ＢＢＴ大学　教授…スティーブ・ソレイシィ，【出演】ジェニー・スキッドモア",
         '''
         return {
-            'type': type_,
+            'type': 'nhkr',
+            'id': id,
             'station': station,
             'title': self.normalize(data['title']),
             'subtitle': self.normalize(data['subtitle']),
