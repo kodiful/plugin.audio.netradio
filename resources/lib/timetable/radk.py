@@ -41,6 +41,23 @@ class Scraper(Common, Const, Prefecture):
             id = s['@id']
             progs = []
             for p in s['scd']['progs']['prog']:
+                '''
+                <prog ft="20230420050000" to="20230420063000" ftl="0500" tol="0630" dur="5400">
+                    <title>生島ヒロシのおはよう定食・一直線</title>
+                    <sub_title />  <imgs>
+                    <img src="3995" type="" />
+                    </imgs>
+                    <pfm>生島ヒロシ　ゲスト：小田貴月 / 石原結實（イシハラクリニック院長）</pfm>
+                    <desc />
+                    <info>健康情報、最新ニュースなど、情報満載でお送りします。</info>
+                    <metas>
+                        <meta name="twitter" value="#radiko" />
+                        <meta name="twitter-hash" value="#radiko" />
+                        <meta name="facebook-fanpage" value="http://www.facebook.com/radiko.jp" />
+                    </metas>
+                    <url>https://www.tbsradio.jp/ohayou/</url>
+                </prog>
+                '''
                 progs.append({
                     'type': 'radk',
                     'id': id,
@@ -55,6 +72,7 @@ class Scraper(Common, Const, Prefecture):
                     'act': self.normalize(p['pfm']),
                     'info': self.normalize(p['info']),
                     'desc': self.normalize(p['desc']),
+                    'url': p['url'],
                 })
             buf[station] = progs
         return buf
