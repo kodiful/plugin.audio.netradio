@@ -76,16 +76,16 @@ class Download(Directory, Common):
     
     def _station(self, program):
         index = self.read_as_json(os.path.join(self.INDEX_PATH, '%s.json' % program['type']))
-        station = list(filter(lambda x: x['station'] == program['station'], index))[0]
+        station = list(filter(lambda x: x['id'] == program['id'] and x['station'] == program['station'], index))[0]
         return station
 
-    def download(self, program, path, queue):
+    def download(self, program, extra, path, queue):
         # 放送局データ
         station = self._station(program)
         # ストリームURL
         stream = self._stream(station, download=True)
         # 時間
-        duration = program['end'] - self.now()
+        duration = program['end'] + extra - self.now()
         # ビットレート
         bitrate = self.GET('bitrate')
         if bitrate == 'auto':
@@ -206,12 +206,10 @@ class RSS(Common):
             filesize = os.path.getsize(path)
             # description
             description = ''
-            if p['subtitle']:
-                description += '<p>%s</p>' % p['subtitle']
-            if p['act']:
-                description += '<p>%s</p>' % p['act']
             if p['info']:
                 description += '<p>%s</p>' % p['info']
+            if p['act']:
+                description += '<p>%s</p>' % p['act']
             if p['desc']:
                 description += '<p>%s</p>' % p['desc']
             description = escape(description)

@@ -236,14 +236,13 @@ class Scraper(Common, Const, Prefecture):
             'id': id,
             'station': station,
             'title': self.normalize(data['title']),
-            'subtitle': self.normalize(data['subtitle']),
             'START': self.t2string(data['start_time']),  # 2020-10-28T08:55:00+09:00
             'END': self.t2string(data['end_time']),  # 2020-10-28T09:00:00+09:00
             'start': self.t2unixtime(data['start_time']),  # 2020-10-28T08:55:00+09:00
             'end': self.t2unixtime(data['end_time']),  # 2020-10-28T09:00:00+09:00
             'weekday': self.t2weekday(data['start_time']),
             'act': self.normalize(data['act']),
-            'info': '',
+            'info': self.normalize(data['subtitle']),
             'desc': self.normalize(data['music']),
             'url': data['url']['pc']
         }

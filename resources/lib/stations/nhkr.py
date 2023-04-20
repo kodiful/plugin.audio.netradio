@@ -72,7 +72,7 @@ class Scraper(Common, Const, Prefecture):
                 continue
             buf.append({
                 'type': 'nhkr',
-                'id': 'nhk1',
+                'id': 'NHK1',
                 'station': f'NHKラジオ第1({station})',
                 'code': code,
                 'region': region,
@@ -85,7 +85,7 @@ class Scraper(Common, Const, Prefecture):
             })
             buf.append({
                 'type': 'nhkr',
-                'id': 'nhk2',
+                'id': 'NHK2',
                 'station': f'NHKラジオ第2',
                 'code': code,
                 'region': region,
@@ -98,7 +98,7 @@ class Scraper(Common, Const, Prefecture):
             })
             buf.append({
                 'type': 'nhkr',
-                'id': 'nhk3',
+                'id': 'NHK3',
                 'station': f'NHK-FM({station})',
                 'code': code,
                 'region': region,

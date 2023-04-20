@@ -32,7 +32,7 @@ class Keyword(Common):
             self.SET('search', '0')  # 番組名のみ
             self.SET('weekday', '7')  # 毎日
             self.SET('limit', 'false')  # 放送局を限定しない
-            self.SET('station', '')
+            self.SET('id', '')
         else:
             # コンテクストメニューから
             data = self.read_as_json(path)
@@ -44,20 +44,20 @@ class Keyword(Common):
                 self.SET('search', '0')  # 番組名のみ
                 self.SET('weekday', str(weekday))
                 self.SET('limit', 'true')  # 放送局を限定する
-                self.SET('station', data['station'])
+                self.SET('id', data['id'])
             else:
                 # キーワード設定変更
                 self.SET('keyword', data['keyword'])
                 self.SET('search', data['search'])
                 self.SET('weekday', data['weekday'])
                 self.SET('limit', data['limit']) 
-                self.SET('station', data['station'])
+                self.SET('id', data['id'])
         # 共有メモリにフラグを立てる
         self.write_mmap('updated')
 
     def add(self):
         data = {}
-        for key in ('keyword', 'search', 'weekday', 'limit', 'station'):
+        for key in ('keyword', 'search', 'weekday', 'limit', 'id'):
             data[key] = self.GET(key)
         self.write_as_json(os.path.join(self.KEYWORDS_PATH, '%s.json' % data['keyword']), data)
         #Stations.load_logo(item, self.LOGO_PATH)
@@ -66,7 +66,7 @@ class Keyword(Common):
     def match(self):
         # キーワードリスト生成
         keywords = []
-        for path in glob.glob(os.path.join(self.KEYWORDS_PATH, '*.json')):
+        for path in sorted(glob.glob(os.path.join(self.KEYWORDS_PATH, '*.json'))):  # 文字コード順に照合、複数当たった場合は後勝ち
             keywords.append(self.read_as_json(path))
         # 番組リスト生成
         programs = []
@@ -75,6 +75,10 @@ class Keyword(Common):
         # 照合
         matched = []
         for p in programs:
+            # 放送局情報
+            s = self._station(p)
+            # 番組urlがないときは公式urlで代替
+            p['url'] = p['url'] or s['official']
             # 番組情報のハッシュファイル名
             data = json.dumps(p).encode('utf-8')
             crc = format(binascii.crc32(data), 'x')
@@ -88,19 +92,25 @@ class Keyword(Common):
             if os.path.isfile(path):
                 continue
             title = p['title']
-            description = ' '.join([title, p['subtitle'], p['act'], p['info'], p['desc']])
+            description = ' '.join([title, p['info'], p['act'], p['desc']])
             for k in keywords:
                 if k['weekday'] != '7' and k['weekday'] != p['weekday']:
                     continue
-                if k['limit'] == 'true' and k['station'] != p['station']:
+                if k['limit'] == 'true' and k['id'] != p['id']:
                     continue
                 if k['search'] == '0' and title.find(k['keyword']) < 0:
                     continue
                 if k['search'] == '1' and description.find(k['keyword']) < 0:
                     continue
+                # キーワード情報を追加
                 p['keyword'] = k['keyword']
                 self.write_as_json(path, p)
                 matched.append((p, path))
                 break
         return matched
+    
+    def _station(self, program):
+        index = self.read_as_json(os.path.join(self.INDEX_PATH, '%s.json' % program['type']))
+        station = list(filter(lambda x: x['id'] == program['id'] and x['station'] == program['station'], index))[0]
+        return station
 

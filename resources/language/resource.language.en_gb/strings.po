@@ -16,3 +16,243 @@ msgstr ""
 "Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#
+# for scripts
+#
+
+msgctxt "#30001"
+msgid "NHK Radio"
+msgstr ""
+
+msgctxt "#30002"
+msgid "Commercial Radio(radiko)"
+msgstr ""
+
+msgctxt "#30003"
+msgid "Community Radio"
+msgstr ""
+
+#
+# for contextmenus
+#
+
+msgctxt "#30100"
+msgid "Addon settings"
+msgstr ""
+
+msgctxt "#30101"
+msgid "Add to top"
+msgstr ""
+
+msgctxt "#30102"
+msgid "Delete from top"
+msgstr ""
+
+msgctxt "#30103"
+msgid "Add station"
+msgstr ""
+
+msgctxt "#30104"
+msgid "Change station"
+msgstr ""
+
+msgctxt "#30105"
+msgid "Delete station"
+msgstr ""
+
+msgctxt "#30106"
+msgid "Add keyword"
+msgstr ""
+
+msgctxt "#30107"
+msgid "Change keyword"
+msgstr ""
+
+msgctxt "#30108"
+msgid "Delete keyword"
+msgstr ""
+
+msgctxt "#30109"
+msgid "Open folder"
+msgstr ""
+
+msgctxt "#30110"
+msgid "Update timetable"
+msgstr ""
+
+#
+# for settings
+#
+
+
+msgctxt "#30200"
+msgid "General"
+msgstr ""
+
+msgctxt "#30201"
+msgid "[COLOR lightgreen]Add station[/COLOR]"
+msgstr ""
+
+msgctxt "#30202"
+msgid "[COLOR lightgreen]Add keyword[/COLOR]"
+msgstr ""
+
+msgctxt "#30300"
+msgid "Download"
+msgstr ""
+
+msgctxt "#30301"
+msgid "Unsupported OS"
+msgstr ""
+
+msgctxt "#30303"
+msgid "Download streaming"
+msgstr ""
+
+msgctxt "#30304"
+msgid "Bitrate"
+msgstr ""
+
+msgctxt "#30305"
+msgid "Path to folder"
+msgstr ""
+
+msgctxt "#30306"
+msgid "[COLOR lightgreen]Open folder[/COLOR]"
+msgstr ""
+
+msgctxt "#30308"
+msgid "[COLOR lightgreen]Clear Folder[/COLOR]"
+msgstr ""
+
+msgctxt "#30309"
+msgid "Create RSS"
+msgstr ""
+
+msgctxt "#30310"
+msgid "URL of download folder"
+msgstr ""
+
+msgctxt "#30311"
+msgid "[COLOR lightgreen]Update RSS[/COLOR]"
+msgstr ""
+
+msgctxt "#30312"
+msgid "Number of items"
+msgstr ""
+
+msgctxt "#30400"
+msgid "Other Settings"
+msgstr ""
+
+msgctxt "#30401"
+msgid "Path to ffmpeg"
+msgstr ""
+
+msgctxt "#30402"
+msgid "Port number"
+msgstr ""
+
+msgctxt "#30404"
+msgid "Debug"
+msgstr ""
+
+msgctxt "#30500"
+msgid "Keyword"
+msgstr ""
+
+msgctxt "#30501"
+msgid "Keyword"
+msgstr ""
+
+msgctxt "#30502"
+msgid "Search"
+msgstr ""
+
+msgctxt "#30503"
+msgid "Day"
+msgstr ""
+
+msgctxt "#30504"
+msgid "All station"
+msgstr ""
+
+msgctxt "#30505"
+msgid "Station ID"
+msgstr ""
+
+msgctxt "#30511"
+msgid "Title only"
+msgstr ""
+
+msgctxt "#30512"
+msgid "Title & detail info"
+msgstr ""
+
+msgctxt "#30520"
+msgid "Mon"
+msgstr ""
+
+msgctxt "#30521"
+msgid "Tue"
+msgstr ""
+
+msgctxt "#30522"
+msgid "Wed"
+msgstr ""
+
+msgctxt "#30523"
+msgid "Thu"
+msgstr ""
+
+msgctxt "#30524"
+msgid "Fri"
+msgstr ""
+
+msgctxt "#30525"
+msgid "Sat"
+msgstr ""
+
+msgctxt "#30526"
+msgid "Sun"
+msgstr ""
+
+msgctxt "#30527"
+msgid "Everyday"
+msgstr ""
+
+msgctxt "#30600"
+msgid "Station settings"
+msgstr ""
+
+msgctxt "#30601"
+msgid "Name"
+msgstr ""
+
+msgctxt "#30602"
+msgid "Description"
+msgstr ""
+
+msgctxt "#30603"
+msgid "Stream URL"
+msgstr ""
+
+msgctxt "#30604"
+msgid "Image URL"
+msgstr ""
+
+msgctxt "#30605"
+msgid "Site URL"
+msgstr ""
+
+#
+# for common use
+#
+
+msgctxt "#30919"
+msgid "%Y/%m/%d(%%s) %H:%M"
+msgstr ""
+
+msgctxt "#30920"
+msgid "Mon,Tue,Wed,Thu,Fri,Sat,Sun"
+msgstr ""

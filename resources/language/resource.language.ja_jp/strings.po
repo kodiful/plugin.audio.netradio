@@ -178,8 +178,8 @@ msgid "All station"
 msgstr "放送局を限定する"
 
 msgctxt "#30505"
-msgid "Station"
-msgstr "限定する放送局"
+msgid "Station ID"
+msgstr "限定する放送局のID"
 
 msgctxt "#30511"
 msgid "Title only"

@@ -45,9 +45,16 @@ class Monitor(xbmc.Monitor, Common):
 
 class Service(Common, Prefecture):
 
+    # 更新確認のインターバル
     CHECK_INTERVAL = 30
+    # radiko認証のインターバル
     AUTH_INTERVAL = 3600
+    # ダウンロード予約の時間
     DOWNLOAD_PREPARATION = 180
+    # ダウンロード開始の遅延
+    DOWNLOAD_DELAY = 20
+    # ダウンロード開始の余裕
+    DOWNLOAD_MARGIN = 5
 
     def __init__(self):
         # OSを判定
@@ -178,12 +185,16 @@ class Service(Common, Prefecture):
             if program['end'] < now:
                 # すでに終了している番組はキューから削除
                 os.remove(path)
-            elif program['start']  - self.DOWNLOAD_PREPARATION < now:
+            elif program['start'] - self.DOWNLOAD_PREPARATION < now:
                 # 移動先のパス
                 new_path = os.path.join(self.PROCESSING_PATH, os.path.basename(path))
                 # DOWNLOAD_PREPARATION以内に開始する番組はダウンロードを予約
-                delay = program['start'] - now
-                thread = threading.Timer(delay, Download().download, args=[program, new_path, self.queue])
+                delay = program['start'] - now + self.DOWNLOAD_DELAY
+                if delay < self.DOWNLOAD_MARGIN:
+                    delay = delay - self.DOWNLOAD_MARGIN 
+                # ダウンロード時間
+                extra = self.DOWNLOAD_DELAY + self.DOWNLOAD_MARGIN
+                thread = threading.Timer(delay, Download().download, args=[program, extra, new_path, self.queue])
                 thread.start()
                 # ファイルを移動
                 shutil.move(path, new_path)

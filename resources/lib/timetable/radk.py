@@ -44,7 +44,8 @@ class Scraper(Common, Const, Prefecture):
                 '''
                 <prog ft="20230420050000" to="20230420063000" ftl="0500" tol="0630" dur="5400">
                     <title>生島ヒロシのおはよう定食・一直線</title>
-                    <sub_title />  <imgs>
+                    <sub_title />
+                    <imgs>
                     <img src="3995" type="" />
                     </imgs>
                     <pfm>生島ヒロシ　ゲスト：小田貴月 / 石原結實（イシハラクリニック院長）</pfm>
@@ -63,7 +64,6 @@ class Scraper(Common, Const, Prefecture):
                     'id': id,
                     'station': station,
                     'title': self.normalize(p['title']),
-                    'subtitle': self.normalize(p['sub_title']),
                     'START': p['@ft'],  # 20201027000000
                     'END': p['@to'],  # 20201027005300
                     'start': self.t2unixtime(p['@ft']),  # 20201027000000
