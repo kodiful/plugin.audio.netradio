@@ -51,7 +51,7 @@ if __name__ == '__main__':
     elif action == 'add_station':
         Station().add()
     elif action == 'update_info':
-        Common.write_mmap('updated')
+        Common.write_mmap('True')
 
     # キーワード
     elif action == 'set_keyword':

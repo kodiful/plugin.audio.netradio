@@ -53,7 +53,7 @@ class Service(Common, Prefecture):
     # ダウンロード予約のタイミング
     DOWNLOAD_PREPARATION = 180
     # ダウンロード開始の遅延
-    DOWNLOAD_DELAY = {'nhkr': 40, 'radk': 15} 
+    DOWNLOAD_DELAY = {'nhkr': 35, 'radk': 15}
     # ダウンロード開始の余裕
     DOWNLOAD_MARGIN = 5
 
@@ -148,9 +148,9 @@ class Service(Common, Prefecture):
                 update_radk = now + Radk(self.pref).update()  # radikoの番組データを取得
                 refresh = update_radk > now  # 番組データが更新されたら画面更新
             # 共有メモリをチェック
-            if self.read_mmap() == 'updated':
+            if self.read_mmap() == 'True':
                 refresh = True
-            # 画面更新が検出されたら
+            # 要更新が検出されたら
             if refresh:
                 # 設定されたキーワードと照合してキューに格納
                 self.pending = self.pending + Keyword().match()
@@ -161,7 +161,7 @@ class Service(Common, Prefecture):
                     if path == argv or path.startswith(f'{argv}?action=show'):
                         xbmc.executebuiltin('Container.Refresh')
                         refresh = False
-                        self.write_mmap('unchanged')
+                        self.write_mmap('False')
             # キューに格納した番組の処理
             self.pending = self._process_queue()
             # CHECK_INTERVALの間待機
@@ -191,7 +191,7 @@ class Service(Common, Prefecture):
                 new_path = os.path.join(self.PROCESSING_PATH, os.path.basename(path))
                 # DOWNLOAD_PREPARATION以内に開始する番組はダウンロードを予約
                 delay = self.DOWNLOAD_DELAY[program['type']]
-                extra = delay + self.DOWNLOAD_MARGIN
+                extra = delay + 2 * self.DOWNLOAD_MARGIN
                 delay = program['start'] - now + delay
                 if delay < self.DOWNLOAD_MARGIN:
                     delay = delay - self.DOWNLOAD_MARGIN 

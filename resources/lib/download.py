@@ -7,6 +7,7 @@ import ffmpeg
 import glob
 import locale
 import datetime
+import re
 
 from xml.sax.saxutils import escape
 
@@ -146,6 +147,8 @@ class Download(Directory, Common):
             if os.path.isdir(path):
                 keyword = path.split('/')[-1]
                 RSS(keyword).create()
+        # 官僚通知
+        self.notify('RSS has been updated')
 
 
 class RSS(Common):
@@ -169,8 +172,8 @@ class RSS(Common):
         buf = []
         for path in contents:
             buf.append((self.read_as_json(path.replace('.mp3', '.json')), path))
-        self.contents = sorted(buf, key=lambda x: x[0]['start'], reverse=True)[:limit]  # 開始時間の降順にソート
-    
+        self.contents = sorted(buf, key=lambda x: (int(x[0]['START'][:8]), -int(x[0]['START'][8:])), reverse=True)[:limit]  # 開始日の降順、同じ日の中では昇順にソート
+
     def create(self):
         # テンプレート
         header = self.read(os.path.join(self.RESOURCES_PATH, 'data', 'rss', 'header.xml'))
@@ -205,14 +208,15 @@ class RSS(Common):
             filesize = os.path.getsize(path)
             # description
             description = ''
-            if p['info']:
-                description += '<p>%s</p>' % p['info']
             if p['act']:
-                description += '<p>%s</p>' % p['act']
+                description += '<p class="act">%s</p>' % p['act']
             if p['desc']:
-                description += '<p>%s</p>' % p['desc']
+                description += '<p class="desc">%s</p>' % p['desc']
+            if p['info']:
+                description += '<p class="info">%s</p>' % p['info']
+            description = re.sub(r'(<br>| )+', ' ', description)
             description = escape(description)
-            # station
+            # statio
             station = escape(p['station'])
             # 各番組情報を書き込む
             buf.append(

@@ -53,7 +53,7 @@ class Keyword(Common):
                 self.SET('limit', data['limit']) 
                 self.SET('id', data['id'])
         # 共有メモリにフラグを立てる
-        self.write_mmap('updated')
+        self.write_mmap('True')
 
     def add(self):
         data = {}

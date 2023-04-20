@@ -4,6 +4,7 @@ import sys
 import os
 import socket
 import threading
+import re
 
 # extディレクトリをパスに追加
 sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
@@ -18,7 +19,17 @@ if __name__ == '__main__':
     socket.setdefaulttimeout(60)
 
     # ffmpegのパスを設定
-    os.environ['PATH'] = Common.GET('ffmpeg').replace('/ffmpeg', '')
+    ffmpeg = Common.GET('ffmpeg')
+    if ffmpeg == '':
+        Common.notify()
+    else:
+        PATH = os.environ['PATH']
+        Common.log('PATH:', PATH)
+        ffmpeg = re.sub(r'[/\\]ffmpeg$', '', ffmpeg)
+        if PATH.find(ffmpeg) == -1:
+            os.environ['PATH'] = '%s:%s' % (PATH, ffmpeg)
+            PATH = os.environ['PATH']
+            Common.log('PATH:', PATH)
 
     # サービスを初期化
     service = Service()
