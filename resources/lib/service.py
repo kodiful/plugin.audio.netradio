@@ -52,7 +52,7 @@ class Service(Common, Prefecture):
     # ダウンロード予約の時間
     DOWNLOAD_PREPARATION = 180
     # ダウンロード開始の遅延
-    DOWNLOAD_DELAY = 20
+    DOWNLOAD_DELAY = {'nhkr': 40, 'radk': 15} 
     # ダウンロード開始の余裕
     DOWNLOAD_MARGIN = 5
 
@@ -189,11 +189,12 @@ class Service(Common, Prefecture):
                 # 移動先のパス
                 new_path = os.path.join(self.PROCESSING_PATH, os.path.basename(path))
                 # DOWNLOAD_PREPARATION以内に開始する番組はダウンロードを予約
-                delay = program['start'] - now + self.DOWNLOAD_DELAY
+                delay = self.DOWNLOAD_DELAY[program['type']]
+                extra = delay + self.DOWNLOAD_MARGIN
+                delay = program['start'] - now + delay
                 if delay < self.DOWNLOAD_MARGIN:
                     delay = delay - self.DOWNLOAD_MARGIN 
                 # ダウンロード時間
-                extra = self.DOWNLOAD_DELAY + self.DOWNLOAD_MARGIN
                 thread = threading.Timer(delay, Download().download, args=[program, extra, new_path, self.queue])
                 thread.start()
                 # ファイルを移動
