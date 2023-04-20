@@ -215,15 +215,15 @@ class Directory(Common, Prefecture):
     def _time(self, t):
         return time.strftime("%H:%M", time.localtime(t))
 
-    def _stream(self, data):
+    def _stream(self, data, download=False):
         if data['type'] == 'radk':
-            stream = LocalProxy.proxy_radk(data['id'], token=self.token)
+            stream = LocalProxy.proxy('radk', download, id=data['id'], token=self.token)
         elif data['type'] == 'jcba':
-            stream = LocalProxy.proxy_jcba(data['id'])
+            stream = LocalProxy.proxy('jcba', download, id=data['id'])
         elif data['type'] == 'plap':
-            stream = LocalProxy.proxy_plap(data['id'])
+            stream = LocalProxy.proxy('plap', download, id=data['id'])
         else:
-            stream = LocalProxy.proxy_redirect(data['stream'])
+            stream = LocalProxy.proxy('redirect', download, url=data['stream'])
         return stream
 
     def _contextmenu(self, name, args):

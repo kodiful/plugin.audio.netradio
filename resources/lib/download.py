@@ -43,7 +43,7 @@ class Download(Directory, Common):
         self._contextmenu(self.STR(30109), {'action': 'open_folder', 'keyword': data['keyword']})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        # ストリームURL
+        # 再生するファイルのパス
         stream = os.path.join(os.path.dirname(item), os.path.basename(item).replace('.json', '.mp3'))
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), stream, listitem=li, isFolder=False)
@@ -83,7 +83,7 @@ class Download(Directory, Common):
         # 放送局データ
         station = self._station(program)
         # ストリームURL
-        stream = self._stream(station)
+        stream = self._stream(station, download=True)
         # 時間
         duration = program['end'] - self.now()
         # ビットレート
@@ -191,6 +191,8 @@ class RSS(Common):
         for p, path in self.contents:
             # title
             title = escape(p['title'])
+            # url
+            url = p['url']
             # source
             source = '%s/%s' % (escape(p['keyword']), escape(os.path.basename(path)))
             # date
@@ -219,7 +221,7 @@ class RSS(Common):
             buf.append(
                 body.format(
                     title=title,
-                    url='',
+                    url=url,
                     root=self.rss_root,
                     source=source,
                     date=date,
@@ -227,7 +229,9 @@ class RSS(Common):
                     station=station,
                     duration=duration,
                     filesize=filesize,
-                    description=description))
+                    description=description
+                )
+            )
         # footer
         buf.append(footer)
         # ファイル書き込み

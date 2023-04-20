@@ -40,29 +40,12 @@ class LocalProxy(HTTPServer, Common):
             self.notify('Localproxy port is not defined')
     
     @staticmethod
-    def proxy_radk(id, token):
+    def proxy(type_, download=False, **kwargs):
         port = Common.GET('port')
-        url = 'http://127.0.0.1:%s/radk?%s' % (port, urllib.parse.urlencode({'id': id, 'token': token}))
+        kwargs.update({'type': type_, 'download': download})
+        url = 'http://127.0.0.1:%s/?%s' % (port, urllib.parse.urlencode(kwargs))
         return url
-
-    @staticmethod
-    def proxy_jcba(id):
-        port = Common.GET('port')
-        url = 'http://127.0.0.1:%s/jcba?%s' % (port, urllib.parse.urlencode({'id': id}))
-        return url
-
-    @staticmethod
-    def proxy_plap(id):
-        port = Common.GET('port')
-        url = 'http://127.0.0.1:%s/plap?%s' % (port, urllib.parse.urlencode({'id': id}))
-        return url
-
-    @staticmethod
-    def proxy_redirect(url):
-        port = Common.GET('port')
-        url = 'http://127.0.0.1:%s/redirect?%s' % (port, urllib.parse.urlencode({'url': url}))
-        return url
-
+    
 
 class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
 
@@ -86,74 +69,10 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
         try:
             # HTTPリクエストをパースする
             request = urllib.parse.urlparse(self.path)
-            # スレッドキューのメンテナンス
-            if request.path in ('/redirect', '/radk', '/jcba', '/plap'):
-                self.maintain_queue(request)
+            params = urllib.parse.parse_qs(request.query)
             # パスに応じて処理
-            if request.path == '/redirect':
-                params = urllib.parse.parse_qs(request.query)
-                url = params['url'][0]
-                # m3u8へリダイレクト
-                self.send_response(302)
-                self.send_header('Location', url)
-                self.end_headers()
-                self.wfile.write(b'302 Moved Temporarily')
-            elif request.path == '/radk':
-                params = urllib.parse.parse_qs(request.query)
-                url = f"https://f-radiko.smartstream.ne.jp/{params['id'][0]}/_definst_/simul-stream.stream/playlist.m3u"
-                token = params['token'][0]
-                req = urllib.request.Request(url, headers={'x-radiko-authtoken': token})
-                res = urllib.request.urlopen(req)
-                data = res.read()
-                self.send_response(200)
-                self.end_headers()
-                self.wfile.write(data)
-            elif request.path == '/jcba':
-                params = urllib.parse.parse_qs(request.query)
-                id = params['id'][0]
-                url = f'https://api.radimo.smen.biz/api/v1/select_stream?station={id}&channel=0&quality=high&burst=5'
-                req = urllib.request.Request(url)
-                res = urllib.request.urlopen(req)
-                data = res.read()
-                data = json.loads(data)
-                self.location = data['location']
-                self.token = data['token']
-                if self.server.queue.qsize() == 0:
-                    # 別スレッドでwebsocketを起動
-                    thread = self.server.thread = threading.Thread(target=self.start_websocket)
-                    thread.start()
-                    # スレッドキューに格納
-                    self.server.queue.put((thread, request.path, request.query))
-                # m3u8が生成される時間を待つ
-                time.sleep(3)
-                # m3u8へリダイレクト
-                self.send_response(302)
-                self.send_header('Location', 'http://127.0.0.1:%s/hls.m3u8' % self.server.port)
-                self.end_headers()
-                self.wfile.write(b'302 Moved Temporarily')
-            elif request.path == '/plap':
-                params = urllib.parse.parse_qs(request.query)
-                id = params['id'][0]
-                url = f'https://fmplapla.com/api/select_stream?station={id}&burst=5'
-                req = urllib.request.Request(url, headers={'Origin': 'https://fmplapla.com'}, method='POST')
-                res = urllib.request.urlopen(req)
-                data = res.read()
-                data = json.loads(data)
-                self.location = data['location']
-                self.token = data['token']
-                if self.server.queue.qsize() == 0:
-                    # 別スレッドでwebsocketを起動
-                    thread = self.server.thread = threading.Thread(target=self.start_websocket)
-                    thread.start()
-                    # スレッドキューに格納
-                    self.server.queue.put((thread, request.path, request.query))
-                # m3u8が生成される時間を待つ
-                time.sleep(3)
-                # m3u8へリダイレクト
-                self.send_response(302)
-                self.send_header('Location', 'http://127.0.0.1:%s/hls.m3u8' % self.server.port)
-                self.end_headers()
-                self.wfile.write(b'302 Moved Temporarily')
+            if request.path == '/':
+                self.do_request_type(request, params)
             elif request.path == '/hls.m3u8':
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/x-mpegurl')
@@ -178,19 +97,87 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             self.end_headers()
             self.wfile.write(b'500 Internal Server Error')
 
-    def maintain_queue(self, request):
-        q = self.server.queue
-        alive = None
-        while q.qsize() > 0:
-            thread, path, query = data = q.get()
-            if path == request.path and query == request.query:
-                alive = data
-            else:
-                ident = ctypes.c_long(thread.ident)
-                ret = ctypes.pythonapi.PyThreadState_SetAsyncExc(ident, ctypes.py_object(SystemExit))
-                self.log('thread:', ident, 'status:', ret)
-        if alive:
-            q.put(alive)
+    def do_request_type(self, request, params):
+        # スレッドキューのメンテナンス
+        download = params['download'][0]
+        if download == 'False':
+            q = self.server.queue
+            alive = None
+            while q.qsize() > 0:
+                thread, query = data = q.get()
+                if query == request.query:
+                    alive = data
+                else:
+                    ident = ctypes.c_long(thread.ident)
+                    ret = ctypes.pythonapi.PyThreadState_SetAsyncExc(ident, ctypes.py_object(SystemExit))
+            if alive:
+                q.put(alive)
+        # typeに応じて処理
+        type_ = params['type'][0]
+        if type_ == 'redirect':
+            url = params['url'][0]
+            # urlへリダイレクト
+            self.send_response(302)
+            self.send_header('Location', url)
+            self.end_headers()
+            self.wfile.write(b'302 Moved Temporarily')
+        elif type_ == 'radk':
+            url = f"https://f-radiko.smartstream.ne.jp/{params['id'][0]}/_definst_/simul-stream.stream/playlist.m3u"
+            token = params['token'][0]
+            req = urllib.request.Request(url, headers={'x-radiko-authtoken': token})
+            res = urllib.request.urlopen(req)
+            data = res.read()
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(data)
+        elif type_ == 'jcba':
+            id = params['id'][0]
+            url = f'https://api.radimo.smen.biz/api/v1/select_stream?station={id}&channel=0&quality=high&burst=5'
+            req = urllib.request.Request(url)
+            res = urllib.request.urlopen(req)
+            data = res.read()
+            data = json.loads(data)
+            self.location = data['location']
+            self.token = data['token']
+            if self.server.queue.qsize() == 0:
+                # 別スレッドでwebsocketを起動
+                thread = self.server.thread = threading.Thread(target=self.start_websocket)
+                thread.start()
+                # スレッドキューに格納
+                self.server.queue.put((thread, request.query))
+            # m3u8が生成される時間を待つ
+            time.sleep(3)
+            # m3u8へリダイレクト
+            self.send_response(302)
+            self.send_header('Location', 'http://127.0.0.1:%s/hls.m3u8' % self.server.port)
+            self.end_headers()
+            self.wfile.write(b'302 Moved Temporarily')
+        elif type_ == 'plap':
+            id = params['id'][0]
+            url = f'https://fmplapla.com/api/select_stream?station={id}&burst=5'
+            req = urllib.request.Request(url, headers={'Origin': 'https://fmplapla.com'}, method='POST')
+            res = urllib.request.urlopen(req)
+            data = res.read()
+            data = json.loads(data)
+            self.location = data['location']
+            self.token = data['token']
+            if self.server.queue.qsize() == 0:
+                # 別スレッドでwebsocketを起動
+                thread = self.server.thread = threading.Thread(target=self.start_websocket)
+                thread.start()
+                # スレッドキューに格納
+                self.server.queue.put((thread, request.query))
+            # m3u8が生成される時間を待つ
+            time.sleep(3)
+            # m3u8へリダイレクト
+            self.send_response(302)
+            self.send_header('Location', 'http://127.0.0.1:%s/hls.m3u8' % self.server.port)
+            self.end_headers()
+            self.wfile.write(b'302 Moved Temporarily')
+        else:
+            self.send_response(404)
+            self.end_headers()
+            self.wfile.write(b'404 Not Found')
 
     def start_websocket(self):
         # キャッシュをクリア
@@ -217,18 +204,17 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
     def on_message(self, ws, message):
         ws.process.stdin.write(message)
         # 再生中のコンテンツがwebsocket再生でない場合はwebsocketを終了する
-        path = self.nowplaying()  # http://127.0.0.1:8088/jcba?id=fmblueshonan
+        path = self.nowplaying()  # http://127.0.0.1:8088/?type=jcba&id=fmblueshonan
         if path:
             type_ = path.split('/')[3]
-            if type_.startswith('jcba?'):
+            if type_.find('type=jcba') != -1:
                 return  # jcbaの場合は継続
-            if type_.startswith('plap?'):
+            if type_.find('type=plap') != -1:
                 return  # plapの場合は継続
         raise SystemExit
 
     def on_close(self, ws, status, message):
         thread = self.server.queue.get()
         ident = ctypes.c_long(thread.ident)
-        self.log('thread:', ident, 'status:', -1)
         ws.process.kill()
         self.log('websocket closed:', status, message)
