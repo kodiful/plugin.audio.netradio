@@ -49,7 +49,8 @@ class Service(Common, Prefecture):
     CHECK_INTERVAL = 30
     # radiko認証のインターバル
     AUTH_INTERVAL = 3600
-    # ダウンロード予約の時間
+    
+    # ダウンロード予約のタイミング
     DOWNLOAD_PREPARATION = 180
     # ダウンロード開始の遅延
     DOWNLOAD_DELAY = {'nhkr': 40, 'radk': 15} 

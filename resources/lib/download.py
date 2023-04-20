@@ -61,7 +61,6 @@ class Download(Directory, Common):
         end = '%s:%s' % (data['END'][8:10], data['END'][10:12])
         # 8月31日(土)
         format = d.strftime(format)
-        self.log(format, d)
         date1 = format % weekdays[w]
         # 2019-08-31
         date2 = d.strftime('%Y-%m-%d')
