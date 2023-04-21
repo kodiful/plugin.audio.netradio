@@ -1,0 +1,5 @@
+.gitattributes
+__pycache__
+kodi.log
+addon_data
+downloaded
