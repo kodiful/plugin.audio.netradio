@@ -12,7 +12,6 @@ from resources.lib.timetable.radk import Scraper as Radk
 
 import os
 import shutil
-import platform
 import threading
 import queue
 
@@ -59,7 +58,7 @@ class Service(Common, Prefecture):
 
     def __init__(self):
         # OSを判定
-        self.SET('os', platform.system())
+        self.SET('os', Common.OS)
         # ディレクトリをチェック
         self._setup_userdata()
         # キューを初期化

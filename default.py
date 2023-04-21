@@ -4,7 +4,6 @@ import sys
 import os
 import urllib.parse
 import shutil
-import platform
 import subprocess
 
 import xbmc
@@ -66,10 +65,10 @@ if __name__ == '__main__':
     elif action == "open_folder":
         keyword = args.get('keyword', '')
         path = os.path.join(Common.GET('folder'), keyword)
-        if platform.system() == 'Windows':
+        if Common.OS == 'Windows':
             subprocess.Popen(['explorer', path], shell=True)
-        elif platform.system() == 'Darwin':
-            subprocess.call(['/usr/bin/open', path])
+        elif Common.OS == 'Darwin':
+            subprocess.call(['open', path])
     elif action == 'update_rss':
         Download().update_rss()
 

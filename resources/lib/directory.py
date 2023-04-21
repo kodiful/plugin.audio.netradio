@@ -6,7 +6,6 @@ import glob
 import shutil
 import time
 import re
-import platform
 
 from urllib.parse import urlencode
 from qrcode import QRCode
@@ -28,7 +27,7 @@ class Directory(Common, Prefecture):
         self.token = auth['auth_token']
         _, self.region, self.pref = self.radiko_place(auth['area_id'])
         # キーワード設定
-        self.dlsupport = platform.system() in ('Windows', 'Darwin') and self.GET('download') == 'true'
+        self.dlsupport = self.OS in ('Windows', 'Darwin') and self.GET('download') == 'true'
 
     def show(self, path=None):
         if path is None:

@@ -28,7 +28,7 @@
   </category>
   <!--その他-->
   <category label="30400">
-    <setting label="30401" id="ffmpeg" type="file" default=""/>
+    <setting label="30401" id="ffmpeg" type="folder" default=""/>
     <setting label="30402" id="port" type="number" default="8088"/>
     <setting label="30404" id="debug" type="bool" default="false"/>
   </category>
