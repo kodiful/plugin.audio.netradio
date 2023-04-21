@@ -15,7 +15,7 @@ from resources.lib.service import Service
 
 def check_ffmpeg():
     # fmpegのパスを取得
-    ffmpeg = Common.GET('ffmpeg')
+    ffmpeg = os.path.dirname(Common.GET('ffmpeg'))
     if ffmpeg:
         PATH = os.environ['PATH']
         if os.name == 'nt':
