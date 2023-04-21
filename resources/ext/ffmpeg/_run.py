@@ -281,10 +281,16 @@ def run_async(
     stdin_stream = subprocess.PIPE if pipe_stdin else None
     stdout_stream = subprocess.PIPE if pipe_stdout or quiet else None
     stderr_stream = subprocess.PIPE if pipe_stderr or quiet else None
-    return subprocess.Popen(
+    '''return subprocess.Popen(
         args, stdin=stdin_stream, stdout=stdout_stream, stderr=stderr_stream
-    )
-
+    )'''
+    # replacement for avoiding window popup according to https://github.com/kkroening/ffmpeg-python/issues/518
+    import os
+    startupinfo = None
+    if os.name == 'nt':
+        startupinfo = subprocess.STARTUPINFO()
+        startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+    return subprocess.Popen(args, stdin=stdin_stream, stdout=stdout_stream, stderr=stderr_stream, startupinfo=startupinfo)
 
 @output_operator()
 def run(
