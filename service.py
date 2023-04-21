@@ -18,7 +18,7 @@ def check_ffmpeg():
     ffmpeg = Common.GET('ffmpeg')
     if ffmpeg:
         PATH = os.environ['PATH']
-        if Common.OS == 'Windows':
+        if os.name == 'nt':
             os.environ['PATH'] = '%s;%s' % (PATH, ffmpeg)
         else:
             os.environ['PATH'] = '%s:%s' % (PATH, ffmpeg)
