@@ -13,7 +13,6 @@
     </category>
   <!--番組保存-->
   <category label="30300">
-    <setting label="30301" type="text" enable="false"/>
     <setting label="30303" id="download" type="bool" default="false"/>
     <setting label="30304" id="bitrate" type="labelenum" default="192k" values="auto|192k|160k|128k|96k|64k" enable="eq(-1,true)"/>
     <setting label="30305" id="folder" type="folder" default="" enable="eq(-2,true)"/>
