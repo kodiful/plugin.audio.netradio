@@ -226,19 +226,19 @@ msgid "Name"
 msgstr ""
 
 msgctxt "#30602"
-msgid "Description"
-msgstr ""
-
-msgctxt "#30603"
 msgid "Stream URL"
 msgstr ""
 
-msgctxt "#30604"
+msgctxt "#30603"
 msgid "Image URL"
 msgstr ""
 
-msgctxt "#30605"
+msgctxt "#30604"
 msgid "Site URL"
+msgstr ""
+
+msgctxt "#30605"
+msgid "Description"
 msgstr ""
 
 #

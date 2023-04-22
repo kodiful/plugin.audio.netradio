@@ -84,7 +84,6 @@ msgstr "番組情報を更新する"
 # for settings
 #
 
-
 msgctxt "#30200"
 msgid "General"
 msgstr "一般"
@@ -223,23 +222,23 @@ msgstr "放送局設定"
 
 msgctxt "#30601"
 msgid "Name"
-msgstr "局名"
+msgstr "放送局名"
 
 msgctxt "#30602"
-msgid "Description"
-msgstr "説明"
-
-msgctxt "#30603"
 msgid "Stream URL"
 msgstr "ストリームURL"
 
-msgctxt "#30604"
+msgctxt "#30603"
 msgid "Image URL"
 msgstr "画像URL"
 
-msgctxt "#30605"
+msgctxt "#30604"
 msgid "Site URL"
 msgstr "サイトURL"
+
+msgctxt "#30605"
+msgid "Description"
+msgstr "説明"
 
 #
 # for common use
