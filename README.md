@@ -5,12 +5,6 @@
 [NHKラジオ](http://www.nhk.or.jp/radio/)、[民放ラジオ（radiko.jp）](http://radiko.jp)ほかが提供するインターネットラジオ放送局を聴いたり、番組をファイル保存できるKodiアドオンです。
 Windows、macOSで動作検証しています。
 
-以下を参考にしました。
-
-* [http://xbmc.inpane.com/main/heavy_user/script_radiko.php](http://xbmc.inpane.com/main/heavy_user/script_radiko.php)
-
-@xbmc_nowさん、ありがとうございます。
-
 
 ## 目次
 
