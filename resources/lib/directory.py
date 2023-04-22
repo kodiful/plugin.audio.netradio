@@ -26,8 +26,6 @@ class Directory(Common, Prefecture):
         auth = self.read_as_json(self.AUTH_FILE)
         self.token = auth['auth_token']
         _, self.region, self.pref = self.radiko_place(auth['area_id'])
-        # キーワード設定
-        self.dlsupport = self.OS in ('Windows', 'Darwin') and self.GET('download') == 'true'
 
     def show(self, path=None):
         if path is None:
@@ -36,7 +34,7 @@ class Directory(Common, Prefecture):
             # ディレクトリ
             self._setup_directory()
             # キーワード
-            if self.dlsupport:
+            if self.GET('download') == 'true':
                 self._setup_keywords()
         else:
             # サブディレクトリ
@@ -131,7 +129,7 @@ class Directory(Common, Prefecture):
                 self._contextmenu(self.STR(30102), {'action': 'delete_from_top', 'path': item})
         else:
             self._contextmenu(self.STR(30101), {'action': 'add_to_top', 'path': item})
-        if self.dlsupport and data['type'] in ('nhkr', 'radk'):
+        if self.GET('download') == 'true' and data['type'] in ('nhkr', 'radk'):
             self._contextmenu(self.STR(30106), {'action': 'set_keyword', 'path': os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['station'])})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)

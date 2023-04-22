@@ -57,8 +57,6 @@ class Service(Common, Prefecture):
     DOWNLOAD_MARGIN = 5
 
     def __init__(self):
-        # OSを判定
-        self.SET('os', Common.OS)
         # ディレクトリをチェック
         self._setup_userdata()
         # キューを初期化

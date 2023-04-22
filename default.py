@@ -5,6 +5,7 @@ import os
 import urllib.parse
 import shutil
 import subprocess
+import platform
 
 import xbmc
 
@@ -49,6 +50,9 @@ if __name__ == '__main__':
         Station().set(args.get('path'))
     elif action == 'add_station':
         Station().add()
+        src = os.path.join(Common.RESOURCES_PATH, 'default.xml')
+        dst = os.path.join(Common.RESOURCES_PATH, 'settings.xml')
+        shutil.copy(src, dst)
     elif action == 'update_info':
         Common.write_mmap('True')
 
@@ -57,6 +61,9 @@ if __name__ == '__main__':
         Keyword().set(args.get('path'))
     elif action == 'add_keyword':
         Keyword().add()
+        src = os.path.join(Common.RESOURCES_PATH, 'default.xml')
+        dst = os.path.join(Common.RESOURCES_PATH, 'settings.xml')
+        shutil.copy(src, dst)
 
     # ダウンロード
     elif action == 'show_download':
@@ -65,10 +72,13 @@ if __name__ == '__main__':
     elif action == "open_folder":
         keyword = args.get('keyword', '')
         path = os.path.join(Common.GET('folder'), keyword)
-        if Common.OS == 'Windows':
+        os_ = platform.system()
+        if os_ == 'Windows':
             subprocess.Popen(['explorer', path], shell=True)
-        elif Common.OS == 'Darwin':
+        elif os_ == 'Darwin':
             subprocess.call(['open', path])
+        else:
+            Common.notify('Unsupported on %s' % os_)
     elif action == 'update_rss':
         Download().update_rss()
 
@@ -79,7 +89,7 @@ if __name__ == '__main__':
         shutil.copy(src, dst)
         xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
     elif action == 'validate':
-        pass  # 設定のバリデーションはここで行う
+        Common.write_mmap('True')
 
     # 未定義
     else:

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-import platform
 import inspect
 import json
 import requests
@@ -14,9 +13,6 @@ import xbmcvfs
 
 
 class Common:
-
-    # OS
-    OS = platform.system()
 
     # addon
     ADDON = xbmcaddon.Addon()

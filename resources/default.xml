@@ -8,23 +8,20 @@
   -->
   <!--一般-->
   <category label="30200">
-    <setting id="os" type="text" default="" visible="false"/>
     <setting label="30201" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_station)"/>
-    <setting label="30202" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_keyword)" visible="eq(-2,Darwin)|eq(-2,Windows)"/>
+    <setting label="30202" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_keyword)"/>
     </category>
   <!--番組保存-->
   <category label="30300">
-    <setting id="os" type="text" default="" visible="false"/>
-    <setting label="30301" type="text" enable="false" visible="!eq(-1,Darwin)+!eq(-1,Windows)"/>
-    <setting label="30303" id="download" type="bool" default="false" visible="eq(-2,Darwin)|eq(-2,Windows)"/>
-    <setting label="30304" id="bitrate" type="labelenum" default="192k" values="auto|192k|160k|128k|96k|64k" enable="eq(-1,true)" visible="eq(-3,Darwin)|eq(-3,Windows)"/>
-    <setting label="30305" id="folder" type="folder" default="" enable="eq(-2,true)" visible="eq(-4,Darwin)|eq(-4,Windows)"/>
-    <setting label="30306" type="action" option="close" action="RunPlugin(plugin://$ID/?action=open_folder)" enable="eq(-3,true)" visible="eq(-5,Darwin)|eq(-5,Windows)"/>
+    <setting label="30303" id="download" type="bool" default="false"/>
+    <setting label="30304" id="bitrate" type="labelenum" default="192k" values="auto|192k|160k|128k|96k|64k" enable="eq(-1,true)"/>
+    <setting label="30305" id="folder" type="folder" default="" enable="eq(-2,true)"/>
+    <setting label="30306" type="action" option="close" action="RunPlugin(plugin://$ID/?action=open_folder)" enable="eq(-3,true)"/>
     <!--RSS-->
-    <setting label="30309" id="rss" type="bool" default="false" enable="eq(-4,true)" visible="eq(-6,Darwin)|eq(-6,Windows)"/>
-    <setting label="30310" id="rssurl" type="text" default="" enable="eq(-1,true)+eq(-5,true)" visible="eq(-7,Darwin)|eq(-7,Windows)"/>
-    <setting label="30312" id="rssnum" type="labelenum" values="5|10|20|50|100|unlimited" default="unlimited" enable="eq(-2,true)+!eq(-1,)+eq(-6,true)" visible="eq(-8,Darwin)|eq(-8,Windows)"/>
-    <setting label="30311" type="action" option="close" action="RunPlugin(plugin://$ID/?action=update_rss)" enable="eq(-3,true)+!eq(-2,)+eq(-7,true)" visible="eq(-9,Darwin)|eq(-9,Windows)"/>
+    <setting label="30309" id="rss" type="bool" default="false" enable="eq(-4,true)"/>
+    <setting label="30310" id="rssurl" type="text" default="" enable="eq(-1,true)+eq(-5,true)"/>
+    <setting label="30312" id="rssnum" type="labelenum" values="5|10|20|50|100|unlimited" default="unlimited" enable="eq(-2,true)+!eq(-1,)+eq(-6,true)"/>
+    <setting label="30311" type="action" option="close" action="RunPlugin(plugin://$ID/?action=update_rss)" enable="eq(-3,true)+!eq(-2,)+eq(-7,true)"/>
   </category>
   <!--その他-->
   <category label="30400">
