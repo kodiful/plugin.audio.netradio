@@ -154,6 +154,8 @@ class Download(Directory, Common):
 class RSS(Common):
 
     def __init__(self, keyword=None):
+        # 時刻表記のロケール設定                                                                                                                                                             
+        locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
         # RSSのルートパス
         self.rss_root = self.GET('rssurl')  # http://127.0.0.1/NetRadio
         self.dir_root = self.GET('folder')  # /Library/WebServer/Documents/www/NetRadio
@@ -161,7 +163,6 @@ class RSS(Common):
             self.rss_file = os.path.join(self.dir_root, 'rss.xml')
             contents = glob.glob(os.path.join(self.dir_root, '*', '*.mp3'))
         else:
-            self.rss_root = '%s/%s/' % (self.rss_root, keyword) 
             self.dir_root = os.path.join(self.dir_root, keyword)
             self.rss_file = os.path.join(self.dir_root, 'rss.xml')
             contents = glob.glob(os.path.join(self.dir_root, '*.mp3'))
@@ -243,13 +244,14 @@ class RSS(Common):
         #
         # 関係するファイルをダウンロードフォルダにコピーする
         #
+        dir_root = self.GET('folder')
         # アイコン画像
-        icon = os.path.join(self.dir_root, 'icon.png')
+        icon = os.path.join(dir_root, 'icon.png')
         if os.path.isfile(icon):
             os.remove(icon)
         shutil.copy(os.path.join(self.PLUGIN_PATH, 'icon.png'), icon)
         # スタイルシート
-        stylesheet = os.path.join(self.dir_root, 'stylesheet.xsl')
+        stylesheet = os.path.join(dir_root, 'stylesheet.xsl')
         if os.path.isfile(stylesheet):
             os.remove(stylesheet)
         shutil.copy(os.path.join(self.RESOURCES_PATH, 'data', 'rss', 'stylesheet.xsl'), stylesheet)
