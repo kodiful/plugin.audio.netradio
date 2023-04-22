@@ -249,7 +249,7 @@ RSSに格納するファイル情報の数を指定してください。
 
 ## アドオン設定画面-その他
 
-![アドオン設定画面-その他](https://user-images.githubusercontent.com/12268536/233762691-24d39333-be79-48f5-9898-fa8e61373753.png)
+![アドオン設定画面-その他](https://user-images.githubusercontent.com/12268536/233762694-28515723-a670-494f-93e1-364c18ab4793.png)
 
 ### ffmpegのパス
 
