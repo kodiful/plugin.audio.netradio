@@ -1,13 +1,13 @@
 {
-    "type": "csra",
-    "id": "",
+    "type": "fmpp",
+    "id": "fmkumejima",
     "station": "FMくめじま",
     "code": "473618",
     "region": "九州沖縄",
     "pref": "沖縄県",
     "city": "久米島町",
-    "logo": "http://csra.fm/logo/fmkumejima.png",
-    "description": "",
-    "official": "http://fmkumejima.com/",
-    "stream": "http://csra.fm/asx/fmkumejima.asx"
+    "logo": "https://fmplapla.com/fmkumejima/img/artwork.png",
+    "description": "2018年6月1日 放送開始",
+    "official": "",
+    "stream": ""
 }

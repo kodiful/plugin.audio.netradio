@@ -152,7 +152,7 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             self.send_header('Location', 'http://127.0.0.1:%s/hls.m3u8' % self.server.port)
             self.end_headers()
             self.wfile.write(b'302 Moved Temporarily')
-        elif type_ == 'plap':
+        elif type_ == 'fmpp':
             id = params['id'][0]
             url = f'https://fmplapla.com/api/select_stream?station={id}&burst=5'
             req = urllib.request.Request(url, headers={'Origin': 'https://fmplapla.com'}, method='POST')
@@ -209,8 +209,8 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             type_ = path.split('/')[3]
             if type_.find('type=jcba') != -1:
                 return  # jcbaの場合は継続
-            if type_.find('type=plap') != -1:
-                return  # plapの場合は継続
+            if type_.find('type=fmpp') != -1:
+                return  # fmppの場合は継続
         raise SystemExit
 
     def on_close(self, ws, status, message):

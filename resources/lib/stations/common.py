@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import requests
+import sys
 import os
 import re
 import json
@@ -47,10 +48,14 @@ class Common:
             path = os.path.join(dir, '%s.json' % item['station'])
             if os.path.exists(path) is False:
                 self.write_as_json(path, item)
+                status = True
             else:
-                print('[%s] ignore existing file:' % self.TYPE, path, sep='\t')
+                print('[%s] ignore existing file:' % self.TYPE, path, sep='\t', file=sys.stderr)
+                status = False
             # ロゴ画像をダウンロードする
             self.load_logo(item, self.LOGO_PATH)
+            # リスト出力
+            print('%s\t[%s]\t%s\t%s\t%s\t%s\t%s\t%s' % (status, item['type'], item['station'], item['official'] or 'n/a', item['region'], item['pref'], item['city'] or 'n/a', item['code']), file=sys.stdout)
 
     # ロゴ画像をダウンロードする
     @staticmethod

@@ -60,7 +60,7 @@ class Scraper(Common, Const, Prefecture):
                 stream = section['ChannelHls']
                 description = section['ChannelDetail']
             except Exception:
-                print('[lsnr] unparsable content:', station, sep='\t')
+                print('[lsnr] unparsable content:', station, sep='\t', file=sys.stderr)
                 continue
             if region:
                 buf.append({
@@ -77,7 +77,7 @@ class Scraper(Common, Const, Prefecture):
                     'stream': stream,
                 })
             else:
-                print('[lsnr] invalid region:', station, stream, sep='\t')
+                print('[lsnr] invalid region:', station, stream, sep='\t', file=sys.stderr)
         return buf
 
 

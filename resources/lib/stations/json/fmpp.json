@@ -1,6 +1,6 @@
 [
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "radioodate",
         "station": "FMラジオおおだて",
         "code": "052043",
@@ -13,7 +13,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmhanabi",
         "station": "FMはなび",
         "code": "052124",
@@ -26,7 +26,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "iianbefm",
         "station": "きたかみE&Beエフエム",
         "code": "032069",
@@ -39,7 +39,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmnemaline",
         "station": "FMねまらいん",
         "code": "032034",
@@ -52,7 +52,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmasmo",
         "station": "FMあすも",
         "code": "032093",
@@ -65,7 +65,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "bikkifm",
         "station": "OCRFM835",
         "code": "042153",
@@ -78,7 +78,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmaozora",
         "station": "FMあおぞら",
         "code": "043613",
@@ -91,7 +91,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "radioheart",
         "station": "ラヂオは〜と",
         "code": "152137",
@@ -104,7 +104,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmtokamachi",
         "station": "FMとおかまち",
         "code": "152102",
@@ -117,7 +117,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmmyoko",
         "station": "FMみょうこう",
         "code": "152170",
@@ -130,7 +130,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmtomi",
         "station": "はれラジ",
         "code": "202193",
@@ -143,7 +143,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmsakudaira",
         "station": "fmさくだいら",
         "code": "202177",
@@ -156,7 +156,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmmatsumoto",
         "station": "FMまつもと",
         "code": "202029",
@@ -169,7 +169,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "lcvfm",
         "station": "LCV-FM769",
         "code": "202061",
@@ -182,7 +182,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "iidafm",
         "station": "いいだFM",
         "code": "202053",
@@ -195,7 +195,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "miyaradi",
         "station": "ミヤラジ",
         "code": "092011",
@@ -208,7 +208,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmmoka",
         "station": "FMもおか",
         "code": "092096",
@@ -221,7 +221,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmyugao",
         "station": "FMゆうがお",
         "code": "092169",
@@ -234,7 +234,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmkulala857",
         "station": "FMくらら857",
         "code": "092037",
@@ -247,7 +247,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "oradi",
         "station": "おーラジ",
         "code": "092088",
@@ -260,7 +260,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmkiryu",
         "station": "FM桐生",
         "code": "102032",
@@ -273,7 +273,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "honjofm",
         "station": "ほんじょうFM",
         "code": "112119",
@@ -286,7 +286,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmkumagaya",
         "station": "FMクマガヤ",
         "code": "112020",
@@ -299,7 +299,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "chichibufm",
         "station": "ちちぶFM",
         "code": "112071",
@@ -312,7 +312,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmhigashikurume",
         "station": "TOKYO854 くるめラ",
         "code": "132225",
@@ -325,7 +325,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmnishitokyo",
         "station": "エフエム西東京",
         "code": "132292",
@@ -338,7 +338,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "radiofuchues",
         "station": "ラジオフチューズ",
         "code": "132063",
@@ -351,7 +351,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmsagami",
         "station": "FM HOT 839",
         "code": "141500",
@@ -364,7 +364,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmsalus",
         "station": "FMサルース",
         "code": "141003",
@@ -377,7 +377,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "kanazawaseasidefm",
         "station": "金沢シーサイドFM",
         "code": "141003",
@@ -390,7 +390,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "radioshonan",
         "station": "レディオ湘南",
         "code": "142051",
@@ -403,7 +403,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmhikone",
         "station": "78.2エフエムひこね",
         "code": "252026",
@@ -416,7 +416,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmotsu",
         "station": "FMおおつ",
         "code": "252018",
@@ -429,7 +429,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "yesfm",
         "station": "YES-fm",
         "code": "271004",
@@ -442,7 +442,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmizumiotsu",
         "station": "FMいずみおおつ",
         "code": "272060",
@@ -455,7 +455,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmyamato",
         "station": "FMヤマト",
         "code": "292028",
@@ -468,7 +468,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmrara768",
         "station": "FMらら76.8",
         "code": "212148",
@@ -481,7 +481,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "nagoyabousai",
         "station": "名古屋市防災ラジオ",
         "code": "231002",
@@ -494,7 +494,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "radioloveat",
         "station": "ラジオ・ラブィート",
         "code": "232114",
@@ -507,7 +507,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "mediasfm",
         "station": "メディアスFM",
         "code": "232220",
@@ -520,7 +520,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "pitchfm",
         "station": "KATCH&Pitch 地域情報",
         "code": "232106",
@@ -533,7 +533,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "tees-843fm",
         "station": "TEES-843FM",
         "code": "232017",
@@ -546,7 +546,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmyokkaichi",
         "station": "CTY-FM",
         "code": "242021",
@@ -559,7 +559,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmyumewave",
         "station": "ゆめウェーブ",
         "code": "332054",
@@ -572,7 +572,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmwassyoi",
         "station": "FMわっしょい",
         "code": "352063",
@@ -585,7 +585,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmsunsunkirara",
         "station": "FMスマイルウェ〜ブ",
         "code": "352161",
@@ -598,7 +598,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmkitaq",
         "station": "FM KITAQ",
         "code": "401005",
@@ -611,7 +611,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmtanto",
         "station": "FMたんと",
         "code": "402028",
@@ -624,7 +624,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "ebisufm",
         "station": "えびすFM",
         "code": "412015",
@@ -637,7 +637,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "saigaifm",
         "station": "益城さいがいFM",
         "code": "434434",
@@ -650,7 +650,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "mifunefm",
         "station": "御船災害FM",
         "code": "434418",
@@ -663,7 +663,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "mitsubachiradio",
         "station": "みつばちラジオ",
         "code": "432156",
@@ -676,7 +676,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "happyfm",
         "station": "FMさせぼ",
         "code": "422029",
@@ -689,7 +689,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmisahaya",
         "station": "エフエム諫早",
         "code": "422045",
@@ -702,7 +702,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmshimabara",
         "station": "FMしまばら",
         "code": "422037",
@@ -715,7 +715,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmhimawari",
         "station": "FMひまわり",
         "code": "422142",
@@ -728,7 +728,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmhyuga",
         "station": "FMひゅうが",
         "code": "452068",
@@ -741,7 +741,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "sunshinefm",
         "station": "サンシャインFM",
         "code": "452017",
@@ -754,7 +754,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "cityfmmiyakonojyo",
         "station": "シティエフエム都城",
         "code": "452025",
@@ -767,7 +767,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmsatsumasendai",
         "station": "FMさつませんだい",
         "code": "462152",
@@ -780,7 +780,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmkirishima",
         "station": "FMきりしま",
         "code": "462187",
@@ -793,7 +793,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "friendsfm",
         "station": "フレンズFM",
         "code": "462012",
@@ -806,7 +806,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmginga",
         "station": "FMぎんが",
         "code": "462012",
@@ -819,7 +819,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmkanoya",
         "station": "FMかのや",
         "code": "462039",
@@ -832,7 +832,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmmotobu",
         "station": "FMもとぶ",
         "code": "473081",
@@ -845,7 +845,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmuruma",
         "station": "FMうるま",
         "code": "472131",
@@ -858,7 +858,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmkumejima",
         "station": "FMくめじま",
         "code": "473618",
@@ -871,7 +871,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fm21",
         "station": "FM21",
         "code": "472085",
@@ -884,7 +884,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmlequio",
         "station": "FMレキオ",
         "code": "472018",
@@ -897,7 +897,7 @@
         "stream": ""
     },
     {
-        "type": "plap",
+        "type": "fmpp",
         "id": "fmmiyako",
         "station": "FMみやこ",
         "code": "472140",

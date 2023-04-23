@@ -57,7 +57,7 @@ class Scraper(Common, Const, Prefecture):
                 stream = section.find('a', class_='stm')['href'].strip()
                 official =  section.find('a', class_='site')['href'].strip()
             except Exception:
-                print('[csra] unparsable content:', station, sep='\t')
+                print('[csra] unparsable content:', station, sep='\t', file=sys.stderr)
                 continue
             # ストリーミングURLがListenRadioを参照している場合はスキップ
             if stream.startswith('http://listenradio.jp/'):
@@ -78,7 +78,7 @@ class Scraper(Common, Const, Prefecture):
                     'stream': stream,
                 })
             else:
-                print('[csra] unsupported protocol:', station, stream, sep='\t')
+                print('[csra] unsupported protocol:', station, stream, sep='\t', file=sys.stderr)
         return buf
 
 

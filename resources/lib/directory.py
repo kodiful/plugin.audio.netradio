@@ -165,10 +165,9 @@ class Directory(Common, Prefecture):
                 'nhkr': 1,
                 'radk': 2,
                 'csra': 3,
-                'plap': 3,
+                'fmpp': 3,
                 'jcba': 3,
                 'lsnr': 3,
-                'siml': 3,
                 'user': 9
             }
             # type, code, nameでソートする
@@ -199,7 +198,7 @@ class Directory(Common, Prefecture):
                 else:
                     color2 = color or 'lightgreen'
                     station += f' [COLOR {color2}]▶ {title}[/COLOR]'
-        elif data['type'] in ('csra', 'jcba', 'plap', 'lsnr', 'siml'):
+        elif data['type'] in ('csra', 'jcba', 'fmpp', 'lsnr'):
             station = f"{data['station']}({data['pref']}{data['city']})"
             if data['description']:
                 station += f" [COLOR khaki]▶ {data['description']}[/COLOR]"
@@ -217,8 +216,8 @@ class Directory(Common, Prefecture):
             stream = LocalProxy.proxy('radk', download, id=data['id'], token=self.token)
         elif data['type'] == 'jcba':
             stream = LocalProxy.proxy('jcba', download, id=data['id'])
-        elif data['type'] == 'plap':
-            stream = LocalProxy.proxy('plap', download, id=data['id'])
+        elif data['type'] == 'fmpp':
+            stream = LocalProxy.proxy('fmpp', download, id=data['id'])
         else:
             stream = LocalProxy.proxy('redirect', download, url=data['stream'])
         return stream

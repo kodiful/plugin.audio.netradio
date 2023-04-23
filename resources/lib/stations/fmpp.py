@@ -25,7 +25,7 @@ else:
 
 class Scraper(Common, Const, Prefecture):
 
-    TYPE = 'plap'
+    TYPE = 'fmpp'
     URL = 'https://fmplapla.com'
 
     def __init__(self):
@@ -72,7 +72,7 @@ class Scraper(Common, Const, Prefecture):
                     description = section['stat']
                     official = ''
                 except Exception:
-                    print('[plap] unparsable content:', station, sep='\t')
+                    print('[fmpp] unparsable content:', station, sep='\t', file=sys.stderr)
                     continue
                 buf.append({
                     'type': self.TYPE,

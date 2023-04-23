@@ -1,13 +1,13 @@
 {
-    "type": "csra",
-    "id": "",
+    "type": "jcba",
+    "id": "fmkatsushika",
     "station": "かつしかFM",
-    "code": "131229",
+    "code": "130001",
     "region": "関東",
     "pref": "東京都",
-    "city": "葛飾区",
-    "logo": "http://csra.fm/logo/kfm789.png",
-    "description": "",
-    "official": "http://www.kfm789.co.jp/",
-    "stream": "http://csra.fm/asx/katsushika.asx"
+    "city": "",
+    "logo": "https://radimo.s3.amazonaws.com/logo/060467af14bdfa5389715bd2fd3a51f8a56fe0312737541fc994bc7f33aca7e1.png",
+    "description": "活力あるパーソナリティが、楽しい話題から興味深い地域情報までお届け! メッセージお待ちしています!",
+    "official": "https://kfm789.co.jp/",
+    "stream": ""
 }

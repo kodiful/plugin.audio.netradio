@@ -1,7 +1,9 @@
+rm -fr directory
+rm -fr json
+
 python lsnr.py
-python csra.py
-python siml.py
-python plap.py  # fmplapla
+python fmpp.py  # fmplapla
 python jcba.py  # fmplapla
+python csra.py
 python nhkr.py
 python radk.py

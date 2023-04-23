@@ -1,0 +1,56 @@
+[lsnr] invalid region:	試験放送A	http://mtist.as.smartstream.ne.jp/30099/livestream/playlist.m3u8
+[fmpp] ignore existing file:	directory/コミュニティラジオ/関東/東京都/ラジオフチューズ.json
+[fmpp] ignore existing file:	directory/コミュニティラジオ/九州沖縄/沖縄県/FMうるま.json
+[jcba] ignore existing file:	directory/コミュニティラジオ/関東/神奈川県/レディオ湘南.json
+[jcba] ignore existing file:	directory/コミュニティラジオ/関東/神奈川県/FMサルース.json
+[csra] unparsable content:	エフエムしろいし
+[csra] unsupported protocol:	RADIOワンダーストレージFMドラマシティ	https://live.776.fm/
+[csra] unparsable content:	女川さいがいFM
+[csra] unparsable content:	おおつちさいがいエフエム
+[csra] unsupported protocol:	FMあすも	http://fmasmo.fmplapla.com/player/
+[csra] unsupported protocol:	まえばしCITYエフエム	http://radio.maebashi.fm:8080/mwave
+[csra] unsupported protocol:	CTY-FM	https://fmplapla.com/fmyokkaichi/
+[csra] unsupported protocol:	Pitch FM	https://fmplapla.com/pitchfm/
+[csra] unsupported protocol:	えふえむ・エヌ・ワン	https://www.fmn1.jp/netaudio.html
+[csra] unsupported protocol:	ハーバーステーション	http://www.web-services.jp/harbor779/
+[csra] unparsable content:	FMもとぶ
+[csra] ignore existing file:	directory/コミュニティラジオ/北海道/北海道/FM WING.json
+[csra] ignore existing file:	directory/コミュニティラジオ/北海道/北海道/FMくしろ.json
+[csra] ignore existing file:	directory/コミュニティラジオ/北海道/北海道/FMりべーる.json
+[csra] ignore existing file:	directory/コミュニティラジオ/北海道/北海道/ラジオニセコ.json
+[csra] ignore existing file:	directory/コミュニティラジオ/北海道/北海道/ラジオカロスサッポロ.json
+[csra] ignore existing file:	directory/コミュニティラジオ/東北/青森県/BeFM.json
+[csra] ignore existing file:	directory/コミュニティラジオ/東北/秋田県/鹿角きりたんぽFM.json
+[csra] ignore existing file:	directory/コミュニティラジオ/東北/福島県/FMいわき.json
+[csra] ignore existing file:	directory/コミュニティラジオ/東北/秋田県/FMゆーとぴあ.json
+[csra] ignore existing file:	directory/コミュニティラジオ/東北/秋田県/横手かまくらエフエム.json
+[csra] ignore existing file:	directory/コミュニティラジオ/東北/岩手県/みやこハーバーラジオ.json
+[csra] ignore existing file:	directory/コミュニティラジオ/東北/宮城県/ラジオ石巻.json
+[csra] ignore existing file:	directory/コミュニティラジオ/関東/茨城県/たかはぎFM.json
+[csra] ignore existing file:	directory/コミュニティラジオ/関東/埼玉県/FM Kawaguchi.json
+[csra] ignore existing file:	directory/コミュニティラジオ/関東/茨城県/FMひたち.json
+[csra] ignore existing file:	directory/コミュニティラジオ/関東/埼玉県/775ライブリーFM.json
+[csra] ignore existing file:	directory/コミュニティラジオ/関東/茨城県/FMぱるるん.json
+[csra] ignore existing file:	directory/コミュニティラジオ/関東/埼玉県/フラワーラジオ.json
+[csra] ignore existing file:	directory/コミュニティラジオ/関東/埼玉県/REDS WAVE.json
+[csra] ignore existing file:	directory/コミュニティラジオ/関東/神奈川県/かわさきFM.json
+[csra] ignore existing file:	directory/コミュニティラジオ/関東/東京都/調布FM.json
+[csra] ignore existing file:	directory/コミュニティラジオ/関東/東京都/かつしかFM.json
+[csra] ignore existing file:	directory/コミュニティラジオ/関東/東京都/レインボータウンFM.json
+[csra] ignore existing file:	directory/コミュニティラジオ/東海/愛知県/エフエムEGAO.json
+[csra] ignore existing file:	directory/コミュニティラジオ/近畿/京都府/京都三条ラジオカフェ.json
+[csra] ignore existing file:	directory/コミュニティラジオ/近畿/兵庫県/805たんば.json
+[csra] ignore existing file:	directory/コミュニティラジオ/近畿/兵庫県/BAN-BANラジオ.json
+[csra] ignore existing file:	directory/コミュニティラジオ/近畿/和歌山県/FMはしもと.json
+[csra] ignore existing file:	directory/コミュニティラジオ/四国/香川県/FM SUN.json
+[csra] ignore existing file:	directory/コミュニティラジオ/中国/鳥取県/DARAZ FM.json
+[csra] ignore existing file:	directory/コミュニティラジオ/四国/徳島県/FMびざん.json
+[csra] ignore existing file:	directory/コミュニティラジオ/九州沖縄/福岡県/AIR STATION HIBIKI.json
+[csra] ignore existing file:	directory/コミュニティラジオ/九州沖縄/沖縄県/FMくめじま.json
+[csra] ignore existing file:	directory/コミュニティラジオ/九州沖縄/宮崎県/FMのべおか.json
+[csra] ignore existing file:	directory/コミュニティラジオ/九州沖縄/鹿児島県/FMぎんが.json
+[csra] ignore existing file:	directory/コミュニティラジオ/九州沖縄/沖縄県/FMよなばる.json
+[csra] ignore existing file:	directory/コミュニティラジオ/九州沖縄/長崎県/FMしまばら.json
+[csra] ignore existing file:	directory/コミュニティラジオ/九州沖縄/沖縄県/FM21.json
+[csra] ignore existing file:	directory/コミュニティラジオ/九州沖縄/沖縄県/FMレキオ.json
+[csra] ignore existing file:	directory/コミュニティラジオ/九州沖縄/沖縄県/FMもとぶ.json

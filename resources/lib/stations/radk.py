@@ -67,7 +67,7 @@ class Scraper(Common, Const, Prefecture):
                 logo = section.find('logo', width='448').text
                 official = section.href.text
             except Exception:
-                print('[radk] unparsable content:', station, sep='\t')
+                print('[radk] unparsable content:', station, sep='\t', file=sys.stderr)
                 continue
             buf.append({
                 'type': self.TYPE,
