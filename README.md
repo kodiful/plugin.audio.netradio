@@ -416,6 +416,7 @@ OS側でパスの修正ができない場合は、ここに _ffmpeg_ のパス�
 |神奈川県（相模原市）|[エフエムさがみ](http://www.fmsagami.co.jp/)|-|-|-|○|
 |神奈川県（藤沢市）|[レディオ湘南](https://www.radioshonan.co.jp/index.html)|-|○|○|-|
 |神奈川県（小田原市）|[FMおだわら](https://fm-odawara.com/)|-|-|○|-|
+|神奈川県（大和市）|[FMやまと](http://www.fmyamato.co.jp/)|-|-|○|-|
 |神奈川県（海老名市）|[FM kaon](http://www.fmkaon.com/)|-|-|-|○|
 |神奈川県（海老名市）|FMカオン|○|-|-|-|
 |新潟県|[FM KENTO](https://fmkento.com/)|-|-|○|-|
@@ -517,8 +518,7 @@ OS側でパスの修正ができない場合は、ここに _ffmpeg_ のパス�
 |奈良県|[FM五條](http://shousuien.or.jp/fm_gojo/)|-|-|○|-|
 |奈良県|[エフエムハイホー](http://www.fm814.co.jp/)|-|-|○|-|
 |奈良県（奈良市）|[なら どっと FM](http://narafm.jp/)|-|-|○|-|
-|奈良県（大和高田市）|[FMヤマト](http://www.fmyamato.co.jp/)|-|○|-|-|
-|奈良県（大和高田市）|[FMやまと](http://www.fmyamato.co.jp/)|-|-|○|-|
+|奈良県（大和市）|[FMヤマト](n/a)|-|○|-|-|
 |和歌山県|[FM TANABE](https://www.fm885.jp/index.php)|-|-|○|-|
 |和歌山県|[FMビーチステーション](https://www.fm764.com/)|-|-|○|-|
 |和歌山県（和歌山市）|[バナナエフエム](https://877.fm/)|-|-|○|-|
