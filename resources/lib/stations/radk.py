@@ -61,7 +61,7 @@ class Scraper(Common, Const, Prefecture):
             </station>
             '''
             try:
-                id = section.id.text
+                id_ = section.id.text
                 station = section.find('name').text
                 code, region, pref = self.radiko_place(self.area)
                 logo = section.find('logo', width='448').text
@@ -71,7 +71,7 @@ class Scraper(Common, Const, Prefecture):
                 continue
             buf.append({
                 'type': self.TYPE,
-                'id': id,
+                'id': id_,
                 'station': self.normalize(station),
                 'code': code,
                 'region': region,

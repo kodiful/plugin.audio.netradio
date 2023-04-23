@@ -56,14 +56,14 @@ class Scraper(Common, Const, Prefecture):
             f'NHK-FM({station})': buf3,
         }
 
-    def setup1(self, data, id, station):
+    def setup1(self, data, id_, station):
         return [
-            #self.setup2(data['previous'], id, station),
-            self.setup2(data['present'], id, station),
-            self.setup2(data['following'], id, station),
+            #self.setup2(data['previous'], id_, station),
+            self.setup2(data['present'], id_, station),
+            self.setup2(data['following'], id_, station),
         ]
 
-    def setup2(self, data, id, station):
+    def setup2(self, data, id_, station):
         '''
         {
             "id": "2023042071853",
@@ -233,7 +233,7 @@ class Scraper(Common, Const, Prefecture):
         '''
         return {
             'type': 'nhkr',
-            'id': id,
+            'id': id_,
             'station': station,
             'title': self.normalize(data['title']),
             'START': self.t2string(data['start_time']),  # 2020-10-28T08:55:00+09:00

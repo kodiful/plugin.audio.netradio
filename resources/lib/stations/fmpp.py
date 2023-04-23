@@ -65,7 +65,7 @@ class Scraper(Common, Const, Prefecture):
                   }
                 '''
                 try:
-                    id = section['id']
+                    id_ = section['id']
                     station = section['name']
                     code, region, pref, city = self.infer_place(section['pref'] + section['city'])
                     logo = section['artwork']
@@ -76,7 +76,7 @@ class Scraper(Common, Const, Prefecture):
                     continue
                 buf.append({
                     'type': self.TYPE,
-                    'id': str(id),
+                    'id': str(id_),
                     'station': self.normalize(station),
                     'code': code,
                     'region': region,

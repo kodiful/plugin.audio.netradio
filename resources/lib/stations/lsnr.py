@@ -53,7 +53,7 @@ class Scraper(Common, Const, Prefecture):
             }
             '''
             try:
-                id = section['ChannelId']
+                id_ = section['ChannelId']
                 station = section['ChannelName']
                 code, region, pref, city = self.infer_place(section['ChannelDetail'])
                 logo = section['ChannelImage']
@@ -65,7 +65,7 @@ class Scraper(Common, Const, Prefecture):
             if region:
                 buf.append({
                     'type': self.TYPE,
-                    'id': str(id),
+                    'id': str(id_),
                     'station': self.normalize(station),
                     'code': code,
                     'region': region,

@@ -122,7 +122,8 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             self.end_headers()
             self.wfile.write(b'302 Moved Temporarily')
         elif type_ == 'radk':
-            url = f"https://f-radiko.smartstream.ne.jp/{params['id'][0]}/_definst_/simul-stream.stream/playlist.m3u"
+            id_ = params['id'][0]
+            url = f"https://f-radiko.smartstream.ne.jp/{id_}/_definst_/simul-stream.stream/playlist.m3u"
             token = params['token'][0]
             req = urllib.request.Request(url, headers={'x-radiko-authtoken': token})
             res = urllib.request.urlopen(req)
@@ -131,8 +132,8 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             self.end_headers()
             self.wfile.write(data)
         elif type_ == 'jcba':
-            id = params['id'][0]
-            url = f'https://api.radimo.smen.biz/api/v1/select_stream?station={id}&channel=0&quality=high&burst=5'
+            id_ = params['id'][0]
+            url = f'https://api.radimo.smen.biz/api/v1/select_stream?station={id_}&channel=0&quality=high&burst=5'
             req = urllib.request.Request(url)
             res = urllib.request.urlopen(req)
             data = res.read()
@@ -153,8 +154,8 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             self.end_headers()
             self.wfile.write(b'302 Moved Temporarily')
         elif type_ == 'fmpp':
-            id = params['id'][0]
-            url = f'https://fmplapla.com/api/select_stream?station={id}&burst=5'
+            id_ = params['id'][0]
+            url = f'https://fmplapla.com/api/select_stream?station={id_}&burst=5'
             req = urllib.request.Request(url, headers={'Origin': 'https://fmplapla.com'}, method='POST')
             res = urllib.request.urlopen(req)
             data = res.read()

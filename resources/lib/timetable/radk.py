@@ -38,7 +38,7 @@ class Scraper(Common, Const, Prefecture):
         buf = {}
         for s in data['radiko']['stations']['station']:
             station = self.normalize(s['name'])
-            id = s['@id']
+            id_ = s['@id']
             progs = []
             for p in s['scd']['progs']['prog']:
                 '''
@@ -61,7 +61,7 @@ class Scraper(Common, Const, Prefecture):
                 '''
                 progs.append({
                     'type': 'radk',
-                    'id': id,
+                    'id': id_,
                     'station': station,
                     'title': self.normalize(p['title']),
                     'START': p['@ft'],  # 20201027000000
