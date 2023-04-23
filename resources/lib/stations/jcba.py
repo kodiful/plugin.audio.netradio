@@ -61,7 +61,7 @@ class Scraper(Common, Const, Prefecture):
                     description = section['description']
                     official = section['officialSiteUrl']
                 except Exception:
-                    print('[jcba] unparsable content:', station, sep='\t', file=sys.stderr)
+                    print('[jcba] unparsable content (skip):', station, sep='\t', file=sys.stderr)
                     continue
                 buf.append({
                     'type': self.TYPE,

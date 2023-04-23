@@ -50,7 +50,7 @@ class Common:
                 self.write_as_json(path, item)
                 status = True
             else:
-                print('[%s] ignore existing file:' % self.TYPE, path, sep='\t', file=sys.stderr)
+                print('[%s] file exists (skip):' % self.TYPE, path, sep='\t', file=sys.stderr)
                 status = False
             # ロゴ画像をダウンロードする
             self.load_logo(item, self.LOGO_PATH)

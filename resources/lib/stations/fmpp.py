@@ -72,7 +72,7 @@ class Scraper(Common, Const, Prefecture):
                     description = section['stat']
                     official = ''
                 except Exception:
-                    print('[fmpp] unparsable content:', station, sep='\t', file=sys.stderr)
+                    print('[fmpp] unparsable content (skip):', station, sep='\t', file=sys.stderr)
                     continue
                 buf.append({
                     'type': self.TYPE,

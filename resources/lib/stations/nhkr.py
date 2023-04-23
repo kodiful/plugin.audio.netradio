@@ -68,7 +68,7 @@ class Scraper(Common, Const, Prefecture):
                 station = section.areajp.text
                 code, region, pref, city = self.infer_place(self.AREA[section.areajp.text])
             except Exception:
-                print('[nhkr] unparsable content:', station, sep='\t', file=sys.stderr)
+                print('[nhkr] unparsable content (skip):', station, sep='\t', file=sys.stderr)
                 continue
             buf.append({
                 'type': 'nhkr',
