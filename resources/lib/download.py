@@ -79,13 +79,13 @@ class Download(Directory, Common):
         station = list(filter(lambda x: x['id'] == program['id'] and x['station'] == program['station'], index))[0]
         return station
 
-    def download(self, program, extra, path, queue):
+    def download(self, program, end, path, queue):
         # 放送局データ
         station = self._station(program)
         # ストリームURL
         stream = self._stream(station, download=True)
         # 時間
-        duration = program['end'] + extra - self.now()
+        duration = end - self.now()
         # ビットレート
         bitrate = self.GET('bitrate')
         if bitrate == 'auto':

@@ -188,12 +188,10 @@ class Service(Common, Prefecture):
                 new_path = os.path.join(self.PROCESSING_PATH, os.path.basename(path))
                 # DOWNLOAD_PREPARATION以内に開始する番組はダウンロードを予約
                 delay = self.DOWNLOAD_DELAY[program['type']]
-                extra = delay + 2 * self.DOWNLOAD_MARGIN
-                delay = program['start'] - now + delay
-                if delay < self.DOWNLOAD_MARGIN:
-                    delay = delay - self.DOWNLOAD_MARGIN 
+                start = program['start'] + delay - self.DOWNLOAD_MARGIN  # 開始時刻
+                end = program['end'] + delay + self.DOWNLOAD_MARGIN  # 終了時刻
                 # ダウンロード時間
-                thread = threading.Timer(delay, Download().download, args=[program, extra, new_path, self.queue])
+                thread = threading.Timer(start - now, Download().download, args=[program, end, new_path, self.queue])
                 thread.start()
                 # ファイルを移動
                 shutil.move(path, new_path)
