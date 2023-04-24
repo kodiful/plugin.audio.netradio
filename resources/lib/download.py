@@ -143,10 +143,14 @@ class Download(Directory, Common):
         # 全キーワードのrssファイル生成
         RSS().create()
         # キーワードごとのrssファイル生成
+        keywords = []
         for path in glob.glob(os.path.join(self.GET('folder'), '*')):
             if os.path.isdir(path):
                 keyword = path.split('/')[-1]
                 RSS(keyword).create()
+                keywords.append(keyword)
+        # インデクス作成
+        RSS().create_index(keywords)
         # 官僚通知
         self.notify('RSS has been updated')
 
@@ -158,7 +162,8 @@ class RSS(Common):
         locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
         # RSSのルートパス
         self.rss_root = self.GET('rssurl')  # http://127.0.0.1/NetRadio
-        self.dir_root = self.GET('folder')  # /Library/WebServer/Documents/www/NetRadio
+        self.dir_root = dir_root = self.GET('folder')  # /Library/WebServer/Documents/www/NetRadio
+        self.index_file = os.path.join(self.dir_root, 'index.xml')  # /Library/WebServer/Documents/www/NetRadio/index.xml
         if keyword is None:
             self.rss_file = os.path.join(self.dir_root, 'rss.xml')
             contents = glob.glob(os.path.join(self.dir_root, '*', '*.mp3'))
@@ -174,19 +179,26 @@ class RSS(Common):
         for path in contents:
             buf.append((self.read_as_json(path.replace('.mp3', '.json')), path))
         self.contents = sorted(buf, key=lambda x: (int(x[0]['START'][:8]), -int(x[0]['START'][8:])), reverse=True)[:limit]  # 開始日の降順、同じ日の中では昇順にソート
+        # テンプレート
+        self.header = self.read(os.path.join(self.RESOURCES_PATH, 'data', 'rss', 'header.xml'))
+        self.body = self.read(os.path.join(self.RESOURCES_PATH, 'data', 'rss', 'body.xml'))
+        self.footer = self.read(os.path.join(self.RESOURCES_PATH, 'data', 'rss', 'footer.xml'))
+        # アイコン画像をダウンロードフォルダにコピーする
+        icon = os.path.join(dir_root, 'icon.png')
+        if os.path.isfile(icon):
+            os.remove(icon)
+        shutil.copy(os.path.join(self.PLUGIN_PATH, 'icon.png'), icon)
+        # スタイルシートをダウンロードフォルダにコピーする
+        stylesheet = os.path.join(dir_root, 'stylesheet.xsl')
+        if os.path.isfile(stylesheet):
+            os.remove(stylesheet)
+        shutil.copy(os.path.join(self.RESOURCES_PATH, 'data', 'rss', 'stylesheet.xsl'), stylesheet)
 
     def create(self):
-        # テンプレート
-        header = self.read(os.path.join(self.RESOURCES_PATH, 'data', 'rss', 'header.xml'))
-        body = self.read(os.path.join(self.RESOURCES_PATH, 'data', 'rss', 'body.xml'))
-        footer = self.read(os.path.join(self.RESOURCES_PATH, 'data', 'rss', 'footer.xml'))
-        #
-        # RSS生成
-        #
         buf = []
         # header
         buf.append(
-            header.format(
+            self.header.format(
                 title='NetRadio Client',
                 image='icon.png',
                 root=self.rss_root))
@@ -221,7 +233,7 @@ class RSS(Common):
             station = escape(p['station'])
             # 各番組情報を書き込む
             buf.append(
-                body.format(
+                self.body.format(
                     title=title,
                     url=url,
                     root=self.rss_root,
@@ -235,23 +247,41 @@ class RSS(Common):
                 )
             )
         # footer
-        buf.append(footer)
+        buf.append(self.footer)
         # ファイル書き込み
         if os.path.exists(self.rss_file):
             os.remove(self.rss_file)
         with open(self.rss_file, 'wb') as f:
             f.write('\n'.join(buf).encode('utf-8'))
-        #
-        # 関係するファイルをダウンロードフォルダにコピーする
-        #
-        dir_root = self.GET('folder')
-        # アイコン画像
-        icon = os.path.join(dir_root, 'icon.png')
-        if os.path.isfile(icon):
-            os.remove(icon)
-        shutil.copy(os.path.join(self.PLUGIN_PATH, 'icon.png'), icon)
-        # スタイルシート
-        stylesheet = os.path.join(dir_root, 'stylesheet.xsl')
-        if os.path.isfile(stylesheet):
-            os.remove(stylesheet)
-        shutil.copy(os.path.join(self.RESOURCES_PATH, 'data', 'rss', 'stylesheet.xsl'), stylesheet)
+
+    def create_index(self, keywords):
+        buf = []
+        # header
+        buf.append(
+            self.header.format(
+                title='NetRadio Client',
+                image='icon.png',
+                root=self.rss_root))
+        # body
+        for keyword in sorted(keywords):
+            buf.append(
+                self.body.format(
+                    title=keyword,
+                    url='%s/%s/rss.xml' % (self.rss_root, keyword),
+                    root='',
+                    source='',
+                    date='',
+                    startdate='',
+                    station='',
+                    duration='',
+                    filesize='',
+                    description=''
+                )
+            )
+        # footer
+        buf.append(self.footer)
+        # ファイル書き込み
+        if os.path.exists(self.index_file):
+            os.remove(self.index_file)
+        with open(self.index_file, 'wb') as f:
+            f.write('\n'.join(buf).encode('utf-8'))

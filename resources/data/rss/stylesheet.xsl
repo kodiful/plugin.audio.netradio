@@ -131,9 +131,11 @@
           </div>
           <xsl:for-each select="/rss/channel/item">
             <div class="channel-item">
-              <p class="episode-source">
-                <xsl:value-of select="source"/>
-              </p>
+              <xsl:if test="source!=''">
+                <p class="episode-source">
+                  <xsl:value-of select="source"/>
+                </p>
+              </xsl:if>
               <h2>
                 <xsl:choose>
                   <xsl:when test="link/text()">
@@ -150,10 +152,12 @@
                   </xsl:otherwise>
                 </xsl:choose>
               </h2>
-              <p class="episode-date">
-                <xsl:value-of select="pubDate"/>
-              </p>
-              <xsl:if test="description">
+              <xsl:if test="pubDate!=''">
+                <p class="episode-date">
+                  <xsl:value-of select="pubDate"/>
+                </p>
+              </xsl:if>
+              <xsl:if test="description!=''">
                 <p>
                   <iframe>
                     <xsl:attribute name="srcdoc">
@@ -169,18 +173,20 @@
                   </iframe>
                 </p>
               </xsl:if>
-              <p class="episode-meta">
-                <a>
-                  <xsl:attribute name="href">
-                    <xsl:value-of select="enclosure/@url"/>
-                  </xsl:attribute>
-                  Download
-                </a>
-                |
-                <xsl:value-of select="itunes:duration"/>
-                |
-                <xsl:value-of select='format-number(number(enclosure/@length div "1024000"),"0.0")'/>MB
-              </p>
+              <xsl:if test="duration!=''">
+                <p class="episode-meta">
+                  <a>
+                    <xsl:attribute name="href">
+                      <xsl:value-of select="enclosure/@url"/>
+                    </xsl:attribute>
+                    Download
+                  </a>
+                  |
+                  <xsl:value-of select="itunes:duration"/>
+                  |
+                  <xsl:value-of select='format-number(number(enclosure/@length div "1024000"),"0.0")'/>MB
+                </p>
+              </xsl:if>
             </div>
           </xsl:for-each>
         </div>
