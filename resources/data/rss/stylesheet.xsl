@@ -173,7 +173,7 @@
                   </iframe>
                 </p>
               </xsl:if>
-              <xsl:if test="duration!=''">
+              <xsl:if test="itunes:duration!=''">
                 <p class="episode-meta">
                   <a>
                     <xsl:attribute name="href">
