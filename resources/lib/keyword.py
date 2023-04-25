@@ -83,6 +83,9 @@ class Keyword(Common):
             data = json.dumps(p).encode('utf-8')
             crc = format(binascii.crc32(data), 'x')
             hash = '%s_%s_%s_%s_%s.json' % (p['START'][0:8], p['START'][8:12], p['END'][8:12], p['id'], crc)
+            # radiko.jpのNHKはスキップ
+            if p['type'] == 'radk' and p['station'].startswith('NHK'):
+                continue
             # 処理中の番組はスキップ
             path = os.path.join(self.PROCESSING_PATH, hash)
             if os.path.isfile(path):
