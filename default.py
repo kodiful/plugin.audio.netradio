@@ -84,6 +84,7 @@ if __name__ == '__main__':
 
     # アドオン設定
     elif action == 'settings':
+        Common.SET('pref', Directory().pref)
         src = os.path.join(Common.RESOURCES_PATH, 'default.xml')
         dst = os.path.join(Common.RESOURCES_PATH, 'settings.xml')
         shutil.copy(src, dst)

@@ -97,6 +97,10 @@ msgctxt "#30202"
 msgid "[COLOR lightgreen]Add keyword[/COLOR]"
 msgstr ""
 
+msgctxt "#30203"
+msgid "Authorized region"
+msgstr ""
+
 msgctxt "#30300"
 msgid "Download"
 msgstr ""

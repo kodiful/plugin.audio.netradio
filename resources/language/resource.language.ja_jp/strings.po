@@ -96,6 +96,10 @@ msgctxt "#30202"
 msgid "[COLOR lightgreen]Add keyword[/COLOR]"
 msgstr "[COLORlightgreen]キーワードを追加する[/COLOR]"
 
+msgctxt "#30203"
+msgid "Authorized region"
+msgstr "認証されている地域"
+
 msgctxt "#30300"
 msgid "Download"
 msgstr "番組保存"
