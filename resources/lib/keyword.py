@@ -64,6 +64,9 @@ class Keyword(Common):
         xbmc.executebuiltin('Container.Refresh')
 
     def match(self):
+        # 番組保存しない場合は何もしない
+        if self.GET('download') == 'false':
+            return []
         # キーワードリスト生成
         keywords = []
         for path in sorted(glob.glob(os.path.join(self.KEYWORDS_PATH, '*.json'))):  # 文字コード順に照合、複数当たった場合は後勝ち
