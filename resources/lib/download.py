@@ -176,7 +176,7 @@ class RSS(Common):
         # header
         buf.append(
             self.header.format(
-                title='NetRadio Client',
+                title='%s | NetRadio Client' % keyword,
                 image='icon.png',
                 root=rss_root))
         # body

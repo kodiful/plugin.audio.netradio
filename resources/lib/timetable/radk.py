@@ -26,8 +26,8 @@ else:
 class Scraper(Common, Const, Prefecture):
 
     TYPE = 'radk'
-    #URL = 'http://radiko.jp/v2/api/program/now?area_id=%s'
-    URL = 'https://radiko.jp/v3/program/now/%s.xml'
+    #URL = 'http://radiko.jp/v2/api/program/now?area_id=%s'  # v2
+    URL = 'https://radiko.jp/v3/program/now/%s.xml'  # v3
 
     def __init__(self, pref):
         item = self.search_by_pref(pref)
@@ -41,9 +41,10 @@ class Scraper(Common, Const, Prefecture):
             station = self.normalize(s['name'])
             id_ = s['@id']
             progs = []
-            #for p in s['scd']['progs']['prog']:
-            for p in s['progs']['prog']:
+            #for p in s['scd']['progs']['prog']:  # v2
+            for p in s['progs']['prog']:  # v3
                 '''
+                v2:
                 <prog ft="20230420050000" to="20230420063000" ftl="0500" tol="0630" dur="5400">
                     <title>生島ヒロシのおはよう定食・一直線</title>
                     <sub_title />
@@ -59,6 +60,26 @@ class Scraper(Common, Const, Prefecture):
                         <meta name="facebook-fanpage" value="http://www.facebook.com/radiko.jp" />
                     </metas>
                     <url>https://www.tbsradio.jp/ohayou/</url>
+                </prog>
+                '''
+                '''
+                v3:
+                <prog id="10003448874" master_id="" ft="20231110120000" to="20231110140000" ftl="1200" tol="1400" dur="7200">
+                    <title>金曜ボイスログ (3)</title>
+                    <url>https://www.tbsradio.jp/vl/</url>
+                    <url_link>https://www.tbsradio.jp/vl/?x11=_(radiko-uid)</url_link>
+                    <failed_record>0</failed_record>
+                    <ts_in_ng>0</ts_in_ng>
+                    <ts_out_ng>0</ts_out_ng>
+                    <desc></desc>
+                    <info>「あなたのレビューがラジオになる」をモットーに、あなたの愛するもの・ことをレビューしまくるラジオ番組。</info>
+                    <pfm>臼井ミトン　ゲスト：柳生九兵衛</pfm>
+                    <img>https://radiko.jp/res/program/DEFAULT_IMAGE/TBS/aiu147chgm.jpg</img>
+                    <tag><item><name>臼井ミトン</name></item><item><name>音楽との出会いが楽しめる</name></item><item><name>人気アーティストトーク</name></item><item><name>作業がはかどる</name></item></tag>
+                    <genre><personality id="C010"><name>タレント</name></personality><program id="P006"><name>バラエティ</name></program></genre>
+                    <metas>
+                        <meta name="twitter" value="#radiko" />
+                    </metas>
                 </prog>
                 '''
                 progs.append({
