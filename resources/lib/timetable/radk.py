@@ -26,7 +26,8 @@ else:
 class Scraper(Common, Const, Prefecture):
 
     TYPE = 'radk'
-    URL = 'http://radiko.jp/v2/api/program/now?area_id=%s'
+    #URL = 'http://radiko.jp/v2/api/program/now?area_id=%s'
+    URL = 'https://radiko.jp/v3/program/now/%s.xml'
 
     def __init__(self, pref):
         item = self.search_by_pref(pref)
@@ -40,7 +41,8 @@ class Scraper(Common, Const, Prefecture):
             station = self.normalize(s['name'])
             id_ = s['@id']
             progs = []
-            for p in s['scd']['progs']['prog']:
+            #for p in s['scd']['progs']['prog']:
+            for p in s['progs']['prog']:
                 '''
                 <prog ft="20230420050000" to="20230420063000" ftl="0500" tol="0630" dur="5400">
                     <title>生島ヒロシのおはよう定食・一直線</title>
