@@ -42,9 +42,9 @@ class Scraper(Common, Const, Prefecture):
             id_ = s['@id']
             progs = []
             #for p in s['scd']['progs']['prog']:  # v2
-            progs = s['progs']['prog']
-            if type(progs) == 'dict': progs = [progs]  # 1番組だけのときはdictなのでlist化する
-            for p in progs:  # v3
+            proglist = s['progs']['prog']
+            if type(proglist) == 'dict': proglist = [proglist]  # 1番組だけのときはdictなのでlist化する
+            for p in proglist:  # v3
                 '''
                 v2:
                 <prog ft="20230420050000" to="20230420063000" ftl="0500" tol="0630" dur="5400">
