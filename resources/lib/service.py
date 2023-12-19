@@ -135,15 +135,24 @@ class Service(Common, Prefecture):
             now = self.now()
             # 現在時刻がradiko認証更新時刻を過ぎていたら
             if now > update_auth:
-                self._authenticate()  # radiko認証
-                update_auth = now + self.AUTH_INTERVAL
+                try:
+                    self._authenticate()  # radiko認証
+                    update_auth = now + self.AUTH_INTERVAL
+                except Exception as e:
+                    self.log('monitor error in Service._authenticate:', e)
             # 現在時刻が番組表更新予定時刻を過ぎていたら
             if now > update_nhkr:
-                update_nhkr = now + Nhkr(self.region).update()  # NHKの番組データを取得
-                refresh = update_nhkr > now  # 番組データが更新されたら画面更新
+                try:
+                    update_nhkr = now + Nhkr(self.region).update()  # NHKの番組データを取得
+                    refresh = update_nhkr > now  # 番組データが更新されたら画面更新
+                except Exception as e:
+                    self.log('monitor error in Nhkr.update:', e)
             if now > update_radk:
-                update_radk = now + Radk(self.pref).update()  # radikoの番組データを取得
-                refresh = update_radk > now  # 番組データが更新されたら画面更新
+                try:
+                    update_radk = now + Radk(self.pref).update()  # radikoの番組データを取得
+                    refresh = update_radk > now  # 番組データが更新されたら画面更新
+                except Exception as e:
+                    self.log('monitor error in Radk.update:', e)
             # 共有メモリをチェック
             if self.read_mmap() == 'True':
                 refresh = True
