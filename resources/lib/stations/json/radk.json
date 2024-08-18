@@ -79,15 +79,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "010006",
         "region": "北海道",
         "pref": "北海道",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -170,15 +170,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "020001",
         "region": "東北",
         "pref": "青森県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -261,15 +261,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "030007",
         "region": "東北",
         "pref": "岩手県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -352,15 +352,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "040002",
         "region": "東北",
         "pref": "宮城県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -392,7 +392,7 @@
     {
         "type": "radk",
         "id": "ABS",
-        "station": "ABS秋田放送",
+        "station": "ABSラジオ",
         "code": "050008",
         "region": "東北",
         "pref": "秋田県",
@@ -443,15 +443,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "050008",
         "region": "東北",
         "pref": "秋田県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -534,15 +534,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "060003",
         "region": "東北",
         "pref": "山形県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -625,15 +625,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "070009",
         "region": "東北",
         "pref": "福島県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -795,7 +795,7 @@
     {
         "type": "radk",
         "id": "BAYFM78",
-        "station": "bayfm78",
+        "station": "BAYFM78",
         "code": "080004",
         "region": "関東",
         "pref": "茨城県",
@@ -833,15 +833,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "080004",
         "region": "関東",
         "pref": "茨城県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -990,7 +990,7 @@
     {
         "type": "radk",
         "id": "RADIOBERRY",
-        "station": "RadioBerry",
+        "station": "RADIO BERRY",
         "code": "090000",
         "region": "関東",
         "pref": "栃木県",
@@ -1016,7 +1016,7 @@
     {
         "type": "radk",
         "id": "BAYFM78",
-        "station": "bayfm78",
+        "station": "BAYFM78",
         "code": "090000",
         "region": "関東",
         "pref": "栃木県",
@@ -1067,15 +1067,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "090000",
         "region": "関東",
         "pref": "栃木県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -1237,7 +1237,7 @@
     {
         "type": "radk",
         "id": "BAYFM78",
-        "station": "bayfm78",
+        "station": "BAYFM78",
         "code": "100005",
         "region": "関東",
         "pref": "群馬県",
@@ -1288,15 +1288,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "100005",
         "region": "関東",
         "pref": "群馬県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -1445,7 +1445,7 @@
     {
         "type": "radk",
         "id": "BAYFM78",
-        "station": "bayfm78",
+        "station": "BAYFM78",
         "code": "110001",
         "region": "関東",
         "pref": "埼玉県",
@@ -1496,15 +1496,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "110001",
         "region": "関東",
         "pref": "埼玉県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -1653,7 +1653,7 @@
     {
         "type": "radk",
         "id": "BAYFM78",
-        "station": "bayfm78",
+        "station": "BAYFM78",
         "code": "120006",
         "region": "関東",
         "pref": "千葉県",
@@ -1704,15 +1704,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "120006",
         "region": "関東",
         "pref": "千葉県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -1861,7 +1861,7 @@
     {
         "type": "radk",
         "id": "BAYFM78",
-        "station": "bayfm78",
+        "station": "BAYFM78",
         "code": "130001",
         "region": "関東",
         "pref": "東京都",
@@ -1912,15 +1912,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "130001",
         "region": "関東",
         "pref": "東京都",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -2069,7 +2069,7 @@
     {
         "type": "radk",
         "id": "BAYFM78",
-        "station": "bayfm78",
+        "station": "BAYFM78",
         "code": "140007",
         "region": "関東",
         "pref": "神奈川県",
@@ -2120,15 +2120,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "140007",
         "region": "関東",
         "pref": "神奈川県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -2211,15 +2211,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "150002",
         "region": "甲信越",
         "pref": "新潟県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -2302,15 +2302,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "160008",
         "region": "甲信越",
         "pref": "富山県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -2388,20 +2388,20 @@
         "city": "",
         "logo": "http://radiko.jp/v2/static/station/logo/HELLOFIVE/448x200.png",
         "description": "",
-        "official": "http://hellofive.jp/index.html",
+        "official": "https://hellofive.jp/",
         "stream": ""
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "170003",
         "region": "甲信越",
         "pref": "石川県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -2484,15 +2484,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "180009",
         "region": "甲信越",
         "pref": "福井県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -2575,15 +2575,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "190004",
         "region": "甲信越",
         "pref": "山梨県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -2666,15 +2666,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "200000",
         "region": "甲信越",
         "pref": "長野県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -2809,15 +2809,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "210005",
         "region": "東海",
         "pref": "岐阜県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -2900,15 +2900,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "220001",
         "region": "東海",
         "pref": "静岡県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -3030,15 +3030,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "230006",
         "region": "東海",
         "pref": "愛知県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -3173,15 +3173,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "240001",
         "region": "東海",
         "pref": "三重県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -3381,15 +3381,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "250007",
         "region": "近畿",
         "pref": "滋賀県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -3576,15 +3576,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "260002",
         "region": "近畿",
         "pref": "京都府",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -3771,15 +3771,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "270008",
         "region": "近畿",
         "pref": "大阪府",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -3940,15 +3940,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "280003",
         "region": "近畿",
         "pref": "兵庫県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -4122,15 +4122,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "290009",
         "region": "近畿",
         "pref": "奈良県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -4304,15 +4304,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "300004",
         "region": "近畿",
         "pref": "和歌山県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -4395,15 +4395,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "310000",
         "region": "中国",
         "pref": "鳥取県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -4486,15 +4486,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "320005",
         "region": "中国",
         "pref": "島根県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -4577,15 +4577,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "330001",
         "region": "中国",
         "pref": "岡山県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -4668,15 +4668,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "340006",
         "region": "中国",
         "pref": "広島県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -4759,15 +4759,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "350001",
         "region": "中国",
         "pref": "山口県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -4850,15 +4850,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "360007",
         "region": "四国",
         "pref": "徳島県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -4941,15 +4941,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "370002",
         "region": "四国",
         "pref": "香川県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -5032,15 +5032,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "380008",
         "region": "四国",
         "pref": "愛媛県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -5123,15 +5123,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "390003",
         "region": "四国",
         "pref": "高知県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -5253,15 +5253,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "400009",
         "region": "九州沖縄",
         "pref": "福岡県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -5370,15 +5370,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "410004",
         "region": "九州沖縄",
         "pref": "佐賀県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -5461,15 +5461,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "420000",
         "region": "九州沖縄",
         "pref": "長崎県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -5552,15 +5552,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "430005",
         "region": "九州沖縄",
         "pref": "熊本県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -5643,15 +5643,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "440001",
         "region": "九州沖縄",
         "pref": "大分県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -5729,20 +5729,20 @@
         "city": "",
         "logo": "http://radiko.jp/v2/static/station/logo/JOYFM/448x200.png",
         "description": "",
-        "official": "http://www.joyfm.co.jp/",
+        "official": "https://joyfm.co.jp/",
         "stream": ""
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "450006",
         "region": "九州沖縄",
         "pref": "宮崎県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -5825,15 +5825,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "460001",
         "region": "九州沖縄",
         "pref": "鹿児島県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {
@@ -5929,15 +5929,15 @@
     },
     {
         "type": "radk",
-        "id": "HOUSOU-DAIGAKU",
-        "station": "放送大学",
+        "id": "ABCR-KOSHIEN",
+        "station": "オーディオ高校野球",
         "code": "470007",
         "region": "九州沖縄",
         "pref": "沖縄県",
         "city": "",
-        "logo": "http://radiko.jp/v2/static/station/logo/HOUSOU-DAIGAKU/448x200.png",
+        "logo": "http://radiko.jp/v2/static/station/logo/ABCR-KOSHIEN/448x200.png",
         "description": "",
-        "official": "https://www.ouj.ac.jp/",
+        "official": "https://abcradio.asahi.co.jp/",
         "stream": ""
     },
     {

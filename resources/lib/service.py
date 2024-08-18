@@ -70,6 +70,9 @@ class Service(Common, Prefecture):
         thread.start()
 
     def _setup_userdata(self):
+        shutil.rmtree(self.DIRECTORY_PATH)
+        shutil.rmtree(self.INDEX_PATH)
+        shutil.rmtree(self.LOGO_PATH)
         if not os.path.isdir(self.DIRECTORY_PATH):
             shutil.copytree(os.path.join(self.RESOURCES_PATH, 'lib', 'stations', 'directory'), self.DIRECTORY_PATH)
         if not os.path.isdir(self.INDEX_PATH):

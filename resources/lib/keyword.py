@@ -80,6 +80,7 @@ class Keyword(Common):
         for p in programs:
             # 放送局情報
             s = self._station(p)
+            if s is None: continue
             # 番組urlがないときは公式urlで代替
             p['url'] = p['url'] or s['official']
             # 番組情報のハッシュファイル名
@@ -118,6 +119,11 @@ class Keyword(Common):
     def _station(self, program):
         index = self.read_as_json(os.path.join(self.INDEX_PATH, '%s.json' % program['type']))
         #station = list(filter(lambda x: x['id'] == program['id'] and x['station'] == program['station'], index))[0]
-        station = list(filter(lambda x: x['id'] == program['id'] and (x['id'][:3] != 'NHK' or x['station'] == program['station']), index))[0]
-        return station
+        #station = list(filter(lambda x: x['id'] == program['id'] and (x['id'][:3] != 'NHK' or x['station'] == program['station']), index))[0]
+        #return station
+        station = list(filter(lambda x: x['id'] == program['id'] and (x['id'][:3] != 'NHK' or x['station'] == program['station']), index))
+        if len(station) > 0:
+            return station[0]
+        else:
+            return None
 
