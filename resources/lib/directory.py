@@ -189,7 +189,11 @@ class Directory(Common, Prefecture):
                 # 認証された地域と一致しない場合はグレイ表示
                 color = 'gray'
                 station = f'[COLOR {color}]{station}[/COLOR]'
-            progs = self.read_as_json(os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['station']))
+            timetable_file = os.path.join(self.TIMETABLE_PATH, data['type'], f'%s.json' % data['station'])
+            if os.path.isfile(timetable_file):
+                progs = self.read_as_json(timetable_file)
+            else:
+                progs = []
             for i, p in enumerate(progs):
                 title = '%s (%s～%s)' % (p['title'], self._time(p['start']), self._time(p['end']))
                 if i == 0:

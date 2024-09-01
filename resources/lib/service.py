@@ -79,9 +79,11 @@ class Service(Common, Prefecture):
                     shutil.copytree(path, os.path.join(self.DIRECTORY_PATH, os.path.basename(path)))
         else:
             shutil.copytree(os.path.join(self.RESOURCES_PATH, 'lib', 'stations', 'directory'), self.DIRECTORY_PATH)
-        shutil.rmtree(self.INDEX_PATH)
+        if os.path.isdir(self.INDEX_PATH):
+            shutil.rmtree(self.INDEX_PATH)
         shutil.copytree(os.path.join(self.RESOURCES_PATH, 'lib', 'stations', 'json'), self.INDEX_PATH)
-        shutil.rmtree(self.LOGO_PATH)
+        if os.path.isdir(self.LOGO_PATH):
+            shutil.rmtree(self.LOGO_PATH)
         shutil.copytree(os.path.join(self.RESOURCES_PATH, 'lib', 'stations', 'logo'), self.LOGO_PATH)
         if not os.path.isdir(self.TIMETABLE_PATH):
             os.makedirs(self.TIMETABLE_PATH, exist_ok=True)

@@ -41,10 +41,11 @@ if __name__ == '__main__':
 
     # ffmpegのパスを確認して初期化
     if check_ffmpeg():
-
         # サービスを初期化
         service = Service()
-
         # 別スレッドでサービスを起動
         thread = threading.Thread(target=service.monitor)
         thread.start()
+    else:
+        # ffmpegのパスが確認できない場合は通知
+        Common.notify('FFmpeg not found', error=True)
