@@ -5,7 +5,6 @@ import json
 from bs4 import BeautifulSoup
 
 from resources.lib.stations.common import Common
-from resources.lib.db import ThreadLocal
 
 
 class Scraper(Common):
@@ -15,8 +14,6 @@ class Scraper(Common):
 
     def __init__(self):
         super().__init__()
-        # DBインスタンスを共有
-        self.db = ThreadLocal.db
 
     def parse(self, data):
         buf = []

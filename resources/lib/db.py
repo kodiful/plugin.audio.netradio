@@ -4,13 +4,20 @@ import os
 import sqlite3
 import re
 import threading
+import shutil
+import requests
 from datetime import datetime, timezone, timedelta
 from mutagen.id3 import ID3, TIT2, TDRC, WPUB, TPUB, COMM
+from PIL import Image
+from qrcode import QRCode
+from sqlite3 import dbapi2 as sqlite
+
+import xbmcvfs
+import xbmcaddon
 
 from resources.lib.common import Common
-from resources.lib.stations.common import load_logo
 
-
+# DBの共有インスタンスを格納するスレッドローカルデータ
 ThreadLocal = threading.local()
 
 
@@ -223,9 +230,9 @@ class DB(Common):
         placeholders = ', '.join(['?' for _ in values])
         sql = f'INSERT OR REPLACE INTO stations ({columns}) VALUES ({placeholders})'
         self.cursor.execute(sql, list(values.values()))
-        # ロゴ
-        load_logo(data, os.path.join(self.PROFILE_PATH, 'stations', 'logo'), force=False)
-        return self.cursor.lastrowid
+        # 画像作成
+        dir = os.path.join(self.PROFILE_PATH, 'stations', 'logo')
+        load_logo(data, dir, force=False)
 
     def delete_station(self, sid):
         sql = '''DELETE FROM stations WHERE sid = :sid'''
@@ -250,8 +257,13 @@ class DB(Common):
         sql = f'INSERT OR REPLACE INTO keywords ({columns}) VALUES ({placeholders})'
         self.cursor.execute(sql, list(values.values()))
         # dirnameを設定
+        dirname = str(self.cursor.lastrowid)
         sql = 'UPDATE keywords SET dirname = :dirname WHERE kid = :kid'
-        self.cursor.execute(sql, {'kid': self.cursor.lastrowid, 'dirname': str(self.cursor.lastrowid)})
+        self.cursor.execute(sql, {'kid': self.cursor.lastrowid, 'dirname': dirname})
+        # 画像作成
+        url = '/'.join([self.GET('rssurl'), dirname, 'rss.xml'])
+        path = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', f'{kid}.png')
+        create_qrcode(url, path)
         # 既存のcontentsと照合
         sql = 'SELECT * FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.status = 0 AND c.end > NOW()'
         self.cursor.execute(sql)
@@ -260,7 +272,6 @@ class DB(Common):
             if status > 0:
                 sql = 'UPDATE contents SET kid = :kid, filename = :filename, status = 1 WHERE cid = :cid'
                 self.cursor.execute(sql, {'cid': csdata['cid'], 'kid': kid, 'filename': filename})
-        return self.cursor.lastrowid
 
     def delete_keyword(self, kid):
         sql = 'DELETE FROM keywords WHERE kid = :kid'
@@ -376,3 +387,73 @@ class DB(Common):
         pref = item['pref']
         region = item['region']
         return code, region, pref
+
+
+# ロゴ画像を取得してサムネイル画像を作成
+def load_logo(item, dir, force=False):
+    # 画像のファイルパス
+    dirname = os.path.join(dir, item['type'])
+    os.makedirs(dirname, exist_ok=True)
+    path = os.path.join(dirname, '%s.png' % item['station'])
+    if force:
+        # ファイルを削除
+        if os.path.exists(path):
+            os.remove(path)
+        # DBから画像のキャッシュを削除
+        conn = sqlite.connect(Common.IMAGE_CACHE)
+        sql = 'DELETE FROM texture WHERE url = :url'
+        conn.cursor().execute(sql, {'url': path})
+        conn.commit()
+        conn.close()
+    # 画像がある場合はなにもしない
+    if os.path.exists(path):
+        return
+    # ロゴ画像を取得
+    if item['logo']:
+        try:
+            res = requests.get(item['logo'])
+            if res.status_code == 200:
+                with open(path, 'wb') as f:
+                    f.write(res.content)
+        except Exception as e:
+            pass
+    # 画像が取得できないときはデフォルト画像で代替する
+    if os.path.exists(path) is False:
+        ADDON = xbmcaddon.Addon()
+        PLUGIN_PATH = xbmcvfs.translatePath(ADDON.getAddonInfo('path'))
+        icon = os.path.join(PLUGIN_PATH, 'icon.png')
+        shutil.copy(icon, path)
+    # アイコン画像に加工する
+    if os.path.exists(path):
+        img = Image.open(path)
+        w, h = img.size
+        a = max(w, h)
+        h = h * 200 // a
+        w = w * 200 // a
+        img = img.resize((w, h), Image.LANCZOS)
+        background = Image.new('RGB', (216, 216), (255, 255, 255))
+        try:
+            background.paste(img, ((216 - w) // 2, (216 - h) // 2), img)
+        except Exception:
+            background.paste(img, ((216 - w) // 2, (216 - h) // 2))
+        background.save(path)
+
+# QRコードのサムネイル画像を作成
+def create_qrcode(url, path, force=False):
+    if force:
+        # ファイルを削除
+        if os.path.exists(path):
+            os.remove(path)
+        # DBから画像のキャッシュを削除
+        conn = sqlite.connect(Common.IMAGE_CACHE)
+        conn.cursor().execute('DELETE FROM texture WHERE url = :path', {'path': path})
+        conn.commit()
+        conn.close()
+    # 画像がある場合はなにもしない
+    if os.path.exists(path):
+        return
+    # QRコードを生成
+    qr = QRCode(version=1, box_size=10, border=4)
+    qr.add_data(re.sub(r'^http(s?)://', r'podcast\1://', url))
+    qr.make(fit=True)
+    qr.make_image(fill_color="black", back_color="white").save(path, 'PNG')

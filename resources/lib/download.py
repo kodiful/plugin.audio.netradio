@@ -20,7 +20,7 @@ import xbmcgui
 class Download(Common):
 
     def __init__(self):
-        # DBのインスタンスを共有
+        # DBの共有インスタンス
         self.db = ThreadLocal.db
         # ロケール設定
         locale.setlocale(locale.LC_ALL, '')

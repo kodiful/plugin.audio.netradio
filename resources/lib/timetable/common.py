@@ -6,17 +6,17 @@ import re
 import unicodedata
 import json
 
-from resources.lib.common import Common
+from resources.lib.common import Common as Main
 from resources.lib.db import ThreadLocal
 
 
-class Common(Common):
+class Common(Main):
 
-    SOURCE_PATH = os.path.join(Common.PROFILE_PATH, 'timetable', 'source')
-    JSON_PATH = os.path.join(Common.PROFILE_PATH, 'timetable', 'json')
+    SOURCE_PATH = os.path.join(Main.PROFILE_PATH, 'timetable', 'source')
+    JSON_PATH = os.path.join(Main.PROFILE_PATH, 'timetable', 'json')
     
     def __init__(self):
-        # DBインスタンスを共有
+        # DBの共有インスタンス
         self.db = ThreadLocal.db
         # ディレクトリ設定
         os.makedirs(self.SOURCE_PATH, exist_ok=True)

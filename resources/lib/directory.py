@@ -2,11 +2,7 @@
 
 import sys
 import os
-import re
-
 from urllib.parse import urlencode
-from qrcode import QRCode
-from sqlite3 import dbapi2 as sqlite
 
 from resources.lib.common import Common
 from resources.lib.db import ThreadLocal
@@ -20,7 +16,7 @@ import xbmcplugin
 class Directory(Common):
 
     def __init__(self):
-        # DBのインスタンスを共有
+        # DBの共有インスタンス
         self.db = ThreadLocal.db
         # radiko認証
         sql = "SELECT auth_token, region, pref FROM auth JOIN codes ON auth.area_id = codes.radiko WHERE codes.city = ''"
@@ -116,10 +112,10 @@ class Directory(Common):
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
     
     def _setup_keywords(self):
-        sql = 'SELECT kid, keyword FROM keywords ORDER BY keyword'
+        sql = 'SELECT kid, keyword, dirname FROM keywords ORDER BY keyword'
         self.db.cursor.execute(sql)
-        for kid, keyword in self.db.cursor.fetchall():
-            self._add_keyword(kid, keyword)
+        for kid, keyword, dirname in self.db.cursor.fetchall():
+            self._add_keyword(kid, keyword, dirname)
 
     def _add_directory(self, region, pref=None):
         li = xbmcgui.ListItem(pref or region)
@@ -136,6 +132,7 @@ class Directory(Common):
     def _add_station(self, sdata):
         # listitemを追加する
         li = xbmcgui.ListItem(self._title(sdata))
+        # サムネイル画像
         logo = os.path.join(self.PROFILE_PATH, 'stations', 'logo', sdata['type'], sdata['station'] + '.png')
         li.setArt({'thumb': logo, 'icon': logo})
         li.setInfo(type='music', infoLabels={'title': sdata['station']})
@@ -162,13 +159,17 @@ class Directory(Common):
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
 
-    def _add_keyword(self, kid, keyword):
+    def _add_keyword(self, kid, keyword, dirname):
         # listitemを追加する
         if kid > 0:
             li = xbmcgui.ListItem(keyword)
         else:
             li = xbmcgui.ListItem(f'[COLOR gray]{keyword}[/COLOR]')  # キーワード編集できない場合はグレイ表示
-        logo = self._qrcode(kid)
+        # サムネイル画像
+        if self.GET('rss') == 'false':
+            logo = 'special://skin/extras/icons/search.png'
+        else:
+            logo = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', f'{kid}.png')
         li.setArt({'thumb': logo, 'icon': logo})
         # コンテクストメニュー
         self.contextmenu = []
@@ -206,20 +207,3 @@ class Directory(Common):
 
     def _contextmenu(self, name, args):
         self.contextmenu.append((name, 'RunPlugin(%s?%s)' % (sys.argv[0], urlencode(args))))
-
-    def _qrcode(self, kid):
-        if self.GET('rss') == 'false':
-            return 'special://skin/extras/icons/search.png'
-        url = '/'.join([self.GET('rssurl'), str(kid), 'rss.xml'])
-        path = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', f'{kid}.png')
-        # QRコードを生成
-        qr = QRCode(version=1, box_size=10, border=4)
-        qr.add_data(re.sub(r'^http(s?)://', r'podcast\1://', url))
-        qr.make(fit=True)
-        qr.make_image(fill_color="black", back_color="white").save(path, 'PNG')
-        # DBから画像のキャッシュを削除
-        conn = sqlite.connect(self.IMAGE_CACHE)
-        conn.cursor().execute('DELETE FROM texture WHERE url = :path', {'path': path})
-        conn.commit()
-        conn.close()
-        return path

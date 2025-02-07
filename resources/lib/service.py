@@ -24,7 +24,7 @@ class Monitor(xbmc.Monitor, Common):
 
     def __init__(self):
         super().__init__()
-        # DBインスタンスを共有
+        # DBの共有インスタンス
         self.db = ThreadLocal.db
 
     def onSettingsChanged(self):
@@ -64,7 +64,7 @@ class Service(Common):
     DOWNLOAD_MARGIN = 5
 
     def __init__(self):
-        # DBのインスタンスを共有
+        # DBの共有インスタンス
         db = ThreadLocal.db
         # authテーブルを初期化
         db.cursor.executescript(db.sql_auth_init)
@@ -171,7 +171,7 @@ class Service(Common):
         db.conn.close()
 
     def _authenticate(self):
-        # DBインスタンスを共有
+        # DBの共有インスタンス
         db = ThreadLocal.db
         # radiko認証
         auth = Authenticate()
@@ -223,7 +223,7 @@ class Service(Common):
         return update_radk
 
     def _process_queue(self):
-        # DBのインスタンスを共有
+        # DBの共有インスタンス
         db = ThreadLocal.db
         # 保留中(status=1)の番組、かつDOWNLOAD_PREPARATION以内に開始する番組を検索
         sql = '''SELECT c.cid, c.kid, c.filename, s.type, s.abbr, c.title, EPOCH(c.start) as t, EPOCH(c.end), s.direct
@@ -288,9 +288,9 @@ def download(cid, kid, filename, type, abbr, title, end, direct, queue):
         # ID3タグを書き込む
         db.write_id3(mp3file, cid)
         # 完了通知
-        Common.notify('Download completed "%s"' % title)
+        Common.notify('Download complete "%s"' % title)
         # ログ
-        Common.log(f'[{process.pid}] Download completed.')
+        Common.log(f'[{process.pid}] Download complete.')
     else:
         # エラーメッセージ
         err = process.stderr.read().decode('utf-8')

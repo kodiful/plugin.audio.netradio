@@ -15,7 +15,7 @@ import xbmcgui
 class Station(Common):
     
     def __init__(self):
-        # DBのインスタンスを共有
+        # DBの共有インスタンス
         self.db = ThreadLocal.db
 
     def set(self, sid=None):
