@@ -474,28 +474,3 @@ class DB(Common):
         pref = item['pref']
         region = item['region']
         return code, region, pref
-
-
-def initialize():
-    # DBに接続
-    db = DB()
-    # authテーブルを初期化
-    db.cursor.executescript(db.sql_auth_init)
-    # statusテーブルを初期化
-    db.cursor.executescript(db.sql_status_init)
-    # ダウンロードを失敗/中断したmp3ファイルを削除
-    sql = '''SELECT c.filename, k.dirname 
-    FROM contents c JOIN keywords k ON c.kid = k.kid
-    WHERE c.status = -2 or c.status = 3'''
-    db.cursor.execute(sql)
-    for filename, dirname in db.cursor.fetchall():
-        mp3file = os.path.join(db.CONTENTS_PATH, dirname, filename)
-        if os.path.exists(mp3file):
-            os.remove(mp3file)
-    # ダウンロード済み以外の番組情報を削除
-    sql = 'DELETE FROM contents WHERE status != -1'
-    db.cursor.execute(sql)
-    # DBから切断
-    db.conn.close()
-    # 設定画面をデフォルトに設定
-    shutil.copy(os.path.join(Common.LIB_PATH, 'settings', 'settings.xml'), Common.DIALOG_FILE)
