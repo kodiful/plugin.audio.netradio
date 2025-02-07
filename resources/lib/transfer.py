@@ -7,10 +7,15 @@ import json
 from mutagen.mp3 import MP3
 
 from resources.lib.common import Common
-from resources.lib.db import DB
+from resources.lib.db import DB, ThreadLocal
+from resources.lib.download import Download
 
 
 class Transfer(Common):
+
+    def __init__(self):
+        # DBのインスタンスを共有
+        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
 
     def import_contents(self):
         # CONTENTS_PATHが無い場合はなにもしない
@@ -28,21 +33,19 @@ class Transfer(Common):
                 'act': data['act'],
                 'info': data['info'],
                 'desc': data['desc'],
-                'site': data['url'],
+                'site': data['url'] or '',
             }
-        # DBに接続
-        db = DB()
         # ダウンロードフォルダをスキャン
-        for origdir in glob.glob(os.path.join(db.CONTENTS_PATH, '*')):
+        for origdir in glob.glob(os.path.join(self.CONTENTS_PATH, '*')):
             if os.path.isdir(origdir) is False:
                 continue
             # キーワード
             keyword = os.path.basename(origdir)
             # キーワードのkid, dirnameを取得
             sql = 'SELECT kid, dirname FROM keywords WHERE keyword = :keyword'
-            db.cursor.execute(sql, {'keyword': keyword})
+            self.db.cursor.execute(sql, {'keyword': keyword})
             try:
-                kid, dirname = db.cursor.fetchone()
+                kid, dirname = self.db.cursor.fetchone()
             except Exception:
                 kid, dirname = 0, '0'
             # キーワードのmp3ファイルを検索
@@ -59,13 +62,13 @@ class Transfer(Common):
                     # durationを抽出
                     duration = int(MP3(mp3file).info.length)
                     # DBに挿入
-                    lastrowid = db.add(convert(data), kid, abbr, duration)
+                    lastrowid = self.db.add(convert(data), kid, abbr, duration)
                     # DBの情報をmp3ファイルにID3タグとして書き込む
-                    db.write_id3(mp3file, lastrowid)
+                    self.db.write_id3(mp3file, lastrowid)
                     # mp3ファイル名の移動先のファイル名を取得
                     sql = 'SELECT filename FROM contents WHERE cid = :cid'
-                    db.cursor.execute(sql, {'cid': lastrowid})
-                    filename, = db.cursor.fetchone()
+                    self.db.cursor.execute(sql, {'cid': lastrowid})
+                    filename, = self.db.cursor.fetchone()
                     # mp3ファイルをリネームして移動
                     destdir = os.path.join(Common.CONTENTS_PATH, dirname)
                     os.makedirs(destdir, exist_ok=True)
@@ -74,14 +77,10 @@ class Transfer(Common):
             destdir = os.path.join(Common.CONTENTS_PATH, '~backup')
             os.makedirs(destdir, exist_ok=True)
             shutil.move(origdir, destdir)
-            # rssを生成
-            if kid > 0: db.create_rss(kid, keyword, dirname)
-        # rss（インデクス）を生成
-        db.create_index()
-        # DBから切断
-        db.conn.close()
+        # rss & インデクスを生成
+        Download().update_rss()
         # ログ
-        db.log('Downloaded files have been imported')
+        self.log('Downloaded files have been imported')
 
     def import_stations(self):
         # データ変換関数
@@ -99,43 +98,39 @@ class Transfer(Common):
                 'site': data['official'],
                 'direct': data['stream']
             }
-        # DBに接続
-        db = DB()
         # dataフォルダ直下のcodes.jsonから読み込む
-        json_file = os.path.join(db.DATA_PATH, 'codes.json')
+        json_file = os.path.join(self.DATA_PATH, 'codes.json')
         with open(json_file, encoding='utf-8') as f:
             for data in json.loads(f.read()):
-                db.add_code(data)
+                self.db.add_code(data)
         # プラグインの放送局フォルダ直下のjsonフォルダにあるjsonファイルから読み込む
-        for json_file in glob.glob(os.path.join(db.DATA_PATH, 'stations', 'json', '*.json')):
+        for json_file in glob.glob(os.path.join(self.DATA_PATH, 'stations', 'json', '*.json')):
             with open(json_file, encoding='utf-8') as f:
                 # jsonファイルを読み込む
                 for data in json.loads(f.read()):
                     # DBに挿入
-                    db.add_station(data)
+                    self.db.add_station(data)
         # ユーザデータの放送局フォルダ直下のdirectoryフォルダにあるjsonファイルから読み込む
-        for json_file in glob.glob(os.path.join(db.PROFILE_PATH, 'stations', 'directory', '*.json')):
+        for json_file in glob.glob(os.path.join(self.PROFILE_PATH, 'stations', 'directory', '*.json')):
             with open(json_file, encoding='utf-8') as f:
                 # jsonファイルを読み込む
                 data = json.loads(f.read())
             # ユーザ設定の放送局はDBに挿入
             if data['type'] == 'user':
-                db.add_station(convert(data), top=1)
+                self.db.add_station(convert(data), top=1)
         # 不要なファイルを削除
-        shutil.rmtree(os.path.join(db.PROFILE_PATH, 'stations', 'index'))
-        shutil.rmtree(os.path.join(db.PROFILE_PATH, 'stations', 'directory'))
-        # DBから切断
-        db.conn.close()
+        shutil.rmtree(os.path.join(self.PROFILE_PATH, 'stations', 'index'))
+        shutil.rmtree(os.path.join(self.PROFILE_PATH, 'stations', 'directory'))
         # ログ
-        db.log('Station settings have been imported')
+        self.log('Station settings have been imported')
 
     def import_keywords(self):
         # データ変換関数
         def convert(data):
             if data['limit'] == 'true':
                 sql = 'SELECT station FROM stations WHERE abbr = :abbr'
-                db.cursor.execute(sql, {'abbr': data['id']})
-                station, = db.cursor.fetchone()
+                self.db.cursor.execute(sql, {'abbr': data['id']})
+                station, = self.db.cursor.fetchone()
             else:
                 station = ''
             return {
@@ -145,24 +140,20 @@ class Transfer(Common):
                 'weekday': data['weekday'],
                 'station': station,
             }
-        # DBに接続
-        db = DB()
         # キーワードフォルダをスキャン
-        for image_file in glob.glob(os.path.join(db.PROFILE_PATH, 'keywords', '*.png')):
+        for image_file in glob.glob(os.path.join(self.PROFILE_PATH, 'keywords', '*.png')):
             # 古いファイルを削除
             os.remove(image_file)
-        for json_file in glob.glob(os.path.join(db.PROFILE_PATH, 'keywords', '*.json')):
+        for json_file in glob.glob(os.path.join(self.PROFILE_PATH, 'keywords', '*.json')):
             with open(json_file, encoding='utf-8') as f:
                 # jsonファイルを読み込む
                 data = json.loads(f.read())
                 # DBに挿入
-                db.add_keyword(convert(data))
+                self.db.add_keyword(convert(data))
             # 不要なファイルを削除
             os.remove(json_file)
-        # DBから切断
-        db.conn.close()
         # ログ
-        db.log('Keyword settings have been imported')
+        self.log('Keyword settings have been imported')
 
     def backup_files(self):
         for item in glob.glob(os.path.join(self.PROFILE_PATH, '*')):
@@ -177,6 +168,9 @@ class Transfer(Common):
             os.remove(os.path.join(self.PROFILE_PATH, 'auth.json'))
             shutil.rmtree(os.path.join(self.PROFILE_PATH, 'queue'))
             shutil.rmtree(os.path.join(self.PROFILE_PATH, 'timetable', 'timetable'))
+            # ビットレート auto -> 192k
+            if self.GET('bitrate') == 'auto':
+                self.SET('bitrate', '192k')
         except Exception:
             pass
 

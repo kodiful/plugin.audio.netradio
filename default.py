@@ -6,7 +6,6 @@ import urllib.parse
 import shutil
 import subprocess
 import platform
-import threading
 
 import xbmc
 
@@ -14,19 +13,19 @@ import xbmc
 sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
 
 from resources.lib.common import Common
-from resources.lib.db import DB
+from resources.lib.db import DB, ThreadLocal
 from resources.lib.directory import Directory
 from resources.lib.download import Download
 
-from resources.lib.settings.keyword import Keyword
-from resources.lib.settings.station import Station
+from resources.lib.keyword import Keyword
+from resources.lib.station import Station
 
 
 if __name__ == '__main__':
 
-    # DBに接続
-    Common.db = DB()
-    
+    # DBインスタンスを作成
+    ThreadLocal.db = DB()
+
     # 引数
     args = urllib.parse.parse_qs(sys.argv[2][1:], keep_blank_values=True)
     for key in args.keys():
@@ -53,10 +52,10 @@ if __name__ == '__main__':
         Station().add()
     elif action == 'delete_station':
         Station().delete(args.get('sid'))
+    elif action == 'show_info':
+        Station().show_info(args.get('sid'))
     elif action == 'update_info':
-        db = DB()
-        db.cursor.execute('UPDATE status SET timetable = 1')
-        db.conn.close()
+        Station().update_info()
 
     # キーワード
     elif action == 'set_keyword':
@@ -84,12 +83,9 @@ if __name__ == '__main__':
     # アドオン設定
     elif action == 'settings':
         Common.SET('pref', Directory().pref)
-        shutil.copy(os.path.join(Common.LIB_PATH, 'settings', 'settings.xml'), Common.DIALOG_FILE)
+        shutil.copy(os.path.join(Common.DATA_PATH, 'settings', 'settings.xml'), Common.DIALOG_FILE)
         xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
 
     # 未定義
     else:
         Common.log('undefined action:', action)
-
-    # DBから切断
-    Common.db.conn.close()

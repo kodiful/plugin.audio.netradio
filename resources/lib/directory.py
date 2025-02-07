@@ -9,7 +9,7 @@ from qrcode import QRCode
 from sqlite3 import dbapi2 as sqlite
 
 from resources.lib.common import Common
-from resources.lib.db import DB
+from resources.lib.db import DB, ThreadLocal
 from resources.lib.localproxy import LocalProxy
 
 import xbmc
@@ -20,17 +20,12 @@ import xbmcplugin
 class Directory(Common):
 
     def __init__(self):
-        # DBに接続
-        self.db = DB()
+        # DBのインスタンスを共有
+        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
         # radiko認証
         sql = "SELECT auth_token, region, pref FROM auth JOIN codes ON auth.area_id = codes.radiko WHERE codes.city = ''"
         self.db.cursor.execute(sql)
         self.token, self.region, self.pref = self.db.cursor.fetchone()
-
-    def __del__(self):
-        # DBから切断
-        self.db.conn.close()
-        pass
 
     def show(self, type=None, region=None, pref=None):
         if type == 'nhkr':
@@ -149,6 +144,7 @@ class Directory(Common):
         self.contextmenu = []
         if sdata['top'] == 1:
             if sdata['type'] in ('nhkr', 'radk'):
+                self._contextmenu(self.STR(30111), {'action': 'show_info', 'sid': sdata['sid']})
                 self._contextmenu(self.STR(30110), {'action': 'update_info'})
             if sdata['type'] == 'user':
                 self._contextmenu(self.STR(30104), {'action': 'set_station', 'sid': sdata['sid']})
@@ -189,10 +185,8 @@ class Directory(Common):
     def _title(self, data):
         if data['type'] in ('nhkr', 'radk'):
             station = data['station']
-            #sql = 'SELECT title, start, end FROM contents WHERE sid = :sid AND end > NOW() ORDER BY start LIMIT 2'
-            #self.db.cursor.execute(sql, {'sid': data['sid']})
-            sql = 'SELECT title, start, end FROM contents WHERE station = :station AND end > NOW() ORDER BY start LIMIT 2'
-            self.db.cursor.execute(sql, {'station': station})
+            sql = 'SELECT title, start, end FROM contents WHERE sid = :sid AND end > NOW() ORDER BY start LIMIT 2'
+            self.db.cursor.execute(sql, {'sid': data['sid']})
             try:
                 (title, start, end) = self.db.cursor.fetchone()
                 station += f' [COLOR khaki]▶ {title} ({start[11:16]}～{end[11:16]})[/COLOR]'

@@ -7,7 +7,7 @@ import unicodedata
 import json
 
 from resources.lib.common import Common
-from resources.lib.db import DB
+from resources.lib.db import DB, ThreadLocal
 
 
 class Common(Common):
@@ -16,6 +16,9 @@ class Common(Common):
     JSON_PATH = os.path.join(Common.PROFILE_PATH, 'timetable', 'json')
     
     def __init__(self):
+        # DBインスタンスを共有
+        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+        # ディレクトリ設定
         os.makedirs(self.SOURCE_PATH, exist_ok=True)
         os.makedirs(self.JSON_PATH, exist_ok=True)
         self.SOURCE_FILE = os.path.join(self.SOURCE_PATH, f'{self.TYPE}.txt')
@@ -36,22 +39,17 @@ class Common(Common):
             f.write(data.encode('utf-8'))
         # 番組表情報をパース
         buf = self.parse(data)
-        # DBに書き込む
-        db = DB()
         for item in buf:
-            db.add(item)
-        db.conn.close()
+            self.db.add(item)
         # パース結果をjsonファイルに保存
         with open(self.JSON_FILE, 'wb') as f:
             f.write(json.dumps(buf, ensure_ascii=False, indent=4).encode('utf-8'))
 
     # 次の更新予定時間
     def next_aired(self):
-        db = DB()
         sql = 'SELECT MIN(EPOCH(c.end)) FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.status >= 0 and s.type = :type'
-        db.cursor.execute(sql, {'type': self.TYPE})
-        end, = db.cursor.fetchone()
-        db.conn.close()
+        self.db.cursor.execute(sql, {'type': self.TYPE})
+        end, = self.db.cursor.fetchone()
         return end
     
     # 文字列を正規化する

@@ -15,7 +15,7 @@
   <!--番組保存-->
   <category label="30300">
     <setting label="30303" id="download" type="bool" default="false"/>
-    <setting label="30304" id="bitrate" type="labelenum" default="192k" values="auto|192k|160k|128k|96k|64k" enable="eq(-1,true)"/>
+    <setting label="30304" id="bitrate" type="labelenum" default="192k" values="192k|160k|128k|96k|64k" enable="eq(-1,true)"/>
     <setting label="30305" id="folder" type="folder" default="" enable="eq(-2,true)"/>
     <setting label="30306" type="action" option="close" action="RunPlugin(plugin://$ID/?action=open_folder)" enable="eq(-3,true)"/>
     <!--RSS-->

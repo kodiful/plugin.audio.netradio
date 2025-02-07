@@ -4,7 +4,7 @@ import sys
 from bs4 import BeautifulSoup
 
 from resources.lib.stations.common import Common
-from resources.lib.db import DB
+from resources.lib.db import DB, ThreadLocal
 
 
 class Scraper(Common):
@@ -33,9 +33,10 @@ class Scraper(Common):
 
     def __init__(self):
         super().__init__()
+        # DBインスタンスを共有
+        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
 
     def parse(self, data):
-        db = DB()
         buf = []
         sections = BeautifulSoup(data, features='xml').find_all('data')
         for section in sections:
@@ -52,7 +53,7 @@ class Scraper(Common):
             '''
             try:
                 station = section.areajp.text
-                code, region, pref, city = db.infer_place(self.AREA[section.areajp.text])
+                code, region, pref, city = self.db.infer_place(self.AREA[section.areajp.text])
             except Exception:
                 print('[nhkr] unparsable content (skip):', station, sep='\t', file=sys.stderr)
                 continue
@@ -98,5 +99,4 @@ class Scraper(Common):
                 'direct': section.fmhls.text,
                 'match': 1
             })
-        db.conn.close()
         return buf

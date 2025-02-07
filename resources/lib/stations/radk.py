@@ -4,7 +4,7 @@ import sys
 from bs4 import BeautifulSoup
 
 from resources.lib.stations.common import Common
-from resources.lib.db import DB
+from resources.lib.db import DB, ThreadLocal
 
 
 class Scraper(Common):
@@ -16,9 +16,10 @@ class Scraper(Common):
         self.area = area
         self.URL = self.URL % area
         super().__init__(f'{self.TYPE}_{area}')
+        # DBインスタンスを共有
+        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
 
     def parse(self, data):
-        db = DB()
         buf = []
         sections = BeautifulSoup(data, features='xml').find_all('station')
         for section in sections:
@@ -48,7 +49,7 @@ class Scraper(Common):
             try:
                 id = section.id.text
                 station = section.find('name').text
-                code, region, pref = db.radiko_place(self.area)
+                code, region, pref = self.db.radiko_place(self.area)
                 logo = section.find('logo', width='448').text
                 official = section.href.text
             except Exception:
@@ -68,5 +69,4 @@ class Scraper(Common):
                 'direct': '',
                 'match': 0 if self.normalize(station).startswith('NHK') else 1
             })
-        db.conn.close()
         return buf

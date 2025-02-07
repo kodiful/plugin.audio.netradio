@@ -2,11 +2,10 @@
 
 import os
 import shutil
-import datetime
 import json
-
+from datetime import datetime
 from resources.lib.common import Common
-from resources.lib.db import DB
+from resources.lib.db import DB, ThreadLocal
 
 import xbmc
 import xbmcgui
@@ -15,12 +14,8 @@ import xbmcgui
 class Keyword(Common):
     
     def __init__(self):
-        # DBに接続
-        self.db = DB()
-
-    def __del__(self):
-        # DBから切断
-        self.db.conn.close()
+        # DBのインスタンスを共有
+        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
  
     def set(self, kid, sid):
         xbmc.sleep(1000)
@@ -49,11 +44,11 @@ class Keyword(Common):
             self.db.cursor.execute(sql, {'sid': sid})
             data = [(title, station) for title, station in self.db.cursor.fetchall()]
             # 選択ダイアログを表示
-            index = xbmcgui.Dialog().select('番組情報選択', [title for title, _ in data])
+            index = xbmcgui.Dialog().select('番組選択', [title for title, _ in data])
             if index == -1:
                 return
             title, station = data[index]
-            weekday = datetime.datetime.today().weekday()  # 今日の曜日を月(0)-日(6)で返す
+            weekday = datetime.today().weekday()  # 今日の曜日を月(0)-日(6)で返す
             self.SET('kid', '0')
             self.SET('status', '0')  # 停止中
             self.SET('keyword', title)
@@ -66,8 +61,9 @@ class Keyword(Common):
         sql = 'UPDATE status SET keyword = :before'
         self.db.cursor.execute(sql, {'before': json.dumps(before)})
         # キーワード設定画面を開く
-        shutil.copy(os.path.join(self.LIB_PATH, 'settings', 'keyword.xml'), self.DIALOG_FILE)
+        shutil.copy(os.path.join(self.DATA_PATH, 'settings', 'keyword.xml'), self.DIALOG_FILE)
         xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
+
     def add(self):
         # 設定後の値
         after = dict([(key, self.GET(key)) for key in ('kid', 'status', 'keyword', 'match', 'weekday', 'station')])

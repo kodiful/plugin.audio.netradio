@@ -3,9 +3,10 @@
 import os
 import shutil
 import json
+import re
 
 from resources.lib.common import Common
-from resources.lib.db import DB
+from resources.lib.db import DB, ThreadLocal
 
 import xbmc
 import xbmcgui
@@ -14,13 +15,9 @@ import xbmcgui
 class Station(Common):
     
     def __init__(self):
-        # DBに接続
-        self.db = DB()
+        # DBのインスタンスを共有
+        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
 
-    def __del__(self):
-        # DBから切断
-        self.db.conn.close()
-    
     def set(self, sid=None):
         # アドオン設定画面から放送局設定画面を開いたとき、設定した値が以前の設定で書き換えられてしまうのを避ける
         xbmc.sleep(1000)
@@ -48,7 +45,7 @@ class Station(Common):
         sql = 'UPDATE status SET station = :before'
         self.db.cursor.execute(sql, {'before': json.dumps(before)})
         # 放送局設定画面を開く
-        shutil.copy(os.path.join(self.LIB_PATH, 'settings', 'station.xml'), self.DIALOG_FILE)
+        shutil.copy(os.path.join(self.DATA_PATH, 'settings', 'station.xml'), self.DIALOG_FILE)
         xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
 
     def add(self):
@@ -68,3 +65,28 @@ class Station(Common):
         if ok:
             self.db.delete_station(sid)
             xbmc.executebuiltin('Container.Refresh')
+
+    def show_info(self, sid):
+        # 番組情報を検索
+        sql = 'SELECT title, description FROM contents WHERE sid = :sid and end > NOW() ORDER BY start LIMIT 2'
+        self.db.cursor.execute(sql, {'sid': sid})
+        data = [(title, description) for title, description in self.db.cursor.fetchall()]
+        # 選択ダイアログを表示
+        index = xbmcgui.Dialog().select('番組選択', [title for title, _ in data])
+        if index == -1:
+            return
+        # 選択された番組の情報を表示
+        _, description = data[index]
+        # テキストを整形
+        if description:
+            description = re.sub(r'<p class="(?:act|info|desc)">(.*?)</p>', r'\1\n\n', description)
+            description = re.sub(r'<.*?>', '', description)
+            description = re.sub(r'\n{3,}', r'\n\n', description)
+        else:
+            description = '（番組情報はありません）'
+        xbmcgui.Dialog().textviewer('番組情報', description)
+
+    def update_info(self):
+        # 再表示を要求
+        self.db.cursor.execute('UPDATE status SET timetable = 1')
+

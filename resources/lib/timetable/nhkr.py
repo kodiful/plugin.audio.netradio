@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import json
-import datetime
+from datetime import datetime
 
 from resources.lib.timetable.common import Common
 
@@ -222,7 +222,7 @@ class Scraper(Common):
             'act': self.normalize(data['act']),
             'info': self.normalize(data['subtitle']),
             'desc': self.normalize(data['music']),
-            'site': data['url']['pc'],
+            'site': data['url']['pc'] or '',
             'region': self.region,
             'pref': ''
         }
@@ -230,5 +230,5 @@ class Scraper(Common):
 
     def _datetime(self, t):
         # 2023-04-20T05:00:00+09:00 -> 2023-04-20 05:00:00
-        datetime_obj = datetime.datetime.fromisoformat(t)
+        datetime_obj = datetime.fromisoformat(t)
         return datetime_obj.strftime('%Y-%m-%d %H:%M:%S')

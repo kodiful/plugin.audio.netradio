@@ -80,6 +80,10 @@ msgctxt "#30110"
 msgid "Update timetable"
 msgstr "番組情報を更新する"
 
+msgctxt "#30111"
+msgid "Show info"
+msgstr "番組情報"
+
 #
 # for settings
 #

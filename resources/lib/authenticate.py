@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from resources.lib.common import Common
 import urllib.request
+from resources.lib.common import Common
 from base64 import b64encode
 
 

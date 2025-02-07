@@ -4,7 +4,7 @@ import sys
 import json
 
 from resources.lib.stations.common import Common
-from resources.lib.db import DB
+from resources.lib.db import DB, ThreadLocal
 
 
 class Scraper(Common):
@@ -15,9 +15,10 @@ class Scraper(Common):
 
     def __init__(self):
         super().__init__()
+        # DBインスタンスを共有
+        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
 
     def parse(self, data):
-        db = DB()
         buf = []
         data = json.loads(data)
         for section in data['Channel']:
@@ -41,7 +42,7 @@ class Scraper(Common):
             try:
                 id = section['ChannelId']
                 station = section['ChannelName']
-                code, region, pref, city = db.infer_place(section['ChannelDetail'])
+                code, region, pref, city = self.db.infer_place(section['ChannelDetail'])
                 logo = section['ChannelImage']
                 stream = section['ChannelHls']
                 description = section['ChannelDetail']
@@ -65,5 +66,4 @@ class Scraper(Common):
                 })
             else:
                 print('[lsnr] invalid region:', station, stream, sep='\t', file=sys.stderr)
-        db.conn.close()
         return buf

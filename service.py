@@ -5,15 +5,13 @@ import os
 import socket
 import threading
 import subprocess
-import shutil
 
 # extディレクトリをパスに追加
 sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
 
 from resources.lib.common import Common
-from resources.lib.db import DB
+from resources.lib.db import DB, ThreadLocal
 from resources.lib.service import Service
-
 from resources.lib.transfer import Transfer
 
 
@@ -38,31 +36,6 @@ def check_ffmpeg():
     return status.find('Copyright') > -1
 
 
-def initialize():
-    # DBに接続
-    db = DB()
-    # authテーブルを初期化
-    db.cursor.executescript(db.sql_auth_init)
-    # statusテーブルを初期化
-    db.cursor.executescript(db.sql_status_init)
-    # ダウンロードを失敗/中断したmp3ファイルを削除
-    sql = '''SELECT c.filename, k.dirname 
-    FROM contents c JOIN keywords k ON c.kid = k.kid
-    WHERE c.status = -2 or c.status = 3'''
-    db.cursor.execute(sql)
-    for filename, dirname in db.cursor.fetchall():
-        mp3file = os.path.join(db.CONTENTS_PATH, dirname, filename)
-        if os.path.exists(mp3file):
-            os.remove(mp3file)
-    # ダウンロード済み以外の番組情報を削除
-    sql = 'DELETE FROM contents WHERE status != -1'
-    db.cursor.execute(sql)
-    # 設定画面をデフォルトに設定
-    shutil.copy(os.path.join(Common.LIB_PATH, 'settings', 'settings.xml'), Common.DIALOG_FILE)
-    # DBから切断
-    db.conn.close()
-
-
 if __name__ == '__main__':
 
     # HTTP接続のタイムアウト(秒)を設定
@@ -70,12 +43,14 @@ if __name__ == '__main__':
 
     # ffmpegのパスを確認して初期化
     if check_ffmpeg():
-        # DBファイルが無い場合は、DBを新規作成して既存の情報をインポート
-        if os.path.exists(Common.DB_FILE) is False:
+        # DBファイルの有無をチェック
+        exists =  os.path.exists(Common.DB_FILE)
+        # DBインスタンスを作成
+        ThreadLocal.db = DB()
+        # DBファイルがない場合は既存データをインポート
+        if exists is False:
             Common.notify('Transferring data...')
             Transfer().run()
-        # DBを初期化
-        initialize()
         # サービスを初期化
         service = Service()
         # 別スレッドでサービスを起動
@@ -84,4 +59,3 @@ if __name__ == '__main__':
     else:
         # ffmpegのパスが確認できない場合は通知
         Common.notify('FFmpeg not found', error=True)
-

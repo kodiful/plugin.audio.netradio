@@ -4,7 +4,7 @@ import sys
 from bs4 import BeautifulSoup
 
 from resources.lib.stations.common import Common
-from resources.lib.db import DB
+from resources.lib.db import DB, ThreadLocal
 
 
 class Scraper(Common):
@@ -14,9 +14,10 @@ class Scraper(Common):
 
     def __init__(self):
         super().__init__()
+        # DBインスタンスを共有
+        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
 
     def parse(self, data):
-        db = DB()
         buf = []
         sections = BeautifulSoup(data, features='lxml').find_all('section')
         for section in sections:
@@ -38,7 +39,7 @@ class Scraper(Common):
             '''
             try:
                 station = section.h1.string.strip()
-                code, region, pref, city = db.infer_place(section.text.replace('久米島', '久米島町'))
+                code, region, pref, city = self.db.infer_place(section.text.replace('久米島', '久米島町'))
                 logo = 'http://csra.fm%s' % section.img['src'].strip()
                 stream = section.find('a', class_='stm')['href'].strip()
                 official = section.find('a', class_='site')['href'].strip()
@@ -67,5 +68,4 @@ class Scraper(Common):
                 })
             else:
                 print('[csra] unsupported protocol (skip):', station, stream, sep='\t', file=sys.stderr)
-        db.conn.close()
         return buf

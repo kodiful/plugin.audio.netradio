@@ -13,7 +13,6 @@ import os
 import time
 import queue
 import ctypes
-
 from http.server import HTTPServer
 from http.server import SimpleHTTPRequestHandler
 

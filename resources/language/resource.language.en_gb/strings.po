@@ -80,6 +80,10 @@ msgctxt "#30110"
 msgid "Update timetable"
 msgstr ""
 
+msgctxt "#30111"
+msgid "Show info"
+msgstr ""
+
 #
 # for settings
 #

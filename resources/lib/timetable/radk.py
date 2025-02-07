@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import datetime
+from datetime import datetime
 from xmltodict import parse
 
 from resources.lib.timetable.common import Common
-from resources.lib.db import DB
 
 
 class Scraper(Common):
@@ -15,12 +14,10 @@ class Scraper(Common):
 
     def __init__(self, region, pref):
         super().__init__()
-        db = DB()
         self.region = region
         self.pref = pref
-        item = db.search_by_pref(pref)
+        item = self.db.search_by_pref(pref)
         self.URL = self.URL.format(pref=item['radiko'])
-        db.conn.close()
 
     def parse(self, data):
         data = parse(data)
@@ -82,7 +79,7 @@ class Scraper(Common):
                     'act': self.normalize(p['pfm']),
                     'info': self.normalize(p['info']),
                     'desc': self.normalize(p['desc']),
-                    'site': p['url'],
+                    'site': p['url'] or '',
                     'region': self.region,
                     'pref': self.pref
                 }
@@ -92,5 +89,5 @@ class Scraper(Common):
 
     def _datetime(self, t):
         # 20231110120000 -> 2023-11-10 12:00:00
-        datetime_obj = datetime.datetime.strptime(t, '%Y%m%d%H%M%S')
+        datetime_obj = datetime.strptime(t, '%Y%m%d%H%M%S')
         return datetime_obj.strftime('%Y-%m-%d %H:%M:%S')

@@ -2,16 +2,16 @@
 
 import os
 import sqlite3
-import locale
-import html
-import time
-import shutil
 import re
+import threading
 from datetime import datetime, timezone, timedelta
 from mutagen.id3 import ID3, TIT2, TDRC, WPUB, TPUB, COMM
 
 from resources.lib.common import Common
-from resources.lib.stations.common import Common as StationsCommon
+from resources.lib.stations.common import load_logo
+
+
+ThreadLocal = threading.local()
 
 
 class DB(Common):
@@ -224,7 +224,7 @@ class DB(Common):
         sql = f'INSERT OR REPLACE INTO stations ({columns}) VALUES ({placeholders})'
         self.cursor.execute(sql, list(values.values()))
         # ロゴ
-        StationsCommon.load_logo(data, os.path.join(self.PROFILE_PATH, 'stations', 'logo'), force=False)
+        load_logo(data, os.path.join(self.PROFILE_PATH, 'stations', 'logo'), force=False)
         return self.cursor.lastrowid
 
     def delete_station(self, sid):
@@ -279,104 +279,6 @@ class DB(Common):
             id3['WPUB'] = WPUB(url=data['site'])
         id3.save(v2_version=4)  # ID3v2.4 形式で保存
 
-    def create_rss(self, kid, keyword, dirname):
-        # templates
-        with open(os.path.join(self.DATA_PATH, 'rss', 'header.xml'), 'r', encoding='utf-8') as f:
-            header = f.read()
-        with open(os.path.join(self.DATA_PATH, 'rss', 'body.xml'), 'r', encoding='utf-8') as f:
-            body = f.read()
-        with open(os.path.join(self.DATA_PATH, 'rss', 'footer.xml'), 'r', encoding='utf-8') as f:
-            footer = f.read()
-        # 時刻表記のロケール設定                                                                                                                                                             
-        locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
-        # open rss writer
-        writer = open(os.path.join(self.CONTENTS_PATH, dirname, 'rss.xml'), 'w', encoding='utf-8')
-        # write header
-        writer.write(header.format(image='icon.png', title=keyword))
-        # body
-        sql = '''SELECT filename, title, start, station, description, site, duration
-        FROM contents
-        WHERE kid = :kid AND status = -1
-        ORDER BY start DESC'''
-        self.cursor.execute(sql, {'kid': kid})
-        for filename, title, start, station, description, site, duration in self.cursor.fetchall():
-            writer.write(
-                body.format(
-                    title=html.escape(title),
-                    date=self._date(start),
-                    url=site,
-                    filename=filename,
-                    description=html.escape(description),
-                    pubdate=self._pubdate(start),
-                    station=station,
-                    duration='%02d:%02d:%02d' % (duration // 3600, duration // 60 % 60, duration % 60),
-                    filesize=os.path.getsize(os.path.join(self.CONTENTS_PATH, dirname, filename))
-                )
-            )
-        # write footer
-        writer.write(footer)
-        # close rss writer
-        writer.close()
-        # RSSから参照できるように、スタイルシートとアイコン画像をダウンロードフォルダにコピーする
-        shutil.copy(os.path.join(self.DATA_PATH, 'rss', 'stylesheet.xsl'), os.path.join(self.CONTENTS_PATH, dirname, 'stylesheet.xsl'))
-        shutil.copy(os.path.join(self.PLUGIN_PATH, 'icon.png'), os.path.join(self.CONTENTS_PATH, dirname, 'icon.png'))
-
-    def create_index(self):
-        # templates
-        with open(os.path.join(self.DATA_PATH, 'rss', 'header.xml'), 'r', encoding='utf-8') as f:
-            header = f.read()
-        with open(os.path.join(self.DATA_PATH, 'rss', 'body.xml'), 'r', encoding='utf-8') as f:
-            body = f.read()
-        with open(os.path.join(self.DATA_PATH, 'rss', 'footer.xml'), 'r', encoding='utf-8') as f:
-            footer = f.read()
-        # open rss writer
-        writer = open(os.path.join(self.CONTENTS_PATH, 'index.xml'), 'w', encoding='utf-8')
-        # write header
-        writer.write(header.format(image='icon.png', title='NetRadio Client'))
-        # body
-        sql = 'SELECT keyword, dirname FROM keywords ORDER BY keyword'
-        self.cursor.execute(sql, {})
-        for keyword, dirname in self.cursor.fetchall():
-            writer.write(
-                body.format(
-                    title=html.escape(keyword),
-                    date='',
-                    url=f'{dirname}/rss.xml',
-                    filename='',
-                    description='',
-                    pubdate='',
-                    station='',
-                    duration='',
-                    filesize=''
-                )
-            )
-        # write footer
-        writer.write(footer)
-        # close rss writer
-        writer.close()
-        # RSSから参照できるように、スタイルシートとアイコン画像をダウンロードフォルダにコピーする
-        shutil.copy(os.path.join(self.DATA_PATH, 'rss', 'stylesheet.xsl'), os.path.join(self.CONTENTS_PATH, 'stylesheet.xsl'))
-        shutil.copy(os.path.join(self.PLUGIN_PATH, 'icon.png'), os.path.join(self.CONTENTS_PATH, 'icon.png'))
-
-    def _date(self, date):
-        # "2023-04-20 14:00:00" -> "2023-04-20"
-        return f'{date[0:10]}'
-
-    def _pubdate(self, date):
-        # "2023-04-20 14:00:00" -> "Thu, 20 Apr 2023 14:00:00 +0900"
-        try:
-            pubdate = datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
-            pubdate = pubdate.strftime('%a, %d %b %Y %H:%M:%S +0900')
-        except TypeError:
-            try:
-                pubdate = datetime.fromtimestamp(time.mktime(time.strptime(date, '%Y-%m-%d %H:%M:%S')))
-                pubdate = pubdate.strftime('%a, %d %b %Y %H:%M:%S +0900')
-            except ValueError:
-                pubdate = ''
-        except ValueError:
-            pubdate = ''
-        return pubdate
-    
     def _description(self, data):
         description = ''
         for key in ('act', 'desc', 'info'):
@@ -387,9 +289,9 @@ class DB(Common):
 
     def _station(self, cdata, abbr=''):
         if cdata.get('region'):
-            sql = 'SELECT sid, match FROM stations WHERE station = :station and region = :region AND pref = :pref'
+            sql = 'SELECT sid, abbr, match FROM stations WHERE station = :station and region = :region AND pref = :pref'
             self.cursor.execute(sql, {'station': cdata['station'], 'region': cdata['region'], 'pref': cdata['pref']})
-            sid, match = self.cursor.fetchone()
+            sid, abbr, match = self.cursor.fetchone()
         elif abbr:
             sql = 'SELECT sid FROM stations WHERE abbr = :abbr'
             self.cursor.execute(sql, {'abbr': abbr})

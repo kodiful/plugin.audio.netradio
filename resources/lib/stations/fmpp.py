@@ -5,7 +5,7 @@ import json
 from bs4 import BeautifulSoup
 
 from resources.lib.stations.common import Common
-from resources.lib.db import DB
+from resources.lib.db import DB, ThreadLocal
 
 
 class Scraper(Common):
@@ -15,9 +15,10 @@ class Scraper(Common):
 
     def __init__(self):
         super().__init__()
+        # DBインスタンスを共有
+        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
 
     def parse(self, data):
-        db = DB()
         buf = []
         data = BeautifulSoup(data, features='lxml').find('script', id='__NEXT_DATA__')
         data = json.loads(data.decode_contents())
@@ -53,7 +54,7 @@ class Scraper(Common):
                 try:
                     id = section['id']
                     station = section['name']
-                    code, region, pref, city = db.infer_place(section['pref'] + section['city'])
+                    code, region, pref, city = self.db.infer_place(section['pref'] + section['city'])
                     logo = section['artwork']
                     description = section['stat']
                     official = ''
@@ -74,5 +75,4 @@ class Scraper(Common):
                     'direct': '',
                     'match': 0
                 })
-        db.conn.close()
         return buf
