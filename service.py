@@ -56,6 +56,9 @@ if __name__ == '__main__':
         # 別スレッドでサービスを起動
         thread = threading.Thread(target=service.monitor)
         thread.start()
+        # DBインスタンスを終了
+        ThreadLocal.db.conn.close()
+        ThreadLocal.db = None
     else:
         # ffmpegのパスが確認できない場合は通知
         Common.notify('FFmpeg not found', error=True)

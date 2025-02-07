@@ -7,7 +7,7 @@ import unicodedata
 import json
 
 from resources.lib.common import Common
-from resources.lib.db import DB, ThreadLocal
+from resources.lib.db import ThreadLocal
 
 
 class Common(Common):
@@ -17,7 +17,7 @@ class Common(Common):
     
     def __init__(self):
         # DBインスタンスを共有
-        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+        self.db = ThreadLocal.db
         # ディレクトリ設定
         os.makedirs(self.SOURCE_PATH, exist_ok=True)
         os.makedirs(self.JSON_PATH, exist_ok=True)

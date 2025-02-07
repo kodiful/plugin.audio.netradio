@@ -89,3 +89,7 @@ if __name__ == '__main__':
     # 未定義
     else:
         Common.log('undefined action:', action)
+
+    # DBインスタンスを終了
+    ThreadLocal.db.conn.close()
+    ThreadLocal.db = None

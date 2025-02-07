@@ -5,7 +5,7 @@ import shutil
 import json
 from datetime import datetime
 from resources.lib.common import Common
-from resources.lib.db import DB, ThreadLocal
+from resources.lib.db import ThreadLocal
 
 import xbmc
 import xbmcgui
@@ -15,7 +15,7 @@ class Keyword(Common):
     
     def __init__(self):
         # DBのインスタンスを共有
-        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+        self.db = ThreadLocal.db
  
     def set(self, kid, sid):
         xbmc.sleep(1000)

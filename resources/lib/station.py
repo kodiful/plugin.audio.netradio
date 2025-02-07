@@ -6,7 +6,7 @@ import json
 import re
 
 from resources.lib.common import Common
-from resources.lib.db import DB, ThreadLocal
+from resources.lib.db import ThreadLocal
 
 import xbmc
 import xbmcgui
@@ -16,7 +16,7 @@ class Station(Common):
     
     def __init__(self):
         # DBのインスタンスを共有
-        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+        self.db = ThreadLocal.db
 
     def set(self, sid=None):
         # アドオン設定画面から放送局設定画面を開いたとき、設定した値が以前の設定で書き換えられてしまうのを避ける

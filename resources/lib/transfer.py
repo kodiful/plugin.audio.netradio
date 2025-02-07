@@ -7,7 +7,7 @@ import json
 from mutagen.mp3 import MP3
 
 from resources.lib.common import Common
-from resources.lib.db import DB, ThreadLocal
+from resources.lib.db import ThreadLocal
 from resources.lib.download import Download
 
 
@@ -15,7 +15,7 @@ class Transfer(Common):
 
     def __init__(self):
         # DBのインスタンスを共有
-        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+        self.db = ThreadLocal.db
 
     def import_contents(self):
         # CONTENTS_PATHが無い場合はなにもしない

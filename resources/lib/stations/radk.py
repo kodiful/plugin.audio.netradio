@@ -4,7 +4,7 @@ import sys
 from bs4 import BeautifulSoup
 
 from resources.lib.stations.common import Common
-from resources.lib.db import DB, ThreadLocal
+from resources.lib.db import ThreadLocal
 
 
 class Scraper(Common):
@@ -17,7 +17,7 @@ class Scraper(Common):
         self.URL = self.URL % area
         super().__init__(f'{self.TYPE}_{area}')
         # DBインスタンスを共有
-        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+        self.db = ThreadLocal.db
 
     def parse(self, data):
         buf = []

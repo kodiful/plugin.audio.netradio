@@ -10,7 +10,7 @@ from datetime import datetime
 from urllib.parse import urlencode
 
 from resources.lib.common import Common
-from resources.lib.db import DB, ThreadLocal
+from resources.lib.db import ThreadLocal
 from resources.lib.holiday import Holiday
 
 import xbmcplugin
@@ -21,7 +21,7 @@ class Download(Common):
 
     def __init__(self):
         # DBのインスタンスを共有
-        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+        self.db = ThreadLocal.db
         # ロケール設定
         locale.setlocale(locale.LC_ALL, '')
 

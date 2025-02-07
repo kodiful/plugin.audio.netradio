@@ -25,7 +25,7 @@ class Monitor(xbmc.Monitor, Common):
     def __init__(self):
         super().__init__()
         # DBインスタンスを共有
-        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+        self.db = ThreadLocal.db
 
     def onSettingsChanged(self):
         # ダイアログが最前面でない場合
@@ -65,7 +65,7 @@ class Service(Common):
 
     def __init__(self):
         # DBのインスタンスを共有
-        db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+        db = ThreadLocal.db
         # authテーブルを初期化
         db.cursor.executescript(db.sql_auth_init)
         # statusテーブルを初期化
@@ -105,8 +105,8 @@ class Service(Common):
         thread.start()
 
     def monitor(self):
-        # DBのインスタンスを共有
-        db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+        # DBインスタンスを作成
+        db = ThreadLocal.db = DB()
         # 開始
         self.log('enter monitor.')
         # 監視開始を通知
@@ -167,10 +167,12 @@ class Service(Common):
             process.kill()
         # 監視終了を通知
         self.log('exit monitor.')
+        # DBインスタンスを終了
+        db.conn.close()
 
     def _authenticate(self):
-        # DBのインスタンスを共有
-        db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+        # DBインスタンスを共有
+        db = ThreadLocal.db
         # radiko認証
         auth = Authenticate()
         if auth.response['authed'] == 0:
@@ -222,7 +224,7 @@ class Service(Common):
 
     def _process_queue(self):
         # DBのインスタンスを共有
-        db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+        db = ThreadLocal.db
         # 保留中(status=1)の番組、かつDOWNLOAD_PREPARATION以内に開始する番組を検索
         sql = '''SELECT c.cid, c.kid, c.filename, s.type, s.abbr, c.title, EPOCH(c.start) as t, EPOCH(c.end), s.direct
         FROM contents c JOIN stations s ON c.sid = s.sid
@@ -244,8 +246,8 @@ class Service(Common):
 
 
 def download(cid, kid, filename, type, abbr, title, end, direct, queue):
-    # DBのインスタンスを共有
-    db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+    # DBインスタンスを作成
+    db = ThreadLocal.db = DB()
     # radiko認証
     sql = 'SELECT auth_token FROM auth'
     db.cursor.execute(sql)
@@ -300,3 +302,6 @@ def download(cid, kid, filename, type, abbr, title, end, direct, queue):
         # ログ
         Common.log(f'[{process.pid}] Download failed (returncode={process.returncode}).')
         Common.log(err)
+    # DBインスタンスを終了
+    ThreadLocal.db.conn.close()
+    ThreadLocal.db = None

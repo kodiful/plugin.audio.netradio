@@ -9,7 +9,7 @@ from qrcode import QRCode
 from sqlite3 import dbapi2 as sqlite
 
 from resources.lib.common import Common
-from resources.lib.db import DB, ThreadLocal
+from resources.lib.db import ThreadLocal
 from resources.lib.localproxy import LocalProxy
 
 import xbmc
@@ -21,7 +21,7 @@ class Directory(Common):
 
     def __init__(self):
         # DBのインスタンスを共有
-        self.db = ThreadLocal.db = getattr(ThreadLocal, 'db', DB())
+        self.db = ThreadLocal.db
         # radiko認証
         sql = "SELECT auth_token, region, pref FROM auth JOIN codes ON auth.area_id = codes.radiko WHERE codes.city = ''"
         self.db.cursor.execute(sql)
