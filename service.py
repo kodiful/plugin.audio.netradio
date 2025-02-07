@@ -12,6 +12,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
 from resources.lib.common import Common
 from resources.lib.service import Service
 
+from resources.lib.transfer import Transfer
+from resources.lib.db import initialize
+
 
 def check_ffmpeg():
     # fmpegのパスを取得
@@ -19,9 +22,9 @@ def check_ffmpeg():
     if ffmpeg:
         PATH = os.environ['PATH']
         if os.name == 'nt':
-            os.environ['PATH'] = '%s;%s' % (PATH, ffmpeg)
+            os.environ['PATH'] = '%s;%s' % (ffmpeg, PATH)
         else:
-            os.environ['PATH'] = '%s:%s' % (PATH, ffmpeg)
+            os.environ['PATH'] = '%s:%s' % (ffmpeg, PATH)
     # ffmpegのパスを確認
     p = subprocess.Popen(['ffmpeg'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     status = p.stdout.readline().decode('utf-8', errors='shift_jis').strip()
@@ -41,6 +44,12 @@ if __name__ == '__main__':
 
     # ffmpegのパスを確認して初期化
     if check_ffmpeg():
+        # DBファイルが無い場合は、DBを新規作成して既存の情報をインポート
+        if os.path.exists(Common.DB_FILE) is False:
+            Common.notify('Transferring data...')
+            Transfer().run()
+        # DBを初期化
+        initialize()
         # サービスを初期化
         service = Service()
         # 別スレッドでサービスを起動
@@ -49,3 +58,4 @@ if __name__ == '__main__':
     else:
         # ffmpegのパスが確認できない場合は通知
         Common.notify('FFmpeg not found', error=True)
+

@@ -1,31 +1,15 @@
 # -*- coding: utf-8 -*-
 
-import sys
-import os
 import json
 import datetime
 
-if __name__ == '__main__':
-    sys.path.append('..')
-    from prefecture import Prefecture
-    from common import Common
-    class Const:
-        TIMETABLE_ROOT = '.'
-        TIMETABLE_PATH = 'timetable'
-        SOURCE_PATH = 'source'
-        JSON_PATH = 'json'
-else:
-    from ..prefecture import Prefecture
-    from .common import Common
-    from ..common import Common as Const
-    Const.SOURCE_PATH = os.path.join(Const.TIMETABLE_ROOT, 'source')
-    Const.JSON_PATH = os.path.join(Const.TIMETABLE_ROOT, 'json')
+from resources.lib.timetable.common import Common
 
 
-class Scraper(Common, Const, Prefecture):
+class Scraper(Common):
 
     TYPE = 'nhkr'
-    URL = 'https://api.nhk.or.jp/r5/pg2/now/4/%s/netradio.json'
+    URL = 'https://api.nhk.or.jp/r5/pg2/now/4/{region}/netradio.json'
 
     # 地域
     REGION = {
@@ -40,30 +24,27 @@ class Scraper(Common, Const, Prefecture):
     }
 
     def __init__(self, region):
-        self.URL = self.URL % self.REGION[region]
+        self.region = region
+        self.URL = self.URL.format(region=self.REGION[region])
         super().__init__()
 
     def parse(self, data):
         data = json.loads(data)
         data = data['nowonair_list']
         station = data['n1']['following']['area']['name']
-        buf1 = self.setup1(data['n1'], 'NHK1', f'NHKラジオ第1({station})')
-        buf2 = self.setup1(data['n2'], 'NHK2', f'NHKラジオ第2')
-        buf3 = self.setup1(data['n3'], 'NHK3', f'NHK-FM({station})')
-        return {
-            f'NHKラジオ第1({station})': buf1,
-            f'NHKラジオ第2': buf2,
-            f'NHK-FM({station})': buf3,
-        }
+        buf = []
+        for data, id, station in (
+            (data['n1'], 'NHK1', f'NHKラジオ第1({station})'),
+            (data['n2'], 'NHK2', f'NHKラジオ第2'),
+            (data['n3'], 'NHK3', f'NHK-FM({station})')):
+            buf += [
+                #self.subparse(data['previous'], id, station),
+                self.subparse(data['present'], id, station),
+                self.subparse(data['following'], id, station),
+            ]
+        return buf
 
-    def setup1(self, data, id_, station):
-        return [
-            #self.setup2(data['previous'], id_, station),
-            self.setup2(data['present'], id_, station),
-            self.setup2(data['following'], id_, station),
-        ]
-
-    def setup2(self, data, id_, station):
+    def subparse(self, data, id, station):
         '''
         {
             "id": "2023042071853",
@@ -231,46 +212,23 @@ class Scraper(Common, Const, Prefecture):
             "published_period_to": ""
         }
         '''
-        return {
-            'type': 'nhkr',
-            'id': id_,
+        prog = {
             'station': station,
+            'type': 'nhkr',
+            'abbr': id,
             'title': self.normalize(data['title']),
-            'START': self.t2string(data['start_time']),  # 2020-10-28T08:55:00+09:00
-            'END': self.t2string(data['end_time']),  # 2020-10-28T09:00:00+09:00
-            'start': self.t2unixtime(data['start_time']),  # 2020-10-28T08:55:00+09:00
-            'end': self.t2unixtime(data['end_time']),  # 2020-10-28T09:00:00+09:00
-            'weekday': self.t2weekday(data['start_time']),
+            'start': self._datetime(data['start_time']),
+            'end': self._datetime(data['end_time']),
             'act': self.normalize(data['act']),
             'info': self.normalize(data['subtitle']),
             'desc': self.normalize(data['music']),
-            'url': data['url']['pc']
+            'site': data['url']['pc'],
+            'region': self.region,
+            'pref': ''
         }
-    
-    def t2unixtime(self, t):
-        # datetimeオブジェクトに変換
+        return prog
+
+    def _datetime(self, t):
+        # 2023-04-20T05:00:00+09:00 -> 2023-04-20 05:00:00
         datetime_obj = datetime.datetime.fromisoformat(t)
-        # UNIX時間に変換
-        return int(datetime_obj.timestamp())
-
-    def t2weekday(self, t):
-        # datetimeオブジェクトに変換
-        datetime_obj = datetime.datetime.fromisoformat(t)
-        # 曜日の数字に変換
-        return str(datetime_obj.weekday())
-
-    def t2string(self, t):
-        # datetimeオブジェクトに変換
-        datetime_obj = datetime.datetime.fromisoformat(t)
-        # 文字列に変換
-        return datetime_obj.strftime('%Y%m%d%H%M%S')
-
-
-if __name__ == '__main__':
-    import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--region', default='関東')
-    parser.add_argument('--force', action='store_true')
-    args = parser.parse_args()
-    countdown = Scraper(args.region).update(force=args.force)
-    print(countdown)
+        return datetime_obj.strftime('%Y-%m-%d %H:%M:%S')

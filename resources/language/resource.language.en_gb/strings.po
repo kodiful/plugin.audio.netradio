@@ -166,19 +166,27 @@ msgid "Keyword"
 msgstr ""
 
 msgctxt "#30502"
-msgid "Search"
+msgid "Match"
 msgstr ""
 
 msgctxt "#30503"
 msgid "Day"
 msgstr ""
 
-msgctxt "#30504"
-msgid "All station"
+msgctxt "#30505"
+msgid "Station"
 msgstr ""
 
-msgctxt "#30505"
-msgid "Station ID"
+msgctxt "#30506"
+msgid "Match & Download"
+msgstr ""
+
+msgctxt "#30507"
+msgid "Suspend"
+msgstr ""
+
+msgctxt "#30508"
+msgid "Resume"
 msgstr ""
 
 msgctxt "#30511"
@@ -186,7 +194,7 @@ msgid "Title only"
 msgstr ""
 
 msgctxt "#30512"
-msgid "Title & detail info"
+msgid "Title & Description"
 msgstr ""
 
 msgctxt "#30520"

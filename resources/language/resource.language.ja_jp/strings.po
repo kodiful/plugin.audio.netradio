@@ -165,27 +165,35 @@ msgid "Keyword"
 msgstr "キーワード"
 
 msgctxt "#30502"
-msgid "Search"
+msgid "Match"
 msgstr "検索対象"
 
 msgctxt "#30503"
 msgid "Day"
 msgstr "曜日"
 
-msgctxt "#30504"
-msgid "All station"
-msgstr "放送局を限定する"
-
 msgctxt "#30505"
-msgid "Station ID"
-msgstr "限定する放送局のID"
+msgid "Station"
+msgstr "放送局"
+
+msgctxt "#30506"
+msgid "Match & Download"
+msgstr "自動ダウンロード"
+
+msgctxt "#30507"
+msgid "Suspend"
+msgstr "停止中"
+
+msgctxt "#30508"
+msgid "Resume"
+msgstr "実行中"
 
 msgctxt "#30511"
 msgid "Title only"
 msgstr "番組名のみ"
 
 msgctxt "#30512"
-msgid "Title & detail info"
+msgid "Title & Description"
 msgstr "番組名と詳細情報"
 
 msgctxt "#30520"

@@ -1,29 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import os
-import requests
 from bs4 import BeautifulSoup
 
-if __name__ == '__main__':
-    sys.path.append('..')
-    from prefecture import Prefecture
-    from common import Common
-    class Const:
-        DIRECTORY_ROOT = '.'
-        DIRECTORY_PATH = 'directory'
-        LOGO_PATH = 'logo'
-        SOURCE_PATH = 'source'
-        JSON_PATH = 'json'
-else:
-    from ..prefecture import Prefecture
-    from .common import Common
-    from ..common import Common as Const
-    Const.SOURCE_PATH = os.path.join(Const.DIRECTORY_ROOT, 'source')
-    Const.JSON_PATH = os.path.join(Const.DIRECTORY_ROOT, 'json')
+from resources.lib.stations.common import Common
+from resources.lib.db import DB
 
 
-class Scraper(Common, Const, Prefecture):
+class Scraper(Common):
 
     TYPE = 'radk'
     URL = 'http://radiko.jp/v2/station/list/%s.xml'
@@ -34,6 +18,7 @@ class Scraper(Common, Const, Prefecture):
         super().__init__(f'{self.TYPE}_{area}')
 
     def parse(self, data):
+        db = DB()
         buf = []
         sections = BeautifulSoup(data, features='xml').find_all('station')
         for section in sections:
@@ -61,9 +46,9 @@ class Scraper(Common, Const, Prefecture):
             </station>
             '''
             try:
-                id_ = section.id.text
+                id = section.id.text
                 station = section.find('name').text
-                code, region, pref = self.radiko_place(self.area)
+                code, region, pref = db.radiko_place(self.area)
                 logo = section.find('logo', width='448').text
                 official = section.href.text
             except Exception:
@@ -71,7 +56,7 @@ class Scraper(Common, Const, Prefecture):
                 continue
             buf.append({
                 'type': self.TYPE,
-                'id': id_,
+                'abbr': id,
                 'station': self.normalize(station),
                 'code': code,
                 'region': region,
@@ -79,16 +64,9 @@ class Scraper(Common, Const, Prefecture):
                 'city': '',
                 'logo': logo,
                 'description': '',
-                'official': official,
-                'stream': ''
+                'site': official,
+                'direct': '',
+                'match': 0 if self.normalize(station).startswith('NHK') else 1
             })
+        db.conn.close()
         return buf
-
-
-if __name__ == '__main__':
-    buf = []
-    for i in range(1, 48):
-        scraper = Scraper(f'JP{i}')
-        buf = buf + scraper.run()
-    scraper.save_as_list(buf)
-    scraper.save_as_file(buf, category='民放ラジオ(radiko)')

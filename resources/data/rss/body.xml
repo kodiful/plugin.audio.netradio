@@ -3,10 +3,10 @@
       <link>{url}</link>
       <description>{description}</description>
       <category></category>
-      <pubDate>{startdate}</pubDate>
+      <pubDate>{pubdate}</pubDate>
       <source>{station}</source>
       <author>{station}</author>
-      <enclosure url="{root}/{source}" length="{filesize}" type="audio/mp3" />
+      <enclosure url="{filename}" length="{filesize}" type="audio/mp3" />
       <itunes:explicit>no</itunes:explicit>
       <itunes:duration>{duration}</itunes:duration>
       <itunes:summary>{description}</itunes:summary>

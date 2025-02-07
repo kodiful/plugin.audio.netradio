@@ -1,29 +1,14 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import os
 import json
 from bs4 import BeautifulSoup
 
-if __name__ == '__main__':
-    sys.path.append('..')
-    from prefecture import Prefecture
-    from common import Common
-    class Const:
-        DIRECTORY_ROOT = '.'
-        DIRECTORY_PATH = 'directory'
-        LOGO_PATH = 'logo'
-        SOURCE_PATH = 'source'
-        JSON_PATH = 'json'
-else:
-    from ..prefecture import Prefecture
-    from .common import Common
-    from ..common import Common as Const
-    Const.SOURCE_PATH = os.path.join(Const.DIRECTORY_ROOT, 'source')
-    Const.JSON_PATH = os.path.join(Const.DIRECTORY_ROOT, 'json')
+from resources.lib.stations.common import Common
+from resources.lib.db import DB
 
 
-class Scraper(Common, Const, Prefecture):
+class Scraper(Common):
 
     TYPE = 'fmpp'
     URL = 'https://fmplapla.com'
@@ -32,6 +17,7 @@ class Scraper(Common, Const, Prefecture):
         super().__init__()
 
     def parse(self, data):
+        db = DB()
         buf = []
         data = BeautifulSoup(data, features='lxml').find('script', id='__NEXT_DATA__')
         data = json.loads(data.decode_contents())
@@ -65,9 +51,9 @@ class Scraper(Common, Const, Prefecture):
                   }
                 '''
                 try:
-                    id_ = section['id']
+                    id = section['id']
                     station = section['name']
-                    code, region, pref, city = self.infer_place(section['pref'] + section['city'])
+                    code, region, pref, city = db.infer_place(section['pref'] + section['city'])
                     logo = section['artwork']
                     description = section['stat']
                     official = ''
@@ -76,7 +62,7 @@ class Scraper(Common, Const, Prefecture):
                     continue
                 buf.append({
                     'type': self.TYPE,
-                    'id': str(id_),
+                    'abbr': str(id),
                     'station': self.normalize(station),
                     'code': code,
                     'region': region,
@@ -84,14 +70,9 @@ class Scraper(Common, Const, Prefecture):
                     'city': city,
                     'logo': logo,
                     'description': self.normalize(description),
-                    'official': official,
-                    'stream': ''
+                    'site': official,
+                    'direct': '',
+                    'match': 0
                 })
+        db.conn.close()
         return buf
-
-
-if __name__ == '__main__':
-    scraper = Scraper()
-    buf = scraper.run()
-    scraper.save_as_list(buf)
-    scraper.save_as_file(buf, category='コミュニティラジオ')

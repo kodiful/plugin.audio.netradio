@@ -1,28 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import os
 from bs4 import BeautifulSoup
 
-if __name__ == '__main__':
-    sys.path.append('..')
-    from prefecture import Prefecture
-    from common import Common
-    class Const:
-        DIRECTORY_ROOT = '.'
-        DIRECTORY_PATH = 'directory'
-        LOGO_PATH = 'logo'
-        SOURCE_PATH = 'source'
-        JSON_PATH = 'json'
-else:
-    from ..prefecture import Prefecture
-    from .common import Common
-    from ..common import Common as Const
-    Const.SOURCE_PATH = os.path.join(Const.DIRECTORY_ROOT, 'source')
-    Const.JSON_PATH = os.path.join(Const.DIRECTORY_ROOT, 'json')
+from resources.lib.stations.common import Common
+from resources.lib.db import DB
 
 
-class Scraper(Common, Const, Prefecture):
+class Scraper(Common):
 
     TYPE = 'csra'
     URL = 'http://csra.fm/stationlist/'
@@ -31,6 +16,7 @@ class Scraper(Common, Const, Prefecture):
         super().__init__()
 
     def parse(self, data):
+        db = DB()
         buf = []
         sections = BeautifulSoup(data, features='lxml').find_all('section')
         for section in sections:
@@ -52,10 +38,10 @@ class Scraper(Common, Const, Prefecture):
             '''
             try:
                 station = section.h1.string.strip()
-                code, region, pref, city = self.infer_place(section.text.replace('久米島', '久米島町'))
+                code, region, pref, city = db.infer_place(section.text.replace('久米島', '久米島町'))
                 logo = 'http://csra.fm%s' % section.img['src'].strip()
                 stream = section.find('a', class_='stm')['href'].strip()
-                official =  section.find('a', class_='site')['href'].strip()
+                official = section.find('a', class_='site')['href'].strip()
             except Exception:
                 print('[csra] unparsable content (skip):', station, sep='\t', file=sys.stderr)
                 continue
@@ -67,7 +53,7 @@ class Scraper(Common, Const, Prefecture):
             if stream.startswith('mms://') or stream.endswith('.asx'):
                 buf.append({
                     'type': self.TYPE,
-                    'id': '',
+                    'abbr': '',
                     'station': self.normalize(station),
                     'code': code,
                     'region': region,
@@ -75,16 +61,11 @@ class Scraper(Common, Const, Prefecture):
                     'city': city,
                     'logo': logo,
                     'description': '',
-                    'official': official,
-                    'stream': stream,
+                    'site': official,
+                    'direct': stream,
+                    'match': 0
                 })
             else:
                 print('[csra] unsupported protocol (skip):', station, stream, sep='\t', file=sys.stderr)
+        db.conn.close()
         return buf
-
-
-if __name__ == '__main__':
-    scraper = Scraper()
-    buf = scraper.run()
-    scraper.save_as_list(buf)
-    scraper.save_as_file(buf, category='コミュニティラジオ')

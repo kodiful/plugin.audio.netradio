@@ -1,28 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import os
 from bs4 import BeautifulSoup
 
-if __name__ == '__main__':
-    sys.path.append('..')
-    from prefecture import Prefecture
-    from common import Common
-    class Const:
-        DIRECTORY_ROOT = '.'
-        DIRECTORY_PATH = 'directory'
-        LOGO_PATH = 'logo'
-        SOURCE_PATH = 'source'
-        JSON_PATH = 'json'
-else:
-    from ..prefecture import Prefecture
-    from .common import Common
-    from ..common import Common as Const
-    Const.SOURCE_PATH = os.path.join(Const.DIRECTORY_ROOT, 'source')
-    Const.JSON_PATH = os.path.join(Const.DIRECTORY_ROOT, 'json')
+from resources.lib.stations.common import Common
+from resources.lib.db import DB
 
 
-class Scraper(Common, Const, Prefecture):
+class Scraper(Common):
 
     TYPE = 'nhkr'
     URL = 'https://www.nhk.or.jp/radio/config/config_web.xml'
@@ -50,6 +35,7 @@ class Scraper(Common, Const, Prefecture):
         super().__init__()
 
     def parse(self, data):
+        db = DB()
         buf = []
         sections = BeautifulSoup(data, features='xml').find_all('data')
         for section in sections:
@@ -66,13 +52,13 @@ class Scraper(Common, Const, Prefecture):
             '''
             try:
                 station = section.areajp.text
-                code, region, pref, city = self.infer_place(self.AREA[section.areajp.text])
+                code, region, pref, city = db.infer_place(self.AREA[section.areajp.text])
             except Exception:
                 print('[nhkr] unparsable content (skip):', station, sep='\t', file=sys.stderr)
                 continue
             buf.append({
                 'type': 'nhkr',
-                'id': 'NHK1',
+                'abbr': 'NHK1',
                 'station': f'NHKラジオ第1({station})',
                 'code': code,
                 'region': region,
@@ -80,12 +66,13 @@ class Scraper(Common, Const, Prefecture):
                 'city': city,
                 'logo': self.LOGO['r1'],
                 'description': '',
-                'official': 'https://www.nhk.or.jp/radio/',
-                'stream': section.r1hls.text
+                'site': 'https://www.nhk.or.jp/radio/',
+                'direct': section.r1hls.text,
+                'match': 1
             })
             buf.append({
                 'type': 'nhkr',
-                'id': 'NHK2',
+                'abbr': 'NHK2',
                 'station': f'NHKラジオ第2',
                 'code': code,
                 'region': region,
@@ -93,12 +80,13 @@ class Scraper(Common, Const, Prefecture):
                 'city': city,
                 'logo': self.LOGO['r2'],
                 'description': '',
-                'official': 'https://www.nhk.or.jp/radio/',
-                'stream': section.r2hls.text
+                'site': 'https://www.nhk.or.jp/radio/',
+                'direct': section.r2hls.text,
+                'match': 1
             })
             buf.append({
                 'type': 'nhkr',
-                'id': 'NHK3',
+                'abbr': 'NHK3',
                 'station': f'NHK-FM({station})',
                 'code': code,
                 'region': region,
@@ -106,14 +94,9 @@ class Scraper(Common, Const, Prefecture):
                 'city': city,
                 'logo': self.LOGO['fm'],
                 'description': '',
-                'official': 'https://www.nhk.or.jp/radio/',
-                'stream': section.fmhls.text
+                'site': 'https://www.nhk.or.jp/radio/',
+                'direct': section.fmhls.text,
+                'match': 1
             })
+        db.conn.close()
         return buf
-
-
-if __name__ == '__main__':
-    scraper = Scraper()
-    buf = scraper.run()
-    scraper.save_as_list(buf)
-    scraper.save_as_file(buf, category='NHKラジオ')

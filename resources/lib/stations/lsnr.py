@@ -1,28 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import os
 import json
 
-if __name__ == '__main__':
-    sys.path.append('..')
-    from prefecture import Prefecture
-    from common import Common
-    class Const:
-        DIRECTORY_ROOT = '.'
-        DIRECTORY_PATH = 'directory'
-        LOGO_PATH = 'logo'
-        SOURCE_PATH = 'source'
-        JSON_PATH = 'json'
-else:
-    from ..prefecture import Prefecture
-    from .common import Common
-    from ..common import Common as Const
-    Const.SOURCE_PATH = os.path.join(Const.DIRECTORY_ROOT, 'source')
-    Const.JSON_PATH = os.path.join(Const.DIRECTORY_ROOT, 'json')
+from resources.lib.stations.common import Common
+from resources.lib.db import DB
 
 
-class Scraper(Common, Const, Prefecture):
+class Scraper(Common):
 
     TYPE = 'lsnr'
     URL = 'http://listenradio.jp/service/categorychannel.aspx?categoryid=10005' # サイマルのみ
@@ -32,6 +17,7 @@ class Scraper(Common, Const, Prefecture):
         super().__init__()
 
     def parse(self, data):
+        db = DB()
         buf = []
         data = json.loads(data)
         for section in data['Channel']:
@@ -53,9 +39,9 @@ class Scraper(Common, Const, Prefecture):
             }
             '''
             try:
-                id_ = section['ChannelId']
+                id = section['ChannelId']
                 station = section['ChannelName']
-                code, region, pref, city = self.infer_place(section['ChannelDetail'])
+                code, region, pref, city = db.infer_place(section['ChannelDetail'])
                 logo = section['ChannelImage']
                 stream = section['ChannelHls']
                 description = section['ChannelDetail']
@@ -65,7 +51,7 @@ class Scraper(Common, Const, Prefecture):
             if region:
                 buf.append({
                     'type': self.TYPE,
-                    'id': str(id_),
+                    'abbr': str(id),
                     'station': self.normalize(station),
                     'code': code,
                     'region': region,
@@ -73,16 +59,11 @@ class Scraper(Common, Const, Prefecture):
                     'city': city,
                     'logo': logo,
                     'description': self.normalize(description),
-                    'official': '',
-                    'stream': stream,
+                    'site': '',
+                    'direct': stream,
+                    'match': 0
                 })
             else:
                 print('[lsnr] invalid region:', station, stream, sep='\t', file=sys.stderr)
+        db.conn.close()
         return buf
-
-
-if __name__ == '__main__':
-    scraper = Scraper()
-    buf = scraper.run()
-    scraper.save_as_list(buf)
-    scraper.save_as_file(buf, category='コミュニティラジオ')

@@ -6,6 +6,7 @@ import urllib.parse
 import shutil
 import subprocess
 import platform
+import threading
 
 import xbmc
 
@@ -13,14 +14,19 @@ import xbmc
 sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
 
 from resources.lib.common import Common
+from resources.lib.db import DB
 from resources.lib.directory import Directory
-from resources.lib.keyword import Keyword
-from resources.lib.station import Station
 from resources.lib.download import Download
+
+from resources.lib.settings.keyword import Keyword
+from resources.lib.settings.station import Station
 
 
 if __name__ == '__main__':
 
+    # DBに接続
+    Common.db = DB()
+    
     # 引数
     args = urllib.parse.parse_qs(sys.argv[2][1:], keep_blank_values=True)
     for key in args.keys():
@@ -29,49 +35,42 @@ if __name__ == '__main__':
     # action
     action = args.get('action', 'show_station')
 
-    # ログ
-    #Common.log('path=',xbmc.getInfoLabel('Container.FolderPath'))
-    #Common.log('argv=',sys.argv)
-    #Common.log(args)
-
     # actionに応じた処理
     if action == 'show_station':
-        path = args.get('path')
-        Directory().show(path)
+        type = args.get('type')
+        region = args.get('region')
+        pref = args.get('pref')
+        Directory().show(type, region, pref)
     elif action == 'add_to_top':
-        path = args.get('path')
-        Directory().add_to_top(path)
+        Directory().add_to_top(args.get('sid'))
     elif action == 'delete_from_top':
-        path = args.get('path')
-        Directory().delete_from_top(path)
+        Directory().delete_from_top(args.get('sid'))
 
     # 放送局
     elif action == 'set_station':
-        Station().set(args.get('path'))
+        Station().set(args.get('sid'))
     elif action == 'add_station':
         Station().add()
-        src = os.path.join(Common.RESOURCES_PATH, 'default.xml')
-        dst = os.path.join(Common.RESOURCES_PATH, 'settings.xml')
-        shutil.copy(src, dst)
+    elif action == 'delete_station':
+        Station().delete(args.get('sid'))
     elif action == 'update_info':
-        Common.write_mmap('True')
+        db = DB()
+        db.cursor.execute('UPDATE status SET timetable = 1')
+        db.conn.close()
 
     # キーワード
     elif action == 'set_keyword':
-        Keyword().set(args.get('path'))
+        Keyword().set(args.get('kid'), args.get('sid'))
     elif action == 'add_keyword':
         Keyword().add()
-        src = os.path.join(Common.RESOURCES_PATH, 'default.xml')
-        dst = os.path.join(Common.RESOURCES_PATH, 'settings.xml')
-        shutil.copy(src, dst)
+    elif action == 'delete_keyword':
+        Keyword().delete(args.get('kid'))
 
     # ダウンロード
     elif action == 'show_download':
-        path = args.get('path')
-        Download().show(path)
-    elif action == "open_folder":
-        keyword = args.get('keyword', '')
-        path = os.path.join(Common.GET('folder'), keyword)
+        Download().show(args.get('kid'))
+    elif action == 'open_folder':
+        path = os.path.join(Common.CONTENTS_PATH, args.get('kid', ''))
         os_ = platform.system()
         if os_ == 'Windows':
             subprocess.Popen(['explorer', path], shell=True)
@@ -85,13 +84,12 @@ if __name__ == '__main__':
     # アドオン設定
     elif action == 'settings':
         Common.SET('pref', Directory().pref)
-        src = os.path.join(Common.RESOURCES_PATH, 'default.xml')
-        dst = os.path.join(Common.RESOURCES_PATH, 'settings.xml')
-        shutil.copy(src, dst)
+        shutil.copy(os.path.join(Common.LIB_PATH, 'settings', 'settings.xml'), Common.DIALOG_FILE)
         xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
-    elif action == 'validate':
-        Common.write_mmap('True')
 
     # 未定義
     else:
         Common.log('undefined action:', action)
+
+    # DBから切断
+    Common.db.conn.close()

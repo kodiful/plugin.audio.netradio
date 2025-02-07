@@ -2,10 +2,6 @@
 
 import os
 import inspect
-import json
-import requests
-import datetime
-import mmap
 
 import xbmc
 import xbmcaddon
@@ -18,6 +14,7 @@ class Common:
     ADDON = xbmcaddon.Addon()
     ADDON_ID = ADDON.getAddonInfo('id')
     ADDON_NAME = ADDON.getAddonInfo('name')
+    ADDON_VERSION = ADDON.getAddonInfo('version')
 
     # utilities
     GET = ADDON.getSetting
@@ -27,40 +24,24 @@ class Common:
     # addon paths
     PROFILE_PATH = xbmcvfs.translatePath(ADDON.getAddonInfo('profile'))
     PLUGIN_PATH = xbmcvfs.translatePath(ADDON.getAddonInfo('path'))
-    RESOURCES_PATH = os.path.join(PLUGIN_PATH, 'resources')
+    LIB_PATH = os.path.join(PLUGIN_PATH, 'resources', 'lib')
+    DATA_PATH = os.path.join(PLUGIN_PATH, 'resources', 'data')
 
-    # directory
-    DIRECTORY_ROOT = os.path.join(PROFILE_PATH, 'stations')
-    DIRECTORY_PATH = os.path.join(DIRECTORY_ROOT, 'directory')
-    INDEX_PATH = os.path.join(DIRECTORY_ROOT, 'index')
-    LOGO_PATH = os.path.join(DIRECTORY_ROOT, 'logo')
+    # settings file
+    DIALOG_FILE = os.path.join(PLUGIN_PATH, 'resources', 'settings.xml')
+    SETTINGS_FILE = os.path.join(PROFILE_PATH, 'settings.xml')
 
-    # timetable
-    TIMETABLE_ROOT = os.path.join(PROFILE_PATH, 'timetable')
-    TIMETABLE_PATH = os.path.join(TIMETABLE_ROOT, 'timetable')
+    # db file
+    DB_FILE = os.path.join(PROFILE_PATH, 'download.db')
 
-    # keywords
-    KEYWORDS_PATH = os.path.join(PROFILE_PATH, 'keywords')
-
-    # queue, download
-    PENDING_PATH = os.path.join(PROFILE_PATH, 'queue', 'pending')
-    PROCESSING_PATH = os.path.join(PROFILE_PATH, 'queue', 'processing')
-    DOWNLOAD_PATH = os.path.join(PROFILE_PATH, 'queue', 'download')
+    # image cache
+    IMAGE_CACHE = os.path.join(xbmcvfs.translatePath('special://database'), 'Textures13.db')
 
     # HLS chache
     HLS_CACHE_PATH = os.path.join(PROFILE_PATH, 'hls_cache')
 
-    # radiko auth file
-    AUTH_FILE = os.path.join(PROFILE_PATH, 'auth.json')
-
-    # mmap file
-    MMAP_FILE = os.path.join(PROFILE_PATH, 'mmap.txt')
-
-    # settings file
-    SETTINGS_FILE = os.path.join(PROFILE_PATH, 'settings.xml')
-
-    # image cache
-    IMAGE_CACHE = os.path.join(xbmcvfs.translatePath('special://database'), 'Textures13.db')
+    # contents directory
+    CONTENTS_PATH = GET('folder')
 
     @staticmethod
     def notify(*messages, **options):
@@ -110,49 +91,9 @@ class Common:
             ), level)
 
     @staticmethod
-    def now():
-        return datetime.datetime.now().timestamp()
-
-    @staticmethod
     def nowplaying():
         path = None
         if xbmc.Player().isPlaying():
             item = xbmc.Player().getPlayingItem()
             path = item.getPath()  # http://127.0.0.1:8088/jcba?id=fmblueshonan
         return path
-    
-    @staticmethod
-    def load(url):
-        res = requests.get(url)
-        return res.content.decode('utf-8')
-
-    @staticmethod
-    def write(path, data):
-        with open(path, 'wb') as f:
-            f.write(data.encode('utf-8'))
-
-    @staticmethod
-    def read(path):
-        with open(path, 'rb') as f:
-            return f.read().decode('utf-8')
-
-    @staticmethod
-    def read_as_json(path):
-        return json.loads(Common.read(path))
-
-    @staticmethod
-    def write_as_json(path, data):
-        Common.write(path, json.dumps(data, ensure_ascii=False, indent=4))
-
-    @staticmethod
-    def read_mmap():
-        with open(Common.MMAP_FILE, 'r+b') as f:
-            mm = mmap.mmap(f.fileno(), 0)
-        return mm.readline().decode().strip()
-
-    @staticmethod
-    def write_mmap(data):
-        with open(Common.MMAP_FILE, 'r+b') as f:
-            mm = mmap.mmap(f.fileno(), 0)
-            data = '%s\n' % data
-            mm[:len(data)] = data.encode()
