@@ -132,11 +132,13 @@ class Directory(Common):
     def _add_station(self, sdata):
         # listitemを追加する
         li = xbmcgui.ListItem(self._title(sdata))
-        # サムネイル画像
-        logo = os.path.join(self.PROFILE_PATH, 'stations', 'logo', sdata['type'], sdata['station'] + '.png')
-        li.setArt({'thumb': logo, 'icon': logo})
-        li.setInfo(type='music', infoLabels={'title': sdata['station']})
         li.setProperty('IsPlayable', 'true')
+        # メタデータ設定
+        tag = li.getMusicInfoTag()
+        tag.setTitle(sdata['station'])
+        # サムネイル設定
+        image = os.path.join(self.PROFILE_PATH, 'stations', 'logo', sdata['type'], sdata['station'] + '.png')
+        li.setArt({'thumb': image, 'icon': image})
         # コンテクストメニュー
         self.contextmenu = []
         if sdata['top'] == 1:

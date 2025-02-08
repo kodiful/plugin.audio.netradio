@@ -39,11 +39,15 @@ class Download(Common):
         xbmcplugin.endOfDirectory(int(sys.argv[1]), succeeded=True)
 
     def _add_download(self, cksdata):
+        # listitemを追加する
         li = xbmcgui.ListItem(self._title(cksdata))
+        li.setProperty('IsPlayable', 'true')
+        # メタデータ設定
+        tag = li.getMusicInfoTag()
+        tag.setTitle(cksdata['title'])
+        # サムネイル設定
         logo = os.path.join(self.PROFILE_PATH, 'stations', 'logo', str(cksdata['type']), str(cksdata['station']) + '.png')
         li.setArt({'thumb': logo, 'icon': logo})
-        li.setInfo(type='music', infoLabels={'title': cksdata['title']})
-        li.setProperty('IsPlayable', 'true')
         # コンテクストメニュー
         self.contextmenu = []
         self._contextmenu(self.STR(30109), {'action': 'open_folder', 'kid': cksdata['kid']})
