@@ -19,18 +19,18 @@ class Directory(Common):
         # DBの共有インスタンス
         self.db = ThreadLocal.db
         # radiko認証
-        sql = "SELECT auth_token, region, pref FROM auth JOIN codes ON auth.area_id = codes.radiko WHERE codes.city = ''"
+        sql = "SELECT auth_token, region, pref FROM auth JOIN cities ON auth.area_id = cities.radiko WHERE cities.city = ''"
         self.db.cursor.execute(sql)
         self.token, self.region, self.pref = self.db.cursor.fetchone()
 
     def show(self, type=None, region=None, pref=None):
         if type == 'nhkr':
-            sql = 'SELECT * FROM stations WHERE type = :type and region = :region ORDER BY station'
+            sql = 'SELECT * FROM stations WHERE type = :type AND region = :region AND sstatus >= 0 ORDER BY station'
             self.db.cursor.execute(sql, {'type': 'nhkr', 'region': region})
             for sdata in self.db.cursor.fetchall():
                 self._add_station(sdata)
         elif type == 'radk':
-            sql = 'SELECT * FROM stations WHERE type = :type and region = :region and pref = :pref ORDER BY station'
+            sql = 'SELECT * FROM stations WHERE type = :type AND region = :region AND pref = :pref AND sstatus >= 0 ORDER BY station'
             self.db.cursor.execute(sql, {'type': 'radk', 'region': region, 'pref': pref})
             for sdata in self.db.cursor.fetchall():
                 self._add_station(sdata)
@@ -42,12 +42,12 @@ class Directory(Common):
                 for region, in self.db.cursor.fetchall():
                     self._add_directory(region=region)
             elif pref is None:  # 都道府県リスト
-                sql = 'SELECT DISTINCT pref FROM stations WHERE type IN %s and region = :region ORDER BY code' % types
+                sql = 'SELECT DISTINCT pref FROM stations WHERE type IN %s AND region = :region ORDER BY code' % types
                 self.db.cursor.execute(sql, {'region': region})
                 for pref, in self.db.cursor.fetchall():
                     self._add_directory(region=region, pref=pref)
             else:  # 放送局リスト
-                sql = 'SELECT * FROM stations WHERE type IN %s and region = :region and pref = :pref ORDER BY code' % types
+                sql = 'SELECT * FROM stations WHERE type IN %s AND region = :region AND pref = :pref AND sstatus >= 0 ORDER BY code' % types
                 self.db.cursor.execute(sql, {'region': region, 'pref': pref})
                 for sdata in self.db.cursor.fetchall():
                     self._add_station(sdata)
@@ -70,7 +70,7 @@ class Directory(Common):
 
     def _setup_stations(self):
         # ユーザがトップページに追加した放送局を追加
-        sql = '''SELECT * FROM stations WHERE top = 1 ORDER BY
+        sql = '''SELECT * FROM stations WHERE top = 1 AND sstatus >= 0 ORDER BY
         CASE type
             WHEN 'nhkr' THEN 1
             WHEN 'radk' THEN 2

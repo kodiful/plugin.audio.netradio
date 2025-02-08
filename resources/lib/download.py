@@ -11,7 +11,6 @@ from urllib.parse import urlencode
 
 from resources.lib.common import Common
 from resources.lib.db import ThreadLocal
-from resources.lib.holiday import Holiday
 
 import xbmcplugin
 import xbmcgui
@@ -29,7 +28,7 @@ class Download(Common):
         sql = '''SELECT * FROM contents c 
         JOIN keywords k ON c.kid = k.kid
         JOIN stations s ON c.sid = s.sid
-        WHERE c.kid = :kid and c.status = -1
+        WHERE c.kid = :kid and c.cstatus = -1
         ORDER BY c.start DESC'''
         self.db.cursor.execute(sql, {'kid': kid})
         for cksdata in self.db.cursor.fetchall():
@@ -71,16 +70,14 @@ class Download(Common):
         end = ckdata['end'][11:16]
         # 8月31日(土)
         format = d.strftime(format)
-        date1 = format % weekdays[w]
-        # 2019-08-31
-        date2 = d.strftime('%Y-%m-%d')
+        date = format % weekdays[w]
         # カラー
-        if date2 in Holiday.HOLIDAYS or w == 6:
-            title = '[COLOR red]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date1, end, ckdata['title'])
+        if w == 6 or self.db.is_holiday(d.strftime('%Y-%m-%d')):
+            title = '[COLOR red]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date, end, ckdata['title'])
         elif w == 5:
-            title = '[COLOR blue]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date1, end, ckdata['title'])
+            title = '[COLOR blue]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date, end, ckdata['title'])
         else:
-            title = '%s-%s  [COLOR khaki]%s[/COLOR]' % (date1, end, ckdata['title'])
+            title = '%s-%s  [COLOR khaki]%s[/COLOR]' % (date, end, ckdata['title'])
         return title
 
     def _contextmenu(self, name, args):
@@ -88,7 +85,7 @@ class Download(Common):
 
     def update_rss(self):
         # RSS作成
-        sql = 'SELECT kid, dirname FROM keywords WHERE status = -1'
+        sql = 'SELECT kid, keyword, dirname FROM keywords'
         self.db.cursor.execute(sql)
         for kid, keyword, dirname in self.db.cursor.fetchall():
             self.create_rss(kid, keyword, dirname)
@@ -114,7 +111,7 @@ class Download(Common):
         # body
         sql = '''SELECT filename, title, start, station, description, site, duration
         FROM contents
-        WHERE kid = :kid AND status = -1
+        WHERE kid = :kid AND cstatus = -1
         ORDER BY start DESC'''
         self.db.cursor.execute(sql, {'kid': kid})
         for filename, title, start, station, description, site, duration in self.db.cursor.fetchall():

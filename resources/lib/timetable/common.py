@@ -47,7 +47,7 @@ class Common(Main):
 
     # 次の更新予定時間
     def next_aired(self):
-        sql = 'SELECT MIN(EPOCH(c.end)) FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.status >= 0 and s.type = :type'
+        sql = 'SELECT MIN(EPOCH(c.end)) FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.cstatus >= 0 AND s.type = :type'
         self.db.cursor.execute(sql, {'type': self.TYPE})
         end, = self.db.cursor.fetchone()
         return end

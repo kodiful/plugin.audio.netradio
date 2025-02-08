@@ -11,7 +11,8 @@
         "description": "宇宙から見える格子状防風林の中心空とみどりの交流拠点中標津町から繋がる、ひろがる地域情報を発信中",
         "site": "http://fmhana.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -25,7 +26,8 @@
         "description": "北海道の左上、留萌市の『マチの聴こえる回覧版』。ボランティアパーソナリティを中心に毎日情報発信!",
         "site": "http://www.moeru.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -39,7 +41,8 @@
         "description": "天塩川流れる街。「日本最北の○○」がたくさんある「名寄市」から、地域の話題を24時間放送中。",
         "site": "http://www.nayoro.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -53,7 +56,8 @@
         "description": "世界に誇るパウダースノーのニセコ。羊蹄山の麓から多種多様な放送を24時間放送中!どうぞお楽しみに",
         "site": "https://radioniseko.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -67,7 +71,8 @@
         "description": "夜景でおなじみ北海道函館市から24時間放送中! 函館山のふもとから地域・観光・防災情報を届けます。",
         "site": "http://www.fmiruka.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -81,7 +86,8 @@
         "description": "本州最北端のコミュニティ放送局。アジュールは「紺碧」。24時間放送で、むつ下北の情報を発信中!",
         "site": "http://www.fmazur.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -95,7 +101,8 @@
         "description": "お城と桜とりんごの街ひろさきから、地域情報中心に放送します。災害時などは随時割り込みします。",
         "site": "http://www.applewave.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -109,7 +116,8 @@
         "description": "立佞武多(たちねぷた)と文豪太宰治のふるさと五所川原市から、津軽弁を交えて楽しく24時間放送中!",
         "site": "https://fm767.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -123,7 +131,8 @@
         "description": "宮沢賢治の故郷、花巻市。岩手県のほぼ中央から花巻の今を伝えるFM One、まんず、聞いてけでぇ〜!",
         "site": "https://fm-one.net/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -137,7 +146,8 @@
         "description": "宮城県岩沼市より24時間放送中。地域の話題や、市民の声が盛りだくさん!ぜひお聴きください♪",
         "site": "http://fm779.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -151,7 +161,8 @@
         "description": "宮城県北部にある登米市のH@!FMです。たっぷりの生放送で、タイムリーな登米市の話題を随時放送中。",
         "site": "http://hat-fm.net/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -165,7 +176,8 @@
         "description": "東北で一番最初に開局した、山形市の黄色い壁がトレードマークのラジオ局。山形の魅力を毎日発信中!",
         "site": "http://www.fm762.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -179,7 +191,8 @@
         "description": "山形県南、置賜地方の情報・魅力がつまったエフエムNCVおきたまGO!米沢市から放送中!",
         "site": "https://fm834.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -193,7 +206,8 @@
         "description": "山形県長井市より個性豊かな多数の地元パーソナリティ&地元出演者がお送りする癒しと笑いの耳空間",
         "site": "https://oranda-radio.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -207,7 +221,8 @@
         "description": "酒田市はじめ庄内地域に密着した話題を満載。地域住民の安心・安全に備え、24時間放送中です。",
         "site": "https://www.sakatafm.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -221,7 +236,8 @@
         "description": "ウルトラマンの故郷『M78星雲』とは姉妹都市!福島県須賀川市から地元情報を中心に24時間放送中!",
         "site": "http://ultrafm868.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -235,7 +251,8 @@
         "description": "福島市の中心市街地 【P】パセオ通りの 【O】置賜町から」 【C】地域の話題を元気に 【O】オンエアー!",
         "site": "http://fm-poco.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -249,7 +266,8 @@
         "description": "蔵とラーメンの街、福島県喜多方市のFMきたかた。ライブ感あふれる放送で24時間元気を発信中!!",
         "site": "http://www.fm-kitakata.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -263,7 +281,8 @@
         "description": "歴史の息吹が聞こえる城下町、「サムライシティ」会津若松市で、皆さんに愛される放送局を目指して24時間放送中!!",
         "site": "http://www.fmaizu.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -277,7 +296,8 @@
         "description": "茨城県最北端の町、大子町のステキな情報や防災情報を発信する、地域に密着した放送局です。",
         "site": "http://www.fmdaigo775.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -291,7 +311,8 @@
         "description": "「鹿行情報満載」〜生放送は元気と癒しをモットーに〜 サッカーホームゲーム中継もお聞き逃しなく!",
         "site": "http://www.767fm.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -305,7 +326,8 @@
         "description": "アーティスト、タレント、俳優など多数レギュラー出演中。大人な音楽を聴けるRADIO STATION",
         "site": "http://www.takasaki.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -319,7 +341,8 @@
         "description": "Always By Your Side FM TARO 76.7",
         "site": "http://www.fmtaro.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -333,7 +356,8 @@
         "description": "真田の里上州沼田!イメージキャラクター瑞葉翔子ちゃんを中心に、利根沼田の情報を発信しています!",
         "site": "http://www.fm-oze.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -347,7 +371,8 @@
         "description": "“ラヂオななみ(FM77.3)”。群馬県玉村町の情報を元気に発信!24時間放送。",
         "site": "http://www.fm773.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -361,7 +386,8 @@
         "description": "狭山茶の産地(埼玉県西部地域)から、地域の旬の話題や音楽を、24時間毎日お届けいたします。",
         "site": "https://fmchappy.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -375,7 +401,8 @@
         "description": "みんなが主役!地域密着!東入間地域(富士見市・ふじみ野市・三芳町)の魅力と情報をお届けします♪",
         "site": "http://fm840.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -389,7 +416,8 @@
         "description": "川越に想いがある人たちで一緒につくる‘みんな’のラジオです。ラジオかわごえを聴いてください!",
         "site": "https://radiokawagoe.com",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -403,7 +431,8 @@
         "description": "千葉県市川市にある市川うららFMは83MHzで24時間365日情報とエンタメ満載で放送中!",
         "site": "http://www.fmu.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -417,7 +446,8 @@
         "description": "木更津市・君津市・富津市・袖ケ浦市、かずさ地域に密着したジモット情報をお届けします♪",
         "site": "https://www.kazusafm.net/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -431,7 +461,8 @@
         "description": "国際空港や成田山のある成田から地元の話題、楽しい情報をお届けします。ハミング成田83.7。",
         "site": "https://www.narita.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -445,7 +476,8 @@
         "description": "千葉県八千代市緑ヶ丘本社スタジオから地域の情報をお届けしています。",
         "site": "http://296.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -459,7 +491,8 @@
         "description": "千葉市から、皆様のお役に(89.2)立てるよう、様々な発掘(89.2)をしていきます。",
         "site": "https://www.892fm.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -473,7 +506,8 @@
         "description": "地域情報いっぱい。心の琴線を震わす音楽。そしてパーソナリティの語りが耳にやさしく響きます。",
         "site": "https://www.fm843.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -487,7 +521,8 @@
         "description": "住みたい街で全国から注目エリアの放送局!吉祥寺発の旬の情報と音楽をオンエア。JAZZも必聴。",
         "site": "https://www.musashino-fm.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -501,7 +536,8 @@
         "description": "東京都品川区のコミュニティ放送局です。地域のさまざまな情報を発信しています。",
         "site": "https://fm-shinagawa.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -515,7 +551,8 @@
         "description": "活力あるパーソナリティが、楽しい話題から興味深い地域情報までお届け! メッセージお待ちしています!",
         "site": "https://kfm789.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -529,7 +566,8 @@
         "description": "ダイバーシティ、シブヤシティ。渋谷にまつわる多彩なパーソナリティによる地元密着の番組を放送中!",
         "site": "https://shiburadi.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -543,7 +581,8 @@
         "description": "橫須賀のコミュニティ放送局。地元横須賀の地域情報満載でお届けしています。",
         "site": "http://www.yokosukafm.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -557,7 +596,8 @@
         "description": "海風が吹き抜けるスタジオから地元の情報をお届けする街のラジオです。鎌倉時間をお楽しみください♪♪",
         "site": "https://www.kamakurafm.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -571,7 +611,8 @@
         "description": "湘南ベルマーレのJリーグ中継、イベント中継、地域情報満載のFM湘南ナパサは78.3MHzで放送中",
         "site": "http://www.fmshonan783.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -585,7 +626,8 @@
         "description": "FMおだわらは神奈川県小田原市から、地域のニュースや交通情報、観光情報など24時間放送中!",
         "site": "https://fm-odawara.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -599,7 +641,8 @@
         "description": "湘南マジックウェイブの「MAGIC」は魔法、「WAVE」は波。小さな放送局が大きな社会に挑戦。",
         "site": "https://fm-smw.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -613,7 +656,8 @@
         "description": "神奈川県大和市にある「FMやまと」です。地域の皆さんの応援団として心を込めて放送しています。",
         "site": "http://www.fmyamato.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -627,7 +671,8 @@
         "description": "神奈川県藤沢市のラジオ局です。湘南地域の情報や音楽を、多彩なプログラムで24時間お届けします。",
         "site": "https://www.radioshonan.co.jp/index.html",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -641,7 +686,8 @@
         "description": "横浜市青葉区のコミュニティ放送局です。 地域情報から個性豊かな番組までオンエア中です。",
         "site": "http://www.fm-salus.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -655,7 +701,8 @@
         "description": "山梨学院大学キャンパス内にある放送局。学生が制作した番組、J2ヴァンフォーレ甲府生中継も放送中。",
         "site": "http://www.fm-kofu.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -669,7 +716,8 @@
         "description": "世界文化遺産の富士北麓から地域情報を懐かしのヒット曲と共にお送りしています。",
         "site": "http://fujiyama776.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -683,7 +731,8 @@
         "description": "富士山の麓にあるラジオ局!富士五湖の情報や防災情報を中心に放送中です。皆で聴くじゃん!",
         "site": "https://www.fm2255.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -697,7 +746,8 @@
         "description": "八ヶ岳の森から心地良いサウンドと楽しい情報を 発信しています。",
         "site": "https://yatsugatake.ne.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -711,7 +761,8 @@
         "description": "新潟市新津鉄道資料館に隣接するラジオチャット・エフエム新津は、地域に密着した情報をお届けします。",
         "site": "http://www.chat761.com/index.html",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -725,7 +776,8 @@
         "description": "コシヒカリと日本酒、そして豪雪の郷であたたかなコミュニティFM放送をお送りしています。",
         "site": "https://fm-u814.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -739,7 +791,8 @@
         "description": "放送エリアは長岡市、小千谷市、見附市、出雲崎町。地域に密着した放送局として自主番組を発信します。",
         "site": "http://www.fmnagaoka.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -753,7 +806,8 @@
         "description": "新潟県阿賀北地域、歴史と文化のまち新発田市とその近隣地域へ、地域に密着した情報を放送しています。",
         "site": "http://www.agatt769.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -767,7 +821,8 @@
         "description": "感度の高い洋楽を中心に24時間オンエア。詳しくはFM KENTOウェブサイトをチェック。",
         "site": "https://fmkento.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -781,7 +836,8 @@
         "description": "関東からの玄関口、新潟県南魚沼市と湯沢町のFMゆきぐにです。だんだんどうも。田舎の風をお届け中。",
         "site": "http://www.fm762.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -795,7 +851,8 @@
         "description": "新潟県南西部にある北陸新幹線沿線の街、上越市。地域の話題、声をお届けしています。24時間放送中。",
         "site": "https://www.fmj761.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -809,7 +866,8 @@
         "description": "新潟県柏崎市のFMピッカラは地域の話題満載で放送中。緊急時には防災行政無線の割込放送が入ります。",
         "site": "http://www.kisnet.or.jp/pikkara/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -823,7 +881,8 @@
         "description": "「高原と湖のある街」長野県諏訪地域(6市町村)に密着した話題・情報をお届けしています。",
         "site": "https://lcvfm769.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -837,7 +896,8 @@
         "description": "リゾート「軽井沢」の魅力を個性豊かなプログラムで24時間オンエア。 SNSもチェックしてね!",
         "site": "https://fm-karuizawa.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -851,7 +911,8 @@
         "description": "澄みきった水と空と、雄大な北アルプスと文化と人の魅力溢れる安曇野の情報があなたをロックオン!",
         "site": "https://www.azuminofm.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -865,7 +926,8 @@
         "description": "信州、日本、世界の中心の「高ボッチ高原FM」に インターネット放送を通じてみなさん繋がりましょう〜",
         "site": "https://fm894.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -879,7 +941,8 @@
         "description": "東濃地方が育んできた歴史や美濃焼文化を大切にし街の活性化、地域の防災を目指し放送しています。",
         "site": "https://fmpipi.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -893,7 +956,8 @@
         "description": "岐阜市神田町からお届けする、地域密着型ラジオ局FM WATCH!自社制作番組を中心に毎日配信中!",
         "site": "https://www.fm-watch.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -907,7 +971,8 @@
         "description": "日本一広い面積を持つ高山市から飛騨の地域・観光・行政・防災情報を発信。春秋の高山祭は生中継!",
         "site": "http://www.hidanet.ne.jp/~hitsfm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -921,7 +986,8 @@
         "description": "感謝のきもちを電波にのせて日本のまん中から元気と笑顔を発信中 76.1MHz FM Haro!",
         "site": "https://www.fmharo.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -935,7 +1001,8 @@
         "description": "誰でも参加できるアットホームなラジオ局を目指し、地域密着の情報発信で伊豆市を盛り上げます!",
         "site": "https://fmis.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -949,7 +1016,8 @@
         "description": "島田市は静岡県の中央にあり緑茶の茶畑のある町です。懐かしい歌謡曲をお楽しみください。24h放送。",
         "site": "http://www.gsky765.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -963,7 +1031,8 @@
         "description": "富士山の麓、静岡県御殿場市から発信中♪地域・観光・富士山情報は、富士山GOGOエフエム!!",
         "site": "https://www.863.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -977,7 +1046,8 @@
         "description": "箱根西麓の三島市と函南町を中心に、静岡県東部をカバー!24時間365日、富士を望む街から放送中です♪",
         "site": "http://777fm.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -991,7 +1061,8 @@
         "description": "清水港と富士山を一望できるスタジオから元気に放送中!観光・イベントから防災関連まで、24時間放送!",
         "site": "https://mrn-pal.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1005,7 +1076,8 @@
         "description": "しずおか♪音の回覧板をキャッチコピーに静岡のまちを応援。地域情報から特化番組まで、幅広くお届け!",
         "site": "http://www.fmhi.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1019,7 +1091,8 @@
         "description": "静岡県富士市から地元らしさにこだわってOA。平日7時〜19時、土9時〜12時、日8時〜9時。",
         "site": "https://radio-f.jp",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1033,7 +1106,8 @@
         "description": "豊かな自然に恵まれた静岡県沼津市から、コミュニケーションを大切にする楽しい番組をお届けします!",
         "site": "http://www.coast-fm.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1047,7 +1121,8 @@
         "description": "伊東を愛する全ての人へ 海山温泉の大自然 人の温もり ​情報・イベント・音楽など ​皆さんと一緒に創る情報局",
         "site": "https://www.fmito.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1061,7 +1136,8 @@
         "description": "日本有数の温泉観光地、静岡県熱海市から、県境を跨いだ神奈川県湯河原町・真鶴町までエリア放送!",
         "site": "http://www.ciao796.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1075,7 +1151,8 @@
         "description": "FMいずのくには「元気起爆Radio!」街の活力を創造する情報を7時〜21時まで発信しています。",
         "site": "https://www.fmizunokuni.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1089,7 +1166,8 @@
         "description": "海部地域7市町村の情報ならエフエムななみ!発災時には各自治体と協力し避難情報や災害情報をお届け!",
         "site": "https://www.clovernet.co.jp/nanami/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1103,7 +1181,8 @@
         "description": "愛知県犬山市のシンボル、国宝犬山城・城下町にある古民家をそのまま利用したコミュニティFM局です。",
         "site": "https://842fm.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1117,7 +1196,8 @@
         "description": "瀬戸・尾張旭・長久手の情報発信。あなたと私の845(ハシゴ)になりたい。いつもあなたのそばに。",
         "site": "http://845.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1131,7 +1211,8 @@
         "description": "尾張の国 一宮市から人・町・文化・防災情報を発信する地域密着型のラジオ局。周波数FM76.5MHz",
         "site": "https://iwave765.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1145,7 +1226,8 @@
         "description": "三重県最北端の緑豊かな街いなべ市。地元の情報から防災情報まで地域密着型ラジオ局として24時間放送中",
         "site": "https://fm861.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1159,7 +1241,8 @@
         "description": "モータースポーツの聖地 鈴鹿から地域の話題”鈴鹿の声”を24時間お届け。 レース実況番組も放送!",
         "site": "https://suzuka-voice.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1173,7 +1256,8 @@
         "description": "富山湾から立山まで「雄大な自然」と「新鮮な食」。キトキト富山、24時間ふるさとの情報満載です。",
         "site": "http://www.city-fm.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1187,7 +1271,8 @@
         "description": "チューリップで有名な富山県砺波市から、砺波地域の話題を中心にお届けしています。",
         "site": "https://www.fmtonami.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1201,7 +1286,8 @@
         "description": "加賀前田家ゆかりの町民文化と歴史の街・高岡から懐かしい音楽と共に24時間放送中。",
         "site": "http://www.radiotakaoka.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1215,7 +1301,8 @@
         "description": "空港の街、歌舞伎の街・小松の情報を中心に放送中。(月〜金6〜19時、土・日7時〜19時)",
         "site": "https://www.radio-komatsu-new.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1229,7 +1316,8 @@
         "description": "能登半島の港町・七尾からお送りしています。放送時間 月〜木7〜19時 金・土7〜21時 日7〜16時",
         "site": "https://www.radionanao.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1243,7 +1331,8 @@
         "description": "加賀百万石の城下町・金沢の情報と懐かしい音楽を放送。月〜木6時〜19時、金〜21時、土・日7時〜19時",
         "site": "https://www.radiokanazawa.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1257,7 +1346,8 @@
         "description": "東海道と中山道が出会う街滋賀県草津市くさつ夢本陣から地域の話題、防災情報等をお届けしています",
         "site": "https://fm785.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1271,7 +1361,8 @@
         "description": "綾部市は京都府中央に位置する美しい田園都市。世界連邦都市宣言第1号の平和都市から放送局しています",
         "site": "http://fmikaru.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1285,7 +1376,8 @@
         "description": "宇治市、城陽市、久御山町の地域の情報を放送中!詳しい配信時間はホームページをご覧下さい。",
         "site": "https://www.fmuji.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1299,7 +1391,8 @@
         "description": "Marine Station Kyotoをキャッチフレーズに海軍ゆかりの町、舞鶴から24時間放送。観光情報もいっぱい!",
         "site": "https://775maizuru.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1313,7 +1406,8 @@
         "description": "FM845は演歌、歌謡曲、懐メロ、フォーク中心の選曲と、耳に心地よい語りを京都伏見から届けます。",
         "site": "https://www.fm-845.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1327,7 +1421,8 @@
         "description": "吹田市と豊中市に跨る放送エリアの‘FM千里’ 局からは太陽の塔を眺望できます。24時間放送中!",
         "site": "http://www.senri-fm.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1341,7 +1436,8 @@
         "description": "大阪府八尾市は河内音頭の故郷。FMちゃおは地元の地域情報を大切にしています。24時間放送中!",
         "site": "http://792.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1355,7 +1451,8 @@
         "description": "良質な『音』と控えめなおしゃべりでラジオ・ライフもBeHappy!ウメダ発、大人なエフエムです。",
         "site": "https://www.be-happy789.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1369,7 +1466,8 @@
         "description": "滝と明治の森箕面国定公園が美しい大阪府北部のまち箕面市から放送。超ローカル情報や多彩な音楽など♪",
         "site": "https://fm.minoh.net/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1383,7 +1481,8 @@
         "description": "「清酒発祥の地」兵庫県伊丹市から、地域に密着した番組や音楽番組を24時間放送中!",
         "site": "https://www.itami.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1397,7 +1496,8 @@
         "description": "宝塚歌劇・マンガの神様 手塚治虫さんが育った街、兵庫県宝塚市にある放送局です。24時間放送中。",
         "site": "http://835.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1411,7 +1511,8 @@
         "description": "甲子園球場のある兵庫県西宮市から78.7MHzで、市民生活に密着した身近な情報を24時間放送中!",
         "site": "https://sakura-fm.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1425,7 +1526,8 @@
         "description": "城下町三木から地域密着の情報を発信しています。 愛称はエフエムみっきぃ。24時間放送中!",
         "site": "http://www.fm-miki.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1439,7 +1541,8 @@
         "description": "丹波の里山から地域の話題と情報を音楽にのせて、丹波弁とスローテンポが心和む放送をお届けします。",
         "site": "http://805.tanba.info/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1453,7 +1556,8 @@
         "description": "世界文化遺産・国宝 姫路城のある兵庫県姫路市から 地域の話題や情報を発信します。24時間放送中!",
         "site": "https://fmgenki.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1467,7 +1571,8 @@
         "description": "奈良市の歴史ある街並に続く商店街のスタジオから、地域情報満載でお届けしています。24時間放送中!",
         "site": "http://narafm.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1481,7 +1586,8 @@
         "description": "奈良県内最大級ターミナル・王寺駅近くのサテライトスタジオを中心に、奈良中西部の地域情報を発信中!",
         "site": "http://www.fm814.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1495,7 +1601,8 @@
         "description": "あなたが創る市民のためのラジオ局。こちら吉野川の見える放送局FM五條!24時間放送中。",
         "site": "http://shousuien.or.jp/fm_gojo/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1509,7 +1616,8 @@
         "description": "和歌山市から24時間放送。周波数87.7だから「バナナエフエム」",
         "site": "https://877.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1523,7 +1631,8 @@
         "description": "『楽しくって!役に立って!元気になる!』 紀伊田辺から朝7時~夜10時まで生放送!",
         "site": "https://www.fm885.jp/index.php",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1537,7 +1646,8 @@
         "description": "世界遺産高野山麓の橋本市と高野町、九度山町、かつらぎ町の地域密着情報を24時間発信中。",
         "site": "http://816.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1551,7 +1661,8 @@
         "description": "パンダのまち南紀白浜から紀南の地域情報・防災情報をお届けしています♪放送時間はHPをご覧ください",
         "site": "https://www.fm764.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1565,7 +1676,8 @@
         "description": "岡山市を中心とした約100万人に向けて、ニュース、天気&交通、お出かけ情報など幅広い話題を発信!",
         "site": "http://www.fm790.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1579,7 +1691,8 @@
         "description": "岡山県倉敷市から地域密着市民参加型の番組を通じ街の活性化と地域の防災を目指し放送しています。",
         "site": "http://www.fmkurashiki.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1593,7 +1706,8 @@
         "description": "福山市を中心とした 広島県東部の生活情報は、 FMふくやまレディオBINGOにお任せ。 24時間放送中",
         "site": "https://fm777.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1607,7 +1721,8 @@
         "description": "もっとこまかく もっとくわしく。尾道の暮らしが100倍楽しくなるラジオ",
         "site": "http://www.fmo.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1621,7 +1736,8 @@
         "description": "広島市中区のコミュニティFM放送局。中国新聞ビルのスタジオから24時間オンエアしています。",
         "site": "https://chupea.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1635,7 +1751,8 @@
         "description": "世界遺産宮島のある広島県廿日市市、大型商業施設「ゆめタウン廿日市」オープンスタジオから放送!",
         "site": "https://761.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1649,7 +1766,8 @@
         "description": "年間延べ約1200人の市民が出演し、地域密着の情報をお届け。酒都・西条から5時〜22時放送中!",
         "site": "http://fmhigashi.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1663,7 +1781,8 @@
         "description": "FMみはらは三原市民が作るラジオ局です。 24時間放送で三原の生活にお役に立てる情報を発信します。",
         "site": "https://www.fm-mihara.jp/index.html",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1677,7 +1796,8 @@
         "description": "「オールリスナー オールパーソナリティ」を合言葉に「街の応援団」として毎日元気に放送中!!",
         "site": "https://www.c-fm.co.jp/index.php",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1691,7 +1811,8 @@
         "description": "「超ローカル・ご近所ラヂオ」!周南・下松・光市をエリアに、オープンスタジオから24時間放送中!",
         "site": "https://www.fms784.co.jp/index.php",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1705,7 +1826,8 @@
         "description": "鳥取県鳥取市より地域の話題や行政情報 安心・安全・防災情報を心地よい音楽と共にお届けしています。",
         "site": "http://www.radiobird.net/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1719,7 +1841,8 @@
         "description": "今治市は気候温暖な白砂青松の美しい町です。24時間365日元気を発信しています。",
         "site": "http://www.baribari789.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1733,7 +1856,8 @@
         "description": "愛媛県の南部 宇和島市の話題を元気にお届けしています。24時間放送♪ いっぺん聴いてみさいや♪♪",
         "site": "http://www.gaiya769.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1747,7 +1871,8 @@
         "description": "愛媛県新居浜市のコミュニティFMです!みんなでつくるにぎわいラジオ!をモットーに元気に放送中!",
         "site": "http://www.hello78.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1761,7 +1886,8 @@
         "description": "「まちに夢をひろげよう」の想いで久留米市・鳥栖市・大刀洗町・みやき町の防災情報を発信しています。",
         "site": "https://www.dreamsfm.co.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1775,7 +1901,8 @@
         "description": "FM八女は、福岡県八女市の放送局です。地域密着、八女弁丸出しでホットな情報をお届けしています。",
         "site": "https://www.fmyame.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1789,7 +1916,8 @@
         "description": "佐賀県唐津市より地域に特化した生活情報やエンタメ情報、防災情報を発信しています",
         "site": "http://www.fmkaratsu.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1803,7 +1931,8 @@
         "description": "畳表、冬トマト生産日本一の熊本県八代市から地域情報を中心に放送中!番組表など詳しくはHPで",
         "site": "http://www.kappafm.com/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1817,7 +1946,8 @@
         "description": "熊本県熊本市を中心に約100万人をカバー。地域密着、市民参加、防災をスローガンに24時間放送中!",
         "site": "http://fm791.jp/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1831,7 +1961,8 @@
         "description": "美術館の中にあるラヂオ局。独自選曲を追求しつつ、地域・観光・防災情報を24時間放送!SNSも好評",
         "site": "http://874.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "jcba",
@@ -1845,6 +1976,7 @@
         "description": "大分県中津市より大分県北部/福岡県京築エリアをダッシュ!地域密着で24時間365日放送中です!",
         "site": "https://789.fm/",
         "direct": "",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     }
 ]

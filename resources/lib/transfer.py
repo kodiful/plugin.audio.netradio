@@ -96,13 +96,10 @@ class Transfer(Common):
                 'logo': data['logo'],
                 'description': data['description'],
                 'site': data['official'],
-                'direct': data['stream']
+                'direct': data['stream'],
+                'delay': 0,
+                'sstatus': 0
             }
-        # dataフォルダ直下のcodes.jsonから読み込む
-        json_file = os.path.join(self.DATA_PATH, 'codes.json')
-        with open(json_file, encoding='utf-8') as f:
-            for data in json.loads(f.read()):
-                self.db.add_code(data)
         # プラグインの放送局フォルダ直下のjsonフォルダにあるjsonファイルから読み込む
         for json_file in glob.glob(os.path.join(self.DATA_PATH, 'stations', 'json', '*.json')):
             with open(json_file, encoding='utf-8') as f:
@@ -128,17 +125,17 @@ class Transfer(Common):
         # データ変換関数
         def convert(data):
             if data['limit'] == 'true':
-                sql = 'SELECT station FROM stations WHERE abbr = :abbr'
+                sql = 'SELECT station FROM stations WHERE abbr = :abbr AND sstatus >= 0'
                 self.db.cursor.execute(sql, {'abbr': data['id']})
                 station, = self.db.cursor.fetchone()
             else:
                 station = ''
             return {
-                'status': '1',
                 'keyword': data['keyword'],
-                'match': data['search'],
-                'weekday': data['weekday'],
+                'match': int(data['search']),
+                'weekday': int(data['weekday']),
                 'station': station,
+                'kstatus': 1
             }
         # キーワードフォルダをスキャン
         for image_file in glob.glob(os.path.join(self.PROFILE_PATH, 'keywords', '*.png')):
@@ -155,28 +152,37 @@ class Transfer(Common):
         # ログ
         self.log('Keyword settings have been imported')
 
-    def backup_files(self):
+    def preprocess(self):
+        # 既存のファイルを~backupに退避
         for item in glob.glob(os.path.join(self.PROFILE_PATH, '*')):
             if os.path.isfile(item):
                 shutil.copy(item, os.path.join(self.PROFILE_PATH, '~backup', os.path.basename(item)))
             if os.path.isdir(item):
                 shutil.copytree(item, os.path.join(self.PROFILE_PATH, '~backup', os.path.basename(item)))
+        # citiesテーブル作成
+        json_file = os.path.join(self.DATA_PATH, 'json', 'cities.json')
+        with open(json_file, encoding='utf-8') as f:
+            for data in json.loads(f.read()):
+                self.db.add_city(data)
+        # holidaysテーブル作成
+        json_file = os.path.join(self.DATA_PATH, 'json', 'holidays.json')
+        with open(json_file, encoding='utf-8') as f:
+            for data in json.loads(f.read()):
+                self.db.add_holiday(data)
         
-    def cleanup_files(self):
-        try:
+    def postprocess(self):
+        if os.path.exists(os.path.join(self.PROFILE_PATH, 'mmap.txt')):
             os.remove(os.path.join(self.PROFILE_PATH, 'mmap.txt'))
+        if os.path.exists(os.path.join(self.PROFILE_PATH, 'auth.json')):
             os.remove(os.path.join(self.PROFILE_PATH, 'auth.json'))
+        if os.path.exists(os.path.join(self.PROFILE_PATH, 'queue')):
             shutil.rmtree(os.path.join(self.PROFILE_PATH, 'queue'))
+        if os.path.exists(os.path.join(self.PROFILE_PATH, 'timetable', 'timetable')):
             shutil.rmtree(os.path.join(self.PROFILE_PATH, 'timetable', 'timetable'))
-            # ビットレート auto -> 192k
-            if self.GET('bitrate') == 'auto':
-                self.SET('bitrate', '192k')
-        except Exception:
-            pass
 
     def run(self):
-        self.backup_files()
+        self.preprocess()
         self.import_stations()
         self.import_keywords()
         self.import_contents()
-        self.cleanup_files()
+        self.postprocess()

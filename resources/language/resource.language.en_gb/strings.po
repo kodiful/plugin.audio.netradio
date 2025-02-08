@@ -49,27 +49,27 @@ msgid "Delete from top"
 msgstr ""
 
 msgctxt "#30103"
-msgid "Add station"
+msgid "Add station settings"
 msgstr ""
 
 msgctxt "#30104"
-msgid "Change station"
+msgid "Change station settings"
 msgstr ""
 
 msgctxt "#30105"
-msgid "Delete station"
+msgid "Delete station settings"
 msgstr ""
 
 msgctxt "#30106"
-msgid "Add keyword"
+msgid "Add keyword settings"
 msgstr ""
 
 msgctxt "#30107"
-msgid "Change keyword"
+msgid "Change keyword settings"
 msgstr ""
 
 msgctxt "#30108"
-msgid "Delete keyword"
+msgid "Delete keyword settings"
 msgstr ""
 
 msgctxt "#30109"
@@ -88,17 +88,16 @@ msgstr ""
 # for settings
 #
 
-
 msgctxt "#30200"
 msgid "General"
 msgstr ""
 
 msgctxt "#30201"
-msgid "[COLOR lightgreen]Add station[/COLOR]"
+msgid "[COLOR lightgreen]Add station settings[/COLOR]"
 msgstr ""
 
 msgctxt "#30202"
-msgid "[COLOR lightgreen]Add keyword[/COLOR]"
+msgid "[COLOR lightgreen]Add keyword settings[/COLOR]"
 msgstr ""
 
 msgctxt "#30203"
@@ -233,6 +232,18 @@ msgctxt "#30527"
 msgid "Everyday"
 msgstr ""
 
+msgctxt "#30528"
+msgid "Program selection"
+msgstr ""
+
+msgctxt "#30529"
+msgid "Confirm deletion"
+msgstr ""
+
+msgctxt "#30530"
+msgid "Delete keyword settings and downloaded files for \"%s\"?"
+msgstr ""
+
 msgctxt "#30600"
 msgid "Station settings"
 msgstr ""
@@ -255,6 +266,26 @@ msgstr ""
 
 msgctxt "#30605"
 msgid "Description"
+msgstr ""
+
+msgctxt "#30606"
+msgid "Program selection"
+msgstr ""
+
+msgctxt "#30607"
+msgid "Confirm deletion"
+msgstr ""
+
+msgctxt "#30608"
+msgid "Delete station settings for \"%s\"?"
+msgstr ""
+
+msgctxt "#30609"
+msgid "Show info"
+msgstr ""
+
+msgctxt "#30610"
+msgid "(No info)"
 msgstr ""
 
 #

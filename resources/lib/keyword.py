@@ -22,21 +22,21 @@ class Keyword(Common):
         if kid is None and sid is None:
             # デフォルト設定
             self.SET('kid', '0')
-            self.SET('status', '0')  # 停止中
+            self.SET('kstatus', '0')  # 停止中
             self.SET('keyword', '')
             self.SET('match', '0')  # 番組名のみ
             self.SET('weekday', '7')  # 毎日
             self.SET('station', '')  # 放送局を限定しない
         elif kid is not None:
             # キーワード設定変更
-            sql = 'SELECT kid, status, keyword, match, weekday, station FROM keywords WHERE kid = :kid'
+            sql = 'SELECT kid, kstatus, keyword, match, weekday, station FROM keywords WHERE kid = :kid'
             self.db.cursor.execute(sql, {'kid': kid})
-            kid, status, keyword, match, weekday, station = self.db.cursor.fetchone()
+            kid, kstatus, keyword, match, weekday, station = self.db.cursor.fetchone()
             self.SET('kid', str(kid))
-            self.SET('status', status)
+            self.SET('kstatus', str(kstatus))
             self.SET('keyword', keyword)
-            self.SET('match', match)
-            self.SET('weekday', weekday)
+            self.SET('match', str(match))
+            self.SET('weekday', str(weekday))
             self.SET('station', station)
         elif sid is not None:
             # 番組情報からキーワード設定
@@ -44,19 +44,19 @@ class Keyword(Common):
             self.db.cursor.execute(sql, {'sid': sid})
             data = [(title, station) for title, station in self.db.cursor.fetchall()]
             # 選択ダイアログを表示
-            index = xbmcgui.Dialog().select('番組選択', [title for title, _ in data])
+            index = xbmcgui.Dialog().select(self.STR(30528), [title for title, _ in data])
             if index == -1:
                 return
             title, station = data[index]
             weekday = datetime.today().weekday()  # 今日の曜日を月(0)-日(6)で返す
             self.SET('kid', '0')
-            self.SET('status', '0')  # 停止中
+            self.SET('kstatus', '0')  # 停止中
             self.SET('keyword', title)
             self.SET('match', '0')  # 番組名のみ
             self.SET('weekday', str(weekday))
             self.SET('station', station)
         # 設定前の値
-        before = dict([(key, self.GET(key)) for key in ('kid', 'status', 'keyword', 'match', 'weekday', 'station')])
+        before = dict([(key, self.GET(key)) for key in ('kid', 'kstatus', 'keyword', 'match', 'weekday', 'station')])
         # statusテーブルに書き込む
         sql = 'UPDATE status SET keyword = :before'
         self.db.cursor.execute(sql, {'before': json.dumps(before)})
@@ -66,7 +66,7 @@ class Keyword(Common):
 
     def add(self):
         # 設定後の値
-        after = dict([(key, self.GET(key)) for key in ('kid', 'status', 'keyword', 'match', 'weekday', 'station')])
+        after = dict([(key, self.GET(key)) for key in ('kid', 'kstatus', 'keyword', 'match', 'weekday', 'station')])
         # keywordテーブルに書き込む
         self.db.add_keyword(after)
         xbmc.executebuiltin('Container.Refresh')
@@ -77,7 +77,7 @@ class Keyword(Common):
         self.db.cursor.execute(sql, {'kid': kid})
         keyword, dirname = self.db.cursor.fetchone()
         # 確認ダイアログを表示
-        ok = xbmcgui.Dialog().yesno('削除確認', f'"{keyword}" のダウンロード済みファイルを含めて削除しますか？')
+        ok = xbmcgui.Dialog().yesno(self.STR(30529), self.STR(30530) % keyword)
         if ok:
             # ファイル削除
             download_path = os.path.join(self.CONTENTS_PATH, dirname)

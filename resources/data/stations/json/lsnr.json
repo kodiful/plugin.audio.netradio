@@ -11,7 +11,8 @@
         "description": "愛知県名古屋市中区にあるインターネットラジオ局です。",
         "site": "",
         "direct": "https://mtist.as.smartstream.ne.jp/30120/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -25,7 +26,8 @@
         "description": "東京都練馬区にあるインターネットラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30041/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -39,7 +41,8 @@
         "description": "北海道網走市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30058/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -53,7 +56,8 @@
         "description": "北海道旭川市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30074/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -67,7 +71,8 @@
         "description": "北海道根室市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30045/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -81,7 +86,8 @@
         "description": "北海道釧路市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30029/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -95,7 +101,8 @@
         "description": "北海道帯広市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30016/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -109,7 +116,8 @@
         "description": "北海道帯広市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30038/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -123,7 +131,8 @@
         "description": "北海道札幌市東区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30032/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -137,7 +146,8 @@
         "description": "北海道札幌市厚別区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30044/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -151,7 +161,8 @@
         "description": "北海道札幌市西区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30005/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -165,7 +176,8 @@
         "description": "北海道札幌市中央区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30034/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -179,7 +191,8 @@
         "description": "北海道札幌市豊平区平岸にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30090/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -193,7 +206,8 @@
         "description": "北海道北広島市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30015/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -207,7 +221,8 @@
         "description": "北海道伊達市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30087/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -221,7 +236,8 @@
         "description": "青森県八戸にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30079/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -235,7 +251,8 @@
         "description": "岩手県二戸市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30050/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -249,7 +266,8 @@
         "description": "岩手県盛岡市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30017/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -263,7 +281,8 @@
         "description": "岩手県宮古市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30097/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -277,7 +296,8 @@
         "description": "宮城県気仙沼市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30094/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -291,7 +311,8 @@
         "description": "宮城県石巻市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30037/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -305,7 +326,8 @@
         "description": "宮城県塩釜市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30056/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -319,7 +341,8 @@
         "description": "宮城県仙台市青葉区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30007/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -333,7 +356,8 @@
         "description": "宮城県仙台市泉区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30018/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -347,7 +371,8 @@
         "description": "宮城県名取市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30092/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -361,7 +386,8 @@
         "description": "秋田県鹿角市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30089/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -375,7 +401,8 @@
         "description": "秋田県秋田市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30014/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -389,7 +416,8 @@
         "description": "秋田県横手市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30076/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -403,7 +431,8 @@
         "description": "秋田県湯沢市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30030/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -417,7 +446,8 @@
         "description": "福島県本宮市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30019/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -431,7 +461,8 @@
         "description": "福島県郡山市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30020/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -445,7 +476,8 @@
         "description": "福島県いわき市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30009/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -459,7 +491,8 @@
         "description": "茨城県日立市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30023/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -473,7 +506,8 @@
         "description": "茨城県高萩市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30075/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -487,7 +521,8 @@
         "description": "茨城県水戸市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30022/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -501,7 +536,8 @@
         "description": "茨城県牛久市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30021/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -515,7 +551,8 @@
         "description": "群馬県前橋市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30043/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -529,7 +566,8 @@
         "description": "埼玉県深谷市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30047/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -543,7 +581,8 @@
         "description": "埼玉県さいたま市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30008/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -557,7 +596,8 @@
         "description": "埼玉県川口市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30035/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -571,7 +611,8 @@
         "description": "埼玉県鴻巣市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30002/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -585,7 +626,8 @@
         "description": "埼玉県越谷市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30096/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -599,7 +641,8 @@
         "description": "埼玉県朝霞市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30026/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -613,7 +656,8 @@
         "description": "東京都中央区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30042/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -627,7 +671,8 @@
         "description": "東京都江東区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30036/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -641,7 +686,8 @@
         "description": "東京都世田谷区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30027/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -655,7 +701,8 @@
         "description": "東京都狛江市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30051/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -669,7 +716,8 @@
         "description": "東京都調布市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30039/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -683,7 +731,8 @@
         "description": "東京都府中市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30059/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -697,7 +746,8 @@
         "description": "東京都立川市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30033/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -711,7 +761,8 @@
         "description": "東京都八王子市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30081/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -725,7 +776,8 @@
         "description": "神奈川県川崎市中原区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30046/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -739,7 +791,8 @@
         "description": "神奈川県横浜市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30065/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -753,7 +806,8 @@
         "description": "横浜市戸塚区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30064/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -767,7 +821,8 @@
         "description": "神奈川県海老名市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30057/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -781,7 +836,8 @@
         "description": "石川県野々市市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30001/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -795,7 +851,8 @@
         "description": "富山県黒部市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30006/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -809,7 +866,8 @@
         "description": "福井県敦賀市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30012/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -823,7 +881,8 @@
         "description": "愛知県岡崎市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30040/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -837,7 +896,8 @@
         "description": "滋賀県東近江市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30061/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -851,7 +911,8 @@
         "description": "京都市北区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30071/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -865,7 +926,8 @@
         "description": "京都市中京区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30082/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -879,7 +941,8 @@
         "description": "京都府乙訓地域にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30063/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -893,7 +956,8 @@
         "description": "京都府京丹後市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30073/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -907,7 +971,8 @@
         "description": "兵庫県加古川市役所を中心とした、加古川市・高砂市・加古郡稲美町・加古郡播磨町エリアのコミュニティFM局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30078/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -921,7 +986,8 @@
         "description": "兵庫県豊岡市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30013/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -935,7 +1001,8 @@
         "description": "鳥取県米子市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30053/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -949,7 +1016,8 @@
         "description": "徳島県徳島市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30010/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -963,7 +1031,8 @@
         "description": "香川県高松市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30024/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -977,7 +1046,8 @@
         "description": "香川県坂出市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30070/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -991,7 +1061,8 @@
         "description": "福岡県北九州市・八幡西区・若松区・遠賀郡の地域に密着した、コミュニティFMラジオ放送局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30052/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1005,7 +1076,8 @@
         "description": "福岡市中央区にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30077/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1019,7 +1091,8 @@
         "description": "福岡県直方市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "https://mtist.as.smartstream.ne.jp/30085/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1033,7 +1106,8 @@
         "description": "宮崎県延岡市内にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30088/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1047,7 +1121,8 @@
         "description": "鹿児島県大島郡龍郷町にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30072/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1061,7 +1136,8 @@
         "description": "鹿児島県奄美市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30054/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1075,7 +1151,8 @@
         "description": "鹿児島県大島郡瀬戸内町にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30080/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1089,7 +1166,8 @@
         "description": "沖縄県名護市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30095/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1103,7 +1181,8 @@
         "description": "沖縄県うるま市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30011/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1117,7 +1196,8 @@
         "description": "沖縄県北谷町にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30003/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1131,7 +1211,8 @@
         "description": "沖縄県沖縄市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30066/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1145,7 +1226,8 @@
         "description": "沖縄県宜野湾市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30093/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1159,7 +1241,8 @@
         "description": "沖縄県宜野湾市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30098/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1173,7 +1256,8 @@
         "description": "fm那覇は沖縄県那覇市を中心とした地域を放送区域とするコミュニティFM局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30068/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1187,7 +1271,8 @@
         "description": "沖縄県島尻郡与那原町にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30055/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1201,7 +1286,8 @@
         "description": "沖縄県豊見城市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30083/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "lsnr",
@@ -1215,6 +1301,7 @@
         "description": "沖縄県石垣市にあるコミュニティFMラジオ局です。",
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30069/livestream/playlist.m3u8",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     }
 ]

@@ -36,13 +36,13 @@ class Monitor(xbmc.Monitor, Common):
             # キーワードの設定値を比較
             if keyword:
                 before = json.loads(keyword)
-                after = dict([(key, self.GET(key)) for key in ('kid', 'status', 'keyword', 'match', 'weekday', 'station')])
+                after = dict([(key, self.GET(key)) for key in ('kid', 'kstatus', 'keyword', 'match', 'weekday', 'station')])
                 if after != before:
                     xbmc.executebuiltin('RunPlugin(plugin://%s?action=add_keyword)' % self.ADDON_ID)  # 設定変更
             # 放送局の設定値を比較
             if station:
                 before = json.loads(station)
-                after = dict([(key, self.GET(key)) for key in ('sid', 'status', 'station', 'description', 'direct', 'logo', 'site')])
+                after = dict([(key, self.GET(key)) for key in ('sid', 'station', 'description', 'direct', 'logo', 'site')])
                 if after != before:
                     xbmc.executebuiltin('RunPlugin(plugin://%s?action=add_station)' % self.ADDON_ID)  # 設定変更
             # キーワード、放送局以外の変更のために再描画する
@@ -71,11 +71,11 @@ class Service(Common):
         # statusテーブルを初期化
         db.cursor.executescript(db.sql_status_init)
         # ダウンロード済み以外の番組情報を削除
-        db.cursor.execute('DELETE FROM contents WHERE status != -1')
+        db.cursor.execute('DELETE FROM contents WHERE cstatus != -1')
         # ダウンロードを失敗/中断したmp3ファイルを削除
         sql = '''SELECT c.filename, k.dirname 
         FROM contents c JOIN keywords k ON c.kid = k.kid
-        WHERE c.status = -2 or c.status = 3'''
+        WHERE c.cstatus = -2 or c.cstatus = 3'''
         db.cursor.execute(sql)
         for filename, dirname in db.cursor.fetchall():
             mp3file = os.path.join(db.CONTENTS_PATH, dirname, filename)
@@ -184,7 +184,7 @@ class Service(Common):
         sql = f'UPDATE auth SET {set_clause}'
         db.cursor.execute(sql, list(data.values()))
         # 地域、都道府県を判定する
-        sql = "SELECT region, pref FROM auth JOIN codes ON auth.area_id = codes.radiko WHERE codes.city = ''"
+        sql = "SELECT region, pref FROM auth JOIN cities ON auth.area_id = cities.radiko WHERE cities.city = ''"
         db.cursor.execute(sql)
         self.region, self.pref = db.cursor.fetchone()
         # ログ
@@ -225,10 +225,10 @@ class Service(Common):
     def _process_queue(self):
         # DBの共有インスタンス
         db = ThreadLocal.db
-        # 保留中(status=1)の番組、かつDOWNLOAD_PREPARATION以内に開始する番組を検索
+        # 保留中(cstatus=1)の番組、かつDOWNLOAD_PREPARATION以内に開始する番組を検索
         sql = '''SELECT c.cid, c.kid, c.filename, s.type, s.abbr, c.title, EPOCH(c.start) as t, EPOCH(c.end), s.direct
         FROM contents c JOIN stations s ON c.sid = s.sid
-        WHERE c.status = 1 AND t - EPOCH(NOW()) < :threshold
+        WHERE c.cstatus = 1 AND t - EPOCH(NOW()) < :threshold
         ORDER BY c.start'''
         db.cursor.execute(sql, {'threshold': self.DOWNLOAD_PREPARATION})
         # ダウンロードを予約
@@ -240,8 +240,8 @@ class Service(Common):
             args = [cid, kid, filename, type, abbr, title, end, direct, self.queue]
             thread = threading.Timer(start - int(time.time()), download, args=args)
             thread.start()
-            # 待機中(status=2)に更新
-            sql = 'UPDATE contents SET status = 2 WHERE cid = :cid'
+            # 待機中(cstatus=2)に更新
+            sql = 'UPDATE contents SET cstatus = 2 WHERE cid = :cid'
             db.cursor.execute(sql, {'cid': cid})
 
 
@@ -258,6 +258,17 @@ def download(cid, kid, filename, type, abbr, title, end, direct, queue):
     duration = end - int(time.time())
     # ビットレート
     bitrate = Common.GET('bitrate')
+    if bitrate == 'auto':
+        if duration <= 3600:
+            bitrate = '192k'
+        elif duration <= 4320:
+            bitrate = '160k'
+        elif duration <= 5400:
+            bitrate = '128k'
+        elif duration <= 7200:
+            bitrate = '96k'
+        else:
+            bitrate = '64k'
     # 出力ディレクトリ
     sql = 'SELECT dirname FROM keywords WHERE kid = :kid'
     db.cursor.execute(sql, {'kid': kid})
@@ -272,7 +283,7 @@ def download(cid, kid, filename, type, abbr, title, end, direct, queue):
     # プロセスをキューに追加
     queue.put(process)
     # DB更新
-    sql = 'UPDATE contents SET status = 3 WHERE cid = :cid'
+    sql = 'UPDATE contents SET cstatus = 3 WHERE cid = :cid'
     db.cursor.execute(sql, {'cid': cid})
     # 開始通知
     Common.notify(f'Download started "{title}"')
@@ -283,7 +294,7 @@ def download(cid, kid, filename, type, abbr, title, end, direct, queue):
     # ダウンロード結果に応じて後処理
     if process.returncode == 0:
         # DB更新
-        sql = 'UPDATE contents SET status = -1 WHERE cid = :cid'
+        sql = 'UPDATE contents SET cstatus = -1 WHERE cid = :cid'
         db.cursor.execute(sql, {'cid': cid})
         # ID3タグを書き込む
         db.write_id3(mp3file, cid)
@@ -295,7 +306,7 @@ def download(cid, kid, filename, type, abbr, title, end, direct, queue):
         # エラーメッセージ
         err = process.stderr.read().decode('utf-8')
         # DB更新
-        sql = 'UPDATE contents SET status = -2, description = :err WHERE cid = :cid'
+        sql = 'UPDATE contents SET cstatus = -2, description = :err WHERE cid = :cid'
         db.cursor.execute(sql, {'cid': cid, 'err': err})
         # 完了通知
         Common.notify('Download failed "%s"' % title, error=True)

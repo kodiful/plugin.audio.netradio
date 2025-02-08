@@ -9,7 +9,7 @@
   <!--キーワード-->
   <category label="30500">
     <setting id="kid" type="text" visible="False"/>
-    <setting label="30506" id="status" type="enum" lvalues="30507|30508" default="0"/>
+    <setting label="30506" id="kstatus" type="enum" lvalues="30507|30508" default="0"/>
     <setting label="30501" id="keyword" type="text" default="" enable="eq(-1,1)"/>
     <setting label="30502" id="match" type="enum" lvalues="30511|30512" default="0" enable="eq(-2,1)"/>
     <setting label="30503" id="weekday" type="enum" lvalues="30520|30521|30522|30523|30524|30525|30526|30527" default="0" enable="eq(-3,1)"/>

@@ -11,7 +11,8 @@
         "description": "",
         "site": "http://www.e-niwa.tv/",
         "direct": "http://csra.fm/asx/eniwa.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -25,7 +26,8 @@
         "description": "",
         "site": "http://fmotaru.jp/",
         "direct": "http://csra.fm/asx/otaru.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -39,7 +41,8 @@
         "description": "",
         "site": "http://www.fmwing.com/index.html",
         "direct": "http://www.simulradio.info/asx/fmwing.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -53,7 +56,8 @@
         "description": "",
         "site": "http://www.fm946.com",
         "direct": "http://www.simulradio.info/asx/FmKushiro.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -67,7 +71,8 @@
         "description": "",
         "site": "http://wappy761.jp",
         "direct": "http://csra.fm/asx/fmwappy.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -81,7 +86,8 @@
         "description": "",
         "site": "http://www.fm837.com/",
         "direct": "http://www.simulradio.info/asx/fm837.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -95,7 +101,8 @@
         "description": "",
         "site": "http://radioniseko.jp",
         "direct": "http://www.radioniseko.jp/asx/radioniseko_24k.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -109,7 +116,8 @@
         "description": "",
         "site": "http://www.radiokaros.com/",
         "direct": "http://www.simulradio.info/asx/radiokaros.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -123,7 +131,8 @@
         "description": "",
         "site": "http://www.befm.co.jp/",
         "direct": "https://www.simulradio.info/asx/befm.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -137,7 +146,8 @@
         "description": "",
         "site": "http://fm791.net/",
         "direct": "http://www.simulradio.info/asx/kiritampo.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -151,7 +161,8 @@
         "description": "",
         "site": "http://www.fm-t.net/",
         "direct": "http://csra.fm/asx/taihaku.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -165,7 +176,8 @@
         "description": "",
         "site": "http://www.fm-mot.com/",
         "direct": "http://www.simulradio.info/asx/fmmotcom.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -179,7 +191,8 @@
         "description": "",
         "site": "http://www.fm-iwaki.co.jp/cgi-bin/WebObjects/1201dac04a1.woa/",
         "direct": "http://www.simulradio.info/asx/fm-iwaki.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -193,7 +206,8 @@
         "description": "",
         "site": "http://www.yutopia.or.jp/%7Efm763/",
         "direct": "http://www.simulradio.info/asx/FmYutopia.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -207,7 +221,8 @@
         "description": "",
         "site": "http://www.fmyokote.com/",
         "direct": "http://www.simulradio.info/asx/yokote.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -221,7 +236,8 @@
         "description": "",
         "site": "http://miyakofm.com",
         "direct": "http://www.simulradio.info/asx/FmMiyako.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -235,7 +251,8 @@
         "description": "",
         "site": "http://www.fm764.jp/",
         "direct": "http://www.simulradio.info/asx/RadioIshinomaki.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -249,7 +266,8 @@
         "description": "",
         "site": "http://ringo-radio.cocolog-nifty.com/",
         "direct": "http://csra.fm/asx/RingoFM.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -263,7 +281,8 @@
         "description": "",
         "site": "http://www.natori801.jp/",
         "direct": "http://www.simulradio.info/asx/Natoraji.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -277,7 +296,8 @@
         "description": "",
         "site": "http://minamisomasaigaifm.hostei.com/index.html",
         "direct": "http://csra.fm/asx/MinamisomaFM.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -291,7 +311,8 @@
         "description": "",
         "site": "http://www.kocofm.jp/",
         "direct": "http://csra.fm/asx/kocofm.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -305,7 +326,8 @@
         "description": "",
         "site": "http://rikuzentakata-fm.blogspot.com/",
         "direct": "http://csra.fm/asx/rikuzentakataFM.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -319,7 +341,8 @@
         "description": "",
         "site": "http://www.gurutto-koriyama.com/detail/index_213.html",
         "direct": "http://csra.fm/asx/OdagaisamaFM.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -333,7 +356,8 @@
         "description": "",
         "site": "http://www.town.watari.miyagi.jp/index.cfm/22,21308,126,html",
         "direct": "http://csra.fm/asx/aozora.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -347,7 +371,8 @@
         "description": "",
         "site": "http://www.city.kamaishi.iwate.jp/index.cfm/12,18557,121,html",
         "direct": "http://csra.fm/asx/kamaishi.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -361,7 +386,8 @@
         "description": "",
         "site": "http://www.t768.net",
         "direct": "https://www.simulradio.info/asx/takahagi.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -375,7 +401,8 @@
         "description": "",
         "site": "http://www.fm856.co.jp/",
         "direct": "http://www.simulradio.info/asx/kawaguchi.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -389,7 +416,8 @@
         "description": "",
         "site": "http://fmuu.jp/",
         "direct": "http://csra.fm/asx/fmuu.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -403,7 +431,8 @@
         "description": "",
         "site": "http://www.hfm.or.jp/",
         "direct": "http://www.simulradio.info/asx/hitachi.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -417,7 +446,8 @@
         "description": "",
         "site": "https://775fm.co.jp/",
         "direct": "https://www.simulradio.info/asx/smile.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -431,7 +461,8 @@
         "description": "",
         "site": "http://www.fmpalulun.co.jp/",
         "direct": "https://www.simulradio.info/asx/fmpalulun.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -445,7 +476,8 @@
         "description": "",
         "site": "https://www.fm767.com/",
         "direct": "http://www.fm767.com/flower_64k.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -459,7 +491,8 @@
         "description": "",
         "site": "http://redswave.com",
         "direct": "http://redswave.com/simul.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -473,7 +506,8 @@
         "description": "",
         "site": "http://radio-tsukuba.net",
         "direct": "http://csra.fm/asx/tsukuba.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -487,7 +521,8 @@
         "description": "",
         "site": "http://www.fm844.co.jp/",
         "direct": "http://www.simulradio.info/asx/fm-tachikawa.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -501,7 +536,8 @@
         "description": "",
         "site": "http://www.kawasakifm.co.jp/",
         "direct": "http://www.simulradio.info/asx/kawasaki.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -515,7 +551,8 @@
         "description": "",
         "site": "http://www.fm-totsuka.com",
         "direct": "https://www.simulradio.info/asx/totsuka.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -529,7 +566,8 @@
         "description": "",
         "site": "http://www.chofu-fm.com/",
         "direct": "http://www.simulradio.info/asx/chofu_fm.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -543,7 +581,8 @@
         "description": "",
         "site": "http://www.kfm789.co.jp/",
         "direct": "http://csra.fm/asx/katsushika.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -557,7 +596,8 @@
         "description": "",
         "site": "http://www.fmsagami.co.jp/",
         "direct": "http://www.fmsagami.co.jp/asx/fmsagami.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -571,7 +611,8 @@
         "description": "",
         "site": "http://www.792fm.com/",
         "direct": "http://www.simulradio.info/asx/rainbowtown.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -585,7 +626,8 @@
         "description": "",
         "site": "http://www.fmkaon.com/",
         "direct": "mms://hdv.nkansai.tv/kaon",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -599,7 +641,8 @@
         "description": "",
         "site": "http://fm-egao.jp/",
         "direct": "https://www.simulradio.info/asx/FmOkazaki.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -613,7 +656,8 @@
         "description": "",
         "site": "http://www.fmokazaki.jp/",
         "direct": "http://www.simulradio.info/asx/FmOkazaki.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -627,7 +671,8 @@
         "description": "",
         "site": "http://www.azuminofm.co.jp/",
         "direct": "http://www.simulradio.info/asx/azumino.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -641,7 +686,8 @@
         "description": "",
         "site": "http://radiocafe.jp/",
         "direct": "http://www.simulradio.info/asx/radiocafe.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -655,7 +701,8 @@
         "description": "",
         "site": "http://www.fm-moov.com/",
         "direct": "http://csra.fm/asx/fmmoov.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -669,7 +716,8 @@
         "description": "",
         "site": "http://www.tanba.info/",
         "direct": "http://csra.fm/asx/fm805.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -683,7 +731,8 @@
         "description": "",
         "site": "http://radiomix.kyoto/",
         "direct": "http://csra.fm/asx/radiomixkyoto.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -697,7 +746,8 @@
         "description": "",
         "site": "http://fukuchiyama.fm-tanba.jp/",
         "direct": "http://fukuchiyama.fm-tanba.jp/simul.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -711,7 +761,8 @@
         "description": "",
         "site": "http://tcc117.jp/fmyy/",
         "direct": "http://tcc117.jp/fmyy/asx/fmyy.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -725,7 +776,8 @@
         "description": "",
         "site": "http://www.764.fm/",
         "direct": "http://www.simulradio.info/asx/jungle.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -739,7 +791,8 @@
         "description": "",
         "site": "http://www.banban.jp/radio/",
         "direct": "http://www.simulradio.info/asx/banban.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -753,7 +806,8 @@
         "description": "",
         "site": "http://816.fm/",
         "direct": "http://csra.fm/asx/hasimoto.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -767,7 +821,8 @@
         "description": "",
         "site": "http://www.kbn.ne.jp/fm/",
         "direct": "http://www.simulradio.info/asx/fmsun.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -781,7 +836,8 @@
         "description": "",
         "site": "http://www.darazfm.com/",
         "direct": "http://www.darazfm.com/streaming.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -795,7 +851,8 @@
         "description": "",
         "site": "http://www.fm815.com/",
         "direct": "http://www.simulradio.info/asx/fm815.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -809,7 +866,8 @@
         "description": "",
         "site": "http://www.bfm.jp/",
         "direct": "http://www.simulradio.info/asx/b-fm791.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -823,7 +881,8 @@
         "description": "",
         "site": "http://www.hibiki882.jp/",
         "direct": "http://www.simulradio.info/asx/hibiki.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -837,7 +896,8 @@
         "description": "",
         "site": "http://fmkumejima.com/",
         "direct": "http://csra.fm/asx/fmkumejima.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -851,7 +911,8 @@
         "description": "",
         "site": "http://fmnobeoka.jp/",
         "direct": "http://csra.fm/asx/nobeoka.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -865,7 +926,8 @@
         "description": "",
         "site": "http://fm786.jp/",
         "direct": "http://csra.fm/asx/ginga.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -879,7 +941,8 @@
         "description": "",
         "site": "http://www.fm-yonabaru.site/",
         "direct": "mms://hdv.nkansai.tv/yonabaru",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -893,7 +956,8 @@
         "description": "",
         "site": "http://www.npo-d.org",
         "direct": "http://www.npo-d.org/simul/AmamiFM.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -907,7 +971,8 @@
         "description": "",
         "site": "http://www.shimabara.fm/",
         "direct": "http://www.shimabara.fm/st/fm-shimabara-live.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -921,7 +986,8 @@
         "description": "",
         "site": "http://www.starcornfm.com/",
         "direct": "mms://hdv.nkansai.tv/starcorn",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -935,7 +1001,8 @@
         "description": "",
         "site": "http://www.fm21.net/",
         "direct": "http://csra.fm/asx/fm21.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -949,7 +1016,8 @@
         "description": "",
         "site": "http://www.fmlequio.com/",
         "direct": "http://csra.fm/asx/lequio.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -963,7 +1031,8 @@
         "description": "",
         "site": "http://comiten.jp/",
         "direct": "http://comiten.jp/live.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -977,7 +1046,8 @@
         "description": "",
         "site": "http://www.fm-nanjo.net/",
         "direct": "http://csra.fm/asx/nanjo.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     },
     {
         "type": "csra",
@@ -991,6 +1061,7 @@
         "description": "",
         "site": "http://www.motob.net/",
         "direct": "http://csra.fm/asx/motob.asx",
-        "match": 0
+        "delay": 0,
+        "sstatus": 0
     }
 ]

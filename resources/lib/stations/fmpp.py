@@ -70,6 +70,7 @@ class Scraper(Common):
                     'description': self.normalize(description),
                     'site': official,
                     'direct': '',
-                    'match': 0
+                    'delay': 0,
+                    'sstatus': 0
                 })
         return buf

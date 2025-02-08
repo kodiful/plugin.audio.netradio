@@ -66,7 +66,8 @@ class Scraper(Common):
                 'description': '',
                 'site': 'https://www.nhk.or.jp/radio/',
                 'direct': section.r1hls.text,
-                'match': 1
+                'delay': 35,
+                'sstatus': 0
             })
             buf.append({
                 'type': 'nhkr',
@@ -80,7 +81,8 @@ class Scraper(Common):
                 'description': '',
                 'site': 'https://www.nhk.or.jp/radio/',
                 'direct': section.r2hls.text,
-                'match': 1
+                'delay': 35,
+                'sstatus': 0
             })
             buf.append({
                 'type': 'nhkr',
@@ -94,6 +96,7 @@ class Scraper(Common):
                 'description': '',
                 'site': 'https://www.nhk.or.jp/radio/',
                 'direct': section.fmhls.text,
-                'match': 1
+                'delay': 35,
+                'sstatus': 0
             })
         return buf

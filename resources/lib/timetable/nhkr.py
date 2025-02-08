@@ -147,7 +147,7 @@ class Scraper(Common):
                 "関根敏子"
             ],
             "hashtags": [],
-            "codes": {
+            "cities": {
                 "code": "4818211",
                 "split1": [
                     "4818",

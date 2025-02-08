@@ -25,7 +25,7 @@ class DB(Common):
 
     sql_contents = '''
     CREATE TABLE IF NOT EXISTS contents(
-        status INTEGER,
+        cstatus INTEGER,
         station TEXT,
         title TEXT,
         start TEXT,
@@ -45,7 +45,7 @@ class DB(Common):
         UNIQUE(sid, start)
     )'''
 
-    # status
+    # cstatus
     # -2: failed
     # -1: downloaded
     # 0: pass
@@ -54,7 +54,7 @@ class DB(Common):
     # 3: downloading
 
     sql_trigger = '''
-    CREATE TRIGGER IF NOT EXISTS update_modified AFTER UPDATE OF status ON contents
+    CREATE TRIGGER IF NOT EXISTS update_modified AFTER UPDATE OF cstatus ON contents
     BEGIN
         UPDATE contents SET modified = DATETIME('now', '+9 hours') WHERE cid = NEW.cid;
     END'''
@@ -74,31 +74,47 @@ class DB(Common):
         description TEXT,
         site TEXT,
         direct TEXT,
-        match INTEGER,
+        delay INTEGER,
+        sstatus INTEGER,
         version TEXT,
         modified TEXT
     )'''
+
+    # sstatus
+    # -1: deprecated
+    # 0: active
+    # 1: active & downloadable
 
     sql_keywords = '''
     CREATE TABLE IF NOT EXISTS keywords(
         kid INTEGER PRIMARY KEY AUTOINCREMENT,
-        status TEXT,
         keyword TEXT,
-        match TEXT,
-        weekday TEXT,
+        match INTEGER,
+        weekday INTEGER,
         station TEXT,
         dirname TEXT UNIQUE,
+        kstatus INTEGER,
         version TEXT,
         modified TEXT
     )'''
 
-    sql_codes = '''
-    CREATE TABLE IF NOT EXISTS codes(
+    # kstatus
+    # 0: inactive
+    # 1: active
+
+    sql_cities = '''
+    CREATE TABLE IF NOT EXISTS cities(
         code TEXT,
         region TEXT,
         pref TEXT,
         city TEXT,
         radiko TEXT
+    )'''
+
+    sql_holidays = '''
+    CREATE TABLE IF NOT EXISTS holidays(
+        date TEXT,
+        name TEXT
     )'''
 
     sql_auth = '''
@@ -139,7 +155,8 @@ class DB(Common):
         self.cursor.execute(self.sql_trigger)
         self.cursor.execute(self.sql_keywords)
         self.cursor.execute(self.sql_stations)
-        self.cursor.execute(self.sql_codes)
+        self.cursor.execute(self.sql_cities)
+        self.cursor.execute(self.sql_holidays)
         self.cursor.execute(self.sql_auth)
         self.cursor.execute(self.sql_status)
         # 現在時刻取得関数
@@ -153,31 +170,31 @@ class DB(Common):
             return int(datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S").timestamp())
         self.conn.create_function('EPOCH', 1, epoch)
         # 古い番組情報を削除
-        self.cursor.execute('DELETE FROM contents WHERE status = 0 and end < NOW()')
+        self.cursor.execute('DELETE FROM contents WHERE cstatus = 0 AND end < NOW()')
 
     def add(self, data, kid=0, abbr='', duration=0):
         # title
         title = data['title']
         # description
         description = self._description(data)
-        # sid, match, filename
-        sid, match, filename = self._station(data, abbr)
-        # kid, duration, status
+        # sid, sstatus, filename
+        sid, sstatus, filename = self._station(data, abbr)
+        # kid, filename, cstatus
         if kid > 0:
             if duration > 0:
-                kid, filename, status = kid, filename, -1
+                kid, filename, cstatus = kid, filename, -1
             else:
-                kid, filename, status = 0, '', 0
+                kid, filename, cstatus = 0, '', 0
         else:
-            if self.GET('download') == 'true' and match == 1:
-                kid, filename, status = self._keyword_match(data, title, description)
+            if self.GET('download') == 'true' and sstatus == 1:
+                kid, filename, cstatus = self._keyword_match(data, title, description)
             else:
-                kid, filename, status = 0, '', 0
+                kid, filename, cstatus = 0, '', 0
         # DBに投入
         values = {
             'sid': sid,
             'kid': kid,
-            'status': status,
+            'cstatus': cstatus,
             'filename': filename,
             'title': title,
             'start': data['start'],
@@ -192,19 +209,25 @@ class DB(Common):
             'version': self.ADDON_VERSION,
             'modified': self.now
         }
+        # DBに追加
         columns = ', '.join(values.keys())
         placeholders = ', '.join(['?' for _ in values])
         sql = f'INSERT OR IGNORE INTO contents ({columns}) VALUES ({placeholders})'
         self.cursor.execute(sql, list(values.values()))
         return self.cursor.lastrowid
 
-    def add_code(self, values):
+    def add_city(self, values):
         columns = ', '.join(values.keys())
         placeholders = ', '.join(['?' for _ in values])
-        sql = f'INSERT INTO codes ({columns}) VALUES ({placeholders})'
+        sql = f'INSERT INTO cities ({columns}) VALUES ({placeholders})'
         self.cursor.execute(sql, list(values.values()))
-        return self.cursor.lastrowid
 
+    def add_holiday(self, values):
+        columns = ', '.join(values.keys())
+        placeholders = ', '.join(['?' for _ in values])
+        sql = f'INSERT INTO holidays ({columns}) VALUES ({placeholders})'
+        self.cursor.execute(sql, list(values.values()))
+    
     def add_station(self, data, top=0):
         values = {
             'top': top,
@@ -219,13 +242,15 @@ class DB(Common):
             'description': data['description'],
             'site': data['site'],
             'direct': data['direct'],
-            'match': data.get('match', 0),
+            'delay': data.get('delay', 0),
+            'sstatus': data.get('sstatus', 0),
             'version': self.ADDON_VERSION,
             'modified': self.now
         }
-        sid = data.get('sid', '0')
-        if int(sid) > 0:
+        sid = int(data.get('sid', '0'))
+        if sid > 0:
             values.update({'sid': sid})
+        # DBに追加/更新
         columns = ', '.join(values.keys())
         placeholders = ', '.join(['?' for _ in values])
         sql = f'INSERT OR REPLACE INTO stations ({columns}) VALUES ({placeholders})'
@@ -240,37 +265,41 @@ class DB(Common):
 
     def add_keyword(self, data):
         values = {
-            'status': data['status'],
             'dirname': '',
             'keyword': data['keyword'],
-            'match': data['match'],
-            'weekday': data['weekday'],
+            'match': int(data['match']),
+            'weekday': int(data['weekday']),
             'station': data['station'],
+            'kstatus': int(data['kstatus']),
             'version': self.ADDON_VERSION,
             'modified': self.now
         }
-        kid = data.get('kid', '0')
-        if int(kid) > 0:
+        kid = int(data.get('kid', '0'))
+        if kid > 0:
             values.update({'kid': kid})
+        self.log(data)
+        self.log(values)
+        # DBに追加/更新
         columns = ', '.join(values.keys())
         placeholders = ', '.join(['?' for _ in values])
         sql = f'INSERT OR REPLACE INTO keywords ({columns}) VALUES ({placeholders})'
         self.cursor.execute(sql, list(values.values()))
         # dirnameを設定
-        dirname = str(self.cursor.lastrowid)
+        kid = self.cursor.lastrowid
+        dirname = str(kid)
         sql = 'UPDATE keywords SET dirname = :dirname WHERE kid = :kid'
-        self.cursor.execute(sql, {'kid': self.cursor.lastrowid, 'dirname': dirname})
+        self.cursor.execute(sql, {'kid': kid, 'dirname': dirname})
         # 画像作成
         url = '/'.join([self.GET('rssurl'), dirname, 'rss.xml'])
         path = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', f'{kid}.png')
         create_qrcode(url, path)
         # 既存のcontentsと照合
-        sql = 'SELECT * FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.status = 0 AND c.end > NOW()'
+        sql = 'SELECT * FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.cstatus = 0 AND c.end > NOW()'
         self.cursor.execute(sql)
         for csdata in self.cursor.fetchall():
-            kid, filename, status = self._keyword_match(dict(csdata), csdata['title'], csdata['description'], abbr=csdata['abbr'])
-            if status > 0:
-                sql = 'UPDATE contents SET kid = :kid, filename = :filename, status = 1 WHERE cid = :cid'
+            kid, filename, cstatus = self._keyword_match(dict(csdata), csdata['title'], csdata['description'], abbr=csdata['abbr'])
+            if cstatus > 0:
+                sql = 'UPDATE contents SET kid = :kid, filename = :filename, cstatus = 1 WHERE cid = :cid'
                 self.cursor.execute(sql, {'cid': csdata['cid'], 'kid': kid, 'filename': filename})
 
     def delete_keyword(self, kid):
@@ -300,23 +329,23 @@ class DB(Common):
 
     def _station(self, cdata, abbr=''):
         if cdata.get('region'):
-            sql = 'SELECT sid, abbr, match FROM stations WHERE station = :station and region = :region AND pref = :pref'
+            sql = 'SELECT sid, sstatus, abbr FROM stations WHERE station = :station AND region = :region AND pref = :pref AND sstatus >= 0'
             self.cursor.execute(sql, {'station': cdata['station'], 'region': cdata['region'], 'pref': cdata['pref']})
-            sid, abbr, match = self.cursor.fetchone()
+            sid, sstatus, abbr = self.cursor.fetchone()
         elif abbr:
-            sql = 'SELECT sid FROM stations WHERE abbr = :abbr'
+            sql = 'SELECT sid FROM stations WHERE abbr = :abbr AND sstatus >= 0'
             self.cursor.execute(sql, {'abbr': abbr})
             sid, = self.cursor.fetchone()  # ダウンロードのアイコン画像用にsidを付与
-            match = 0
+            sstatus = 0
         else:
-            sid, abbr, match = 0, 'unknown', 0
+            sid, abbr, sstatus = 0, 'unknown', 0
         start = cdata['start']  # 2025-02-04 21:24:00
         end = cdata['end']
         filename = f'{abbr}-{start[0:4]}{start[5:7]}{start[8:10]}-{start[11:13]}{start[14:16]}-{end[11:13]}{end[14:16]}.mp3'
-        return sid, match, filename
+        return sid, sstatus, filename
     
     def _keyword_match(self, cdata, title, description, abbr=''):
-        sql = "SELECT kid, keyword, match, weekday, station FROM keywords WHERE status = '1'"
+        sql = "SELECT kid, keyword, match, weekday, station FROM keywords WHERE kstatus = 1"
         self.cursor.execute(sql)
         for kid, keyword, match, weekday, station in self.cursor.fetchall():
             today = datetime.strptime(cdata['start'], '%Y-%m-%d %H:%M:%S').weekday()
@@ -335,29 +364,29 @@ class DB(Common):
 
     # 都道府県、市区町村を検索する
     def search_by_pref(self, pref):
-        sql = "SELECT * FROM codes WHERE pref = :pref AND city = ''"
+        sql = "SELECT * FROM cities WHERE pref = :pref AND city = ''"
         self.cursor.execute(sql, {'pref': pref})
         result = self.cursor.fetchone()
         return dict(result)
 
     def search_by_city(self, city):
-        sql = "SELECT * FROM codes WHERE city = :city"
+        sql = "SELECT * FROM cities WHERE city = :city"
         self.cursor.execute(sql, {'city': city})
         result = self.cursor.fetchone()
         return dict(result)
 
     def search_by_radiko(self, radiko):
-        sql = "SELECT * FROM codes WHERE radiko = :radiko AND city = ''"
+        sql = "SELECT * FROM cities WHERE radiko = :radiko AND city = ''"
         self.cursor.execute(sql, {'radiko': radiko})
         result = self.cursor.fetchone()
         return dict(result)
 
-    # 都道府県、市区町村を推定する
+    # 地域、都道府県、市区町村を推定する
     def infer_place(self, text):
         # 正規表現
-        self.cursor.execute("SELECT DISTINCT(pref) FROM codes WHERE pref != ''")
+        self.cursor.execute("SELECT DISTINCT(pref) FROM cities WHERE pref != ''")
         REGEX_PREFS = '(%s)' % '|'.join([pref for pref, in self.cursor.fetchall()])
-        self.cursor.execute("SELECT DISTINCT(city) FROM codes WHERE city != ''")
+        self.cursor.execute("SELECT DISTINCT(city) FROM cities WHERE city != ''")
         REGEX_CITIES = '(%s)' % '|'.join([city for city, in self.cursor.fetchall()])
         # マッチング
         code = ''
@@ -381,6 +410,7 @@ class DB(Common):
             region = item['region']
         return code, region, pref, city
 
+    # radikoコードから地域、都道府県を判定する
     def radiko_place(self, code):
         item = self.search_by_radiko(code)
         code = item['code']
@@ -388,13 +418,20 @@ class DB(Common):
         region = item['region']
         return code, region, pref
 
+    # 祝祭日を判定する
+    def is_holiday(self, date):
+        sql = 'SELECT COUNT(date) FROM holidays WHERE date = :date'
+        self.cursor.execute(sql, {'date': date})
+        count, = self.cursor.fetchone()
+        return count > 0
+
 
 # ロゴ画像を取得してサムネイル画像を作成
 def load_logo(item, dir, force=False):
     # 画像のファイルパス
     dirname = os.path.join(dir, item['type'])
     os.makedirs(dirname, exist_ok=True)
-    path = os.path.join(dirname, '%s.png' % item['station'])
+    path = os.path.join(dirname, item['station'] + '.png')
     if force:
         # ファイルを削除
         if os.path.exists(path):
@@ -408,6 +445,8 @@ def load_logo(item, dir, force=False):
     # 画像がある場合はなにもしない
     if os.path.exists(path):
         return
+    # 画像格納用のディレクトリを用意
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     # ロゴ画像を取得
     if item['logo']:
         try:
@@ -452,7 +491,9 @@ def create_qrcode(url, path, force=False):
     # 画像がある場合はなにもしない
     if os.path.exists(path):
         return
-    # QRコードを生成
+    # 画像格納用のディレクトリを用意
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    # 画像を生成
     qr = QRCode(version=1, box_size=10, border=4)
     qr.add_data(re.sub(r'^http(s?)://', r'podcast\1://', url))
     qr.make(fit=True)

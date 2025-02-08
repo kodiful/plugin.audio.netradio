@@ -61,18 +61,18 @@ class Station(Common):
         sql = 'SELECT station FROM stations WHERE sid = :sid'
         self.db.cursor.execute(sql, {'sid': sid})
         station, = self.db.cursor.fetchone()
-        ok = xbmcgui.Dialog().yesno('削除確認', f'"{station}" を削除しますか？')
+        ok = xbmcgui.Dialog().yesno(self.STR(30607), self.STR(30608) % station)
         if ok:
             self.db.delete_station(sid)
             xbmc.executebuiltin('Container.Refresh')
 
     def show_info(self, sid):
         # 番組情報を検索
-        sql = 'SELECT title, description FROM contents WHERE sid = :sid and end > NOW() ORDER BY start LIMIT 2'
+        sql = 'SELECT title, description FROM contents WHERE sid = :sid AND end > NOW() ORDER BY start LIMIT 2'
         self.db.cursor.execute(sql, {'sid': sid})
         data = [(title, description) for title, description in self.db.cursor.fetchall()]
         # 選択ダイアログを表示
-        index = xbmcgui.Dialog().select('番組選択', [title for title, _ in data])
+        index = xbmcgui.Dialog().select(self.STR(30606), [title for title, _ in data])
         if index == -1:
             return
         # 選択された番組の情報を表示
@@ -84,8 +84,8 @@ class Station(Common):
             description = re.sub(r'<.*?>', '', description)
             description = re.sub(r'\n{3,}', r'\n\n', description)
         else:
-            description = '（番組情報はありません）'
-        xbmcgui.Dialog().textviewer('番組情報', description)
+            description = self.STR(30610)
+        xbmcgui.Dialog().textviewer(self.STR(30609), description)
 
     def update_info(self):
         # 再表示を要求

@@ -49,28 +49,28 @@ msgid "Delete from top"
 msgstr "トップ画面から削除する"
 
 msgctxt "#30103"
-msgid "Add station"
-msgstr "放送局を追加する"
+msgid "Add station settings"
+msgstr "放送局設定を追加する"
 
 msgctxt "#30104"
-msgid "Change station"
-msgstr "放送局を変更する"
+msgid "Change station settings"
+msgstr "放送局設定を変更する"
 
 msgctxt "#30105"
-msgid "Delete station"
-msgstr "放送局を削除する"
+msgid "Delete station settings"
+msgstr "放送局設定を削除する"
 
 msgctxt "#30106"
-msgid "Add keyword"
-msgstr "キーワードを追加する"
+msgid "Add keyword settings"
+msgstr "キーワード設定を追加する"
 
 msgctxt "#30107"
-msgid "Change keyword"
-msgstr "キーワードを変更する"
+msgid "Change keyword settings"
+msgstr "キーワード設定を変更する"
 
 msgctxt "#30108"
-msgid "Delete keyword"
-msgstr "キーワードを削除する"
+msgid "Delete keyword settings"
+msgstr "キーワード設定を削除する"
 
 msgctxt "#30109"
 msgid "Open folder"
@@ -93,12 +93,12 @@ msgid "General"
 msgstr "一般"
 
 msgctxt "#30201"
-msgid "[COLOR lightgreen]Add station[/COLOR]"
-msgstr "[COLOR lightgreen]放送局を追加する[/COLOR]"
+msgid "[COLOR lightgreen]Add station settings[/COLOR]"
+msgstr "[COLOR lightgreen]放送局設定を追加する[/COLOR]"
 
 msgctxt "#30202"
-msgid "[COLOR lightgreen]Add keyword[/COLOR]"
-msgstr "[COLORlightgreen]キーワードを追加する[/COLOR]"
+msgid "[COLOR lightgreen]Add keyword settings[/COLOR]"
+msgstr "[COLORlightgreen]キーワード設定を追加する[/COLOR]"
 
 msgctxt "#30203"
 msgid "Authorized region"
@@ -232,6 +232,18 @@ msgctxt "#30527"
 msgid "Everyday"
 msgstr "毎日"
 
+msgctxt "#30528"
+msgid "Program selection"
+msgstr "番組選択"
+
+msgctxt "#30529"
+msgid "Confirm deletion"
+msgstr "削除確認"
+
+msgctxt "#30530"
+msgid "Delete keyword settings and downloaded files for \"%s\"?"
+msgstr "\"%s\"に関するキーワード設定とダウンロード済みファイルを削除しますか？"
+
 msgctxt "#30600"
 msgid "Station settings"
 msgstr "放送局設定"
@@ -255,6 +267,26 @@ msgstr "サイトURL"
 msgctxt "#30605"
 msgid "Description"
 msgstr "説明"
+
+msgctxt "#30606"
+msgid "Program selection"
+msgstr "番組選択"
+
+msgctxt "#30607"
+msgid "Confirm deletion"
+msgstr "削除確認"
+
+msgctxt "#30608"
+msgid "Delete station settings for \"%s\"?"
+msgstr "\"%s\"に関する放送局設定を削除しますか？"
+
+msgctxt "#30609"
+msgid "Show info"
+msgstr "番組情報"
+
+msgctxt "#30610"
+msgid "(No info)"
+msgstr "（番組情報はありません）"
 
 #
 # for common use

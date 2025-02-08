@@ -59,7 +59,8 @@ class Scraper(Common):
                     'description': self.normalize(description),
                     'site': '',
                     'direct': stream,
-                    'match': 0
+                    'delay': 0,
+                    'sstatus': 0
                 })
             else:
                 print('[lsnr] invalid region:', station, stream, sep='\t', file=sys.stderr)

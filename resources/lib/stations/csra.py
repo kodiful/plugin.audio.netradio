@@ -40,7 +40,7 @@ class Scraper(Common):
                 logo = 'http://csra.fm%s' % section.img['src'].strip()
                 stream = section.find('a', class_='stm')['href'].strip()
                 official = section.find('a', class_='site')['href'].strip()
-            except Exception:
+            except Exception as e:
                 print('[csra] unparsable content (skip):', station, sep='\t', file=sys.stderr)
                 continue
             # ストリーミングURLがListenRadioを参照している場合はスキップ
@@ -61,7 +61,8 @@ class Scraper(Common):
                     'description': '',
                     'site': official,
                     'direct': stream,
-                    'match': 0
+                    'delay': 0,
+                    'sstatus': 0
                 })
             else:
                 print('[csra] unsupported protocol (skip):', station, stream, sep='\t', file=sys.stderr)

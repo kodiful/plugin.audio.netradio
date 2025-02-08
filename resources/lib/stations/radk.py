@@ -45,7 +45,7 @@ class Scraper(Common):
             '''
             try:
                 id = section.id.text
-                station = section.find('name').text
+                station = self.normalize(section.find('name').text)
                 code, region, pref = self.db.radiko_place(self.area)
                 logo = section.find('logo', width='448').text
                 official = section.href.text
@@ -55,7 +55,7 @@ class Scraper(Common):
             buf.append({
                 'type': self.TYPE,
                 'abbr': id,
-                'station': self.normalize(station),
+                'station': station,
                 'code': code,
                 'region': region,
                 'pref': pref,
@@ -64,6 +64,7 @@ class Scraper(Common):
                 'description': '',
                 'site': official,
                 'direct': '',
-                'match': 0 if self.normalize(station).startswith('NHK') else 1
+                'delay': 15,
+                'sstatus': 0 if station.startswith('NHK') else 1
             })
         return buf
