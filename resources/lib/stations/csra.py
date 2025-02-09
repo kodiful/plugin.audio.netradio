@@ -12,7 +12,7 @@ class Scraper(Common):
     URL = 'http://csra.fm/stationlist/'
 
     def __init__(self):
-        super().__init__()
+        super().__init__(self.TYPE)
 
     def parse(self, data):
         buf = []
@@ -35,12 +35,15 @@ class Scraper(Common):
             </section>
             '''
             try:
-                station = section.h1.string.strip()
-                code, region, pref, city = self.db.infer_place(section.text.replace('久米島', '久米島町'))
-                logo = 'http://csra.fm%s' % section.img['src'].strip()
-                stream = section.find('a', class_='stm')['href'].strip()
-                official = section.find('a', class_='site')['href'].strip()
-            except Exception as e:
+                if section.h1:
+                    station = section.h1.string.strip()
+                    code, region, pref, city = self.db.infer_place('\n'.join[station, section.text])
+                    logo = 'http://csra.fm%s' % section.img['src'].strip()
+                    stream = section.find('a', class_='stm')['href'].strip()
+                    official = section.find('a', class_='site')['href'].strip()
+                else:
+                    continue
+            except Exception:
                 print('[csra] unparsable content (skip):', station, sep='\t', file=sys.stderr)
                 continue
             # ストリーミングURLがListenRadioを参照している場合はスキップ
@@ -65,5 +68,5 @@ class Scraper(Common):
                     'sstatus': 0
                 })
             else:
-                print('[csra] unsupported protocol (skip):', station, stream, sep='\t', file=sys.stderr)
+                print('[csra] unsupported protocol (skip):', station, stream, file=sys.stderr)
         return buf

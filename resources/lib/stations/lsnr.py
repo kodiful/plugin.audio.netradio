@@ -13,7 +13,7 @@ class Scraper(Common):
     #URL = 'http://listenradio.jp/service/categorychannel.aspx?categoryid=99999' # 全ての局（リッスンラジオ公式や試験放送含む）
 
     def __init__(self):
-        super().__init__()
+        super().__init__(self.TYPE)
 
     def parse(self, data):
         buf = []
@@ -39,7 +39,7 @@ class Scraper(Common):
             try:
                 id = section['ChannelId']
                 station = section['ChannelName']
-                code, region, pref, city = self.db.infer_place(section['ChannelDetail'])
+                code, region, pref, city = self.db.infer_place('\n'.join[station, section['ChannelDetail']])
                 logo = section['ChannelImage']
                 stream = section['ChannelHls']
                 description = section['ChannelDetail']

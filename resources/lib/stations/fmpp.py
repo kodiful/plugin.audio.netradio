@@ -13,7 +13,7 @@ class Scraper(Common):
     URL = 'https://fmplapla.com'
 
     def __init__(self):
-        super().__init__()
+        super().__init__(self.TYPE)
 
     def parse(self, data):
         buf = []
@@ -51,7 +51,7 @@ class Scraper(Common):
                 try:
                     id = section['id']
                     station = section['name']
-                    code, region, pref, city = self.db.infer_place(section['pref'] + section['city'])
+                    code, region, pref, city = self.db.infer_place('\n'.join[station, section['pref'], section['city']])
                     logo = section['artwork']
                     description = section['stat']
                     official = ''

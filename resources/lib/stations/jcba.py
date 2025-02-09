@@ -13,7 +13,7 @@ class Scraper(Common):
     URL = 'http://www.jcbasimul.com'
 
     def __init__(self):
-        super().__init__()
+        super().__init__(self.TYPE)
 
     def parse(self, data):
         buf = []
@@ -40,7 +40,7 @@ class Scraper(Common):
                 try:
                     id = section['id']
                     station = section['name']
-                    code, region, pref, city = self.db.infer_place(section['prefecture'] + section['description'])
+                    code, region, pref, city = self.db.infer_place('\n'.join[station, section['prefecture'], section['description']])
                     logo = section['logoUrl']
                     description = section['description']
                     official = section['officialSiteUrl']

@@ -22,7 +22,7 @@ class Common(Main):
         os.makedirs(self.SOURCE_PATH, exist_ok=True)
         os.makedirs(self.JSON_PATH, exist_ok=True)
         os.makedirs(self.LOGO_PATH, exist_ok=True)
-        self.SOURCE_FILE = os.path.join(self.SOURCE_PATH, f'{type or self.TYPE}.txt')
+        self.SOURCE_FILE = os.path.join(self.SOURCE_PATH, f'{type}.txt')
         self.JSON_FILE = os.path.join(self.JSON_PATH, f'{self.TYPE}.json')
 
     # ファイルをパースする
@@ -38,7 +38,7 @@ class Common(Main):
                 f.write(data.encode('utf-8'))
         with open(self.SOURCE_FILE, 'rb') as f:
             data = f.read().decode('utf-8')
-        return self.parse(data)
+        return sorted(self.parse(data), key=lambda x: x['code'])
   
     # 文字列を正規化する
     @staticmethod
