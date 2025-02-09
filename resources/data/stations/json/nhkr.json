@@ -12,7 +12,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023545/nhkradiruikr1/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -27,7 +27,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -42,7 +42,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023546/nhkradiruikfm/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -57,7 +57,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023543/nhkradiruhkr1/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -72,7 +72,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -87,7 +87,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023544/nhkradiruhkfm/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -102,7 +102,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023229/nhkradiruakr1/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -117,7 +117,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -132,7 +132,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023507/nhkradiruakfm/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -147,7 +147,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023510/nhkradiruckr1/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -162,7 +162,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -177,7 +177,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023511/nhkradiruckfm/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -192,7 +192,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023508/nhkradirubkr1/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -207,7 +207,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -222,7 +222,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023509/nhkradirubkfm/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -237,7 +237,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023512/nhkradirufkr1/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -252,7 +252,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -267,7 +267,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023513/nhkradirufkfm/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -282,7 +282,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023547/nhkradiruzkr1/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -297,7 +297,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -312,7 +312,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023548/nhkradiruzkfm/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -327,7 +327,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023541/nhkradirulkr1/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -342,7 +342,7 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "type": "nhkr",
@@ -357,6 +357,6 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023542/nhkradirulkfm/master.m3u8",
         "delay": 35,
-        "sstatus": 0
+        "sstatus": 1
     }
 ]
