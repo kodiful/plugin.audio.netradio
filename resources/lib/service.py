@@ -51,16 +51,14 @@ class Monitor(xbmc.Monitor, Common):
 
 class Service(Common):
 
-    # 更新確認のインターバル
+    # 更新確認のインターバル（秒）
     CHECK_INTERVAL = 30
-    # radiko認証のインターバル
+    # radiko認証のインターバル（秒）
     AUTH_INTERVAL = 3600
     
-    # ダウンロード予約のタイミング
+    # ダウンロード予約のタイミング（秒）
     DOWNLOAD_PREPARATION = 180
-    # ダウンロード開始の遅延
-    DOWNLOAD_DELAY = {'nhkr': 35, 'radk': 15}
-    # ダウンロード開始の余裕
+    # ダウンロード開始の余裕（秒）
     DOWNLOAD_MARGIN = 5
 
     def __init__(self):
@@ -153,8 +151,8 @@ class Service(Common):
                     db.cursor.execute("UPDATE status SET keyword = '', station = ''")
                     # 設定画面
                     shutil.copy(os.path.join(self.DATA_PATH, 'settings', 'settings.xml'), self.DIALOG_FILE)
-            # キューに格納した番組の処理
-            self._process_queue()
+            # ダウンロード開始判定
+            self._prepare_download()
             # CHECK_INTERVALの間待機
             monitor.waitForAbort(self.CHECK_INTERVAL)
         # ローカルプロキシを終了
@@ -222,18 +220,17 @@ class Service(Common):
             self.log('monitor error in _update_radk:', e)
         return update_radk
 
-    def _process_queue(self):
+    def _prepare_download(self):
         # DBの共有インスタンス
         db = ThreadLocal.db
         # 保留中(cstatus=1)の番組、かつDOWNLOAD_PREPARATION以内に開始する番組を検索
-        sql = '''SELECT c.cid, c.kid, c.filename, s.type, s.abbr, c.title, EPOCH(c.start) as t, EPOCH(c.end), s.direct
+        sql = '''SELECT c.cid, c.kid, c.filename, s.type, s.abbr, c.title, EPOCH(c.start) as t, EPOCH(c.end), s.direct, s.delay
         FROM contents c JOIN stations s ON c.sid = s.sid
         WHERE c.cstatus = 1 AND t - EPOCH(NOW()) < :threshold
         ORDER BY c.start'''
         db.cursor.execute(sql, {'threshold': self.DOWNLOAD_PREPARATION})
         # ダウンロードを予約
-        for cid, kid, filename, type, abbr, title, start, end, direct in db.cursor.fetchall():
-            delay = self.DOWNLOAD_DELAY[type]
+        for cid, kid, filename, type, abbr, title, start, end, direct, delay in db.cursor.fetchall():
             start = start + delay - self.DOWNLOAD_MARGIN  # 開始時刻
             end = end + delay + self.DOWNLOAD_MARGIN  # 終了時刻
             # ダウンロードを予約
