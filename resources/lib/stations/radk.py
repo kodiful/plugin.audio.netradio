@@ -14,7 +14,7 @@ class Scraper(Common):
     def __init__(self, area):
         self.area = area
         self.URL = self.URL % area
-        super().__init__(f'{self.TYPE}_{area}')
+        super().__init__(f'{self.TYPE}/{area}')
 
     def parse(self, data):
         buf = []

@@ -40,12 +40,12 @@ class Scraper(Common):
                 try:
                     id = section['id']
                     station = section['name']
-                    code, region, pref, city = self.db.infer_place('\n'.join[station, section['prefecture'], section['description']])
+                    code, region, pref, city = self.db.infer_place('\n'.join([station, section['prefecture'], section['description']]))
                     logo = section['logoUrl']
                     description = section['description']
                     official = section['officialSiteUrl']
                 except Exception:
-                    print('[jcba] unparsable content (skip):', station, sep='\t', file=sys.stderr)
+                    print('[jcba] unparsable content (skip):', station, file=sys.stderr)
                     continue
                 buf.append({
                     'type': self.TYPE,

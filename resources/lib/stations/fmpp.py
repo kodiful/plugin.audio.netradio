@@ -51,12 +51,14 @@ class Scraper(Common):
                 try:
                     id = section['id']
                     station = section['name']
-                    code, region, pref, city = self.db.infer_place('\n'.join[station, section['pref'], section['city']])
+                    code, region, pref, city = self.db.infer_place('\n'.join([station, section['pref'], section['city']]))
                     logo = section['artwork']
                     description = section['stat']
                     official = ''
+                    if description.find('閉局') > -1:
+                        print('[fmpp] closed (skip):', station, file=sys.stderr)
                 except Exception:
-                    print('[fmpp] unparsable content (skip):', station, sep='\t', file=sys.stderr)
+                    print('[fmpp] unparsable content (skip):', station, file=sys.stderr)
                     continue
                 buf.append({
                     'type': self.TYPE,

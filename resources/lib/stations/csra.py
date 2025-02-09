@@ -37,18 +37,22 @@ class Scraper(Common):
             try:
                 if section.h1:
                     station = section.h1.string.strip()
-                    code, region, pref, city = self.db.infer_place('\n'.join[station, section.text])
-                    logo = 'http://csra.fm%s' % section.img['src'].strip()
-                    stream = section.find('a', class_='stm')['href'].strip()
-                    official = section.find('a', class_='site')['href'].strip()
+                    if section.prettify().find('閉局') > -1:
+                        print('[csra] closed (skip):', station, file=sys.stderr)
+                        continue
+                    else:
+                        code, region, pref, city = self.db.infer_place('\n'.join([station, section.text]))
+                        logo = 'http://csra.fm%s' % section.img['src'].strip()
+                        stream = section.find('a', class_='stm')['href'].strip()
+                        official = section.find('a', class_='site')['href'].strip()
                 else:
                     continue
             except Exception:
-                print('[csra] unparsable content (skip):', station, sep='\t', file=sys.stderr)
+                print('[csra] unparsable content (skip):', station, file=sys.stderr)
                 continue
             # ストリーミングURLがListenRadioを参照している場合はスキップ
             if stream.startswith('http://listenradio.jp/'):
-                print('[csra] listenradio protocol (skip):', station, sep='\t', file=sys.stderr)
+                print('[csra] listenradio protocol (skip):', station, file=sys.stderr)
                 continue
             # ストリーミングURLがmms://で始まるか.asxで終わるものを採用
             if stream.startswith('mms://') or stream.endswith('.asx'):

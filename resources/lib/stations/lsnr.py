@@ -39,12 +39,12 @@ class Scraper(Common):
             try:
                 id = section['ChannelId']
                 station = section['ChannelName']
-                code, region, pref, city = self.db.infer_place('\n'.join[station, section['ChannelDetail']])
+                code, region, pref, city = self.db.infer_place('\n'.join([station, section['ChannelDetail']]))
                 logo = section['ChannelImage']
                 stream = section['ChannelHls']
                 description = section['ChannelDetail']
             except Exception:
-                print('[lsnr] unparsable content (skip):', station, sep='\t', file=sys.stderr)
+                print('[lsnr] unparsable content (skip):', station, file=sys.stderr)
                 continue
             if region:
                 buf.append({
@@ -63,5 +63,5 @@ class Scraper(Common):
                     'sstatus': 0
                 })
             else:
-                print('[lsnr] invalid region:', station, stream, sep='\t', file=sys.stderr)
+                print('[lsnr] invalid region:', station, stream, file=sys.stderr)
         return buf
