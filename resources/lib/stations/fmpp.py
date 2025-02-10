@@ -55,8 +55,9 @@ class Scraper(Common):
                     logo = section['artwork']
                     description = section['stat']
                     official = ''
-                    if description.find('閉局') > -1:
+                    if description.find('閉局') > -1 or description.find('休止') > -1 :
                         print('[fmpp] closed (skip):', station, file=sys.stderr)
+                        continue
                 except Exception:
                     print('[fmpp] unparsable content (skip):', station, file=sys.stderr)
                     continue
