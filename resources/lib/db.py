@@ -277,8 +277,6 @@ class DB(Common):
         kid = int(data.get('kid', '0'))
         if kid > 0:
             values.update({'kid': kid})
-        self.log(data)
-        self.log(values)
         # DBに追加/更新
         columns = ', '.join(values.keys())
         placeholders = ', '.join(['?' for _ in values])
@@ -294,7 +292,7 @@ class DB(Common):
         path = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', f'{kid}.png')
         create_qrcode(url, path)
         # 既存のcontentsと照合
-        sql = 'SELECT * FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.cstatus = 0 AND c.end > NOW()'
+        sql = 'SELECT * FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.cstatus = 0 AND c.end > NOW() AND s.sstatus >= 0'
         self.cursor.execute(sql)
         for csdata in self.cursor.fetchall():
             kid, filename, cstatus = self._keyword_match(dict(csdata), csdata['title'], csdata['description'], abbr=csdata['abbr'])
@@ -349,13 +347,13 @@ class DB(Common):
         self.cursor.execute(sql)
         for kid, keyword, match, weekday, station in self.cursor.fetchall():
             today = datetime.strptime(cdata['start'], '%Y-%m-%d %H:%M:%S').weekday()
-            if weekday != '7' and weekday != str(today):
+            if weekday != 7 and weekday != today:
                 continue
             if station != '' and station != cdata['station']:
                 continue
-            if match == '0' and title.find(keyword) < 0:
+            if match == 0 and title.find(keyword) < 0:
                 continue
-            if match == '1' and description.find(keyword) < 0:
+            if match == 1 and description.find(keyword) < 0:
                 continue
             _, _, filename = self._station(cdata, abbr)
             return kid, filename, 1
@@ -363,17 +361,27 @@ class DB(Common):
             return 0, '', 0
 
     # 都道府県、市区町村を検索する
-    def search_by_pref(self, pref):
-        sql = "SELECT * FROM cities WHERE pref = :pref AND city = ''"
+    def _search_by_pref(self, pref, exact=True):
+        if exact:
+            sql = 'SELECT * FROM cities WHERE pref = :pref AND LENGTH(city) = 0'
+        else:
+            sql = 'SELECT * FROM cities WHERE SUBSTR(pref, 1, LENGTH(pref)-1) = :pref AND LENGTH(city) = 0'
         self.cursor.execute(sql, {'pref': pref})
         result = self.cursor.fetchone()
-        return dict(result)
+        return result['code'], result['region'], result['pref']
 
-    def search_by_city(self, city):
-        sql = "SELECT * FROM cities WHERE city = :city"
-        self.cursor.execute(sql, {'city': city})
+    def _search_by_city(self, city, pref='', exact=True):
+        if exact:
+            sql = 'SELECT * FROM cities WHERE city = :city'
+            self.cursor.execute(sql, {'city': city})
+        elif pref:
+            sql = 'SELECT * FROM cities WHERE SUBSTR(city, 1, LENGTH(city)-1) = :city AND pref = :pref'
+            self.cursor.execute(sql, {'city': city, 'pref': pref})
+        else:
+            sql = 'SELECT * FROM cities WHERE SUBSTR(city, 1, LENGTH(city)-1) = :city'
+            self.cursor.execute(sql, {'city': city})
         result = self.cursor.fetchone()
-        return dict(result)
+        return result['code'], result['region'], result['pref'], result['city']
 
     def search_by_radiko(self, radiko):
         sql = "SELECT * FROM cities WHERE radiko = :radiko AND city = ''"
@@ -383,31 +391,37 @@ class DB(Common):
 
     # 地域、都道府県、市区町村を推定する
     def infer_place(self, text):
-        # 正規表現
-        self.cursor.execute("SELECT DISTINCT(pref) FROM cities WHERE pref != ''")
-        REGEX_PREFS = '(%s)' % '|'.join([pref for pref, in self.cursor.fetchall()])
-        self.cursor.execute("SELECT DISTINCT(city) FROM cities WHERE city != ''")
-        REGEX_CITIES = '(%s)' % '|'.join([city for city, in self.cursor.fetchall()])
+        # lsnr
+        if text.startswith('BAY WAVE'):
+            text = '宮城県塩竈市'
+        elif text.startswith('FMおとくに'):
+            text = '京都府向日市'
+        # jcba
+        elif text.startswith('アップルウェーブ'):
+            text = '青森県弘前市'
+        elif text.startswith('FMまほろば'):
+            text = '奈良県田原本町'
         # マッチング
-        code = ''
-        region = ''
-        pref = ''
-        city = ''
+        code = region = pref = city = ''
         # 都道府県
-        match = re.search(REGEX_PREFS, text)
+        self.cursor.execute('SELECT DISTINCT(pref) FROM cities WHERE LENGTH(pref) > 0')
+        regex = '(%s)' % '|'.join([pref for pref, in self.cursor.fetchall()])
+        match = re.search(regex, text)
         if match:
-            pref = match.group(1)
-            item = self.search_by_pref(pref)
-            code = item['code']
-            region = item['region']
+            code, region, pref = self._search_by_pref(match.group(1), exact=True)
         # 市町村
-        match = re.search(REGEX_CITIES, text)
+        self.cursor.execute('SELECT DISTINCT(city) FROM cities WHERE LENGTH(city) > 0')
+        regex = '(%s)' % '|'.join([city for city, in self.cursor.fetchall()])
+        match = re.search(regex, text)
         if match:
-            city = match.group(1)
-            item = self.search_by_city(city)
-            code = item['code']
-            pref = item['pref']
-            region = item['region']
+            code, region, pref, city = self._search_by_city(match.group(1), exact=True)
+        elif pref:
+            sql = 'SELECT DISTINCT(city) FROM cities WHERE LENGTH(city) > 2 AND pref = :pref AND SUBSTR(city, 1, LENGTH(city)-1) != SUBSTR(pref, 1, LENGTH(pref)-1)'
+            self.cursor.execute(sql, {'pref': pref})
+            regex = '(%s)' % '|'.join([city[:-1] for city, in self.cursor.fetchall()])
+            match = re.search(regex, text)
+            if match:
+                code, region, pref, city = self._search_by_city(match.group(1), pref, exact=False)
         return code, region, pref, city
 
     # radikoコードから地域、都道府県を判定する
