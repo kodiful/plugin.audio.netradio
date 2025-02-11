@@ -44,7 +44,7 @@ class Scraper(Common):
                 if results:
                     code, region, pref, city, station, status = results
                     if status:
-                        logo = section['ChannelImage']
+                        logo = section['ChannelLogo']
                         direct = section['ChannelHls']
                         description = section['ChannelDetail']
                     else:  # 最優先のみ採用する
