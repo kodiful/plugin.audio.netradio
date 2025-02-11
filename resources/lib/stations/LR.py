@@ -69,7 +69,7 @@ class Scraper(Common):
                     'site': '',
                     'direct': direct,
                     'delay': 0,
-                    'sstatus': 0
+                    'sstatus': 1
                 })
             else:
                 print('[LR] invalid region:', station, direct, file=sys.stderr)

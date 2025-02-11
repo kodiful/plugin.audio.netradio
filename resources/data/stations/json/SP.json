@@ -12,12 +12,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "iianbefm",
-        "station": "きたかみE&Beエフエム",
+        "station": "きたかみE&Be FM",
         "code": "032069",
         "region": "東北",
         "pref": "岩手県",
@@ -27,7 +27,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -42,7 +42,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -57,7 +57,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -72,7 +72,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -87,7 +87,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -102,7 +102,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -117,7 +117,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -132,7 +132,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -147,7 +147,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -162,7 +162,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -177,12 +177,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "fmkiryu",
-        "station": "エフエムきりゅう",
+        "station": "FMきりゅう",
         "code": "102032",
         "region": "関東",
         "pref": "群馬県",
@@ -192,7 +192,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -207,12 +207,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "chichibufm",
-        "station": "ちちぶエフエム",
+        "station": "ちちぶFM",
         "code": "112071",
         "region": "関東",
         "pref": "埼玉県",
@@ -222,7 +222,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -237,7 +237,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -252,7 +252,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -267,12 +267,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "fmnishitokyo",
-        "station": "エフエム西東京",
+        "station": "FM西東京",
         "code": "132292",
         "region": "関東",
         "pref": "東京都",
@@ -282,12 +282,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "kanazawaseasidefm",
-        "station": "金沢シーサイドFM ",
+        "station": "金沢シーサイドFM",
         "code": "141089",
         "region": "関東",
         "pref": "神奈川県",
@@ -297,7 +297,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -312,7 +312,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -327,12 +327,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "fmtokamachi",
-        "station": "エフエムとおかまち",
+        "station": "FMとおかまち",
         "code": "152102",
         "region": "甲信越",
         "pref": "新潟県",
@@ -342,7 +342,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -357,7 +357,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -372,12 +372,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "iidafm",
-        "station": "iステーション",
+        "station": "いいだFM",
         "code": "202053",
         "region": "甲信越",
         "pref": "長野県",
@@ -387,7 +387,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -402,12 +402,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "fmtomi",
-        "station": "FMとうみ",
+        "station": "はれラジ",
         "code": "202193",
         "region": "甲信越",
         "pref": "長野県",
@@ -417,7 +417,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -432,7 +432,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -447,12 +447,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "tees-843fm",
-        "station": "エフエム豊橋",
+        "station": "FM豊橋",
         "code": "232017",
         "region": "東海",
         "pref": "愛知県",
@@ -462,7 +462,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -477,7 +477,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -492,12 +492,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "mediasfm",
-        "station": "メディアスエフエム",
+        "station": "メディアスFM",
         "code": "232220",
         "region": "東海",
         "pref": "愛知県",
@@ -507,7 +507,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -522,7 +522,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -537,7 +537,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -552,7 +552,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -567,7 +567,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -582,7 +582,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -597,7 +597,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -612,12 +612,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "fmyumewave",
-        "station": "エフエムゆめウェーブ",
+        "station": "FMゆめウェーブ",
         "code": "332054",
         "region": "中国",
         "pref": "岡山県",
@@ -627,7 +627,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -642,7 +642,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -657,7 +657,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -672,7 +672,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -687,7 +687,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -702,7 +702,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -717,12 +717,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "happyfm",
-        "station": "Happy!FM",
+        "station": "はっぴぃ!FM",
         "code": "422029",
         "region": "九州沖縄",
         "pref": "長崎県",
@@ -732,7 +732,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -747,12 +747,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "fmtsushima",
-        "station": "エフエム対馬",
+        "station": "FM対馬",
         "code": "422096",
         "region": "九州沖縄",
         "pref": "長崎県",
@@ -762,12 +762,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "fmhimawari",
-        "station": "エフエムひまわり",
+        "station": "FMひまわり",
         "code": "422142",
         "region": "九州沖縄",
         "pref": "長崎県",
@@ -777,7 +777,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -792,7 +792,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -807,7 +807,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -822,7 +822,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -837,7 +837,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -852,7 +852,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -867,7 +867,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -882,7 +882,7 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
@@ -897,12 +897,12 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SP",
         "key": "fmmiyako",
-        "station": "エフエムみやこ",
+        "station": "FMみやこ",
         "code": "472140",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -912,6 +912,6 @@
         "site": "",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     }
 ]

@@ -12,7 +12,7 @@
         "site": "http://www.fmiruka.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -27,12 +27,12 @@
         "site": "https://fmview.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "moeru",
-        "station": "エフエムもえる",
+        "station": "FMもえる",
         "code": "012122",
         "region": "北海道",
         "pref": "北海道",
@@ -42,7 +42,7 @@
         "site": "http://www.moeru.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -57,7 +57,7 @@
         "site": "https://fm-tomakomai.mods.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -72,7 +72,7 @@
         "site": "http://www.nayoro.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -87,12 +87,12 @@
         "site": "https://radioniseko.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmkuriyama",
-        "station": "エフエムくりやま",
+        "station": "FMくりやま",
         "code": "014290",
         "region": "北海道",
         "pref": "北海道",
@@ -102,7 +102,7 @@
         "site": "https://fm-kuriyama.com",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -117,7 +117,7 @@
         "site": "http://fmhana.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -132,12 +132,12 @@
         "site": "http://www.applewave.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmgoshogawara",
-        "station": "FMごしょがわら G.Radio",
+        "station": "G Radio",
         "code": "022055",
         "region": "東北",
         "pref": "青森県",
@@ -147,12 +147,12 @@
         "site": "https://fm767.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmazur",
-        "station": "FM AZUR",
+        "station": "FM Azur",
         "code": "022080",
         "region": "東北",
         "pref": "青森県",
@@ -162,7 +162,7 @@
         "site": "http://www.fmazur.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -177,12 +177,12 @@
         "site": "https://fm-one.net/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmiwanuma",
-        "station": "エフエムいわぬま",
+        "station": "FMいわぬま",
         "code": "042111",
         "region": "東北",
         "pref": "宮城県",
@@ -192,7 +192,7 @@
         "site": "https://www.fm779.net/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -207,7 +207,7 @@
         "site": "http://hat-fm.net/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -222,7 +222,7 @@
         "site": "http://www.fm762.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -237,7 +237,7 @@
         "site": "https://fm834.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -252,12 +252,12 @@
         "site": "https://www.sakatafm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "orandaradio",
-        "station": "エフエムい〜じゃん おらんだラジオ",
+        "station": "おらんだラジオ",
         "code": "062090",
         "region": "東北",
         "pref": "山形県",
@@ -267,7 +267,7 @@
         "site": "https://oranda-radio.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -282,12 +282,12 @@
         "site": "http://fm-poco.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmaizu",
-        "station": "FM 愛'S",
+        "station": "FM愛'S",
         "code": "072028",
         "region": "東北",
         "pref": "福島県",
@@ -297,7 +297,7 @@
         "site": "http://www.fmaizu.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -312,12 +312,12 @@
         "site": "http://ultrafm868.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmkitakata",
-        "station": "喜多方シティエフエム",
+        "station": "喜多方シティFM",
         "code": "072087",
         "region": "東北",
         "pref": "福島県",
@@ -327,7 +327,7 @@
         "site": "http://www.fm-kitakata.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -342,7 +342,7 @@
         "site": "http://www.767fm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -357,7 +357,7 @@
         "site": "http://www.fmdaigo775.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -372,7 +372,7 @@
         "site": "http://www.takasaki.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -387,7 +387,7 @@
         "site": "http://www.fmtaro.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -402,7 +402,7 @@
         "site": "http://www.fm-oze.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -417,7 +417,7 @@
         "site": "http://www.fm773.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -432,7 +432,7 @@
         "site": "https://radiokawagoe.com",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -447,7 +447,7 @@
         "site": "https://fmchappy.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -462,7 +462,7 @@
         "site": "http://fm840.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -477,7 +477,7 @@
         "site": "https://www.892fm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -492,12 +492,12 @@
         "site": "http://www.fmu.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "kazusafm",
-        "station": "かずさエフエム",
+        "station": "かずさFM",
         "code": "122068",
         "region": "関東",
         "pref": "千葉県",
@@ -507,12 +507,12 @@
         "site": "https://www.kazusafm.net/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "radionarita",
-        "station": "Radio NARITA",
+        "station": "ラジオ成田",
         "code": "122114",
         "region": "関東",
         "pref": "千葉県",
@@ -522,12 +522,12 @@
         "site": "https://www.narita.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmfukuro",
-        "station": "ふくろうエフエム",
+        "station": "ふくろうFM",
         "code": "122211",
         "region": "関東",
         "pref": "千葉県",
@@ -537,7 +537,7 @@
         "site": "http://296.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -552,7 +552,7 @@
         "site": "https://www.soumu.go.jp/soutsu/kanto/bc/rinsai/index.html",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -567,7 +567,7 @@
         "site": "http://fm840.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -582,7 +582,7 @@
         "site": "https://fm-shinagawa.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -597,7 +597,7 @@
         "site": "https://shiburadi.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -612,7 +612,7 @@
         "site": "https://kfm789.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -627,7 +627,7 @@
         "site": "https://www.fm843.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -642,7 +642,7 @@
         "site": "https://www.musashino-fm.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -657,12 +657,12 @@
         "site": "https://www.komae.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "marinefm",
-        "station": "マリンFM ",
+        "station": "マリンFM",
         "code": "141046",
         "region": "関東",
         "pref": "神奈川県",
@@ -672,12 +672,12 @@
         "site": "https://www.marine-fm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmtotsuka",
-        "station": "エフエム戸塚 ",
+        "station": "FM戸塚",
         "code": "141101",
         "region": "関東",
         "pref": "神奈川県",
@@ -687,12 +687,12 @@
         "site": "http://www.fm-totsuka.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmsalus",
-        "station": "FMサルース ",
+        "station": "FMサルース",
         "code": "141178",
         "region": "関東",
         "pref": "神奈川県",
@@ -702,12 +702,12 @@
         "site": "http://www.fm-salus.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmblueshonan",
-        "station": "FM・ブルー湘南 ",
+        "station": "FMブルー湘南",
         "code": "142018",
         "region": "関東",
         "pref": "神奈川県",
@@ -717,12 +717,12 @@
         "site": "http://www.yokosukafm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmshonan",
-        "station": "FM湘南ナパサ ",
+        "station": "FM湘南ナパサ",
         "code": "142034",
         "region": "関東",
         "pref": "神奈川県",
@@ -732,12 +732,12 @@
         "site": "http://www.fmshonan783.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "kamakurafm",
-        "station": "かまくらエフエム ",
+        "station": "鎌倉FM",
         "code": "142042",
         "region": "関東",
         "pref": "神奈川県",
@@ -747,12 +747,12 @@
         "site": "https://www.kamakurafm.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "radioshonan",
-        "station": "レディオ湘南 ",
+        "station": "レディオ湘南",
         "code": "142051",
         "region": "関東",
         "pref": "神奈川県",
@@ -762,12 +762,12 @@
         "site": "https://www.radioshonan.co.jp/index.html",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmodawara",
-        "station": "FMおだわら ",
+        "station": "FMおだわら",
         "code": "142069",
         "region": "関東",
         "pref": "神奈川県",
@@ -777,12 +777,12 @@
         "site": "https://fm-odawara.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "chigasakifm",
-        "station": "EBOSHI RADIO STATION",
+        "station": "エボラジ",
         "code": "142077",
         "region": "関東",
         "pref": "神奈川県",
@@ -792,12 +792,12 @@
         "site": "https://chigasaki-fm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmyamato",
-        "station": "FMやまと ",
+        "station": "FMやまと",
         "code": "142131",
         "region": "関東",
         "pref": "神奈川県",
@@ -807,7 +807,7 @@
         "site": "http://www.fmyamato.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -822,7 +822,7 @@
         "site": "https://fm-smw.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -837,12 +837,12 @@
         "site": "https://fmkento.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "radiochat",
-        "station": "RADIO CHAT",
+        "station": "FMにいつ",
         "code": "151050",
         "region": "甲信越",
         "pref": "新潟県",
@@ -852,7 +852,7 @@
         "site": "http://www.chat761.com/index.html",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -867,7 +867,7 @@
         "site": "http://www.fmnagaoka.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -882,12 +882,12 @@
         "site": "http://www.kisnet.or.jp/pikkara/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmshibata",
-        "station": "RADIO AGATT",
+        "station": "FMしばた",
         "code": "152064",
         "region": "甲信越",
         "pref": "新潟県",
@@ -897,12 +897,12 @@
         "site": "https://shibaradi769.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmjyoetsu",
-        "station": "FMじょうえつ FM-J",
+        "station": "FMじょうえつ",
         "code": "152226",
         "region": "甲信越",
         "pref": "新潟県",
@@ -912,12 +912,12 @@
         "site": "https://www.fmj761.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmuonuma",
-        "station": "エフエム魚沼",
+        "station": "FM魚沼",
         "code": "152251",
         "region": "甲信越",
         "pref": "新潟県",
@@ -927,7 +927,7 @@
         "site": "https://fm-u814.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -942,12 +942,12 @@
         "site": "http://www.fm762.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "toyamacityfm",
-        "station": "City-FM",
+        "station": "富山シティFM",
         "code": "162019",
         "region": "甲信越",
         "pref": "富山県",
@@ -957,7 +957,7 @@
         "site": "http://www.city-fm.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -972,7 +972,7 @@
         "site": "http://www.radiotakaoka.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -987,7 +987,7 @@
         "site": "https://www.fmtonami.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1002,7 +1002,7 @@
         "site": "https://www.radiokanazawa.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1017,7 +1017,7 @@
         "site": "https://www.radionanao.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1032,12 +1032,12 @@
         "site": "https://www.radio-komatsu-new.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmkofu",
-        "station": "エフエム甲府",
+        "station": "FM甲府",
         "code": "192015",
         "region": "甲信越",
         "pref": "山梨県",
@@ -1047,12 +1047,12 @@
         "site": "http://www.fm-kofu.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmfujigoko",
-        "station": "エフエムふじごこ",
+        "station": "FMふじごこ",
         "code": "192023",
         "region": "甲信越",
         "pref": "山梨県",
@@ -1062,12 +1062,12 @@
         "site": "https://www.fm2255.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmyatsugatake",
-        "station": "エフエム八ヶ岳",
+        "station": "FM八ヶ岳",
         "code": "192091",
         "region": "甲信越",
         "pref": "山梨県",
@@ -1077,7 +1077,7 @@
         "site": "https://yatsugatake.ne.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1092,12 +1092,12 @@
         "site": "http://fujiyama776.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "lovefm",
-        "station": "エルシーブイFM769",
+        "station": "LCV FM769",
         "code": "202061",
         "region": "甲信越",
         "pref": "長野県",
@@ -1107,7 +1107,7 @@
         "site": "https://lcvfm769.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1122,7 +1122,7 @@
         "site": "https://fm867.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1137,12 +1137,12 @@
         "site": "https://fm894.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "azuminofm",
-        "station": "あづみ野エフエム",
+        "station": "あづみ野FM",
         "code": "202207",
         "region": "甲信越",
         "pref": "長野県",
@@ -1152,12 +1152,12 @@
         "site": "https://www.azuminofm.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmkaruizawa",
-        "station": "エフエム軽井沢",
+        "station": "FM軽井沢",
         "code": "203211",
         "region": "甲信越",
         "pref": "長野県",
@@ -1167,7 +1167,7 @@
         "site": "https://fm-karuizawa.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1182,7 +1182,7 @@
         "site": "https://www.fm-watch.net/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1197,7 +1197,7 @@
         "site": "http://www.hidanet.ne.jp/~hitsfm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1212,7 +1212,7 @@
         "site": "https://fmpipi.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1227,7 +1227,7 @@
         "site": "http://www.fmhi.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1242,7 +1242,7 @@
         "site": "https://mrn-pal.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1257,12 +1257,12 @@
         "site": "https://www.fmharo.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "coastfm",
-        "station": "COAST-FM",
+        "station": "コーストFM",
         "code": "222038",
         "region": "東海",
         "pref": "静岡県",
@@ -1272,7 +1272,7 @@
         "site": "http://www.coast-fm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1287,7 +1287,7 @@
         "site": "http://www.ciao796.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1302,12 +1302,12 @@
         "site": "http://777fm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "nagisastation",
-        "station": "エフエム伊東なぎさステーション",
+        "station": "FM伊東なぎさステーション",
         "code": "222089",
         "region": "東海",
         "pref": "静岡県",
@@ -1317,7 +1317,7 @@
         "site": "https://www.fmito.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1332,7 +1332,7 @@
         "site": "http://www.gsky765.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1347,12 +1347,12 @@
         "site": "https://radio-f.jp",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmyaizu",
-        "station": "やいづエフエム RADIO LUSH",
+        "station": "RADIO LUSH",
         "code": "222127",
         "region": "東海",
         "pref": "静岡県",
@@ -1362,12 +1362,12 @@
         "site": "https://radiolush.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fujiyamagogofm",
-        "station": "富士山GOGOエフエム",
+        "station": "富士山GOGO FM",
         "code": "222151",
         "region": "東海",
         "pref": "静岡県",
@@ -1377,7 +1377,7 @@
         "site": "https://www.863.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1392,7 +1392,7 @@
         "site": "https://fmis.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1407,7 +1407,7 @@
         "site": "https://www.fmizunokuni.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1422,12 +1422,12 @@
         "site": "https://heartfm.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmichinomiya",
-        "station": "i-wave 76.5 FM",
+        "station": "i-wave 76.5FM",
         "code": "232033",
         "region": "東海",
         "pref": "愛知県",
@@ -1437,7 +1437,7 @@
         "site": "https://iwave765.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1452,7 +1452,7 @@
         "site": "http://845.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1467,12 +1467,12 @@
         "site": "https://842fm.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmnanami",
-        "station": "エフエムななみ",
+        "station": "FMななみ",
         "code": "234257",
         "region": "東海",
         "pref": "愛知県",
@@ -1482,7 +1482,7 @@
         "site": "https://fm773.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1497,12 +1497,12 @@
         "site": "https://suzuka-voice.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "inabefm",
-        "station": "いなべエフエム",
+        "station": "いなべFM",
         "code": "242144",
         "region": "東海",
         "pref": "三重県",
@@ -1512,7 +1512,7 @@
         "site": "https://fm861.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1527,7 +1527,7 @@
         "site": "https://fm785.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1542,12 +1542,12 @@
         "site": "https://www.fm-845.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmmaizuru",
-        "station": "エフエム舞鶴",
+        "station": "FM舞鶴",
         "code": "262021",
         "region": "近畿",
         "pref": "京都府",
@@ -1557,7 +1557,7 @@
         "site": "https://775maizuru.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1572,7 +1572,7 @@
         "site": "http://fmikaru.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1587,12 +1587,12 @@
         "site": "https://www.fmuji.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "umedafm",
-        "station": "Be Happy! 789",
+        "station": "ウメダFM",
         "code": "271276",
         "region": "近畿",
         "pref": "大阪府",
@@ -1602,7 +1602,7 @@
         "site": "https://www.be-happy789.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1617,7 +1617,7 @@
         "site": "http://www.senri-fm.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1632,7 +1632,7 @@
         "site": "https://fm.minoh.net/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1647,7 +1647,7 @@
         "site": "https://fmgenki.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1662,12 +1662,12 @@
         "site": "https://sakura-fm.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmitami",
-        "station": "ハッピーエフエムいたみ",
+        "station": "ハッピーFMいたみ",
         "code": "282073",
         "region": "近畿",
         "pref": "兵庫県",
@@ -1677,7 +1677,7 @@
         "site": "https://www.itami.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1692,12 +1692,12 @@
         "site": "http://835.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmmiki",
-        "station": "エフエムみっきい",
+        "station": "FMみっきい",
         "code": "282154",
         "region": "近畿",
         "pref": "兵庫県",
@@ -1707,7 +1707,7 @@
         "site": "http://www.fm-miki.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1722,7 +1722,7 @@
         "site": "http://805.tanba.info/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1737,7 +1737,7 @@
         "site": "http://narafm.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1752,7 +1752,7 @@
         "site": "http://shousuien.or.jp/fm_gojo/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1767,7 +1767,7 @@
         "site": "https://tawaramoton.com/fm_mahoroba/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1782,12 +1782,12 @@
         "site": "http://www.fm814.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "bananafm",
-        "station": "バナナエフエム",
+        "station": "バナナFM",
         "code": "302015",
         "region": "近畿",
         "pref": "和歌山県",
@@ -1797,7 +1797,7 @@
         "site": "https://877.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1812,7 +1812,7 @@
         "site": "http://816.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1827,7 +1827,7 @@
         "site": "https://www.fm885.jp/index.php",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1842,7 +1842,7 @@
         "site": "https://www.fm764.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1857,7 +1857,7 @@
         "site": "http://www.radiobird.net/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1872,7 +1872,7 @@
         "site": "http://www.fm790.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1887,7 +1887,7 @@
         "site": "http://www.fmkurashiki.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1902,12 +1902,12 @@
         "site": "https://chupea.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmmihara",
-        "station": "FOR LIFE RADIO FMみはら",
+        "station": "FMみはら",
         "code": "342041",
         "region": "中国",
         "pref": "広島県",
@@ -1917,12 +1917,12 @@
         "site": "https://www.fm-mihara.jp/index.html",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmonomichi",
-        "station": "エフエムおのみち79.4",
+        "station": "FMおのみち",
         "code": "342050",
         "region": "中国",
         "pref": "広島県",
@@ -1932,7 +1932,7 @@
         "site": "http://www.fmo.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1947,7 +1947,7 @@
         "site": "https://fm777.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1962,12 +1962,12 @@
         "site": "http://fmhigashi.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "fmhatsukaichi",
-        "station": "エフエムはつかいち",
+        "station": "FMはつかいち",
         "code": "342131",
         "region": "中国",
         "pref": "広島県",
@@ -1977,7 +1977,7 @@
         "site": "https://761.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -1992,7 +1992,7 @@
         "site": "https://www.c-fm.co.jp/index.php",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -2007,7 +2007,7 @@
         "site": "https://www.fms784.co.jp/index.php",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -2022,7 +2022,7 @@
         "site": "https://fm-sun.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -2037,7 +2037,7 @@
         "site": "http://www.baribari789.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -2052,12 +2052,12 @@
         "site": "http://www.gaiya769.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "niihamafm",
-        "station": "Hello!NEW 新居浜FM",
+        "station": "新居浜FM78.0",
         "code": "382051",
         "region": "四国",
         "pref": "愛媛県",
@@ -2067,12 +2067,12 @@
         "site": "http://www.hello78.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
         "key": "dreamsfm",
-        "station": "ドリームスエフエム",
+        "station": "ドリームスFM",
         "code": "402036",
         "region": "九州沖縄",
         "pref": "福岡県",
@@ -2082,7 +2082,7 @@
         "site": "https://www.dreamsfm.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -2097,7 +2097,7 @@
         "site": "https://www.fmyame.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -2112,7 +2112,7 @@
         "site": "http://www.fmkaratsu.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -2127,7 +2127,7 @@
         "site": "http://fm791.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -2142,7 +2142,7 @@
         "site": "https://kappafm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -2157,7 +2157,7 @@
         "site": "https://789.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "SJ",
@@ -2172,6 +2172,6 @@
         "site": "http://874.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     }
 ]

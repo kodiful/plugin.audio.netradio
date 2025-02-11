@@ -53,6 +53,7 @@ class Scraper(Common):
                 print('[radiko] unparsable content (skip):', station, sep='\t', file=sys.stderr)
                 continue
             buf.append({
+                'listing': 1,
                 'protocol': self.PROTOCOL,
                 'key': id,
                 'station': station,
@@ -65,6 +66,6 @@ class Scraper(Common):
                 'site': site,
                 'direct': '',
                 'delay': 15,
-                'sstatus': 0 if station.startswith('NHK') else 1
+                'sstatus': 1 if station.startswith('NHK') else 2
             })
         return buf

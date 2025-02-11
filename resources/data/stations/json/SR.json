@@ -2,7 +2,7 @@
     {
         "protocol": "SR",
         "key": "",
-        "station": "エフエムわっぴー",
+        "station": "FMわっぴー",
         "code": "012149",
         "region": "北海道",
         "pref": "北海道",
@@ -32,7 +32,7 @@
     {
         "protocol": "SR",
         "key": "",
-        "station": "エフエムたいはく",
+        "station": "FMたいはく",
         "code": "041041",
         "region": "東北",
         "pref": "宮城県",
@@ -62,7 +62,7 @@
     {
         "protocol": "SR",
         "key": "",
-        "station": "FM HOT 839 ",
+        "station": "FM HOT839",
         "code": "141526",
         "region": "関東",
         "pref": "神奈川県",
@@ -77,7 +77,7 @@
     {
         "protocol": "SR",
         "key": "",
-        "station": "FM 丹波",
+        "station": "FM丹波",
         "code": "262013",
         "region": "近畿",
         "pref": "京都府",
@@ -167,7 +167,7 @@
     {
         "protocol": "SR",
         "key": "",
-        "station": "FMレキオ",
+        "station": "FM琉球",
         "code": "472018",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -197,7 +197,7 @@
     {
         "protocol": "SR",
         "key": "",
-        "station": "ちゅらハートエフエム本部",
+        "station": "FM本部",
         "code": "473081",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -212,7 +212,7 @@
     {
         "protocol": "SR",
         "key": "",
-        "station": "FMくめじま",
+        "station": "FM久米島",
         "code": "473618",
         "region": "九州沖縄",
         "pref": "沖縄県",

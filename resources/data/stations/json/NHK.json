@@ -1,5 +1,6 @@
 [
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK1",
         "station": "NHKラジオ第1(札幌)",
@@ -12,9 +13,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023545/nhkradiruikr1/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK2",
         "station": "NHKラジオ第2",
@@ -27,9 +29,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK3",
         "station": "NHK-FM(札幌)",
@@ -42,9 +45,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023546/nhkradiruikfm/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK1",
         "station": "NHKラジオ第1(仙台)",
@@ -57,9 +61,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023543/nhkradiruhkr1/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK2",
         "station": "NHKラジオ第2",
@@ -72,9 +77,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK3",
         "station": "NHK-FM(仙台)",
@@ -87,9 +93,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023544/nhkradiruhkfm/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK1",
         "station": "NHKラジオ第1(東京)",
@@ -102,9 +109,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023229/nhkradiruakr1/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK2",
         "station": "NHKラジオ第2",
@@ -117,9 +125,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK3",
         "station": "NHK-FM(東京)",
@@ -132,9 +141,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023507/nhkradiruakfm/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK1",
         "station": "NHKラジオ第1(名古屋)",
@@ -147,9 +157,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023510/nhkradiruckr1/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK2",
         "station": "NHKラジオ第2",
@@ -162,9 +173,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK3",
         "station": "NHK-FM(名古屋)",
@@ -177,9 +189,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023511/nhkradiruckfm/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK1",
         "station": "NHKラジオ第1(大阪)",
@@ -192,9 +205,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023508/nhkradirubkr1/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK2",
         "station": "NHKラジオ第2",
@@ -207,9 +221,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK3",
         "station": "NHK-FM(大阪)",
@@ -222,9 +237,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023509/nhkradirubkfm/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK1",
         "station": "NHKラジオ第1(広島)",
@@ -237,9 +253,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023512/nhkradirufkr1/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK2",
         "station": "NHKラジオ第2",
@@ -252,9 +269,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK3",
         "station": "NHK-FM(広島)",
@@ -267,9 +285,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023513/nhkradirufkfm/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK1",
         "station": "NHKラジオ第1(松山)",
@@ -282,9 +301,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023547/nhkradiruzkr1/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK2",
         "station": "NHKラジオ第2",
@@ -297,9 +317,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK3",
         "station": "NHK-FM(松山)",
@@ -312,9 +333,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023548/nhkradiruzkfm/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK1",
         "station": "NHKラジオ第1(福岡)",
@@ -327,9 +349,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023541/nhkradirulkr1/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK2",
         "station": "NHKラジオ第2",
@@ -342,9 +365,10 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     },
     {
+        "listing": 1,
         "protocol": "NHK",
         "key": "NHK3",
         "station": "NHK-FM(福岡)",
@@ -357,6 +381,6 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023542/nhkradirulkfm/master.m3u8",
         "delay": 35,
-        "sstatus": 1
+        "sstatus": 2
     }
 ]

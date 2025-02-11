@@ -82,6 +82,6 @@ class Scraper(Common):
                     'site': '',
                     'direct': '',
                     'delay': 0,
-                    'sstatus': 0
+                    'sstatus': 1
                 })
         return buf

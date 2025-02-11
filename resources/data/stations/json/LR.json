@@ -12,7 +12,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30034/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -27,7 +27,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30032/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -42,7 +42,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30090/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -57,12 +57,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30005/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30044,
-        "station": "RADIOワンダーストレージ FMドラマシティ",
+        "station": "RADIOワンダーストレージ",
         "code": "011088",
         "region": "北海道",
         "pref": "北海道",
@@ -72,7 +72,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30044/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -87,7 +87,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30025/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -102,7 +102,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30074/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -117,7 +117,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30029/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -132,7 +132,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30016/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -147,7 +147,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30038/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -162,7 +162,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30004/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -177,7 +177,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30058/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -192,7 +192,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30045/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -207,7 +207,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30087/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -222,7 +222,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30015/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -237,7 +237,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30079/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -252,7 +252,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30017/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -267,7 +267,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30097/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -282,7 +282,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30050/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -297,12 +297,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30007/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30018,
-        "station": "fmいずみ",
+        "station": "FMいずみ",
         "code": "041050",
         "region": "東北",
         "pref": "宮城県",
@@ -312,7 +312,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30018/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -327,7 +327,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30037/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -342,12 +342,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30056/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30094,
-        "station": "ぎょっとエフエム",
+        "station": "ラヂオ気仙沼",
         "code": "042056",
         "region": "東北",
         "pref": "宮城県",
@@ -357,7 +357,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30094/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -372,12 +372,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30092/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30014,
-        "station": "エフエム椿台",
+        "station": "FM椿台",
         "code": "052019",
         "region": "東北",
         "pref": "秋田県",
@@ -387,7 +387,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30014/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -402,7 +402,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30076/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -417,7 +417,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30030/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -432,7 +432,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30089/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -447,12 +447,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30020/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30009,
-        "station": "SEA WAVE FMいわき",
+        "station": "FMいわき",
         "code": "072044",
         "region": "東北",
         "pref": "福島県",
@@ -462,7 +462,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30009/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -477,7 +477,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30019/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -492,7 +492,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30022/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -507,7 +507,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30023/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -522,7 +522,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30075/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -537,12 +537,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30021/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30043,
-        "station": "M-wave",
+        "station": "まえばしラジオ",
         "code": "102016",
         "region": "関東",
         "pref": "群馬県",
@@ -552,7 +552,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30043/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -567,7 +567,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30008/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -582,7 +582,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30035/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -597,7 +597,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30048/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -612,7 +612,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30002/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -627,12 +627,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30047/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30096,
-        "station": "ハロー・ハッピーこしがやエフエム",
+        "station": "こしがやFM",
         "code": "112224",
         "region": "関東",
         "pref": "埼玉県",
@@ -642,12 +642,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30096/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30026,
-        "station": "ナナコライブリーエフエム",
+        "station": "775ライブリーFM",
         "code": "112275",
         "region": "関東",
         "pref": "埼玉県",
@@ -657,7 +657,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30026/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -672,7 +672,7 @@
         "site": "",
         "direct": "https://mtist.as.smartstream.ne.jp/30118/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -687,7 +687,7 @@
         "site": "",
         "direct": "https://mtist.as.smartstream.ne.jp/30119/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -702,12 +702,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30036/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30027,
-        "station": "エフエム世田谷",
+        "station": "FM世田谷",
         "code": "131121",
         "region": "関東",
         "pref": "東京都",
@@ -717,7 +717,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30027/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -732,12 +732,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30081/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30033,
-        "station": "エフエムたちかわ",
+        "station": "FMたちかわ",
         "code": "132021",
         "region": "関東",
         "pref": "東京都",
@@ -747,7 +747,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30033/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -762,12 +762,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30039/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30046,
-        "station": "かわさきFM ",
+        "station": "かわさきFM",
         "code": "141330",
         "region": "関東",
         "pref": "神奈川県",
@@ -777,12 +777,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30046/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30057,
-        "station": "FMカオン ",
+        "station": "FMカオン",
         "code": "142158",
         "region": "関東",
         "pref": "神奈川県",
@@ -792,7 +792,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30057/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -807,12 +807,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30006/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30001,
-        "station": "えふえむ・エヌ・ワン",
+        "station": "FM N1",
         "code": "172120",
         "region": "甲信越",
         "pref": "石川県",
@@ -822,7 +822,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30001/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -837,7 +837,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30012/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -852,12 +852,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30040/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30067,
-        "station": "エフエム花",
+        "station": "FM HANA",
         "code": "252093",
         "region": "近畿",
         "pref": "滋賀県",
@@ -867,7 +867,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30067/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -882,7 +882,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30061/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -897,7 +897,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30071/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -912,7 +912,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30082/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -927,7 +927,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30063/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -942,7 +942,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30073/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -957,7 +957,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30013/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -972,7 +972,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30078/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -987,7 +987,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30053/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -1002,7 +1002,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30010/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -1017,7 +1017,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30024/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -1032,7 +1032,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30052/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -1047,7 +1047,7 @@
         "site": "",
         "direct": "https://mtist.as.smartstream.ne.jp/30085/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -1062,12 +1062,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30088/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30054,
-        "station": "あまみエフエム ディ!ウェイヴ",
+        "station": "あまみFMディ!ウェイヴ",
         "code": "462225",
         "region": "九州沖縄",
         "pref": "鹿児島県",
@@ -1077,12 +1077,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30054/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30072,
-        "station": "エフエムたつごう",
+        "station": "FMたつごう",
         "code": "465275",
         "region": "九州沖縄",
         "pref": "鹿児島県",
@@ -1092,12 +1092,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30072/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30068,
-        "station": "fm那覇",
+        "station": "FM那覇",
         "code": "472018",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -1107,7 +1107,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30068/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -1122,7 +1122,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30093/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -1137,12 +1137,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30098/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30069,
-        "station": "FMいしがき サンサンラジオ",
+        "station": "FMいしがきサンサンラジオ",
         "code": "472077",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -1152,7 +1152,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30069/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -1167,12 +1167,12 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30095/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
         "key": 30066,
-        "station": "オキラジ",
+        "station": "沖縄ラジオ",
         "code": "472115",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -1182,7 +1182,7 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30066/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     },
     {
         "protocol": "LR",
@@ -1197,6 +1197,6 @@
         "site": "",
         "direct": "http://mtist.as.smartstream.ne.jp/30083/livestream/playlist.m3u8",
         "delay": 0,
-        "sstatus": 0
+        "sstatus": 1
     }
 ]

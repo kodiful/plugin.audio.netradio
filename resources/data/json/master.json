@@ -24,7 +24,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムしろいし With-S",
+    "station": "FMしろいしWith-S",
     "region": "北海道",
     "pref": "北海道",
     "city": "札幌市白石区",
@@ -60,7 +60,7 @@
     "SD": ""
   },
   {
-    "station": "RADIOワンダーストレージ FMドラマシティ",
+    "station": "RADIOワンダーストレージ",
     "region": "北海道",
     "pref": "北海道",
     "city": "札幌市厚別区",
@@ -180,7 +180,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムもえる",
+    "station": "FMもえる",
     "region": "北海道",
     "pref": "北海道",
     "city": "留萌市",
@@ -204,7 +204,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムわっぴー",
+    "station": "FMわっぴー",
     "region": "北海道",
     "pref": "北海道",
     "city": "稚内市",
@@ -288,7 +288,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムくりやま",
+    "station": "FMくりやま",
     "region": "北海道",
     "pref": "北海道",
     "city": "栗山町",
@@ -336,7 +336,7 @@
     "SD": ""
   },
   {
-    "station": "FMごしょがわら G.Radio",
+    "station": "G Radio",
     "region": "東北",
     "pref": "青森県",
     "city": "五所川原市",
@@ -348,7 +348,7 @@
     "SD": ""
   },
   {
-    "station": "FM AZUR",
+    "station": "FM Azur",
     "region": "東北",
     "pref": "青森県",
     "city": "むつ市",
@@ -408,7 +408,7 @@
     "SD": ""
   },
   {
-    "station": "きたかみE&Beエフエム",
+    "station": "きたかみE&Be FM",
     "region": "東北",
     "pref": "岩手県",
     "city": "北上市",
@@ -468,7 +468,7 @@
     "SD": "https://rakuteneagles-live.hls.wselive.stream.ne.jp/hls-live/1/rakuteneagles-live/livestream/chunklist.m3u8"
   },
   {
-    "station": "エフエムたいはく",
+    "station": "FMたいはく",
     "region": "東北",
     "pref": "宮城県",
     "city": "仙台市太白区",
@@ -480,7 +480,7 @@
     "SD": ""
   },
   {
-    "station": "fmいずみ",
+    "station": "FMいずみ",
     "region": "東北",
     "pref": "宮城県",
     "city": "仙台市泉区",
@@ -516,7 +516,7 @@
     "SD": ""
   },
   {
-    "station": "ぎょっとエフエム",
+    "station": "ラヂオ気仙沼",
     "region": "東北",
     "pref": "宮城県",
     "city": "気仙沼市",
@@ -540,7 +540,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムいわぬま",
+    "station": "FMいわぬま",
     "region": "東北",
     "pref": "宮城県",
     "city": "岩沼市",
@@ -576,7 +576,7 @@
     "SD": ""
   },
   {
-    "station": "エフエム椿台",
+    "station": "FM椿台",
     "region": "東北",
     "pref": "秋田県",
     "city": "秋田市",
@@ -696,7 +696,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムい〜じゃん おらんだラジオ",
+    "station": "おらんだラジオ",
     "region": "東北",
     "pref": "山形県",
     "city": "長井市",
@@ -720,7 +720,7 @@
     "SD": ""
   },
   {
-    "station": "FM 愛'S",
+    "station": "FM愛'S",
     "region": "東北",
     "pref": "福島県",
     "city": "会津若松市",
@@ -744,7 +744,7 @@
     "SD": ""
   },
   {
-    "station": "SEA WAVE FMいわき",
+    "station": "FMいわき",
     "region": "東北",
     "pref": "福島県",
     "city": "いわき市",
@@ -768,7 +768,7 @@
     "SD": ""
   },
   {
-    "station": "喜多方シティエフエム",
+    "station": "喜多方シティFM",
     "region": "東北",
     "pref": "福島県",
     "city": "喜多方市",
@@ -948,7 +948,7 @@
     "SD": ""
   },
   {
-    "station": "M-wave",
+    "station": "まえばしラジオ",
     "region": "関東",
     "pref": "群馬県",
     "city": "前橋市",
@@ -972,7 +972,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムきりゅう",
+    "station": "FMきりゅう",
     "region": "関東",
     "pref": "群馬県",
     "city": "桐生市",
@@ -1068,7 +1068,7 @@
     "SD": ""
   },
   {
-    "station": "ちちぶエフエム",
+    "station": "ちちぶFM",
     "region": "関東",
     "pref": "埼玉県",
     "city": "秩父市",
@@ -1128,7 +1128,7 @@
     "SD": ""
   },
   {
-    "station": "ハロー・ハッピーこしがやエフエム",
+    "station": "こしがやFM",
     "region": "関東",
     "pref": "埼玉県",
     "city": "越谷市",
@@ -1152,7 +1152,7 @@
     "SD": ""
   },
   {
-    "station": "ナナコライブリーエフエム",
+    "station": "775ライブリーFM",
     "region": "関東",
     "pref": "埼玉県",
     "city": "朝霞市",
@@ -1200,7 +1200,7 @@
     "SD": ""
   },
   {
-    "station": "かずさエフエム",
+    "station": "かずさFM",
     "region": "関東",
     "pref": "千葉県",
     "city": "木更津市",
@@ -1212,7 +1212,7 @@
     "SD": ""
   },
   {
-    "station": "Radio NARITA",
+    "station": "ラジオ成田",
     "region": "関東",
     "pref": "千葉県",
     "city": "成田市",
@@ -1236,7 +1236,7 @@
     "SD": ""
   },
   {
-    "station": "ふくろうエフエム",
+    "station": "ふくろうFM",
     "region": "関東",
     "pref": "千葉県",
     "city": "八千代市",
@@ -1308,7 +1308,7 @@
     "SD": ""
   },
   {
-    "station": "エフエム世田谷",
+    "station": "FM世田谷",
     "region": "関東",
     "pref": "東京都",
     "city": "世田谷区",
@@ -1368,7 +1368,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムたちかわ",
+    "station": "FMたちかわ",
     "region": "関東",
     "pref": "東京都",
     "city": "立川市",
@@ -1440,7 +1440,7 @@
     "SD": ""
   },
   {
-    "station": "エフエム西東京",
+    "station": "FM西東京",
     "region": "関東",
     "pref": "東京都",
     "city": "西東京市",
@@ -1452,7 +1452,7 @@
     "SD": ""
   },
   {
-    "station": "マリンFM ",
+    "station": "マリンFM",
     "region": "関東",
     "pref": "神奈川県",
     "city": "横浜市中区",
@@ -1464,7 +1464,7 @@
     "SD": ""
   },
   {
-    "station": "金沢シーサイドFM ",
+    "station": "金沢シーサイドFM",
     "region": "関東",
     "pref": "神奈川県",
     "city": "横浜市金沢区",
@@ -1476,7 +1476,7 @@
     "SD": ""
   },
   {
-    "station": "エフエム戸塚 ",
+    "station": "FM戸塚",
     "region": "関東",
     "pref": "神奈川県",
     "city": "横浜市戸塚区",
@@ -1488,7 +1488,7 @@
     "SD": ""
   },
   {
-    "station": "FMサルース ",
+    "station": "FMサルース",
     "region": "関東",
     "pref": "神奈川県",
     "city": "横浜市青葉区",
@@ -1512,7 +1512,7 @@
     "SD": ""
   },
   {
-    "station": "かわさきFM ",
+    "station": "かわさきFM",
     "region": "関東",
     "pref": "神奈川県",
     "city": "川崎市中原区",
@@ -1524,7 +1524,7 @@
     "SD": ""
   },
   {
-    "station": "FM HOT 839 ",
+    "station": "FM HOT839",
     "region": "関東",
     "pref": "神奈川県",
     "city": "相模原市中央区",
@@ -1536,7 +1536,7 @@
     "SD": ""
   },
   {
-    "station": "FM・ブルー湘南 ",
+    "station": "FMブルー湘南",
     "region": "関東",
     "pref": "神奈川県",
     "city": "横須賀市",
@@ -1548,7 +1548,7 @@
     "SD": ""
   },
   {
-    "station": "FM湘南ナパサ ",
+    "station": "FM湘南ナパサ",
     "region": "関東",
     "pref": "神奈川県",
     "city": "平塚市",
@@ -1560,7 +1560,7 @@
     "SD": ""
   },
   {
-    "station": "かまくらエフエム ",
+    "station": "鎌倉FM",
     "region": "関東",
     "pref": "神奈川県",
     "city": "鎌倉市",
@@ -1572,7 +1572,7 @@
     "SD": ""
   },
   {
-    "station": "レディオ湘南 ",
+    "station": "レディオ湘南",
     "region": "関東",
     "pref": "神奈川県",
     "city": "藤沢市",
@@ -1584,7 +1584,7 @@
     "SD": ""
   },
   {
-    "station": "FMおだわら ",
+    "station": "FMおだわら",
     "region": "関東",
     "pref": "神奈川県",
     "city": "小田原市",
@@ -1596,7 +1596,7 @@
     "SD": ""
   },
   {
-    "station": "EBOSHI RADIO STATION",
+    "station": "エボラジ",
     "region": "関東",
     "pref": "神奈川県",
     "city": "茅ヶ崎市",
@@ -1608,7 +1608,7 @@
     "SD": ""
   },
   {
-    "station": "湘南ビーチFM ",
+    "station": "湘南ビーチFM",
     "region": "関東",
     "pref": "神奈川県",
     "city": "逗子市",
@@ -1620,7 +1620,7 @@
     "SD": "https://shonanbeachfm.out.airtime.pro/shonanbeachfm_c"
   },
   {
-    "station": "FMやまと ",
+    "station": "FMやまと",
     "region": "関東",
     "pref": "神奈川県",
     "city": "大和市",
@@ -1632,7 +1632,7 @@
     "SD": ""
   },
   {
-    "station": "FMカオン ",
+    "station": "FMカオン",
     "region": "関東",
     "pref": "神奈川県",
     "city": "海老名市",
@@ -1668,7 +1668,7 @@
     "SD": ""
   },
   {
-    "station": "RADIO CHAT",
+    "station": "FMにいつ",
     "region": "甲信越",
     "pref": "新潟県",
     "city": "新潟市秋葉区",
@@ -1716,7 +1716,7 @@
     "SD": ""
   },
   {
-    "station": "RADIO AGATT",
+    "station": "FMしばた",
     "region": "甲信越",
     "pref": "新潟県",
     "city": "新発田市",
@@ -1728,7 +1728,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムとおかまち",
+    "station": "FMとおかまち",
     "region": "甲信越",
     "pref": "新潟県",
     "city": "十日町市",
@@ -1752,7 +1752,7 @@
     "SD": ""
   },
   {
-    "station": "FMじょうえつ FM-J",
+    "station": "FMじょうえつ",
     "region": "甲信越",
     "pref": "新潟県",
     "city": "上越市",
@@ -1764,7 +1764,7 @@
     "SD": ""
   },
   {
-    "station": "エフエム魚沼",
+    "station": "FM魚沼",
     "region": "甲信越",
     "pref": "新潟県",
     "city": "魚沼市",
@@ -1788,7 +1788,7 @@
     "SD": ""
   },
   {
-    "station": "City-FM",
+    "station": "富山シティFM",
     "region": "甲信越",
     "pref": "富山県",
     "city": "富山市",
@@ -1884,7 +1884,7 @@
     "SD": "https://radio.kahoku.net:8443/;"
   },
   {
-    "station": "えふえむ・エヌ・ワン",
+    "station": "FM N1",
     "region": "甲信越",
     "pref": "石川県",
     "city": "野々市市",
@@ -1920,7 +1920,7 @@
     "SD": "https://tannan.mediaservice.jp/sample/"
   },
   {
-    "station": "エフエム甲府",
+    "station": "FM甲府",
     "region": "甲信越",
     "pref": "山梨県",
     "city": "甲府市",
@@ -1932,7 +1932,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムふじごこ",
+    "station": "FMふじごこ",
     "region": "甲信越",
     "pref": "山梨県",
     "city": "富士吉田市",
@@ -1944,7 +1944,7 @@
     "SD": ""
   },
   {
-    "station": "エフエム八ヶ岳",
+    "station": "FM八ヶ岳",
     "region": "甲信越",
     "pref": "山梨県",
     "city": "北杜市",
@@ -1980,7 +1980,7 @@
     "SD": ""
   },
   {
-    "station": "iステーション",
+    "station": "いいだFM",
     "region": "甲信越",
     "pref": "長野県",
     "city": "飯田市",
@@ -1992,7 +1992,7 @@
     "SD": ""
   },
   {
-    "station": "エルシーブイFM769",
+    "station": "LCV FM769",
     "region": "甲信越",
     "pref": "長野県",
     "city": "諏訪市",
@@ -2040,7 +2040,7 @@
     "SD": ""
   },
   {
-    "station": "FMとうみ",
+    "station": "はれラジ",
     "region": "甲信越",
     "pref": "長野県",
     "city": "東御市",
@@ -2052,7 +2052,7 @@
     "SD": ""
   },
   {
-    "station": "あづみ野エフエム",
+    "station": "あづみ野FM",
     "region": "甲信越",
     "pref": "長野県",
     "city": "安曇野市",
@@ -2064,7 +2064,7 @@
     "SD": ""
   },
   {
-    "station": "エフエム軽井沢",
+    "station": "FM軽井沢",
     "region": "甲信越",
     "pref": "長野県",
     "city": "軽井沢町",
@@ -2160,7 +2160,7 @@
     "SD": ""
   },
   {
-    "station": "COAST-FM",
+    "station": "コーストFM",
     "region": "東海",
     "pref": "静岡県",
     "city": "沼津市",
@@ -2196,7 +2196,7 @@
     "SD": ""
   },
   {
-    "station": "エフエム伊東なぎさステーション",
+    "station": "FM伊東なぎさステーション",
     "region": "東海",
     "pref": "静岡県",
     "city": "伊東市",
@@ -2232,7 +2232,7 @@
     "SD": ""
   },
   {
-    "station": "やいづエフエム RADIO LUSH",
+    "station": "RADIO LUSH",
     "region": "東海",
     "pref": "静岡県",
     "city": "焼津市",
@@ -2244,7 +2244,7 @@
     "SD": ""
   },
   {
-    "station": "富士山GOGOエフエム",
+    "station": "富士山GOGO FM",
     "region": "東海",
     "pref": "静岡県",
     "city": "御殿場市",
@@ -2304,7 +2304,7 @@
     "SD": ""
   },
   {
-    "station": "エフエム豊橋",
+    "station": "FM豊橋",
     "region": "東海",
     "pref": "愛知県",
     "city": "豊橋市",
@@ -2328,7 +2328,7 @@
     "SD": ""
   },
   {
-    "station": "i-wave 76.5 FM",
+    "station": "i-wave 76.5FM",
     "region": "東海",
     "pref": "愛知県",
     "city": "一宮市",
@@ -2388,7 +2388,7 @@
     "SD": ""
   },
   {
-    "station": "メディアスエフエム",
+    "station": "メディアスFM",
     "region": "東海",
     "pref": "愛知県",
     "city": "東海市",
@@ -2400,7 +2400,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムななみ",
+    "station": "FMななみ",
     "region": "東海",
     "pref": "愛知県",
     "city": "蟹江町",
@@ -2448,7 +2448,7 @@
     "SD": ""
   },
   {
-    "station": "いなべエフエム",
+    "station": "いなべFM",
     "region": "東海",
     "pref": "三重県",
     "city": "いなべ市",
@@ -2496,7 +2496,7 @@
     "SD": ""
   },
   {
-    "station": "エフエム花",
+    "station": "FM HANA",
     "region": "近畿",
     "pref": "滋賀県",
     "city": "甲賀市",
@@ -2556,7 +2556,7 @@
     "SD": ""
   },
   {
-    "station": "FM 丹波",
+    "station": "FM丹波",
     "region": "近畿",
     "pref": "京都府",
     "city": "福知山市",
@@ -2568,7 +2568,7 @@
     "SD": ""
   },
   {
-    "station": "エフエム舞鶴",
+    "station": "FM舞鶴",
     "region": "近畿",
     "pref": "京都府",
     "city": "舞鶴市",
@@ -2628,7 +2628,7 @@
     "SD": ""
   },
   {
-    "station": "Be Happy! 789",
+    "station": "ウメダFM ",
     "region": "近畿",
     "pref": "大阪府",
     "city": "大阪市北区",
@@ -2748,7 +2748,7 @@
     "SD": ""
   },
   {
-    "station": "ハッピーエフエムいたみ",
+    "station": "ハッピーFMいたみ",
     "region": "近畿",
     "pref": "兵庫県",
     "city": "伊丹市",
@@ -2796,7 +2796,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムみっきい",
+    "station": "FMみっきい",
     "region": "近畿",
     "pref": "兵庫県",
     "city": "三木市",
@@ -2880,7 +2880,7 @@
     "SD": ""
   },
   {
-    "station": "バナナエフエム",
+    "station": "バナナFM",
     "region": "近畿",
     "pref": "和歌山県",
     "city": "和歌山市",
@@ -2976,7 +2976,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムつやま",
+    "station": "FMつやま",
     "region": "中国",
     "pref": "岡山県",
     "city": "津山市",
@@ -2988,7 +2988,7 @@
     "SD": "http://onair.fm-tsuyama.jp:1080/fmtsuyama_live.ogg"
   },
   {
-    "station": "エフエムゆめウェーブ",
+    "station": "FMゆめウェーブ",
     "region": "中国",
     "pref": "岡山県",
     "city": "笠岡市",
@@ -3012,7 +3012,7 @@
     "SD": ""
   },
   {
-    "station": "FOR LIFE RADIO FMみはら",
+    "station": "FMみはら",
     "region": "中国",
     "pref": "広島県",
     "city": "三原市",
@@ -3024,7 +3024,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムおのみち79.4",
+    "station": "FMおのみち",
     "region": "中国",
     "pref": "広島県",
     "city": "尾道市",
@@ -3060,7 +3060,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムはつかいち",
+    "station": "FMはつかいち",
     "region": "中国",
     "pref": "広島県",
     "city": "廿日市市",
@@ -3180,7 +3180,7 @@
     "SD": ""
   },
   {
-    "station": "Hello!NEW 新居浜FM",
+    "station": "新居浜FM78.0",
     "region": "四国",
     "pref": "愛媛県",
     "city": "新居浜市",
@@ -3264,7 +3264,7 @@
     "SD": ""
   },
   {
-    "station": "ドリームスエフエム",
+    "station": "ドリームスFM",
     "region": "九州沖縄",
     "pref": "福岡県",
     "city": "久留米市",
@@ -3336,7 +3336,7 @@
     "SD": ""
   },
   {
-    "station": "長崎市民エフエム",
+    "station": "長崎市民FM",
     "region": "九州沖縄",
     "pref": "長崎県",
     "city": "長崎市",
@@ -3348,7 +3348,7 @@
     "SD": ""
   },
   {
-    "station": "Happy!FM",
+    "station": "はっぴぃ!FM",
     "region": "九州沖縄",
     "pref": "長崎県",
     "city": "佐世保市",
@@ -3384,7 +3384,7 @@
     "SD": ""
   },
   {
-    "station": "エフエム対馬",
+    "station": "FM対馬",
     "region": "九州沖縄",
     "pref": "長崎県",
     "city": "対馬市",
@@ -3396,7 +3396,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムひまわり",
+    "station": "FMひまわり",
     "region": "九州沖縄",
     "pref": "長崎県",
     "city": "南島原市",
@@ -3588,7 +3588,7 @@
     "SD": ""
   },
   {
-    "station": "あまみエフエム ディ!ウェイヴ",
+    "station": "あまみFMディ!ウェイヴ",
     "region": "九州沖縄",
     "pref": "鹿児島県",
     "city": "奄美市",
@@ -3612,7 +3612,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムたつごう",
+    "station": "FMたつごう",
     "region": "九州沖縄",
     "pref": "鹿児島県",
     "city": "龍郷町",
@@ -3624,7 +3624,7 @@
     "SD": ""
   },
   {
-    "station": "fm那覇",
+    "station": "FM那覇",
     "region": "九州沖縄",
     "pref": "沖縄県",
     "city": "那覇市",
@@ -3636,7 +3636,7 @@
     "SD": ""
   },
   {
-    "station": "FMレキオ",
+    "station": "FM琉球",
     "region": "九州沖縄",
     "pref": "沖縄県",
     "city": "那覇市",
@@ -3672,7 +3672,7 @@
     "SD": ""
   },
   {
-    "station": "FMいしがき サンサンラジオ",
+    "station": "FMいしがきサンサンラジオ",
     "region": "九州沖縄",
     "pref": "沖縄県",
     "city": "石垣市",
@@ -3732,7 +3732,7 @@
     "SD": ""
   },
   {
-    "station": "オキラジ",
+    "station": "沖縄ラジオ",
     "region": "九州沖縄",
     "pref": "沖縄県",
     "city": "沖縄市",
@@ -3768,7 +3768,7 @@
     "SD": ""
   },
   {
-    "station": "エフエムみやこ",
+    "station": "FMみやこ",
     "region": "九州沖縄",
     "pref": "沖縄県",
     "city": "宮古島市",
@@ -3780,7 +3780,7 @@
     "SD": ""
   },
   {
-    "station": "ちゅらハートエフエム本部",
+    "station": "FM本部",
     "region": "九州沖縄",
     "pref": "沖縄県",
     "city": "本部町",
@@ -3792,7 +3792,7 @@
     "SD": ""
   },
   {
-    "station": "エフエム読谷",
+    "station": "FM読谷",
     "region": "九州沖縄",
     "pref": "沖縄県",
     "city": "読谷村",
@@ -3804,7 +3804,7 @@
     "SD": ""
   },
   {
-    "station": "FMくめじま",
+    "station": "FM久米島",
     "region": "九州沖縄",
     "pref": "沖縄県",
     "city": "久米島町",

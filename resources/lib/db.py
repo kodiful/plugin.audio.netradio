@@ -63,6 +63,7 @@ class DB(Common):
     CREATE TABLE IF NOT EXISTS stations(
         sid INTEGER PRIMARY KEY AUTOINCREMENT,
         top INTEGER,
+        listing INTEGER,
         station TEXT,
         protocol TEXT,
         key TEXT,
@@ -81,9 +82,10 @@ class DB(Common):
     )'''
 
     # sstatus
-    # -1: deprecated
-    # 0: active
-    # 1: active & downloadable
+    # -1: nothing available (station obsolated)
+    # 0: listening availabe
+    # 1: listening & listing availabe
+    # 2: listening & listing & download availabe
 
     sql_keywords = '''
     CREATE TABLE IF NOT EXISTS keywords(
@@ -258,9 +260,10 @@ class DB(Common):
         sql = f'INSERT INTO holidays ({columns}) VALUES ({placeholders})'
         self.cursor.execute(sql, list(values.values()))
     
-    def add_station(self, data, top=0):
+    def add_station(self, data, top=0, listing=0):
         values = {
-            'top': top,
+            'top': data.get('top', top),
+            'listing': data.get('listing', listing),
             'protocol': data['protocol'],
             'key': data['key'],
             'station': data['station'],
