@@ -21,8 +21,8 @@ class Common(Main):
         # ディレクトリ設定
         os.makedirs(self.SOURCE_PATH, exist_ok=True)
         os.makedirs(self.JSON_PATH, exist_ok=True)
-        self.SOURCE_FILE = os.path.join(self.SOURCE_PATH, f'{self.TYPE}.txt')
-        self.JSON_FILE = os.path.join(self.JSON_PATH, f'{self.TYPE}.json')
+        self.SOURCE_FILE = os.path.join(self.SOURCE_PATH, f'{self.PROTOCOL}.txt')
+        self.JSON_FILE = os.path.join(self.JSON_PATH, f'{self.PROTOCOL}.json')
 
     # ファイルをパースする
     def parse(self, data):
@@ -47,8 +47,8 @@ class Common(Main):
 
     # 次の更新予定時間
     def next_aired(self):
-        sql = 'SELECT MIN(EPOCH(c.end)) FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.cstatus >= 0 AND s.type = :type'
-        self.db.cursor.execute(sql, {'type': self.TYPE})
+        sql = 'SELECT MIN(EPOCH(c.end)) FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.cstatus >= 0 AND s.protocol = :protocol'
+        self.db.cursor.execute(sql, {'protocol': self.PROTOCOL})
         end, = self.db.cursor.fetchone()
         return end
     

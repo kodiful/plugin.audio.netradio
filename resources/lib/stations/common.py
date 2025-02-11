@@ -15,15 +15,15 @@ class Common(Main):
     SOURCE_PATH = os.path.join(Main.DATA_PATH, 'stations', 'source')
     JSON_PATH = os.path.join(Main.DATA_PATH, 'stations', 'json')
 
-    def __init__(self, type=None):
+    def __init__(self, protocol=None):
         # DBの共有インスタンス
         self.db = ThreadLocal.db
         # ディレクトリ設定
-        os.makedirs(self.SOURCE_PATH, exist_ok=True)
-        os.makedirs(self.JSON_PATH, exist_ok=True)
+        self.SOURCE_FILE = os.path.join(self.SOURCE_PATH, f'{protocol}.txt')
+        self.JSON_FILE = os.path.join(self.JSON_PATH, f'{self.PROTOCOL}.json')
+        os.makedirs(os.path.dirname(self.SOURCE_FILE), exist_ok=True)
+        os.makedirs(os.path.dirname(self.JSON_FILE), exist_ok=True)
         os.makedirs(self.LOGO_PATH, exist_ok=True)
-        self.SOURCE_FILE = os.path.join(self.SOURCE_PATH, f'{type}.txt')
-        self.JSON_FILE = os.path.join(self.JSON_PATH, f'{self.TYPE}.json')
 
     # ファイルをパースする
     def parse(self, data):

@@ -36,10 +36,10 @@ if __name__ == '__main__':
 
     # actionに応じた処理
     if action == 'show_station':
-        type = args.get('type')
+        protocol = args.get('protocol')
         region = args.get('region')
         pref = args.get('pref')
-        Directory().show(type, region, pref)
+        Directory().show(protocol, region, pref)
     elif action == 'add_to_top':
         Directory().add_to_top(args.get('sid'))
     elif action == 'delete_from_top':

@@ -13,6 +13,17 @@ from resources.lib.download import Download
 
 class Transfer(Common):
 
+    # type -> protocol変換
+    PROTOCOL = {
+        'nhkr': 'NHK',
+        'radk': 'RDK',
+        'jcba': 'SJ',
+        'lsnr': 'LR',
+        'csra': 'SR',
+        'fmpp': 'SP',
+        'user': 'USER'
+    }
+
     def __init__(self):
         # DBの共有インスタンス
         self.db = ThreadLocal.db
@@ -56,13 +67,13 @@ class Transfer(Common):
                     # jsonファイルを読み込む
                     with open(jsonfile, encoding='utf-8') as f:
                         data = json.loads(f.read())
-                    # abbrを抽出
+                    # keyを抽出
                     basename = os.path.basename(mp3file)
-                    abbr = basename.split('_')[-2]
+                    key = basename.split('_')[-2]
                     # durationを抽出
                     duration = int(MP3(mp3file).info.length)
                     # DBに挿入
-                    lastrowid = self.db.add(convert(data), kid, abbr, duration)
+                    lastrowid = self.db.add(convert(data), kid, key, duration)
                     # DBの情報をmp3ファイルにID3タグとして書き込む
                     self.db.write_id3(mp3file, lastrowid)
                     # mp3ファイル名の移動先のファイル名を取得
@@ -87,8 +98,8 @@ class Transfer(Common):
         def convert(data):
             return {
                 'station': data['station'],
-                'type': data['type'],
-                'abbr': data['id'],
+                'protocol': self.PROTOCOL[data['type']],
+                'key': data['id'],
                 'code': data['code'],
                 'region': data['region'],
                 'pref': data['pref'],
@@ -101,7 +112,7 @@ class Transfer(Common):
                 'sstatus': 0
             }
         # プラグインの放送局フォルダ直下のjsonフォルダにあるjsonファイルから読み込む
-        for json_file in glob.glob(os.path.join(self.DATA_PATH, 'stations', 'json', '*.json')):
+        for json_file in [os.path.join(self.DATA_PATH, 'stations', 'json', f'{protocol}.json') for protocol in ('NHK', 'RDK', 'SJ', 'LR', 'SP', 'SR')]:
             with open(json_file, encoding='utf-8') as f:
                 # jsonファイルを読み込む
                 for data in json.loads(f.read()):
@@ -115,9 +126,6 @@ class Transfer(Common):
             # ユーザ設定の放送局はDBに挿入
             if data['type'] == 'user':
                 self.db.add_station(convert(data), top=1)
-        # 不要なファイルを削除
-        shutil.rmtree(os.path.join(self.PROFILE_PATH, 'stations', 'index'))
-        shutil.rmtree(os.path.join(self.PROFILE_PATH, 'stations', 'directory'))
         # ログ
         self.log('Station settings have been imported')
 
@@ -125,8 +133,8 @@ class Transfer(Common):
         # データ変換関数
         def convert(data):
             if data['limit'] == 'true':
-                sql = 'SELECT station FROM stations WHERE abbr = :abbr AND sstatus >= 0'
-                self.db.cursor.execute(sql, {'abbr': data['id']})
+                sql = 'SELECT station FROM stations WHERE key = :key AND sstatus > -1'
+                self.db.cursor.execute(sql, {'key': data['id']})
                 station, = self.db.cursor.fetchone()
             else:
                 station = ''
@@ -169,16 +177,37 @@ class Transfer(Common):
         with open(json_file, encoding='utf-8') as f:
             for data in json.loads(f.read()):
                 self.db.add_holiday(data)
+        # masterテーブル作成
+        json_file = os.path.join(self.DATA_PATH, 'json', 'master.json')
+        with open(json_file, encoding='utf-8') as f:
+            for data in json.loads(f.read()):
+                self.db.add_master(data)
         
     def postprocess(self):
-        if os.path.exists(os.path.join(self.PROFILE_PATH, 'mmap.txt')):
-            os.remove(os.path.join(self.PROFILE_PATH, 'mmap.txt'))
-        if os.path.exists(os.path.join(self.PROFILE_PATH, 'auth.json')):
-            os.remove(os.path.join(self.PROFILE_PATH, 'auth.json'))
-        if os.path.exists(os.path.join(self.PROFILE_PATH, 'queue')):
-            shutil.rmtree(os.path.join(self.PROFILE_PATH, 'queue'))
-        if os.path.exists(os.path.join(self.PROFILE_PATH, 'timetable', 'timetable')):
-            shutil.rmtree(os.path.join(self.PROFILE_PATH, 'timetable', 'timetable'))
+        items = [
+            os.path.join(self.PROFILE_PATH, 'mmap.txt'),
+            os.path.join(self.PROFILE_PATH, 'auth.json'),
+            os.path.join(self.PROFILE_PATH, 'queue'),
+            os.path.join(self.PROFILE_PATH, 'timetable', 'timetable'),
+            os.path.join(self.PROFILE_PATH, 'timetable', 'json', 'nhkr.json'),
+            os.path.join(self.PROFILE_PATH, 'timetable', 'json', 'radk.json'),
+            os.path.join(self.PROFILE_PATH, 'timetable', 'source', 'nhkr.txt'),
+            os.path.join(self.PROFILE_PATH, 'timetable', 'source', 'radk.txt'),
+            os.path.join(self.PROFILE_PATH, 'stations', 'index'),
+            os.path.join(self.PROFILE_PATH, 'stations', 'directory'),
+            os.path.join(self.PROFILE_PATH, 'stations', 'logo', 'csra'),
+            os.path.join(self.PROFILE_PATH, 'stations', 'logo', 'fmpp'),
+            os.path.join(self.PROFILE_PATH, 'stations', 'logo', 'jcba'),
+            os.path.join(self.PROFILE_PATH, 'stations', 'logo', 'lsnr'),
+            os.path.join(self.PROFILE_PATH, 'stations', 'logo', 'nhkr'),
+            os.path.join(self.PROFILE_PATH, 'stations', 'logo', 'radk')
+        ]
+        for item in items:
+            if os.path.exists(item):
+                if os.path.isfile(item):
+                    os.remove(item)
+                if os.path.isdir(item):
+                    shutil.rmtree(item)
 
     def run(self):
         self.preprocess()

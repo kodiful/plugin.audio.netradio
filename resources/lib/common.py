@@ -95,5 +95,5 @@ class Common:
         path = None
         if xbmc.Player().isPlaying():
             item = xbmc.Player().getPlayingItem()
-            path = item.getPath()  # http://127.0.0.1:8088/jcba?id=fmblueshonan
+            path = item.getPath()  # http://127.0.0.1:8088/SJ?id=fmblueshonan
         return path

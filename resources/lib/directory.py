@@ -19,35 +19,35 @@ class Directory(Common):
         # DBの共有インスタンス
         self.db = ThreadLocal.db
         # radiko認証
-        sql = "SELECT auth_token, region, pref FROM auth JOIN cities ON auth.area_id = cities.radiko WHERE cities.city = ''"
+        sql = "SELECT auth_token, region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
         self.db.cursor.execute(sql)
         self.token, self.region, self.pref = self.db.cursor.fetchone()
 
-    def show(self, type=None, region=None, pref=None):
-        if type == 'nhkr':
-            sql = 'SELECT * FROM stations WHERE type = :type AND region = :region AND sstatus >= 0 ORDER BY station'
-            self.db.cursor.execute(sql, {'type': 'nhkr', 'region': region})
+    def show(self, protocol=None, region=None, pref=None):
+        if protocol == 'NHK':
+            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND region = :region AND sstatus > -1 ORDER BY station'
+            self.db.cursor.execute(sql, {'protocol': 'NHK', 'region': region})
             for sdata in self.db.cursor.fetchall():
                 self._add_station(sdata)
-        elif type == 'radk':
-            sql = 'SELECT * FROM stations WHERE type = :type AND region = :region AND pref = :pref AND sstatus >= 0 ORDER BY station'
-            self.db.cursor.execute(sql, {'type': 'radk', 'region': region, 'pref': pref})
+        elif protocol == 'RDK':
+            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND region = :region AND pref = :pref AND sstatus > -1 ORDER BY station'
+            self.db.cursor.execute(sql, {'protocol': 'RDK', 'region': region, 'pref': pref})
             for sdata in self.db.cursor.fetchall():
                 self._add_station(sdata)
-        elif type == 'comm':
-            types = '''('csra', 'fmpp', 'jcba', 'lsnr')'''
+        elif protocol == 'COMM':
+            protocols = '''('SJ', 'LR', 'SR', 'SP')'''
             if region is None:  # 地域リスト
-                sql = 'SELECT DISTINCT region FROM stations WHERE type IN %s ORDER BY code' % types
+                sql = 'SELECT DISTINCT region FROM stations WHERE protocol IN %s ORDER BY code' % protocols
                 self.db.cursor.execute(sql)
                 for region, in self.db.cursor.fetchall():
                     self._add_directory(region=region)
             elif pref is None:  # 都道府県リスト
-                sql = 'SELECT DISTINCT pref FROM stations WHERE type IN %s AND region = :region ORDER BY code' % types
+                sql = 'SELECT DISTINCT pref FROM stations WHERE protocol IN %s AND region = :region ORDER BY code' % protocols
                 self.db.cursor.execute(sql, {'region': region})
                 for pref, in self.db.cursor.fetchall():
                     self._add_directory(region=region, pref=pref)
             else:  # 放送局リスト
-                sql = 'SELECT * FROM stations WHERE type IN %s AND region = :region AND pref = :pref AND sstatus >= 0 ORDER BY code' % types
+                sql = 'SELECT * FROM stations WHERE protocol IN %s AND region = :region AND pref = :pref AND sstatus > -1 ORDER BY code' % protocols
                 self.db.cursor.execute(sql, {'region': region, 'pref': pref})
                 for sdata in self.db.cursor.fetchall():
                     self._add_station(sdata)
@@ -70,15 +70,15 @@ class Directory(Common):
 
     def _setup_stations(self):
         # ユーザがトップページに追加した放送局を追加
-        sql = '''SELECT * FROM stations WHERE top = 1 AND sstatus >= 0 ORDER BY
-        CASE type
-            WHEN 'nhkr' THEN 1
-            WHEN 'radk' THEN 2
-            WHEN 'csra' THEN 3
-            WHEN 'fmpp' THEN 3
-            WHEN 'jcba' THEN 3
-            WHEN 'lsnr' THEN 3
-            WHEN 'user' THEN 4
+        sql = '''SELECT * FROM stations WHERE top = 1 AND sstatus > -1 ORDER BY
+        CASE protocol
+            WHEN 'NHK' THEN 1
+            WHEN 'RDK' THEN 2
+            WHEN 'SR' THEN 3
+            WHEN 'SP' THEN 3
+            WHEN 'SJ' THEN 3
+            WHEN 'LR' THEN 3
+            WHEN 'USER' THEN 4
             ELSE 9
         END, code, station'''
         self.db.cursor.execute(sql)
@@ -92,7 +92,7 @@ class Directory(Common):
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show_station', 'type': 'nhkr', 'region': self.region})
+        query = urlencode({'action': 'show_station', 'protocol': 'NHK', 'region': self.region})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # 民放ラジオ(radiko)
         li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30002))
@@ -100,7 +100,7 @@ class Directory(Common):
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show_station', 'type': 'radk', 'region': self.region, 'pref': self.pref})
+        query = urlencode({'action': 'show_station', 'protocol': 'RDK', 'region': self.region, 'pref': self.pref})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # コミュニティラジオ
         li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30003))
@@ -108,7 +108,7 @@ class Directory(Common):
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show_station', 'type': 'comm'})
+        query = urlencode({'action': 'show_station', 'protocol': 'COMM'})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
     
     def _setup_keywords(self):
@@ -124,9 +124,9 @@ class Directory(Common):
         self._contextmenu('self.STR(30100)', {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         if pref is None:
-            query = urlencode({'action': 'show_station', 'type': 'comm', 'region': region})
+            query = urlencode({'action': 'show_station', 'protocol': 'COMM', 'region': region})
         else:
-            query = urlencode({'action': 'show_station', 'type': 'comm', 'region': region, 'pref': pref})
+            query = urlencode({'action': 'show_station', 'protocol': 'COMM', 'region': region, 'pref': pref})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
     def _add_station(self, sdata):
@@ -137,30 +137,30 @@ class Directory(Common):
         tag = li.getMusicInfoTag()
         tag.setTitle(sdata['station'])
         # サムネイル設定
-        image = os.path.join(self.PROFILE_PATH, 'stations', 'logo', sdata['type'], sdata['station'] + '.png')
+        image = os.path.join(self.PROFILE_PATH, 'stations', 'logo', sdata['protocol'], sdata['station'] + '.png')
         li.setArt({'thumb': image, 'icon': image})
         # コンテクストメニュー
         self.contextmenu = []
         if sdata['top'] == 1:
-            if sdata['type'] in ('nhkr', 'radk'):
+            if sdata['protocol'] in ('NHK', 'RDK'):
                 self._contextmenu(self.STR(30111), {'action': 'show_info', 'sid': sdata['sid']})
                 self._contextmenu(self.STR(30110), {'action': 'update_info'})
-            if sdata['type'] == 'user':
+            if sdata['protocol'] == 'USER':
                 self._contextmenu(self.STR(30104), {'action': 'set_station', 'sid': sdata['sid']})
                 self._contextmenu(self.STR(30105), {'action': 'delete_station', 'sid': sdata['sid']})
             else:
                 self._contextmenu(self.STR(30102), {'action': 'delete_from_top', 'sid': sdata['sid']})
         else:
-            if sdata['type'] in ('nhkr', 'radk'):
+            if sdata['protocol'] in ('NHK', 'RDK'):
                 self._contextmenu(self.STR(30111), {'action': 'show_info', 'sid': sdata['sid']})
                 self._contextmenu(self.STR(30110), {'action': 'update_info'})
             self._contextmenu(self.STR(30101), {'action': 'add_to_top', 'sid': sdata['sid']})
-        if self.GET('download') == 'true' and sdata['type'] in ('nhkr', 'radk'):
+        if self.GET('download') == 'true' and sdata['protocol'] in ('NHK', 'RDK'):
             self._contextmenu(self.STR(30106), {'action': 'set_keyword', 'sid': sdata['sid']})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL
-        url = LocalProxy.proxy(sdata['type'], abbr=sdata['abbr'], direct=sdata['direct'], token=self.token)
+        url = LocalProxy.proxy(sdata['protocol'], key=sdata['key'], direct=sdata['direct'], token=self.token)
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
 
@@ -189,7 +189,7 @@ class Directory(Common):
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         
     def _title(self, data):
-        if data['type'] in ('nhkr', 'radk'):
+        if data['protocol'] in ('NHK', 'RDK'):
             station = data['station']
             sql = 'SELECT title, start, end FROM contents WHERE sid = :sid AND end > NOW() ORDER BY start LIMIT 2'
             self.db.cursor.execute(sql, {'sid': data['sid']})
@@ -200,7 +200,7 @@ class Directory(Common):
                 station += f' [COLOR lightgreen]▶ {title} ({start[11:16]}～{end[11:16]})[/COLOR]'
             except:
                 pass
-        elif data['type'] in ('csra', 'jcba', 'fmpp', 'lsnr'):
+        elif data['protocol'] in ('SR', 'SJ', 'SP', 'LR'):
             station = f"{data['station']}({data['pref']}{data['city']})"
             if data['description']:
                 station += f" [COLOR khaki]▶ {data['description']}[/COLOR]"

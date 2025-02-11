@@ -39,15 +39,15 @@ class LocalProxy(HTTPServer, Common):
             self.notify('Localproxy port is not defined')
 
     @staticmethod
-    def proxy(type, abbr='', direct='', token='', download=False):
-        if type == 'radk':
-            kwargs = {'download': download, 'type': 'radk', 'abbr': abbr, 'token': token}
-        elif type == 'jcba':
-            kwargs = {'download': download, 'type': 'jcba', 'abbr': abbr}
-        elif type == 'fmpp':
-            kwargs = {'download': download, 'type': 'fmpp', 'abbr': abbr}
+    def proxy(protocol, key='', direct='', token='', download=False):
+        if protocol == 'RDK':
+            kwargs = {'download': download, 'protocol': 'RDK', 'key': key, 'token': token}
+        elif protocol == 'SJ':
+            kwargs = {'download': download, 'protocol': 'SJ', 'key': key}
+        elif protocol == 'SP':
+            kwargs = {'download': download, 'protocol': 'SP', 'key': key}
         else:
-            kwargs = {'download': download, 'type': 'redirect', 'url': direct}
+            kwargs = {'download': download, 'protocol': 'redirect', 'url': direct}
         port = Common.GET('port')
         query = urllib.parse.urlencode(kwargs)
         return f'http://127.0.0.1:{port}/?{query}'
@@ -78,7 +78,7 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             params = urllib.parse.parse_qs(request.query)
             # パスに応じて処理
             if request.path == '/':
-                self.do_request_type(request, params)
+                self.do_request_protocol(request, params)
             elif request.path == '/hls.m3u8':
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/x-mpegurl')
@@ -103,7 +103,7 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             self.end_headers()
             self.wfile.write(b'500 Internal Server Error')
 
-    def do_request_type(self, request, params):
+    def do_request_protocol(self, request, params):
         # スレッドキューのメンテナンス
         download = params['download'][0]
         if download == 'False':
@@ -118,18 +118,18 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
                     ret = ctypes.pythonapi.PyThreadState_SetAsyncExc(ident, ctypes.py_object(SystemExit))
             if alive:
                 q.put(alive)
-        # typeに応じて処理
-        type_ = params['type'][0]
-        if type_ == 'redirect':
+        # protocolに応じて処理
+        protocol = params['protocol'][0]
+        if protocol == 'redirect':
             url = params['url'][0]
             # urlへリダイレクト
             self.send_response(302)
             self.send_header('Location', url)
             self.end_headers()
             self.wfile.write(b'302 Moved Temporarily')
-        elif type_ == 'radk':
-            abbr = params['abbr'][0]
-            url = f"https://f-radiko.smartstream.ne.jp/{abbr}/_definst_/simul-stream.stream/playlist.m3u"
+        elif protocol == 'RDK':
+            key = params['key'][0]
+            url = f"https://f-radiko.smartstream.ne.jp/{key}/_definst_/simul-stream.stream/playlist.m3u"
             token = params['token'][0]
             req = urllib.request.Request(url, headers={'x-radiko-authtoken': token})
             res = urllib.request.urlopen(req)
@@ -137,9 +137,9 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             self.send_response(200)
             self.end_headers()
             self.wfile.write(data)
-        elif type_ == 'jcba':
-            abbr = params['abbr'][0]
-            url = f'https://api.radimo.smen.biz/api/v1/select_stream?station={abbr}&channel=0&quality=high&burst=5'
+        elif protocol == 'SJ':
+            key = params['key'][0]
+            url = f'https://api.radimo.smen.biz/api/v1/select_stream?station={key}&channel=0&quality=high&burst=5'
             req = urllib.request.Request(url)
             res = urllib.request.urlopen(req)
             data = res.read()
@@ -159,9 +159,9 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             self.send_header('Location', 'http://127.0.0.1:%s/hls.m3u8' % self.server.port)
             self.end_headers()
             self.wfile.write(b'302 Moved Temporarily')
-        elif type_ == 'fmpp':
-            abbr = params['abbr'][0]
-            url = f'https://fmplapla.com/api/select_stream?station={abbr}&burst=5'
+        elif protocol == 'SP':
+            key = params['key'][0]
+            url = f'https://fmplapla.com/api/select_stream?station={key}&burst=5'
             req = urllib.request.Request(url, headers={'Origin': 'https://fmplapla.com'}, method='POST')
             res = urllib.request.urlopen(req)
             data = res.read()
@@ -211,13 +211,13 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
     def on_message(self, ws, message):
         ws.process.stdin.write(message)
         # 再生中のコンテンツがwebsocket再生でない場合はwebsocketを終了する
-        path = self.nowplaying()  # http://127.0.0.1:8088/?type=jcba&id=fmblueshonan
+        path = self.nowplaying()  # http://127.0.0.1:8088/?protocol=SJ&id=fmblueshonan
         if path:
-            type_ = path.split('/')[3]
-            if type_.find('type=jcba') != -1:
-                return  # jcbaの場合は継続
-            if type_.find('type=fmpp') != -1:
-                return  # fmppの場合は継続
+            protocol = path.split('/')[3]
+            if protocol.find('protocol=SJ') != -1:
+                return  # SJの場合は継続
+            if protocol.find('protocol=SP') != -1:
+                return  # SPの場合は継続
         raise SystemExit
 
     def on_close(self, ws, status, message):

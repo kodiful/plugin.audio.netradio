@@ -51,7 +51,7 @@ class Station(Common):
     def add(self):
         # 設定後の値
         after = dict([(key, self.GET(key)) for key in ('sid', 'station', 'description', 'direct', 'logo', 'site')])
-        after.update({'type': 'user', 'abbr': ''})
+        after.update({'protocol': 'USER', 'key': ''})
         # stationテーブルに書き込む
         self.db.add_station(after, top=1)
         xbmc.executebuiltin('Container.Refresh')

@@ -16,8 +16,8 @@ from resources.lib.db import DB, ThreadLocal
 from resources.lib.authenticate import Authenticate
 from resources.lib.localproxy import LocalProxy
 
-from resources.lib.timetable.nhkr import Scraper as Nhkr
-from resources.lib.timetable.radk import Scraper as Radk
+from resources.lib.timetable.NHK import Scraper as NHK
+from resources.lib.timetable.RDK import Scraper as RDK
 
 
 class Monitor(xbmc.Monitor, Common):
@@ -114,8 +114,8 @@ class Service(Common):
         # radiko認証
         update_auth = self._update_auth()
         # 番組データ取得
-        update_nhkr = self._update_nhkr()
-        update_radk = self._update_radk()
+        update_nhk = self._update_nhk()
+        update_rdk = self._update_rdk()
         # 監視を開始
         monitor = Monitor()
         refresh = False
@@ -126,12 +126,12 @@ class Service(Common):
             if now > update_auth:
                 update_auth = self._update_auth()
             # 現在時刻が番組表更新予定時刻を過ぎていたら
-            if now > update_nhkr:
-                update_nhkr = self._update_nhkr()
-                refresh = refresh or update_nhkr > now
-            if now > update_radk:
-                update_radk = self._update_radk()
-                refresh = refresh or update_radk > now
+            if now > update_nhk:
+                update_nhk = self._update_nhk()
+                refresh = refresh or update_nhk > now
+            if now > update_rdk:
+                update_rdk = self._update_rdk()
+                refresh = refresh or update_rdk > now
             # カレントウィンドウをチェック
             if xbmcgui.getCurrentWindowDialogId() == 9999:
                 db.cursor.execute('SELECT timetable, keyword, station FROM status')
@@ -182,7 +182,7 @@ class Service(Common):
         sql = f'UPDATE auth SET {set_clause}'
         db.cursor.execute(sql, list(data.values()))
         # 地域、都道府県を判定する
-        sql = "SELECT region, pref FROM auth JOIN cities ON auth.area_id = cities.radiko WHERE cities.city = ''"
+        sql = "SELECT region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
         db.cursor.execute(sql)
         self.region, self.pref = db.cursor.fetchone()
         # ログ
@@ -198,43 +198,43 @@ class Service(Common):
             self.log('monitor error in _update_auth:', e)
         return update_auth
     
-    def _update_nhkr(self):
+    def _update_nhk(self):
         try:
             # NHKの番組データを取得
-            scraper = Nhkr(self.region)
+            scraper = NHK(self.region)
             scraper.update()
             # 次の番組情報更新時刻
-            update_nhkr = scraper.next_aired()
+            update_nhk = scraper.next_aired()
         except Exception as e:
-            self.log('monitor error in _update_nhkr:', e)
-        return update_nhkr
+            self.log('monitor error in _update_nhk:', e)
+        return update_nhk
     
-    def _update_radk(self):
+    def _update_rdk(self):
         try:
             # radikoの番組データを取得
-            scraper = Radk(self.region, self.pref)
+            scraper = RDK(self.region, self.pref)
             scraper.update()
             # 次の番組情報更新時刻
-            update_radk = scraper.next_aired()
+            update_rdk = scraper.next_aired()
         except Exception as e:
-            self.log('monitor error in _update_radk:', e)
-        return update_radk
+            self.log('monitor error in _update_rdk:', e)
+        return update_rdk
 
     def _prepare_download(self):
         # DBの共有インスタンス
         db = ThreadLocal.db
         # 保留中(cstatus=1)の番組、かつDOWNLOAD_PREPARATION以内に開始する番組を検索
-        sql = '''SELECT c.cid, c.kid, c.filename, s.type, s.abbr, c.title, EPOCH(c.start) as t, EPOCH(c.end), s.direct, s.delay
+        sql = '''SELECT c.cid, c.kid, c.filename, s.protocol, s.key, c.title, EPOCH(c.start) as t, EPOCH(c.end), s.direct, s.delay
         FROM contents c JOIN stations s ON c.sid = s.sid
         WHERE c.cstatus = 1 AND t - EPOCH(NOW()) < :threshold
         ORDER BY c.start'''
         db.cursor.execute(sql, {'threshold': self.DOWNLOAD_PREPARATION})
         # ダウンロードを予約
-        for cid, kid, filename, type, abbr, title, start, end, direct, delay in db.cursor.fetchall():
+        for cid, kid, filename, protocol, key, title, start, end, direct, delay in db.cursor.fetchall():
             start = start + delay - self.DOWNLOAD_MARGIN  # 開始時刻
             end = end + delay + self.DOWNLOAD_MARGIN  # 終了時刻
             # ダウンロードを予約
-            args = [cid, kid, filename, type, abbr, title, end, direct, self.queue]
+            args = [cid, kid, filename, protocol, key, title, end, direct, self.queue]
             thread = threading.Timer(start - int(time.time()), download, args=args)
             thread.start()
             # 待機中(cstatus=2)に更新
@@ -242,7 +242,7 @@ class Service(Common):
             db.cursor.execute(sql, {'cid': cid})
 
 
-def download(cid, kid, filename, type, abbr, title, end, direct, queue):
+def download(cid, kid, filename, protocol, key, title, end, direct, queue):
     # DBインスタンスを作成
     db = ThreadLocal.db = DB()
     # radiko認証
@@ -250,7 +250,7 @@ def download(cid, kid, filename, type, abbr, title, end, direct, queue):
     db.cursor.execute(sql)
     token, = db.cursor.fetchone()
     # ストリームURL
-    url = LocalProxy.proxy(type, abbr=abbr, direct=direct, token=token, download=True)
+    url = LocalProxy.proxy(protocol, key=key, direct=direct, token=token, download=True)
     # 時間
     duration = end - int(time.time())
     # ビットレート

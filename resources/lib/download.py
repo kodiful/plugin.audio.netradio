@@ -45,7 +45,7 @@ class Download(Common):
         tag = li.getMusicInfoTag()
         tag.setTitle(cksdata['title'])
         # サムネイル設定
-        logo = os.path.join(self.PROFILE_PATH, 'stations', 'logo', str(cksdata['type']), str(cksdata['station']) + '.png')
+        logo = os.path.join(self.PROFILE_PATH, 'stations', 'logo', str(cksdata['protocol']), str(cksdata['station']) + '.png')
         li.setArt({'thumb': logo, 'icon': logo})
         # コンテクストメニュー
         self.contextmenu = []

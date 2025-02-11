@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<stations area_id="JP39" area_name="KOUCHI JAPAN">
+ <station>
+    <id>RKC</id>
+    <name>RKC高知放送</name>
+    <ascii_name>RKC</ascii_name>
+    <href>http://www.rkc-kochi.co.jp/</href>
+    <logo_xsmall>http://radiko.jp/station/logo/RKC/logo_xsmall.png</logo_xsmall>
+    <logo_small>http://radiko.jp/station/logo/RKC/logo_small.png</logo_small>
+    <logo_medium>http://radiko.jp/station/logo/RKC/logo_medium.png</logo_medium>
+    <logo_large>http://radiko.jp/station/logo/RKC/logo_large.png</logo_large>
+<logo width="124" height="40">http://radiko.jp/v2/static/station/logo/RKC/124x40.png</logo>
+<logo width="344" height="80">http://radiko.jp/v2/static/station/logo/RKC/344x80.png</logo>
+<logo width="688" height="160">http://radiko.jp/v2/static/station/logo/RKC/688x160.png</logo>
+<logo width="172" height="40">http://radiko.jp/v2/static/station/logo/RKC/172x40.png</logo>
+<logo width="224" height="100">http://radiko.jp/v2/static/station/logo/RKC/224x100.png</logo>
+<logo width="448" height="200">http://radiko.jp/v2/static/station/logo/RKC/448x200.png</logo>
+<logo width="112" height="50">http://radiko.jp/v2/static/station/logo/RKC/112x50.png</logo>
+<logo width="168" height="75">http://radiko.jp/v2/static/station/logo/RKC/168x75.png</logo>
+<logo width="258" height="60">http://radiko.jp/v2/static/station/logo/RKC/258x60.png</logo>
+<feed>http://radiko.jp/station/feed/RKC.xml</feed>
+<banner>http://radiko.jp/res/banner/RKC/banner.png</banner>
+</station>
+ <station>
+    <id>RN1</id>
+    <name>ラジオNIKKEI第1</name>
+    <ascii_name>RADIONIKKEI</ascii_name>
+    <href>http://www.radionikkei.jp/</href>
+    <logo_xsmall>http://radiko.jp/station/logo/RN1/logo_xsmall.png</logo_xsmall>
+    <logo_small>http://radiko.jp/station/logo/RN1/logo_small.png</logo_small>
+    <logo_medium>http://radiko.jp/station/logo/RN1/logo_medium.png</logo_medium>
+    <logo_large>http://radiko.jp/station/logo/RN1/logo_large.png</logo_large>
+<logo width="124" height="40">http://radiko.jp/v2/static/station/logo/RN1/124x40.png</logo>
+<logo width="344" height="80">http://radiko.jp/v2/static/station/logo/RN1/344x80.png</logo>
+<logo width="688" height="160">http://radiko.jp/v2/static/station/logo/RN1/688x160.png</logo>
+<logo width="172" height="40">http://radiko.jp/v2/static/station/logo/RN1/172x40.png</logo>
+<logo width="224" height="100">http://radiko.jp/v2/static/station/logo/RN1/224x100.png</logo>
+<logo width="448" height="200">http://radiko.jp/v2/static/station/logo/RN1/448x200.png</logo>
+<logo width="112" height="50">http://radiko.jp/v2/static/station/logo/RN1/112x50.png</logo>
+<logo width="168" height="75">http://radiko.jp/v2/static/station/logo/RN1/168x75.png</logo>
+<logo width="258" height="60">http://radiko.jp/v2/static/station/logo/RN1/258x60.png</logo>
+<feed>http://radiko.jp/station/feed/RN1.xml</feed>
+<banner>http://radiko.jp/res/banner/RN1/20120802154152.png</banner>
+</station>
+ <station>
+    <id>RN2</id>
+    <name>ラジオNIKKEI第2</name>
+    <ascii_name>RADIONIKKEI2</ascii_name>
+    <href>http://www.radionikkei.jp/ </href>
+    <logo_xsmall>http://radiko.jp/station/logo/RN2/logo_xsmall.png</logo_xsmall>
+    <logo_small>http://radiko.jp/station/logo/RN2/logo_small.png</logo_small>
+    <logo_medium>http://radiko.jp/station/logo/RN2/logo_medium.png</logo_medium>
+    <logo_large>http://radiko.jp/station/logo/RN2/logo_large.png</logo_large>
+<logo width="124" height="40">http://radiko.jp/v2/static/station/logo/RN2/124x40.png</logo>
+<logo width="344" height="80">http://radiko.jp/v2/static/station/logo/RN2/344x80.png</logo>
+<logo width="688" height="160">http://radiko.jp/v2/static/station/logo/RN2/688x160.png</logo>
+<logo width="172" height="40">http://radiko.jp/v2/static/station/logo/RN2/172x40.png</logo>
+<logo width="224" height="100">http://radiko.jp/v2/static/station/logo/RN2/224x100.png</logo>
+<logo width="448" height="200">http://radiko.jp/v2/static/station/logo/RN2/448x200.png</logo>
+<logo width="112" height="50">http://radiko.jp/v2/static/station/logo/RN2/112x50.png</logo>
+<logo width="168" height="75">http://radiko.jp/v2/static/station/logo/RN2/168x75.png</logo>
+<logo width="258" height="60">http://radiko.jp/v2/static/station/logo/RN2/258x60.png</logo>
+<feed>http://radiko.jp/station/feed/RN2.xml</feed>
+<banner>http://radiko.jp/res/banner/RN2/20190423111331.png</banner>
+</station>
+ <station>
+    <id>HI-SIX</id>
+    <name>エフエム高知</name>
+    <ascii_name>Hi-Six</ascii_name>
+    <href>http://www.fmkochi.com/</href>
+    <logo_xsmall>http://radiko.jp/station/logo/HI-SIX/logo_xsmall.png</logo_xsmall>
+    <logo_small>http://radiko.jp/station/logo/HI-SIX/logo_small.png</logo_small>
+    <logo_medium>http://radiko.jp/station/logo/HI-SIX/logo_medium.png</logo_medium>
+    <logo_large>http://radiko.jp/station/logo/HI-SIX/logo_large.png</logo_large>
+<logo width="124" height="40">http://radiko.jp/v2/static/station/logo/HI-SIX/124x40.png</logo>
+<logo width="344" height="80">http://radiko.jp/v2/static/station/logo/HI-SIX/344x80.png</logo>
+<logo width="688" height="160">http://radiko.jp/v2/static/station/logo/HI-SIX/688x160.png</logo>
+<logo width="172" height="40">http://radiko.jp/v2/static/station/logo/HI-SIX/172x40.png</logo>
+<logo width="224" height="100">http://radiko.jp/v2/static/station/logo/HI-SIX/224x100.png</logo>
+<logo width="448" height="200">http://radiko.jp/v2/static/station/logo/HI-SIX/448x200.png</logo>
+<logo width="112" height="50">http://radiko.jp/v2/static/station/logo/HI-SIX/112x50.png</logo>
+<logo width="168" height="75">http://radiko.jp/v2/static/station/logo/HI-SIX/168x75.png</logo>
+<logo width="258" height="60">http://radiko.jp/v2/static/station/logo/HI-SIX/258x60.png</logo>
+<feed>http://radiko.jp/station/feed/HI-SIX.xml</feed>
+<banner>http://radiko.jp/res/banner/HI-SIX/20200228150708.png</banner>
+</station>
+ <station>
+    <id>JOZK</id>
+    <name>NHKラジオ第1（松山）</name>
+    <ascii_name>JOZK</ascii_name>
+    <href>https://www.nhk.or.jp/radio/</href>
+    <logo_xsmall>http://radiko.jp/station/logo/JOZK/logo_xsmall.png</logo_xsmall>
+    <logo_small>http://radiko.jp/station/logo/JOZK/logo_small.png</logo_small>
+    <logo_medium>http://radiko.jp/station/logo/JOZK/logo_medium.png</logo_medium>
+    <logo_large>http://radiko.jp/station/logo/JOZK/logo_large.png</logo_large>
+<logo width="124" height="40">http://radiko.jp/v2/static/station/logo/JOZK/124x40.png</logo>
+<logo width="344" height="80">http://radiko.jp/v2/static/station/logo/JOZK/344x80.png</logo>
+<logo width="688" height="160">http://radiko.jp/v2/static/station/logo/JOZK/688x160.png</logo>
+<logo width="172" height="40">http://radiko.jp/v2/static/station/logo/JOZK/172x40.png</logo>
+<logo width="224" height="100">http://radiko.jp/v2/static/station/logo/JOZK/224x100.png</logo>
+<logo width="448" height="200">http://radiko.jp/v2/static/station/logo/JOZK/448x200.png</logo>
+<logo width="112" height="50">http://radiko.jp/v2/static/station/logo/JOZK/112x50.png</logo>
+<logo width="168" height="75">http://radiko.jp/v2/static/station/logo/JOZK/168x75.png</logo>
+<logo width="258" height="60">http://radiko.jp/v2/static/station/logo/JOZK/258x60.png</logo>
+<feed>http://radiko.jp/station/feed/JOZK.xml</feed>
+<banner>http://radiko.jp/res/banner/JOZK/20170922183956.png</banner>
+</station>
+ <station>
+    <id>JOAK-FM</id>
+    <name>NHK-FM（東京）</name>
+    <ascii_name>JOAK-FM</ascii_name>
+    <href>https://www.nhk.or.jp/radio/</href>
+    <logo_xsmall>http://radiko.jp/station/logo/JOAK-FM/logo_xsmall.png</logo_xsmall>
+    <logo_small>http://radiko.jp/station/logo/JOAK-FM/logo_small.png</logo_small>
+    <logo_medium>http://radiko.jp/station/logo/JOAK-FM/logo_medium.png</logo_medium>
+    <logo_large>http://radiko.jp/station/logo/JOAK-FM/logo_large.png</logo_large>
+<logo width="124" height="40">http://radiko.jp/v2/static/station/logo/JOAK-FM/124x40.png</logo>
+<logo width="344" height="80">http://radiko.jp/v2/static/station/logo/JOAK-FM/344x80.png</logo>
+<logo width="688" height="160">http://radiko.jp/v2/static/station/logo/JOAK-FM/688x160.png</logo>
+<logo width="172" height="40">http://radiko.jp/v2/static/station/logo/JOAK-FM/172x40.png</logo>
+<logo width="224" height="100">http://radiko.jp/v2/static/station/logo/JOAK-FM/224x100.png</logo>
+<logo width="448" height="200">http://radiko.jp/v2/static/station/logo/JOAK-FM/448x200.png</logo>
+<logo width="112" height="50">http://radiko.jp/v2/static/station/logo/JOAK-FM/112x50.png</logo>
+<logo width="168" height="75">http://radiko.jp/v2/static/station/logo/JOAK-FM/168x75.png</logo>
+<logo width="258" height="60">http://radiko.jp/v2/static/station/logo/JOAK-FM/258x60.png</logo>
+<feed>http://radiko.jp/station/feed/JOAK-FM.xml</feed>
+<banner>http://radiko.jp/res/banner/JOAK-FM/20170922184116.png</banner>
+</station>
+</stations>

@@ -64,8 +64,8 @@ class DB(Common):
         sid INTEGER PRIMARY KEY AUTOINCREMENT,
         top INTEGER,
         station TEXT,
-        type TEXT,
-        abbr TEXT,
+        protocol TEXT,
+        key TEXT,
         code TEXT,
         region TEXT,
         pref TEXT,
@@ -108,13 +108,31 @@ class DB(Common):
         region TEXT,
         pref TEXT,
         city TEXT,
-        radiko TEXT
+        area_id TEXT
     )'''
 
     sql_holidays = '''
     CREATE TABLE IF NOT EXISTS holidays(
         date TEXT,
         name TEXT
+    )'''
+
+    sql_master = '''
+    CREATE TABLE IF NOT EXISTS master(
+        mid INTEGER PRIMARY KEY AUTOINCREMENT,
+        station TEXT UNIQUE,
+        region TEXT,
+        pref TEXT,
+        city TEXT,
+        code TEXT,
+        SJ TEXT,
+        LR TEXT,
+        SR TEXT,
+        SP TEXT,
+        SD TEXT,
+        mstatus INTEGER,
+        version TEXT,
+        modified TEXT
     )'''
 
     sql_auth = '''
@@ -157,6 +175,7 @@ class DB(Common):
         self.cursor.execute(self.sql_stations)
         self.cursor.execute(self.sql_cities)
         self.cursor.execute(self.sql_holidays)
+        self.cursor.execute(self.sql_master)
         self.cursor.execute(self.sql_auth)
         self.cursor.execute(self.sql_status)
         # 現在時刻取得関数
@@ -172,13 +191,13 @@ class DB(Common):
         # 古い番組情報を削除
         self.cursor.execute('DELETE FROM contents WHERE cstatus = 0 AND end < NOW()')
 
-    def add(self, data, kid=0, abbr='', duration=0):
+    def add(self, data, kid=0, key='', duration=0):
         # title
         title = data['title']
         # description
         description = self._description(data)
         # sid, sstatus, filename
-        sid, sstatus, filename = self._station(data, abbr)
+        sid, sstatus, filename = self._station(data, key)
         # kid, filename, cstatus
         if kid > 0:
             if duration > 0:
@@ -216,6 +235,17 @@ class DB(Common):
         self.cursor.execute(sql, list(values.values()))
         return self.cursor.lastrowid
 
+    def add_master(self, values):
+        values.update({
+            'mstatus': 0,
+            'version': self.ADDON_VERSION,
+            'modified': self.now
+        })
+        columns = ', '.join(values.keys())
+        placeholders = ', '.join(['?' for _ in values])
+        sql = f'INSERT INTO master ({columns}) VALUES ({placeholders})'
+        self.cursor.execute(sql, list(values.values()))
+
     def add_city(self, values):
         columns = ', '.join(values.keys())
         placeholders = ', '.join(['?' for _ in values])
@@ -231,8 +261,8 @@ class DB(Common):
     def add_station(self, data, top=0):
         values = {
             'top': top,
-            'type': data['type'],
-            'abbr': data['abbr'],
+            'protocol': data['protocol'],
+            'key': data['key'],
             'station': data['station'],
             'code': data.get('code', ''),
             'region': data.get('region', ''),
@@ -253,7 +283,7 @@ class DB(Common):
         # DBに追加/更新
         columns = ', '.join(values.keys())
         placeholders = ', '.join(['?' for _ in values])
-        sql = f'INSERT OR REPLACE INTO stations ({columns}) VALUES ({placeholders})'
+        sql = f'INSERT OR IGNORE INTO stations ({columns}) VALUES ({placeholders})'
         self.cursor.execute(sql, list(values.values()))
         # 画像作成
         dir = os.path.join(self.PROFILE_PATH, 'stations', 'logo')
@@ -292,10 +322,10 @@ class DB(Common):
         path = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', f'{kid}.png')
         create_qrcode(url, path)
         # 既存のcontentsと照合
-        sql = 'SELECT * FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.cstatus = 0 AND c.end > NOW() AND s.sstatus >= 0'
+        sql = 'SELECT * FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.cstatus = 0 AND c.end > NOW() AND s.sstatus > -1'
         self.cursor.execute(sql)
         for csdata in self.cursor.fetchall():
-            kid, filename, cstatus = self._keyword_match(dict(csdata), csdata['title'], csdata['description'], abbr=csdata['abbr'])
+            kid, filename, cstatus = self._keyword_match(dict(csdata), csdata['title'], csdata['description'], key=csdata['key'])
             if cstatus > 0:
                 sql = 'UPDATE contents SET kid = :kid, filename = :filename, cstatus = 1 WHERE cid = :cid'
                 self.cursor.execute(sql, {'cid': csdata['cid'], 'kid': kid, 'filename': filename})
@@ -325,24 +355,24 @@ class DB(Common):
                 description += f'<p class="{key}">{value}</p>'
         return description
 
-    def _station(self, cdata, abbr=''):
+    def _station(self, cdata, key=''):
         if cdata.get('region'):
-            sql = 'SELECT sid, sstatus, abbr FROM stations WHERE station = :station AND region = :region AND pref = :pref AND sstatus >= 0'
+            sql = 'SELECT sid, sstatus, key FROM stations WHERE station = :station AND region = :region AND pref = :pref AND sstatus > -1'
             self.cursor.execute(sql, {'station': cdata['station'], 'region': cdata['region'], 'pref': cdata['pref']})
-            sid, sstatus, abbr = self.cursor.fetchone()
-        elif abbr:
-            sql = 'SELECT sid FROM stations WHERE abbr = :abbr AND sstatus >= 0'
-            self.cursor.execute(sql, {'abbr': abbr})
+            sid, sstatus, key = self.cursor.fetchone()
+        elif key:
+            sql = 'SELECT sid FROM stations WHERE key = :key AND sstatus > -1'
+            self.cursor.execute(sql, {'key': key})
             sid, = self.cursor.fetchone()  # ダウンロードのアイコン画像用にsidを付与
             sstatus = 0
         else:
-            sid, abbr, sstatus = 0, 'unknown', 0
+            sid, key, sstatus = 0, 'unknown', 0
         start = cdata['start']  # 2025-02-04 21:24:00
         end = cdata['end']
-        filename = f'{abbr}-{start[0:4]}{start[5:7]}{start[8:10]}-{start[11:13]}{start[14:16]}-{end[11:13]}{end[14:16]}.mp3'
+        filename = f'{key}-{start[0:4]}{start[5:7]}{start[8:10]}-{start[11:13]}{start[14:16]}-{end[11:13]}{end[14:16]}.mp3'
         return sid, sstatus, filename
     
-    def _keyword_match(self, cdata, title, description, abbr=''):
+    def _keyword_match(self, cdata, title, description, key=''):
         sql = "SELECT kid, keyword, match, weekday, station FROM keywords WHERE kstatus = 1"
         self.cursor.execute(sql)
         for kid, keyword, match, weekday, station in self.cursor.fetchall():
@@ -355,82 +385,49 @@ class DB(Common):
                 continue
             if match == 1 and description.find(keyword) < 0:
                 continue
-            _, _, filename = self._station(cdata, abbr)
+            _, _, filename = self._station(cdata, key)
             return kid, filename, 1
         else:
             return 0, '', 0
 
-    # 都道府県、市区町村を検索する
-    def _search_by_pref(self, pref, exact=True):
-        if exact:
-            sql = 'SELECT * FROM cities WHERE pref = :pref AND LENGTH(city) = 0'
-        else:
-            sql = 'SELECT * FROM cities WHERE SUBSTR(pref, 1, LENGTH(pref)-1) = :pref AND LENGTH(city) = 0'
+    # area_idを検索する
+    def search_by_pref(self, pref):
+        # 神奈川県
+        sql = "SELECT area_id FROM cities WHERE :pref = pref"
         self.cursor.execute(sql, {'pref': pref})
-        result = self.cursor.fetchone()
-        return result['code'], result['region'], result['pref']
-
-    def _search_by_city(self, city, pref='', exact=True):
-        if exact:
-            sql = 'SELECT * FROM cities WHERE city = :city'
-            self.cursor.execute(sql, {'city': city})
-        elif pref:
-            sql = 'SELECT * FROM cities WHERE SUBSTR(city, 1, LENGTH(city)-1) = :city AND pref = :pref'
-            self.cursor.execute(sql, {'city': city, 'pref': pref})
-        else:
-            sql = 'SELECT * FROM cities WHERE SUBSTR(city, 1, LENGTH(city)-1) = :city'
-            self.cursor.execute(sql, {'city': city})
-        result = self.cursor.fetchone()
-        return result['code'], result['region'], result['pref'], result['city']
-
-    def search_by_radiko(self, radiko):
-        sql = "SELECT * FROM cities WHERE radiko = :radiko AND city = ''"
-        self.cursor.execute(sql, {'radiko': radiko})
-        result = self.cursor.fetchone()
-        return dict(result)
-
-    # 地域、都道府県、市区町村を推定する
-    def infer_place(self, text):
-        # lsnr
-        if text.startswith('BAY WAVE'):
-            text = '宮城県塩竈市'
-        elif text.startswith('FMおとくに'):
-            text = '京都府向日市'
-        # jcba
-        elif text.startswith('アップルウェーブ'):
-            text = '青森県弘前市'
-        elif text.startswith('FMまほろば'):
-            text = '奈良県田原本町'
-        # マッチング
-        code = region = pref = city = ''
-        # 都道府県
-        self.cursor.execute('SELECT DISTINCT(pref) FROM cities WHERE LENGTH(pref) > 0')
-        regex = '(%s)' % '|'.join([pref for pref, in self.cursor.fetchall()])
-        match = re.search(regex, text)
-        if match:
-            code, region, pref = self._search_by_pref(match.group(1), exact=True)
-        # 市町村
-        self.cursor.execute('SELECT DISTINCT(city) FROM cities WHERE LENGTH(city) > 0')
-        regex = '(%s)' % '|'.join([city for city, in self.cursor.fetchall()])
-        match = re.search(regex, text)
-        if match:
-            code, region, pref, city = self._search_by_city(match.group(1), exact=True)
-        elif pref:
-            sql = 'SELECT DISTINCT(city) FROM cities WHERE LENGTH(city) > 2 AND pref = :pref AND SUBSTR(city, 1, LENGTH(city)-1) != SUBSTR(pref, 1, LENGTH(pref)-1)'
-            self.cursor.execute(sql, {'pref': pref})
-            regex = '(%s)' % '|'.join([city[:-1] for city, in self.cursor.fetchall()])
-            match = re.search(regex, text)
-            if match:
-                code, region, pref, city = self._search_by_city(match.group(1), pref, exact=False)
+        area_id, = self.cursor.fetchone()
+        return area_id
+    
+    # 都道府県、市区町村を検索する
+    def search_by_radiko(self, area_id):
+        # JP14
+        sql = "SELECT code, region, pref, city FROM cities WHERE area_id = :area_id AND city = ''"
+        self.cursor.execute(sql, {'area_id': area_id})
+        code, region, pref, city  = self.cursor.fetchone()
         return code, region, pref, city
-
-    # radikoコードから地域、都道府県を判定する
-    def radiko_place(self, code):
-        item = self.search_by_radiko(code)
-        code = item['code']
-        pref = item['pref']
-        region = item['region']
-        return code, region, pref
+    
+    def search_by_joined(self, place):
+        # 神奈川県横浜市
+        sql = "SELECT code, region, pref, city FROM cities WHERE INSTR(:place, pref) = 1 AND INSTR(:place, city) = LENGTH(pref) + 1"
+        self.cursor.execute(sql, {'place': place})
+        return self.cursor.fetchone()
+    
+    def search_by_station(self, protocol, station):
+        # 放送局名の表記の揺れを解決して名寄せする
+        sql = f'SELECT code, region, pref, city, station, SJ, LR, SR, SP FROM master WHERE {protocol} = :station'
+        self.cursor.execute(sql, {'station': station})
+        results = self.cursor.fetchone()
+        if results:
+            code, region, pref, city, station, SJ, LR, SR, SP = results
+            # 優先するprotocolか否かを判定する
+            status = False
+            if SJ: status = protocol == 'SJ'
+            elif LR: status = protocol == 'LR'
+            elif SR: status = protocol == 'SR'
+            elif SP: status = protocol == 'SP'
+            return code, region, pref, city, station, status
+        else:
+            return None
 
     # 祝祭日を判定する
     def is_holiday(self, date):
@@ -443,7 +440,7 @@ class DB(Common):
 # ロゴ画像を取得してサムネイル画像を作成
 def load_logo(item, dir, force=False):
     # 画像のファイルパス
-    dirname = os.path.join(dir, item['type'])
+    dirname = os.path.join(dir, item['protocol'])
     os.makedirs(dirname, exist_ok=True)
     path = os.path.join(dirname, item['station'] + '.png')
     if force:
