@@ -109,7 +109,9 @@ class Transfer(Common):
                 'site': data['official'],
                 'direct': data['stream'],
                 'delay': 0,
-                'sstatus': 0
+                'display': 1,
+                'schedule': 0,
+                'download': 0,
             }
         # プラグインの放送局フォルダ直下のjsonフォルダにあるjsonファイルから読み込む
         for json_file in [os.path.join(self.DATA_PATH, 'stations', 'json', f'{protocol}.json') for protocol in ('NHK', 'RDK', 'SJ', 'LR', 'SP', 'SR')]:
@@ -133,7 +135,7 @@ class Transfer(Common):
         # データ変換関数
         def convert(data):
             if data['limit'] == 'true':
-                sql = 'SELECT station FROM stations WHERE key = :key AND sstatus > -1'
+                sql = 'SELECT station FROM stations WHERE key = :key AND download > -1'
                 self.db.cursor.execute(sql, {'key': data['id']})
                 station, = self.db.cursor.fetchone()
             else:
@@ -167,6 +169,8 @@ class Transfer(Common):
                 shutil.copy(item, os.path.join(self.PROFILE_PATH, '~backup', os.path.basename(item)))
             if os.path.isdir(item):
                 shutil.copytree(item, os.path.join(self.PROFILE_PATH, '~backup', os.path.basename(item)))
+
+    def init_tables(self):
         # citiesテーブル作成
         json_file = os.path.join(self.DATA_PATH, 'json', 'cities.json')
         with open(json_file, encoding='utf-8') as f:
@@ -184,15 +188,12 @@ class Transfer(Common):
                 self.db.add_master(data)
         
     def postprocess(self):
+        # ファイル/ディレクトリ削除
         items = [
             os.path.join(self.PROFILE_PATH, 'mmap.txt'),
             os.path.join(self.PROFILE_PATH, 'auth.json'),
             os.path.join(self.PROFILE_PATH, 'queue'),
-            os.path.join(self.PROFILE_PATH, 'timetable', 'timetable'),
-            os.path.join(self.PROFILE_PATH, 'timetable', 'json', 'nhkr.json'),
-            os.path.join(self.PROFILE_PATH, 'timetable', 'json', 'radk.json'),
-            os.path.join(self.PROFILE_PATH, 'timetable', 'source', 'nhkr.txt'),
-            os.path.join(self.PROFILE_PATH, 'timetable', 'source', 'radk.txt'),
+            os.path.join(self.PROFILE_PATH, 'timetable'),
             os.path.join(self.PROFILE_PATH, 'stations', 'index'),
             os.path.join(self.PROFILE_PATH, 'stations', 'directory'),
             os.path.join(self.PROFILE_PATH, 'stations', 'logo', 'csra'),
@@ -211,6 +212,7 @@ class Transfer(Common):
 
     def run(self):
         self.preprocess()
+        self.init_tables()
         self.import_stations()
         self.import_keywords()
         self.import_contents()

@@ -84,6 +84,10 @@ msgctxt "#30111"
 msgid "Show info"
 msgstr "番組情報"
 
+msgctxt "#30112"
+msgid "Open web site"
+msgstr "ウェブサイトを開く"
+
 #
 # for settings
 #
@@ -242,7 +246,7 @@ msgstr "削除確認"
 
 msgctxt "#30530"
 msgid "Delete keyword settings and downloaded files for \"%s\"?"
-msgstr "\"%s\"に関するキーワード設定とダウンロード済みファイルを削除しますか？"
+msgstr "\"%s\"のキーワード設定とダウンロード済みファイルを削除しますか？"
 
 msgctxt "#30600"
 msgid "Station settings"
@@ -278,7 +282,7 @@ msgstr "削除確認"
 
 msgctxt "#30608"
 msgid "Delete station settings for \"%s\"?"
-msgstr "\"%s\"に関する放送局設定を削除しますか？"
+msgstr "\"%s\"の放送局設定を削除しますか？"
 
 msgctxt "#30609"
 msgid "Show info"
@@ -287,6 +291,18 @@ msgstr "番組情報"
 msgctxt "#30610"
 msgid "(No info)"
 msgstr "（番組情報はありません）"
+
+#
+# miscellaneous
+#
+
+msgctxt "#30700"
+msgid "(Retrieving program info...)"
+msgstr "番組情報取得中..."
+
+msgctxt "#30701"
+msgid "(Program info is currently unavailable)"
+msgstr "番組情報が取得できません"
 
 #
 # for common use

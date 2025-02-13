@@ -36,6 +36,8 @@ class Download(Common):
             self._add_download(cksdata)
         # リストアイテム追加完了
         xbmcplugin.endOfDirectory(int(sys.argv[1]), succeeded=True)
+        # statusテーブルに格納されている表示中の放送局をクリア
+        self.db.cursor.execute("UPDATE status SET front = '[]'")
 
     def _add_download(self, cksdata):
         # listitemを追加する
@@ -64,8 +66,10 @@ class Download(Common):
         weekdays = self.STR(30920)
         weekdays = weekdays.split(',')
         # 放送開始時刻
-        d = datetime.strptime(ckdata['start'], '%Y-%m-%d %H:%M:%S')
-        w = d.weekday()
+        #d = datetime.strptime(ckdata['start'], '%Y-%m-%d %H:%M:%S')
+        #w = d.weekday()
+        d = self.datetime(ckdata['start'])
+        w = self.weekday(ckdata['start'])
         # 放送終了時刻
         end = ckdata['end'][11:16]
         # 8月31日(土)
@@ -134,7 +138,7 @@ class Download(Common):
         writer.close()
         # RSSから参照できるように、スタイルシートとアイコン画像をダウンロードフォルダにコピーする
         shutil.copy(os.path.join(self.DATA_PATH, 'rss', 'stylesheet.xsl'), os.path.join(self.CONTENTS_PATH, dirname, 'stylesheet.xsl'))
-        shutil.copy(os.path.join(self.PLUGIN_PATH, 'icon.png'), os.path.join(self.CONTENTS_PATH, dirname, 'icon.png'))
+        shutil.copy(os.path.join(self.DATA_PATH, 'rss', 'icon.png'), os.path.join(self.CONTENTS_PATH, dirname, 'icon.png'))
 
     def create_index(self):
         # templates
@@ -171,7 +175,7 @@ class Download(Common):
         writer.close()
         # RSSから参照できるように、スタイルシートとアイコン画像をダウンロードフォルダにコピーする
         shutil.copy(os.path.join(self.DATA_PATH, 'rss', 'stylesheet.xsl'), os.path.join(self.CONTENTS_PATH, 'stylesheet.xsl'))
-        shutil.copy(os.path.join(self.PLUGIN_PATH, 'icon.png'), os.path.join(self.CONTENTS_PATH, 'icon.png'))
+        shutil.copy(os.path.join(self.DATA_PATH, 'rss', 'icon.png'), os.path.join(self.CONTENTS_PATH, 'icon.png'))
 
     def _date(self, date):
         # "2023-04-20 14:00:00" -> "2023-04-20"
@@ -179,7 +183,7 @@ class Download(Common):
 
     def _pubdate(self, date):
         # "2023-04-20 14:00:00" -> "Thu, 20 Apr 2023 14:00:00 +0900"
-        try:
+        '''try:
             pubdate = datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
             pubdate = pubdate.strftime('%a, %d %b %Y %H:%M:%S +0900')
         except TypeError:
@@ -190,5 +194,7 @@ class Download(Common):
                 pubdate = ''
         except ValueError:
             pubdate = ''
+        '''
+        pubdate = self.datetime(date).strftime('%a, %d %b %Y %H:%M:%S +0900')
         return pubdate
     

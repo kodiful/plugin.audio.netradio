@@ -9,25 +9,29 @@
         "city": "大船渡市",
         "logo": "https://fmplapla.com/fmnemaline/img/artwork.png",
         "description": "2016年2月1日 放送開始",
-        "site": "",
+        "site": "https://fm-nemaline.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "iianbefm",
-        "station": "きたかみE&Be FM",
+        "station": "きたかみE&Beエフエム",
         "code": "032069",
         "region": "東北",
         "pref": "岩手県",
         "city": "北上市",
         "logo": "https://fmplapla.com/iianbefm/img/artwork.png",
         "description": "2020年11月2日 放送開始",
-        "site": "",
+        "site": "https://fm888.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -39,25 +43,29 @@
         "city": "一関市",
         "logo": "https://fmplapla.com/fmasmo/img/artwork.png",
         "description": "2013年4月29日 放送開始",
-        "site": "",
+        "site": "https://fm-asmo.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "bikkifm",
-        "station": "OCR FM835",
+        "station": "OCR FM 83.5",
         "code": "042153",
         "region": "東北",
         "pref": "宮城県",
         "city": "大崎市",
         "logo": "https://fmplapla.com/bikkifm/img/artwork.png",
         "description": "2017年5月1日 放送開始",
-        "site": "",
+        "site": "https://oosaki-fm.or.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -69,10 +77,12 @@
         "city": "大館市",
         "logo": "https://fmplapla.com/radioodate/img/artwork.png",
         "description": "2022年7月20日 放送開始",
-        "site": "",
+        "site": "https://odate-fm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -84,10 +94,12 @@
         "city": "大仙市",
         "logo": "https://fmplapla.com/fmhanabi/img/artwork.png",
         "description": "2015年7月31日 放送開始",
-        "site": "",
+        "site": "http://fmhanabi.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -99,10 +111,12 @@
         "city": "宇都宮市",
         "logo": "https://fmplapla.com/miyaradi/img/artwork.png",
         "description": "2017年3月1日 放送開始",
-        "site": "",
+        "site": "https://www.miyaradi.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -114,10 +128,12 @@
         "city": "足利市",
         "logo": "https://fmplapla.com/fmdamono/img/artwork.png",
         "description": "2024年5月26日 放送開始",
-        "site": "",
+        "site": "https://www.damono.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -129,10 +145,12 @@
         "city": "栃木市",
         "logo": "https://fmplapla.com/fmkulala857/img/artwork.png",
         "description": "2015年9月25日 放送開始",
-        "site": "",
+        "site": "https://www.fmkulala857.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -144,10 +162,12 @@
         "city": "小山市",
         "logo": "https://fmplapla.com/oradi/img/artwork.png",
         "description": "2017年11月4日 放送開始",
-        "site": "",
+        "site": "https://www.o-radi775.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -159,10 +179,12 @@
         "city": "真岡市",
         "logo": "https://fmplapla.com/fmmoka/img/artwork.png",
         "description": "2020年11月15日 放送開始",
-        "site": "",
+        "site": "https://www.fm-moka874.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -174,25 +196,29 @@
         "city": "下野市",
         "logo": "https://fmplapla.com/fmyugao/img/artwork.png",
         "description": "2019年12月20日 放送開始",
-        "site": "",
+        "site": "https://fmyugao879.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "fmkiryu",
-        "station": "FMきりゅう",
+        "station": "FM桐生",
         "code": "102032",
         "region": "関東",
         "pref": "群馬県",
         "city": "桐生市",
         "logo": "https://fmplapla.com/fmkiryu/img/artwork.png",
         "description": "2017年7月21日 放送開始",
-        "site": "",
+        "site": "https://www.fmkiryu.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -204,25 +230,29 @@
         "city": "熊谷市",
         "logo": "https://fmplapla.com/fmkumagaya/img/artwork.png",
         "description": "2019年4月3日 放送開始",
-        "site": "",
+        "site": "https://fmkumagaya.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "chichibufm",
-        "station": "ちちぶFM",
+        "station": "ちちぶエフエム",
         "code": "112071",
         "region": "関東",
         "pref": "埼玉県",
         "city": "秩父市",
         "logo": "https://fmplapla.com/chichibufm/img/artwork.png",
         "description": "2019年10月7日 放送開始",
-        "site": "",
+        "site": "https://chichibufm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -234,10 +264,12 @@
         "city": "本庄市",
         "logo": "https://fmplapla.com/honjofm/img/artwork.png",
         "description": "2021年4月14日 放送開始",
-        "site": "",
+        "site": "https://honjofm.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -249,40 +281,46 @@
         "city": "府中市",
         "logo": "https://fmplapla.com/radiofuchues/img/artwork.png",
         "description": "2023年4月1日 放送開始",
-        "site": "",
+        "site": "https://radio-fuchues.tokyo/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "fmhigashikurume",
-        "station": "TOKYO854くるめラ",
+        "station": "TOKYO854 くるめラ",
         "code": "132225",
         "region": "関東",
         "pref": "東京都",
         "city": "東久留米市",
         "logo": "https://fmplapla.com/fmhigashikurume/img/artwork.png",
         "description": "2018年6月30日 放送開始",
-        "site": "",
+        "site": "https://tokyo854.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "fmnishitokyo",
-        "station": "FM西東京",
+        "station": "エフエム西東京",
         "code": "132292",
         "region": "関東",
         "pref": "東京都",
         "city": "西東京市",
         "logo": "https://fmplapla.com/fmnishitokyo/img/artwork.png",
         "description": "2020年4月1日 放送開始",
-        "site": "",
+        "site": "https://842fm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -294,10 +332,12 @@
         "city": "横浜市金沢区",
         "logo": "https://fmplapla.com/kanazawaseasidefm/img/artwork.png",
         "description": "2022年10月1日 放送開始",
-        "site": "",
+        "site": "https://kanazawa-seasidefm.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -309,10 +349,12 @@
         "city": "川崎市川崎区",
         "logo": "https://fmplapla.com/fmdaishi/img/artwork.png",
         "description": "2024年9月30日 放送開始",
-        "site": "",
+        "site": "https://fmdaishi.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -324,25 +366,29 @@
         "city": "三条市",
         "logo": "https://fmplapla.com/radioheart/img/artwork.png",
         "description": "2019年7月1日 放送開始",
-        "site": "",
+        "site": "http://www.heart768.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "fmtokamachi",
-        "station": "FMとおかまち",
+        "station": "エフエムとおかまち",
         "code": "152102",
         "region": "甲信越",
         "pref": "新潟県",
         "city": "十日町市",
         "logo": "https://fmplapla.com/fmtokamachi/img/artwork.png",
         "description": "2016年7月11日 放送開始",
-        "site": "",
+        "site": "http://www.fm-tokamachi.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -354,10 +400,12 @@
         "city": "妙高市",
         "logo": "https://fmplapla.com/fmmyoko/img/artwork.png",
         "description": "2015年12月14日 放送開始",
-        "site": "",
+        "site": "https://fm-myoko785.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -369,40 +417,46 @@
         "city": "松本市",
         "logo": "https://fmplapla.com/fmmatsumoto/img/artwork.png",
         "description": "2017年4月1日 放送開始",
-        "site": "",
+        "site": "https://fmmatsumoto.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "iidafm",
-        "station": "いいだFM",
+        "station": "いいだFM iステーション",
         "code": "202053",
         "region": "甲信越",
         "pref": "長野県",
         "city": "飯田市",
         "logo": "https://fmplapla.com/iidafm/img/artwork.png",
         "description": "2013年元旦 放送開始",
-        "site": "",
+        "site": "https://iida.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "fmsakudaira",
-        "station": "FMさくだいら",
+        "station": "fmさくだいら",
         "code": "202177",
         "region": "甲信越",
         "pref": "長野県",
         "city": "佐久市",
         "logo": "https://fmplapla.com/fmsakudaira/img/artwork.png",
         "description": "2018年7月3日 放送開始",
-        "site": "",
+        "site": "http://www.fmsakudaira.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -414,10 +468,12 @@
         "city": "東御市",
         "logo": "https://fmplapla.com/fmtomi/img/artwork.png",
         "description": "2015年8月18日 放送開始",
-        "site": "",
+        "site": "https://fmtomi785.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -429,10 +485,12 @@
         "city": "可児市",
         "logo": "https://fmplapla.com/fmrara768/img/artwork.png",
         "description": "2015年4月1日 放送開始",
-        "site": "",
+        "site": "http://fm768.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -444,25 +502,29 @@
         "city": "名古屋市中区",
         "logo": "https://fmplapla.com/nagoyabousai/img/artwork.png",
         "description": "2018年9月1日 放送開始",
-        "site": "",
+        "site": "https://midfm761.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "tees-843fm",
-        "station": "FM豊橋",
+        "station": "やしの実FM",
         "code": "232017",
         "region": "東海",
         "pref": "愛知県",
         "city": "豊橋市",
         "logo": "https://fmplapla.com/tees-843fm/img/artwork.png",
         "description": "2013年11月27日 放送開始",
-        "site": "",
+        "site": "https://843fm.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -474,10 +536,12 @@
         "city": "刈谷市",
         "logo": "https://fmplapla.com/pitchfm/img/artwork.png",
         "description": "2016年1月14日 放送開始",
-        "site": "",
+        "site": "https://838.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -489,25 +553,29 @@
         "city": "豊田市",
         "logo": "https://fmplapla.com/radioloveat/img/artwork.png",
         "description": "2017年元旦 放送開始",
-        "site": "",
+        "site": "https://www.loveat.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "mediasfm",
-        "station": "メディアスFM",
+        "station": "メディアスエフエム",
         "code": "232220",
         "region": "東海",
         "pref": "愛知県",
         "city": "東海市",
         "logo": "https://fmplapla.com/mediasfm/img/artwork.png",
         "description": "2014年6月23日 放送開始",
-        "site": "",
+        "site": "https://www.medias.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -519,10 +587,12 @@
         "city": "四日市市",
         "logo": "https://fmplapla.com/fmyokkaichi/img/artwork.png",
         "description": "2015年7月1日 放送開始",
-        "site": "",
+        "site": "https://cty-fm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -534,25 +604,29 @@
         "city": "大津市",
         "logo": "https://fmplapla.com/fmotsu/img/artwork.png",
         "description": "2019年10月1日 放送開始",
-        "site": "",
+        "site": "https://fmotsu.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "fmhikone",
-        "station": "FMひこね",
+        "station": "エフエムひこね",
         "code": "252026",
         "region": "近畿",
         "pref": "滋賀県",
         "city": "彦根市",
         "logo": "https://fmplapla.com/fmhikone/img/artwork.png",
         "description": "2020年4月1日 放送開始",
-        "site": "",
+        "site": "https://www.fmhikone.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -564,10 +638,12 @@
         "city": "大阪市中央区",
         "logo": "https://fmplapla.com/yesfm/img/artwork.png",
         "description": "2018年7月1日 放送開始",
-        "site": "",
+        "site": "https://www.yesfm.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -579,10 +655,12 @@
         "city": "泉大津市",
         "logo": "https://fmplapla.com/fmizumiotsu/img/artwork.png",
         "description": "2017年12月24日 放送開始",
-        "site": "",
+        "site": "https://fmizumiotsu.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -594,10 +672,12 @@
         "city": "尼崎市",
         "logo": "https://fmplapla.com/amasakifm/img/artwork.png",
         "description": "2024年6月3日 放送開始",
-        "site": "",
+        "site": "https://amasaki-fm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -609,25 +689,29 @@
         "city": "大和高田市",
         "logo": "https://fmplapla.com/fmyamato/img/artwork.png",
         "description": "2021年7月1日 放送開始",
-        "site": "",
+        "site": "https://fmyamato.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "fmyumewave",
-        "station": "FMゆめウェーブ",
+        "station": "エフエムゆめウェーブ",
         "code": "332054",
         "region": "中国",
         "pref": "岡山県",
         "city": "笠岡市",
         "logo": "https://fmplapla.com/fmyumewave/img/artwork.png",
         "description": "2015年11月2日 放送開始",
-        "site": "",
+        "site": "https://www.yumewave.net/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -639,10 +723,12 @@
         "city": "防府市",
         "logo": "https://fmplapla.com/fmwassyoi/img/artwork.png",
         "description": "2017年12月12日 放送開始",
-        "site": "",
+        "site": "http://www.fm-wassyoi.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -654,10 +740,12 @@
         "city": "山陽小野田市",
         "logo": "https://fmplapla.com/fmsunsunkirara/img/artwork.png",
         "description": "2018年11月1日 放送開始",
-        "site": "",
+        "site": "http://www.sw897.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -669,10 +757,12 @@
         "city": "四万十市",
         "logo": "https://fmplapla.com/fmhataland/img/artwork.png",
         "description": "2023年12月20日 放送開始",
-        "site": "",
+        "site": "https://fmhataland.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -684,10 +774,12 @@
         "city": "北九州市小倉北区",
         "logo": "https://fmplapla.com/fmkitaq/img/artwork.png",
         "description": "2022年1月1日 放送開始",
-        "site": "",
+        "site": "https://www.fm-kitaq.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -699,10 +791,12 @@
         "city": "大牟田市",
         "logo": "https://fmplapla.com/fmtanto/img/artwork.png",
         "description": "2016年7月9日 放送開始",
-        "site": "",
+        "site": "https://www.fmtanto.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -714,10 +808,12 @@
         "city": "佐賀市",
         "logo": "https://fmplapla.com/ebisufm/img/artwork.png",
         "description": "2014年7月10日 放送開始",
-        "site": "",
+        "site": "https://ebisufm.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -729,40 +825,46 @@
         "city": "佐世保市",
         "logo": "https://fmplapla.com/happyfm/img/artwork.png",
         "description": "2013年6月4日 放送開始",
-        "site": "",
+        "site": "https://happyfm873.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "fmisahaya",
-        "station": "レインボーFM",
+        "station": "レインボーエフエム",
         "code": "422045",
         "region": "九州沖縄",
         "pref": "長崎県",
         "city": "諫早市",
         "logo": "https://fmplapla.com/fmisahaya/img/artwork.png",
         "description": "2015年4月1日 放送開始",
-        "site": "",
+        "site": "http://www.771fm.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "fmtsushima",
-        "station": "FM対馬",
+        "station": "エフエム対馬",
         "code": "422096",
         "region": "九州沖縄",
         "pref": "長崎県",
         "city": "対馬市",
         "logo": "https://fmplapla.com/fmtsushima/img/artwork.png",
         "description": "2024年4月8日 放送開始",
-        "site": "",
+        "site": "https://fmtsushima.ne.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -774,10 +876,12 @@
         "city": "南島原市",
         "logo": "https://fmplapla.com/fmhimawari/img/artwork.png",
         "description": "2018年10月1日 放送開始",
-        "site": "",
+        "site": "http://himawarinet.ne.jp/?page_id=2700",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -789,25 +893,29 @@
         "city": "天草市",
         "logo": "https://fmplapla.com/mitsubachiradio/img/artwork.png",
         "description": "2017年12月3日 放送開始",
-        "site": "",
+        "site": "https://www.acn-tv.co.jp/radio.html",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "sunshinefm",
-        "station": "サンシャインFM",
+        "station": "宮崎サンシャインFM",
         "code": "452017",
         "region": "九州沖縄",
         "pref": "宮崎県",
         "city": "宮崎市",
         "logo": "https://fmplapla.com/sunshinefm/img/artwork.png",
         "description": "2013年9月1日 放送開始",
-        "site": "",
+        "site": "http://www.sunfm.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -819,10 +927,12 @@
         "city": "日向市",
         "logo": "https://fmplapla.com/fmhyuga/img/artwork.png",
         "description": "2014年4月1日 放送開始",
-        "site": "",
+        "site": "https://767.fm/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -834,10 +944,12 @@
         "city": "鹿児島市",
         "logo": "https://fmplapla.com/friendsfm/img/artwork.png",
         "description": "2022年3月1日 放送開始",
-        "site": "",
+        "site": "https://www.friendsfm.co.jp/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -849,10 +961,12 @@
         "city": "鹿屋市",
         "logo": "https://fmplapla.com/fmkanoya/img/artwork.png",
         "description": "2013年5月29日 放送開始",
-        "site": "",
+        "site": "https://www.772fm.net/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -864,25 +978,29 @@
         "city": "薩摩川内市",
         "logo": "https://fmplapla.com/fmsatsumasendai/img/artwork.png",
         "description": "2017年12月14日 放送開始",
-        "site": "",
+        "site": "https://fm871.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
         "key": "fmkirishima",
-        "station": "FMきりしま",
+        "station": "プラスきりしま",
         "code": "462187",
         "region": "九州沖縄",
         "pref": "鹿児島県",
         "city": "霧島市",
         "logo": "https://fmplapla.com/fmkirishima/img/artwork.png",
         "description": "2013年6月27日 放送開始",
-        "site": "",
+        "site": "http://plakiri.com/fm769/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -894,10 +1012,12 @@
         "city": "うるま市",
         "logo": "https://fmplapla.com/fmuruma/img/artwork.png",
         "description": "2017年8月12日 放送開始",
-        "site": "",
+        "site": "https://fmuruma.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
         "protocol": "SP",
@@ -909,9 +1029,11 @@
         "city": "宮古島市",
         "logo": "https://fmplapla.com/fmmiyako/img/artwork.png",
         "description": "2018年10月1日 放送開始",
-        "site": "",
+        "site": "https://www.fm-miyako.com/",
         "direct": "",
         "delay": 0,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     }
 ]

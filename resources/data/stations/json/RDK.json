@@ -1,6 +1,5 @@
 [
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "HBC",
         "station": "HBCラジオ",
@@ -13,10 +12,11 @@
         "site": "https://www.hbc.co.jp",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "STV",
         "station": "STVラジオ",
@@ -29,10 +29,11 @@
         "site": "https://www.stv.jp",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -45,10 +46,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -61,10 +63,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "AIR-G",
         "station": "AIR-G'(FM北海道)",
@@ -77,10 +80,11 @@
         "site": "https://www.air-g.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "NORTHWAVE",
         "station": "FM NORTH WAVE",
@@ -93,10 +97,11 @@
         "site": "https://www.fmnorth.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOIK",
         "station": "NHKラジオ第1(札幌)",
@@ -109,10 +114,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -125,10 +131,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RAB",
         "station": "RAB青森放送",
@@ -141,10 +148,11 @@
         "site": "https://www.rab.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -157,10 +165,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -173,10 +182,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "AFB",
         "station": "エフエム青森",
@@ -189,10 +199,11 @@
         "site": "https://www.afb.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOHK",
         "station": "NHKラジオ第1(仙台)",
@@ -205,10 +216,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -221,10 +233,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "IBC",
         "station": "IBCラジオ",
@@ -237,10 +250,11 @@
         "site": "https://www.ibc.co.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -253,10 +267,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -269,10 +284,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMI",
         "station": "エフエム岩手",
@@ -285,10 +301,11 @@
         "site": "http://www.fmii.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOHK",
         "station": "NHKラジオ第1(仙台)",
@@ -301,10 +318,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -317,10 +335,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "TBC",
         "station": "TBCラジオ",
@@ -333,10 +352,11 @@
         "site": "http://www.tbc-sendai.co.jp/02radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -349,10 +369,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -365,10 +386,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "DATEFM",
         "station": "Date fm エフエム仙台",
@@ -381,10 +403,11 @@
         "site": "http://www.datefm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOHK",
         "station": "NHKラジオ第1(仙台)",
@@ -397,10 +420,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -413,10 +437,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ABS",
         "station": "ABSラジオ",
@@ -429,10 +454,11 @@
         "site": "https://www.akita-abs.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -445,10 +471,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -461,10 +488,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "AFM",
         "station": "エフエム秋田",
@@ -477,10 +505,11 @@
         "site": "http://www.fm-akita.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOHK",
         "station": "NHKラジオ第1(仙台)",
@@ -493,10 +522,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -509,10 +539,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "YBC",
         "station": "YBC山形放送",
@@ -525,10 +556,11 @@
         "site": "https://www.ybc.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -541,10 +573,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -557,10 +590,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RFM",
         "station": "Rhythm Station エフエム山形",
@@ -573,10 +607,11 @@
         "site": "http://www.rfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOHK",
         "station": "NHKラジオ第1(仙台)",
@@ -589,10 +624,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -605,10 +641,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RFC",
         "station": "RFCラジオ福島",
@@ -621,10 +658,11 @@
         "site": "http://www.rfc.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -637,10 +675,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -653,10 +692,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMF",
         "station": "ふくしまFM",
@@ -669,10 +709,11 @@
         "site": "http://www.fmf.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOHK",
         "station": "NHKラジオ第1(仙台)",
@@ -685,10 +726,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -701,10 +743,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "TBS",
         "station": "TBSラジオ",
@@ -717,10 +760,11 @@
         "site": "https://www.tbsradio.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "QRR",
         "station": "文化放送",
@@ -733,10 +777,11 @@
         "site": "http://www.joqr.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "LFR",
         "station": "ニッポン放送",
@@ -749,10 +794,11 @@
         "site": "http://www.1242.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -765,10 +811,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -781,10 +828,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "INT",
         "station": "interfm",
@@ -797,10 +845,11 @@
         "site": "https://www.interfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMT",
         "station": "TOKYO FM",
@@ -813,10 +862,11 @@
         "site": "https://www.tfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMJ",
         "station": "J-WAVE",
@@ -829,10 +879,11 @@
         "site": "https://www.j-wave.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "IBS",
         "station": "LuckyFM 茨城放送",
@@ -845,10 +896,11 @@
         "site": "https://www.ibs-radio.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JORF",
         "station": "ラジオ日本",
@@ -861,10 +913,11 @@
         "site": "http://www.jorf.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "BAYFM78",
         "station": "BAYFM78",
@@ -877,10 +930,11 @@
         "site": "http://www.bayfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "NACK5",
         "station": "NACK5",
@@ -893,10 +947,11 @@
         "site": "https://www.nack5.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "YFM",
         "station": "FMヨコハマ",
@@ -909,10 +964,11 @@
         "site": "https://www.fmyokohama.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK",
         "station": "NHKラジオ第1(東京)",
@@ -925,10 +981,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -941,10 +998,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "TBS",
         "station": "TBSラジオ",
@@ -957,10 +1015,11 @@
         "site": "https://www.tbsradio.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "QRR",
         "station": "文化放送",
@@ -973,10 +1032,11 @@
         "site": "http://www.joqr.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "LFR",
         "station": "ニッポン放送",
@@ -989,10 +1049,11 @@
         "site": "http://www.1242.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -1005,10 +1066,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -1021,10 +1083,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "INT",
         "station": "interfm",
@@ -1037,10 +1100,11 @@
         "site": "https://www.interfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMT",
         "station": "TOKYO FM",
@@ -1053,10 +1117,11 @@
         "site": "https://www.tfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMJ",
         "station": "J-WAVE",
@@ -1069,10 +1134,11 @@
         "site": "https://www.j-wave.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CRT",
         "station": "CRT栃木放送",
@@ -1085,10 +1151,11 @@
         "site": "http://www.crt-radio.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RADIOBERRY",
         "station": "RADIO BERRY",
@@ -1101,10 +1168,11 @@
         "site": "http://www.berry.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JORF",
         "station": "ラジオ日本",
@@ -1117,10 +1185,11 @@
         "site": "http://www.jorf.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "BAYFM78",
         "station": "BAYFM78",
@@ -1133,10 +1202,11 @@
         "site": "http://www.bayfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "NACK5",
         "station": "NACK5",
@@ -1149,10 +1219,11 @@
         "site": "https://www.nack5.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "YFM",
         "station": "FMヨコハマ",
@@ -1165,10 +1236,11 @@
         "site": "https://www.fmyokohama.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "IBS",
         "station": "LuckyFM 茨城放送",
@@ -1181,10 +1253,11 @@
         "site": "https://www.ibs-radio.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK",
         "station": "NHKラジオ第1(東京)",
@@ -1197,10 +1270,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -1213,10 +1287,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "TBS",
         "station": "TBSラジオ",
@@ -1229,10 +1304,11 @@
         "site": "https://www.tbsradio.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "QRR",
         "station": "文化放送",
@@ -1245,10 +1321,11 @@
         "site": "http://www.joqr.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "LFR",
         "station": "ニッポン放送",
@@ -1261,10 +1338,11 @@
         "site": "http://www.1242.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -1277,10 +1355,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -1293,10 +1372,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "INT",
         "station": "interfm",
@@ -1309,10 +1389,11 @@
         "site": "https://www.interfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMT",
         "station": "TOKYO FM",
@@ -1325,10 +1406,11 @@
         "site": "https://www.tfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMJ",
         "station": "J-WAVE",
@@ -1341,10 +1423,11 @@
         "site": "https://www.j-wave.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMGUNMA",
         "station": "FM GUNMA",
@@ -1357,10 +1440,11 @@
         "site": "https://www.fmgunma.com",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JORF",
         "station": "ラジオ日本",
@@ -1373,10 +1457,11 @@
         "site": "http://www.jorf.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "BAYFM78",
         "station": "BAYFM78",
@@ -1389,10 +1474,11 @@
         "site": "http://www.bayfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "NACK5",
         "station": "NACK5",
@@ -1405,10 +1491,11 @@
         "site": "https://www.nack5.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "YFM",
         "station": "FMヨコハマ",
@@ -1421,10 +1508,11 @@
         "site": "https://www.fmyokohama.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "IBS",
         "station": "LuckyFM 茨城放送",
@@ -1437,10 +1525,11 @@
         "site": "https://www.ibs-radio.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK",
         "station": "NHKラジオ第1(東京)",
@@ -1453,10 +1542,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -1469,10 +1559,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "TBS",
         "station": "TBSラジオ",
@@ -1485,10 +1576,11 @@
         "site": "https://www.tbsradio.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "QRR",
         "station": "文化放送",
@@ -1501,10 +1593,11 @@
         "site": "http://www.joqr.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "LFR",
         "station": "ニッポン放送",
@@ -1517,10 +1610,11 @@
         "site": "http://www.1242.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -1533,10 +1627,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -1549,10 +1644,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "INT",
         "station": "interfm",
@@ -1565,10 +1661,11 @@
         "site": "https://www.interfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMT",
         "station": "TOKYO FM",
@@ -1581,10 +1678,11 @@
         "site": "https://www.tfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMJ",
         "station": "J-WAVE",
@@ -1597,10 +1695,11 @@
         "site": "https://www.j-wave.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JORF",
         "station": "ラジオ日本",
@@ -1613,10 +1712,11 @@
         "site": "http://www.jorf.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "BAYFM78",
         "station": "BAYFM78",
@@ -1629,10 +1729,11 @@
         "site": "http://www.bayfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "NACK5",
         "station": "NACK5",
@@ -1645,10 +1746,11 @@
         "site": "https://www.nack5.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "YFM",
         "station": "FMヨコハマ",
@@ -1661,10 +1763,11 @@
         "site": "https://www.fmyokohama.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "IBS",
         "station": "LuckyFM 茨城放送",
@@ -1677,10 +1780,11 @@
         "site": "https://www.ibs-radio.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK",
         "station": "NHKラジオ第1(東京)",
@@ -1693,10 +1797,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -1709,10 +1814,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "TBS",
         "station": "TBSラジオ",
@@ -1725,10 +1831,11 @@
         "site": "https://www.tbsradio.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "QRR",
         "station": "文化放送",
@@ -1741,10 +1848,11 @@
         "site": "http://www.joqr.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "LFR",
         "station": "ニッポン放送",
@@ -1757,10 +1865,11 @@
         "site": "http://www.1242.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -1773,10 +1882,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -1789,10 +1899,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "INT",
         "station": "interfm",
@@ -1805,10 +1916,11 @@
         "site": "https://www.interfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMT",
         "station": "TOKYO FM",
@@ -1821,10 +1933,11 @@
         "site": "https://www.tfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMJ",
         "station": "J-WAVE",
@@ -1837,10 +1950,11 @@
         "site": "https://www.j-wave.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JORF",
         "station": "ラジオ日本",
@@ -1853,10 +1967,11 @@
         "site": "http://www.jorf.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "BAYFM78",
         "station": "BAYFM78",
@@ -1869,10 +1984,11 @@
         "site": "http://www.bayfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "NACK5",
         "station": "NACK5",
@@ -1885,10 +2001,11 @@
         "site": "https://www.nack5.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "YFM",
         "station": "FMヨコハマ",
@@ -1901,10 +2018,11 @@
         "site": "https://www.fmyokohama.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "IBS",
         "station": "LuckyFM 茨城放送",
@@ -1917,10 +2035,11 @@
         "site": "https://www.ibs-radio.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK",
         "station": "NHKラジオ第1(東京)",
@@ -1933,10 +2052,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -1949,10 +2069,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "TBS",
         "station": "TBSラジオ",
@@ -1965,10 +2086,11 @@
         "site": "https://www.tbsradio.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "QRR",
         "station": "文化放送",
@@ -1981,10 +2103,11 @@
         "site": "http://www.joqr.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "LFR",
         "station": "ニッポン放送",
@@ -1997,10 +2120,11 @@
         "site": "http://www.1242.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -2013,10 +2137,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -2029,10 +2154,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "INT",
         "station": "interfm",
@@ -2045,10 +2171,11 @@
         "site": "https://www.interfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMT",
         "station": "TOKYO FM",
@@ -2061,10 +2188,11 @@
         "site": "https://www.tfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMJ",
         "station": "J-WAVE",
@@ -2077,10 +2205,11 @@
         "site": "https://www.j-wave.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JORF",
         "station": "ラジオ日本",
@@ -2093,10 +2222,11 @@
         "site": "http://www.jorf.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "BAYFM78",
         "station": "BAYFM78",
@@ -2109,10 +2239,11 @@
         "site": "http://www.bayfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "NACK5",
         "station": "NACK5",
@@ -2125,10 +2256,11 @@
         "site": "https://www.nack5.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "YFM",
         "station": "FMヨコハマ",
@@ -2141,10 +2273,11 @@
         "site": "https://www.fmyokohama.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "IBS",
         "station": "LuckyFM 茨城放送",
@@ -2157,10 +2290,11 @@
         "site": "https://www.ibs-radio.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK",
         "station": "NHKラジオ第1(東京)",
@@ -2173,10 +2307,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -2189,10 +2324,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "TBS",
         "station": "TBSラジオ",
@@ -2205,10 +2341,11 @@
         "site": "https://www.tbsradio.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "QRR",
         "station": "文化放送",
@@ -2221,10 +2358,11 @@
         "site": "http://www.joqr.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "LFR",
         "station": "ニッポン放送",
@@ -2237,10 +2375,11 @@
         "site": "http://www.1242.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -2253,10 +2392,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -2269,10 +2409,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "INT",
         "station": "interfm",
@@ -2285,10 +2426,11 @@
         "site": "https://www.interfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMT",
         "station": "TOKYO FM",
@@ -2301,10 +2443,11 @@
         "site": "https://www.tfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMJ",
         "station": "J-WAVE",
@@ -2317,10 +2460,11 @@
         "site": "https://www.j-wave.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JORF",
         "station": "ラジオ日本",
@@ -2333,10 +2477,11 @@
         "site": "http://www.jorf.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "BAYFM78",
         "station": "BAYFM78",
@@ -2349,10 +2494,11 @@
         "site": "http://www.bayfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "NACK5",
         "station": "NACK5",
@@ -2365,10 +2511,11 @@
         "site": "https://www.nack5.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "YFM",
         "station": "FMヨコハマ",
@@ -2381,10 +2528,11 @@
         "site": "https://www.fmyokohama.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "IBS",
         "station": "LuckyFM 茨城放送",
@@ -2397,10 +2545,11 @@
         "site": "https://www.ibs-radio.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK",
         "station": "NHKラジオ第1(東京)",
@@ -2413,10 +2562,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -2429,10 +2579,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "BSN",
         "station": "BSNラジオ",
@@ -2445,10 +2596,11 @@
         "site": "https://www.ohbsn.com/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -2461,10 +2613,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -2477,10 +2630,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMNIIGATA",
         "station": "FM NIIGATA",
@@ -2493,10 +2647,11 @@
         "site": "https://www.fmniigata.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK",
         "station": "NHKラジオ第1(東京)",
@@ -2509,10 +2664,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -2525,10 +2681,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "KNB",
         "station": "KNBラジオ",
@@ -2541,10 +2698,11 @@
         "site": "https://www.knb.ne.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -2557,10 +2715,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -2573,10 +2732,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMTOYAMA",
         "station": "FMとやま",
@@ -2589,10 +2749,11 @@
         "site": "http://www.fmtoyama.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOCK",
         "station": "NHKラジオ第1(名古屋)",
@@ -2605,10 +2766,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -2621,10 +2783,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "MRO",
         "station": "MROラジオ",
@@ -2637,10 +2800,11 @@
         "site": "https://www.mro.co.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -2653,10 +2817,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -2669,10 +2834,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "HELLOFIVE",
         "station": "エフエム石川",
@@ -2685,10 +2851,11 @@
         "site": "https://hellofive.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOCK",
         "station": "NHKラジオ第1(名古屋)",
@@ -2701,10 +2868,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -2717,10 +2885,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FBC",
         "station": "FBCラジオ",
@@ -2733,10 +2902,11 @@
         "site": "http://www2.fbc.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -2749,10 +2919,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -2765,10 +2936,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMFUKUI",
         "station": "FM福井",
@@ -2781,10 +2953,11 @@
         "site": "https://www.fmfukui.jp",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOCK",
         "station": "NHKラジオ第1(名古屋)",
@@ -2797,10 +2970,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -2813,10 +2987,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "YBS",
         "station": "YBSラジオ",
@@ -2829,10 +3004,11 @@
         "site": "https://www.ybs.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -2845,10 +3021,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -2861,10 +3038,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FM-FUJI",
         "station": "FM FUJI",
@@ -2877,10 +3055,11 @@
         "site": "http://www.fmfuji.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK",
         "station": "NHKラジオ第1(東京)",
@@ -2893,10 +3072,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -2909,10 +3089,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "SBC",
         "station": "SBCラジオ",
@@ -2925,10 +3106,11 @@
         "site": "https://sbc21.co.jp/blogwp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -2941,10 +3123,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -2957,10 +3140,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMN",
         "station": "FM長野",
@@ -2973,10 +3157,11 @@
         "site": "http://www.fmnagano.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK",
         "station": "NHKラジオ第1(東京)",
@@ -2989,10 +3174,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -3005,10 +3191,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CBC",
         "station": "CBCラジオ",
@@ -3021,10 +3208,11 @@
         "site": "https://hicbc.com/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "TOKAIRADIO",
         "station": "TOKAI RADIO",
@@ -3037,10 +3225,11 @@
         "site": "https://www.tokairadio.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "GBS",
         "station": "ぎふチャン",
@@ -3053,10 +3242,11 @@
         "site": "http://www.zf-web.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -3069,10 +3259,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -3085,10 +3276,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ZIP-FM",
         "station": "ZIP-FM",
@@ -3101,10 +3293,11 @@
         "site": "https://zip-fm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMGIFU",
         "station": "FM GIFU",
@@ -3117,10 +3310,11 @@
         "site": "http://www.fmgifu.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMAICHI",
         "station": "FM AICHI",
@@ -3133,10 +3327,11 @@
         "site": "https://fma.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOCK",
         "station": "NHKラジオ第1(名古屋)",
@@ -3149,10 +3344,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -3165,10 +3361,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "SBS",
         "station": "SBSラジオ",
@@ -3181,10 +3378,11 @@
         "site": "https://www.at-s.com/sbsradio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -3197,10 +3395,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -3213,10 +3412,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "K-MIX",
         "station": "K-MIX",
@@ -3229,10 +3429,11 @@
         "site": "https://www.k-mix.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOCK",
         "station": "NHKラジオ第1(名古屋)",
@@ -3245,10 +3446,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -3261,10 +3463,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CBC",
         "station": "CBCラジオ",
@@ -3277,10 +3480,11 @@
         "site": "https://hicbc.com/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "TOKAIRADIO",
         "station": "TOKAI RADIO",
@@ -3293,10 +3497,11 @@
         "site": "https://www.tokairadio.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "GBS",
         "station": "ぎふチャン",
@@ -3309,10 +3514,11 @@
         "site": "http://www.zf-web.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -3325,10 +3531,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -3341,10 +3548,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ZIP-FM",
         "station": "ZIP-FM",
@@ -3357,10 +3565,11 @@
         "site": "https://zip-fm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMAICHI",
         "station": "FM AICHI",
@@ -3373,10 +3582,11 @@
         "site": "https://fma.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOCK",
         "station": "NHKラジオ第1(名古屋)",
@@ -3389,10 +3599,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -3405,10 +3616,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CBC",
         "station": "CBCラジオ",
@@ -3421,10 +3633,11 @@
         "site": "https://hicbc.com/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "TOKAIRADIO",
         "station": "TOKAI RADIO",
@@ -3437,10 +3650,11 @@
         "site": "https://www.tokairadio.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "GBS",
         "station": "ぎふチャン",
@@ -3453,10 +3667,11 @@
         "site": "http://www.zf-web.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -3469,10 +3684,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -3485,10 +3701,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ZIP-FM",
         "station": "ZIP-FM",
@@ -3501,10 +3718,11 @@
         "site": "https://zip-fm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMMIE",
         "station": "レディオキューブ FM三重",
@@ -3517,10 +3735,11 @@
         "site": "http://www.fmmie.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMAICHI",
         "station": "FM AICHI",
@@ -3533,10 +3752,11 @@
         "site": "https://fma.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOCK",
         "station": "NHKラジオ第1(名古屋)",
@@ -3549,10 +3769,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -3565,10 +3786,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ABC",
         "station": "ABCラジオ",
@@ -3581,10 +3803,11 @@
         "site": "https://abcradio.asahi.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "MBS",
         "station": "MBSラジオ",
@@ -3597,10 +3820,11 @@
         "site": "https://www.mbs1179.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "OBC",
         "station": "OBCラジオ大阪",
@@ -3613,10 +3837,11 @@
         "site": "http://www.obc1314.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CCL",
         "station": "FM COCOLO",
@@ -3629,10 +3854,11 @@
         "site": "https://cocolo.jp",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "802",
         "station": "FM802",
@@ -3645,10 +3871,11 @@
         "site": "https://funky802.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMO",
         "station": "FM大阪",
@@ -3661,10 +3888,11 @@
         "site": "http://fmosaka.net/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -3677,10 +3905,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -3693,10 +3922,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "KBS",
         "station": "KBS京都ラジオ",
@@ -3709,10 +3939,11 @@
         "site": "https://www.kbs-kyoto.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "KISSFMKOBE",
         "station": "Kiss FM KOBE",
@@ -3725,10 +3956,11 @@
         "site": "https://www.kiss-fm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "E-RADIO",
         "station": "e-radio FM滋賀",
@@ -3741,10 +3973,11 @@
         "site": "https://www.e-radio.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CRK",
         "station": "ラジオ関西",
@@ -3757,10 +3990,11 @@
         "site": "https://jocr.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ALPHA-STATION",
         "station": "α-STATION FM KYOTO",
@@ -3773,10 +4007,11 @@
         "site": "http://fm-kyoto.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOBK",
         "station": "NHKラジオ第1(大阪)",
@@ -3789,10 +4024,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -3805,10 +4041,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ABC",
         "station": "ABCラジオ",
@@ -3821,10 +4058,11 @@
         "site": "https://abcradio.asahi.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "MBS",
         "station": "MBSラジオ",
@@ -3837,10 +4075,11 @@
         "site": "https://www.mbs1179.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "OBC",
         "station": "OBCラジオ大阪",
@@ -3853,10 +4092,11 @@
         "site": "http://www.obc1314.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CCL",
         "station": "FM COCOLO",
@@ -3869,10 +4109,11 @@
         "site": "https://cocolo.jp",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "802",
         "station": "FM802",
@@ -3885,10 +4126,11 @@
         "site": "https://funky802.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMO",
         "station": "FM大阪",
@@ -3901,10 +4143,11 @@
         "site": "http://fmosaka.net/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -3917,10 +4160,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -3933,10 +4177,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "KBS",
         "station": "KBS京都ラジオ",
@@ -3949,10 +4194,11 @@
         "site": "https://www.kbs-kyoto.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "KISSFMKOBE",
         "station": "Kiss FM KOBE",
@@ -3965,10 +4211,11 @@
         "site": "https://www.kiss-fm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ALPHA-STATION",
         "station": "α-STATION FM KYOTO",
@@ -3981,10 +4228,11 @@
         "site": "http://fm-kyoto.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CRK",
         "station": "ラジオ関西",
@@ -3997,10 +4245,11 @@
         "site": "https://jocr.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOBK",
         "station": "NHKラジオ第1(大阪)",
@@ -4013,10 +4262,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -4029,10 +4279,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ABC",
         "station": "ABCラジオ",
@@ -4045,10 +4296,11 @@
         "site": "https://abcradio.asahi.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "MBS",
         "station": "MBSラジオ",
@@ -4061,10 +4313,11 @@
         "site": "https://www.mbs1179.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "OBC",
         "station": "OBCラジオ大阪",
@@ -4077,10 +4330,11 @@
         "site": "http://www.obc1314.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CCL",
         "station": "FM COCOLO",
@@ -4093,10 +4347,11 @@
         "site": "https://cocolo.jp",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "802",
         "station": "FM802",
@@ -4109,10 +4364,11 @@
         "site": "https://funky802.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMO",
         "station": "FM大阪",
@@ -4125,10 +4381,11 @@
         "site": "http://fmosaka.net/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -4141,10 +4398,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -4157,10 +4415,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "KISSFMKOBE",
         "station": "Kiss FM KOBE",
@@ -4173,10 +4432,11 @@
         "site": "https://www.kiss-fm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CRK",
         "station": "ラジオ関西",
@@ -4189,10 +4449,11 @@
         "site": "https://jocr.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "KBS",
         "station": "KBS京都ラジオ",
@@ -4205,10 +4466,11 @@
         "site": "https://www.kbs-kyoto.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ALPHA-STATION",
         "station": "α-STATION FM KYOTO",
@@ -4221,10 +4483,11 @@
         "site": "http://fm-kyoto.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOBK",
         "station": "NHKラジオ第1(大阪)",
@@ -4237,10 +4500,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -4253,10 +4517,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ABC",
         "station": "ABCラジオ",
@@ -4269,10 +4534,11 @@
         "site": "https://abcradio.asahi.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "MBS",
         "station": "MBSラジオ",
@@ -4285,10 +4551,11 @@
         "site": "https://www.mbs1179.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "OBC",
         "station": "OBCラジオ大阪",
@@ -4301,10 +4568,11 @@
         "site": "http://www.obc1314.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CCL",
         "station": "FM COCOLO",
@@ -4317,10 +4585,11 @@
         "site": "https://cocolo.jp",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "802",
         "station": "FM802",
@@ -4333,10 +4602,11 @@
         "site": "https://funky802.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMO",
         "station": "FM大阪",
@@ -4349,10 +4619,11 @@
         "site": "http://fmosaka.net/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -4365,10 +4636,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -4381,10 +4653,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CRK",
         "station": "ラジオ関西",
@@ -4397,10 +4670,11 @@
         "site": "https://jocr.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "KISSFMKOBE",
         "station": "Kiss FM KOBE",
@@ -4413,10 +4687,11 @@
         "site": "https://www.kiss-fm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOBK",
         "station": "NHKラジオ第1(大阪)",
@@ -4429,10 +4704,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -4445,10 +4721,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ABC",
         "station": "ABCラジオ",
@@ -4461,10 +4738,11 @@
         "site": "https://abcradio.asahi.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "MBS",
         "station": "MBSラジオ",
@@ -4477,10 +4755,11 @@
         "site": "https://www.mbs1179.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "OBC",
         "station": "OBCラジオ大阪",
@@ -4493,10 +4772,11 @@
         "site": "http://www.obc1314.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CCL",
         "station": "FM COCOLO",
@@ -4509,10 +4789,11 @@
         "site": "https://cocolo.jp",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "802",
         "station": "FM802",
@@ -4525,10 +4806,11 @@
         "site": "https://funky802.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMO",
         "station": "FM大阪",
@@ -4541,10 +4823,11 @@
         "site": "http://fmosaka.net/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -4557,10 +4840,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -4573,10 +4857,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "KISSFMKOBE",
         "station": "Kiss FM KOBE",
@@ -4589,10 +4874,11 @@
         "site": "https://www.kiss-fm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CRK",
         "station": "ラジオ関西",
@@ -4605,10 +4891,11 @@
         "site": "https://jocr.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ALPHA-STATION",
         "station": "α-STATION FM KYOTO",
@@ -4621,10 +4908,11 @@
         "site": "http://fm-kyoto.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOBK",
         "station": "NHKラジオ第1(大阪)",
@@ -4637,10 +4925,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -4653,10 +4942,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ABC",
         "station": "ABCラジオ",
@@ -4669,10 +4959,11 @@
         "site": "https://abcradio.asahi.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "MBS",
         "station": "MBSラジオ",
@@ -4685,10 +4976,11 @@
         "site": "https://www.mbs1179.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "OBC",
         "station": "OBCラジオ大阪",
@@ -4701,10 +4993,11 @@
         "site": "http://www.obc1314.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CCL",
         "station": "FM COCOLO",
@@ -4717,10 +5010,11 @@
         "site": "https://cocolo.jp",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "802",
         "station": "FM802",
@@ -4733,10 +5027,11 @@
         "site": "https://funky802.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMO",
         "station": "FM大阪",
@@ -4749,10 +5044,11 @@
         "site": "http://fmosaka.net/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "WBS",
         "station": "wbs和歌山放送",
@@ -4765,10 +5061,11 @@
         "site": "https://www.wbs.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -4781,10 +5078,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -4797,10 +5095,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "KISSFMKOBE",
         "station": "Kiss FM KOBE",
@@ -4813,10 +5112,11 @@
         "site": "https://www.kiss-fm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CRK",
         "station": "ラジオ関西",
@@ -4829,10 +5129,11 @@
         "site": "https://jocr.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOBK",
         "station": "NHKラジオ第1(大阪)",
@@ -4845,10 +5146,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -4861,10 +5163,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "BSS",
         "station": "BSSラジオ",
@@ -4877,10 +5180,11 @@
         "site": "https://www.bss.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -4893,10 +5197,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -4909,10 +5214,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FM-SANIN",
         "station": "エフエム山陰",
@@ -4925,10 +5231,11 @@
         "site": "http://www.fm-sanin.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOFK",
         "station": "NHKラジオ第1(広島)",
@@ -4941,10 +5248,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -4957,10 +5265,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "BSS",
         "station": "BSSラジオ",
@@ -4973,10 +5282,11 @@
         "site": "https://www.bss.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -4989,10 +5299,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -5005,10 +5316,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FM-SANIN",
         "station": "エフエム山陰",
@@ -5021,10 +5333,11 @@
         "site": "http://www.fm-sanin.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOFK",
         "station": "NHKラジオ第1(広島)",
@@ -5037,10 +5350,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -5053,10 +5367,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RSK",
         "station": "RSKラジオ",
@@ -5069,10 +5384,11 @@
         "site": "http://www.rsk.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -5085,10 +5401,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -5101,10 +5418,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FM-OKAYAMA",
         "station": "FM岡山",
@@ -5117,10 +5435,11 @@
         "site": "http://www.fm-okayama.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOFK",
         "station": "NHKラジオ第1(広島)",
@@ -5133,10 +5452,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -5149,10 +5469,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RCC",
         "station": "RCCラジオ",
@@ -5165,10 +5486,11 @@
         "site": "https://radio.rcc.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -5181,10 +5503,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -5197,10 +5520,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "HFM",
         "station": "広島FM",
@@ -5213,10 +5537,11 @@
         "site": "http://www.hiroshima-fm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOFK",
         "station": "NHKラジオ第1(広島)",
@@ -5229,10 +5554,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -5245,10 +5571,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "KRY",
         "station": "KRY山口放送",
@@ -5261,10 +5588,11 @@
         "site": "http://kry.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -5277,10 +5605,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -5293,10 +5622,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMY",
         "station": "エフエム山口",
@@ -5309,10 +5639,11 @@
         "site": "http://www.fmy.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOFK",
         "station": "NHKラジオ第1(広島)",
@@ -5325,10 +5656,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -5341,10 +5673,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JRT",
         "station": "JRT四国放送",
@@ -5357,10 +5690,11 @@
         "site": "http://www.jrt.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -5373,10 +5707,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -5389,10 +5724,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FM807",
         "station": "FM徳島",
@@ -5405,10 +5741,11 @@
         "site": "http://www.fm807.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOZK",
         "station": "NHKラジオ第1(松山)",
@@ -5421,10 +5758,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -5437,10 +5775,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RNC",
         "station": "RNC西日本放送",
@@ -5453,10 +5792,11 @@
         "site": "http://www.rnc.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -5469,10 +5809,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -5485,10 +5826,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMKAGAWA",
         "station": "エフエム香川",
@@ -5501,10 +5843,11 @@
         "site": "https://www.fmkagawa.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOZK",
         "station": "NHKラジオ第1(松山)",
@@ -5517,10 +5860,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -5533,10 +5877,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RNB",
         "station": "RNB南海放送",
@@ -5549,10 +5894,11 @@
         "site": "https://www.rnb.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -5565,10 +5911,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -5581,10 +5928,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOEU-FM",
         "station": "FM愛媛",
@@ -5597,10 +5945,11 @@
         "site": "https://www.joeufm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOZK",
         "station": "NHKラジオ第1(松山)",
@@ -5613,10 +5962,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -5629,10 +5979,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RKC",
         "station": "RKC高知放送",
@@ -5645,10 +5996,11 @@
         "site": "http://www.rkc-kochi.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -5661,10 +6013,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -5677,10 +6030,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "HI-SIX",
         "station": "エフエム高知",
@@ -5693,10 +6047,11 @@
         "site": "http://www.fmkochi.com/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOZK",
         "station": "NHKラジオ第1(松山)",
@@ -5709,10 +6064,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -5725,10 +6081,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RKB",
         "station": "RKBラジオ",
@@ -5741,10 +6098,11 @@
         "site": "https://rkbr.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "KBC",
         "station": "KBCラジオ",
@@ -5757,10 +6115,11 @@
         "site": "https://kbc.co.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -5773,10 +6132,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -5789,10 +6149,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "LOVEFM",
         "station": "LOVE FM",
@@ -5805,10 +6166,11 @@
         "site": "https://www.lovefm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "CROSSFM",
         "station": "CROSS FM",
@@ -5821,10 +6183,11 @@
         "site": "http://www.crossfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMFUKUOKA",
         "station": "FM FUKUOKA",
@@ -5837,10 +6200,11 @@
         "site": "https://fmfukuoka.co.jp",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOLK",
         "station": "NHKラジオ第1(福岡)",
@@ -5853,10 +6217,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -5869,10 +6234,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -5885,10 +6251,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -5901,10 +6268,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMS",
         "station": "エフエム佐賀",
@@ -5917,10 +6285,11 @@
         "site": "http://www.fmsaga.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "NBC",
         "station": "NBCラジオ",
@@ -5933,10 +6302,11 @@
         "site": "https://www.nbc-nagasaki.co.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RKB",
         "station": "RKBラジオ",
@@ -5949,10 +6319,11 @@
         "site": "https://rkbr.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "KBC",
         "station": "KBCラジオ",
@@ -5965,10 +6336,11 @@
         "site": "https://kbc.co.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOLK",
         "station": "NHKラジオ第1(福岡)",
@@ -5981,10 +6353,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -5997,10 +6370,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "NBC",
         "station": "NBCラジオ",
@@ -6013,10 +6387,11 @@
         "site": "https://www.nbc-nagasaki.co.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -6029,10 +6404,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -6045,10 +6421,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMNAGASAKI",
         "station": "FM長崎",
@@ -6061,10 +6438,11 @@
         "site": "http://www.fmnagasaki.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOLK",
         "station": "NHKラジオ第1(福岡)",
@@ -6077,10 +6455,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -6093,10 +6472,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RKK",
         "station": "RKKラジオ",
@@ -6109,10 +6489,11 @@
         "site": "http://rkk.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -6125,10 +6506,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -6141,10 +6523,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FMK",
         "station": "FMKエフエム熊本",
@@ -6157,10 +6540,11 @@
         "site": "https://fmk.fm/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOLK",
         "station": "NHKラジオ第1(福岡)",
@@ -6173,10 +6557,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -6189,10 +6574,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "OBS",
         "station": "OBSラジオ",
@@ -6205,10 +6591,11 @@
         "site": "https://1098.am/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -6221,10 +6608,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -6237,10 +6625,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FM_OITA",
         "station": "エフエム大分",
@@ -6253,10 +6642,11 @@
         "site": "http://www.fmoita.co.jp",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOLK",
         "station": "NHKラジオ第1(福岡)",
@@ -6269,10 +6659,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -6285,10 +6676,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "MRT",
         "station": "宮崎放送",
@@ -6301,10 +6693,11 @@
         "site": "http://mrt.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -6317,10 +6710,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -6333,10 +6727,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOYFM",
         "station": "エフエム宮崎",
@@ -6349,10 +6744,11 @@
         "site": "https://joyfm.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOLK",
         "station": "NHKラジオ第1(福岡)",
@@ -6365,10 +6761,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -6381,10 +6778,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "MBC",
         "station": "MBCラジオ",
@@ -6397,10 +6795,11 @@
         "site": "https://www.mbc.co.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -6413,10 +6812,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -6429,10 +6829,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "MYUFM",
         "station": "μFM",
@@ -6445,10 +6846,11 @@
         "site": "http://www.myufm.jp/myufmjp/myufm/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOLK",
         "station": "NHKラジオ第1(福岡)",
@@ -6461,10 +6863,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -6477,10 +6880,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RBC",
         "station": "RBCiラジオ",
@@ -6493,10 +6897,11 @@
         "site": "https://www.rbc.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "ROK",
         "station": "ラジオ沖縄",
@@ -6509,10 +6914,11 @@
         "site": "http://www.rokinawa.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN1",
         "station": "ラジオNIKKEI第1",
@@ -6525,10 +6931,11 @@
         "site": "http://www.radionikkei.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "RN2",
         "station": "ラジオNIKKEI第2",
@@ -6541,10 +6948,11 @@
         "site": "http://www.radionikkei.jp/ ",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "FM_OKINAWA",
         "station": "FM沖縄",
@@ -6557,10 +6965,11 @@
         "site": "https://www.fmokinawa.co.jp/",
         "direct": "",
         "delay": 15,
-        "sstatus": 2
+        "display": 1,
+        "schedule": 1,
+        "download": 1
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOLK",
         "station": "NHKラジオ第1(福岡)",
@@ -6573,10 +6982,11 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     },
     {
-        "listing": 1,
         "protocol": "RDK",
         "key": "JOAK-FM",
         "station": "NHK-FM(東京)",
@@ -6589,6 +6999,8 @@
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "",
         "delay": 15,
-        "sstatus": 1
+        "display": 1,
+        "schedule": 1,
+        "download": 0
     }
 ]

@@ -1,20 +1,76 @@
+# -*- coding: utf-8 -*-
+
+from datetime import datetime
+from xmltodict import parse
+
+from resources.lib.schedule.common import Common
+
+
+class Scraper(Common):
+
+    PROTOCOL = 'LR'
+    URL = 'https://listenradio.jp/Home/ProgramSchedule/{key}/{station}?X-Requested-With=XMLHttpRequest'
+
+    def __init__(self, sid=633, **kwargs):
+        super().__init__(f'{self.PROTOCOL}/{sid}')
+        self.sid = sid
+        self.db.cursor.execute('SELECT station, key, region, pref, site FROM stations WHERE sid = :sid', {'sid': sid})
+        self.station, self.key, self.region, self.pref, self.site = self.db.cursor.fetchone()
+        self.URL = self.URL.format(key=self.key, station=self.station)
+
+    def parse(self, data):
+        # xmlを辞書化
+        parsed_xml = parse(data)
+        # ttPage01->ttListセクションのデータを取得
+        ttlist = parsed_xml['div']['div']['div']['div'][1]['div'][0]
+        # 日付
+        year = datetime.now().year
+        month = datetime.now().month
+        day = int(ttlist['h2']['span']['#text'])
+        # 番組情報
+        buf = []
+        for li in ttlist['div']['ul']['li']:
+            archive = li['div'][0] if isinstance(li['div'], list) else li['div']
+            start, end = archive['p'][0]['#text'].split('-')  # 07:30-10:00
+            start = f'{year:04d}-{month:02d}-{day:02d} {start}:00'
+            end = f'{year:04d}-{month:02d}-{day:02d} {end}:00'
+            title = archive['p'][2]['#text']
+            desc = archive['p'][3]['#text']
+            prog = {
+                'station': self.station,
+                'protocol': self.PROTOCOL,
+                'key': self.key,
+                'title': self.normalize(title),
+                'start': start,
+                'end': end,
+                'act': '',
+                'info': '',
+                'desc': desc,
+                'site': self.site,
+                'region': self.region,
+                'pref': self.pref
+            }
+            buf.append(prog)
+        return buf
+        
+
 # https://listenradio.jp/Home/ProgramSchedule/30058/FM%20ABASHIRI?X-Requested-With=XMLHttpRequest
 
 '''
 <div id="idx">
-    <div id="contentMain" class="col3 clearfix">
-        <div id="timetable">
+<div id="contentMain" class="col3 clearfix">
+<div id="schedule">
 <div class="ttHead">
     <p class="channelName">
         FM ABASHIRI
     </p>
 <!--    
-        <p class="twitterUserName">
-                    <script type="text/javascript" src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>    
-            <a href="https://twitter.com/ListenRadio_058" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-dnt="true">ListenRadio_058 さんをフォロー</a>   
-        </p>
+    <p class="twitterUserName">
+                <script type="text/javascript" src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>    
+        <a href="https://twitter.com/ListenRadio_058" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-dnt="true">ListenRadio_058 さんをフォロー</a>   
+    </p>
 -->
-    <a href="/" class="timetableIcon TopLink" id="returnIndex" >
+    <a href="/" class="scheduleIcon TopLink" id="returnIndex" >
         <div class="ttClose">
             <img src="/Content/img/tt_close_btn.gif" width="26" height="26" alt="閉じる" />
         </div>

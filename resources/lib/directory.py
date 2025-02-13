@@ -2,18 +2,20 @@
 
 import sys
 import os
+import json
 from urllib.parse import urlencode
 
 from resources.lib.common import Common
 from resources.lib.db import ThreadLocal
 from resources.lib.localproxy import LocalProxy
+from resources.lib.maintenance import Maintenance
 
 import xbmc
 import xbmcgui
 import xbmcplugin
 
 
-class Directory(Common):
+class Directory(Maintenance):
 
     def __init__(self):
         # DBの共有インスタンス
@@ -22,20 +24,30 @@ class Directory(Common):
         sql = "SELECT auth_token, region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
         self.db.cursor.execute(sql)
         self.token, self.region, self.pref = self.db.cursor.fetchone()
+        # 番組表メンテ用
+        self.maintainer = {}
 
     def show(self, protocol=None, region=None, pref=None):
+        # 表示中の放送局を格納するリスト
+        front = []
+        # 表示
         if protocol == 'NHK':
-            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND region = :region AND sstatus > -1 ORDER BY station'
+            # NHKの放送局一覧を表示
+            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND region = :region AND display = 1 ORDER BY station'
             self.db.cursor.execute(sql, {'protocol': 'NHK', 'region': region})
             for sdata in self.db.cursor.fetchall():
+                front.append(sdata['sid'])
                 self._add_station(sdata)
         elif protocol == 'RDK':
-            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND region = :region AND pref = :pref AND sstatus > -1 ORDER BY station'
+            # RDKの放送局一覧を表示
+            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND region = :region AND pref = :pref AND display = 1 ORDER BY station'
             self.db.cursor.execute(sql, {'protocol': 'RDK', 'region': region, 'pref': pref})
             for sdata in self.db.cursor.fetchall():
+                front.append(sdata['sid'])
                 self._add_station(sdata)
         elif protocol == 'COMM':
-            protocols = '''('SJ', 'LR', 'SR', 'SP')'''
+            protocols = "('SJ', 'LR', 'SP', 'SR')"
+            if region == '北海道': pref = '北海道'
             if region is None:  # 地域リスト
                 sql = 'SELECT DISTINCT region FROM stations WHERE protocol IN %s ORDER BY code' % protocols
                 self.db.cursor.execute(sql)
@@ -47,16 +59,41 @@ class Directory(Common):
                 for pref, in self.db.cursor.fetchall():
                     self._add_directory(region=region, pref=pref)
             else:  # 放送局リスト
-                sql = 'SELECT * FROM stations WHERE protocol IN %s AND region = :region AND pref = :pref AND sstatus > -1 ORDER BY code' % protocols
+                sql = 'SELECT * FROM stations WHERE protocol IN %s AND region = :region AND pref = :pref AND display = 1 ORDER BY code' % protocols
                 self.db.cursor.execute(sql, {'region': region, 'pref': pref})
                 for sdata in self.db.cursor.fetchall():
+                    front.append(sdata['sid'])
                     self._add_station(sdata)
         else:
-            self._setup_stations()  # 放送局
-            self._setup_directory()  # ディレクトリ
-            self._setup_keywords()  # キーワード
+            # トップページの放送局一覧を表示
+            sql = '''SELECT * FROM stations WHERE top = 1 AND display = 1 ORDER BY
+            CASE protocol
+                WHEN 'NHK' THEN 1
+                WHEN 'RDK' THEN 2
+                WHEN 'SJ' THEN 3
+                WHEN 'LR' THEN 3
+                WHEN 'SP' THEN 3
+                WHEN 'SR' THEN 3
+                WHEN 'USER' THEN 4
+                ELSE 9
+            END, code, station'''
+            self.db.cursor.execute(sql)
+            for sdata in self.db.cursor.fetchall():
+                front.append(sdata['sid'])
+                self._add_station(sdata)
+            # ディレクトリの一覧を表示
+            self._setup_directory()
+            # キーワードの一覧を表示
+            self._setup_keywords()
         # リストアイテム追加完了
         xbmcplugin.endOfDirectory(int(sys.argv[1]), succeeded=True)
+        # 表示中の放送局をstatusテーブルに格納
+        sql = 'UPDATE status SET front = :front'
+        self.db.cursor.execute(sql, {'front': json.dumps(front)})
+
+    def maintain_schedule(self):
+        super().maintain_schedule()
+        xbmc.executebuiltin('Container.Refresh')
 
     def add_to_top(self, sid):
         sql = 'UPDATE stations SET top = 1 WHERE sid = :sid'
@@ -67,23 +104,6 @@ class Directory(Common):
         sql = 'UPDATE stations SET top = 0 WHERE sid = :sid'
         self.db.cursor.execute(sql, {'sid': sid})
         xbmc.executebuiltin('Container.Update(%s,replace)' % sys.argv[0])
-
-    def _setup_stations(self):
-        # ユーザがトップページに追加した放送局を追加
-        sql = '''SELECT * FROM stations WHERE top = 1 AND sstatus > -1 ORDER BY
-        CASE protocol
-            WHEN 'NHK' THEN 1
-            WHEN 'RDK' THEN 2
-            WHEN 'SR' THEN 3
-            WHEN 'SP' THEN 3
-            WHEN 'SJ' THEN 3
-            WHEN 'LR' THEN 3
-            WHEN 'USER' THEN 4
-            ELSE 9
-        END, code, station'''
-        self.db.cursor.execute(sql)
-        for sdata in self.db.cursor.fetchall():
-            self._add_station(sdata)
     
     def _setup_directory(self):
         # NHKラジオ
@@ -142,7 +162,7 @@ class Directory(Common):
         # コンテクストメニュー
         self.contextmenu = []
         if sdata['top'] == 1:
-            if sdata['protocol'] in ('NHK', 'RDK'):
+            if sdata['schedule'] == 1:
                 self._contextmenu(self.STR(30111), {'action': 'show_info', 'sid': sdata['sid']})
                 self._contextmenu(self.STR(30110), {'action': 'update_info'})
             if sdata['protocol'] == 'USER':
@@ -151,12 +171,13 @@ class Directory(Common):
             else:
                 self._contextmenu(self.STR(30102), {'action': 'delete_from_top', 'sid': sdata['sid']})
         else:
-            if sdata['protocol'] in ('NHK', 'RDK'):
+            if sdata['schedule'] == 1:
                 self._contextmenu(self.STR(30111), {'action': 'show_info', 'sid': sdata['sid']})
                 self._contextmenu(self.STR(30110), {'action': 'update_info'})
             self._contextmenu(self.STR(30101), {'action': 'add_to_top', 'sid': sdata['sid']})
-        if self.GET('download') == 'true' and sdata['protocol'] in ('NHK', 'RDK'):
+        if self.GET('download') == 'true' and sdata['download'] == 1:
             self._contextmenu(self.STR(30106), {'action': 'set_keyword', 'sid': sdata['sid']})
+        self._contextmenu(self.STR(30112), {'action': 'open_site', 'url': sdata['site']})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL
@@ -188,26 +209,29 @@ class Directory(Common):
         query = urlencode({'action': 'show_download', 'kid': kid})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         
-    def _title(self, data):
-        if data['protocol'] in ('NHK', 'RDK'):
-            station = data['station']
+    def _title(self, sdata):
+        # コミュニティ放送局用に都市名を追加
+        basename = sdata['station']
+        if sdata['protocol'] not in ('NHK', 'RDK', 'USER'):
+            basename += f"({sdata['pref']}{sdata['city']})"
+        station = basename
+        # 番組情報等を追加
+        if sdata['schedule'] == 1:
             sql = 'SELECT title, start, end FROM contents WHERE sid = :sid AND end > NOW() ORDER BY start LIMIT 2'
-            self.db.cursor.execute(sql, {'sid': data['sid']})
+            self.db.cursor.execute(sql, {'sid': sdata['sid']})
             try:
+                # 2025-02-11 06:30:00
                 (title, start, end) = self.db.cursor.fetchone()
                 station += f' [COLOR khaki]▶ {title} ({start[11:16]}～{end[11:16]})[/COLOR]'
                 (title, start, end) = self.db.cursor.fetchone()
                 station += f' [COLOR lightgreen]▶ {title} ({start[11:16]}～{end[11:16]})[/COLOR]'
             except:
-                pass
-        elif data['protocol'] in ('SR', 'SJ', 'SP', 'LR'):
-            station = f"{data['station']}({data['pref']}{data['city']})"
-            if data['description']:
-                station += f" [COLOR khaki]▶ {data['description']}[/COLOR]"
+                # 番組情報が取得できない場合
+                if station == basename:
+                    station +=  f'[COLOR khaki]▶ {self.STR(30700)}[/COLOR]'
         else:
-            station = data['station']
-            if data['description']:
-                station += f" [COLOR khaki]▶ {data['description']}[/COLOR]"
+            if sdata['description']:
+                station += f" [COLOR khaki]▶ {sdata['description']}[/COLOR]"
         return station
 
     def _contextmenu(self, name, args):

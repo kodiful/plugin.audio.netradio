@@ -2,6 +2,8 @@
 
 import os
 import inspect
+import calendar
+from datetime import datetime
 
 import xbmc
 import xbmcaddon
@@ -32,7 +34,7 @@ class Common:
     SETTINGS_FILE = os.path.join(PROFILE_PATH, 'settings.xml')
 
     # db file
-    DB_FILE = os.path.join(PROFILE_PATH, 'download.db')
+    DB_FILE = os.path.join(PROFILE_PATH, 'NetRadio.db')
 
     # image cache
     IMAGE_CACHE = os.path.join(xbmcvfs.translatePath('special://database'), 'Textures13.db')
@@ -97,3 +99,18 @@ class Common:
             item = xbmc.Player().getPlayingItem()
             path = item.getPath()  # http://127.0.0.1:8088/SJ?id=fmblueshonan
         return path
+
+    @staticmethod
+    def datetime(datetime_str):
+        # 2023-04-20 05:00:00 -> datetime(2023, 4, 20, 5, 0, 0)
+        date, time = datetime_str.split(' ')
+        year, month, day = map(int, date.split('-'))
+        h, m, s = map(int, time.split(':'))
+        return datetime(year, month, day, h, m, s)
+
+    @staticmethod
+    def weekday(datetime_str):
+        # 2023-04-20 05:00:00 -> calendar.weekday(2023, 4, 20)
+        date, _ = datetime_str.split(' ')
+        year, month, day = map(int, date.split('-'))
+        return calendar.weekday(year, month, day)

@@ -86,8 +86,3 @@ class Station(Common):
         else:
             description = self.STR(30610)
         xbmcgui.Dialog().textviewer(self.STR(30609), description)
-
-    def update_info(self):
-        # 再表示を要求
-        self.db.cursor.execute('UPDATE status SET timetable = 1')
-

@@ -15,9 +15,7 @@ from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal
 from resources.lib.authenticate import Authenticate
 from resources.lib.localproxy import LocalProxy
-
-from resources.lib.timetable.NHK import Scraper as NHK
-from resources.lib.timetable.RDK import Scraper as RDK
+from resources.lib.maintenance import Maintenance
 
 
 class Monitor(xbmc.Monitor, Common):
@@ -49,7 +47,7 @@ class Monitor(xbmc.Monitor, Common):
             xbmc.executebuiltin('Container.Refresh')
 
 
-class Service(Common):
+class Service(Maintenance):
 
     # 更新確認のインターバル（秒）
     CHECK_INTERVAL = 30
@@ -87,9 +85,9 @@ class Service(Common):
         # keywords/qrを初期化
         if os.path.exists(os.path.join(self.PROFILE_PATH, 'keywords', 'qr')) is False:
             os.makedirs(os.path.join(self.PROFILE_PATH, 'keywords', 'qr'), exist_ok=True)
-        # timetableを初期化
-        if os.path.exists(os.path.join(self.PROFILE_PATH, 'timetable')) is False:
-            os.makedirs(os.path.join(self.PROFILE_PATH, 'timetable'), exist_ok=True)
+        # scheduleを初期化
+        if os.path.exists(os.path.join(self.PROFILE_PATH, 'schedule')) is False:
+            os.makedirs(os.path.join(self.PROFILE_PATH, 'schedule'), exist_ok=True)
         # hls cacheをクリア
         if os.path.isdir(self.HLS_CACHE_PATH) is True:
             shutil.rmtree(self.HLS_CACHE_PATH)
@@ -103,56 +101,38 @@ class Service(Common):
         thread.start()
 
     def monitor(self):
-        # DBインスタンスを作成
-        db = ThreadLocal.db = DB()
         # 開始
         self.log('enter monitor.')
         # 監視開始を通知
         self.notify('Starting service', time=3000)
-        # 現在時刻
-        now = time.time()
-        # radiko認証
-        update_auth = self._update_auth()
-        # 番組データ取得
-        update_nhk = self._update_nhk()
-        update_rdk = self._update_rdk()
+        # DBインスタンスを作成
+        db = ThreadLocal.db = DB()
+        # 認証予定時刻
+        self.update_auth = 0
+        # 番組表メンテ用
+        self.maintainer = {}
         # 監視を開始
         monitor = Monitor()
-        refresh = False
+        refresh = True
         while monitor.abortRequested() is False:
-            # 現在時刻
-            now = time.time()
-            # 現在時刻がradiko認証更新時刻を過ぎていたら
-            if now > update_auth:
-                update_auth = self._update_auth()
-            # 現在時刻が番組表更新予定時刻を過ぎていたら
-            if now > update_nhk:
-                update_nhk = self._update_nhk()
-                refresh = refresh or update_nhk > now
-            if now > update_rdk:
-                update_rdk = self._update_rdk()
-                refresh = refresh or update_rdk > now
+            # radiko認証
+            self.maintain_auth()
+            # 番組表メンテ
+            refresh = self.maintain_schedule() or refresh
             # カレントウィンドウをチェック
             if xbmcgui.getCurrentWindowDialogId() == 9999:
-                db.cursor.execute('SELECT timetable, keyword, station FROM status')
-                timetable, keyword, station = db.cursor.fetchone()
-                # 要更新が検出されたら
-                refresh = refresh or timetable == 1
+                # 画面を更新する
                 if refresh:
-                    path = xbmc.getInfoLabel('Container.FolderPath')
-                    argv = 'plugin://%s/' % self.ADDON_ID
-                    if path == argv or path.startswith(f'{argv}?action=show'):
-                        xbmc.executebuiltin('Container.Refresh')
-                        refresh = False
-                        db.cursor.execute('UPDATE status SET timetable = 0')
-                # デフォルト設定に戻す
+                    self.refresh_container()
+                    refresh = False
+                # 設定画面をデフォルトに戻す
+                db.cursor.execute('SELECT keyword, station FROM status')
+                keyword, station = db.cursor.fetchone()
                 if keyword or station:
-                    # statusテーブル
-                    db.cursor.execute("UPDATE status SET keyword = '', station = ''")
-                    # 設定画面
-                    shutil.copy(os.path.join(self.DATA_PATH, 'settings', 'settings.xml'), self.DIALOG_FILE)
+                    db.cursor.execute("UPDATE status SET keyword = '', station = ''")  # statusテーブル
+                    shutil.copy(os.path.join(self.DATA_PATH, 'settings', 'settings.xml'), self.DIALOG_FILE)  # アドオン設定画面
             # ダウンロード開始判定
-            self._prepare_download()
+            self.maintain_download()
             # CHECK_INTERVALの間待機
             monitor.waitForAbort(self.CHECK_INTERVAL)
         # ローカルプロキシを終了
@@ -163,64 +143,44 @@ class Service(Common):
         while self.queue.qsize() > 0:
             process = self.queue.get()
             process.kill()
-        # 監視終了を通知
-        self.log('exit monitor.')
         # DBインスタンスを終了
         db.conn.close()
+        # 監視終了を通知
+        self.log('exit monitor.')
 
-    def _authenticate(self):
+    def refresh_container(self):
+        # 表示中画面がこのアドオン画面、かつaction=showであれば再描画する
+        path = xbmc.getInfoLabel('Container.FolderPath')
+        argv = 'plugin://%s/' % self.ADDON_ID
+        if path == argv or path.startswith(f'{argv}?action=show'):
+            xbmc.executebuiltin('Container.Refresh')
+
+    def maintain_auth(self):
         # DBの共有インスタンス
         db = ThreadLocal.db
+        # 現在時刻
+        now = time.time()
         # radiko認証
-        auth = Authenticate()
-        if auth.response['authed'] == 0:
-            # 認証失敗を通知
-            self.notify('radiko authentication failed', error=True)
-        # 認証情報をDBに書き込む
-        data = auth.response
-        set_clause = ', '.join([f'{key} = ?' for key in data.keys()])
-        sql = f'UPDATE auth SET {set_clause}'
-        db.cursor.execute(sql, list(data.values()))
-        # 地域、都道府県を判定する
-        sql = "SELECT region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
-        db.cursor.execute(sql)
-        self.region, self.pref = db.cursor.fetchone()
-        # ログ
-        self.log('radiko authentication status:', data['authed'], 'region:', self.region, 'pref:', self.pref)
+        if now > self.update_auth:            
+            auth = Authenticate()
+            if auth.response['authed'] == 0:
+                # 認証失敗を通知
+                self.notify('radiko authentication failed', error=True)
+            # 認証情報をDBに書き込む
+            data = auth.response
+            set_clause = ', '.join([f'{key} = ?' for key in data.keys()])
+            sql = f'UPDATE auth SET {set_clause}'
+            db.cursor.execute(sql, list(data.values()))
+            # 地域、都道府県を判定する
+            sql = "SELECT region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
+            db.cursor.execute(sql)
+            self.region, self.pref = db.cursor.fetchone()
+            # ログ
+            self.log('radiko authentication status:', data['authed'], 'region:', self.region, 'pref:', self.pref)
+            # 次の認証予定時刻
+            self.update_auth = now + self.AUTH_INTERVAL
 
-    def _update_auth(self):
-        try:
-            # radiko認証
-            self._authenticate()
-            # 次のradiko認証更新時刻
-            update_auth = time.time() + self.AUTH_INTERVAL
-        except Exception as e:
-            self.log('monitor error in _update_auth:', e)
-        return update_auth
-    
-    def _update_nhk(self):
-        try:
-            # NHKの番組データを取得
-            scraper = NHK(self.region)
-            scraper.update()
-            # 次の番組情報更新時刻
-            update_nhk = scraper.next_aired()
-        except Exception as e:
-            self.log('monitor error in _update_nhk:', e)
-        return update_nhk
-    
-    def _update_rdk(self):
-        try:
-            # radikoの番組データを取得
-            scraper = RDK(self.region, self.pref)
-            scraper.update()
-            # 次の番組情報更新時刻
-            update_rdk = scraper.next_aired()
-        except Exception as e:
-            self.log('monitor error in _update_rdk:', e)
-        return update_rdk
-
-    def _prepare_download(self):
+    def maintain_download(self):
         # DBの共有インスタンス
         db = ThreadLocal.db
         # 保留中(cstatus=1)の番組、かつDOWNLOAD_PREPARATION以内に開始する番組を検索

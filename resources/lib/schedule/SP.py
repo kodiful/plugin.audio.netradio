@@ -1,70 +1,54 @@
-# https://kanazawaseasidefm.fmplapla.com/api/timetable
+# -*- coding: utf-8 -*-
+
+import json
+from datetime import datetime
+
+from resources.lib.schedule.common import Common
+
+
+class Scraper(Common):
+
+    PROTOCOL = 'SP'
+    URL = 'https://%s.fmplapla.com/api/timetable'
+
+    def __init__(self, sid=681, **kwargs):
+        super().__init__(f'{self.PROTOCOL}/{sid}')
+        self.sid = sid
+        self.db.cursor.execute('SELECT station, key, region, pref, site FROM stations WHERE sid = :sid', {'sid': sid})
+        self.station, self.key, self.region, self.pref, self.site = self.db.cursor.fetchone()
+        self.URL = self.URL % self.key
+
+    def parse(self, data):
+        data = json.loads(data)
+        buf = []
+        for item in data:
+            prog = {
+                'station': self.station,
+                'protocol': self.PROTOCOL,
+                'key': self.key,
+                'title': self.normalize(item['title']),
+                'start': self._datetime(item['start']),
+                'end': self._datetime(item['end']),
+                'act': item.get('performer', ''),
+                'info': item.get('sub_title', ''),
+                'desc': '',
+                'site': self.site,
+                'region': self.region,
+                'pref': self.pref
+            }
+            buf.append(prog)
+        return buf
+
+    def _datetime(self, t):
+        # 2025-02-11T13:00:00+09:00 -> 2025-02-11 13:00:00
+        dt = datetime.fromisoformat(t)  # 日時オブジェクトに変換
+        return dt.strftime("%Y-%m-%d %H:%M:%S")  # タイムゾーン情報を除外してフォーマット
+
+
+# https://kanazawaseasidefm.fmplapla.com/api/schedule
 
 '''
 [{
-    "id": 83570,
-    "title": "カナラジ",
-    "sub_title": "",
-    "performer": "",
-    "start": "2025-02-11T09:00:00+09:00",
-    "end": "2025-02-11T11:00:00+09:00"
-}, {
-    "id": 83571,
-    "title": "ひるカナ！！",
-    "sub_title": "",
-    "performer": "",
-    "start": "2025-02-11T11:00:00+09:00",
-    "end": "2025-02-11T13:00:00+09:00"
-}, {
-    "id": 83572,
-    "title": "シーサイド・カフェ",
-    "sub_title": "",
-    "performer": "",
-    "start": "2025-02-11T13:00:00+09:00",
-    "end": "2025-02-11T14:00:00+09:00"
-}, {
-    "id": 83573,
-    "title": "第２週：ビューティーアワー提供: hair salon Rich",
-    "sub_title": "他シーサイド・カフェ",
-    "performer": "",
-    "start": "2025-02-11T14:00:00+09:00",
-    "end": "2025-02-11T15:00:00+09:00"
-}, {
-    "id": 83574,
-    "title": "スポットライト",
-    "sub_title": "提供:Reinvent health株式会社",
-    "performer": "",
-    "start": "2025-02-11T15:00:00+09:00",
-    "end": "2025-02-11T16:00:00+09:00"
-}, {
-    "id": 83575,
-    "title": "通山栞のBookmark of Book 本の栞",
-    "sub_title": "",
-    "performer": "",
-    "start": "2025-02-11T16:00:00+09:00",
-    "end": "2025-02-11T17:00:00+09:00"
-}, {
-    "id": 83576,
-    "title": "うみとそらのおうち",
-    "sub_title": "提供:株式会社オルフィックデザイン",
-    "performer": "",
-    "start": "2025-02-11T17:00:00+09:00",
-    "end": "2025-02-11T18:00:00+09:00"
-}, {
-    "id": 83577,
-    "title": "シーサイドSHOW",
-    "sub_title": "",
-    "performer": "",
-    "start": "2025-02-11T18:00:00+09:00",
-    "end": "2025-02-11T19:00:00+09:00"
-}, {
-    "id": 83578,
-    "title": "Bee Talk",
-    "sub_title": "提供:一般社団法人横浜ウーマンズライツ協会/ ぐるっとママ横浜/一般社団法人日本シングルマザー支援協会",
-    "performer": "",
-    "start": "2025-02-11T19:00:00+09:00",
-    "end": "2025-02-11T20:00:00+09:00"
-}, {
     "id": 83579,
     "title": "カナラジ",
     "sub_title": "",
@@ -435,5 +419,68 @@
     "performer": "他よるかな",
     "start": "2025-02-17T19:00:00+09:00",
     "end": "2025-02-17T20:00:00+09:00"
+}, {
+    "id": 83632,
+    "title": "カナラジ",
+    "sub_title": "",
+    "performer": "",
+    "start": "2025-02-18T09:00:00+09:00",
+    "end": "2025-02-18T11:00:00+09:00"
+}, {
+    "id": 83633,
+    "title": "ひるカナ！！",
+    "sub_title": "",
+    "performer": "",
+    "start": "2025-02-18T11:00:00+09:00",
+    "end": "2025-02-18T13:00:00+09:00"
+}, {
+    "id": 83634,
+    "title": "シーサイド・カフェ",
+    "sub_title": "",
+    "performer": "",
+    "start": "2025-02-18T13:00:00+09:00",
+    "end": "2025-02-18T14:00:00+09:00"
+}, {
+    "id": 83635,
+    "title": "第２週：ビューティーアワー提供: hair salon Rich",
+    "sub_title": "他シーサイド・カフェ",
+    "performer": "",
+    "start": "2025-02-18T14:00:00+09:00",
+    "end": "2025-02-18T15:00:00+09:00"
+}, {
+    "id": 83636,
+    "title": "スポットライト",
+    "sub_title": "提供:Reinvent health株式会社",
+    "performer": "",
+    "start": "2025-02-18T15:00:00+09:00",
+    "end": "2025-02-18T16:00:00+09:00"
+}, {
+    "id": 83637,
+    "title": "通山栞のBookmark of Book 本の栞",
+    "sub_title": "",
+    "performer": "",
+    "start": "2025-02-18T16:00:00+09:00",
+    "end": "2025-02-18T17:00:00+09:00"
+}, {
+    "id": 83638,
+    "title": "うみとそらのおうち",
+    "sub_title": "提供:株式会社オルフィックデザイン",
+    "performer": "",
+    "start": "2025-02-18T17:00:00+09:00",
+    "end": "2025-02-18T18:00:00+09:00"
+}, {
+    "id": 83639,
+    "title": "シーサイドSHOW",
+    "sub_title": "",
+    "performer": "",
+    "start": "2025-02-18T18:00:00+09:00",
+    "end": "2025-02-18T19:00:00+09:00"
+}, {
+    "id": 83640,
+    "title": "Bee Talk",
+    "sub_title": "提供:一般社団法人横浜ウーマンズライツ協会/ ぐるっとママ横浜/一般社団法人日本シングルマザー支援協会",
+    "performer": "",
+    "start": "2025-02-18T19:00:00+09:00",
+    "end": "2025-02-18T20:00:00+09:00"
 }]
 '''

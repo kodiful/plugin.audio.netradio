@@ -63,7 +63,6 @@ class DB(Common):
     CREATE TABLE IF NOT EXISTS stations(
         sid INTEGER PRIMARY KEY AUTOINCREMENT,
         top INTEGER,
-        listing INTEGER,
         station TEXT,
         protocol TEXT,
         key TEXT,
@@ -76,16 +75,13 @@ class DB(Common):
         site TEXT,
         direct TEXT,
         delay INTEGER,
-        sstatus INTEGER,
+        display INTEGER,
+        schedule INTEGER,
+        download INTEGER,
+        nextaired TEXT,
         version TEXT,
         modified TEXT
     )'''
-
-    # sstatus
-    # -1: nothing available (station obsolated)
-    # 0: listening availabe
-    # 1: listening & listing availabe
-    # 2: listening & listing & download availabe
 
     sql_keywords = '''
     CREATE TABLE IF NOT EXISTS keywords(
@@ -127,6 +123,7 @@ class DB(Common):
         pref TEXT,
         city TEXT,
         code TEXT,
+        site TEXT,
         SJ TEXT,
         LR TEXT,
         SR TEXT,
@@ -155,14 +152,14 @@ class DB(Common):
 
     sql_status = '''
     CREATE TABLE IF NOT EXISTS status(
-        timetable INTEGER,
         keyword TEXT,
-        station TEXT
+        station TEXT,
+        front TEXT
     )'''
 
     sql_status_init = '''
     DELETE FROM status;
-    INSERT INTO status VALUES(0, '', '');
+    INSERT INTO status VALUES('', '', '[]');
     '''
 
     def __init__(self):
@@ -188,7 +185,9 @@ class DB(Common):
         self.conn.create_function('NOW', 0, now)
         # epoch時間変換関数
         def epoch(time_str):
-            return int(datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S").timestamp())
+            #return int(datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S").timestamp())
+            dt = self.datetime(time_str)
+            return int(dt.timestamp())
         self.conn.create_function('EPOCH', 1, epoch)
         # 古い番組情報を削除
         self.cursor.execute('DELETE FROM contents WHERE cstatus = 0 AND end < NOW()')
@@ -198,8 +197,8 @@ class DB(Common):
         title = data['title']
         # description
         description = self._description(data)
-        # sid, sstatus, filename
-        sid, sstatus, filename = self._station(data, key)
+        # sid, download, filename
+        sid, download, filename = self._station(data, key)
         # kid, filename, cstatus
         if kid > 0:
             if duration > 0:
@@ -207,7 +206,7 @@ class DB(Common):
             else:
                 kid, filename, cstatus = 0, '', 0
         else:
-            if self.GET('download') == 'true' and sstatus == 1:
+            if self.GET('download') == 'true' and download > 0:
                 kid, filename, cstatus = self._keyword_match(data, title, description)
             else:
                 kid, filename, cstatus = 0, '', 0
@@ -234,8 +233,8 @@ class DB(Common):
         columns = ', '.join(values.keys())
         placeholders = ', '.join(['?' for _ in values])
         sql = f'INSERT OR IGNORE INTO contents ({columns}) VALUES ({placeholders})'
-        self.cursor.execute(sql, list(values.values()))
-        return self.cursor.lastrowid
+        result = self.cursor.execute(sql, list(values.values()))
+        return result.rowcount and self.cursor.lastrowid
 
     def add_master(self, values):
         values.update({
@@ -260,10 +259,9 @@ class DB(Common):
         sql = f'INSERT INTO holidays ({columns}) VALUES ({placeholders})'
         self.cursor.execute(sql, list(values.values()))
     
-    def add_station(self, data, top=0, listing=0):
+    def add_station(self, data, top=0, display=1, schedule=0, download=0):
         values = {
             'top': data.get('top', top),
-            'listing': data.get('listing', listing),
             'protocol': data['protocol'],
             'key': data['key'],
             'station': data['station'],
@@ -276,7 +274,10 @@ class DB(Common):
             'site': data['site'],
             'direct': data['direct'],
             'delay': data.get('delay', 0),
-            'sstatus': data.get('sstatus', 0),
+            'display': data.get('display', display),
+            'schedule': data.get('schedule', schedule),
+            'download': data.get('download', download),
+            'nextaired': '',
             'version': self.ADDON_VERSION,
             'modified': self.now
         }
@@ -325,7 +326,7 @@ class DB(Common):
         path = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', f'{kid}.png')
         create_qrcode(url, path)
         # 既存のcontentsと照合
-        sql = 'SELECT * FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.cstatus = 0 AND c.end > NOW() AND s.sstatus > -1'
+        sql = 'SELECT * FROM contents c JOIN stations s ON c.sid = s.sid WHERE c.cstatus = 0 AND c.end > NOW() AND s.download > 0'
         self.cursor.execute(sql)
         for csdata in self.cursor.fetchall():
             kid, filename, cstatus = self._keyword_match(dict(csdata), csdata['title'], csdata['description'], key=csdata['key'])
@@ -360,26 +361,28 @@ class DB(Common):
 
     def _station(self, cdata, key=''):
         if cdata.get('region'):
-            sql = 'SELECT sid, sstatus, key FROM stations WHERE station = :station AND region = :region AND pref = :pref AND sstatus > -1'
+            sql = 'SELECT sid, download, key FROM stations WHERE station = :station AND region = :region AND pref = :pref AND download > -1'
             self.cursor.execute(sql, {'station': cdata['station'], 'region': cdata['region'], 'pref': cdata['pref']})
-            sid, sstatus, key = self.cursor.fetchone()
+            sid, download, key = self.cursor.fetchone()
         elif key:
-            sql = 'SELECT sid FROM stations WHERE key = :key AND sstatus > -1'
+            sql = 'SELECT sid FROM stations WHERE key = :key AND download > -1'
             self.cursor.execute(sql, {'key': key})
             sid, = self.cursor.fetchone()  # ダウンロードのアイコン画像用にsidを付与
-            sstatus = 0
+            download = 0
         else:
-            sid, key, sstatus = 0, 'unknown', 0
+            sid, key, download = 0, 'unknown', 0
         start = cdata['start']  # 2025-02-04 21:24:00
         end = cdata['end']
         filename = f'{key}-{start[0:4]}{start[5:7]}{start[8:10]}-{start[11:13]}{start[14:16]}-{end[11:13]}{end[14:16]}.mp3'
-        return sid, sstatus, filename
+        return sid, download, filename
     
     def _keyword_match(self, cdata, title, description, key=''):
         sql = "SELECT kid, keyword, match, weekday, station FROM keywords WHERE kstatus = 1"
         self.cursor.execute(sql)
         for kid, keyword, match, weekday, station in self.cursor.fetchall():
-            today = datetime.strptime(cdata['start'], '%Y-%m-%d %H:%M:%S').weekday()
+            #today = datetime.strptime(cdata['start'], '%Y-%m-%d %H:%M:%S')
+            #today = today.weekday()
+            today = self.weekday(cdata['start'])
             if weekday != 7 and weekday != today:
                 continue
             if station != '' and station != cdata['station']:
@@ -417,18 +420,18 @@ class DB(Common):
     
     def search_by_station(self, protocol, station):
         # 放送局名の表記の揺れを解決して名寄せする
-        sql = f'SELECT code, region, pref, city, station, SJ, LR, SR, SP FROM master WHERE {protocol} = :station'
+        sql = f'SELECT code, region, pref, city, station, site, SJ, LR, SR, SP FROM master WHERE {protocol} = :station'
         self.cursor.execute(sql, {'station': station})
         results = self.cursor.fetchone()
         if results:
-            code, region, pref, city, station, SJ, LR, SR, SP = results
+            code, region, pref, city, station, site, SJ, LR, SR, SP = results
             # 優先するprotocolか否かを判定する
             status = False
             if SJ: status = protocol == 'SJ'
             elif LR: status = protocol == 'LR'
             elif SR: status = protocol == 'SR'
             elif SP: status = protocol == 'SP'
-            return code, region, pref, city, station, status
+            return code, region, pref, city, station, site, status
         else:
             return None
 

@@ -289,6 +289,18 @@ msgid "(No info)"
 msgstr ""
 
 #
+# miscellaneous
+#
+
+msgctxt "#30700"
+msgid "(Retrieving program info...)"
+msgstr ""
+
+msgctxt "#30701"
+msgid "(Program info is currently unavailable)"
+msgstr ""
+
+#
 # for common use
 #
 

@@ -44,6 +44,8 @@ if __name__ == '__main__':
         Directory().add_to_top(args.get('sid'))
     elif action == 'delete_from_top':
         Directory().delete_from_top(args.get('sid'))
+    elif action == 'update_info':
+        Directory().maintain_schedule()
 
     # 放送局
     elif action == 'set_station':
@@ -54,9 +56,17 @@ if __name__ == '__main__':
         Station().delete(args.get('sid'))
     elif action == 'show_info':
         Station().show_info(args.get('sid'))
-    elif action == 'update_info':
-        Station().update_info()
-
+    elif action == 'open_site':
+        url = args.get('url')
+        Common.log(url)
+        os_ = platform.system()
+        if os_ == 'Windows':
+            subprocess.Popen(['start', url], shell=True)
+        elif os_ == 'Darwin':
+            subprocess.call(['open', url])
+        else:
+            Common.notify('Unsupported on %s' % os_)
+            
     # キーワード
     elif action == 'set_keyword':
         Keyword().set(args.get('kid'), args.get('sid'))

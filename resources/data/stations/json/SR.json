@@ -2,17 +2,19 @@
     {
         "protocol": "SR",
         "key": "",
-        "station": "FMわっぴー",
+        "station": "FMわっぴ～",
         "code": "012149",
         "region": "北海道",
         "pref": "北海道",
         "city": "稚内市",
         "logo": "http://csra.fm/logo/wappy761.png",
         "description": "",
-        "site": "http://wappy761.jp",
+        "site": "http://www.wappy761.jp/",
         "direct": "http://csra.fm/asx/fmwappy.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
@@ -27,22 +29,26 @@
         "site": "http://www.e-niwa.tv/",
         "direct": "http://csra.fm/asx/eniwa.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
         "key": "",
-        "station": "FMたいはく",
+        "station": "エフエムたいはく",
         "code": "041041",
         "region": "東北",
         "pref": "宮城県",
         "city": "仙台市太白区",
         "logo": "http://csra.fm/logo/fmtaihaku.png",
         "description": "",
-        "site": "http://www.fm-t.net/",
+        "site": "https://www.fm-t.net/",
         "direct": "http://csra.fm/asx/taihaku.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
@@ -54,25 +60,29 @@
         "city": "つくば市",
         "logo": "http://csra.fm/logo/radio-tsukuba.png",
         "description": "",
-        "site": "http://radio-tsukuba.net",
+        "site": "https://radio-tsukuba.net/",
         "direct": "http://csra.fm/asx/tsukuba.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
         "key": "",
-        "station": "FM HOT839",
+        "station": "FM HOT 839",
         "code": "141526",
         "region": "関東",
         "pref": "神奈川県",
         "city": "相模原市中央区",
         "logo": "http://csra.fm/logo/fmsagami.png",
         "description": "",
-        "site": "http://www.fmsagami.co.jp/",
+        "site": "https://fm839.com/",
         "direct": "http://www.fmsagami.co.jp/asx/fmsagami.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
@@ -87,37 +97,43 @@
         "site": "http://fukuchiyama.fm-tanba.jp/",
         "direct": "http://fukuchiyama.fm-tanba.jp/simul.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
         "key": "",
-        "station": "FM MOOV KOBE",
+        "station": "FM MOOV",
         "code": "281107",
         "region": "近畿",
         "pref": "兵庫県",
         "city": "神戸市中央区",
         "logo": "http://csra.fm/logo/fmmoov.png",
         "description": "",
-        "site": "http://www.fm-moov.com/",
+        "site": "https://www.fm-moov.com/",
         "direct": "http://csra.fm/asx/fmmoov.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
         "key": "",
-        "station": "コミュニティラジオ天神",
+        "station": "コミュニティラジオ天神（コミてん）",
         "code": "401331",
         "region": "九州沖縄",
         "pref": "福岡県",
         "city": "福岡市中央区",
         "logo": "http://csra.fm/logo/comiten.png",
         "description": "",
-        "site": "http://comiten.jp/",
+        "site": "https://radio.comiten.jp/",
         "direct": "http://comiten.jp/live.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
@@ -132,7 +148,9 @@
         "site": "http://www.starcornfm.com/",
         "direct": "mms://hdv.nkansai.tv/starcorn",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
@@ -144,10 +162,12 @@
         "city": "島原市",
         "logo": "http://csra.fm/logo/shimabara.png",
         "description": "",
-        "site": "http://www.shimabara.fm/",
+        "site": "https://www.shimabara.fm/",
         "direct": "http://www.shimabara.fm/st/fm-shimabara-live.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
@@ -162,22 +182,26 @@
         "site": "http://fm786.jp/",
         "direct": "http://csra.fm/asx/ginga.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
         "key": "",
-        "station": "FM琉球",
+        "station": "FMレキオ",
         "code": "472018",
         "region": "九州沖縄",
         "pref": "沖縄県",
         "city": "那覇市",
         "logo": "http://csra.fm/logo/fmlequio.png",
         "description": "",
-        "site": "http://www.fmlequio.com/",
+        "site": "https://www.fmlequio.com/",
         "direct": "http://csra.fm/asx/lequio.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
@@ -189,30 +213,34 @@
         "city": "浦添市",
         "logo": "http://csra.fm/logo/fm21.png",
         "description": "",
-        "site": "http://www.fm21.net/",
+        "site": "https://www.fm21.net/",
         "direct": "http://csra.fm/asx/fm21.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
         "key": "",
-        "station": "FM本部",
+        "station": "ちゅらハート FMもとぶ",
         "code": "473081",
         "region": "九州沖縄",
         "pref": "沖縄県",
         "city": "本部町",
         "logo": "http://csra.fm/logo/motob.png",
         "description": "",
-        "site": "http://www.motob.net/",
+        "site": "https://www.motob.net/",
         "direct": "http://csra.fm/asx/motob.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     },
     {
         "protocol": "SR",
         "key": "",
-        "station": "FM久米島",
+        "station": "FMくめじま",
         "code": "473618",
         "region": "九州沖縄",
         "pref": "沖縄県",
@@ -222,6 +250,8 @@
         "site": "http://fmkumejima.com/",
         "direct": "http://csra.fm/asx/fmkumejima.asx",
         "delay": 0,
-        "sstatus": 0
+        "display": 1,
+        "schedule": 0,
+        "download": 0
     }
 ]
