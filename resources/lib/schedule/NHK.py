@@ -23,9 +23,11 @@ class Scraper(Common):
         '九州沖縄': '400',
     }
 
-    def __init__(self, region='関東', **kwargs):
+    def __init__(self, sid):
         super().__init__(self.PROTOCOL)
-        self.region = region
+        self.sid = sid
+        self.db.cursor.execute('SELECT region FROM stations WHERE sid = :sid', {'sid': sid})
+        self.region,  = self.db.cursor.fetchone()
         self.URL = self.URL.format(region=self.REGION[self.region])
 
     def parse(self, data):
@@ -65,6 +67,33 @@ class Scraper(Common):
         # 2023-04-20T05:00:00+09:00 -> 2023-04-20 05:00:00
         datetime_obj = datetime.fromisoformat(t)
         return datetime_obj.strftime('%Y-%m-%d %H:%M:%S')
+    
+    def get_nextaired(self):
+        sql = 'SELECT MIN(nextaired) FROM stations AS s WHERE s.protocol = :protocol AND s.region = :region'
+        self.db.cursor.execute(sql, {'protocol': self.PROTOCOL, 'region': self.region})
+        nextaired, = self.db.cursor.fetchone()
+        return nextaired
+    
+    def _get_nextaired(self):
+        sql = '''
+        SELECT MIN(c.end)
+        FROM contents AS c JOIN stations AS s ON c.sid = s.sid
+        WHERE c.end > NOW() AND s.protocol = :protocol AND s.region = :region
+        '''
+        self.db.cursor.execute(sql, {'protocol': self.PROTOCOL, 'region': self.region})
+        nextaired, = self.db.cursor.fetchone()
+        return nextaired
+
+    def set_nextaired(self):
+        sql = '''
+        UPDATE stations
+        SET nextaired = :nextaired
+        WHERE protocol = :protocol AND region = :region
+        '''
+        nextaired = self._get_nextaired()
+        self.db.cursor.execute(sql, {'nextaired': nextaired, 'protocol': self.PROTOCOL, 'region': self.region})
+        return nextaired
+
 
 
 # https://api.nhk.or.jp/r5/pg2/now/4/130/netradio.json

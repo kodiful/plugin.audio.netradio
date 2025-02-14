@@ -11,7 +11,7 @@ class Scraper(Common):
     PROTOCOL = 'LR'
     URL = 'https://listenradio.jp/Home/ProgramSchedule/{key}/{station}?X-Requested-With=XMLHttpRequest'
 
-    def __init__(self, sid=633, **kwargs):
+    def __init__(self, sid):
         super().__init__(f'{self.PROTOCOL}/{sid}')
         self.sid = sid
         self.db.cursor.execute('SELECT station, key, region, pref, site FROM stations WHERE sid = :sid', {'sid': sid})
@@ -52,7 +52,7 @@ class Scraper(Common):
             }
             buf.append(prog)
         return buf
-        
+
 
 # https://listenradio.jp/Home/ProgramSchedule/30058/FM%20ABASHIRI?X-Requested-With=XMLHttpRequest
 

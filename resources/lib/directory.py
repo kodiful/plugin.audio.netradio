@@ -5,7 +5,6 @@ import os
 import json
 from urllib.parse import urlencode
 
-from resources.lib.common import Common
 from resources.lib.db import ThreadLocal
 from resources.lib.localproxy import LocalProxy
 from resources.lib.maintenance import Maintenance
@@ -24,8 +23,6 @@ class Directory(Maintenance):
         sql = "SELECT auth_token, region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
         self.db.cursor.execute(sql)
         self.token, self.region, self.pref = self.db.cursor.fetchone()
-        # 番組表メンテ用
-        self.maintainer = {}
 
     def show(self, protocol=None, region=None, pref=None):
         # 表示中の放送局を格納するリスト
@@ -33,15 +30,15 @@ class Directory(Maintenance):
         # 表示
         if protocol == 'NHK':
             # NHKの放送局一覧を表示
-            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND region = :region AND display = 1 ORDER BY station'
-            self.db.cursor.execute(sql, {'protocol': 'NHK', 'region': region})
+            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND display = 1 ORDER BY station'
+            self.db.cursor.execute(sql, {'protocol': 'NHK'})
             for sdata in self.db.cursor.fetchall():
                 front.append(sdata['sid'])
                 self._add_station(sdata)
         elif protocol == 'RDK':
             # RDKの放送局一覧を表示
-            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND region = :region AND pref = :pref AND display = 1 ORDER BY station'
-            self.db.cursor.execute(sql, {'protocol': 'RDK', 'region': region, 'pref': pref})
+            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND display = 1 ORDER BY station'
+            self.db.cursor.execute(sql, {'protocol': 'RDK'})
             for sdata in self.db.cursor.fetchall():
                 front.append(sdata['sid'])
                 self._add_station(sdata)

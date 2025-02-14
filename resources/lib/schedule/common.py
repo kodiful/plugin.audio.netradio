@@ -71,6 +71,32 @@ class Common(Main):
             message += f'/{self.sid}|{self.station}'
         return message
 
+    def get_nextaired(self):
+        sql = 'SELECT nextaired FROM stations WHERE sid = :sid'
+        self.db.cursor.execute(sql, {'sid': self.sid})
+        nextaired, = self.db.cursor.fetchone()
+        return nextaired
+
+    def _get_nextaired(self):
+        sql = '''
+        SELECT MIN(c.end)
+        FROM contents AS c JOIN stations AS s ON c.sid = s.sid
+        WHERE c.end > NOW() AND c.sid = :sid
+        '''
+        self.db.cursor.execute(sql, {'sid': self.sid})
+        nextaired, = self.db.cursor.fetchone()
+        return nextaired
+
+    def set_nextaired(self):
+        sql = '''
+        UPDATE stations
+        SET nextaired = :nextaired
+        WHERE sid = :sid
+        '''
+        nextaired = self._get_nextaired()
+        self.db.cursor.execute(sql, {'nextaired': nextaired, 'sid': self.sid})
+        return nextaired
+    
     # 文字列を正規化する
     @staticmethod
     def normalize(text):

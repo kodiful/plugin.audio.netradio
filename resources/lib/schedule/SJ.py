@@ -11,7 +11,7 @@ class Scraper(Common):
     PROTOCOL = 'SJ'
     URL = 'https://www.jcbasimul.com/api/timetable/current/%s'
 
-    def __init__(self, sid=442, **kwargs):
+    def __init__(self, sid):
         super().__init__(f'{self.PROTOCOL}/{sid}')
         self.sid = sid
         self.db.cursor.execute('SELECT station, key, region, pref, site FROM stations WHERE sid = :sid', {'sid': sid})

@@ -189,8 +189,6 @@ class DB(Common):
             dt = self.datetime(time_str)
             return int(dt.timestamp())
         self.conn.create_function('EPOCH', 1, epoch)
-        # 古い番組情報を削除
-        self.cursor.execute('DELETE FROM contents WHERE cstatus = 0 AND end < NOW()')
 
     def add(self, data, kid=0, key='', duration=0):
         # title
@@ -277,7 +275,7 @@ class DB(Common):
             'display': data.get('display', display),
             'schedule': data.get('schedule', schedule),
             'download': data.get('download', download),
-            'nextaired': '',
+            'nextaired': '1970-01-01 09:00:00',  # datetime.fromtimestamp(0) = datetime.datetime(1970, 1, 1, 9, 0)
             'version': self.ADDON_VERSION,
             'modified': self.now
         }

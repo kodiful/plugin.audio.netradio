@@ -11,11 +11,12 @@ class Scraper(Common):
     PROTOCOL = 'RDK'
     URL = 'https://radiko.jp/v3/program/now/{area_id}.xml'
 
-    def __init__(self, region='関東', pref='東京都', **kwargs):
+    def __init__(self, sid):
         super().__init__(self.PROTOCOL)
-        self.region = region
-        self.pref = pref
-        area_id = self.db.search_by_pref(pref)
+        self.sid = sid
+        self.db.cursor.execute('SELECT region, pref FROM stations WHERE sid = :sid', {'sid': sid})
+        self.region, self.pref = self.db.cursor.fetchone()
+        area_id = self.db.search_by_pref(self.pref)
         self.URL = self.URL.format(area_id=area_id)
 
     def parse(self, data):
@@ -51,6 +52,32 @@ class Scraper(Common):
         #dt = datetime.strptime(t, '%Y%m%d%H%M%S')
         #return dt.strftime('%Y-%m-%d %H:%M:%S')
         return f'{t[0:4]}-{t[4:6]}-{t[6:8]} {t[8:10]}:{t[10:12]}:{t[12:14]}'
+
+    def get_nextaired(self):
+        sql = 'SELECT MIN(nextaired) FROM stations AS s WHERE s.protocol = :protocol AND s.pref = :pref'
+        self.db.cursor.execute(sql, {'protocol': self.PROTOCOL, 'pref': self.pref})
+        nextaired, = self.db.cursor.fetchone()
+        return nextaired
+    
+    def _get_nextaired(self):
+        sql = '''
+        SELECT MIN(c.end)
+        FROM contents AS c JOIN stations AS s ON c.sid = s.sid
+        WHERE c.end > NOW() AND s.protocol = :protocol AND s.pref = :pref
+        '''
+        self.db.cursor.execute(sql, {'protocol': self.PROTOCOL, 'pref': self.pref})
+        nextaired, = self.db.cursor.fetchone()
+        return nextaired
+
+    def set_nextaired(self):
+        sql = '''
+        UPDATE stations
+        SET nextaired = :nextaired
+        WHERE protocol = :protocol AND pref = :pref
+        '''
+        nextaired = self._get_nextaired()
+        self.db.cursor.execute(sql, {'nextaired': nextaired, 'protocol': self.PROTOCOL, 'pref': self.pref})
+        return nextaired
 
 
 # https://radiko.jp/v3/program/now/JP13.xml

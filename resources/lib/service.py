@@ -8,6 +8,7 @@ import json
 import time
 import ffmpeg  # https://github.com/kkroening/ffmpeg-python
 from mutagen.mp3 import MP3
+from datetime import datetime
 
 import xbmc
 import xbmcgui
@@ -78,6 +79,8 @@ class Service(Maintenance):
             mp3file = os.path.join(db.CONTENTS_PATH, dirname, filename)
             if os.path.exists(mp3file):
                 os.remove(mp3file)
+        # 番組表更新予定時間を初期化
+        db.cursor.execute("UPDATE stations SET nextaired = '1970-01-01 09:00:00'")
         # 設定画面をデフォルトに設定
         shutil.copy(os.path.join(Common.DATA_PATH, 'settings', 'settings.xml'), Common.DIALOG_FILE)
         # stations/logoを初期化
@@ -106,27 +109,21 @@ class Service(Maintenance):
         self.log('enter monitor.')
         # 監視開始を通知
         self.notify('Starting service', time=3000)
-        # DBインスタンスを作成
+        # スレッドのDBインスタンスを作成
         db = ThreadLocal.db = DB()
         # 認証予定時刻
         self.update_auth = 0
-        # 番組表メンテ用
-        self.maintainer = {}
         # 監視を開始
         monitor = Monitor()
-        refresh = True
         while monitor.abortRequested() is False:
-            # radiko認証
+            # 時刻
+            self.log('monitor loop:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            # radiko認証更新
             self.maintain_auth()
-            # 番組表メンテ
-            refresh = self.maintain_schedule() or refresh
-            # カレントウィンドウをチェック
+            # 番組表更新
+            self.maintain_schedule(self.CHECK_INTERVAL)
+            # 表示中画面が設定画面でなければ、設定画面はデフォルトに戻す
             if xbmcgui.getCurrentWindowDialogId() == 9999:
-                # 画面を更新する
-                if refresh:
-                    self.refresh_container()
-                    refresh = False
-                # 設定画面をデフォルトに戻す
                 db.cursor.execute('SELECT keyword, station FROM status')
                 keyword, station = db.cursor.fetchone()
                 if keyword or station:
@@ -135,7 +132,10 @@ class Service(Maintenance):
             # ダウンロード開始判定
             self.maintain_download()
             # CHECK_INTERVALの間待機
-            monitor.waitForAbort(self.CHECK_INTERVAL)
+            t = time.time()
+            dt = t - int(t)
+            dt += int(t) % self.CHECK_INTERVAL
+            monitor.waitForAbort(self.CHECK_INTERVAL - dt)
         # ローカルプロキシを終了
         self.log('shutting down local proxy.')
         self.httpd.shutdown()
@@ -144,17 +144,10 @@ class Service(Maintenance):
         while self.queue.qsize() > 0:
             process = self.queue.get()
             process.kill()
-        # DBインスタンスを終了
+        # スレッドのDBインスタンスを終了
         db.conn.close()
         # 監視終了を通知
         self.log('exit monitor.')
-
-    def refresh_container(self):
-        # 表示中画面がこのアドオン画面、かつaction=showであれば再描画する
-        path = xbmc.getInfoLabel('Container.FolderPath')
-        argv = 'plugin://%s/' % self.ADDON_ID
-        if path == argv or path.startswith(f'{argv}?action=show'):
-            xbmc.executebuiltin('Container.Refresh')
 
     def maintain_auth(self):
         # DBの共有インスタンス
@@ -176,6 +169,21 @@ class Service(Maintenance):
             sql = "SELECT region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
             db.cursor.execute(sql)
             self.region, self.pref = db.cursor.fetchone()
+            # 判定結果をstationsテーブルに反映する
+            sql = '''UPDATE stations SET
+            display = CASE WHEN region = :region THEN 1 ELSE 0 END,
+            schedule = CASE WHEN region = :region THEN 1 ELSE 0 END,
+            download = CASE WHEN region = :region THEN 1 ELSE 0 END
+            WHERE protocol = 'NHK'
+            '''
+            db.cursor.execute(sql, {'region': self.region})
+            sql = '''UPDATE stations SET
+            display = CASE WHEN pref = :pref THEN 1 ELSE 0 END,
+            schedule = CASE WHEN pref = :pref THEN 1 ELSE 0 END,
+            download = CASE WHEN pref = :pref THEN 1 ELSE 0 END
+            WHERE protocol = 'RDK'
+            '''
+            db.cursor.execute(sql, {'pref': self.pref})
             # ログ
             self.log('radiko authentication status:', data['authed'], 'region:', self.region, 'pref:', self.pref)
             # 次の認証予定時刻
@@ -196,15 +204,15 @@ class Service(Maintenance):
             end = end + delay + self.DOWNLOAD_MARGIN  # 終了時刻
             # ダウンロードを予約
             args = [cid, kid, filename, protocol, key, title, end, direct, self.queue]
-            thread = threading.Timer(start - int(time.time()), download, args=args)
+            thread = threading.Timer(start - int(time.time()), downloader, args=args)
             thread.start()
             # 待機中(cstatus=2)に更新
             sql = 'UPDATE contents SET cstatus = 2 WHERE cid = :cid'
             db.cursor.execute(sql, {'cid': cid})
 
 
-def download(cid, kid, filename, protocol, key, title, end, direct, queue):
-    # DBインスタンスを作成
+def downloader(cid, kid, filename, protocol, key, title, end, direct, queue):
+    # スレッドのDBインスタンスを作成
     db = ThreadLocal.db = DB()
     # radiko認証
     sql = 'SELECT auth_token FROM auth'
@@ -240,7 +248,7 @@ def download(cid, kid, filename, protocol, key, title, end, direct, queue):
     process = ffmpeg.input(url, f='hls', t=duration).output(mp3file, **kwargs).run_async(pipe_stderr=True)
     # プロセスをキューに追加
     queue.put(process)
-    # DB更新
+    # ダウンロード中(cstatus=3)に更新
     sql = 'UPDATE contents SET cstatus = 3 WHERE cid = :cid'
     db.cursor.execute(sql, {'cid': cid})
     # 開始通知
@@ -273,6 +281,6 @@ def download(cid, kid, filename, protocol, key, title, end, direct, queue):
         # ログ
         Common.log(f'[{process.pid}] Download failed (returncode={process.returncode}).')
         Common.log(err)
-    # DBインスタンスを終了
+    # スレッドのDBインスタンスを終了
     ThreadLocal.db.conn.close()
     ThreadLocal.db = None
