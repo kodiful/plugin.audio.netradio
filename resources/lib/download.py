@@ -108,7 +108,7 @@ class Download(Common):
             footer = f.read()
         # 時刻表記のロケール設定                                                                                                                                                             
         locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
-        # open rss writer
+        # open writer
         writer = open(os.path.join(self.CONTENTS_PATH, dirname, 'rss.xml'), 'w', encoding='utf-8')
         # write header
         writer.write(header.format(image='icon.png', title=keyword))
@@ -134,11 +134,11 @@ class Download(Common):
             )
         # write footer
         writer.write(footer)
-        # close rss writer
+        # close writer
         writer.close()
         # RSSから参照できるように、スタイルシートとアイコン画像をダウンロードフォルダにコピーする
-        shutil.copy(os.path.join(self.DATA_PATH, 'rss', 'stylesheet.xsl'), os.path.join(self.CONTENTS_PATH, dirname, 'stylesheet.xsl'))
-        shutil.copy(os.path.join(self.DATA_PATH, 'rss', 'icon.png'), os.path.join(self.CONTENTS_PATH, dirname, 'icon.png'))
+        for filename in ('stylesheet.xsl', 'icon.png'):
+            shutil.copy(os.path.join(self.DATA_PATH, 'rss', filename), os.path.join(self.CONTENTS_PATH, dirname, filename))
 
     def create_index(self):
         # templates
@@ -148,7 +148,7 @@ class Download(Common):
             body = f.read()
         with open(os.path.join(self.DATA_PATH, 'rss', 'footer.xml'), 'r', encoding='utf-8') as f:
             footer = f.read()
-        # open rss writer
+        # open writer
         writer = open(os.path.join(self.CONTENTS_PATH, 'index.xml'), 'w', encoding='utf-8')
         # write header
         writer.write(header.format(image='icon.png', title='NetRadio Client'))
@@ -171,30 +171,18 @@ class Download(Common):
             )
         # write footer
         writer.write(footer)
-        # close rss writer
+        # close writer
         writer.close()
         # RSSから参照できるように、スタイルシートとアイコン画像をダウンロードフォルダにコピーする
-        shutil.copy(os.path.join(self.DATA_PATH, 'rss', 'stylesheet.xsl'), os.path.join(self.CONTENTS_PATH, 'stylesheet.xsl'))
-        shutil.copy(os.path.join(self.DATA_PATH, 'rss', 'icon.png'), os.path.join(self.CONTENTS_PATH, 'icon.png'))
+        for filename in ('stylesheet.xsl', 'icon.png'):
+            shutil.copy(os.path.join(self.DATA_PATH, 'rss', filename), os.path.join(self.CONTENTS_PATH, filename))
 
     def _date(self, date):
         # "2023-04-20 14:00:00" -> "2023-04-20"
-        return f'{date[0:10]}'
+        return date[0:10]
 
     def _pubdate(self, date):
         # "2023-04-20 14:00:00" -> "Thu, 20 Apr 2023 14:00:00 +0900"
-        '''try:
-            pubdate = datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
-            pubdate = pubdate.strftime('%a, %d %b %Y %H:%M:%S +0900')
-        except TypeError:
-            try:
-                pubdate = datetime.fromtimestamp(time.mktime(time.strptime(date, '%Y-%m-%d %H:%M:%S')))
-                pubdate = pubdate.strftime('%a, %d %b %Y %H:%M:%S +0900')
-            except ValueError:
-                pubdate = ''
-        except ValueError:
-            pubdate = ''
-        '''
         pubdate = self.datetime(date).strftime('%a, %d %b %Y %H:%M:%S +0900')
         return pubdate
     

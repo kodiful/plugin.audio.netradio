@@ -7,6 +7,7 @@ import queue
 import json
 import time
 import ffmpeg  # https://github.com/kkroening/ffmpeg-python
+from mutagen.mp3 import MP3
 
 import xbmc
 import xbmcgui
@@ -250,9 +251,11 @@ def download(cid, kid, filename, protocol, key, title, end, direct, queue):
     process.wait()
     # ダウンロード結果に応じて後処理
     if process.returncode == 0:
+        # durationを抽出
+        duration = int(MP3(mp3file).info.length)
         # DB更新
-        sql = 'UPDATE contents SET cstatus = -1 WHERE cid = :cid'
-        db.cursor.execute(sql, {'cid': cid})
+        sql = 'UPDATE contents SET cstatus = -1, duration = :duration WHERE cid = :cid'
+        db.cursor.execute(sql, {'cid': cid, 'duration': duration})
         # ID3タグを書き込む
         db.write_id3(mp3file, cid)
         # 完了通知
