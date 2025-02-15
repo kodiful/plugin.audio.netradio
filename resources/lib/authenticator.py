@@ -82,7 +82,7 @@ class Authenticator(Common):
         return response
 
 
-class Authenticate(Common):
+class AuthenticationManager(Common):
 
     def maintain_auth(self):
         # DBの共有インスタンス
@@ -107,16 +107,16 @@ class Authenticate(Common):
         self.region, self.pref = db.cursor.fetchone()
         # 判定結果をstationsテーブルに反映する
         sql = '''UPDATE stations SET
-        display = CASE WHEN region = :region THEN 1 ELSE 0 END,
-        schedule = CASE WHEN region = :region THEN 1 ELSE 0 END,
-        download = CASE WHEN region = :region THEN 1 ELSE 0 END
+        display = CASE WHEN region = :region THEN ABS(display) ELSE -ABS(display) END,
+        schedule = CASE WHEN region = :region THEN ABS(schedule) ELSE -ABS(schedule) END,
+        download = CASE WHEN region = :region THEN ABS(download) ELSE -ABS(download) END
         WHERE protocol = 'NHK'
         '''
         db.cursor.execute(sql, {'region': self.region})
         sql = '''UPDATE stations SET
-        display = CASE WHEN pref = :pref THEN 1 ELSE 0 END,
-        schedule = CASE WHEN pref = :pref THEN 1 ELSE 0 END,
-        download = CASE WHEN pref = :pref THEN 1 ELSE 0 END
+        display = CASE WHEN pref = :pref THEN ABS(display) ELSE -ABS(display) END,
+        schedule = CASE WHEN pref = :pref THEN ABS(schedule) ELSE -ABS(schedule) END,
+        download = CASE WHEN pref = :pref THEN ABS(download) ELSE -ABS(download) END
         WHERE protocol = 'RDK'
         '''
         db.cursor.execute(sql, {'pref': self.pref})

@@ -13,9 +13,9 @@ import xbmcgui
 from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal
 from resources.lib.localproxy import LocalProxy
-from resources.lib.authenticate import Authenticate
-from resources.lib.schedule import Schedule
-from resources.lib.download import Download
+from resources.lib.authenticator import AuthenticationManager
+from resources.lib.scheduler import ScheduleManager
+from resources.lib.downloader import DownloadManager
 
 
 class Monitor(xbmc.Monitor, Common):
@@ -47,7 +47,7 @@ class Monitor(xbmc.Monitor, Common):
             xbmc.executebuiltin('Container.Refresh')
 
 
-class Service(Authenticate, Schedule, Download):
+class Service(AuthenticationManager, ScheduleManager, DownloadManager):
 
     def __init__(self):
         # DBの共有インスタンス

@@ -10,10 +10,10 @@ import xbmcplugin
 
 from resources.lib.db import ThreadLocal
 from resources.lib.localproxy import LocalProxy
-from resources.lib.schedule import Schedule
+from resources.lib.scheduler import ScheduleManager
 
 
-class Directory(Schedule):
+class Directory(ScheduleManager):
 
     def __init__(self):
         # DBの共有インスタンス

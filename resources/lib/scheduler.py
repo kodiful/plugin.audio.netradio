@@ -76,7 +76,7 @@ class Scheduler(Common):
         return epoch
 
 
-class Schedule(Common):
+class ScheduleManager(Common):
 
     def __init__(self, region, pref):
         self.region = region
@@ -108,7 +108,7 @@ class Schedule(Common):
             # 表示中の放送局をstatusテーブルに格納
             sql = 'UPDATE status SET front = :front'
             self.db.cursor.execute(sql, {'front': json.dumps(list(map(lambda x: x[1], stations)))})
-        # 放送局毎に更新予定時刻を個別のスレッドで確認し、必要があれば再描画する
+        # 放送局毎に更新予定時刻を個別のスレッドで確認し必要があれば再描画する
         for protocol, sid, visible in stations:
             thread = threading.Thread(target=scheduler, args=[protocol, sid, visible])
             thread.start()

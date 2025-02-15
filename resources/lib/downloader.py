@@ -11,7 +11,7 @@ from resources.lib.db import DB, ThreadLocal
 from resources.lib.localproxy import LocalProxy
 
 
-class Download(Common):
+class DownloadManager(Common):
 
     # ダウンロード予約のタイミング（秒）
     DOWNLOAD_PREPARATION = 180
