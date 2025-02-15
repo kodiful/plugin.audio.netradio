@@ -5,7 +5,8 @@ import sqlite3
 import re
 import threading
 import shutil
-import requests
+import urllib.request
+import urllib.error
 from datetime import datetime, timezone, timedelta
 from mutagen.id3 import ID3, TIT2, TDRC, WPUB, TPUB, COMM
 from PIL import Image
@@ -16,6 +17,7 @@ import xbmcvfs
 import xbmcaddon
 
 from resources.lib.common import Common
+
 
 # DBの共有インスタンスを格納するスレッドローカルデータ
 ThreadLocal = threading.local()
@@ -196,6 +198,7 @@ class DB(Common):
         # description
         description = self._description(data)
         # sid, download, filename
+        self.log(data, key)
         sid, download, filename = self._station(data, key)
         # kid, filename, cstatus
         if kid > 0:
@@ -275,7 +278,7 @@ class DB(Common):
             'display': data.get('display', display),
             'schedule': data.get('schedule', schedule),
             'download': data.get('download', download),
-            'nextaired': '1970-01-01 09:00:00',  # datetime.fromtimestamp(0) = datetime.datetime(1970, 1, 1, 9, 0)
+            'nextaired': '1970-01-01 09:00:00',
             'version': self.ADDON_VERSION,
             'modified': self.now
         }
@@ -363,6 +366,7 @@ class DB(Common):
             self.cursor.execute(sql, {'station': cdata['station'], 'region': cdata['region'], 'pref': cdata['pref']})
             sid, download, key = self.cursor.fetchone()
         elif key:
+            self.log('key:', key)
             sql = 'SELECT sid FROM stations WHERE key = :key AND download > -1'
             self.cursor.execute(sql, {'key': key})
             sid, = self.cursor.fetchone()  # ダウンロードのアイコン画像用にsidを付与
@@ -427,8 +431,8 @@ class DB(Common):
             status = False
             if SJ: status = protocol == 'SJ'
             elif LR: status = protocol == 'LR'
-            elif SR: status = protocol == 'SR'
             elif SP: status = protocol == 'SP'
+            elif SR: status = protocol == 'SR'
             return code, region, pref, city, station, site, status
         else:
             return None
@@ -465,11 +469,11 @@ def load_logo(item, dir, force=False):
     # ロゴ画像を取得
     if item['logo']:
         try:
-            res = requests.get(item['logo'])
-            if res.status_code == 200:
-                with open(path, 'wb') as f:
-                    f.write(res.content)
-        except Exception as e:
+            req = urllib.request.Request(item['logo'])
+            res = urllib.request.urlopen(req)
+            with open(path, 'wb') as f:
+                    f.write(res.read())
+        except urllib.error.HTTPError as e:
             pass
     # 画像が取得できないときはデフォルト画像で代替する
     if os.path.exists(path) is False:

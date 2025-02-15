@@ -1,188 +1,115 @@
 # -*- coding: utf-8 -*-
 
-import sys
 import os
-import locale
-import html
+import threading
 import time
-import shutil
-from datetime import datetime
-from urllib.parse import urlencode
+import ffmpeg  # https://github.com/kkroening/ffmpeg-python
+from mutagen.mp3 import MP3
 
 from resources.lib.common import Common
-from resources.lib.db import ThreadLocal
-
-import xbmcplugin
-import xbmcgui
+from resources.lib.db import DB, ThreadLocal
+from resources.lib.localproxy import LocalProxy
 
 
 class Download(Common):
 
-    def __init__(self):
+    # ダウンロード予約のタイミング（秒）
+    DOWNLOAD_PREPARATION = 180
+    # ダウンロード開始の余裕（秒）
+    DOWNLOAD_MARGIN = 5
+
+    def maintain_download(self):
         # DBの共有インスタンス
-        self.db = ThreadLocal.db
-        # ロケール設定
-        locale.setlocale(locale.LC_ALL, '')
+        db = ThreadLocal.db
+        # 保留中(cstatus=1)の番組、かつDOWNLOAD_PREPARATION以内に開始する番組を検索
+        sql = '''SELECT c.cid, c.kid, c.filename, s.protocol, s.key, c.title, EPOCH(c.start) as t, EPOCH(c.end), s.direct, s.delay
+        FROM contents c JOIN stations s ON c.sid = s.sid
+        WHERE c.cstatus = 1 AND t - EPOCH(NOW()) < :threshold
+        ORDER BY c.start'''
+        db.cursor.execute(sql, {'threshold': self.DOWNLOAD_PREPARATION})
+        # ダウンロードを予約
+        for cid, kid, filename, protocol, key, title, start, end, direct, delay in db.cursor.fetchall():
+            start = start + delay - self.DOWNLOAD_MARGIN  # 開始時刻
+            end = end + delay + self.DOWNLOAD_MARGIN  # 終了時刻
+            # ダウンロードを予約
+            args = [cid, kid, filename, protocol, key, title, end, direct, self.queue]
+            thread = threading.Timer(start - int(time.time()), downloader, args=args)
+            thread.start()
+            # 待機中(cstatus=2)に更新
+            sql = 'UPDATE contents SET cstatus = 2 WHERE cid = :cid'
+            db.cursor.execute(sql, {'cid': cid})
 
-    def show(self, kid):
-        sql = '''SELECT * FROM contents c 
-        JOIN keywords k ON c.kid = k.kid
-        JOIN stations s ON c.sid = s.sid
-        WHERE c.kid = :kid and c.cstatus = -1
-        ORDER BY c.start DESC'''
-        self.db.cursor.execute(sql, {'kid': kid})
-        for cksdata in self.db.cursor.fetchall():
-            # リストアイテムを追加
-            self._add_download(cksdata)
-        # リストアイテム追加完了
-        xbmcplugin.endOfDirectory(int(sys.argv[1]), succeeded=True)
-        # statusテーブルに格納されている表示中の放送局をクリア
-        self.db.cursor.execute("UPDATE status SET front = '[]'")
 
-    def _add_download(self, cksdata):
-        # listitemを追加する
-        li = xbmcgui.ListItem(self._title(cksdata))
-        li.setProperty('IsPlayable', 'true')
-        # メタデータ設定
-        tag = li.getMusicInfoTag()
-        tag.setTitle(cksdata['title'])
-        # サムネイル設定
-        logo = os.path.join(self.PROFILE_PATH, 'stations', 'logo', str(cksdata['protocol']), str(cksdata['station']) + '.png')
-        li.setArt({'thumb': logo, 'icon': logo})
-        # コンテクストメニュー
-        self.contextmenu = []
-        self._contextmenu(self.STR(30109), {'action': 'open_folder', 'kid': cksdata['kid']})
-        self._contextmenu(self.STR(30100), {'action': 'settings'})
-        li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        # 再生するファイルのパス
-        url = os.path.join(self.CONTENTS_PATH, cksdata['dirname'], cksdata['filename'])
-        # リストアイテムを追加
-        xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
-
-    def _title(self, ckdata):
-        # %Y年%m月%d日(%%s) %H:%M
-        format = self.STR(30919)
-        # 月,火,水,木,金,土,日
-        weekdays = self.STR(30920)
-        weekdays = weekdays.split(',')
-        # 放送開始時刻
-        #d = datetime.strptime(ckdata['start'], '%Y-%m-%d %H:%M:%S')
-        #w = d.weekday()
-        d = self.datetime(ckdata['start'])
-        w = self.weekday(ckdata['start'])
-        # 放送終了時刻
-        end = ckdata['end'][11:16]
-        # 8月31日(土)
-        format = d.strftime(format)
-        date = format % weekdays[w]
-        # カラー
-        if w == 6 or self.db.is_holiday(d.strftime('%Y-%m-%d')):
-            title = '[COLOR red]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date, end, ckdata['title'])
-        elif w == 5:
-            title = '[COLOR blue]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date, end, ckdata['title'])
+def downloader(cid, kid, filename, protocol, key, title, end, direct, queue):
+    # スレッドのDBインスタンスを作成
+    db = ThreadLocal.db = DB()
+    # radiko認証
+    sql = 'SELECT auth_token FROM auth'
+    db.cursor.execute(sql)
+    token, = db.cursor.fetchone()
+    # ストリームURL
+    url = LocalProxy.proxy(protocol, key=key, direct=direct, token=token, download=True)
+    # 時間
+    duration = end - int(time.time())
+    # ビットレート
+    bitrate = Common.GET('bitrate')
+    if bitrate == 'auto':
+        if duration <= 3600:
+            bitrate = '192k'
+        elif duration <= 4320:
+            bitrate = '160k'
+        elif duration <= 5400:
+            bitrate = '128k'
+        elif duration <= 7200:
+            bitrate = '96k'
         else:
-            title = '%s-%s  [COLOR khaki]%s[/COLOR]' % (date, end, ckdata['title'])
-        return title
-
-    def _contextmenu(self, name, args):
-        self.contextmenu.append((name, 'RunPlugin(%s?%s)' % (sys.argv[0], urlencode(args))))
-
-    def update_rss(self):
-        # RSS作成
-        sql = 'SELECT kid, keyword, dirname FROM keywords'
-        self.db.cursor.execute(sql)
-        for kid, keyword, dirname in self.db.cursor.fetchall():
-            self.create_rss(kid, keyword, dirname)
-        # インデクス作成
-        self.create_index()
+            bitrate = '64k'
+    # 出力ディレクトリ
+    sql = 'SELECT dirname FROM keywords WHERE kid = :kid'
+    db.cursor.execute(sql, {'kid': kid})
+    dirname, = db.cursor.fetchone()
+    # 出力ファイル
+    download_path = os.path.join(Common.CONTENTS_PATH, dirname)
+    os.makedirs(download_path, exist_ok=True)
+    mp3file = os.path.join(download_path, filename)
+    # ffmpeg実行
+    kwargs = {'acodec': 'libmp3lame', 'b:a': bitrate, 'v': 'warning'}
+    process = ffmpeg.input(url, f='hls', t=duration).output(mp3file, **kwargs).run_async(pipe_stderr=True)
+    # プロセスをキューに追加
+    queue.put(process)
+    # ダウンロード中(cstatus=3)に更新
+    sql = 'UPDATE contents SET cstatus = 3 WHERE cid = :cid'
+    db.cursor.execute(sql, {'cid': cid})
+    # 開始通知
+    Common.notify(f'Download started "{title}"')
+    # ログ
+    Common.log(f'[{process.pid}] Download started.')
+    # ダウンロード終了を待つ
+    process.wait()
+    # ダウンロード結果に応じて後処理
+    if process.returncode == 0:
+        # durationを抽出
+        duration = int(MP3(mp3file).info.length)
+        # DB更新
+        sql = 'UPDATE contents SET cstatus = -1, duration = :duration WHERE cid = :cid'
+        db.cursor.execute(sql, {'cid': cid, 'duration': duration})
+        # ID3タグを書き込む
+        db.write_id3(mp3file, cid)
         # 完了通知
-        self.notify('RSS has been updated')
-
-    def create_rss(self, kid, keyword, dirname):
-        # templates
-        with open(os.path.join(self.DATA_PATH, 'rss', 'header.xml'), 'r', encoding='utf-8') as f:
-            header = f.read()
-        with open(os.path.join(self.DATA_PATH, 'rss', 'body.xml'), 'r', encoding='utf-8') as f:
-            body = f.read()
-        with open(os.path.join(self.DATA_PATH, 'rss', 'footer.xml'), 'r', encoding='utf-8') as f:
-            footer = f.read()
-        # 時刻表記のロケール設定                                                                                                                                                             
-        locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
-        # open writer
-        writer = open(os.path.join(self.CONTENTS_PATH, dirname, 'rss.xml'), 'w', encoding='utf-8')
-        # write header
-        writer.write(header.format(image='icon.png', title=keyword))
-        # body
-        sql = '''SELECT filename, title, start, station, description, site, duration
-        FROM contents
-        WHERE kid = :kid AND cstatus = -1
-        ORDER BY start DESC'''
-        self.db.cursor.execute(sql, {'kid': kid})
-        for filename, title, start, station, description, site, duration in self.db.cursor.fetchall():
-            writer.write(
-                body.format(
-                    title=html.escape(title),
-                    date=self._date(start),
-                    url=site,
-                    filename=filename,
-                    description=html.escape(description),
-                    pubdate=self._pubdate(start),
-                    station=station,
-                    duration='%02d:%02d:%02d' % (duration // 3600, duration // 60 % 60, duration % 60),
-                    filesize=os.path.getsize(os.path.join(self.CONTENTS_PATH, dirname, filename))
-                )
-            )
-        # write footer
-        writer.write(footer)
-        # close writer
-        writer.close()
-        # RSSから参照できるように、スタイルシートとアイコン画像をダウンロードフォルダにコピーする
-        for filename in ('stylesheet.xsl', 'icon.png'):
-            shutil.copy(os.path.join(self.DATA_PATH, 'rss', filename), os.path.join(self.CONTENTS_PATH, dirname, filename))
-
-    def create_index(self):
-        # templates
-        with open(os.path.join(self.DATA_PATH, 'rss', 'header.xml'), 'r', encoding='utf-8') as f:
-            header = f.read()
-        with open(os.path.join(self.DATA_PATH, 'rss', 'body.xml'), 'r', encoding='utf-8') as f:
-            body = f.read()
-        with open(os.path.join(self.DATA_PATH, 'rss', 'footer.xml'), 'r', encoding='utf-8') as f:
-            footer = f.read()
-        # open writer
-        writer = open(os.path.join(self.CONTENTS_PATH, 'index.xml'), 'w', encoding='utf-8')
-        # write header
-        writer.write(header.format(image='icon.png', title='NetRadio Client'))
-        # body
-        sql = 'SELECT keyword, dirname FROM keywords ORDER BY keyword'
-        self.db.cursor.execute(sql, {})
-        for keyword, dirname in self.db.cursor.fetchall():
-            writer.write(
-                body.format(
-                    title=html.escape(keyword),
-                    date='',
-                    url=f'{dirname}/rss.xml',
-                    filename='',
-                    description='',
-                    pubdate='',
-                    station='',
-                    duration='',
-                    filesize=''
-                )
-            )
-        # write footer
-        writer.write(footer)
-        # close writer
-        writer.close()
-        # RSSから参照できるように、スタイルシートとアイコン画像をダウンロードフォルダにコピーする
-        for filename in ('stylesheet.xsl', 'icon.png'):
-            shutil.copy(os.path.join(self.DATA_PATH, 'rss', filename), os.path.join(self.CONTENTS_PATH, filename))
-
-    def _date(self, date):
-        # "2023-04-20 14:00:00" -> "2023-04-20"
-        return date[0:10]
-
-    def _pubdate(self, date):
-        # "2023-04-20 14:00:00" -> "Thu, 20 Apr 2023 14:00:00 +0900"
-        pubdate = self.datetime(date).strftime('%a, %d %b %Y %H:%M:%S +0900')
-        return pubdate
-    
+        Common.notify('Download complete "%s"' % title)
+        # ログ
+        Common.log(f'[{process.pid}] Download complete.')
+    else:
+        # エラーメッセージ
+        err = process.stderr.read().decode('utf-8')
+        # DB更新
+        sql = 'UPDATE contents SET cstatus = -2, description = :err WHERE cid = :cid'
+        db.cursor.execute(sql, {'cid': cid, 'err': err})
+        # 完了通知
+        Common.notify('Download failed "%s"' % title, error=True)
+        # ログ
+        Common.log(f'[{process.pid}] Download failed (returncode={process.returncode}).')
+        Common.log(err)
+    # スレッドのDBインスタンスを終了
+    ThreadLocal.db.conn.close()
+    ThreadLocal.db = None

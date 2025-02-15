@@ -8,7 +8,7 @@ from mutagen.mp3 import MP3
 
 from resources.lib.common import Common
 from resources.lib.db import ThreadLocal
-from resources.lib.download import Download
+from resources.lib.contents import Contents
 
 
 class Transfer(Common):
@@ -89,7 +89,7 @@ class Transfer(Common):
             os.makedirs(destdir, exist_ok=True)
             shutil.move(origdir, destdir)
         # rss & インデクスを生成
-        Download().update_rss()
+        Contents().update_rss()
         # ログ
         self.log('Downloaded files have been imported')
 

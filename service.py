@@ -5,6 +5,7 @@ import os
 import socket
 import threading
 import subprocess
+import logging
 
 # extディレクトリをパスに追加
 sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
@@ -40,6 +41,9 @@ if __name__ == '__main__':
 
     # HTTP接続のタイムアウト(秒)を設定
     socket.setdefaulttimeout(60)
+
+    # ログレベルをWARNING以上に設定
+    logging.basicConfig(level=logging.WARNING)
 
     # ffmpegのパスを確認して初期化
     if check_ffmpeg():

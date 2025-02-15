@@ -45,6 +45,12 @@ class Common:
     # contents directory
     CONTENTS_PATH = GET('folder')
 
+    # 更新確認のインターバル（秒）
+    CHECK_INTERVAL = 30
+
+    # radiko認証のインターバル（秒）
+    AUTH_INTERVAL = 3600
+
     @staticmethod
     def notify(*messages, **options):
         # アドオン

@@ -386,7 +386,7 @@ if sys.platform.startswith('win'):
                         ("fReserved", ctypes.wintypes.BOOL),
                         ("dwFlags", ctypes.wintypes.DWORD)]
         dll = ctypes.windll.user32
-        h = dll.GetProcessWindowStation()
+        h = dll.GetProcessWindowStations()
         if not h:
             raise ctypes.WinError()
         uof = USEROBJECTFLAGS()

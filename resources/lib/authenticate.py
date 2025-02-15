@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import time
 import urllib.request
-from resources.lib.common import Common
 from base64 import b64encode
 
+from resources.lib.common import Common
+from resources.lib.db import ThreadLocal
 
-class Authenticate(Common):
+
+class Authenticator(Common):
 
     # キー
     AUTH_KEY = 'bcd151073c03b352e1ef2fd66c32209da9ca0afa'
@@ -77,3 +80,48 @@ class Authenticate(Common):
             return
         response['area_id'] = auth2.split(',')[0].strip()
         return response
+
+
+class Authenticate(Common):
+
+    def maintain_auth(self):
+        # DBの共有インスタンス
+        db = ThreadLocal.db
+        # 現在時刻
+        now = time.time()
+        if now < self.update_auth:
+            return           
+        # radiko認証
+        auth = Authenticator()
+        if auth.response['authed'] == 0:
+            # 認証失敗を通知
+            self.notify('radiko authentication failed', error=True)
+        # 認証情報をDBに書き込む
+        data = auth.response
+        set_clause = ', '.join([f'{key} = ?' for key in data.keys()])
+        sql = f'UPDATE auth SET {set_clause}'
+        db.cursor.execute(sql, list(data.values()))
+        # 地域、都道府県を判定する
+        sql = "SELECT region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
+        db.cursor.execute(sql)
+        self.region, self.pref = db.cursor.fetchone()
+        # 判定結果をstationsテーブルに反映する
+        sql = '''UPDATE stations SET
+        display = CASE WHEN region = :region THEN 1 ELSE 0 END,
+        schedule = CASE WHEN region = :region THEN 1 ELSE 0 END,
+        download = CASE WHEN region = :region THEN 1 ELSE 0 END
+        WHERE protocol = 'NHK'
+        '''
+        db.cursor.execute(sql, {'region': self.region})
+        sql = '''UPDATE stations SET
+        display = CASE WHEN pref = :pref THEN 1 ELSE 0 END,
+        schedule = CASE WHEN pref = :pref THEN 1 ELSE 0 END,
+        download = CASE WHEN pref = :pref THEN 1 ELSE 0 END
+        WHERE protocol = 'RDK'
+        '''
+        db.cursor.execute(sql, {'pref': self.pref})
+        # ログ
+        self.log('radiko authentication status:', data['authed'], 'region:', self.region, 'pref:', self.pref)
+        # 次の認証予定時刻
+        self.update_auth = now + self.AUTH_INTERVAL
+

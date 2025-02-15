@@ -6,18 +6,16 @@ import threading
 import queue
 import json
 import time
-import ffmpeg  # https://github.com/kkroening/ffmpeg-python
-from mutagen.mp3 import MP3
-from datetime import datetime
 
 import xbmc
 import xbmcgui
 
 from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal
-from resources.lib.authenticate import Authenticate
 from resources.lib.localproxy import LocalProxy
-from resources.lib.maintenance import Maintenance
+from resources.lib.authenticate import Authenticate
+from resources.lib.schedule import Schedule
+from resources.lib.download import Download
 
 
 class Monitor(xbmc.Monitor, Common):
@@ -49,17 +47,7 @@ class Monitor(xbmc.Monitor, Common):
             xbmc.executebuiltin('Container.Refresh')
 
 
-class Service(Maintenance):
-
-    # 更新確認のインターバル（秒）
-    CHECK_INTERVAL = 30
-    # radiko認証のインターバル（秒）
-    AUTH_INTERVAL = 3600
-    
-    # ダウンロード予約のタイミング（秒）
-    DOWNLOAD_PREPARATION = 180
-    # ダウンロード開始の余裕（秒）
-    DOWNLOAD_MARGIN = 5
+class Service(Authenticate, Schedule, Download):
 
     def __init__(self):
         # DBの共有インスタンス
@@ -68,8 +56,6 @@ class Service(Maintenance):
         db.cursor.executescript(db.sql_auth_init)
         # statusテーブルを初期化
         db.cursor.executescript(db.sql_status_init)
-        # ダウンロード済み以外の番組情報を削除
-        db.cursor.execute('DELETE FROM contents WHERE cstatus != -1')
         # ダウンロードを失敗/中断したmp3ファイルを削除
         sql = '''SELECT c.filename, k.dirname 
         FROM contents c JOIN keywords k ON c.kid = k.kid
@@ -79,6 +65,8 @@ class Service(Maintenance):
             mp3file = os.path.join(db.CONTENTS_PATH, dirname, filename)
             if os.path.exists(mp3file):
                 os.remove(mp3file)
+        # ダウンロード済み以外の番組情報を削除
+        db.cursor.execute('DELETE FROM contents WHERE cstatus != -1')
         # 番組表更新予定時間を初期化
         db.cursor.execute("UPDATE stations SET nextaired = '1970-01-01 09:00:00'")
         # 設定画面をデフォルトに設定
@@ -96,8 +84,6 @@ class Service(Maintenance):
         if os.path.isdir(self.HLS_CACHE_PATH) is True:
             shutil.rmtree(self.HLS_CACHE_PATH)
         os.makedirs(self.HLS_CACHE_PATH)
-        # キューを初期化
-        self.queue = queue.Queue()  # ダウンロードプロセス
         # ローカルプロキシを初期化
         self.httpd = LocalProxy()
         # 別スレッドでローカルプロキシを起動
@@ -113,15 +99,15 @@ class Service(Maintenance):
         db = ThreadLocal.db = DB()
         # 認証予定時刻
         self.update_auth = 0
+        # ダウンロードプロセスを格納するキューを初期化
+        self.queue = queue.Queue()
         # 監視を開始
         monitor = Monitor()
         while monitor.abortRequested() is False:
-            # 時刻
-            self.log('monitor loop:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
             # radiko認証更新
             self.maintain_auth()
             # 番組表更新
-            self.maintain_schedule(self.CHECK_INTERVAL)
+            self.maintain_schedule()
             # 表示中画面が設定画面でなければ、設定画面はデフォルトに戻す
             if xbmcgui.getCurrentWindowDialogId() == 9999:
                 db.cursor.execute('SELECT keyword, station FROM status')
@@ -143,144 +129,9 @@ class Service(Maintenance):
         self.log('shutting down thread processes.')
         while self.queue.qsize() > 0:
             process = self.queue.get()
-            process.kill()
+            if process.poll() is None:  # 実行中だったら
+                process.kill()
         # スレッドのDBインスタンスを終了
         db.conn.close()
         # 監視終了を通知
         self.log('exit monitor.')
-
-    def maintain_auth(self):
-        # DBの共有インスタンス
-        db = ThreadLocal.db
-        # 現在時刻
-        now = time.time()
-        # radiko認証
-        if now > self.update_auth:            
-            auth = Authenticate()
-            if auth.response['authed'] == 0:
-                # 認証失敗を通知
-                self.notify('radiko authentication failed', error=True)
-            # 認証情報をDBに書き込む
-            data = auth.response
-            set_clause = ', '.join([f'{key} = ?' for key in data.keys()])
-            sql = f'UPDATE auth SET {set_clause}'
-            db.cursor.execute(sql, list(data.values()))
-            # 地域、都道府県を判定する
-            sql = "SELECT region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
-            db.cursor.execute(sql)
-            self.region, self.pref = db.cursor.fetchone()
-            # 判定結果をstationsテーブルに反映する
-            sql = '''UPDATE stations SET
-            display = CASE WHEN region = :region THEN 1 ELSE 0 END,
-            schedule = CASE WHEN region = :region THEN 1 ELSE 0 END,
-            download = CASE WHEN region = :region THEN 1 ELSE 0 END
-            WHERE protocol = 'NHK'
-            '''
-            db.cursor.execute(sql, {'region': self.region})
-            sql = '''UPDATE stations SET
-            display = CASE WHEN pref = :pref THEN 1 ELSE 0 END,
-            schedule = CASE WHEN pref = :pref THEN 1 ELSE 0 END,
-            download = CASE WHEN pref = :pref THEN 1 ELSE 0 END
-            WHERE protocol = 'RDK'
-            '''
-            db.cursor.execute(sql, {'pref': self.pref})
-            # ログ
-            self.log('radiko authentication status:', data['authed'], 'region:', self.region, 'pref:', self.pref)
-            # 次の認証予定時刻
-            self.update_auth = now + self.AUTH_INTERVAL
-
-    def maintain_download(self):
-        # DBの共有インスタンス
-        db = ThreadLocal.db
-        # 保留中(cstatus=1)の番組、かつDOWNLOAD_PREPARATION以内に開始する番組を検索
-        sql = '''SELECT c.cid, c.kid, c.filename, s.protocol, s.key, c.title, EPOCH(c.start) as t, EPOCH(c.end), s.direct, s.delay
-        FROM contents c JOIN stations s ON c.sid = s.sid
-        WHERE c.cstatus = 1 AND t - EPOCH(NOW()) < :threshold
-        ORDER BY c.start'''
-        db.cursor.execute(sql, {'threshold': self.DOWNLOAD_PREPARATION})
-        # ダウンロードを予約
-        for cid, kid, filename, protocol, key, title, start, end, direct, delay in db.cursor.fetchall():
-            start = start + delay - self.DOWNLOAD_MARGIN  # 開始時刻
-            end = end + delay + self.DOWNLOAD_MARGIN  # 終了時刻
-            # ダウンロードを予約
-            args = [cid, kid, filename, protocol, key, title, end, direct, self.queue]
-            thread = threading.Timer(start - int(time.time()), downloader, args=args)
-            thread.start()
-            # 待機中(cstatus=2)に更新
-            sql = 'UPDATE contents SET cstatus = 2 WHERE cid = :cid'
-            db.cursor.execute(sql, {'cid': cid})
-
-
-def downloader(cid, kid, filename, protocol, key, title, end, direct, queue):
-    # スレッドのDBインスタンスを作成
-    db = ThreadLocal.db = DB()
-    # radiko認証
-    sql = 'SELECT auth_token FROM auth'
-    db.cursor.execute(sql)
-    token, = db.cursor.fetchone()
-    # ストリームURL
-    url = LocalProxy.proxy(protocol, key=key, direct=direct, token=token, download=True)
-    # 時間
-    duration = end - int(time.time())
-    # ビットレート
-    bitrate = Common.GET('bitrate')
-    if bitrate == 'auto':
-        if duration <= 3600:
-            bitrate = '192k'
-        elif duration <= 4320:
-            bitrate = '160k'
-        elif duration <= 5400:
-            bitrate = '128k'
-        elif duration <= 7200:
-            bitrate = '96k'
-        else:
-            bitrate = '64k'
-    # 出力ディレクトリ
-    sql = 'SELECT dirname FROM keywords WHERE kid = :kid'
-    db.cursor.execute(sql, {'kid': kid})
-    dirname, = db.cursor.fetchone()
-    # 出力ファイル
-    download_path = os.path.join(Common.CONTENTS_PATH, dirname)
-    os.makedirs(download_path, exist_ok=True)
-    mp3file = os.path.join(download_path, filename)
-    # ffmpeg実行
-    kwargs = {'acodec': 'libmp3lame', 'b:a': bitrate, 'v': 'warning'}
-    process = ffmpeg.input(url, f='hls', t=duration).output(mp3file, **kwargs).run_async(pipe_stderr=True)
-    # プロセスをキューに追加
-    queue.put(process)
-    # ダウンロード中(cstatus=3)に更新
-    sql = 'UPDATE contents SET cstatus = 3 WHERE cid = :cid'
-    db.cursor.execute(sql, {'cid': cid})
-    # 開始通知
-    Common.notify(f'Download started "{title}"')
-    # ログ
-    Common.log(f'[{process.pid}] Download started.')
-    # ダウンロード終了を待つ
-    process.wait()
-    # ダウンロード結果に応じて後処理
-    if process.returncode == 0:
-        # durationを抽出
-        duration = int(MP3(mp3file).info.length)
-        # DB更新
-        sql = 'UPDATE contents SET cstatus = -1, duration = :duration WHERE cid = :cid'
-        db.cursor.execute(sql, {'cid': cid, 'duration': duration})
-        # ID3タグを書き込む
-        db.write_id3(mp3file, cid)
-        # 完了通知
-        Common.notify('Download complete "%s"' % title)
-        # ログ
-        Common.log(f'[{process.pid}] Download complete.')
-    else:
-        # エラーメッセージ
-        err = process.stderr.read().decode('utf-8')
-        # DB更新
-        sql = 'UPDATE contents SET cstatus = -2, description = :err WHERE cid = :cid'
-        db.cursor.execute(sql, {'cid': cid, 'err': err})
-        # 完了通知
-        Common.notify('Download failed "%s"' % title, error=True)
-        # ログ
-        Common.log(f'[{process.pid}] Download failed (returncode={process.returncode}).')
-        Common.log(err)
-    # スレッドのDBインスタンスを終了
-    ThreadLocal.db.conn.close()
-    ThreadLocal.db = None

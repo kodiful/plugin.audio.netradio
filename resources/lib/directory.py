@@ -2,19 +2,18 @@
 
 import sys
 import os
-import json
 from urllib.parse import urlencode
-
-from resources.lib.db import ThreadLocal
-from resources.lib.localproxy import LocalProxy
-from resources.lib.maintenance import Maintenance
 
 import xbmc
 import xbmcgui
 import xbmcplugin
 
+from resources.lib.db import ThreadLocal
+from resources.lib.localproxy import LocalProxy
+from resources.lib.schedule import Schedule
 
-class Directory(Maintenance):
+
+class Directory(Schedule):
 
     def __init__(self):
         # DBの共有インスタンス
@@ -23,25 +22,30 @@ class Directory(Maintenance):
         sql = "SELECT auth_token, region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
         self.db.cursor.execute(sql)
         self.token, self.region, self.pref = self.db.cursor.fetchone()
+        self.need_refresh = False
 
     def show(self, protocol=None, region=None, pref=None):
         # 表示中の放送局を格納するリスト
         front = []
+        # 番組表取得フラグ
+        stations = []
         # 表示
         if protocol == 'NHK':
             # NHKの放送局一覧を表示
             sql = 'SELECT * FROM stations WHERE protocol = :protocol AND display = 1 ORDER BY station'
             self.db.cursor.execute(sql, {'protocol': 'NHK'})
             for sdata in self.db.cursor.fetchall():
-                front.append(sdata['sid'])
                 self._add_station(sdata)
+                if sdata['schedule'] == 1:
+                    stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'RDK':
             # RDKの放送局一覧を表示
             sql = 'SELECT * FROM stations WHERE protocol = :protocol AND display = 1 ORDER BY station'
             self.db.cursor.execute(sql, {'protocol': 'RDK'})
             for sdata in self.db.cursor.fetchall():
-                front.append(sdata['sid'])
                 self._add_station(sdata)
+                if sdata['schedule'] == 1:
+                    stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'COMM':
             protocols = "('SJ', 'LR', 'SP', 'SR')"
             if region == '北海道': pref = '北海道'
@@ -59,8 +63,9 @@ class Directory(Maintenance):
                 sql = 'SELECT * FROM stations WHERE protocol IN %s AND region = :region AND pref = :pref AND display = 1 ORDER BY code' % protocols
                 self.db.cursor.execute(sql, {'region': region, 'pref': pref})
                 for sdata in self.db.cursor.fetchall():
-                    front.append(sdata['sid'])
                     self._add_station(sdata)
+                    if sdata['schedule'] == 1:
+                        stations.append((sdata['protocol'], sdata['sid'], 1))
         else:
             # トップページの放送局一覧を表示
             sql = '''SELECT * FROM stations WHERE top = 1 AND display = 1 ORDER BY
@@ -76,21 +81,17 @@ class Directory(Maintenance):
             END, code, station'''
             self.db.cursor.execute(sql)
             for sdata in self.db.cursor.fetchall():
-                front.append(sdata['sid'])
                 self._add_station(sdata)
+                if sdata['schedule'] == 1:
+                    stations.append((sdata['protocol'], sdata['sid'], 1))
             # ディレクトリの一覧を表示
             self._setup_directory()
             # キーワードの一覧を表示
             self._setup_keywords()
+        # 番組表取得
+        self.maintain_schedule(stations)
         # リストアイテム追加完了
         xbmcplugin.endOfDirectory(int(sys.argv[1]), succeeded=True)
-        # 表示中の放送局をstatusテーブルに格納
-        sql = 'UPDATE status SET front = :front'
-        self.db.cursor.execute(sql, {'front': json.dumps(front)})
-
-    def maintain_schedule(self):
-        super().maintain_schedule()
-        xbmc.executebuiltin('Container.Refresh')
 
     def add_to_top(self, sid):
         sql = 'UPDATE stations SET top = 1 WHERE sid = :sid'
@@ -132,7 +133,7 @@ class Directory(Maintenance):
         sql = 'SELECT kid, keyword, dirname FROM keywords ORDER BY keyword'
         self.db.cursor.execute(sql)
         for kid, keyword, dirname in self.db.cursor.fetchall():
-            self._add_keyword(kid, keyword, dirname)
+            self._add_keyword(kid, keyword)
 
     def _add_directory(self, region, pref=None):
         li = xbmcgui.ListItem(pref or region)
@@ -182,7 +183,7 @@ class Directory(Maintenance):
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
 
-    def _add_keyword(self, kid, keyword, dirname):
+    def _add_keyword(self, kid, keyword):
         # listitemを追加する
         if kid > 0:
             li = xbmcgui.ListItem(keyword)
@@ -225,7 +226,7 @@ class Directory(Maintenance):
             except:
                 # 番組情報が取得できない場合
                 if station == basename:
-                    station +=  f'[COLOR khaki]▶ {self.STR(30700)}[/COLOR]'
+                    station +=  f'[COLOR gray]▶ {self.STR(30700)}[/COLOR]'
         else:
             if sdata['description']:
                 station += f" [COLOR khaki]▶ {sdata['description']}[/COLOR]"

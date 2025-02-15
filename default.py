@@ -6,6 +6,7 @@ import urllib.parse
 import shutil
 import subprocess
 import platform
+import logging
 
 import xbmc
 
@@ -15,13 +16,15 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
 from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal
 from resources.lib.directory import Directory
-from resources.lib.download import Download
-
-from resources.lib.keyword import Keyword
-from resources.lib.station import Station
+from resources.lib.contents import Contents
+from resources.lib.keywords import Keywords
+from resources.lib.stations import Stations
 
 
 if __name__ == '__main__':
+
+    # ログレベルをWARNING以上に設定
+    logging.basicConfig(level=logging.WARNING)
 
     # DBインスタンスを作成
     ThreadLocal.db = DB()
@@ -49,13 +52,13 @@ if __name__ == '__main__':
 
     # 放送局
     elif action == 'set_station':
-        Station().set(args.get('sid'))
+        Stations().set(args.get('sid'))
     elif action == 'add_station':
-        Station().add()
+        Stations().add()
     elif action == 'delete_station':
-        Station().delete(args.get('sid'))
+        Stations().delete(args.get('sid'))
     elif action == 'show_info':
-        Station().show_info(args.get('sid'))
+        Stations().show_info(args.get('sid'))
     elif action == 'open_site':
         url = args.get('url')
         Common.log(url)
@@ -69,15 +72,15 @@ if __name__ == '__main__':
             
     # キーワード
     elif action == 'set_keyword':
-        Keyword().set(args.get('kid'), args.get('sid'))
+        Keywords().set(args.get('kid'), args.get('sid'))
     elif action == 'add_keyword':
-        Keyword().add()
+        Keywords().add()
     elif action == 'delete_keyword':
-        Keyword().delete(args.get('kid'))
+        Keywords().delete(args.get('kid'))
 
     # ダウンロード
     elif action == 'show_download':
-        Download().show(args.get('kid'))
+        Contents().show(args.get('kid'))
     elif action == 'open_folder':
         path = os.path.join(Common.CONTENTS_PATH, args.get('kid', ''))
         os_ = platform.system()
@@ -88,7 +91,7 @@ if __name__ == '__main__':
         else:
             Common.notify('Unsupported on %s' % os_)
     elif action == 'update_rss':
-        Download().update_rss()
+        Contents().update_rss()
 
     # アドオン設定
     elif action == 'settings':
