@@ -7,6 +7,7 @@ import unicodedata
 import json
 import gzip
 import io
+import traceback
 
 from resources.lib.common import Common as Main
 from resources.lib.db import ThreadLocal
@@ -51,15 +52,12 @@ class Common(Main):
         except urllib.error.HTTPError as e:
             self.log(f'file retrieval failed ({filename}):', e.code)
             if e.code == 404:
-                # NHK, radiko以外はstationsテーブルのschedule, downloadを0に変更
-                if  self.PROTOCOL not in ('NHK', 'RDK'):
-                    sql = 'UPDATE stations SET schedule = 0, download = 0 WHERE sid = :sid'
-                    self.db.cursor.execute(sql, {'sid': self.sid})
-                    self.log('schedule & download disabled:', f'{self.PROTOCOL}/{self.sid} ({self.station})')
-            return count
+                return -1
+            else:
+                return 0
         except:
             self.log(f'file retrieval failed ({filename}):', e)
-            return count
+            return 0
         # ソースをファイルに保存
         with open(self.SOURCE_FILE, 'wb') as f:
             f.write(data)
@@ -67,7 +65,7 @@ class Common(Main):
         try:
             buf = self.parse(data.decode('utf-8'))
         except Exception as e:
-            self.log(f'parse failed ({filename}):', e)
+            self.log(e)
             return 0
         # 番組情報をDBに挿入
         for item in buf:

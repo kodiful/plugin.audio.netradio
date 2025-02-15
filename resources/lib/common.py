@@ -3,6 +3,7 @@
 import os
 import inspect
 import calendar
+import traceback
 from datetime import datetime
 
 import xbmc
@@ -76,27 +77,18 @@ class Common:
     def log(*messages, **options):
         # アドオン
         addon = xbmcaddon.Addon()
-        # ログレベルを設定
-        if options.get('error', False):
+        # ログレベル、メッセージを設定
+        if isinstance(messages[0], Exception):
             level = xbmc.LOGERROR
-        elif options.get('notice', False):
-            level = xbmc.LOGINFO
-        elif addon.getSetting('debug') == 'true':
-            level = xbmc.LOGINFO
+            message = '\n'.join([
+                ''.join(list(traceback.TracebackException.from_exception(messages[0]).format())),
+                ' '.join(map(lambda x: str(x), messages[1:]))
+            ])
         else:
-            level = None
-        # メッセージ
-        messages = ' '.join(map(lambda x: str(x), messages))
+            level = xbmc.LOGINFO
+            message = ' '.join(map(lambda x: str(x), messages))
         # ログ出力
-        if level:
-            frame = inspect.currentframe().f_back
-            xbmc.log('%s: %s(%d): %s: %s' % (
-                addon.getAddonInfo('id'),
-                os.path.basename(frame.f_code.co_filename),
-                frame.f_lineno,
-                frame.f_code.co_name,
-                messages
-            ), level)
+        xbmc.log(message, level)
 
     @staticmethod
     def nowplaying():

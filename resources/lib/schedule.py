@@ -17,7 +17,7 @@ class Scheduler(Common):
         self.protocol = protocol
         self.sid = sid
         # DBの共有インスタンス
-        db = ThreadLocal.db
+        self.db = ThreadLocal.db
         # Scraperのインスタンス
         module_name = f'resources.lib.schedulescrapers.{protocol}'
         module = importlib.import_module(module_name)
@@ -31,6 +31,13 @@ class Scheduler(Common):
         count = self.scraper.update()
         if count > 0:
             self.nextaired = self.scraper.set_nextaired()
+        if count < 0:
+            # NHK, radiko以外はstationsテーブルのschedule, downloadを0に変更
+            if  self.protocol not in ('NHK', 'RDK'):
+                sql = 'UPDATE stations SET schedule = 0, download = 0 WHERE sid = :sid'
+                self.db.cursor.execute(sql, {'sid': self.sid})
+                self.log('schedule & download disabled:', self.protocol, self.sid)
+
         return count
    
     def _next_aired(self):
@@ -142,7 +149,7 @@ def scheduler(protocol, sid, visible):
         # 更新情報を確認
         count = worker.update()
         # 更新予定時刻直後、または更新があったら再描画する
-        if now < nextaired + Common.CHECK_INTERVAL or count > 0:
+        if now < nextaired + Common.CHECK_INTERVAL or count != 0:
             # 表示中画面がこのアドオン画面、かつaction=showだったら再描画する
             path = xbmc.getInfoLabel('Container.FolderPath')
             argv = 'plugin://%s/' % Common.ADDON_ID

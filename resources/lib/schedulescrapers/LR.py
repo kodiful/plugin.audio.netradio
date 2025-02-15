@@ -30,7 +30,8 @@ class Scraper(Common):
         day = int(ttlist['h2']['span']['#text'])
         # 番組情報
         buf = []
-        for li in ttlist['div']['ul']['li']:
+        parentNode = ttlist['div']['ul']['li'] if isinstance(ttlist['div']['ul']['li'], list) else [ttlist['div']['ul']['li']]
+        for li in parentNode:
             archive = li['div'][0] if isinstance(li['div'], list) else li['div']
             start, end = archive['p'][0]['#text'].split('-')  # 07:30-10:00
             start = f'{year:04d}-{month:02d}-{day:02d} {start}:00'
@@ -38,7 +39,7 @@ class Scraper(Common):
             title = archive['p'][2]['#text']
             desc = archive['p'][3]['#text']
             # 日付補正
-            if start > end:
+            if start >= end:
                 dt = self.datetime(end) + timedelta(days=1)  # 1日後の日時に修正
                 end = dt.strftime("%Y-%m-%d %H:%M:%S")
             prog = {

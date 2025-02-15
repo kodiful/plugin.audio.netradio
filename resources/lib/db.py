@@ -198,7 +198,6 @@ class DB(Common):
         # description
         description = self._description(data)
         # sid, download, filename
-        self.log(data, key)
         sid, download, filename = self._station(data, key)
         # kid, filename, cstatus
         if kid > 0:
@@ -366,7 +365,6 @@ class DB(Common):
             self.cursor.execute(sql, {'station': cdata['station'], 'region': cdata['region'], 'pref': cdata['pref']})
             sid, download, key = self.cursor.fetchone()
         elif key:
-            self.log('key:', key)
             sql = 'SELECT sid FROM stations WHERE key = :key AND download > -1'
             self.cursor.execute(sql, {'key': key})
             sid, = self.cursor.fetchone()  # ダウンロードのアイコン画像用にsidを付与
