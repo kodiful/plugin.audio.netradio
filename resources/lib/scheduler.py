@@ -37,7 +37,6 @@ class Scheduler(Common):
                 sql = 'UPDATE stations SET schedule = 0, download = 0 WHERE sid = :sid'
                 self.db.cursor.execute(sql, {'sid': self.sid})
                 self.log('schedule & download disabled:', self.protocol, self.sid)
-
         return count
    
     def _next_aired(self):

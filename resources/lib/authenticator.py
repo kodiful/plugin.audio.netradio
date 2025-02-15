@@ -48,7 +48,7 @@ class Authenticator(Common):
             # レスポンス
             auth1 = urllib.request.urlopen(req).info()
         except Exception as e:
-            self.log(str(e), error=True)
+            self.log(e)
             return
         response['auth_token'] = auth1['X-Radiko-AuthToken']
         response['key_offset'] = int(auth1['X-Radiko-KeyOffset'])
@@ -76,7 +76,7 @@ class Authenticator(Common):
             # レスポンス
             auth2 = urllib.request.urlopen(req).read().decode()
         except Exception as e:
-            self.log(str(e), error=True)
+            self.log(e)
             return
         response['area_id'] = auth2.split(',')[0].strip()
         return response

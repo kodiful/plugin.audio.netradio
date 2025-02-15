@@ -50,6 +50,7 @@ class Common(Main):
                 self.log(f'request error (code={e.code}):', self.URL)
             except Exception as e:
                 self.log(f'request error:', self.URL)
+                self.log(e)
             # ソースをファイルに保存
             with open(self.SOURCE_FILE, 'wb') as f:
                 f.write(data)
