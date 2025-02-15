@@ -36,8 +36,8 @@ class Scraper(Common):
             start, end = archive['p'][0]['#text'].split('-')  # 07:30-10:00
             start = f'{year:04d}-{month:02d}-{day:02d} {start}:00'
             end = f'{year:04d}-{month:02d}-{day:02d} {end}:00'
-            title = archive['p'][2]['#text']
-            desc = archive['p'][3]['#text']
+            title = archive['p'][2].get('#text', '')
+            desc = archive['p'][3].get('#text', '')
             # 日付補正
             if start >= end:
                 dt = self.datetime(end) + timedelta(days=1)  # 1日後の日時に修正

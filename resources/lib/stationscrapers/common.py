@@ -34,21 +34,23 @@ class Common(Main):
 
     # 一連の処理を実行する
     def run(self):
+        # 放送局リストがなければ取得
         if not os.path.isfile(self.SOURCE_FILE):
             try:
                 # HTTPリクエスト
                 req = urllib.request.Request(self.URL)
                 res = urllib.request.urlopen(req)
-                # レスポンスが gzip 圧縮されている場合、展開する
+                # レスポンスがgzip圧縮されているときは展開する
                 if res.info().get('Content-Encoding') == 'gzip':
                     with gzip.GzipFile(fileobj=io.BytesIO(res.read())) as gz:
                         data = gz.read()
                 else:
                     data = res.read()
             except urllib.error.HTTPError as e:
-                print(e)
+                self.log(f'request error (code={e.code}):', self.URL)
             except Exception as e:
-                print(e)
+                self.log(f'request error:', self.URL)
+            # ソースをファイルに保存
             with open(self.SOURCE_FILE, 'wb') as f:
                 f.write(data)
         with open(self.SOURCE_FILE, 'rb') as f:

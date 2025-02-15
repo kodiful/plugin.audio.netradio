@@ -36,38 +36,34 @@ class Common(Main):
     def update(self):
         # DBへ挿入する番組情報の数を初期化
         count = 0
-        # 処理中のファイル
-        filename = self._filename()
         # 番組表情報を取得
         try:
             # HTTPリクエスト
             req = urllib.request.Request(self.URL)
             res = urllib.request.urlopen(req)
-            # レスポンスが gzip 圧縮されている場合、展開する
+            # レスポンスがgzip圧縮されているときは展開する
             if res.info().get('Content-Encoding') == 'gzip':
                 with gzip.GzipFile(fileobj=io.BytesIO(res.read())) as gz:
                     data = gz.read()
             else:
                 data = res.read()
         except urllib.error.HTTPError as e:
-            self.log(f'file retrieval failed ({filename}):', e.code)
-            if e.code == 404:
-                return -1
-            else:
-                return 0
-        except:
-            self.log(f'file retrieval failed ({filename}):', e)
+            self.log(f'request error (code={e.code}):', self.URL)
+            return -1 if e.code == 404 else 0
+        except Exception as e:
+            self.log(f'request error:', self.URL)
+            self.log(e)
             return 0
         # ソースをファイルに保存
         with open(self.SOURCE_FILE, 'wb') as f:
             f.write(data)
-        # 番組表情報をパース
+        # パースして番組表情報を抽出
         try:
             buf = self.parse(data.decode('utf-8'))
         except Exception as e:
             self.log(e)
             return 0
-        # 番組情報をDBに挿入
+        # 抽出した番組情報をDBに挿入
         for item in buf:
             if self.db.add(item) > 0:
                 count += 1  # DBに挿入された番組情報があればカウントアップする
@@ -76,12 +72,6 @@ class Common(Main):
             f.write(json.dumps(buf, ensure_ascii=False, indent=4).encode('utf-8'))
         # DBへ挿入した番組情報の数を返す
         return count
-    
-    def _filename(self):
-        message = self.PROTOCOL
-        if self.PROTOCOL not in ('NHK', 'RDK'):
-            message += f'/{self.sid}|{self.station}'
-        return message
 
     def get_nextaired(self):
         sql = 'SELECT nextaired FROM stations WHERE sid = :sid'
