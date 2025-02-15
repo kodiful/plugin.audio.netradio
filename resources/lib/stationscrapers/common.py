@@ -56,7 +56,12 @@ class Common(Main):
                 f.write(data)
         with open(self.SOURCE_FILE, 'rb') as f:
             data = f.read()
-        buf = self.parse(data.decode('utf-8'))
+        # パースして放送局情報を抽出
+        try:
+            buf = self.parse(data.decode('utf-8'))
+        except Exception as e:
+            self.log(f'parse error:', self.URL)
+            self.log(e)
         return sorted(buf, key=lambda x: x['code'])
   
     # 文字列を正規化する

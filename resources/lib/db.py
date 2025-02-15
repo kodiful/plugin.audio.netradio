@@ -287,7 +287,7 @@ class DB(Common):
         # DBに追加/更新
         columns = ', '.join(values.keys())
         placeholders = ', '.join(['?' for _ in values])
-        sql = f'INSERT OR IGNORE INTO stations ({columns}) VALUES ({placeholders})'
+        sql = f'INSERT OR REPLACE INTO stations ({columns}) VALUES ({placeholders})'
         self.cursor.execute(sql, list(values.values()))
         # 画像作成
         dir = os.path.join(self.PROFILE_PATH, 'stations', 'logo')
@@ -449,16 +449,15 @@ def load_logo(item, dir, force=False):
     dirname = os.path.join(dir, item['protocol'])
     os.makedirs(dirname, exist_ok=True)
     path = os.path.join(dirname, item['station'] + '.png')
-    if force:
-        # ファイルを削除
-        if os.path.exists(path):
-            os.remove(path)
-        # DBから画像のキャッシュを削除
-        conn = sqlite.connect(Common.IMAGE_CACHE)
-        sql = 'DELETE FROM texture WHERE url = :url'
-        conn.cursor().execute(sql, {'url': path})
-        conn.commit()
-        conn.close()
+    # ファイルを削除
+    if force and os.path.exists(path):
+        os.remove(path)
+    # DBから画像のキャッシュを削除
+    conn = sqlite.connect(Common.IMAGE_CACHE)
+    sql = 'DELETE FROM texture WHERE url = :path'
+    conn.cursor().execute(sql, {'path': path})
+    conn.commit()
+    conn.close()
     # 画像がある場合はなにもしない
     if os.path.exists(path):
         return
@@ -467,12 +466,15 @@ def load_logo(item, dir, force=False):
     # ロゴ画像を取得
     if item['logo']:
         try:
-            req = urllib.request.Request(item['logo'])
+            req = urllib.request.Request(item['logo'], headers={'User-Agent': Common.USER_AGENT})
             res = urllib.request.urlopen(req)
             with open(path, 'wb') as f:
                     f.write(res.read())
         except urllib.error.HTTPError as e:
-            pass
+            Common.log(f'request error (code={e.code}):', item['logo'])
+        except Exception as e:
+            Common.log(f'request error:', item['logo'])
+            Common.log(e)
     # 画像が取得できないときはデフォルト画像で代替する
     if os.path.exists(path) is False:
         ADDON = xbmcaddon.Addon()
@@ -496,15 +498,15 @@ def load_logo(item, dir, force=False):
 
 # QRコードのサムネイル画像を作成
 def create_qrcode(url, path, force=False):
-    if force:
-        # ファイルを削除
-        if os.path.exists(path):
-            os.remove(path)
-        # DBから画像のキャッシュを削除
-        conn = sqlite.connect(Common.IMAGE_CACHE)
-        conn.cursor().execute('DELETE FROM texture WHERE url = :path', {'path': path})
-        conn.commit()
-        conn.close()
+    # ファイルを削除
+    if force and os.path.exists(path):
+        os.remove(path)
+    # DBから画像のキャッシュを削除
+    conn = sqlite.connect(Common.IMAGE_CACHE)
+    sql = 'DELETE FROM texture WHERE url = :path'
+    conn.cursor().execute(sql, {'path': path})
+    conn.commit()
+    conn.close()
     # 画像がある場合はなにもしない
     if os.path.exists(path):
         return

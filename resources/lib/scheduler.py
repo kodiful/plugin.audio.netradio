@@ -44,12 +44,12 @@ class Scheduler(Common):
         db = ThreadLocal.db
         # 更新予定時刻のデフォルト値
         epoch = 0
+        # 更新予定時刻を検索
         if self.protocol in ('NHK', 'RDK'):
-            # 更新予定時刻を検索
             sql = '''
             SELECT MIN(c.end)
             FROM contents c JOIN stations s ON c.sid = s.sid
-            WHERE c.end > NOW() AND c.cstatus > -1 AND s.protocol = :protocol AND schedule = 1
+            WHERE c.end > NOW() AND schedule = 1 AND s.protocol = :protocol
             '''
             db.cursor.execute(sql, {'protocol': self.protocol})
             end, = db.cursor.fetchone()
@@ -59,13 +59,12 @@ class Scheduler(Common):
                 sql = 'UPDATE stations SET nextaired = :nextaired WHERE protocol = :protocol'
                 db.cursor.execute(sql, {'nextaired': end, 'protocol': self.protocol})
         else:
-            # 次の更新予定時刻を検索
             sql = '''
             SELECT MIN(c.end)
             FROM contents c JOIN stations s ON c.sid = s.sid
-            WHERE c.end > NOW() AND c.cstatus > -1 AND s.sid = :sid AND schedule = 1
+            WHERE c.end > NOW() AND schedule = 1 AND s.sid = :sid
             '''
-            db.cursor.execute(sql, {'protocol': self.protocol, 'sid': self.sid})
+            db.cursor.execute(sql, {'sid': self.sid})
             end, = db.cursor.fetchone()
             if end is not None:
                 epoch = self.datetime(end).timestamp()

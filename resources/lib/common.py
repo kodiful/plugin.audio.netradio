@@ -52,6 +52,9 @@ class Common:
     # radiko認証のインターバル（秒）
     AUTH_INTERVAL = 3600
 
+    # user-agent
+    USER_AGENT = 'python'
+
     @staticmethod
     def notify(*messages, **options):
         # アドオン

@@ -61,6 +61,7 @@ class Common(Main):
         try:
             buf = self.parse(data.decode('utf-8'))
         except Exception as e:
+            self.log(f'parse error:', self.URL)
             self.log(e)
             return 0
         # 抽出した番組情報をDBに挿入
