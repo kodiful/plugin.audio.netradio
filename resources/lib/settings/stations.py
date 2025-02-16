@@ -23,8 +23,8 @@ class Stations(Common):
         # デフォルト設定
         self.SET('protocol', 'USER')
         self.SET('sid', '0')
-        self.SET('schedule', 'false')
-        self.SET('download', 'false')
+        self.SET('schedule1', 'false')
+        self.SET('download1', 'false')
         self.SET('station', '')
         self.SET('description', '')
         self.SET('direct', '')
