@@ -87,4 +87,13 @@ class Keywords(Common):
             self.db.delete_keyword(kid)
             xbmc.executebuiltin('Container.Refresh')
 
+    def select_station(self):
+        # 放送局リスト
+        self.db.cursor.execute('SELECT station FROM stations WHERE download = 1')
+        stations = [station for station, in self.db.cursor.fetchall()]
+        # 選択ダイアログを表示
+        index = xbmcgui.Dialog().select('選択', stations)
+        if index > -1:
+            Common.SET('station', stations[index])
+
 

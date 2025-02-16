@@ -84,6 +84,10 @@ msgctxt "#30111"
 msgid "Show info"
 msgstr ""
 
+msgctxt "#30112"
+msgid "Open web site"
+msgstr ""
+
 #
 # for settings
 #
@@ -174,6 +178,10 @@ msgstr ""
 
 msgctxt "#30503"
 msgid "Day"
+msgstr ""
+
+msgctxt "#30504"
+msgid "Station"
 msgstr ""
 
 msgctxt "#30505"

@@ -10,7 +10,7 @@ import xbmcplugin
 
 from resources.lib.db import ThreadLocal
 from resources.lib.localproxy import LocalProxy
-from resources.lib.scheduler import ScheduleManager
+from resources.lib.managers.schedule import ScheduleManager
 
 
 class Directory(ScheduleManager):

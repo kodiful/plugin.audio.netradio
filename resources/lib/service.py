@@ -13,9 +13,9 @@ import xbmcgui
 from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal
 from resources.lib.localproxy import LocalProxy
-from resources.lib.authenticator import AuthenticationManager
-from resources.lib.scheduler import ScheduleManager
-from resources.lib.downloader import DownloadManager
+from resources.lib.managers.authentication import AuthenticationManager
+from resources.lib.managers.schedule import ScheduleManager
+from resources.lib.managers.download import DownloadManager
 
 
 class Monitor(xbmc.Monitor, Common):

@@ -156,12 +156,13 @@ class DB(Common):
     CREATE TABLE IF NOT EXISTS status(
         keyword TEXT,
         station TEXT,
-        front TEXT
+        front TEXT,
+        status TEXT
     )'''
 
     sql_status_init = '''
     DELETE FROM status;
-    INSERT INTO status VALUES('', '', '[]');
+    INSERT INTO status VALUES('', '', '[]', '1970-01-01 09:00:00');
     '''
 
     def __init__(self):
