@@ -180,10 +180,6 @@ msgctxt "#30503"
 msgid "Day"
 msgstr ""
 
-msgctxt "#30504"
-msgid "Station"
-msgstr ""
-
 msgctxt "#30505"
 msgid "Station"
 msgstr ""

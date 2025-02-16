@@ -78,8 +78,6 @@ if __name__ == '__main__':
         Keywords().add()
     elif action == 'delete_keyword':
         Keywords().delete(args.get('kid'))
-    elif action == 'select_station':
-        Keywords().select_station()
 
     # ダウンロード
     elif action == 'show_download':

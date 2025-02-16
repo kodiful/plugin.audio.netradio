@@ -60,8 +60,16 @@ class Keywords(Common):
         # statusテーブルに書き込む
         sql = 'UPDATE status SET keyword = :before'
         self.db.cursor.execute(sql, {'before': json.dumps(before)})
+        # キーワード設定画面のテンプレートを読み込む
+        with open(os.path.join(self.DATA_PATH, 'settings', 'keyword.xml'), 'r', encoding='utf-8') as f:
+            data = f.read()
+        # ダウンロード可能な放送局リストを取得
+        self.db.cursor.execute('SELECT station FROM stations WHERE download = 1')
+        stations = [station for station, in self.db.cursor.fetchall()]
+        # テンプレートの放送局リストを書き換えて設定画面として書き出す
+        with open(self.DIALOG_FILE, 'w', encoding='utf-8') as f:
+            f.write(data.format(stations='|'.join(stations)))
         # キーワード設定画面を開く
-        shutil.copy(os.path.join(self.DATA_PATH, 'settings', 'keyword.xml'), self.DIALOG_FILE)
         xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
 
     def add(self):
@@ -86,14 +94,3 @@ class Keywords(Common):
             # キーワード削除
             self.db.delete_keyword(kid)
             xbmc.executebuiltin('Container.Refresh')
-
-    def select_station(self):
-        # 放送局リスト
-        self.db.cursor.execute('SELECT station FROM stations WHERE download = 1')
-        stations = [station for station, in self.db.cursor.fetchall()]
-        # 選択ダイアログを表示
-        index = xbmcgui.Dialog().select('選択', stations)
-        if index > -1:
-            Common.SET('station', stations[index])
-
-
