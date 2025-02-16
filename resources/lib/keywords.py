@@ -42,12 +42,12 @@ class Keywords(Common):
             # 番組情報からキーワード設定
             sql = 'SELECT title, station FROM contents WHERE sid = :sid AND end > NOW() ORDER BY start LIMIT 2'
             self.db.cursor.execute(sql, {'sid': sid})
-            data = [(title, station) for title, station in self.db.cursor.fetchall()]
+            choices = [(title, station) for title, station in self.db.cursor.fetchall()]
             # 選択ダイアログを表示
-            index = xbmcgui.Dialog().select(self.STR(30528), [title for title, _ in data])
+            index = xbmcgui.Dialog().select(self.STR(30528), [title for title, _ in choices])
             if index == -1:
                 return
-            title, station = data[index]
+            title, station = choices[index]
             weekday = datetime.today().weekday()  # 今日の曜日を月(0)-日(6)で返す
             self.SET('kid', '0')
             self.SET('kstatus', '0')  # 停止中
@@ -62,13 +62,13 @@ class Keywords(Common):
         self.db.cursor.execute(sql, {'before': json.dumps(before)})
         # キーワード設定画面のテンプレートを読み込む
         with open(os.path.join(self.DATA_PATH, 'settings', 'keyword.xml'), 'r', encoding='utf-8') as f:
-            data = f.read()
+            template = f.read()
         # ダウンロード可能な放送局リストを取得
-        self.db.cursor.execute('SELECT station FROM stations WHERE download = 1')
-        stations = [station for station, in self.db.cursor.fetchall()]
-        # テンプレートの放送局リストを書き換えて設定画面として書き出す
+        self.db.cursor.execute('SELECT station FROM stations WHERE download = 1 ORDER BY sid')
+        stations = ['限定しない'] + [station for station, in self.db.cursor.fetchall()]
+        # テンプレートを書き換えて設定画面として書き出す
         with open(self.DIALOG_FILE, 'w', encoding='utf-8') as f:
-            f.write(data.format(stations='|'.join(stations)))
+            f.write(template.format(stations='|'.join(stations)))
         # キーワード設定画面を開く
         xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
 

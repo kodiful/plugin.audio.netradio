@@ -54,7 +54,7 @@ msgstr "放送局設定を追加する"
 
 msgctxt "#30104"
 msgid "Change station settings"
-msgstr "放送局設定を変更する"
+msgstr "放送局情報"
 
 msgctxt "#30105"
 msgid "Delete station settings"
@@ -83,10 +83,6 @@ msgstr "番組情報を更新する"
 msgctxt "#30111"
 msgid "Show info"
 msgstr "番組情報"
-
-msgctxt "#30112"
-msgid "Open web site"
-msgstr "ウェブサイトを開く"
 
 #
 # for settings
@@ -291,6 +287,22 @@ msgstr "番組情報"
 msgctxt "#30610"
 msgid "(No info)"
 msgstr "（番組情報はありません）"
+
+msgctxt "#30611"
+msgid "On air info"
+msgstr "オンエア情報"
+
+msgctxt "#30612"
+msgid "Download"
+msgstr "ダウンロード"
+
+msgctxt "#30613"
+msgid "[COLOR lightgreen]Open website[/COLOR]"
+msgstr "[COLOR lightgreen]ウェブサイトを開く[/COLOR]"
+
+msgctxt "#30614"
+msgid "[COLOR lightgreen]Delete station settings[/COLOR]"
+msgstr "[COLOR lightgreen]放送局設定を削除する[/COLOR]"
 
 #
 # miscellaneous

@@ -162,20 +162,20 @@ class Directory(ScheduleManager):
         if sdata['top'] == 1:
             if sdata['schedule'] == 1:
                 self._contextmenu(self.STR(30111), {'action': 'show_info', 'sid': sdata['sid']})
+            self._contextmenu(self.STR(30104), {'action': 'set_station', 'sid': sdata['sid']})
+            if sdata['schedule'] == 1:
                 self._contextmenu(self.STR(30110), {'action': 'update_info'})
-            if sdata['protocol'] == 'USER':
-                self._contextmenu(self.STR(30104), {'action': 'set_station', 'sid': sdata['sid']})
-                self._contextmenu(self.STR(30105), {'action': 'delete_station', 'sid': sdata['sid']})
-            else:
+            if sdata['protocol'] != 'USER':
                 self._contextmenu(self.STR(30102), {'action': 'delete_from_top', 'sid': sdata['sid']})
         else:
             if sdata['schedule'] == 1:
                 self._contextmenu(self.STR(30111), {'action': 'show_info', 'sid': sdata['sid']})
+            self._contextmenu(self.STR(30104), {'action': 'set_station', 'sid': sdata['sid']})
+            if sdata['schedule'] == 1:
                 self._contextmenu(self.STR(30110), {'action': 'update_info'})
             self._contextmenu(self.STR(30101), {'action': 'add_to_top', 'sid': sdata['sid']})
         if self.GET('download') == 'true' and sdata['download'] == 1:
             self._contextmenu(self.STR(30106), {'action': 'set_keyword', 'sid': sdata['sid']})
-        self._contextmenu(self.STR(30112), {'action': 'open_site', 'url': sdata['site']})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL

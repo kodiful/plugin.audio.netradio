@@ -57,12 +57,12 @@ if __name__ == '__main__':
     elif action == 'add_station':
         Stations().add()
     elif action == 'delete_station':
-        Stations().delete(args.get('sid'))
+        sid = args.get('sid') or Common.GET('sid')
+        Stations().delete(sid)
     elif action == 'show_info':
         Stations().show_info(args.get('sid'))
     elif action == 'open_site':
-        url = args.get('url')
-        Common.log(url)
+        url = args.get('url') or Common.GET('site')
         os_ = platform.system()
         if os_ == 'Windows':
             subprocess.Popen(['start', url], shell=True)

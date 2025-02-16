@@ -84,10 +84,6 @@ msgctxt "#30111"
 msgid "Show info"
 msgstr ""
 
-msgctxt "#30112"
-msgid "Open web site"
-msgstr ""
-
 #
 # for settings
 #
@@ -290,6 +286,18 @@ msgstr ""
 
 msgctxt "#30610"
 msgid "(No info)"
+msgstr ""
+
+msgctxt "#30611"
+msgid "On air info"
+msgstr ""
+
+msgctxt "#30612"
+msgid "Download"
+msgstr ""
+
+msgctxt "#30613"
+msgid "[COLOR lightgreen]Open website[/COLOR]"
 msgstr ""
 
 #

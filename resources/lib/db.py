@@ -157,7 +157,7 @@ class DB(Common):
         keyword TEXT,
         station TEXT,
         front TEXT,
-        status TEXT
+        refresh TEXT
     )'''
 
     sql_status_init = '''
