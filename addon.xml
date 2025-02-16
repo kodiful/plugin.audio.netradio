@@ -4,6 +4,11 @@
     <import addon="xbmc.python" version="3.0.0" />
     <import addon="script.module.chardet" version="3.0.4"/>
     <import addon="script.module.mutagen" version="1.44.0"/>
+    <import addon="script.module.six" version="1.16.0"/>
+    <import addon="script.module.xmltodict" version="0.12.0"/>
+    <import addon="script.module.qrcode" version="6.1.0"/>
+    <import addon="script.module.websocket" version="1.6.4"/>
+    <import addon="script.module.future" version="1.0.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>audio</provides>

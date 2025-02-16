@@ -8,7 +8,7 @@ import subprocess
 import logging
 
 # extディレクトリをパスに追加
-sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'ext'))
+sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'extra'))
 
 from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal
