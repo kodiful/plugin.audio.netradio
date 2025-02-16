@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-import shutil
+import sys
 import json
 import re
 
@@ -81,7 +81,8 @@ class Stations(Common):
             data['download'] = 1 if after['download1'] == 'true' else 0
         # stationテーブルに書き込む
         self.db.add_station(data, top=1)
-        xbmc.executebuiltin('Container.Refresh')
+        # トップ画面に遷移する
+        xbmc.executebuiltin('Container.Update(%s,replace)' % sys.argv[0])
 
     def delete(self, sid):
         # キーワード情報取得

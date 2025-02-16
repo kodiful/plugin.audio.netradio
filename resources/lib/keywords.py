@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
 import shutil
 import json
 from datetime import datetime
@@ -77,7 +78,8 @@ class Keywords(Common):
         after = dict([(key, self.GET(key)) for key in ('kid', 'kstatus', 'keyword', 'match', 'weekday', 'station')])
         # keywordテーブルに書き込む
         self.db.add_keyword(after)
-        xbmc.executebuiltin('Container.Refresh')
+        # トップ画面に遷移する
+        xbmc.executebuiltin('Container.Update(%s,replace)' % sys.argv[0])
 
     def delete(self, kid):
         # キーワード情報取得
