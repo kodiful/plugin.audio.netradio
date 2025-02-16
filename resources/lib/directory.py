@@ -251,7 +251,7 @@ class Directory(ScheduleManager):
                     station +=  f'[COLOR gray]▶ {self.STR(30700)}[/COLOR]'
         else:
             if sdata['description']:
-                station += f" [COLOR khaki]▶ {sdata['description']}[/COLOR]"
+                station += f" [COLOR khaki]■ {sdata['description']}[/COLOR]"
         return station
 
     def _contextmenu(self, name, args):
