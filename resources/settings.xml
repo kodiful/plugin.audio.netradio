@@ -4,21 +4,30 @@
       strings 30000 thru 30999 reserved for plugins and plugin settings
       strings 31000 thru 31999 reserved for skins
       strings 32000 thru 32999 reserved for scripts
-      strings 33000 thru 33999 reserved for common strings used in add-ons
+      strings 33000 thru 33999 reserved for common strings used in add-on
   -->
-  <!--settings.xmlと同じidは使用しないこと-->
-  <!--放送局-->
-  <category label="30600">
-    <setting id="protocol" type="text" visible="False"/>
-    <setting id="sid" type="text" visible="False"/>
-    <setting label="30601" id="station" type="text"/>
-    <setting label="30611" id="schedule1" type="bool" visible="eq(-3,SJ)|eq(-3,LR)|eq(-3,SP)"/>
-    <setting label="30612" id="download1" type="bool" visible="eq(-4,SJ)|eq(-4,LR)|eq(-4,SP)" enable="eq(-1,true)"/>
-    <setting label="30613" type="action" option="close" action="RunPlugin(plugin://$ID/?action=open_site)"/>
-    <setting label="30602" id="direct" type="text" visible="eq(-6,USER)"/>
-    <setting label="30603" id="logo" type="text" visible="eq(-7,USER)"/>
-    <setting label="30604" id="site" type="text" visible="eq(-8,USER)"/>
-    <setting label="30605" id="description" type="text" visible="eq(-9,USER)"/>
-    <setting label="30614" type="action" option="close" action="RunPlugin(plugin://$ID/?action=delete_station)" visible="eq(-10,USER)"/>
+  <!--一般-->
+  <category label="30200">
+    <setting label="30203" id="pref" type="text" default="" enable="false"/>
+    <setting label="30201" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_station)"/>
+    <setting label="30202" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_keyword)"/>
+    </category>
+  <!--番組保存-->
+  <category label="30300">
+    <setting label="30303" id="download" type="bool" default="false"/>
+    <setting label="30304" id="bitrate" type="labelenum" default="192k" values="auto|192k|160k|128k|96k|64k" enable="eq(-1,true)"/>
+    <setting label="30305" id="folder" type="folder" default="" enable="eq(-2,true)"/>
+    <setting label="30306" type="action" option="close" action="RunPlugin(plugin://$ID/?action=open_folder)" enable="eq(-3,true)"/>
+    <!--RSS-->
+    <setting label="30309" id="rss" type="bool" default="false" enable="eq(-4,true)"/>
+    <setting label="30310" id="rssurl" type="text" default="" enable="eq(-1,true)+eq(-5,true)"/>
+    <setting label="30312" id="rssnum" type="labelenum" values="5|10|20|50|100|unlimited" default="unlimited" enable="eq(-2,true)+!eq(-1,)+eq(-6,true)"/>
+    <setting label="30311" type="action" option="close" action="RunPlugin(plugin://$ID/?action=update_rss)" enable="eq(-3,true)+!eq(-2,)+eq(-7,true)"/>
+  </category>
+  <!--その他-->
+  <category label="30400">
+    <setting label="30401" id="ffmpeg" type="file" default=""/>
+    <setting label="30402" id="port" type="number" default="8088"/>
+    <setting label="30404" id="debug" type="bool" default="false"/>
   </category>
 </settings>
