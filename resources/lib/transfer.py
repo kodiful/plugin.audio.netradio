@@ -163,12 +163,15 @@ class Transfer(Common):
         self.log('Keyword settings have been imported')
 
     def preprocess(self):
-        # 既存のファイルを~backupに退避
+        # 退避先のディレクトリを確保
+        destdir = os.path.join(self.PROFILE_PATH, '~backup')
+        os.makedirs(destdir, exist_ok=True)
+        # 不要なファイルを退避
         for item in glob.glob(os.path.join(self.PROFILE_PATH, '*')):
             if os.path.isfile(item):
-                shutil.copy(item, os.path.join(self.PROFILE_PATH, '~backup', os.path.basename(item)))
+                shutil.copy(item, os.path.join(destdir, os.path.basename(item)))
             if os.path.isdir(item):
-                shutil.copytree(item, os.path.join(self.PROFILE_PATH, '~backup', os.path.basename(item)))
+                shutil.copytree(item, os.path.join(destdir, os.path.basename(item)))
 
     def init_tables(self):
         # citiesテーブル作成
