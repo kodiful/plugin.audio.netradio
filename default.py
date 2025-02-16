@@ -9,7 +9,6 @@ import platform
 import logging
 
 import xbmc
-import xbmcgui
 
 # extディレクトリをパスに追加
 sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'extra'))
@@ -18,8 +17,8 @@ from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal
 from resources.lib.directory import Directory
 from resources.lib.contents import Contents
-from resources.lib.keywords import Keywords
-from resources.lib.stations import Stations
+from resources.lib.settings.keywords import Keywords
+from resources.lib.settings.stations import Stations
 
 
 if __name__ == '__main__':
@@ -36,10 +35,10 @@ if __name__ == '__main__':
         args[key] = args[key][0]
 
     # action
-    action = args.get('action', 'show_station')
+    action = args.get('action', 'show_stations')
 
-    # actionに応じた処理
-    if action == 'show_station':
+    # 表示
+    if action == 'show_stations':
         protocol = args.get('protocol')
         region = args.get('region')
         pref = args.get('pref')
@@ -50,6 +49,8 @@ if __name__ == '__main__':
         Directory().delete_from_top(args.get('sid'))
     elif action == 'update_info':
         Directory().maintain_schedule()
+    elif action == 'show_info':
+        Directory().show_info(args.get('sid'))
 
     # 放送局
     elif action == 'set_station':
@@ -59,8 +60,6 @@ if __name__ == '__main__':
     elif action == 'delete_station':
         sid = args.get('sid') or Common.GET('sid')
         Stations().delete(sid)
-    elif action == 'show_info':
-        Stations().show_info(args.get('sid'))
     elif action == 'open_site':
         url = args.get('url') or Common.GET('site')
         os_ = platform.system()
@@ -80,8 +79,10 @@ if __name__ == '__main__':
         Keywords().delete(args.get('kid'))
 
     # ダウンロード
-    elif action == 'show_download':
+    elif action == 'show_downloads':
         Contents().show(args.get('kid'))
+    elif action == 'delete_download':
+        Contents().delete(args.get('cid'))
     elif action == 'open_folder':
         path = os.path.join(Common.CONTENTS_PATH, args.get('kid', ''))
         os_ = platform.system()

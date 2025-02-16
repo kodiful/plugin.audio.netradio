@@ -7,11 +7,12 @@ import html
 import shutil
 from urllib.parse import urlencode
 
-from resources.lib.common import Common
-from resources.lib.db import ThreadLocal
-
+import xbmc
 import xbmcplugin
 import xbmcgui
+
+from resources.lib.common import Common
+from resources.lib.db import ThreadLocal
 
 
 class Contents(Common):
@@ -27,7 +28,7 @@ class Contents(Common):
         FROM contents c 
         JOIN keywords k ON c.kid = k.kid
         JOIN stations s ON c.sid = s.sid
-        WHERE c.kid = :kid and c.cstatus = -1
+        WHERE c.kid = :kid AND c.cstatus = -1
         ORDER BY c.start DESC'''
         self.db.cursor.execute(sql, {'kid': kid})
         for cksdata in self.db.cursor.fetchall():
@@ -37,6 +38,25 @@ class Contents(Common):
         xbmcplugin.endOfDirectory(int(sys.argv[1]), succeeded=True)
         # statusテーブルに格納されている表示中の放送局をクリア
         self.db.cursor.execute("UPDATE status SET front = '[]'")
+
+    def delete(self, cid):
+        # 削除するファイルの情報を取得
+        sql = '''SELECT *
+        FROM contents c 
+        JOIN keywords k ON c.kid = k.kid
+        WHERE c.cstatus = -1 AND c.cid = :cid'''
+        self.db.cursor.execute(sql, {'cid': cid})
+        ckdata = self.db.cursor.fetchone()
+        # 確認ダイアログを表示
+        ok = xbmcgui.Dialog().yesno(self.STR(30113), self.STR(30114) % ckdata['title'])
+        if ok:
+            # ファイルを削除
+            path = os.path.join(self.CONTENTS_PATH, ckdata['dirname'], ckdata['filename'])
+            os.remove(path)
+            # DBから削除
+            sql = 'DELETE FROM contents WHERE cid = :cid'
+            self.db.cursor.execute(sql, {'cid': cid})
+            xbmc.executebuiltin('Container.Refresh')
 
     def _add_download(self, cksdata):
         # listitemを追加する
@@ -50,6 +70,7 @@ class Contents(Common):
         li.setArt({'thumb': logo, 'icon': logo})
         # コンテクストメニュー
         self.contextmenu = []
+        self._contextmenu(self.STR(30112), {'action': 'delete_download', 'cid': cksdata['cid']})
         self._contextmenu(self.STR(30109), {'action': 'open_folder', 'kid': cksdata['kid']})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)

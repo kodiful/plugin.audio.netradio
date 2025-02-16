@@ -84,6 +84,18 @@ msgctxt "#30111"
 msgid "Show info"
 msgstr ""
 
+msgctxt "#30112"
+msgid "Open folder"
+msgstr ""
+
+msgctxt "#30113"
+msgid "Confirm deletion"
+msgstr ""
+
+msgctxt "#30114"
+msgid "Delete file of \"%s\"?"
+msgstr ""
+
 #
 # for settings
 #
@@ -298,6 +310,10 @@ msgstr ""
 
 msgctxt "#30613"
 msgid "[COLOR lightgreen]Open website[/COLOR]"
+msgstr ""
+
+msgctxt "#30614"
+msgid "[COLOR lightgreen]Delete station settings[/COLOR]"
 msgstr ""
 
 #

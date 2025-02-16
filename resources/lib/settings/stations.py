@@ -3,7 +3,6 @@
 import os
 import sys
 import json
-import re
 
 import xbmc
 import xbmcgui
@@ -94,23 +93,3 @@ class Stations(Common):
             self.db.delete_station(sid)
             xbmc.executebuiltin('Container.Refresh')
 
-    def show_info(self, sid):
-        # 番組情報を検索
-        sql = 'SELECT title, description FROM contents WHERE sid = :sid AND end > NOW() ORDER BY start LIMIT 2'
-        self.db.cursor.execute(sql, {'sid': sid})
-        data = [(title, description) for title, description in self.db.cursor.fetchall()]
-        # 選択ダイアログを表示
-        index = xbmcgui.Dialog().select(self.STR(30606), [title for title, _ in data])
-        if index == -1:
-            return
-        # 選択された番組の情報を表示
-        _, description = data[index]
-        # テキストを整形
-        if description:
-            description = re.sub(r'<p class="(?:act|info|desc)">(.*?)</p>', r'\1\n\n', description)
-            description = re.sub(r'<br */>', r'\n', description)
-            description = re.sub(r'<.*?>', '', description)
-            description = re.sub(r'\n{3,}', r'\n\n', description)
-        else:
-            description = self.STR(30610)
-        xbmcgui.Dialog().textviewer(self.STR(30609), description)

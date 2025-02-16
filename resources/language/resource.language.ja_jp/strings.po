@@ -84,6 +84,18 @@ msgctxt "#30111"
 msgid "Show info"
 msgstr "番組情報"
 
+msgctxt "#30112"
+msgid "Open folder"
+msgstr "削除する"
+
+msgctxt "#30113"
+msgid "Confirm deletion"
+msgstr "削除確認"
+
+msgctxt "#30114"
+msgid "Delete file of \"%s\"?"
+msgstr "\"%s\"のファイルを削除しますか"
+
 #
 # for settings
 #

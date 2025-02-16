@@ -2,6 +2,7 @@
 
 import sys
 import os
+import re
 from urllib.parse import urlencode
 
 import xbmc
@@ -102,7 +103,28 @@ class Directory(ScheduleManager):
         sql = 'UPDATE stations SET top = 0 WHERE sid = :sid'
         self.db.cursor.execute(sql, {'sid': sid})
         xbmc.executebuiltin('Container.Update(%s,replace)' % sys.argv[0])
-    
+
+    def show_info(self, sid):
+        # 番組情報を検索
+        sql = 'SELECT title, description FROM contents WHERE sid = :sid AND end > NOW() ORDER BY start LIMIT 2'
+        self.db.cursor.execute(sql, {'sid': sid})
+        data = [(title, description) for title, description in self.db.cursor.fetchall()]
+        # 選択ダイアログを表示
+        index = xbmcgui.Dialog().select(self.STR(30606), [title for title, _ in data])
+        if index == -1:
+            return
+        # 選択された番組の情報を表示
+        _, description = data[index]
+        # テキストを整形
+        if description:
+            description = re.sub(r'<p class="(?:act|info|desc)">(.*?)</p>', r'\1\n\n', description)
+            description = re.sub(r'<br */>', r'\n', description)
+            description = re.sub(r'<.*?>', '', description)
+            description = re.sub(r'\n{3,}', r'\n\n', description)
+        else:
+            description = self.STR(30610)
+        xbmcgui.Dialog().textviewer(self.STR(30609), description)
+
     def _setup_directory(self):
         # NHKラジオ
         li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30001))
@@ -110,7 +132,7 @@ class Directory(ScheduleManager):
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show_station', 'protocol': 'NHK', 'region': self.region})
+        query = urlencode({'action': 'show_stations', 'protocol': 'NHK', 'region': self.region})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # 民放ラジオ(radiko)
         li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30002))
@@ -118,7 +140,7 @@ class Directory(ScheduleManager):
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show_station', 'protocol': 'RDK', 'region': self.region, 'pref': self.pref})
+        query = urlencode({'action': 'show_stations', 'protocol': 'RDK', 'region': self.region, 'pref': self.pref})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # コミュニティラジオ
         li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30003))
@@ -126,7 +148,7 @@ class Directory(ScheduleManager):
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show_station', 'protocol': 'COMM'})
+        query = urlencode({'action': 'show_stations', 'protocol': 'COMM'})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
     
     def _setup_keywords(self):
@@ -142,9 +164,9 @@ class Directory(ScheduleManager):
         self._contextmenu('self.STR(30100)', {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         if pref is None:
-            query = urlencode({'action': 'show_station', 'protocol': 'COMM', 'region': region})
+            query = urlencode({'action': 'show_stations', 'protocol': 'COMM', 'region': region})
         else:
-            query = urlencode({'action': 'show_station', 'protocol': 'COMM', 'region': region, 'pref': pref})
+            query = urlencode({'action': 'show_stations', 'protocol': 'COMM', 'region': region, 'pref': pref})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
     def _add_station(self, sdata):
@@ -204,7 +226,7 @@ class Directory(ScheduleManager):
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # リストアイテムを追加
-        query = urlencode({'action': 'show_download', 'kid': kid})
+        query = urlencode({'action': 'show_downloads', 'kid': kid})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         
     def _title(self, sdata):

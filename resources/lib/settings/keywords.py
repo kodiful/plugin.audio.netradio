@@ -66,7 +66,7 @@ class Keywords(Common):
             template = f.read()
         # ダウンロード可能な放送局リストを取得
         self.db.cursor.execute('SELECT station FROM stations WHERE download = 1 ORDER BY sid')
-        stations = ['限定しない'] + [station for station, in self.db.cursor.fetchall()]
+        stations = [''] + [station for station, in self.db.cursor.fetchall()]
         # テンプレートを書き換えて設定画面として書き出す
         with open(self.DIALOG_FILE, 'w', encoding='utf-8') as f:
             f.write(template.format(stations='|'.join(stations)))
