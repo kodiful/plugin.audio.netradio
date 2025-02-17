@@ -14,7 +14,7 @@
     <setting label="30601" id="station" type="text"/>
     <setting label="30615" id="protocol" type="text" enable="false"/>
     <setting label="30611" id="schedule1" type="bool" visible="eq(-4,SJ)|eq(-4,LR)|eq(-4,SP)"/>
-    <setting label="30612" id="download1" type="bool" visible="eq(-5,LR)" enable="eq(-1,true)"/>
+    <setting label="30612" id="download1" type="bool" visible="eq(-5,SJ)|eq(-5,LR)|eq(-5,SP)" enable="eq(-1,true)"/>
     <setting label="30613" type="action" option="close" action="RunPlugin(plugin://$ID/?action=open_site)"/>
     <setting label="30602" id="direct" type="text" visible="eq(-7,USER)"/>
     <setting label="30603" id="logo" type="text" visible="eq(-8,USER)"/>

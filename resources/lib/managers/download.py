@@ -48,7 +48,7 @@ def downloader(cid, kid, filename, protocol, key, title, end, direct, queue):
     db.cursor.execute(sql)
     token, = db.cursor.fetchone()
     # ストリームURL
-    url = LocalProxy.proxy(protocol, key=key, direct=direct, token=token, download=True)
+    url = LocalProxy.proxy(protocol, key=key, direct=direct, token=token, cid=cid)
     # 時間
     duration = end - int(time.time())
     # ビットレート

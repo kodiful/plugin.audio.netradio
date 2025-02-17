@@ -14,7 +14,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -31,7 +31,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -48,7 +48,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -65,7 +65,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -82,7 +82,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -99,7 +99,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -116,7 +116,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -133,7 +133,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -150,7 +150,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -167,7 +167,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -184,7 +184,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -201,7 +201,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -218,7 +218,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -235,7 +235,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -252,7 +252,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -269,7 +269,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -286,7 +286,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -303,7 +303,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -320,7 +320,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -337,7 +337,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -354,7 +354,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -371,7 +371,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -388,7 +388,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -405,7 +405,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -422,7 +422,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -439,7 +439,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -456,7 +456,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -473,7 +473,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -490,7 +490,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -507,7 +507,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -524,7 +524,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -541,7 +541,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -558,7 +558,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -575,7 +575,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -592,7 +592,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -609,7 +609,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -626,7 +626,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -643,7 +643,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -660,7 +660,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -677,7 +677,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -694,7 +694,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -711,7 +711,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -728,7 +728,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -745,7 +745,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -762,7 +762,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -779,7 +779,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -796,7 +796,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -813,7 +813,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -830,7 +830,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -847,7 +847,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -864,7 +864,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -881,7 +881,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -898,7 +898,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -915,7 +915,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -932,7 +932,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -949,7 +949,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -966,7 +966,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -983,7 +983,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1000,7 +1000,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1017,7 +1017,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1034,7 +1034,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1051,7 +1051,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1068,7 +1068,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1085,7 +1085,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1102,7 +1102,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1119,7 +1119,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1136,7 +1136,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1153,7 +1153,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1170,7 +1170,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1187,7 +1187,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1204,7 +1204,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1221,7 +1221,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1238,7 +1238,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1255,7 +1255,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1272,7 +1272,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1289,7 +1289,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1306,7 +1306,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1323,7 +1323,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1340,7 +1340,7 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     },
     {
         "protocol": "LR",
@@ -1357,6 +1357,6 @@
         "delay": 0,
         "display": 1,
         "schedule": 1,
-        "download": 1
+        "download": 0
     }
 ]

@@ -39,9 +39,6 @@ class Common:
     # image cache
     IMAGE_CACHE = os.path.join(xbmcvfs.translatePath('special://database'), 'Textures13.db')
 
-    # HLS chache
-    HLS_CACHE_PATH = os.path.join(PROFILE_PATH, 'hls_cache')
-
     # contents directory
     CONTENTS_PATH = GET('folder')
 
@@ -53,6 +50,11 @@ class Common:
 
     # user-agent
     USER_AGENT = 'python'
+
+    # HLS
+    HLS_CACHE_PATH = os.path.join(PROFILE_PATH, 'hls_cache')
+    HLS_FILE = 'hls.m3u8'
+    HLS_TIME = 5
 
     @staticmethod
     def notify(*messages, **options):
@@ -91,14 +93,6 @@ class Common:
             message = ' '.join(map(lambda x: str(x), messages))
         # ログ出力
         xbmc.log(message, level)
-
-    @staticmethod
-    def nowplaying():
-        path = None
-        if xbmc.Player().isPlaying():
-            item = xbmc.Player().getPlayingItem()
-            path = item.getPath()  # http://127.0.0.1:8088/SJ?id=fmblueshonan
-        return path
 
     @staticmethod
     def datetime(datetime_str):
