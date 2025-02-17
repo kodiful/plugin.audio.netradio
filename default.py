@@ -76,7 +76,8 @@ if __name__ == '__main__':
     elif action == 'add_keyword':
         Keywords().add()
     elif action == 'delete_keyword':
-        Keywords().delete(args.get('kid'))
+        kid = args.get('kid') or Common.GET('kid')
+        Keywords().delete(kid)
 
     # ダウンロード
     elif action == 'show_downloads':

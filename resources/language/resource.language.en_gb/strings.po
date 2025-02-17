@@ -56,20 +56,12 @@ msgctxt "#30104"
 msgid "Change station settings"
 msgstr ""
 
-msgctxt "#30105"
-msgid "Delete station settings"
-msgstr ""
-
 msgctxt "#30106"
 msgid "Add keyword settings"
 msgstr ""
 
 msgctxt "#30107"
 msgid "Change keyword settings"
-msgstr ""
-
-msgctxt "#30108"
-msgid "Delete keyword settings"
 msgstr ""
 
 msgctxt "#30109"
@@ -212,6 +204,10 @@ msgctxt "#30512"
 msgid "Title & Description"
 msgstr ""
 
+msgctxt "#30513"
+msgid "[COLOR lightgreen]Delete keyword settings[/COLOR]"
+msgstr ""
+
 msgctxt "#30520"
 msgid "Mon"
 msgstr ""
@@ -314,6 +310,10 @@ msgstr ""
 
 msgctxt "#30614"
 msgid "[COLOR lightgreen]Delete station settings[/COLOR]"
+msgstr ""
+
+msgctxt "#30615"
+msgid "Protocol"
 msgstr ""
 
 #

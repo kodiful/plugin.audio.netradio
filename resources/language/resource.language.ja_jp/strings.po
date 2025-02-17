@@ -54,11 +54,7 @@ msgstr "放送局設定を追加する"
 
 msgctxt "#30104"
 msgid "Change station settings"
-msgstr "放送局情報"
-
-msgctxt "#30105"
-msgid "Delete station settings"
-msgstr "放送局設定を削除する"
+msgstr "放送局設定"
 
 msgctxt "#30106"
 msgid "Add keyword settings"
@@ -66,11 +62,7 @@ msgstr "キーワード設定を追加する"
 
 msgctxt "#30107"
 msgid "Change keyword settings"
-msgstr "キーワード設定を変更する"
-
-msgctxt "#30108"
-msgid "Delete keyword settings"
-msgstr "キーワード設定を削除する"
+msgstr "キーワード設定"
 
 msgctxt "#30109"
 msgid "Open folder"
@@ -212,6 +204,10 @@ msgctxt "#30512"
 msgid "Title & Description"
 msgstr "番組名と詳細情報"
 
+msgctxt "#30513"
+msgid "[COLOR lightgreen]Delete keyword settings[/COLOR]"
+msgstr "[COLOR lightgreen]キーワード設定を削除する[/COLOR]"
+
 msgctxt "#30520"
 msgid "Mon"
 msgstr "月"
@@ -315,6 +311,10 @@ msgstr "[COLOR lightgreen]ウェブサイトを開く[/COLOR]"
 msgctxt "#30614"
 msgid "[COLOR lightgreen]Delete station settings[/COLOR]"
 msgstr "[COLOR lightgreen]放送局設定を削除する[/COLOR]"
+
+msgctxt "#30615"
+msgid "Protocol"
+msgstr "配信方式"
 
 #
 # miscellaneous

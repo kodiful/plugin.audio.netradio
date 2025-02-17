@@ -194,6 +194,9 @@ class DB(Common):
         self.conn.create_function('EPOCH', 1, epoch)
 
     def add(self, data, kid=0, key='', duration=0):
+        # 終了済みだったら何もしない
+        if data['end'] < self.now:
+            return 0
         # title
         title = data['title']
         # description

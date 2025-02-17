@@ -78,7 +78,7 @@ class Keywords(Common):
         after = dict([(key, self.GET(key)) for key in ('kid', 'kstatus', 'keyword', 'match', 'weekday', 'station')])
         # keywordテーブルに書き込む
         self.db.add_keyword(after)
-        # トップ画面に遷移する
+        # トップ画面に遷移して再描画
         xbmc.executebuiltin('Container.Update(%s,replace)' % sys.argv[0])
 
     def delete(self, kid):

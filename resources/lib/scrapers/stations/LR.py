@@ -52,7 +52,7 @@ class Scraper(Common):
                 'delay': 0,
                 'display': 1,
                 'schedule': 1,
-                'download': 0
+                'download': 1
             })
         return buf
 

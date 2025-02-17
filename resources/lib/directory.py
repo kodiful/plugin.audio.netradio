@@ -97,12 +97,14 @@ class Directory(ScheduleManager):
     def add_to_top(self, sid):
         sql = 'UPDATE stations SET top = 1 WHERE sid = :sid'
         self.db.cursor.execute(sql, {'sid': sid})
+        # トップ画面に遷移して再描画
         xbmc.executebuiltin('Container.Update(%s,replace)' % sys.argv[0])
 
     def delete_from_top(self, sid):
         sql = 'UPDATE stations SET top = 0 WHERE sid = :sid'
         self.db.cursor.execute(sql, {'sid': sid})
-        xbmc.executebuiltin('Container.Update(%s,replace)' % sys.argv[0])
+        # 再描画
+        xbmc.executebuiltin('Container.Refresh')
 
     def show_info(self, sid):
         # 番組情報を検索
@@ -221,7 +223,6 @@ class Directory(ScheduleManager):
         self.contextmenu = []
         if kid > 0:
             self._contextmenu(self.STR(30107), {'action': 'set_keyword', 'kid': kid})
-            self._contextmenu(self.STR(30108), {'action': 'delete_keyword', 'kid': kid})
         self._contextmenu(self.STR(30109), {'action': 'open_folder', 'kid': kid})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)

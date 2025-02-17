@@ -80,7 +80,7 @@ class Stations(Common):
             data['download'] = 1 if after['download1'] == 'true' else 0
         # stationテーブルに書き込む
         self.db.add_station(data, top=1)
-        # トップ画面に遷移する
+        # トップ画面に遷移して再描画
         xbmc.executebuiltin('Container.Update(%s,replace)' % sys.argv[0])
 
     def delete(self, sid):
