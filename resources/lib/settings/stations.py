@@ -13,16 +13,19 @@ from resources.lib.db import ThreadLocal
 
 class Stations(Common):
 
+    KEYS = ('protocol', 'sid', 'top', 'schedule1', 'download1', 'station', 'description', 'direct', 'logo', 'site')
+
     def __init__(self):
         # DBの共有インスタンス
         self.db = ThreadLocal.db
 
-    def set(self, sid=None):
+    def open(self, sid=None):
         # アドオン設定画面から放送局設定画面を開いたとき、設定した値が以前の設定で書き換えられてしまうのを避ける
         xbmc.sleep(1000)
         # デフォルト設定
         self.SET('protocol', 'USER')
         self.SET('sid', '0')
+        self.SET('top', 'true')
         self.SET('schedule1', 'false')
         self.SET('download1', 'false')
         self.SET('station', '')
@@ -37,6 +40,7 @@ class Stations(Common):
             sdata = self.db.cursor.fetchone()
             self.SET('protocol', sdata['protocol'])
             self.SET('sid', str(sid))
+            self.SET('top', ['false','true'][sdata['top']])
             self.SET('schedule1', ['false','true'][sdata['schedule']])
             self.SET('download1', ['false','true'][sdata['download']])
             self.SET('station', sdata['station'])
@@ -45,10 +49,10 @@ class Stations(Common):
             self.SET('logo', sdata['logo'])
             self.SET('site', sdata['site'])
         # 設定前の値
-        before = dict([(key, self.GET(key)) for key in ('protocol', 'sid', 'schedule1', 'download1', 'station', 'description', 'direct', 'logo', 'site')])
+        before = dict([(key, self.GET(key)) for key in self.KEYS])
         # statusテーブルに書き込む
         sql = 'UPDATE status SET station = :before'
-        self.db.cursor.execute(sql, {'before': json.dumps(before)})
+        self.db.cursor.execute(sql, {'before': json.dumps(before, ensure_ascii=False)})
         # 放送局設定画面のテンプレートを読み込む
         with open(os.path.join(self.DATA_PATH, 'settings', 'station.xml'), 'r', encoding='utf-8') as f:
             template = f.read()
@@ -58,13 +62,10 @@ class Stations(Common):
         # 放送局設定画面を開く
         xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
 
-    def add(self):
+    def save(self):
         # 設定後の値
-        after = dict([(key, self.GET(key)) for key in ('protocol', 'sid', 'schedule1', 'download1', 'station', 'description', 'direct', 'logo', 'site')])
-        # NHK, RDK, SRは変更しない
-        if after['protocol'] in ('NHK', 'RDK', 'SR'):
-            return
-        # 設定変更の場合、変更前の値を取得
+        after = dict([(key, self.GET(key)) for key in self.KEYS])
+        # 変更前の値を取得
         sid = int(after['sid'])
         if sid > 0:
             sql = 'SELECT * FROM stations WHERE sid = :sid'
@@ -73,13 +74,18 @@ class Stations(Common):
         # before/afterで変更可能なカラムを書き換える
         if after['protocol'] == 'USER':
             data = after
+            data['top'] = 1 if after['top'] == 'true' else 0
             data.update({'key': ''})
         elif after['protocol'] in ('SJ', 'LR', 'SP'):
             data = dict(before)
+            data['top'] = 1 if after['top'] == 'true' else 0
             data['schedule'] = 1 if after['schedule1'] == 'true' else 0
             data['download'] = 1 if after['download1'] == 'true' else 0
+        else:  # NHK, RDK, SR
+            data = dict(before)
+            data['top'] = 1 if after['top'] == 'true' else 0
         # stationテーブルに書き込む
-        self.db.add_station(data, top=1)
+        self.db.set_station(data)
         # トップ画面に遷移して再描画
         xbmc.executebuiltin('Container.Update(%s,replace)' % sys.argv[0])
 

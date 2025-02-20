@@ -3,6 +3,7 @@
 import os
 import calendar
 import traceback
+import inspect
 from datetime import datetime
 
 import xbmc
@@ -90,7 +91,14 @@ class Common:
             ])
         else:
             level = xbmc.LOGINFO
-            message = ' '.join(map(lambda x: str(x), messages))
+            frame = inspect.currentframe().f_back
+            filename = os.path.basename(frame.f_code.co_filename)
+            lineno = frame.f_lineno
+            name = frame.f_code.co_name
+            message = ': '.join([
+                addon.getAddonInfo('id'),
+                f'{filename}({lineno}) {name}',
+                ' '.join(map(lambda x: str(x), messages))])
         # ログ出力
         xbmc.log(message, level)
 
@@ -108,3 +116,8 @@ class Common:
         date, _ = datetime_str.split(' ')
         year, month, day = map(int, date.split('-'))
         return calendar.weekday(year, month, day)
+    
+    @staticmethod
+    def setArt(listitem, name):
+        logo = os.path.join(Common.DATA_PATH, 'icons', f'{name}.png')
+        listitem.setArt({'thumb': logo, 'icon': logo})

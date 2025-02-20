@@ -32,6 +32,10 @@ msgctxt "#30003"
 msgid "Community Radio"
 msgstr ""
 
+msgctxt "#30004"
+msgid "Saved/Saving contents"
+msgstr ""
+
 #
 # for contextmenus
 #
@@ -53,23 +57,19 @@ msgid "Add station settings"
 msgstr ""
 
 msgctxt "#30104"
-msgid "Change station settings"
+msgid "Station settings"
 msgstr ""
 
-msgctxt "#30106"
-msgid "Add keyword settings"
+msgctxt "#30105"
+msgid "Save settings"
 msgstr ""
 
-msgctxt "#30107"
-msgid "Change keyword settings"
-msgstr ""
-
-msgctxt "#30109"
-msgid "Open folder"
+msgctxt "#30108"
+msgid "Keyword settings"
 msgstr ""
 
 msgctxt "#30110"
-msgid "Update timetable"
+msgid "Timer settings"
 msgstr ""
 
 msgctxt "#30111"
@@ -77,7 +77,7 @@ msgid "Show info"
 msgstr ""
 
 msgctxt "#30112"
-msgid "Open folder"
+msgid "Delete file"
 msgstr ""
 
 msgctxt "#30113"
@@ -86,6 +86,22 @@ msgstr ""
 
 msgctxt "#30114"
 msgid "Delete file of \"%s\"?"
+msgstr ""
+
+msgctxt "#30115"
+msgid "Confirm deletion"
+msgstr ""
+
+msgctxt "#30116"
+msgid "Cancel download of \"%s\"?"
+msgstr ""
+
+msgctxt "#30117"
+msgid "Cancel download"
+msgstr ""
+
+msgctxt "#30118"
+msgid "Show QR code"
 msgstr ""
 
 #
@@ -97,15 +113,19 @@ msgid "General"
 msgstr ""
 
 msgctxt "#30201"
-msgid "[COLOR lightgreen]Add station settings[/COLOR]"
+msgid "Authorized region"
 msgstr ""
 
 msgctxt "#30202"
-msgid "[COLOR lightgreen]Add keyword settings[/COLOR]"
+msgid "[COLOR lightgreen]Add station settings[/COLOR]"
 msgstr ""
 
 msgctxt "#30203"
-msgid "Authorized region"
+msgid "[COLOR lightgreen]Add keyword settings[/COLOR]"
+msgstr ""
+
+msgctxt "#30204"
+msgid "[COLOR lightgreen]Add timer settings[/COLOR]"
 msgstr ""
 
 msgctxt "#30300"
@@ -185,7 +205,7 @@ msgid "Station"
 msgstr ""
 
 msgctxt "#30506"
-msgid "Match & Download"
+msgid "Autosave"
 msgstr ""
 
 msgctxt "#30507"
@@ -205,7 +225,23 @@ msgid "Title & Description"
 msgstr ""
 
 msgctxt "#30513"
+msgid "[COLOR lightgreen]Add keyword settings[/COLOR]"
+msgstr ""
+
+msgctxt "#30514"
+msgid "[COLOR lightgreen]Change keyword settings[/COLOR]"
+msgstr ""
+
+msgctxt "#30515"
 msgid "[COLOR lightgreen]Delete keyword settings[/COLOR]"
+msgstr ""
+
+msgctxt "#30516"
+msgid "Save settings"
+msgstr ""
+
+msgctxt "#30517"
+msgid "Save \"%s\""
 msgstr ""
 
 msgctxt "#30520"
@@ -251,6 +287,38 @@ msgstr ""
 msgctxt "#30530"
 msgid "Delete keyword settings and downloaded files for \"%s\"?"
 msgstr ""
+
+msgctxt "#30550"
+msgid "Timer settings"
+msgstr ""
+
+msgctxt "#30552"
+msgid "Start date"
+msgstr ""
+
+msgctxt "#30553"
+msgid "Start time"
+msgstr ""
+
+msgctxt "#30554"
+msgid "End date"
+msgstr ""
+
+msgctxt "#30555"
+msgid "End time"
+msgstr ""
+
+msgctxt "#30556"
+msgid "Station"
+msgstr ""
+
+msgctxt "#30557"
+msgid "[COLOR lightgreen]Add timer settings[/COLOR]"
+msgstr ""
+
+#
+# station settings
+#
 
 msgctxt "#30600"
 msgid "Station settings"
@@ -308,12 +376,24 @@ msgctxt "#30613"
 msgid "[COLOR lightgreen]Open website[/COLOR]"
 msgstr ""
 
-msgctxt "#30614"
-msgid "[COLOR lightgreen]Delete station settings[/COLOR]"
-msgstr ""
-
 msgctxt "#30615"
 msgid "Protocol"
+msgstr ""
+
+msgctxt "#30616"
+msgid "Show in top page"
+msgstr ""
+
+msgctxt "#30617"
+msgid "[COLOR lightgreen]Add station settings[/COLOR]"
+msgstr ""
+
+msgctxt "#30618"
+msgid "[COLOR lightgreen]Change station settings[/COLOR]"
+msgstr ""
+
+msgctxt "#30619"
+msgid "[COLOR lightgreen]Delete station settings[/COLOR]"
 msgstr ""
 
 #

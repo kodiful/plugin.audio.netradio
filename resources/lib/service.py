@@ -18,35 +18,6 @@ from resources.lib.managers.schedule import ScheduleManager
 from resources.lib.managers.download import DownloadManager
 
 
-class Monitor(xbmc.Monitor, Common):
-
-    def __init__(self):
-        super().__init__()
-        # DBの共有インスタンス
-        self.db = ThreadLocal.db
-
-    def onSettingsChanged(self):
-        # ダイアログが最前面でない場合
-        if xbmcgui.getCurrentWindowDialogId() == 9999:
-            # 以前の設定値を取得
-            self.db.cursor.execute('SELECT keyword, station FROM status')
-            keyword, station = self.db.cursor.fetchone()
-            # キーワードの設定値を比較
-            if keyword:
-                before = json.loads(keyword)
-                after = dict([(key, self.GET(key)) for key in ('kid', 'kstatus', 'keyword', 'match', 'weekday', 'station')])
-                if after != before:
-                    xbmc.executebuiltin('RunPlugin(plugin://%s?action=add_keyword)' % self.ADDON_ID)  # 設定変更
-            # 放送局の設定値を比較
-            if station:
-                before = json.loads(station)
-                after = dict([(key, self.GET(key)) for key in ('sid', 'station', 'description', 'direct', 'logo', 'site')])
-                if after != before:
-                    xbmc.executebuiltin('RunPlugin(plugin://%s?action=add_station)' % self.ADDON_ID)  # 設定変更
-            # キーワード、放送局以外の変更のために再描画する
-            xbmc.executebuiltin('Container.Refresh')
-
-
 class Service(AuthenticationManager, ScheduleManager, DownloadManager):
 
     def __init__(self):
@@ -62,32 +33,32 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
         WHERE c.cstatus = -2 or c.cstatus = 3'''
         db.cursor.execute(sql)
         for filename, dirname in db.cursor.fetchall():
-            mp3file = os.path.join(db.CONTENTS_PATH, dirname, filename)
-            if os.path.exists(mp3file):
-                os.remove(mp3file)
+            mp3_file = os.path.join(db.CONTENTS_PATH, dirname, filename)
+            if os.path.exists(mp3_file):
+                os.remove(mp3_file)
         # ダウンロード済み以外の番組情報を削除
         db.cursor.execute('DELETE FROM contents WHERE cstatus != -1')
         # 番組表更新予定時間を初期化
         db.cursor.execute("UPDATE stations SET nextaired = '1970-01-01 09:00:00'")
         # 設定画面をデフォルトに設定
-        shutil.copy(os.path.join(Common.DATA_PATH, 'settings', 'settings.xml'), Common.DIALOG_FILE)
-        # stations/logoを初期化
+        shutil.copy(os.path.join(Common.DATA_PATH, 'settings', 'default.xml'), Common.DIALOG_FILE)
+        # PROFILE_PATH/stations/logoを初期化
         if os.path.exists(os.path.join(self.PROFILE_PATH, 'stations', 'logo')) is False:
             shutil.copytree(os.path.join(self.DATA_PATH, 'stations', 'logo'), os.path.join(self.PROFILE_PATH, 'stations', 'logo'))
-        # keywords/qrを初期化
+        # PROFILE_PATH/keywords/qrを初期化
         if os.path.exists(os.path.join(self.PROFILE_PATH, 'keywords', 'qr')) is False:
             os.makedirs(os.path.join(self.PROFILE_PATH, 'keywords', 'qr'), exist_ok=True)
-        # scheduleを初期化
+        # PROFILE_PATH/scheduleを初期化
         if os.path.exists(os.path.join(self.PROFILE_PATH, 'schedule')) is False:
             os.makedirs(os.path.join(self.PROFILE_PATH, 'schedule'), exist_ok=True)
-        # hls cacheをクリア
+        # HLS_CACHE_PATHをクリア
         if os.path.isdir(self.HLS_CACHE_PATH) is True:
             shutil.rmtree(self.HLS_CACHE_PATH)
         os.makedirs(self.HLS_CACHE_PATH)
         # ローカルプロキシを初期化
         self.httpd = LocalProxy()
         # 別スレッドでローカルプロキシを起動
-        thread = threading.Thread(target=self.httpd.serve_forever)
+        thread = threading.Thread(target=self.httpd.serve_forever, daemon=True)
         thread.start()
 
     def monitor(self):
@@ -102,7 +73,7 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
         # ダウンロードプロセスを格納するキューを初期化
         self.queue = queue.Queue()
         # 監視を開始
-        monitor = Monitor()
+        monitor = xbmc.Monitor()
         while monitor.abortRequested() is False:
             # radiko認証更新
             self.maintain_auth()
@@ -113,8 +84,8 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
                 db.cursor.execute('SELECT keyword, station FROM status')
                 keyword, station = db.cursor.fetchone()
                 if keyword or station:
-                    db.cursor.execute("UPDATE status SET keyword = '', station = ''")  # statusテーブル
-                    shutil.copy(os.path.join(self.DATA_PATH, 'settings', 'settings.xml'), self.DIALOG_FILE)  # アドオン設定画面
+                    db.cursor.execute("UPDATE status SET keyword = '', station = '', timer = ''")  # statusテーブル
+                    shutil.copy(os.path.join(self.DATA_PATH, 'settings', 'default.xml'), self.DIALOG_FILE)  # アドオン設定画面
             # ダウンロード開始判定
             self.maintain_download()
             # CHECK_INTERVALの間待機

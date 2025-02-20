@@ -58,7 +58,7 @@ if __name__ == '__main__':
         # サービスを初期化
         service = Service()
         # 別スレッドでサービスを起動
-        thread = threading.Thread(target=service.monitor)
+        thread = threading.Thread(target=service.monitor, daemon=True)
         thread.start()
         # DBインスタンスを終了
         ThreadLocal.db.conn.close()

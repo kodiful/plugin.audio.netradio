@@ -3,12 +3,14 @@
 import os
 import threading
 import time
+import urllib.request
 import ffmpeg  # https://github.com/kkroening/ffmpeg-python
 from mutagen.mp3 import MP3
 
 from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal
 from resources.lib.localproxy import LocalProxy
+from resources.lib.contents import Contents
 
 
 class DownloadManager(Common):
@@ -65,16 +67,17 @@ def downloader(cid, kid, filename, protocol, key, title, end, direct, queue):
         else:
             bitrate = '64k'
     # 出力ディレクトリ
-    sql = 'SELECT dirname FROM keywords WHERE kid = :kid'
+    sql = 'SELECT keyword, dirname FROM keywords WHERE kid = :kid'
     db.cursor.execute(sql, {'kid': kid})
-    dirname, = db.cursor.fetchone()
+    keyword, dirname = db.cursor.fetchone()
     # 出力ファイル
     download_path = os.path.join(Common.CONTENTS_PATH, dirname)
     os.makedirs(download_path, exist_ok=True)
-    mp3file = os.path.join(download_path, filename)
+    mp3_file = os.path.join(download_path, filename)
     # ffmpeg実行
     kwargs = {'acodec': 'libmp3lame', 'b:a': bitrate, 'v': 'warning'}
-    process = ffmpeg.input(url, f='hls', t=duration).output(mp3file, **kwargs).run_async(pipe_stderr=True)
+    format = 'hls' if protocol == 'RDK' else ''
+    process = ffmpeg.input(url, t=duration, f=format).output(mp3_file, **kwargs).run_async(pipe_stderr=True)
     # プロセスをキューに追加
     queue.put(process)
     # ダウンロード中(cstatus=3)に更新
@@ -89,12 +92,24 @@ def downloader(cid, kid, filename, protocol, key, title, end, direct, queue):
     # ダウンロード結果に応じて後処理
     if process.returncode == 0:
         # durationを抽出
-        duration = int(MP3(mp3file).info.length)
+        duration = int(MP3(mp3_file).info.length)
         # DB更新
         sql = 'UPDATE contents SET cstatus = -1, duration = :duration WHERE cid = :cid'
         db.cursor.execute(sql, {'cid': cid, 'duration': duration})
         # ID3タグを書き込む
-        db.write_id3(mp3file, cid)
+        db.write_id3(mp3_file, cid)
+        # RSSを更新する
+        Contents().create_rss(kid, keyword, dirname)
+        # websocket停止
+        url = LocalProxy.proxy('success', cid=cid)
+        try:
+            req = urllib.request.Request(url)
+            res = urllib.request.urlopen(req)
+            data = res.read()
+        except urllib.error.HTTPError as e:
+            Common.log(f'request error (code={e.code}):', url)
+        except Exception as e:
+            Common.log(e)
         # 完了通知
         Common.notify('Download complete "%s"' % title)
         # ログ

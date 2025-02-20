@@ -111,7 +111,7 @@ class ScheduleManager(Common):
         # 放送局毎に更新予定時刻を個別のスレッドで確認し必要があれば再描画する
         threads = []
         for protocol, sid, visible in stations:
-            thread = threading.Thread(target=scheduler, args=[protocol, sid, visible])
+            thread = threading.Thread(target=scheduler, args=[protocol, sid, visible], daemon=True)
             thread.start()
             threads.append(thread)
         # 更新対象の放送局の指定がない場合（monitorによる定期実行の場合）はすべてのスレッドが完了するまで待つ

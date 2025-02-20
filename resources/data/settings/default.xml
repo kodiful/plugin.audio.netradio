@@ -8,9 +8,10 @@
   -->
   <!--一般-->
   <category label="30200">
-    <setting label="30203" id="pref" type="text" default="" enable="false"/>
-    <setting label="30201" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_station)"/>
-    <setting label="30202" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_keyword)"/>
+    <setting label="30201" id="pref" type="text" default="" enable="false"/>
+    <setting label="30202" type="action" option="close" action="RunPlugin(plugin://$ID/?action=get_station)"/>
+    <setting label="30203" type="action" option="close" action="RunPlugin(plugin://$ID/?action=get_keyword)"/>
+    <setting label="30204" type="action" option="close" action="RunPlugin(plugin://$ID/?action=get_timer)"/>
     </category>
   <!--番組保存-->
   <category label="30300">

@@ -32,6 +32,10 @@ msgctxt "#30003"
 msgid "Community Radio"
 msgstr "コミュニティラジオ"
 
+msgctxt "#30004"
+msgid "Saved/Saving contents"
+msgstr "その他の保存中/保存済みの番組"
+
 #
 # for contextmenus
 #
@@ -53,31 +57,27 @@ msgid "Add station settings"
 msgstr "放送局設定を追加する"
 
 msgctxt "#30104"
-msgid "Change station settings"
+msgid "Station settings"
 msgstr "放送局設定"
 
-msgctxt "#30106"
-msgid "Add keyword settings"
-msgstr "キーワード設定を追加する"
+msgctxt "#30105"
+msgid "Save settings"
+msgstr "保存設定"
 
-msgctxt "#30107"
-msgid "Change keyword settings"
+msgctxt "#30108"
+msgid "Keyword settings"
 msgstr "キーワード設定"
 
-msgctxt "#30109"
-msgid "Open folder"
-msgstr "保存フォルダを開く"
-
 msgctxt "#30110"
-msgid "Update timetable"
-msgstr "番組情報を更新する"
+msgid "Timer settings"
+msgstr "タイマー設定"
 
 msgctxt "#30111"
 msgid "Show info"
 msgstr "番組情報"
 
 msgctxt "#30112"
-msgid "Open folder"
+msgid "Delete file"
 msgstr "削除する"
 
 msgctxt "#30113"
@@ -86,7 +86,23 @@ msgstr "削除確認"
 
 msgctxt "#30114"
 msgid "Delete file of \"%s\"?"
-msgstr "\"%s\"のファイルを削除しますか"
+msgstr "\"%s\" のファイルを削除しますか"
+
+msgctxt "#30115"
+msgid "Confirm deletion"
+msgstr "キャンセル確認"
+
+msgctxt "#30116"
+msgid "Cancel download of \"%s\"?"
+msgstr "\"%s\"のダウンロードをキャンセルしますか"
+
+msgctxt "#30117"
+msgid "Cancel download"
+msgstr "キャンセルする"
+
+msgctxt "#30118"
+msgid "Show QR code"
+msgstr "QRコード表示"
 
 #
 # for settings
@@ -97,16 +113,20 @@ msgid "General"
 msgstr "一般"
 
 msgctxt "#30201"
+msgid "Authorized region"
+msgstr "認証されている地域"
+
+msgctxt "#30202"
 msgid "[COLOR lightgreen]Add station settings[/COLOR]"
 msgstr "[COLOR lightgreen]放送局設定を追加する[/COLOR]"
 
-msgctxt "#30202"
+msgctxt "#30203"
 msgid "[COLOR lightgreen]Add keyword settings[/COLOR]"
 msgstr "[COLORlightgreen]キーワード設定を追加する[/COLOR]"
 
-msgctxt "#30203"
-msgid "Authorized region"
-msgstr "認証されている地域"
+msgctxt "#30204"
+msgid "[COLOR lightgreen]Add timer settings[/COLOR]"
+msgstr "[COLORlightgreen]タイマー設定を追加する[/COLOR]"
 
 msgctxt "#30300"
 msgid "Download"
@@ -166,7 +186,7 @@ msgstr "デバッグ"
 
 msgctxt "#30500"
 msgid "Keyword"
-msgstr "保存キーワード"
+msgstr "キーワード設定"
 
 msgctxt "#30501"
 msgid "Keyword"
@@ -185,8 +205,8 @@ msgid "Station"
 msgstr "放送局"
 
 msgctxt "#30506"
-msgid "Match & Download"
-msgstr "自動ダウンロード"
+msgid "Autosave"
+msgstr "自動保存"
 
 msgctxt "#30507"
 msgid "Suspend"
@@ -205,8 +225,24 @@ msgid "Title & Description"
 msgstr "番組名と詳細情報"
 
 msgctxt "#30513"
+msgid "[COLOR lightgreen]Add keyword settings[/COLOR]"
+msgstr "[COLOR lightgreen]キーワード設定を追加する[/COLOR]"
+
+msgctxt "#30514"
+msgid "[COLOR lightgreen]Change keyword settings[/COLOR]"
+msgstr "[COLOR lightgreen]キーワード設定を変更する[/COLOR]"
+
+msgctxt "#30515"
 msgid "[COLOR lightgreen]Delete keyword settings[/COLOR]"
-msgstr "[COLOR lightgreen]キーワード設定を削除する[/COLOR]"
+msgstr "[COLOR red]キーワード設定を削除する[/COLOR]"
+
+msgctxt "#30516"
+msgid "Save settings"
+msgstr "保存予約"
+
+msgctxt "#30517"
+msgid "Save \"%s\""
+msgstr "[COLOR lightgreen]\"%s\" の保存を予約する[/COLOR]"
 
 msgctxt "#30520"
 msgid "Mon"
@@ -250,7 +286,39 @@ msgstr "削除確認"
 
 msgctxt "#30530"
 msgid "Delete keyword settings and downloaded files for \"%s\"?"
-msgstr "\"%s\"のキーワード設定とダウンロード済みファイルを削除しますか？"
+msgstr "\"%s\" のキーワード設定と保存済みファイルを削除しますか？"
+
+msgctxt "#30550"
+msgid "Timer settings"
+msgstr "タイマー設定"
+
+msgctxt "#30552"
+msgid "Start date"
+msgstr "開始日付"
+
+msgctxt "#30553"
+msgid "Start time"
+msgstr "開始時刻"
+
+msgctxt "#30554"
+msgid "End date"
+msgstr "終了日付"
+
+msgctxt "#30555"
+msgid "End time"
+msgstr "終了時刻"
+
+msgctxt "#30556"
+msgid "Station"
+msgstr "放送局"
+
+msgctxt "#30557"
+msgid "[COLOR lightgreen]Add timer settings[/COLOR]"
+msgstr "[COLOR lightgreen]タイマー設定を追加する[/COLOR]"
+
+#
+# station settings
+#
 
 msgctxt "#30600"
 msgid "Station settings"
@@ -286,7 +354,7 @@ msgstr "削除確認"
 
 msgctxt "#30608"
 msgid "Delete station settings for \"%s\"?"
-msgstr "\"%s\"の放送局設定を削除しますか？"
+msgstr "\"%s\" の放送局設定を削除しますか？"
 
 msgctxt "#30609"
 msgid "Show info"
@@ -298,23 +366,35 @@ msgstr "（番組情報はありません）"
 
 msgctxt "#30611"
 msgid "On air info"
-msgstr "オンエア情報"
+msgstr "オンエア情報を表示する"
 
 msgctxt "#30612"
 msgid "Download"
-msgstr "ダウンロード"
+msgstr "保存のためオンエア情報をウォッチする"
 
 msgctxt "#30613"
 msgid "[COLOR lightgreen]Open website[/COLOR]"
 msgstr "[COLOR lightgreen]ウェブサイトを開く[/COLOR]"
 
-msgctxt "#30614"
-msgid "[COLOR lightgreen]Delete station settings[/COLOR]"
-msgstr "[COLOR lightgreen]放送局設定を削除する[/COLOR]"
-
 msgctxt "#30615"
 msgid "Protocol"
 msgstr "配信方式"
+
+msgctxt "#30616"
+msgid "Show in top page"
+msgstr "トップ画面に表示する"
+
+msgctxt "#30617"
+msgid "[COLOR lightgreen]Add station settings[/COLOR]"
+msgstr "[COLOR lightgreen]放送局設定を追加する[/COLOR]"
+
+msgctxt "#30618"
+msgid "[COLOR lightgreen]Change station settings[/COLOR]"
+msgstr "[COLOR lightgreen]放送局設定を変更する[/COLOR]"
+
+msgctxt "#30619"
+msgid "[COLOR lightgreen]Delete station settings[/COLOR]"
+msgstr "[COLOR red]放送局設定を削除する[/COLOR]"
 
 #
 # miscellaneous

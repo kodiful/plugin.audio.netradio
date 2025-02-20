@@ -36,7 +36,7 @@ class Directory(ScheduleManager):
             sql = 'SELECT * FROM stations WHERE protocol = :protocol AND display = 1 ORDER BY station'
             self.db.cursor.execute(sql, {'protocol': 'NHK'})
             for sdata in self.db.cursor.fetchall():
-                self._add_station(sdata)
+                self._set_station(sdata)
                 if sdata['schedule'] == 1:
                     stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'RDK':
@@ -44,7 +44,7 @@ class Directory(ScheduleManager):
             sql = 'SELECT * FROM stations WHERE protocol = :protocol AND display = 1 ORDER BY station'
             self.db.cursor.execute(sql, {'protocol': 'RDK'})
             for sdata in self.db.cursor.fetchall():
-                self._add_station(sdata)
+                self._set_station(sdata)
                 if sdata['schedule'] == 1:
                     stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'COMM':
@@ -64,7 +64,7 @@ class Directory(ScheduleManager):
                 sql = 'SELECT * FROM stations WHERE protocol IN %s AND region = :region AND pref = :pref AND display = 1 ORDER BY code' % protocols
                 self.db.cursor.execute(sql, {'region': region, 'pref': pref})
                 for sdata in self.db.cursor.fetchall():
-                    self._add_station(sdata)
+                    self._set_station(sdata)
                     if sdata['schedule'] == 1:
                         stations.append((sdata['protocol'], sdata['sid'], 1))
         else:
@@ -82,7 +82,7 @@ class Directory(ScheduleManager):
             END, code, station'''
             self.db.cursor.execute(sql)
             for sdata in self.db.cursor.fetchall():
-                self._add_station(sdata)
+                self._set_station(sdata)
                 if sdata['schedule'] == 1:
                     stations.append((sdata['protocol'], sdata['sid'], 1))
             # ディレクトリの一覧を表示
@@ -93,18 +93,6 @@ class Directory(ScheduleManager):
         self.maintain_schedule(stations)
         # リストアイテム追加完了
         xbmcplugin.endOfDirectory(int(sys.argv[1]), succeeded=True)
-
-    def add_to_top(self, sid):
-        sql = 'UPDATE stations SET top = 1 WHERE sid = :sid'
-        self.db.cursor.execute(sql, {'sid': sid})
-        # トップ画面に遷移して再描画
-        xbmc.executebuiltin('Container.Update(%s,replace)' % sys.argv[0])
-
-    def delete_from_top(self, sid):
-        sql = 'UPDATE stations SET top = 0 WHERE sid = :sid'
-        self.db.cursor.execute(sql, {'sid': sid})
-        # 再描画
-        xbmc.executebuiltin('Container.Refresh')
 
     def show_info(self, sid):
         # 番組情報を検索
@@ -130,6 +118,7 @@ class Directory(ScheduleManager):
     def _setup_directory(self):
         # NHKラジオ
         li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30001))
+        self.setArt(li, 'folder')
         # コンテクストメニュー
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
@@ -138,6 +127,7 @@ class Directory(ScheduleManager):
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # 民放ラジオ(radiko)
         li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30002))
+        self.setArt(li, 'folder')
         # コンテクストメニュー
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
@@ -146,6 +136,7 @@ class Directory(ScheduleManager):
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # コミュニティラジオ
         li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30003))
+        self.setArt(li, 'folder')
         # コンテクストメニュー
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
@@ -154,13 +145,20 @@ class Directory(ScheduleManager):
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
     
     def _setup_keywords(self):
-        sql = 'SELECT kid, keyword, dirname FROM keywords ORDER BY keyword'
+        sql = '''SELECT kid, keyword FROM keywords ORDER BY
+        CASE kid
+            WHEN -1 THEN 1
+            ELSE 0
+        END, keyword COLLATE NOCASE'''
         self.db.cursor.execute(sql)
-        for kid, keyword, dirname in self.db.cursor.fetchall():
-            self._add_keyword(kid, keyword)
+        for kid, keyword in self.db.cursor.fetchall():
+            self._set_keyword(kid, keyword)
 
     def _add_directory(self, region, pref=None):
+        # listitemを追加する
         li = xbmcgui.ListItem(pref or region)
+        # サムネイル画像
+        self.setArt(li, 'folder')
         # コンテクストメニュー
         self.contextmenu = []
         self._contextmenu('self.STR(30100)', {'action': 'settings'})
@@ -171,7 +169,7 @@ class Directory(ScheduleManager):
             query = urlencode({'action': 'show_stations', 'protocol': 'COMM', 'region': region, 'pref': pref})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
-    def _add_station(self, sdata):
+    def _set_station(self, sdata):
         # listitemを追加する
         li = xbmcgui.ListItem(self._title(sdata))
         li.setProperty('IsPlayable', 'true')
@@ -179,27 +177,15 @@ class Directory(ScheduleManager):
         tag = li.getMusicInfoTag()
         tag.setTitle(sdata['station'])
         # サムネイル設定
+        #self.setArt(li, 'audiodsp')
         image = os.path.join(self.PROFILE_PATH, 'stations', 'logo', sdata['protocol'], sdata['station'] + '.png')
         li.setArt({'thumb': image, 'icon': image})
         # コンテクストメニュー
         self.contextmenu = []
-        if sdata['top'] == 1:
-            if sdata['schedule'] == 1:
-                self._contextmenu(self.STR(30111), {'action': 'show_info', 'sid': sdata['sid']})
-            self._contextmenu(self.STR(30104), {'action': 'set_station', 'sid': sdata['sid']})
-            if sdata['schedule'] == 1:
-                self._contextmenu(self.STR(30110), {'action': 'update_info'})
-            if sdata['protocol'] != 'USER':
-                self._contextmenu(self.STR(30102), {'action': 'delete_from_top', 'sid': sdata['sid']})
-        else:
-            if sdata['schedule'] == 1:
-                self._contextmenu(self.STR(30111), {'action': 'show_info', 'sid': sdata['sid']})
-            self._contextmenu(self.STR(30104), {'action': 'set_station', 'sid': sdata['sid']})
-            if sdata['schedule'] == 1:
-                self._contextmenu(self.STR(30110), {'action': 'update_info'})
-            self._contextmenu(self.STR(30101), {'action': 'add_to_top', 'sid': sdata['sid']})
-        if self.GET('download') == 'true' and sdata['download'] == 1:
-            self._contextmenu(self.STR(30106), {'action': 'set_keyword', 'sid': sdata['sid']})
+        if sdata['schedule'] == 1:
+            self._contextmenu(self.STR(30111), {'action': 'show_info', 'sid': sdata['sid']})
+        self._contextmenu(self.STR(30104), {'action': 'get_station', 'sid': sdata['sid']})
+        self._contextmenu(self.STR(30105), {'action': 'get_download', 'sid': sdata['sid']})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL
@@ -207,23 +193,20 @@ class Directory(ScheduleManager):
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
 
-    def _add_keyword(self, kid, keyword):
+    def _set_keyword(self, kid, keyword):
         # listitemを追加する
-        if kid > 0:
-            li = xbmcgui.ListItem(keyword)
-        else:
-            li = xbmcgui.ListItem(f'[COLOR gray]{keyword}[/COLOR]')  # キーワード編集できない場合はグレイ表示
+        li = xbmcgui.ListItem(keyword)
         # サムネイル画像
-        if self.GET('rss') == 'false':
-            logo = 'special://skin/extras/icons/search.png'
-        else:
-            logo = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', f'{kid}.png')
-        li.setArt({'thumb': logo, 'icon': logo})
+        self.setArt(li, 'clock' if kid == -1 else 'playlist')
         # コンテクストメニュー
         self.contextmenu = []
-        if kid > 0:
-            self._contextmenu(self.STR(30107), {'action': 'set_keyword', 'kid': kid})
-        self._contextmenu(self.STR(30109), {'action': 'open_folder', 'kid': kid})
+        if kid == -1:
+            self._contextmenu(self.STR(30110), {'action': 'get_timer'})
+        elif kid > 0:
+            self._contextmenu(self.STR(30108), {'action': 'get_keyword', 'kid': kid})
+        if self.GET('rss') == 'true':
+            qr = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', f'{kid}.png')
+            self.contextmenu.append((self.STR(30118), f'ShowPicture({qr})'))
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # リストアイテムを追加
@@ -238,7 +221,7 @@ class Directory(ScheduleManager):
         station = basename
         # 番組情報等を追加
         if sdata['schedule'] == 1:
-            sql = 'SELECT title, start, end FROM contents WHERE sid = :sid AND end > NOW() ORDER BY start LIMIT 2'
+            sql = 'SELECT title, start, end FROM contents WHERE sid = :sid AND end > NOW() AND kid > -1 ORDER BY start LIMIT 2'
             self.db.cursor.execute(sql, {'sid': sdata['sid']})
             try:
                 # 2025-02-11 06:30:00

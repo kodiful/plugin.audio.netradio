@@ -28,7 +28,7 @@ class Contents(Common):
         FROM contents c 
         JOIN keywords k ON c.kid = k.kid
         JOIN stations s ON c.sid = s.sid
-        WHERE c.kid = :kid AND c.cstatus = -1
+        WHERE c.kid = :kid AND c.cstatus != 0
         ORDER BY c.start DESC'''
         self.db.cursor.execute(sql, {'kid': kid})
         for cksdata in self.db.cursor.fetchall():
@@ -58,10 +58,36 @@ class Contents(Common):
             self.db.cursor.execute(sql, {'cid': cid})
             xbmc.executebuiltin('Container.Refresh')
 
+    def cancel(self, cid):
+        # キャンセルするファイルの情報を取得
+        sql = '''SELECT *
+        FROM contents c 
+        JOIN keywords k ON c.kid = k.kid
+        WHERE c.cstatus = 1 AND c.cid = :cid'''
+        self.db.cursor.execute(sql, {'cid': cid})
+        ckdata = self.db.cursor.fetchone()
+        # 確認ダイアログを表示
+        ok = xbmcgui.Dialog().yesno(self.STR(30115), self.STR(30116) % ckdata['title'])
+        if ok:
+            # DBから削除
+            sql = 'DELETE FROM contents WHERE cid = :cid'
+            self.db.cursor.execute(sql, {'cid': cid})
+            xbmc.executebuiltin('Container.Refresh')
+    
+    def alert(self, cid):
+        if cid is None:
+            xbmcgui.Dialog().ok('アラート', '保存中です')
+        else:
+            xbmcgui.Dialog().ok('アラート', '保存予約されています')
+
     def _add_download(self, cksdata):
+        cstatus = cksdata['cstatus']
         # listitemを追加する
         li = xbmcgui.ListItem(self._title(cksdata))
-        li.setProperty('IsPlayable', 'true')
+        if cstatus == -1:
+            li.setProperty('IsPlayable', 'true')
+        else:
+            li.setProperty('IsPlayable', 'false')
         # メタデータ設定
         tag = li.getMusicInfoTag()
         tag.setTitle(cksdata['title'])
@@ -70,12 +96,21 @@ class Contents(Common):
         li.setArt({'thumb': logo, 'icon': logo})
         # コンテクストメニュー
         self.contextmenu = []
-        self._contextmenu(self.STR(30112), {'action': 'delete_download', 'cid': cksdata['cid']})
-        self._contextmenu(self.STR(30109), {'action': 'open_folder', 'kid': cksdata['kid']})
+        if cstatus == -1:
+            self._contextmenu(self.STR(30112), {'action': 'delete_download', 'cid': cksdata['cid']})
+        elif cstatus == 1:
+            self._contextmenu(self.STR(30117), {'action': 'cancel_download', 'cid': cksdata['cid']})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # 再生するファイルのパス
-        url = os.path.join(self.CONTENTS_PATH, cksdata['dirname'], cksdata['filename'])
+        if cstatus == -1:
+            url = os.path.join(self.CONTENTS_PATH, cksdata['dirname'], cksdata['filename'])
+        elif cstatus == 1:
+            query = urlencode({'action': 'alert_download', 'cid': cksdata['cid']})
+            url = '%s?%s' % (sys.argv[0], query)
+        elif cstatus > 1:
+            query = urlencode({'action': 'alert_download'})
+            url = '%s?%s' % (sys.argv[0], query)
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
 
@@ -96,7 +131,9 @@ class Contents(Common):
         format = d.strftime(format)
         date = format % weekdays[w]
         # カラー
-        if w == 6 or self.db.is_holiday(d.strftime('%Y-%m-%d')):
+        if ckdata['cstatus'] > 0:
+            title = '[COLOR gray]%s-%s[/COLOR]  [COLOR gray]%s[/COLOR]' % (date, end, ckdata['title'])
+        elif w == 6 or self.db.is_holiday(d.strftime('%Y-%m-%d')):
             title = '[COLOR red]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date, end, ckdata['title'])
         elif w == 5:
             title = '[COLOR blue]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date, end, ckdata['title'])
@@ -108,6 +145,8 @@ class Contents(Common):
         self.contextmenu.append((name, 'RunPlugin(%s?%s)' % (sys.argv[0], urlencode(args))))
 
     def update_rss(self):
+        # RSS設定がされていない場合は終了
+        if self.GET('rss') == 'false': return
         # RSS作成
         sql = 'SELECT kid, keyword, dirname FROM keywords'
         self.db.cursor.execute(sql)
@@ -119,6 +158,8 @@ class Contents(Common):
         self.notify('RSS has been updated')
 
     def create_rss(self, kid, keyword, dirname):
+        # RSS設定がされていない場合は終了
+        if self.GET('rss') == 'false': return
         # templates
         with open(os.path.join(self.DATA_PATH, 'rss', 'header.xml'), 'r', encoding='utf-8') as f:
             header = f.read()
@@ -129,9 +170,11 @@ class Contents(Common):
         # 時刻表記のロケール設定                                                                                                                                                             
         locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
         # open writer
+        if os.path.exists(os.path.join(self.CONTENTS_PATH, dirname)) is False:
+            os.makedirs(os.path.join(self.CONTENTS_PATH, dirname), exist_ok=True)
         writer = open(os.path.join(self.CONTENTS_PATH, dirname, 'rss.xml'), 'w', encoding='utf-8')
         # write header
-        writer.write(header.format(image='icon.png', title=keyword))
+        writer.write(header.format(image='icon.png', title=html.escape(keyword)))
         # body
         sql = '''SELECT filename, title, start, station, description, site, duration
         FROM contents
@@ -169,11 +212,17 @@ class Contents(Common):
         with open(os.path.join(self.DATA_PATH, 'rss', 'footer.xml'), 'r', encoding='utf-8') as f:
             footer = f.read()
         # open writer
+        if os.path.exists(os.path.join(self.CONTENTS_PATH)) is False:
+            os.makedirs(os.path.join(self.CONTENTS_PATH), exist_ok=True)
         writer = open(os.path.join(self.CONTENTS_PATH, 'index.xml'), 'w', encoding='utf-8')
         # write header
         writer.write(header.format(image='icon.png', title='NetRadio Client'))
         # body
-        sql = 'SELECT keyword, dirname FROM keywords ORDER BY keyword'
+        sql = '''SELECT keyword, dirname FROM keywords ORDER BY 
+        CASE kid
+            WHEN -1 THEN 0
+            ELSE 1
+        END, keyword COLLATE NOCASE'''
         self.db.cursor.execute(sql, {})
         for keyword, dirname in self.db.cursor.fetchall():
             writer.write(

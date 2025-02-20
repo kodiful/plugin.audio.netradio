@@ -4,10 +4,9 @@ import os
 import shutil
 import glob
 import json
-from mutagen.mp3 import MP3
 
 from resources.lib.common import Common
-from resources.lib.db import ThreadLocal
+from resources.lib.db import ThreadLocal, create_qrcode
 from resources.lib.contents import Contents
 
 
@@ -35,16 +34,23 @@ class Transfer(Common):
         # データ変換関数
         def _datetime(date):
             return f'{date[0:4]}-{date[4:6]}-{date[6:8]} {date[8:10]}:{date[10:12]}:{date[12:14]}'
-        def convert(data):
+        def convert(data, key, region, pref):
+            protocol = self.PROTOCOL[data['type']]
+            start = _datetime(data['START'])
+            end = _datetime(data['END'])
             return {
-                'title': data['title'],
-                'start': _datetime(data['START']),
-                'end': _datetime(data['END']),
                 'station': data['station'],
+                'protocol': protocol,
+                'key': key,
+                'title': data['title'],
+                'start': start,
+                'end': end,
                 'act': data['act'],
                 'info': data['info'],
                 'desc': data['desc'],
                 'site': data['url'] or '',
+                'region': region,
+                'pref': pref
             }
         # ダウンロードフォルダをスキャン
         for origdir in glob.glob(os.path.join(self.CONTENTS_PATH, '*')):
@@ -60,30 +66,29 @@ class Transfer(Common):
             except Exception:
                 kid, dirname = 0, '0'
             # キーワードのmp3ファイルを検索
-            for mp3file in glob.glob(os.path.join(origdir, '*.mp3')):
+            for mp3_file in glob.glob(os.path.join(origdir, '*.mp3')):
                 # 対応するjsonファイル
-                jsonfile = '%s.json' % os.path.splitext(mp3file)[0]
-                if os.path.exists(jsonfile):
+                json_file = '%s.json' % os.path.splitext(mp3_file)[0]
+                if os.path.exists(json_file):
                     # jsonファイルを読み込む
-                    with open(jsonfile, encoding='utf-8') as f:
+                    with open(json_file, encoding='utf-8') as f:
                         data = json.loads(f.read())
-                    # keyを抽出
-                    basename = os.path.basename(mp3file)
-                    key = basename.split('_')[-2]
-                    # durationを抽出
-                    duration = int(MP3(mp3file).info.length)
+                    # key, region, prefを推定
+                    sql = 'SELECT key, region, pref FROM stations WHERE protocol = :protocol AND station = :station'
+                    self.db.cursor.execute(sql, {'protocol': self.PROTOCOL[data['type']], 'station': data['station']})
+                    key, region, pref = self.db.cursor.fetchone()
                     # DBに挿入
-                    lastrowid = self.db.add(convert(data), kid, key, duration)
+                    lastrowid = self.db.add(convert(data, key, region, pref), kid, mp3_file)
                     # DBの情報をmp3ファイルにID3タグとして書き込む
-                    self.db.write_id3(mp3file, lastrowid)
+                    self.db.write_id3(mp3_file, lastrowid)
                     # mp3ファイル名の移動先のファイル名を取得
                     sql = 'SELECT filename FROM contents WHERE cid = :cid'
                     self.db.cursor.execute(sql, {'cid': lastrowid})
-                    filename, = self.db.cursor.fetchone()
+                    filename = os.path.basename(mp3_file)
                     # mp3ファイルをリネームして移動
                     destdir = os.path.join(Common.CONTENTS_PATH, dirname)
                     os.makedirs(destdir, exist_ok=True)
-                    shutil.move(shutil.move(mp3file, filename), destdir)
+                    shutil.move(mp3_file, destdir)
             # 不要なファイルを退避
             destdir = os.path.join(Common.CONTENTS_PATH, '~backup')
             os.makedirs(destdir, exist_ok=True)
@@ -119,7 +124,7 @@ class Transfer(Common):
                 # jsonファイルを読み込む
                 for data in json.loads(f.read()):
                     # DBに挿入
-                    self.db.add_station(data)
+                    self.db.set_station(data)
         # ユーザデータの放送局フォルダ直下のdirectoryフォルダにあるjsonファイルから読み込む
         for json_file in glob.glob(os.path.join(self.PROFILE_PATH, 'stations', 'directory', '*.json')):
             with open(json_file, encoding='utf-8') as f:
@@ -127,7 +132,7 @@ class Transfer(Common):
                 data = json.loads(f.read())
             # ユーザ設定の放送局はDBに挿入
             if data['type'] == 'user':
-                self.db.add_station(convert(data), top=1)
+                self.db.set_station(convert(data), top=1)
         # ログ
         self.log('Station settings have been imported')
 
@@ -156,7 +161,7 @@ class Transfer(Common):
                 # jsonファイルを読み込む
                 data = json.loads(f.read())
                 # DBに挿入
-                self.db.add_keyword(convert(data))
+                self.db.set_keyword(convert(data))
             # 不要なファイルを削除
             os.remove(json_file)
         # ログ
@@ -172,6 +177,7 @@ class Transfer(Common):
                 shutil.copy(item, os.path.join(destdir, os.path.basename(item)))
             if os.path.isdir(item):
                 shutil.copytree(item, os.path.join(destdir, os.path.basename(item)))
+        
 
     def init_tables(self):
         # citiesテーブル作成
@@ -189,7 +195,27 @@ class Transfer(Common):
         with open(json_file, encoding='utf-8') as f:
             for data in json.loads(f.read()):
                 self.db.add_master(data)
-        
+        # keywordテーブル作成
+        values = {
+            'kid': -1,
+            'keyword': Common.STR(30004),
+            'match': 0,
+            'weekday': 0,
+            'station': '',
+            'kstatus': 0,
+            'dirname': '0',
+            'version': self.db.ADDON_VERSION,
+            'modified': self.db.now
+        }
+        columns = ', '.join(values.keys())
+        placeholders = ', '.join(['?' for _ in values])
+        sql = f'INSERT INTO keywords ({columns}) VALUES ({placeholders})'
+        self.db.cursor.execute(sql, list(values.values()))
+        # QRコード画像作成
+        url = '/'.join([self.GET('rssurl'), values['dirname'], 'rss.xml'])
+        path = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', str(values['kid']) + '.png')
+        create_qrcode(url, path)
+
     def postprocess(self):
         # ファイル/ディレクトリ削除
         items = [
