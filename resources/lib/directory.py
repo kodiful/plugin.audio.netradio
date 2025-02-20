@@ -197,7 +197,7 @@ class Directory(ScheduleManager):
         # listitemを追加する
         li = xbmcgui.ListItem(keyword)
         # サムネイル画像
-        self.setArt(li, 'clock' if kid == -1 else 'playlist')
+        self.setArt(li, 'set' if kid == -1 else 'playlist')
         # コンテクストメニュー
         self.contextmenu = []
         if kid == -1:

@@ -220,8 +220,8 @@ class Contents(Common):
         # body
         sql = '''SELECT keyword, dirname FROM keywords ORDER BY 
         CASE kid
-            WHEN -1 THEN 0
-            ELSE 1
+            WHEN -1 THEN 1
+            ELSE 0
         END, keyword COLLATE NOCASE'''
         self.db.cursor.execute(sql, {})
         for keyword, dirname in self.db.cursor.fetchall():
