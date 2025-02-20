@@ -8,10 +8,10 @@ from resources.lib.db import ThreadLocal
 
 class Common(Common):
 
-    CONTENT = 1
+    DOWNLOAD = 1
     TIMER = 2
     KEYWORD = 4
-    ALL = CONTENT | TIMER | KEYWORD
+    ALL = DOWNLOAD | TIMER | KEYWORD
 
     SETTINGS_PATH = os.path.join(Common.PLUGIN_PATH, 'resources', 'data', 'settings')
 

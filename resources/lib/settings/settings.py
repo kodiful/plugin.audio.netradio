@@ -3,7 +3,7 @@
 import os
 import shutil
 from resources.lib.settings.common import Common
-from resources.lib.settings.modules.content import Content
+from resources.lib.settings.modules.download import Download
 from resources.lib.settings.modules.timer import Timer
 from resources.lib.settings.modules.keyword import Keyword
 
@@ -15,7 +15,7 @@ class Settings(Common):
 
     def __init__(self, flags=Common.ALL):
         super().__init__()
-        self.content = flags & self.CONTENT
+        self.download = flags & self.DOWNLOAD
         self.timer = flags & self.TIMER
         self.keyword = flags & self.KEYWORD
 
@@ -38,15 +38,18 @@ class Settings(Common):
                     return
                 cid, title, station = choices[index]
             else:
-                self.content = self.keyword = 0
+                sql = 'SELECT station FROM stations WHERE sid = :sid'
+                self.db.cursor.execute(sql, {'sid': sid})
+                station, = self.db.cursor.fetchone()
+                self.download = self.keyword = 0
         # template processing
-        content = timer = keyword = ''
-        # content
-        if self.content:
-            inst = Content()
+        download = timer = keyword = ''
+        # download
+        if self.download:
+            inst = Download()
             inst.prep(title)
             inst.get(cid)
-            content = inst.template
+            download = inst.template
         # timer
         if self.timer:
             inst = Timer()
@@ -60,16 +63,17 @@ class Settings(Common):
             inst.get(kid, sid, title, station)
             keyword = inst.template
         # apply to template
-        self.replace(content, timer, keyword)
+        self.replace(download, timer, keyword)
         # キーワード設定画面を開く
         xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
+        # 1秒待って設定画面をデフォルトに戻す
         xbmc.sleep(1000)
         self.restore()
 
-    def replace(self, content, timer, keyword):
+    def replace(self, download, timer, keyword):
         with open(os.path.join(self.SETTINGS_PATH, 'template.xml')) as f:
             template = f.read()
-        template = template.format(content=content, timer=timer, keyword=keyword)
+        template = template.format(download=download, timer=timer, keyword=keyword)
         # 設定画面として書き出す
         with open(self.DIALOG_FILE, 'w', encoding='utf-8') as f:
             f.write(template)
@@ -79,7 +83,7 @@ class Settings(Common):
                     
     def save(self, action):
         if action == 'set_download':
-            Content().set()
+            Download().set()
         elif action == 'set_timer':
             Timer().set()
         elif action == 'set_keyword':

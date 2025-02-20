@@ -6,14 +6,14 @@ import html
 from resources.lib.settings.common import Common
 
 
-class Content(Common):
+class Download(Common):
     
     def __init__(self):
         super().__init__()
 
     def prep(self, title):
         # テンプレート
-        with open(os.path.join(self.SETTINGS_PATH, 'modules', 'content.xml')) as f:
+        with open(os.path.join(self.SETTINGS_PATH, 'modules', 'download.xml')) as f:
             self.template = f.read()
         prompt = self.STR(30517) % title
         self.template = self.template.format(prompt=html.escape(prompt))
