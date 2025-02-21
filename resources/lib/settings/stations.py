@@ -94,7 +94,7 @@ class Stations(Common):
         sql = 'SELECT station FROM stations WHERE sid = :sid'
         self.db.cursor.execute(sql, {'sid': sid})
         station, = self.db.cursor.fetchone()
-        ok = xbmcgui.Dialog().yesno(self.STR(30607), self.STR(30608) % station)
+        ok = xbmcgui.Dialog().yesno(self.STR(30154), self.STR(30155) % station)
         if ok:
             self.db.delete_station(sid)
             xbmc.executebuiltin('Container.Refresh')

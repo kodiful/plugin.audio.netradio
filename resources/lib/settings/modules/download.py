@@ -15,7 +15,7 @@ class Download(Common):
         # テンプレート
         with open(os.path.join(self.SETTINGS_PATH, 'modules', 'download.xml')) as f:
             self.template = f.read()
-        prompt = self.STR(30517) % title
+        prompt = self.STR(30491) % title
         self.template = self.template.format(prompt=html.escape(prompt))
 
     def get(self, cid):

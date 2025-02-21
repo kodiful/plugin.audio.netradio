@@ -44,15 +44,16 @@ class Contents(Common):
         sql = '''SELECT *
         FROM contents c 
         JOIN keywords k ON c.kid = k.kid
-        WHERE c.cstatus = -1 AND c.cid = :cid'''
+        WHERE c.cid = :cid'''
         self.db.cursor.execute(sql, {'cid': cid})
         ckdata = self.db.cursor.fetchone()
         # 確認ダイアログを表示
-        ok = xbmcgui.Dialog().yesno(self.STR(30113), self.STR(30114) % ckdata['title'])
+        ok = xbmcgui.Dialog().yesno(self.STR(30150), self.STR(30151) % ckdata['title'])
         if ok:
             # ファイルを削除
             path = os.path.join(self.CONTENTS_PATH, ckdata['dirname'], ckdata['filename'])
-            os.remove(path)
+            if os.path.exists(path):
+                os.remove(path)
             # DBから削除
             sql = 'DELETE FROM contents WHERE cid = :cid'
             self.db.cursor.execute(sql, {'cid': cid})
@@ -67,36 +68,31 @@ class Contents(Common):
         self.db.cursor.execute(sql, {'cid': cid})
         ckdata = self.db.cursor.fetchone()
         # 確認ダイアログを表示
-        ok = xbmcgui.Dialog().yesno(self.STR(30115), self.STR(30116) % ckdata['title'])
+        ok = xbmcgui.Dialog().yesno(self.STR(30152), self.STR(30153) % ckdata['title'])
         if ok:
             # DBから削除
             sql = 'DELETE FROM contents WHERE cid = :cid'
             self.db.cursor.execute(sql, {'cid': cid})
             xbmc.executebuiltin('Container.Refresh')
     
-    def alert(self, cid):
-        if cid is None:
-            xbmcgui.Dialog().ok('アラート', '保存中です')
-        else:
-            xbmcgui.Dialog().ok('アラート', '保存予約されています')
+    def alert(self, message):
+        xbmcgui.Dialog().ok(self.STR(30160), message)
 
     def _add_download(self, cksdata):
         cstatus = cksdata['cstatus']
-        # listitemを追加する
+        # listitemを追加する    
         li = xbmcgui.ListItem(self._title(cksdata))
         if cstatus == -1:
             li.setProperty('IsPlayable', 'true')
-        else:
-            li.setProperty('IsPlayable', 'false')
         # メタデータ設定
         tag = li.getMusicInfoTag()
         tag.setTitle(cksdata['title'])
         # サムネイル設定
-        logo = os.path.join(self.PROFILE_PATH, 'stations', 'logo', str(cksdata['protocol']), str(cksdata['station']) + '.png')
+        logo = os.path.join(self.PROFILE_PATH, 'stations', 'logo', cksdata['protocol'], cksdata['station'] + '.png')
         li.setArt({'thumb': logo, 'icon': logo})
         # コンテクストメニュー
         self.contextmenu = []
-        if cstatus == -1:
+        if cstatus < 0:
             self._contextmenu(self.STR(30112), {'action': 'delete_download', 'cid': cksdata['cid']})
         elif cstatus == 1:
             self._contextmenu(self.STR(30117), {'action': 'cancel_download', 'cid': cksdata['cid']})
@@ -106,10 +102,13 @@ class Contents(Common):
         if cstatus == -1:
             url = os.path.join(self.CONTENTS_PATH, cksdata['dirname'], cksdata['filename'])
         elif cstatus == 1:
-            query = urlencode({'action': 'alert_download', 'cid': cksdata['cid']})
+            query = urlencode({'action': 'alert_download', 'message': self.STR(30161)})
             url = '%s?%s' % (sys.argv[0], query)
         elif cstatus > 1:
-            query = urlencode({'action': 'alert_download'})
+            query = urlencode({'action': 'alert_download', 'message': self.STR(30162)})
+            url = '%s?%s' % (sys.argv[0], query)
+        else:
+            query = urlencode({'action': 'alert_download', 'message': self.STR(30163)})
             url = '%s?%s' % (sys.argv[0], query)
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
@@ -133,6 +132,8 @@ class Contents(Common):
         # カラー
         if ckdata['cstatus'] > 0:
             title = '[COLOR gray]%s-%s[/COLOR]  [COLOR gray]%s[/COLOR]' % (date, end, ckdata['title'])
+        elif ckdata['cstatus'] < -1:
+            title = '[COLOR red]%s-%s[/COLOR]  [COLOR red]%s[/COLOR]' % (date, end, ckdata['title'])
         elif w == 6 or self.db.is_holiday(d.strftime('%Y-%m-%d')):
             title = '[COLOR red]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date, end, ckdata['title'])
         elif w == 5:

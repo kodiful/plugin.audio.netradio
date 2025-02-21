@@ -87,7 +87,7 @@ if __name__ == '__main__':
     elif action == 'cancel_download':
         Contents().cancel(args.get('cid'))
     elif action == 'alert_download':
-        Contents().alert(args.get('cid'))
+        Contents().alert(args.get('message'))
     elif action == 'get_download':
         sid = args.get('sid') or Common.GET('sid')
         Settings(flags=7).open(sid=int(sid))

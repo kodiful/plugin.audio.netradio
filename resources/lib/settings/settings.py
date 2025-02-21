@@ -89,7 +89,7 @@ class Settings(Common):
         elif action == 'set_keyword':
             Keyword().set()
         elif action == 'delete_keyword':
-            Keyword().set()
+            Keyword().delete()
         else:
             self.log('undefined action:', action)
         # 設定画面をデフォルトに戻す

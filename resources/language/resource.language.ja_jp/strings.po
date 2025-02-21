@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #
-# for scripts
+# for top
 #
 
 msgctxt "#30001"
@@ -33,7 +33,7 @@ msgid "Community Radio"
 msgstr "コミュニティラジオ"
 
 msgctxt "#30004"
-msgid "Saved/Saving contents"
+msgid "Other saved/saving contents"
 msgstr "その他の保存中/保存済みの番組"
 
 #
@@ -43,18 +43,6 @@ msgstr "その他の保存中/保存済みの番組"
 msgctxt "#30100"
 msgid "Addon settings"
 msgstr "アドオン設定"
-
-msgctxt "#30101"
-msgid "Add to top"
-msgstr "トップ画面に追加する"
-
-msgctxt "#30102"
-msgid "Delete from top"
-msgstr "トップ画面から削除する"
-
-msgctxt "#30103"
-msgid "Add station settings"
-msgstr "放送局設定を追加する"
 
 msgctxt "#30104"
 msgid "Station settings"
@@ -80,22 +68,6 @@ msgctxt "#30112"
 msgid "Delete file"
 msgstr "削除する"
 
-msgctxt "#30113"
-msgid "Confirm deletion"
-msgstr "削除確認"
-
-msgctxt "#30114"
-msgid "Delete file of \"%s\"?"
-msgstr "\"%s\" のファイルを削除しますか"
-
-msgctxt "#30115"
-msgid "Confirm deletion"
-msgstr "キャンセル確認"
-
-msgctxt "#30116"
-msgid "Cancel download of \"%s\"?"
-msgstr "\"%s\"のダウンロードをキャンセルしますか"
-
 msgctxt "#30117"
 msgid "Cancel download"
 msgstr "キャンセルする"
@@ -105,7 +77,63 @@ msgid "Show QR code"
 msgstr "QRコード表示"
 
 #
-# for settings
+# yesno
+#
+
+msgctxt "#30150"
+msgid "Confirm deletion"
+msgstr "削除確認"
+
+msgctxt "#30151"
+msgid "Delete file of \"%s\"?"
+msgstr "\"%s\" のファイルを削除しますか"
+
+msgctxt "#30152"
+msgid "Confirm deletion"
+msgstr "キャンセル確認"
+
+msgctxt "#30153"
+msgid "Cancel download of \"%s\"?"
+msgstr "\"%s\"のダウンロードをキャンセルしますか"
+
+msgctxt "#30154"
+msgid "Confirm deletion"
+msgstr "削除確認"
+
+msgctxt "#30155"
+msgid "Delete station settings for \"%s\"?"
+msgstr "\"%s\" の放送局設定を削除しますか？"
+
+msgctxt "#30156"
+msgid "Confirm deletion"
+msgstr "削除確認"
+
+msgctxt "#30157"
+msgid "Delete keyword settings and downloaded files for \"%s\"?"
+msgstr "\"%s\" のキーワード設定と保存済みファイルを削除しますか？"
+
+#
+# ok
+#
+
+msgctxt "#30160"
+msgid "File info"
+msgstr "ファイル情報"
+
+msgctxt "#30161"
+msgid "Scheduled (Cancelable from context menu)"
+msgstr "予約中（コンテクストメニューからキャンセルできます）"
+
+msgctxt "#30162"
+msgid "Unable to play due to being downloaded"
+msgstr "保存中のため再生できません"
+
+msgctxt "#30163"
+msgid "Unable to play due to download failure"
+msgstr "保存に失敗したため再生できません"
+
+#
+# default settings
 #
 
 msgctxt "#30200"
@@ -184,6 +212,22 @@ msgctxt "#30404"
 msgid "Debug"
 msgstr "デバッグ"
 
+#
+# download settings
+#
+
+msgctxt "#30490"
+msgid "Save settings"
+msgstr "保存予約"
+
+msgctxt "#30491"
+msgid "Save \"%s\""
+msgstr "[COLOR lightgreen]\"%s\" の保存を予約する[/COLOR]"
+
+#
+# keyword settings
+#
+
 msgctxt "#30500"
 msgid "Keyword"
 msgstr "キーワード設定"
@@ -236,14 +280,6 @@ msgctxt "#30515"
 msgid "[COLOR lightgreen]Delete keyword settings[/COLOR]"
 msgstr "[COLOR red]キーワード設定を削除する[/COLOR]"
 
-msgctxt "#30516"
-msgid "Save settings"
-msgstr "保存予約"
-
-msgctxt "#30517"
-msgid "Save \"%s\""
-msgstr "[COLOR lightgreen]\"%s\" の保存を予約する[/COLOR]"
-
 msgctxt "#30520"
 msgid "Mon"
 msgstr "月"
@@ -280,13 +316,9 @@ msgctxt "#30528"
 msgid "Program selection"
 msgstr "番組選択"
 
-msgctxt "#30529"
-msgid "Confirm deletion"
-msgstr "削除確認"
-
-msgctxt "#30530"
-msgid "Delete keyword settings and downloaded files for \"%s\"?"
-msgstr "\"%s\" のキーワード設定と保存済みファイルを削除しますか？"
+#
+# timer settings
+#
 
 msgctxt "#30550"
 msgid "Timer settings"
@@ -348,14 +380,6 @@ msgctxt "#30606"
 msgid "Program selection"
 msgstr "番組選択"
 
-msgctxt "#30607"
-msgid "Confirm deletion"
-msgstr "削除確認"
-
-msgctxt "#30608"
-msgid "Delete station settings for \"%s\"?"
-msgstr "\"%s\" の放送局設定を削除しますか？"
-
 msgctxt "#30609"
 msgid "Show info"
 msgstr "番組情報"
@@ -401,11 +425,11 @@ msgstr "[COLOR red]放送局設定を削除する[/COLOR]"
 #
 
 msgctxt "#30700"
-msgid "(Retrieving program info...)"
+msgid "(Retrieving content info...)"
 msgstr "番組情報取得中..."
 
 msgctxt "#30701"
-msgid "(Program info is currently unavailable)"
+msgid "(Content info is currently unavailable)"
 msgstr "番組情報が取得できません"
 
 #

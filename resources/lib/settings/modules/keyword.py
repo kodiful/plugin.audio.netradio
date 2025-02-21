@@ -79,13 +79,14 @@ class Keyword(Common):
         # 再描画
         xbmc.executebuiltin('Container.Refresh')
 
-    def delete(self, kid):
+    def delete(self):
         # キーワード情報取得
-        sql = 'SELECT keyword, dirname FROM keywords WHERE kid = :kid'
-        self.db.cursor.execute(sql, {'kid': kid})
-        keyword, dirname = self.db.cursor.fetchone()
+        kid = self.GET('kid')
+        sql = 'SELECT kid, keyword, dirname FROM keywords WHERE kid = :kid'
+        self.db.cursor.execute(sql, {'kid': int(kid)})
+        kid, keyword, dirname = self.db.cursor.fetchone()
         # 確認ダイアログを表示
-        ok = xbmcgui.Dialog().yesno(self.STR(30529), self.STR(30530) % keyword)
+        ok = xbmcgui.Dialog().yesno(self.STR(30156), self.STR(30157) % keyword)
         if ok:
             # ファイル削除
             download_path = os.path.join(self.CONTENTS_PATH, dirname)

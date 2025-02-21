@@ -1,4 +1,4 @@
-  <category label="30516">
+  <category label="30490">
     <setting id="cid" type="text" visible="False"/>
     <setting label="{prompt}" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_download)"/>
   </category>
