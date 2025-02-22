@@ -196,7 +196,6 @@ class DB(Common):
         # 放送局設定
         sql = 'SELECT sid, top FROM stations WHERE station = :station AND region = :region AND pref = :pref'
         self.cursor.execute(sql, {'station': data['station'], 'region': data['region'], 'pref': data['pref']})
-        # !!!ここでエラー、たぶん複数地域の放送局情報が登録されているときタイマー予約で受信可能な放送局を正しく判定できていない
         sid, top = self.cursor.fetchone()
         # キーワード設定（kid, filename, cstatus）
         if kid > 0:

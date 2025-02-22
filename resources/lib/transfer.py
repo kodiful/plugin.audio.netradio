@@ -195,10 +195,16 @@ class Transfer(Common):
         os.makedirs(destdir, exist_ok=True)
         # 不要なファイルを退避
         for item in glob.glob(os.path.join(self.PROFILE_PATH, '*')):
+            if os.path.basename(item) == '~backup':
+                continue
             if os.path.isfile(item):
                 shutil.copy(item, os.path.join(destdir, os.path.basename(item)))
             if os.path.isdir(item):
                 shutil.copytree(item, os.path.join(destdir, os.path.basename(item)))
+        # 放送局のロゴ画像をコピー
+        path = os.path.join(self.PROFILE_PATH, 'stations', 'logo')
+        shutil.rmtree(path)
+        shutil.copytree(os.path.join(self.DATA_PATH, 'stations', 'logo'), path)
 
     def init_tables(self):
         # citiesテーブル作成

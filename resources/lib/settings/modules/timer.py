@@ -57,7 +57,7 @@ class Timer(Common):
         # 仮想番組データ
         station = settings['station']
         title = settings['title']
-        sql = 'SELECT protocol, key, region, pref, description, site FROM stations WHERE station = :station'
+        sql = 'SELECT protocol, key, region, pref, description, site FROM stations WHERE vis = 1 AND station = :station'
         self.db.cursor.execute(sql, {'station': station})
         protocol, key, region, pref, description, site = self.db.cursor.fetchone()
         start = f"{settings['date0']} {settings['time0']}:00"
@@ -76,7 +76,6 @@ class Timer(Common):
             'region': region,
             'pref': pref
         }
-        self.log(data)
         # !!!ここでデータのバリデーション
         # 仮想番組としてcontentsテーブルに書き込む
         self.db.add(data, kid=-1)

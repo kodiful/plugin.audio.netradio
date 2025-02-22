@@ -183,10 +183,11 @@ class Directory(ScheduleManager):
         self._contextmenu(self.STR(30111), {'action': 'show_info', 'sid': sdata['sid']})
         self._contextmenu(self.STR(30105), {'action': 'get_download', 'sid': sdata['sid']})
         self._contextmenu(self.STR(30104), {'action': 'get_station', 'sid': sdata['sid']})
-        if sdata['top'] == 0:
-            self._contextmenu(self.STR(30120), {'action': 'add_to_top', 'sid': sdata['sid']})
-        else:
-            self._contextmenu(self.STR(30121), {'action': 'delete_from_top', 'sid': sdata['sid']})
+        if sdata['protocol'] != 'USER':
+            if sdata['top'] == 0:
+                self._contextmenu(self.STR(30120), {'action': 'add_to_top', 'sid': sdata['sid']})
+            else:
+                self._contextmenu(self.STR(30121), {'action': 'delete_from_top', 'sid': sdata['sid']})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL

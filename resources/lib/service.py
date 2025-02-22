@@ -45,9 +45,6 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
         db.cursor.execute("UPDATE stations SET nextaired = '1970-01-01 09:00:00'")
         # 設定画面をデフォルトに設定
         shutil.copy(os.path.join(Common.DATA_PATH, 'settings', 'default.xml'), Common.DIALOG_FILE)
-        # PROFILE_PATH/stations/logoを初期化
-        if os.path.exists(os.path.join(self.PROFILE_PATH, 'stations', 'logo')) is False:
-            shutil.copytree(os.path.join(self.DATA_PATH, 'stations', 'logo'), os.path.join(self.PROFILE_PATH, 'stations', 'logo'))
         # PROFILE_PATH/keywords/qrを初期化
         if os.path.exists(os.path.join(self.PROFILE_PATH, 'keywords', 'qr')) is False:
             os.makedirs(os.path.join(self.PROFILE_PATH, 'keywords', 'qr'), exist_ok=True)

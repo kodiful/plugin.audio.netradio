@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import shutil
 
 import xbmc
 import xbmcgui
@@ -46,8 +47,11 @@ class Stations(Common):
         # テンプレートを書き換えて設定画面として書き出す
         with open(self.DIALOG_FILE, 'w', encoding='utf-8') as f:
             f.write(template)
-        # 放送局設定画面を開く
+        # 設定画面を開く
         xbmc.executebuiltin('Addon.OpenSettings(%s)' % Common.ADDON_ID)
+        # 1秒待って設定画面をデフォルトに戻す
+        xbmc.sleep(1000)
+        shutil.copy(os.path.join(Common.DATA_PATH, 'settings', 'default.xml'), self.DIALOG_FILE)
 
     def set(self):
         # 設定後の値
