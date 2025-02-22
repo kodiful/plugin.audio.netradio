@@ -329,7 +329,7 @@ msgid "Program selection"
 msgstr ""
 
 msgctxt "#30529"
-msgid "Any station"
+msgid "Any station on top"
 msgstr ""
 
 #
@@ -422,10 +422,6 @@ msgstr ""
 
 msgctxt "#30615"
 msgid "Protocol"
-msgstr ""
-
-msgctxt "#30616"
-msgid "Show in top page"
 msgstr ""
 
 msgctxt "#30617"

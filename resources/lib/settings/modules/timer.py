@@ -15,9 +15,11 @@ class Timer(Common):
 
     def __init__(self):
         super().__init__()
-        # トップ画面の放送局リストを取得
-        self.db.cursor.execute('SELECT station FROM stations WHERE top = 1 and vis = 1 ORDER BY sid')
-        self.stations = [station for station, in self.db.cursor.fetchall()]
+        # 表示中の放送局リストを取得
+        sql = '''SELECT s.station
+        FROM status JOIN json_each(status.front) AS je ON je.value = s.sid JOIN stations AS s ON je.value = s.sid'''
+        self.db.cursor.execute(sql)
+        self.stations = [self.STR(30529)] + [station for station, in self.db.cursor.fetchall()]
 
     def prep(self):
         # テンプレート

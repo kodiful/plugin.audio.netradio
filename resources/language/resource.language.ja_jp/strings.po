@@ -82,11 +82,11 @@ msgstr "フォルダを開く"
 
 msgctxt "#30120"
 msgid "Add to top"
-msgstr "トップに追加する"
+msgstr "トップ画面に追加する"
 
 msgctxt "#30121"
 msgid "Delete from top"
-msgstr "トップから削除する"
+msgstr "トップ画面から削除する"
 
 #
 # yesno
@@ -329,8 +329,8 @@ msgid "Program selection"
 msgstr "番組選択"
 
 msgctxt "#30529"
-msgid "Any station"
-msgstr "すべての放送局"
+msgid "Any station on top"
+msgstr "トップ画面の放送局"
 
 #
 # timer settings
@@ -423,10 +423,6 @@ msgstr "[COLOR lightgreen]ウェブサイトを開く[/COLOR]"
 msgctxt "#30615"
 msgid "Protocol"
 msgstr "配信方式"
-
-msgctxt "#30616"
-msgid "Show in top page"
-msgstr "トップ画面に表示する"
 
 msgctxt "#30617"
 msgid "[COLOR lightgreen]Add station settings[/COLOR]"

@@ -17,8 +17,10 @@ class Keyword(Common):
         
     def __init__(self):
         super().__init__()
-        # トップ画面の放送局リストを取得
-        self.db.cursor.execute('SELECT station FROM stations WHERE top = 1 AND vis = 1 ORDER BY sid')
+        # 表示中の放送局リストを取得
+        sql = '''SELECT s.station
+        FROM status JOIN json_each(status.front) AS je ON je.value = s.sid JOIN stations AS s ON je.value = s.sid'''
+        self.db.cursor.execute(sql)
         self.stations = [self.STR(30529)] + [station for station, in self.db.cursor.fetchall()]
 
     def prep(self):
@@ -67,6 +69,10 @@ class Keyword(Common):
         # kstatusをDB用に型変換する
         settings['kstatus'] = 1 if settings['kstatus'] == 'true' else 0
         settings['station'] = '' if settings['station'] == self.stations[0] else settings['station']
+        # 放送局を指定する場合はtop=1を設定する
+        if settings['station']:
+            sql = 'UPDATE stations SET top = 1 WHERE vis = 1 AND station = :station'
+            self.db.cursor.execute(sql, {'station': settings['station']})
         # !!!ここでデータのバリデーション
         # keywordテーブルに書き込む
         self.db.add_keyword(settings)
