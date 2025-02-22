@@ -4,11 +4,9 @@ import os
 import shutil
 import threading
 import queue
-import json
 import time
 
 import xbmc
-import xbmcgui
 
 from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal

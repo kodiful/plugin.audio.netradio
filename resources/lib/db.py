@@ -150,16 +150,13 @@ class DB(Common):
 
     sql_status = '''
     CREATE TABLE IF NOT EXISTS status(
-        keyword TEXT,
-        station TEXT,
-        timer TEXT,
         front TEXT,
         refresh TEXT
     )'''
 
     sql_status_init = '''
     DELETE FROM status;
-    INSERT INTO status VALUES('', '', '', '[]', '1970-01-01 09:00:00');
+    INSERT INTO status VALUES('[]', '1970-01-01 09:00:00');
     '''
 
     def __init__(self):
@@ -275,8 +272,8 @@ class DB(Common):
             'top': data.get('top', top),
             'vis': data.get('vis', vis),
             'protocol': data.get('protocol', 'USER'),
-            'key': data('key', ''),
-            'station': data('station', ''),
+            'key': data.get('key', ''),
+            'station': data.get('station', ''),
             'code': data.get('code', ''),
             'region': data.get('region', ''),
             'pref': data.get('pref', ''),

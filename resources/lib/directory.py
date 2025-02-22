@@ -5,7 +5,6 @@ import os
 import re
 from urllib.parse import urlencode
 
-import xbmc
 import xbmcgui
 import xbmcplugin
 

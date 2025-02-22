@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import os
-import sys
 import shutil
-import json
 from datetime import datetime
 from resources.lib.settings.common import Common
-from resources.lib.settings.modules.timer import Timer
 from resources.lib.contents import Contents
 
 import xbmc

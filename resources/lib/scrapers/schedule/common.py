@@ -7,7 +7,6 @@ import unicodedata
 import json
 import gzip
 import io
-from datetime import datetime, timedelta
 
 from resources.lib.common import Common as Main
 from resources.lib.db import ThreadLocal

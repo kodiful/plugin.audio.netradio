@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-import sys
-import json
 
 import xbmc
 import xbmcgui
@@ -42,11 +40,6 @@ class Stations(Common):
             self.SET('direct', sdata['direct'])
             self.SET('logo', sdata['logo'])
             self.SET('site', sdata['site'])
-        # 設定前の値
-        before = dict([(key, self.GET(key)) for key in self.KEYS])
-        # statusテーブルに書き込む
-        sql = 'UPDATE status SET station = :before'
-        self.db.cursor.execute(sql, {'before': json.dumps(before, ensure_ascii=False)})
         # 放送局設定画面のテンプレートを読み込む
         with open(os.path.join(self.DATA_PATH, 'settings', 'station.xml'), 'r', encoding='utf-8') as f:
             template = f.read()
