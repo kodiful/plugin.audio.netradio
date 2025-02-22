@@ -28,9 +28,20 @@ class Transfer(Common):
         self.db = ThreadLocal.db
 
     def import_contents(self):
+        # ログ
+        self.log('import_contents: enter')
         # CONTENTS_PATHが無い場合はなにもしない
         if os.path.exists(Common.CONTENTS_PATH) is False:
             return
+        # 地域、都道府県
+        auth_region = auth_pref = ''
+        path = os.path.join(self.PROFILE_PATH, 'auth.json')
+        if os.path.exists(path):
+            with open(path, 'r') as f:
+                auth = json.loads(f.read())
+            sql = self.db.cursor.execute('SELECT region, pref FROM cities WHERE area_id = :area_id', {'area_id': auth['area_id']})
+            auth_region, auth_pref =self.db.cursor.fetchone()
+            self.log('auth results found:', 'region:', auth_region, 'pref:', auth_pref)
         # データ変換関数
         def _datetime(date):
             return f'{date[0:4]}-{date[4:6]}-{date[6:8]} {date[8:10]}:{date[10:12]}:{date[12:14]}'
@@ -74,9 +85,19 @@ class Transfer(Common):
                     with open(json_file, encoding='utf-8') as f:
                         data = json.loads(f.read())
                     # key, region, prefを推定
+                    protocol = self.PROTOCOL[data['type']]
                     sql = 'SELECT key, region, pref FROM stations WHERE protocol = :protocol AND station = :station'
-                    self.db.cursor.execute(sql, {'protocol': self.PROTOCOL[data['type']], 'station': data['station']})
-                    key, region, pref = self.db.cursor.fetchone()
+                    if protocol == 'NHK' and auth_region != '':
+                        sql = f'{sql} AND region = :region'
+                        self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station'], 'region': auth_region})
+                        key, region, pref = self.db.cursor.fetchone()
+                    elif protocol == 'RDK' and auth_pref != '':
+                        sql = f'{sql} AND pref = :pref'
+                        self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station'], 'pref': auth_pref})                            
+                        key, region, pref = self.db.cursor.fetchone()
+                    else:
+                        self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station']})
+                        key, region, pref = self.db.cursor.fetchone()
                     # DBに挿入
                     lastrowid = self.db.add(convert(data, key, region, pref), kid, mp3_file)
                     # DBの情報をmp3ファイルにID3タグとして書き込む
@@ -96,9 +117,11 @@ class Transfer(Common):
         # rss & インデクスを生成
         Contents().update_rss()
         # ログ
-        self.log('Downloaded files have been imported')
+        self.log('import_contents: exit')
 
     def import_stations(self):
+        # ログ
+        self.log('import_stations: enter')
         # データ変換関数
         def convert(data):
             return {
@@ -131,9 +154,11 @@ class Transfer(Common):
             if data['type'] == 'user':
                 self.db.add_station(convert(data), top=1)
         # ログ
-        self.log('Station settings have been imported')
+        self.log('import_stations: exit')
 
     def import_keywords(self):
+        # ログ
+        self.log('import_keywords: enter')
         # データ変換関数
         def convert(data):
             if data['limit'] == 'true':
@@ -162,7 +187,7 @@ class Transfer(Common):
             # 不要なファイルを削除
             os.remove(json_file)
         # ログ
-        self.log('Keyword settings have been imported')
+        self.log('import_keywords: exit')
 
     def preprocess(self):
         # 退避先のディレクトリを確保
@@ -174,7 +199,6 @@ class Transfer(Common):
                 shutil.copy(item, os.path.join(destdir, os.path.basename(item)))
             if os.path.isdir(item):
                 shutil.copytree(item, os.path.join(destdir, os.path.basename(item)))
-        
 
     def init_tables(self):
         # citiesテーブル作成

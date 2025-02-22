@@ -222,7 +222,6 @@ class Directory(ScheduleManager):
             basename += f"({sdata['pref']}{sdata['city']})"
         station = basename
         # 番組情報等を追加
-        # !!!番組情報がない場合のタイトル表示
         sql = '''SELECT title, start, end
         FROM contents
         WHERE sid = :sid AND end > NOW() AND kid > -1
