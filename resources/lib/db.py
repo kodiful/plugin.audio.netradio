@@ -42,7 +42,7 @@ class DB(Common):
         kid INTEGER,
         version TEXT,
         modified TEXT,
-        UNIQUE(sid, start)
+        UNIQUE(sid, start, kid)
     )'''
 
     # cstatus

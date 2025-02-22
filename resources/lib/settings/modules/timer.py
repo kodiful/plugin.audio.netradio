@@ -78,4 +78,7 @@ class Timer(Common):
         }
         # !!!ここでデータのバリデーション
         # 仮想番組としてcontentsテーブルに書き込む
-        self.db.add(data, kid=-1)
+        result = self.db.add(data, kid=-1)
+        if result == 0:
+            # 既存の予約と(sid, start, kid)が競合する場合は通知
+            self.notify('Conflicting with other settings')

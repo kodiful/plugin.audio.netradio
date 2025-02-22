@@ -76,6 +76,8 @@ def downloader(cid, kid, filename, protocol, key, title, end, direct, queue):
     mp3_file = os.path.join(download_path, filename)
     # ffmpeg実行
     kwargs = {'acodec': 'libmp3lame', 'b:a': bitrate, 'v': 'warning'}
+    # RDKでは-fオプションを明示的に指定しないとエラーになる
+    # localproxyからはapplication/vnd.apple.mpegurlが返る模様
     format = 'hls' if protocol == 'RDK' else ''
     process = ffmpeg.input(url, t=duration, f=format).output(mp3_file, **kwargs).run_async(pipe_stderr=True)
     # プロセスをキューに追加
