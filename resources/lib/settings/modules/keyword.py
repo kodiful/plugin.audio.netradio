@@ -17,28 +17,20 @@ class Keyword(Common):
         
     def __init__(self):
         super().__init__()
+        # トップ画面の放送局リストを取得
+        self.db.cursor.execute('SELECT station FROM stations WHERE top = 1 AND vis = 1 ORDER BY sid')
+        self.stations = [self.STR(30529)] + [station for station, in self.db.cursor.fetchall()]
 
     def prep(self):
-        # トップ画面の放送局リストを取得
-        self.db.cursor.execute('SELECT station FROM stations WHERE download = 1 OR top = 1 ORDER BY sid')
-        stations = [''] + [station for station, in self.db.cursor.fetchall()]
         # テンプレート
         with open(os.path.join(self.SETTINGS_PATH, 'modules', 'keyword.xml')) as f:
             self.template = f.read()
         # テンプレートのstationsを置換
-        self.template = self.template.format(stations='|'.join(stations))
+        self.template = self.template.format(stations='|'.join(self.stations))
  
     def get(self, kid=0, sid=0, title='', station=''):
         xbmc.sleep(1000)
-        if kid > 0 and sid > 0:
-            # デフォルト設定
-            self.SET('kid', '0')
-            self.SET('kstatus', 'true')  # 実行中
-            self.SET('keyword', '')
-            self.SET('match', '0')  # 番組名のみ
-            self.SET('weekday', '7')  # 毎日
-            self.SET('station', '')  # 放送局を限定しない
-        elif kid > 0:
+        if kid > 0:
             # キーワード設定変更
             sql = 'SELECT kid, kstatus, keyword, match, weekday, station FROM keywords WHERE kid = :kid'
             self.db.cursor.execute(sql, {'kid': kid})
@@ -48,8 +40,9 @@ class Keyword(Common):
             self.SET('keyword', keyword)
             self.SET('match', str(match))
             self.SET('weekday', str(weekday))
-            self.SET('station', station)
+            self.SET('station', station or self.stations[0])
         elif sid > 0:
+            # 番組情報からのキーワード設定
             weekday = datetime.today().weekday()  # 今日の曜日を月(0)-日(6)で返す
             self.SET('kid', '0')
             self.SET('kstatus', 'true')  # 実行中
@@ -58,26 +51,29 @@ class Keyword(Common):
             self.SET('weekday', str(weekday))
             self.SET('station', station)
         else:
+            # 新規キーワード設定
             weekday = datetime.today().weekday()  # 今日の曜日を月(0)-日(6)で返す
             self.SET('kid', '0')
             self.SET('kstatus', 'true')  # 実行中
             self.SET('keyword', '')
             self.SET('match', '0')  # 番組名のみ
             self.SET('weekday', str(weekday))
-            self.SET('station', '')
+            self.SET('station', self.stations[0])
 
     def set(self):
         # 設定後の値
         keys = ('kid', 'kstatus', 'keyword', 'match', 'weekday', 'station')
         settings = dict([(key, self.GET(key)) for key in keys])
-        # DB用に書き換える
+        # kstatusをDB用に型変換する
         settings['kstatus'] = 1 if settings['kstatus'] == 'true' else 0
+        settings['station'] = '' if settings['station'] == self.stations[0] else settings['station']
+        # !!!ここでデータのバリデーション
         # keywordテーブルに書き込む
-        self.db.set_keyword(settings)
+        self.db.add_keyword(settings)
         # RSSインデクス再作成
         Contents().create_index()
         # 再描画
-        xbmc.executebuiltin('Container.Refresh')
+        self.refresh(True)  # キーワード設定を新規作成したのでトップ画面へ
 
     def delete(self):
         # キーワード情報取得
@@ -97,4 +93,4 @@ class Keyword(Common):
             # RSSインデクス再作成
             Contents().create_index()
             # 再描画
-            xbmc.executebuiltin('Container.Refresh')
+            self.refresh()

@@ -31,8 +31,7 @@ if __name__ == '__main__':
 
     # 引数
     args = urllib.parse.parse_qs(sys.argv[2][1:], keep_blank_values=True)
-    for key in args.keys():
-        args[key] = args[key][0]
+    args = dict(map(lambda x: (x[0], x[1][0]), args.items()))
 
     # action
     action = args.get('action', 'show_stations')
@@ -44,16 +43,24 @@ if __name__ == '__main__':
         pref = args.get('pref')
         Directory().show(protocol, region, pref)
     elif action == 'show_info':
-        Directory().show_info(args.get('sid'))
+        sid = args.get('sid', 0)
+        Directory().show_info(int(sid))
+    elif action == 'add_to_top':
+        sid = args.get('sid', 0)
+        Directory().showhide(int(sid), 1)
+    elif action == 'delete_from_top':
+        sid = args.get('sid', 0)
+        Directory().showhide(int(sid), 0)
 
     # 放送局
     elif action == 'get_station':
-        Stations().open(args.get('sid'))
+        sid = args.get('sid', 0)
+        Stations().get(int(sid))
     elif action == 'set_station':
-        Stations().save()
+        Stations().set()
     elif action == 'delete_station':
         sid = args.get('sid') or Common.GET('sid')
-        Stations().delete(sid)
+        Stations().delete(int(sid))
     elif action == 'open_site':
         url = args.get('url') or Common.GET('site')
         os_ = platform.system()
@@ -66,18 +73,18 @@ if __name__ == '__main__':
             
     # キーワード
     elif action == 'get_keyword':
-        kid = args.get('kid') or Common.GET('kid')
-        Settings(flags=4).open(kid=int(kid))
+        kid = args.get('kid', 0)
+        Settings(flags=4).get(kid=int(kid))
     elif action == 'set_keyword':
-        Settings().save(action)
+        Settings().set(action)
     elif action == 'delete_keyword':
-        Settings().save(action)
+        Settings().set(action)
     
     # タイマー
     elif action == 'get_timer':
-        Settings(flags=2).open()
+        Settings(flags=2).get()
     elif action == 'set_timer':
-        Settings().save(action)
+        Settings().set(action)
 
     # ダウンロード
     elif action == 'show_downloads':
@@ -89,12 +96,13 @@ if __name__ == '__main__':
     elif action == 'alert_download':
         Contents().alert(args.get('message'))
     elif action == 'get_download':
-        sid = args.get('sid') or Common.GET('sid')
-        Settings(flags=7).open(sid=int(sid))
+        sid = args.get('sid', 0)
+        Settings(flags=7).get(sid=int(sid))
     elif action == 'set_download':
-        Settings().save(action)
+        Settings().set(action)
     elif action == 'open_folder':
-        path = os.path.join(Common.CONTENTS_PATH, args.get('kid', ''))
+        Common.log(args)
+        path = os.path.join(Common.CONTENTS_PATH, args.get('dirname', ''))
         os_ = platform.system()
         if os_ == 'Windows':
             subprocess.Popen(['explorer', path], shell=True)

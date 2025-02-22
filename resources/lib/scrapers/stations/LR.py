@@ -38,6 +38,8 @@ class Scraper(Common):
                 print('[LR] unparsable content (skip):', station, file=sys.stderr)
                 continue
             buf.append({
+                'top': 0,
+                'vis': 1,
                 'protocol': self.PROTOCOL,
                 'key': id,
                 'station': station,
@@ -49,10 +51,7 @@ class Scraper(Common):
                 'description': self.normalize(description),
                 'site': site,
                 'direct': direct,
-                'delay': 0,
-                'display': 1,
-                'schedule': 1,
-                'download': 0
+                'delay': 0
             })
         return buf
 

@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #
-# for scripts
+# for top
 #
 
 msgctxt "#30001"
@@ -33,7 +33,7 @@ msgid "Community Radio"
 msgstr ""
 
 msgctxt "#30004"
-msgid "Saved/Saving contents"
+msgid "Other saved/saving contents"
 msgstr ""
 
 #
@@ -42,18 +42,6 @@ msgstr ""
 
 msgctxt "#30100"
 msgid "Addon settings"
-msgstr ""
-
-msgctxt "#30101"
-msgid "Add to top"
-msgstr ""
-
-msgctxt "#30102"
-msgid "Delete from top"
-msgstr ""
-
-msgctxt "#30103"
-msgid "Add station settings"
 msgstr ""
 
 msgctxt "#30104"
@@ -80,22 +68,6 @@ msgctxt "#30112"
 msgid "Delete file"
 msgstr ""
 
-msgctxt "#30113"
-msgid "Confirm deletion"
-msgstr ""
-
-msgctxt "#30114"
-msgid "Delete file of \"%s\"?"
-msgstr ""
-
-msgctxt "#30115"
-msgid "Confirm deletion"
-msgstr ""
-
-msgctxt "#30116"
-msgid "Cancel download of \"%s\"?"
-msgstr ""
-
 msgctxt "#30117"
 msgid "Cancel download"
 msgstr ""
@@ -104,8 +76,76 @@ msgctxt "#30118"
 msgid "Show QR code"
 msgstr ""
 
+msgctxt "#30119"
+msgid "Open folder"
+msgstr ""
+
+msgctxt "#30120"
+msgid "Add to top"
+msgstr ""
+
+msgctxt "#30121"
+msgid "Delete from top"
+msgstr ""
+
 #
-# for settings
+# yesno
+#
+
+msgctxt "#30150"
+msgid "Confirm deletion"
+msgstr ""
+
+msgctxt "#30151"
+msgid "Delete file of \"%s\"?"
+msgstr ""
+
+msgctxt "#30152"
+msgid "Confirm deletion"
+msgstr ""
+
+msgctxt "#30153"
+msgid "Cancel download of \"%s\"?"
+msgstr ""
+
+msgctxt "#30154"
+msgid "Confirm deletion"
+msgstr ""
+
+msgctxt "#30155"
+msgid "Delete station settings for \"%s\"?"
+msgstr ""
+
+msgctxt "#30156"
+msgid "Confirm deletion"
+msgstr ""
+
+msgctxt "#30157"
+msgid "Delete keyword settings and downloaded files for \"%s\"?"
+msgstr ""
+
+#
+# ok
+#
+
+msgctxt "#30160"
+msgid "File info"
+msgstr ""
+
+msgctxt "#30161"
+msgid "Scheduled (Cancelable from context menu)"
+msgstr ""
+
+msgctxt "#30162"
+msgid "Unable to play due to being downloaded"
+msgstr ""
+
+msgctxt "#30163"
+msgid "Unable to play due to download failure"
+msgstr ""
+
+#
+# default settings
 #
 
 msgctxt "#30200"
@@ -184,6 +224,22 @@ msgctxt "#30404"
 msgid "Debug"
 msgstr ""
 
+#
+# download settings
+#
+
+msgctxt "#30490"
+msgid "Program"
+msgstr ""
+
+msgctxt "#30491"
+msgid "Save \"%s\""
+msgstr ""
+
+#
+# keyword settings
+#
+
 msgctxt "#30500"
 msgid "Keyword"
 msgstr ""
@@ -236,14 +292,6 @@ msgctxt "#30515"
 msgid "[COLOR lightgreen]Delete keyword settings[/COLOR]"
 msgstr ""
 
-msgctxt "#30516"
-msgid "Save settings"
-msgstr ""
-
-msgctxt "#30517"
-msgid "Save \"%s\""
-msgstr ""
-
 msgctxt "#30520"
 msgid "Mon"
 msgstr ""
@@ -281,15 +329,19 @@ msgid "Program selection"
 msgstr ""
 
 msgctxt "#30529"
-msgid "Confirm deletion"
+msgid "Any station"
 msgstr ""
 
-msgctxt "#30530"
-msgid "Delete keyword settings and downloaded files for \"%s\"?"
-msgstr ""
+#
+# timer settings
+#
 
 msgctxt "#30550"
 msgid "Timer settings"
+msgstr ""
+
+msgctxt "#30551"
+msgid "Title"
 msgstr ""
 
 msgctxt "#30552"
@@ -348,14 +400,6 @@ msgctxt "#30606"
 msgid "Program selection"
 msgstr ""
 
-msgctxt "#30607"
-msgid "Confirm deletion"
-msgstr ""
-
-msgctxt "#30608"
-msgid "Delete station settings for \"%s\"?"
-msgstr ""
-
 msgctxt "#30609"
 msgid "Show info"
 msgstr ""
@@ -401,11 +445,11 @@ msgstr ""
 #
 
 msgctxt "#30700"
-msgid "(Retrieving program info...)"
+msgid "(Retrieving content info...)"
 msgstr ""
 
 msgctxt "#30701"
-msgid "(Program info is currently unavailable)"
+msgid "(Content info is currently unavailable)"
 msgstr ""
 
 #

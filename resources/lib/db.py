@@ -14,9 +14,6 @@ from PIL import Image
 from qrcode import QRCode
 from sqlite3 import dbapi2 as sqlite
 
-import xbmcvfs
-import xbmcaddon
-
 from resources.lib.common import Common
 
 
@@ -66,6 +63,7 @@ class DB(Common):
     CREATE TABLE IF NOT EXISTS stations(
         sid INTEGER PRIMARY KEY AUTOINCREMENT,
         top INTEGER,
+        vis INTEGER,
         station TEXT,
         protocol TEXT,
         key TEXT,
@@ -78,9 +76,6 @@ class DB(Common):
         site TEXT,
         direct TEXT,
         delay INTEGER,
-        display INTEGER,
-        schedule INTEGER,
-        download INTEGER,
         nextaired TEXT,
         version TEXT,
         modified TEXT
@@ -186,27 +181,26 @@ class DB(Common):
         def now():
             jst = timezone(timedelta(hours=9))
             return datetime.now(timezone.utc).astimezone(jst).strftime("%Y-%m-%d %H:%M:%S")
-        self.now = now()  # 2025-02-06 07:13:58
         self.conn.create_function('NOW', 0, now)
         # epoch時間変換関数
         def epoch(time_str):
-            #return int(datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S").timestamp())
             dt = self.datetime(time_str)
             return int(dt.timestamp())
         self.conn.create_function('EPOCH', 1, epoch)
 
     def add(self, data, kid=0, mp3_file=None):
         # 終了済みだったら何もしない
-        if mp3_file is None and data['end'] < self.now:
+        if mp3_file is None and data['end'] < self.now():
             return 0
         # データを補完
         title = data['title']
         description = self.description(data)
         duration = int(MP3(mp3_file).info.length) if mp3_file else 0
-        # 放送局設定（sid, download)
-        sql = 'SELECT sid, download, top FROM stations WHERE station = :station AND region = :region AND pref = :pref AND download > -1'
+        # 放送局設定
+        sql = 'SELECT sid, top FROM stations WHERE station = :station AND region = :region AND pref = :pref'
         self.cursor.execute(sql, {'station': data['station'], 'region': data['region'], 'pref': data['pref']})
-        sid, download, top = self.cursor.fetchone()
+        # !!!ここでエラー、たぶん複数地域の放送局情報が登録されているときタイマー予約で受信可能な放送局を正しく判定できていない
+        sid, top = self.cursor.fetchone()
         # キーワード設定（kid, filename, cstatus）
         if kid > 0:
             if mp3_file:
@@ -214,12 +208,12 @@ class DB(Common):
             else:
                 kid, filename, cstatus = 0, '', 0
         elif kid == -1:
-            if self.GET('download') == 'true' and (download > 0 or top == 1):
+            if self.GET('download') == 'true' and top == 1:
                 kid, filename, cstatus = kid, self.filename(data), 1  # ダウンロード予定
             else:
                 kid, filename, cstatus = 0, '', 0
         else:
-            if self.GET('download') == 'true' and (download > 0 or top == 1):
+            if self.GET('download') == 'true' and top == 1:
                 kid = self.keyword_match(data, title, description)
                 if kid > 0:
                     filename, cstatus = self.filename(data), 1  # ダウンロード予定
@@ -244,7 +238,7 @@ class DB(Common):
             'description': description,
             'site': data['site'],
             'version': self.ADDON_VERSION,
-            'modified': self.now
+            'modified': self.now()
         }
         # DBに追加
         columns = ', '.join(values.keys())
@@ -257,7 +251,7 @@ class DB(Common):
         values.update({
             'mstatus': 0,
             'version': self.ADDON_VERSION,
-            'modified': self.now
+            'modified': self.now()
         })
         columns = ', '.join(values.keys())
         placeholders = ', '.join(['?' for _ in values])
@@ -276,27 +270,25 @@ class DB(Common):
         sql = f'INSERT INTO holidays ({columns}) VALUES ({placeholders})'
         self.cursor.execute(sql, list(values.values()))
     
-    def set_station(self, data, top=0, display=1, schedule=0, download=0):
+    def add_station(self, data, top=0, vis=1):
         values = {
             'top': data.get('top', top),
-            'protocol': data['protocol'],
-            'key': data['key'],
-            'station': data['station'],
+            'vis': data.get('vis', vis),
+            'protocol': data.get('protocol', 'USER'),
+            'key': data('key', ''),
+            'station': data('station', ''),
             'code': data.get('code', ''),
             'region': data.get('region', ''),
             'pref': data.get('pref', ''),
             'city': data.get('city', ''),
-            'logo': data['logo'],
-            'description': data['description'],
-            'site': data['site'],
-            'direct': data['direct'],
+            'logo': data.get('logo', ''),
+            'description': data.get('description', ''),
+            'site': data.get('site'),
+            'direct': data.get('direct', ''),
             'delay': data.get('delay', 0),
-            'display': data.get('display', display),
-            'schedule': data.get('schedule', schedule),
-            'download': data.get('download', download),
             'nextaired': '1970-01-01 09:00:00',
             'version': self.ADDON_VERSION,
-            'modified': self.now
+            'modified': self.now()
         }
         sid = int(data.get('sid', '0'))
         if sid > 0:
@@ -314,7 +306,7 @@ class DB(Common):
         sql = '''DELETE FROM stations WHERE sid = :sid'''
         self.cursor.execute(sql, {'sid': sid})
 
-    def set_keyword(self, data):
+    def add_keyword(self, data):
         values = {
             'dirname': '',
             'keyword': data['keyword'],
@@ -323,7 +315,7 @@ class DB(Common):
             'station': data['station'],
             'kstatus': int(data['kstatus']),
             'version': self.ADDON_VERSION,
-            'modified': self.now
+            'modified': self.now()
         }
         kid = int(data.get('kid', '0'))
         if kid > 0:
@@ -345,7 +337,7 @@ class DB(Common):
         # 既存のcontentsと照合
         sql = '''SELECT * 
         FROM contents AS c JOIN stations AS s ON c.sid = s.sid 
-        WHERE c.cstatus = 0 AND c.end > NOW() AND s.download > 0'''
+        WHERE c.cstatus = 0 AND c.end > NOW()'''
         self.cursor.execute(sql)
         for csdata in self.cursor.fetchall():
             kid = self.keyword_match(dict(csdata), csdata['title'], csdata['description'])
@@ -436,10 +428,10 @@ class DB(Common):
         results = self.cursor.fetchone()
         if results:
             code, region, pref, city, station, site, SJ, LR, SR, SP = results
-            # 優先するprotocolか否かを判定する
+            # 優先するprotocolを判定する
             status = False
-            if SJ: status = protocol == 'SJ'
-            elif LR: status = protocol == 'LR'
+            if LR: status = protocol == 'LR'
+            elif SJ: status = protocol == 'SJ'
             elif SP: status = protocol == 'SP'
             elif SR: status = protocol == 'SR'
             return code, region, pref, city, station, site, status

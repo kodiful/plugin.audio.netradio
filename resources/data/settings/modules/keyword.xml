@@ -5,7 +5,7 @@
     <setting label="30502" id="match" type="select" lvalues="30511|30512" enable="eq(-2,true)"/>
     <setting label="30503" id="weekday" type="select" lvalues="30520|30521|30522|30523|30524|30525|30526|30527" enable="eq(-3,true)"/>
     <setting label="30505" id="station" type="select" values="{stations}" enable="eq(-4,true)"/>
-    <setting label="30513" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_keyword)" visible="eq(-6,0)"/>
-    <setting label="30514" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_keyword)" visible="!eq(-7,0)+!eq(-7,-1)"/>
+    <setting label="30513" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_keyword)" visible="eq(-6,0)" enable="!eq(-4,)+eq(-5,true)"/>
+    <setting label="30514" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_keyword)" visible="!eq(-7,0)+!eq(-7,-1)" enable="!eq(-5,)"/>
     <setting label="30515" type="action" option="close" action="RunPlugin(plugin://$ID/?action=delete_keyword)" visible="!eq(-8,0)+!eq(-8,-1)"/>
   </category>

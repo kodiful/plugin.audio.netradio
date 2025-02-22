@@ -114,9 +114,6 @@ class Transfer(Common):
                 'site': data['official'],
                 'direct': data['stream'],
                 'delay': 0,
-                'display': 1,
-                'schedule': 0,
-                'download': 0,
             }
         # プラグインの放送局フォルダ直下のjsonフォルダにあるjsonファイルから読み込む
         for json_file in [os.path.join(self.DATA_PATH, 'stations', 'json', f'{protocol}.json') for protocol in ('NHK', 'RDK', 'SJ', 'LR', 'SP', 'SR')]:
@@ -124,7 +121,7 @@ class Transfer(Common):
                 # jsonファイルを読み込む
                 for data in json.loads(f.read()):
                     # DBに挿入
-                    self.db.set_station(data)
+                    self.db.add_station(data)
         # ユーザデータの放送局フォルダ直下のdirectoryフォルダにあるjsonファイルから読み込む
         for json_file in glob.glob(os.path.join(self.PROFILE_PATH, 'stations', 'directory', '*.json')):
             with open(json_file, encoding='utf-8') as f:
@@ -132,7 +129,7 @@ class Transfer(Common):
                 data = json.loads(f.read())
             # ユーザ設定の放送局はDBに挿入
             if data['type'] == 'user':
-                self.db.set_station(convert(data), top=1)
+                self.db.add_station(convert(data), top=1)
         # ログ
         self.log('Station settings have been imported')
 
@@ -140,7 +137,7 @@ class Transfer(Common):
         # データ変換関数
         def convert(data):
             if data['limit'] == 'true':
-                sql = 'SELECT station FROM stations WHERE key = :key AND download > -1'
+                sql = 'SELECT station FROM stations WHERE key = :key'
                 self.db.cursor.execute(sql, {'key': data['id']})
                 station, = self.db.cursor.fetchone()
             else:
@@ -161,7 +158,7 @@ class Transfer(Common):
                 # jsonファイルを読み込む
                 data = json.loads(f.read())
                 # DBに挿入
-                self.db.set_keyword(convert(data))
+                self.db.add_keyword(convert(data))
             # 不要なファイルを削除
             os.remove(json_file)
         # ログ
@@ -205,7 +202,7 @@ class Transfer(Common):
             'kstatus': 0,
             'dirname': '0',
             'version': self.db.ADDON_VERSION,
-            'modified': self.db.now
+            'modified': self.now()
         }
         columns = ', '.join(values.keys())
         placeholders = ', '.join(['?' for _ in values])

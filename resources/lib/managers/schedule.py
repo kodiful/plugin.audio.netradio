@@ -4,11 +4,12 @@ import time
 import importlib
 import threading
 import json
-
+from datetime import datetime, timedelta
 import xbmc
 
 from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal
+from resources.lib.scrapers.schedule.common import NullScraper
 
 
 class Scheduler(Common):
@@ -19,10 +20,13 @@ class Scheduler(Common):
         # DBの共有インスタンス
         self.db = ThreadLocal.db
         # Scraperのインスタンス
-        module_name = f'resources.lib.scrapers.schedule.{protocol}'
-        module = importlib.import_module(module_name)
-        Scraper = getattr(module, 'Scraper')
-        self.scraper = Scraper(sid)
+        try:
+            module_name = f'resources.lib.scrapers.schedule.{protocol}'
+            module = importlib.import_module(module_name)
+            Scraper = getattr(module, 'Scraper')
+            self.scraper = Scraper(sid)
+        except ModuleNotFoundError:
+            self.scraper = NullScraper(sid)
         # nextaired初期値設定
         self.nextaired = self.scraper.get_nextaired()
 
@@ -31,47 +35,11 @@ class Scheduler(Common):
         count = self.scraper.update()
         if count > 0:
             self.nextaired = self.scraper.set_nextaired()
-        if count < 0:
-            # NHK, radiko以外はstationsテーブルのschedule, downloadを0に変更
+        if count == -1:
+            # エラーで取得できなかった場合、NHK, RDK以外は1時間後に設定
             if  self.protocol not in ('NHK', 'RDK'):
-                sql = 'UPDATE stations SET schedule = 0, download = 0 WHERE sid = :sid'
-                self.db.cursor.execute(sql, {'sid': self.sid})
-                self.log('schedule & download disabled:', self.protocol, self.sid)
+                self.nextaired = self.scraper.set_nextaired(hours=1)
         return count
-   
-    def _next_aired(self):
-        # DBの共有インスタンス
-        db = ThreadLocal.db
-        # 更新予定時刻のデフォルト値
-        epoch = 0
-        # 更新予定時刻を検索
-        if self.protocol in ('NHK', 'RDK'):
-            sql = '''
-            SELECT MIN(c.end)
-            FROM contents c JOIN stations s ON c.sid = s.sid
-            WHERE c.end > NOW() AND schedule = 1 AND s.protocol = :protocol
-            '''
-            db.cursor.execute(sql, {'protocol': self.protocol})
-            end, = db.cursor.fetchone()
-            if end is not None:
-                epoch = self.datetime(end).timestamp()
-                # DBに値を格納
-                sql = 'UPDATE stations SET nextaired = :nextaired WHERE protocol = :protocol'
-                db.cursor.execute(sql, {'nextaired': end, 'protocol': self.protocol})
-        else:
-            sql = '''
-            SELECT MIN(c.end)
-            FROM contents c JOIN stations s ON c.sid = s.sid
-            WHERE c.end > NOW() AND schedule = 1 AND s.sid = :sid
-            '''
-            db.cursor.execute(sql, {'sid': self.sid})
-            end, = db.cursor.fetchone()
-            if end is not None:
-                epoch = self.datetime(end).timestamp()
-                # DBに値を格納
-                sql = 'UPDATE stations SET nextaired = :nextaired WHERE sid = :sid'
-                db.cursor.execute(sql, {'nextaired': end, 'sid': self.sid})
-        return epoch
 
 
 class ScheduleManager(Common):
@@ -88,16 +56,11 @@ class ScheduleManager(Common):
             interesting_stations = []
             # 表示中の放送局をリストに追加
             sql = '''SELECT s.protocol, s.sid
-            FROM status JOIN json_each(status.front) AS je ON je.value = s.sid JOIN stations AS s ON je.value = s.sid
-            WHERE s.schedule = 1'''
+            FROM status JOIN json_each(status.front) AS je ON je.value = s.sid JOIN stations AS s ON je.value = s.sid'''
             db.cursor.execute(sql)
             interesting_stations.extend([(protocol, sid, 1) for (protocol, sid) in db.cursor.fetchall()])
-            # ダウンロード対象の放送局をリストに格納
-            sql = 'SELECT protocol, sid FROM stations WHERE download = 1'
-            db.cursor.execute(sql)
-            interesting_stations.extend([(protocol, sid, 0) for (protocol, sid) in db.cursor.fetchall()])
-            # トップの放送局をリストに格納
-            sql = 'SELECT protocol, sid FROM stations WHERE schedule = 1 AND top = 1'
+            # トップ（ダウンロード対象）の放送局をリストに格納
+            sql = 'SELECT protocol, sid FROM stations WHERE top = 1 AND vis = 1'
             db.cursor.execute(sql)
             interesting_stations.extend([(protocol, sid, 0) for (protocol, sid) in db.cursor.fetchall()])
             # ユニーク化する
@@ -161,14 +124,14 @@ def scheduler(protocol, sid, visible):
         if visible == 1 and (path == argv or path.startswith(f'{argv}?action=show')):
             # 番組情報に更新があったら即時再描画する
             if count != 0:                    
-                xbmc.executebuiltin('Container.Refresh')
+                Common.refresh()
                 db.cursor.execute('UPDATE status SET refresh = NOW()')  # 再描画時刻を記録
             else:
                 # 前回の再描画より1秒以上経過していたら再描画
                 db.cursor.execute('SELECT refresh FROM status')
                 refresh, = db.cursor.fetchone()
                 if now > Common.datetime(refresh).timestamp() + 1:                    
-                    xbmc.executebuiltin('Container.Refresh')
+                    Common.refresh()
                     db.cursor.execute('UPDATE status SET refresh = NOW()')  # 再描画時刻を記録
     # スレッドのDBインスタンスを終了
     ThreadLocal.db.conn.close()

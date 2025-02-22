@@ -1,5 +1,7 @@
 [
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmnemaline",
         "station": "FMねまらいん",
@@ -11,12 +13,11 @@
         "description": "2016年2月1日 放送開始",
         "site": "https://fm-nemaline.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "iianbefm",
         "station": "きたかみE&Beエフエム",
@@ -28,12 +29,11 @@
         "description": "2020年11月2日 放送開始",
         "site": "https://fm888.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmasmo",
         "station": "FMあすも",
@@ -45,12 +45,11 @@
         "description": "2013年4月29日 放送開始",
         "site": "https://fm-asmo.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "bikkifm",
         "station": "OCR FM 83.5",
@@ -62,12 +61,11 @@
         "description": "2017年5月1日 放送開始",
         "site": "https://oosaki-fm.or.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "radioodate",
         "station": "ラジオおおだて",
@@ -79,12 +77,11 @@
         "description": "2022年7月20日 放送開始",
         "site": "https://odate-fm.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmhanabi",
         "station": "FMはなび",
@@ -96,12 +93,11 @@
         "description": "2015年7月31日 放送開始",
         "site": "http://fmhanabi.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "miyaradi",
         "station": "ミヤラジ",
@@ -113,12 +109,11 @@
         "description": "2017年3月1日 放送開始",
         "site": "https://www.miyaradi.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmdamono",
         "station": "FM DAMONO",
@@ -130,12 +125,11 @@
         "description": "2024年5月26日 放送開始",
         "site": "https://www.damono.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmkulala857",
         "station": "FMくらら857",
@@ -147,12 +141,11 @@
         "description": "2015年9月25日 放送開始",
         "site": "https://www.fmkulala857.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "oradi",
         "station": "おーラジ",
@@ -164,12 +157,11 @@
         "description": "2017年11月4日 放送開始",
         "site": "https://www.o-radi775.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmmoka",
         "station": "FMもおか",
@@ -181,12 +173,11 @@
         "description": "2020年11月15日 放送開始",
         "site": "https://www.fm-moka874.co.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmyugao",
         "station": "FMゆうがお",
@@ -198,12 +189,11 @@
         "description": "2019年12月20日 放送開始",
         "site": "https://fmyugao879.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmkiryu",
         "station": "FM桐生",
@@ -215,12 +205,11 @@
         "description": "2017年7月21日 放送開始",
         "site": "https://www.fmkiryu.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmkumagaya",
         "station": "FMクマガヤ",
@@ -232,12 +221,11 @@
         "description": "2019年4月3日 放送開始",
         "site": "https://fmkumagaya.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "chichibufm",
         "station": "ちちぶエフエム",
@@ -249,12 +237,11 @@
         "description": "2019年10月7日 放送開始",
         "site": "https://chichibufm.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "honjofm",
         "station": "ほんじょうFM",
@@ -266,12 +253,11 @@
         "description": "2021年4月14日 放送開始",
         "site": "https://honjofm.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "radiofuchues",
         "station": "ラジオフチューズ",
@@ -283,12 +269,11 @@
         "description": "2023年4月1日 放送開始",
         "site": "https://radio-fuchues.tokyo/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmhigashikurume",
         "station": "TOKYO854 くるめラ",
@@ -300,12 +285,11 @@
         "description": "2018年6月30日 放送開始",
         "site": "https://tokyo854.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmnishitokyo",
         "station": "エフエム西東京",
@@ -317,12 +301,11 @@
         "description": "2020年4月1日 放送開始",
         "site": "https://842fm.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "kanazawaseasidefm",
         "station": "金沢シーサイドFM",
@@ -334,12 +317,11 @@
         "description": "2022年10月1日 放送開始",
         "site": "https://kanazawa-seasidefm.co.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmdaishi",
         "station": "FM大師",
@@ -351,12 +333,11 @@
         "description": "2024年9月30日 放送開始",
         "site": "https://fmdaishi.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmsagami",
         "station": "FM HOT 839",
@@ -368,12 +349,11 @@
         "description": "2019年9月26日 放送開始",
         "site": "https://fm839.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "radioheart",
         "station": "ラヂオは～と",
@@ -385,12 +365,11 @@
         "description": "2019年7月1日 放送開始",
         "site": "http://www.heart768.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmtokamachi",
         "station": "エフエムとおかまち",
@@ -402,12 +381,11 @@
         "description": "2016年7月11日 放送開始",
         "site": "http://www.fm-tokamachi.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmmyoko",
         "station": "FMみょうこう",
@@ -419,12 +397,11 @@
         "description": "2015年12月14日 放送開始",
         "site": "https://fm-myoko785.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmmatsumoto",
         "station": "FMまつもと",
@@ -436,12 +413,11 @@
         "description": "2017年4月1日 放送開始",
         "site": "https://fmmatsumoto.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "iidafm",
         "station": "いいだFM iステーション",
@@ -453,12 +429,11 @@
         "description": "2013年元旦 放送開始",
         "site": "https://iida.fm/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmsakudaira",
         "station": "fmさくだいら",
@@ -470,12 +445,11 @@
         "description": "2018年7月3日 放送開始",
         "site": "http://www.fmsakudaira.co.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmtomi",
         "station": "はれラジ",
@@ -487,12 +461,11 @@
         "description": "2015年8月18日 放送開始",
         "site": "https://fmtomi785.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmrara768",
         "station": "FMらら",
@@ -504,12 +477,11 @@
         "description": "2015年4月1日 放送開始",
         "site": "http://fm768.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "nagoyabousai",
         "station": "MID-FM761",
@@ -521,12 +493,11 @@
         "description": "2018年9月1日 放送開始",
         "site": "https://midfm761.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "tees-843fm",
         "station": "やしの実FM",
@@ -538,12 +509,11 @@
         "description": "2013年11月27日 放送開始",
         "site": "https://843fm.co.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "pitchfm",
         "station": "Pitch FM",
@@ -555,12 +525,11 @@
         "description": "2016年1月14日 放送開始",
         "site": "https://838.fm/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "radioloveat",
         "station": "RADIO LOVEAT",
@@ -572,12 +541,11 @@
         "description": "2017年元旦 放送開始",
         "site": "https://www.loveat.co.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "mediasfm",
         "station": "メディアスエフエム",
@@ -589,12 +557,11 @@
         "description": "2014年6月23日 放送開始",
         "site": "https://www.medias.fm/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmyokkaichi",
         "station": "CTY-FM",
@@ -606,12 +573,11 @@
         "description": "2015年7月1日 放送開始",
         "site": "https://cty-fm.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmotsu",
         "station": "FMおおつ",
@@ -623,12 +589,11 @@
         "description": "2019年10月1日 放送開始",
         "site": "https://fmotsu.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmhikone",
         "station": "エフエムひこね",
@@ -640,12 +605,11 @@
         "description": "2020年4月1日 放送開始",
         "site": "https://www.fmhikone.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "yesfm",
         "station": "YES-fm",
@@ -657,12 +621,11 @@
         "description": "2018年7月1日 放送開始",
         "site": "https://www.yesfm.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmizumiotsu",
         "station": "FMいずみおおつ",
@@ -674,12 +637,11 @@
         "description": "2017年12月24日 放送開始",
         "site": "https://fmizumiotsu.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "amasakifm",
         "station": "みんなのあま咲き放送局",
@@ -691,12 +653,11 @@
         "description": "2024年6月3日 放送開始",
         "site": "https://amasaki-fm.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmyamato",
         "station": "FMヤマト",
@@ -708,12 +669,11 @@
         "description": "2021年7月1日 放送開始",
         "site": "https://fmyamato.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmyumewave",
         "station": "エフエムゆめウェーブ",
@@ -725,12 +685,11 @@
         "description": "2015年11月2日 放送開始",
         "site": "https://www.yumewave.net/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmwassyoi",
         "station": "FMわっしょい",
@@ -742,12 +701,11 @@
         "description": "2017年12月12日 放送開始",
         "site": "http://www.fm-wassyoi.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmsunsunkirara",
         "station": "FMスマイルウェ～ブ",
@@ -759,12 +717,11 @@
         "description": "2018年11月1日 放送開始",
         "site": "http://www.sw897.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmhataland",
         "station": "FMはたらんど",
@@ -776,12 +733,11 @@
         "description": "2023年12月20日 放送開始",
         "site": "https://fmhataland.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmkitaq",
         "station": "FM KITAQ",
@@ -793,12 +749,11 @@
         "description": "2022年1月1日 放送開始",
         "site": "https://www.fm-kitaq.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "comiten",
         "station": "コミュニティラジオ天神（コミてん）",
@@ -810,12 +765,11 @@
         "description": "2025年1月11日 放送開始",
         "site": "https://radio.comiten.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmtanto",
         "station": "FMたんと",
@@ -827,12 +781,11 @@
         "description": "2016年7月9日 放送開始",
         "site": "https://www.fmtanto.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "ebisufm",
         "station": "えびすFM",
@@ -844,12 +797,11 @@
         "description": "2014年7月10日 放送開始",
         "site": "https://ebisufm.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "happyfm",
         "station": "はっぴぃ!FM",
@@ -861,12 +813,11 @@
         "description": "2013年6月4日 放送開始",
         "site": "https://happyfm873.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmshimabara",
         "station": "FMしまばら",
@@ -878,12 +829,11 @@
         "description": "2012年8月1日 放送開始",
         "site": "https://www.shimabara.fm/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmisahaya",
         "station": "レインボーエフエム",
@@ -895,12 +845,11 @@
         "description": "2015年4月1日 放送開始",
         "site": "http://www.771fm.co.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmtsushima",
         "station": "エフエム対馬",
@@ -912,12 +861,11 @@
         "description": "2024年4月8日 放送開始",
         "site": "https://fmtsushima.ne.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmhimawari",
         "station": "FMひまわり",
@@ -929,12 +877,11 @@
         "description": "2018年10月1日 放送開始",
         "site": "http://himawarinet.ne.jp/?page_id=2700",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "mitsubachiradio",
         "station": "みつばちラジオ",
@@ -946,12 +893,11 @@
         "description": "2017年12月3日 放送開始",
         "site": "https://www.acn-tv.co.jp/radio.html",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "sunshinefm",
         "station": "宮崎サンシャインFM",
@@ -963,12 +909,11 @@
         "description": "2013年9月1日 放送開始",
         "site": "http://www.sunfm.co.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmhyuga",
         "station": "FMひゅうが",
@@ -980,12 +925,11 @@
         "description": "2014年4月1日 放送開始",
         "site": "https://767.fm/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "friendsfm",
         "station": "フレンズFM762",
@@ -997,12 +941,11 @@
         "description": "2022年3月1日 放送開始",
         "site": "https://www.friendsfm.co.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmginga",
         "station": "FMぎんが",
@@ -1014,12 +957,11 @@
         "description": "2019年1月11日 放送開始",
         "site": "http://fm786.jp/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmkanoya",
         "station": "FMかのや",
@@ -1031,12 +973,11 @@
         "description": "2013年5月29日 放送開始",
         "site": "https://www.772fm.net/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmsatsumasendai",
         "station": "FMさつませんだい",
@@ -1048,12 +989,11 @@
         "description": "2017年12月14日 放送開始",
         "site": "https://fm871.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmkirishima",
         "station": "プラスきりしま",
@@ -1065,12 +1005,11 @@
         "description": "2013年6月27日 放送開始",
         "site": "http://plakiri.com/fm769/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmlequio",
         "station": "FMレキオ",
@@ -1082,12 +1021,11 @@
         "description": "2017年9月1日 放送開始",
         "site": "https://www.fmlequio.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fm21",
         "station": "FM21",
@@ -1099,12 +1037,11 @@
         "description": "2017年9月1日 放送開始",
         "site": "https://www.fm21.net/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmuruma",
         "station": "FMうるま",
@@ -1116,12 +1053,11 @@
         "description": "2017年8月12日 放送開始",
         "site": "https://fmuruma.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmmiyako",
         "station": "FMみやこ",
@@ -1133,12 +1069,11 @@
         "description": "2018年10月1日 放送開始",
         "site": "https://www.fm-miyako.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmmotobu",
         "station": "ちゅらハート FMもとぶ",
@@ -1150,12 +1085,11 @@
         "description": "2017年9月1日 放送開始",
         "site": "https://www.motob.net/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SP",
         "key": "fmkumejima",
         "station": "FMくめじま",
@@ -1167,9 +1101,6 @@
         "description": "2018年6月1日 放送開始",
         "site": "http://fmkumejima.com/",
         "direct": "",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     }
 ]

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
 import calendar
 import traceback
 import inspect
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import xbmc
 import xbmcaddon
@@ -112,12 +113,30 @@ class Common:
 
     @staticmethod
     def weekday(datetime_str):
-        # 2023-04-20 05:00:00 -> calendar.weekday(2023, 4, 20)
+        # 2023-04-20 05:00:00 -> calendar.weekday(2023, 4, 20) -> 3
         date, _ = datetime_str.split(' ')
         year, month, day = map(int, date.split('-'))
         return calendar.weekday(year, month, day)
     
     @staticmethod
+    def now(hours=0):
+        # 2025-02-22 05:35:43
+        if hours > 0:
+            now = datetime.now() + timedelta(hours=hours)
+        else:
+            now = datetime.now()
+        return now.strftime("%Y-%m-%d %H:%M:%S")
+
+    @staticmethod
     def setArt(listitem, name):
         logo = os.path.join(Common.DATA_PATH, 'icons', f'{name}.png')
         listitem.setArt({'thumb': logo, 'icon': logo})
+
+    @staticmethod
+    def refresh(top=False):
+        if top:
+            xbmc.executebuiltin('Container.Update(%s,replace)' % sys.argv[0])
+        else:
+            xbmc.executebuiltin('Container.Refresh')
+
+

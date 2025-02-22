@@ -1,5 +1,7 @@
 [
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30034,
         "station": "ラジオカロスサッポロ",
@@ -11,12 +13,11 @@
         "description": "北海道札幌市中央区にあるコミュニティFMラジオ局です。",
         "site": "https://radiokaros.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30034/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30032,
         "station": "さっぽろ村ラジオ",
@@ -28,12 +29,11 @@
         "description": "北海道札幌市東区にあるコミュニティFMラジオ局です。",
         "site": "https://www.fm813.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30032/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30090,
         "station": "FMアップル",
@@ -45,12 +45,11 @@
         "description": "北海道札幌市豊平区平岸にあるコミュニティFMラジオ局です。",
         "site": "http://765fm.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30090/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30005,
         "station": "三角山放送局",
@@ -62,12 +61,11 @@
         "description": "北海道札幌市西区にあるコミュニティFMラジオ局です。",
         "site": "https://www.sankakuyama.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30005/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30044,
         "station": "RADIOワンダーストレージ FMドラマシティ",
@@ -79,12 +77,11 @@
         "description": "北海道札幌市厚別区にあるコミュニティFMラジオ局です。",
         "site": "https://776.fm/",
         "direct": "http://mtist.as.smartstream.ne.jp/30044/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30025,
         "station": "FMおたる",
@@ -96,12 +93,11 @@
         "description": "北海道小樽市にあるコミュニティFMラジオ局です。",
         "site": "https://fmotaru.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30025/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30074,
         "station": "FMりべーる",
@@ -113,12 +109,11 @@
         "description": "北海道旭川市にあるコミュニティFMラジオ局です。",
         "site": "https://fm837.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30074/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30029,
         "station": "FMくしろ",
@@ -130,12 +125,11 @@
         "description": "北海道釧路市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fm946.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30029/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30016,
         "station": "JAGA",
@@ -147,12 +141,11 @@
         "description": "北海道帯広市にあるコミュニティFMラジオ局です。",
         "site": "https://www.jaga.fm/",
         "direct": "http://mtist.as.smartstream.ne.jp/30016/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30038,
         "station": "FM WING",
@@ -164,12 +157,11 @@
         "description": "北海道帯広市にあるコミュニティFMラジオ局です。",
         "site": "https://fmwing.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30038/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30004,
         "station": "FMはまなす",
@@ -181,12 +173,11 @@
         "description": "北海道岩見沢市内および近郊市町村で聴くことができるコミュニティFMラジオ局です。",
         "site": "https://fm761.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30004/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30058,
         "station": "FMあばしり",
@@ -198,12 +189,11 @@
         "description": "北海道網走市にあるコミュニティFMラジオ局です。",
         "site": "https://www.lia-abashiri.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30058/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30045,
         "station": "FMねむろ",
@@ -215,12 +205,11 @@
         "description": "北海道根室市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fmnemuro.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30045/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30087,
         "station": "wi-radio",
@@ -232,12 +221,11 @@
         "description": "北海道伊達市にあるコミュニティFMラジオ局です。",
         "site": "https://date-kanko.jp/wi_radio/",
         "direct": "http://mtist.as.smartstream.ne.jp/30087/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30015,
         "station": "FMメイプル",
@@ -249,12 +237,11 @@
         "description": "北海道北広島市にあるコミュニティFMラジオ局です。",
         "site": "https://fm-maple.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30015/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30079,
         "station": "BeFM",
@@ -266,12 +253,11 @@
         "description": "青森県八戸にあるコミュニティFMラジオ局です。",
         "site": "https://www.befm.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30079/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30017,
         "station": "ラヂオもりおか",
@@ -283,12 +269,11 @@
         "description": "岩手県盛岡市にあるコミュニティFMラジオ局です。",
         "site": "https://radiomorioka.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30017/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30097,
         "station": "みやこハーバーラジオ",
@@ -300,12 +285,11 @@
         "description": "岩手県宮古市にあるコミュニティFMラジオ局です。",
         "site": "http://miyakofm.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30097/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30050,
         "station": "カシオペアFM",
@@ -317,12 +301,11 @@
         "description": "岩手県二戸市にあるコミュニティFMラジオ局です。",
         "site": "http://779.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30050/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30007,
         "station": "ラジオ3",
@@ -334,12 +317,11 @@
         "description": "宮城県仙台市青葉区にあるコミュニティFMラジオ局です。",
         "site": "https://www.radio3.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30007/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30018,
         "station": "fmいずみ",
@@ -351,12 +333,11 @@
         "description": "宮城県仙台市泉区にあるコミュニティFMラジオ局です。",
         "site": "https://www.fm797.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30018/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30037,
         "station": "ラジオ石巻",
@@ -368,12 +349,11 @@
         "description": "宮城県石巻市にあるコミュニティFMラジオ局です。",
         "site": "http://www.fm764.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30037/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30056,
         "station": "BAY WAVE",
@@ -385,12 +365,11 @@
         "description": "宮城県塩釜市にあるコミュニティFMラジオ局です。",
         "site": "https://www.bay-wave.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30056/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30094,
         "station": "ぎょっとエフエム",
@@ -402,12 +381,11 @@
         "description": "宮城県気仙沼市にあるコミュニティFMラジオ局です。",
         "site": "https://kfm775.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30094/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30092,
         "station": "なとらじ801",
@@ -419,12 +397,11 @@
         "description": "宮城県名取市にあるコミュニティFMラジオ局です。",
         "site": "https://www.natori801.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30092/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30014,
         "station": "エフエム椿台",
@@ -436,12 +413,11 @@
         "description": "秋田県秋田市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fm796.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30014/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30076,
         "station": "横手かまくらFM",
@@ -453,12 +429,11 @@
         "description": "秋田県横手市にあるコミュニティFMラジオ局です。",
         "site": "https://fmyokote.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30076/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30030,
         "station": "エフエムゆーとぴあ",
@@ -470,12 +445,11 @@
         "description": "秋田県湯沢市にあるコミュニティFMラジオ局です。",
         "site": "http://www.yutopia.or.jp/~fm763/",
         "direct": "http://mtist.as.smartstream.ne.jp/30030/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30089,
         "station": "鹿角きりたんぽFM",
@@ -487,12 +461,11 @@
         "description": "秋田県鹿角市にあるコミュニティFMラジオ局です。",
         "site": "https://fm791.net/",
         "direct": "http://mtist.as.smartstream.ne.jp/30089/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30020,
         "station": "ココラジ",
@@ -504,12 +477,11 @@
         "description": "福島県郡山市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fm791.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30020/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30009,
         "station": "FMいわき",
@@ -521,12 +493,11 @@
         "description": "福島県いわき市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fm-iwaki.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30009/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30019,
         "station": "FMモットコム",
@@ -538,12 +509,11 @@
         "description": "福島県本宮市にあるコミュニティFMラジオ局です。",
         "site": "http://www.fm-mot.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30019/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30022,
         "station": "FMぱるるん",
@@ -555,12 +525,11 @@
         "description": "茨城県水戸市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fmpalulun.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30022/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30023,
         "station": "FMひたち",
@@ -572,12 +541,11 @@
         "description": "茨城県日立市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fmhitachi.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30023/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30075,
         "station": "たかはぎFM",
@@ -589,12 +557,11 @@
         "description": "茨城県高萩市にあるコミュニティFMラジオ局です。",
         "site": "https://t768.net/",
         "direct": "http://mtist.as.smartstream.ne.jp/30075/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30021,
         "station": "FMうしくうれしく放送",
@@ -606,12 +573,11 @@
         "description": "茨城県牛久市にあるコミュニティFMラジオ局です。",
         "site": "http://fmuu.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30021/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30043,
         "station": "M-wave",
@@ -623,12 +589,11 @@
         "description": "群馬県前橋市にあるコミュニティFMラジオ局です。",
         "site": "https://maebashi.fm/",
         "direct": "http://mtist.as.smartstream.ne.jp/30043/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30008,
         "station": "REDS WAVE",
@@ -640,12 +605,11 @@
         "description": "埼玉県さいたま市にあるコミュニティFMラジオ局です。",
         "site": "http://redswave.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30008/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30035,
         "station": "FM Kawaguchi",
@@ -657,12 +621,11 @@
         "description": "埼玉県川口市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fm856.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30035/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30048,
         "station": "FMわたらせ",
@@ -674,12 +637,11 @@
         "description": "埼玉県加須市にあるコミュニティFMラジオ局です。",
         "site": "https://fm-watarase.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30048/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30002,
         "station": "フラワーラジオ",
@@ -691,12 +653,11 @@
         "description": "埼玉県鴻巣市にあるコミュニティFMラジオ局です。",
         "site": "https://fm767.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30002/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30047,
         "station": "FMふっかちゃん",
@@ -708,12 +669,11 @@
         "description": "埼玉県深谷市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fukaya-fm.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30047/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30096,
         "station": "こしがやエフエム",
@@ -725,12 +685,11 @@
         "description": "埼玉県越谷市にあるコミュニティFMラジオ局です。",
         "site": "https://koshigayafm.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30096/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30026,
         "station": "775ライブリーFM",
@@ -742,12 +701,11 @@
         "description": "埼玉県朝霞市にあるコミュニティFMラジオ局です。",
         "site": "https://775fm.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30026/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30118,
         "station": "かしみんFM",
@@ -759,12 +717,11 @@
         "description": "千葉県柏市にあるインターネットラジオ局です。",
         "site": "https://kashimin.tacomin.com",
         "direct": "https://mtist.as.smartstream.ne.jp/30118/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30119,
         "station": "たこみんFM",
@@ -776,12 +733,11 @@
         "description": "千葉県多古町にあるインターネットラジオ局です。",
         "site": "https://tacomin.com",
         "direct": "https://mtist.as.smartstream.ne.jp/30119/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30036,
         "station": "レインボータウンFM",
@@ -793,12 +749,11 @@
         "description": "東京都江東区にあるコミュニティFMラジオ局です。",
         "site": "https://885fm.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30036/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30027,
         "station": "エフエム世田谷",
@@ -810,12 +765,11 @@
         "description": "東京都世田谷区にあるコミュニティFMラジオ局です。",
         "site": "https://fmsetagaya.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30027/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30081,
         "station": "Tokyo Star Radio",
@@ -827,12 +781,11 @@
         "description": "東京都八王子市にあるコミュニティFMラジオ局です。",
         "site": "https://775fm.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30081/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30033,
         "station": "エフエムたちかわ",
@@ -844,12 +797,11 @@
         "description": "東京都立川市にあるコミュニティFMラジオ局です。",
         "site": "http://fm844.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30033/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30039,
         "station": "調布FM",
@@ -861,12 +813,11 @@
         "description": "東京都調布市にあるコミュニティFMラジオ局です。",
         "site": "https://www.chofu-fm.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30039/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30046,
         "station": "かわさきFM",
@@ -878,12 +829,11 @@
         "description": "神奈川県川崎市中原区にあるコミュニティFMラジオ局です。",
         "site": "https://www.kawasakifm.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30046/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30057,
         "station": "FMカオン",
@@ -895,12 +845,11 @@
         "description": "神奈川県海老名市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fmkaon.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30057/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30006,
         "station": "ラジオ・ミュー",
@@ -912,12 +861,11 @@
         "description": "富山県黒部市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fm761.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30006/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30001,
         "station": "FM-N1",
@@ -929,12 +877,11 @@
         "description": "石川県野々市市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fmn1.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30001/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30012,
         "station": "ハーバーステーション",
@@ -946,12 +893,11 @@
         "description": "福井県敦賀市にあるコミュニティFMラジオ局です。",
         "site": "http://harbor779.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30012/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30040,
         "station": "エフエムEGAO",
@@ -963,12 +909,11 @@
         "description": "愛知県岡崎市にあるコミュニティFMラジオ局です。",
         "site": "https://fm-egao.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30040/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30067,
         "station": "エフエム花",
@@ -980,12 +925,11 @@
         "description": "滋賀県甲賀市にあるコミュニティFMラジオ局です。",
         "site": "https://fm-hana.net/",
         "direct": "http://mtist.as.smartstream.ne.jp/30067/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30061,
         "station": "Radio Sweet FMひがしおうみ",
@@ -997,12 +941,11 @@
         "description": "滋賀県東近江市にあるコミュニティFMラジオ局です。",
         "site": "http://www.sweet815.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30061/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30071,
         "station": "RADIO MIX KYOTO",
@@ -1014,12 +957,11 @@
         "description": "京都市北区にあるコミュニティFMラジオ局です。",
         "site": "https://radiomix.kyoto/",
         "direct": "http://mtist.as.smartstream.ne.jp/30071/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30082,
         "station": "京都三条ラジオカフェ",
@@ -1031,12 +973,11 @@
         "description": "京都市中京区にあるコミュニティFMラジオ局です。",
         "site": "https://radiocafe.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30082/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30063,
         "station": "FMおとくに",
@@ -1048,12 +989,11 @@
         "description": "京都府乙訓地域にあるコミュニティFMラジオ局です。",
         "site": "https://fm-otokuni.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30063/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30073,
         "station": "FMたんご",
@@ -1065,12 +1005,11 @@
         "description": "京都府京丹後市にあるコミュニティFMラジオ局です。",
         "site": "https://fm-tango.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30073/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30013,
         "station": "FMジャングル",
@@ -1082,12 +1021,11 @@
         "description": "兵庫県豊岡市にあるコミュニティFMラジオ局です。",
         "site": "http://www.764.fm/",
         "direct": "http://mtist.as.smartstream.ne.jp/30013/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30078,
         "station": "BAN-BANラジオ",
@@ -1099,12 +1037,11 @@
         "description": "兵庫県加古川市役所を中心とした、加古川市・高砂市・加古郡稲美町・加古郡播磨町エリアのコミュニティFM局です。",
         "site": "https://www.banban.jp/radio/",
         "direct": "http://mtist.as.smartstream.ne.jp/30078/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30053,
         "station": "DARAZ FM",
@@ -1116,12 +1053,11 @@
         "description": "鳥取県米子市にあるコミュニティFMラジオ局です。",
         "site": "http://www.darazfm.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30053/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30010,
         "station": "B・FM791",
@@ -1133,12 +1069,11 @@
         "description": "徳島県徳島市にあるコミュニティFMラジオ局です。",
         "site": "http://www.bfm.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30010/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30024,
         "station": "FM815",
@@ -1150,12 +1085,11 @@
         "description": "香川県高松市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fm815.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30024/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30052,
         "station": "AIR STATION HIBIKI",
@@ -1167,12 +1101,11 @@
         "description": "福岡県北九州市・八幡西区・若松区・遠賀郡の地域に密着した、コミュニティFMラジオ放送局です。",
         "site": "https://www.hibiki882.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30052/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30085,
         "station": "チョクラジ",
@@ -1184,12 +1117,11 @@
         "description": "福岡県直方市にあるコミュニティFMラジオ局です。",
         "site": "https://choku861.jp/",
         "direct": "https://mtist.as.smartstream.ne.jp/30085/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30088,
         "station": "FMのべおか",
@@ -1201,12 +1133,11 @@
         "description": "宮崎県延岡市内にあるコミュニティFMラジオ局です。",
         "site": "https://www.fmnobeoka.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30088/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30054,
         "station": "あまみエフエム ディ!ウェイヴ",
@@ -1218,12 +1149,11 @@
         "description": "鹿児島県奄美市にあるコミュニティFMラジオ局です。",
         "site": "http://www.npo-d.org/",
         "direct": "http://mtist.as.smartstream.ne.jp/30054/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30072,
         "station": "エフエムたつごう",
@@ -1235,12 +1165,11 @@
         "description": "鹿児島県大島郡龍郷町にあるコミュニティFMラジオ局です。",
         "site": "https://tatsugo.fm-s.org/",
         "direct": "http://mtist.as.smartstream.ne.jp/30072/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30068,
         "station": "FM那覇",
@@ -1252,12 +1181,11 @@
         "description": "fm那覇は沖縄県那覇市を中心とした地域を放送区域とするコミュニティFM局です。",
         "site": "https://www.fmnaha.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30068/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30093,
         "station": "FMぎのわん",
@@ -1269,12 +1197,11 @@
         "description": "沖縄県宜野湾市にあるコミュニティFMラジオ局です。",
         "site": "https://fmginowan.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30093/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30098,
         "station": "ぎのわんシティFM",
@@ -1286,12 +1213,11 @@
         "description": "沖縄県宜野湾市にあるコミュニティFMラジオ局です。",
         "site": "https://gcfm818.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30098/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30069,
         "station": "FMいしがき サンサンラジオ",
@@ -1303,12 +1229,11 @@
         "description": "沖縄県石垣市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fmishigaki.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30069/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30095,
         "station": "FMやんばる",
@@ -1320,12 +1245,11 @@
         "description": "沖縄県名護市にあるコミュニティFMラジオ局です。",
         "site": "https://fmyanbaru.co.jp/",
         "direct": "http://mtist.as.smartstream.ne.jp/30095/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30066,
         "station": "オキラジ",
@@ -1337,12 +1261,11 @@
         "description": "沖縄県沖縄市にあるコミュニティFMラジオ局です。",
         "site": "https://fm854.fun/",
         "direct": "http://mtist.as.smartstream.ne.jp/30066/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "LR",
         "key": 30083,
         "station": "FMとよみ",
@@ -1354,9 +1277,6 @@
         "description": "沖縄県豊見城市にあるコミュニティFMラジオ局です。",
         "site": "https://www.fm-toyomi.com/",
         "direct": "http://mtist.as.smartstream.ne.jp/30083/livestream/playlist.m3u8",
-        "delay": 0,
-        "display": 1,
-        "schedule": 1,
-        "download": 0
+        "delay": 0
     }
 ]

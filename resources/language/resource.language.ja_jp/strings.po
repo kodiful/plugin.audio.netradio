@@ -76,6 +76,18 @@ msgctxt "#30118"
 msgid "Show QR code"
 msgstr "QRコード表示"
 
+msgctxt "#30119"
+msgid "Open folder"
+msgstr "フォルダを開く"
+
+msgctxt "#30120"
+msgid "Add to top"
+msgstr "トップに追加する"
+
+msgctxt "#30121"
+msgid "Delete from top"
+msgstr "トップから削除する"
+
 #
 # yesno
 #
@@ -217,12 +229,12 @@ msgstr "デバッグ"
 #
 
 msgctxt "#30490"
-msgid "Save settings"
-msgstr "保存予約"
+msgid "Program"
+msgstr "番組設定"
 
 msgctxt "#30491"
 msgid "Save \"%s\""
-msgstr "[COLOR lightgreen]\"%s\" の保存を予約する[/COLOR]"
+msgstr "[COLOR lightgreen]%s  を保存する[/COLOR]"
 
 #
 # keyword settings
@@ -316,6 +328,10 @@ msgctxt "#30528"
 msgid "Program selection"
 msgstr "番組選択"
 
+msgctxt "#30529"
+msgid "Any station"
+msgstr "すべての放送局"
+
 #
 # timer settings
 #
@@ -323,6 +339,10 @@ msgstr "番組選択"
 msgctxt "#30550"
 msgid "Timer settings"
 msgstr "タイマー設定"
+
+msgctxt "#30551"
+msgid "Title"
+msgstr "タイトル"
 
 msgctxt "#30552"
 msgid "Start date"
@@ -394,7 +414,7 @@ msgstr "オンエア情報を表示する"
 
 msgctxt "#30612"
 msgid "Download"
-msgstr "保存のためオンエア情報をウォッチする"
+msgstr "保存対象にする（オンエア情報を監視する）"
 
 msgctxt "#30613"
 msgid "[COLOR lightgreen]Open website[/COLOR]"

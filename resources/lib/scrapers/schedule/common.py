@@ -7,7 +7,7 @@ import unicodedata
 import json
 import gzip
 import io
-import traceback
+from datetime import datetime, timedelta
 
 from resources.lib.common import Common as Main
 from resources.lib.db import ThreadLocal
@@ -38,15 +38,18 @@ class Common(Main):
         count = 0
         # 番組表情報を取得
         try:
-            # HTTPリクエスト
-            req = urllib.request.Request(self.URL)
-            res = urllib.request.urlopen(req)
-            # レスポンスがgzip圧縮されているときは展開する
-            if res.info().get('Content-Encoding') == 'gzip':
-                with gzip.GzipFile(fileobj=io.BytesIO(res.read())) as gz:
-                    data = gz.read()
+            if self.URL:
+                # HTTPリクエスト
+                req = urllib.request.Request(self.URL)
+                res = urllib.request.urlopen(req)
+                # レスポンスがgzip圧縮されているときは展開する
+                if res.info().get('Content-Encoding') == 'gzip':
+                    with gzip.GzipFile(fileobj=io.BytesIO(res.read())) as gz:
+                        data = gz.read()
+                else:
+                    data = res.read()
             else:
-                data = res.read()
+                data = b''
         except urllib.error.HTTPError as e:
             self.log(f'request error (code={e.code}):', self.URL)
             return -1 if e.code == 404 else 0
@@ -87,16 +90,22 @@ class Common(Main):
         WHERE c.end > NOW() AND c.sid = :sid
         '''
         self.db.cursor.execute(sql, {'sid': self.sid})
-        nextaired, = self.db.cursor.fetchone()
+        try:
+            nextaired, = self.db.cursor.fetchone()
+        except TypeError:
+            nextaired = ''
         return nextaired
 
-    def set_nextaired(self):
+    def set_nextaired(self, hours=0):
         sql = '''
         UPDATE stations
         SET nextaired = :nextaired
         WHERE sid = :sid
         '''
-        nextaired = self._get_nextaired()
+        if hours == 0:
+            nextaired = self._get_nextaired()
+        else:
+            nextaired = self.now(hours)
         self.db.cursor.execute(sql, {'nextaired': nextaired, 'sid': self.sid})
         return nextaired
     
@@ -111,4 +120,29 @@ class Common(Main):
         text = unicodedata.normalize('NFKC', text)
         text = re.sub('[ ]{2,}', ' ', text)
         return text.strip()
+
+
+class NullScraper(Common):
+    
+    def __init__(self, sid):
+        # DBの共有インスタンス
+        self.db = ThreadLocal.db
+        self.sid = sid
+        self.db.cursor.execute('SELECT station, key, region, pref, site FROM stations WHERE sid = :sid', {'sid': sid})
+        self.station, self.key, self.region, self.pref, self.site = self.db.cursor.fetchone()
+
+    def update(self):
+        nextaired = self.get_nextaired()
+        return 1 if nextaired < self.now() else 0
+    
+    def get_nextaired(self):
+        self.db.cursor.execute('SELECT nextaired FROM stations WHERE sid = :sid', {'sid': self.sid})
+        nextaired, = self.db.cursor.fetchone()
+        return nextaired
+
+    def set_nextaired(self):
+        nextaired = self.now(hours=1)
+        sql = 'UPDATE stations SET nextaired = :nextaired WHERE sid = :sid'
+        self.db.cursor.execute(sql, {'nextaired': nextaired, 'sid': self.sid})
+        return nextaired
     

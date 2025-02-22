@@ -106,19 +106,9 @@ class AuthenticationManager(Common):
         db.cursor.execute(sql)
         self.region, self.pref = db.cursor.fetchone()
         # 判定結果をstationsテーブルに反映する
-        sql = '''UPDATE stations SET
-        display = CASE WHEN region = :region THEN ABS(display) ELSE -ABS(display) END,
-        schedule = CASE WHEN region = :region THEN ABS(schedule) ELSE -ABS(schedule) END,
-        download = CASE WHEN region = :region THEN ABS(download) ELSE -ABS(download) END
-        WHERE protocol = 'NHK'
-        '''
+        sql = "UPDATE stations SET vis = CASE WHEN region = :region THEN 1 ELSE 0 END WHERE protocol = 'NHK'"
         db.cursor.execute(sql, {'region': self.region})
-        sql = '''UPDATE stations SET
-        display = CASE WHEN pref = :pref THEN ABS(display) ELSE -ABS(display) END,
-        schedule = CASE WHEN pref = :pref THEN ABS(schedule) ELSE -ABS(schedule) END,
-        download = CASE WHEN pref = :pref THEN ABS(download) ELSE -ABS(download) END
-        WHERE protocol = 'RDK'
-        '''
+        sql = "UPDATE stations SET vis = CASE WHEN pref = :pref THEN 1 ELSE 0 END WHERE protocol = 'RDK'"
         db.cursor.execute(sql, {'pref': self.pref})
         # ログ
         self.log('radiko authentication status:', data['authed'], 'region:', self.region, 'pref:', self.pref)

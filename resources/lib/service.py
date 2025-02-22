@@ -38,6 +38,7 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
                 os.remove(mp3_file)
         # ダウンロード済み以外の番組情報を削除
         db.cursor.execute('DELETE FROM contents WHERE cstatus != -1')
+        # !!!ダウンロード済み以外のファイルも削除
         # 番組表更新予定時間を初期化
         db.cursor.execute("UPDATE stations SET nextaired = '1970-01-01 09:00:00'")
         # 設定画面をデフォルトに設定
@@ -79,13 +80,6 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
             self.maintain_auth()
             # 番組表更新
             self.maintain_schedule()
-            # 表示中画面が設定画面でなければ、設定画面はデフォルトに戻す
-            if xbmcgui.getCurrentWindowDialogId() == 9999:
-                db.cursor.execute('SELECT keyword, station FROM status')
-                keyword, station = db.cursor.fetchone()
-                if keyword or station:
-                    db.cursor.execute("UPDATE status SET keyword = '', station = '', timer = ''")  # statusテーブル
-                    shutil.copy(os.path.join(self.DATA_PATH, 'settings', 'default.xml'), self.DIALOG_FILE)  # アドオン設定画面
             # ダウンロード開始判定
             self.maintain_download()
             # CHECK_INTERVALの間待機

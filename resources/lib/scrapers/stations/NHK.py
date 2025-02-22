@@ -44,6 +44,8 @@ class Scraper(Common):
                 print('[nhk] unparsable content (skip):', station, sep='\t', file=sys.stderr)
                 continue
             buf.append({
+                'top': 1,
+                'vis': 1,
                 'protocol': self.PROTOCOL,
                 'key': 'NHK1',
                 'station': f'NHKラジオ第1({station})',
@@ -61,6 +63,8 @@ class Scraper(Common):
                 'download': 1
             })
             buf.append({
+                'top': 1,
+                'vis': 1,
                 'protocol': self.PROTOCOL,
                 'key': 'NHK2',
                 'station': f'NHKラジオ第2',
@@ -78,6 +82,8 @@ class Scraper(Common):
                 'download': 1
             })
             buf.append({
+                'top': 1,
+                'vis': 1,
                 'protocol': self.PROTOCOL,
                 'key': 'NHK3',
                 'station': f'NHK-FM({station})',
@@ -89,10 +95,7 @@ class Scraper(Common):
                 'description': '',
                 'site': 'https://www.nhk.or.jp/radio/',
                 'direct': section.fmhls.text,
-                'delay': 35,
-                'display': 1,
-                'schedule': 1,
-                'download': 1
+                'delay': 35
             })
         return buf
 

@@ -1,5 +1,7 @@
 [
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SR",
         "key": "",
         "station": "FMわっぴ～",
@@ -11,12 +13,11 @@
         "description": "",
         "site": "http://www.wappy761.jp/",
         "direct": "http://csra.fm/asx/fmwappy.asx",
-        "delay": 0,
-        "display": 1,
-        "schedule": 0,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SR",
         "key": "",
         "station": "e-niwa",
@@ -28,12 +29,11 @@
         "description": "",
         "site": "http://www.e-niwa.tv/",
         "direct": "http://csra.fm/asx/eniwa.asx",
-        "delay": 0,
-        "display": 1,
-        "schedule": 0,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SR",
         "key": "",
         "station": "エフエムたいはく",
@@ -45,12 +45,11 @@
         "description": "",
         "site": "https://www.fm-t.net/",
         "direct": "http://csra.fm/asx/taihaku.asx",
-        "delay": 0,
-        "display": 1,
-        "schedule": 0,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SR",
         "key": "",
         "station": "ラヂオつくば",
@@ -62,12 +61,11 @@
         "description": "",
         "site": "https://radio-tsukuba.net/",
         "direct": "http://csra.fm/asx/tsukuba.asx",
-        "delay": 0,
-        "display": 1,
-        "schedule": 0,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SR",
         "key": "",
         "station": "FM丹波",
@@ -79,12 +77,11 @@
         "description": "",
         "site": "http://fukuchiyama.fm-tanba.jp/",
         "direct": "http://fukuchiyama.fm-tanba.jp/simul.asx",
-        "delay": 0,
-        "display": 1,
-        "schedule": 0,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SR",
         "key": "",
         "station": "FM MOOV",
@@ -96,12 +93,11 @@
         "description": "",
         "site": "https://www.fm-moov.com/",
         "direct": "http://csra.fm/asx/fmmoov.asx",
-        "delay": 0,
-        "display": 1,
-        "schedule": 0,
-        "download": 0
+        "delay": 0
     },
     {
+        "top": 0,
+        "vis": 1,
         "protocol": "SR",
         "key": "",
         "station": "スターコーンFM",
@@ -113,9 +109,6 @@
         "description": "",
         "site": "http://www.starcornfm.com/",
         "direct": "mms://hdv.nkansai.tv/starcorn",
-        "delay": 0,
-        "display": 1,
-        "schedule": 0,
-        "download": 0
+        "delay": 0
     }
 ]

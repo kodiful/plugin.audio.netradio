@@ -57,7 +57,7 @@ class Contents(Common):
             # DBから削除
             sql = 'DELETE FROM contents WHERE cid = :cid'
             self.db.cursor.execute(sql, {'cid': cid})
-            xbmc.executebuiltin('Container.Refresh')
+            self.refresh()
 
     def cancel(self, cid):
         # キャンセルするファイルの情報を取得
@@ -73,7 +73,7 @@ class Contents(Common):
             # DBから削除
             sql = 'DELETE FROM contents WHERE cid = :cid'
             self.db.cursor.execute(sql, {'cid': cid})
-            xbmc.executebuiltin('Container.Refresh')
+            self.refresh()
     
     def alert(self, message):
         xbmcgui.Dialog().ok(self.STR(30160), message)
