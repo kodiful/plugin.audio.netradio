@@ -7,7 +7,6 @@ import html
 import shutil
 from urllib.parse import urlencode
 
-import xbmc
 import xbmcplugin
 import xbmcgui
 

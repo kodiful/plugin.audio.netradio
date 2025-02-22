@@ -9,17 +9,16 @@
   <!--settings.xmlと同じidは使用しないこと-->
   <!--放送局設定-->
   <category label="30600">
-    <setting id="protocol" type="text" visible="False"/>
-    <setting id="sid" type="text" visible="False"/>
-    <setting label="30601" id="station" type="text" enable="eq(-2,USER)"/>
+    <setting id="sid" type="text" visible="false"/>
+    <setting label="30601" id="station" type="text" enable="eq(1,USER)"/>
     <setting label="30615" id="protocol" type="text" enable="false"/>
     <setting label="30613" type="action" option="close" action="RunPlugin(plugin://$ID/?action=open_site)" enable="!eq(3,)"/>
-    <setting label="30602" id="direct" type="text" visible="eq(-5,USER)"/>
-    <setting label="30603" id="logo" type="text" visible="eq(-6,USER)"/>
-    <setting label="30604" id="site" type="text" visible="eq(-7,USER)"/>
-    <setting label="30605" id="description" type="text" visible="eq(-8,USER)"/>
+    <setting label="30602" id="direct" type="text" visible="eq(-2,USER)"/>
+    <setting label="30603" id="logo" type="text" visible="eq(-3,USER)"/>
+    <setting label="30604" id="site" type="text" visible="eq(-4,USER)"/>
+    <setting label="30605" id="description" type="text" visible="eq(-5,USER)"/>
     <setting label="30617" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_station)" visible="eq(-8,0)" enable="!eq(-7,)+!eq(-4,)"/>
-    <setting label="30618" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_station)" visible="!eq(-9,0)+eq(-10,USER)" enable="!eq(-8,)+!eq(-5,)"/>
-    <setting label="30619" type="action" option="close" action="RunPlugin(plugin://$ID/?action=delete_station)" visible="!eq(-10,0)+eq(-11,USER)"/>
+    <setting label="30618" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_station)" visible="!eq(-9,0)+eq(-7,USER)" enable="!eq(-8,)+!eq(-5,)"/>
+    <setting label="30619" type="action" option="close" action="RunPlugin(plugin://$ID/?action=delete_station)" visible="!eq(-10,0)+eq(-8,USER)"/>
   </category>
 </settings>

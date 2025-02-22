@@ -53,9 +53,9 @@ class LocalProxy(HTTPServer, Common):
         elif protocol == 'SP':
             kwargs = {'cid': cid, 'protocol': protocol, 'key': key}
         elif protocol == 'success':
-            kwargs = {'cid': cid, 'protocol': 'success'}
+            kwargs = {'cid': cid, 'protocol': protocol}
         else:
-            kwargs = {'cid': cid, 'protocol': 'redirect', 'url': direct}
+            return direct  # mmsプロトコルのurlを302でリダイレクトさせようとするとエラーになるので直接アクセスさせることにする
         port = Common.GET('port')
         query = urllib.parse.urlencode(kwargs)
         return f'http://127.0.0.1:{port}/?{query}'
@@ -128,13 +128,6 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             self.send_response(200)
             self.end_headers()
             self.wfile.write(b'200 OK')
-        elif protocol == 'redirect':
-            url = params['url']
-            # urlへリダイレクト
-            self.send_response(302)
-            self.send_header('Location', url)
-            self.end_headers()
-            self.wfile.write(b'302 Found')
         elif protocol == 'RDK':
             key = params['key']
             url = f"https://f-radiko.smartstream.ne.jp/{key}/_definst_/simul-stream.stream/playlist.m3u"

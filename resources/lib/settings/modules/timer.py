@@ -2,8 +2,6 @@
 
 import os
 from datetime import datetime, timedelta
-from resources.lib.db import ThreadLocal
-from resources.lib.contents import Contents
 from resources.lib.settings.common import Common
 
 import xbmc

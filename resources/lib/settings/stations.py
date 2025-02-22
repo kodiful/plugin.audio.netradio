@@ -12,7 +12,7 @@ from resources.lib.db import ThreadLocal
 
 class Stations(Common):
 
-    KEYS = ('protocol', 'sid', 'top', 'schedule1', 'download1', 'station', 'description', 'direct', 'logo', 'site')
+    KEYS = ('protocol', 'sid', 'station', 'description', 'direct', 'logo', 'site')
 
     def __init__(self):
         # DBの共有インスタンス
@@ -44,7 +44,7 @@ class Stations(Common):
         # 放送局設定画面のテンプレートを読み込む
         with open(os.path.join(self.DATA_PATH, 'settings', 'station.xml'), 'r', encoding='utf-8') as f:
             template = f.read()
-        # テンプレートを書き換えて設定画面として書き出す
+        # 設定画面として書き出す
         with open(self.DIALOG_FILE, 'w', encoding='utf-8') as f:
             f.write(template)
         # 設定画面を開く
@@ -55,24 +55,15 @@ class Stations(Common):
 
     def set(self):
         # 設定後の値
-        after = dict([(key, self.GET(key)) for key in self.KEYS])
-        # 変更前の値を取得
-        sid = int(after['sid'])
-        if sid > 0:
-            sql = 'SELECT * FROM stations WHERE sid = :sid'
-            self.db.cursor.execute(sql, {'sid': sid})
-            before = self.db.cursor.fetchone()
-        # before/afterで変更可能なカラムを書き換える
-        if after['protocol'] == 'USER':
-            data = after
-            data.update({'key': ''})
-        else:
-            data = dict(before)
-        # !!!ここでデータのバリデーション
-        # stationテーブルに書き込む
-        self.db.add_station(data)
-        # トップ画面に遷移して再描画
-        self.refresh(True)  # 放送局を新規作成したのでトップ画面へ
+        settings = dict([(key, self.GET(key)) for key in self.KEYS])
+        if settings['protocol'] == 'USER':
+            # 不足している値を補完
+            settings.update({'key': ''})
+            # !!!ここでデータのバリデーション
+            # stationテーブルに書き込む
+            self.db.add_station(settings, top=1, vis=1)
+            # トップ画面に遷移して再描画
+            self.refresh(True)  # 放送局を新規作成したのでトップ画面へ
 
     def delete(self, sid):
         # キーワード情報取得
