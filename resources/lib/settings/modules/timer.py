@@ -9,7 +9,7 @@ import xbmc
 
 class Timer(Common):
     
-    DURATION = 5
+    DURATION = 30
 
     def __init__(self):
         super().__init__()
