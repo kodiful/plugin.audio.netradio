@@ -17,7 +17,7 @@ class Timer(Common):
         sql = '''SELECT s.station
         FROM status JOIN json_each(status.front) AS je ON je.value = s.sid JOIN stations AS s ON je.value = s.sid'''
         self.db.cursor.execute(sql)
-        self.stations = [self.STR(30529)] + [station for station, in self.db.cursor.fetchall()]
+        self.stations = [station for station, in self.db.cursor.fetchall()]
 
     def prep(self):
         # テンプレート

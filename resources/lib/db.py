@@ -208,7 +208,7 @@ class DB(Common):
             else:
                 kid, filename, cstatus = 0, '', 0
         elif kid == -1:
-            if self.GET('download') == 'true' and top * vis == 1:
+            if self.GET('download') == 'true' and vis == 1:
                 kid, filename, cstatus = kid, filename, 1  # ダウンロード予定
             else:
                 kid, filename, cstatus = 0, '', 0
