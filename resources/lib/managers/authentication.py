@@ -99,26 +99,22 @@ class AuthenticationManager(Common):
         # DBに格納されている認証情報を取得
         db.cursor.execute('SELECT area_id FROM auth')
         area_id, = db.cursor.fetchone()
-        # 認証結果を通知
-        if auth.response['area_id'] != area_id:
-            # 地域/都道府県を取得
-            db.cursor.execute('SELECT region, pref FROM cities WHERE area_id = :area_id', {'area_id': auth.response['area_id']})
-            region, pref = db.cursor.fetchone()
-            self.notify(f'Region verified as {region}/{pref}')
         # 認証情報をDBに書き込む
         data = auth.response
         set_clause = ', '.join([f'{key} = ?' for key in data.keys()])
         sql = f'UPDATE auth SET {set_clause}'
         db.cursor.execute(sql, list(data.values()))
         # 地域、都道府県を判定する
-        sql = "SELECT region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
-        db.cursor.execute(sql)
+        db.cursor.execute('SELECT region, pref FROM cities WHERE area_id = :area_id', {'area_id': data['area_id']})
         self.region, self.pref = db.cursor.fetchone()
         # 判定結果をstationsテーブルに反映する
         sql = "UPDATE stations SET vis = CASE WHEN region = :region THEN 1 ELSE 0 END WHERE protocol = 'NHK'"
         db.cursor.execute(sql, {'region': self.region})
         sql = "UPDATE stations SET vis = CASE WHEN pref = :pref THEN 1 ELSE 0 END WHERE protocol = 'RDK'"
         db.cursor.execute(sql, {'pref': self.pref})
+        # 認証前後で地域、都道府県が異なる場合は通知
+        if area_id != data['area_id']:
+            self.notify(f'Region verified as {self.region}/{self.pref}')
         # ログ
         self.log('radiko authentication status:', data['authed'], 'region:', self.region, 'pref:', self.pref)
         # 次の認証予定時刻
