@@ -88,20 +88,25 @@ if __name__ == '__main__':
 
     # ダウンロード
     elif action == 'show_downloads':
-        Contents().show(args.get('kid'))
+        kid = args.get('kid')
+        Contents().show(int(kid))
     elif action == 'delete_download':
-        Contents().delete(args.get('cid'))
-    elif action == 'cancel_download':
-        Contents().cancel(args.get('cid'))
-    elif action == 'alert_download':
-        Contents().alert(args.get('message'))
+        cid = args.get('cid')
+        Contents().delete(int(cid))
+    elif action == 'confirm_play':
+        Contents().confirm_play(args.get('path'))
+    elif action == 'confirm_cancel':
+        cid = args.get('cid')
+        Contents().confirm_cancel(int(cid))
+    elif action == 'show_error':
+        cid = args.get('cid')
+        Contents().show_error(int(cid))
     elif action == 'get_download':
         sid = args.get('sid', 0)
         Settings(flags=7).get(sid=int(sid))
     elif action == 'set_download':
         Settings().set(action)
     elif action == 'open_folder':
-        Common.log(args)
         path = os.path.join(Common.CONTENTS_PATH, args.get('dirname', ''))
         os_ = platform.system()
         if os_ == 'Windows':

@@ -7,6 +7,7 @@ import html
 import shutil
 from urllib.parse import urlencode
 
+import xbmc
 import xbmcplugin
 import xbmcgui
 
@@ -57,25 +58,24 @@ class Contents(Common):
             sql = 'DELETE FROM contents WHERE cid = :cid'
             self.db.cursor.execute(sql, {'cid': cid})
             self.refresh()
-
-    def cancel(self, cid):
-        # キャンセルするファイルの情報を取得
-        sql = '''SELECT *
-        FROM contents c 
-        JOIN keywords k ON c.kid = k.kid
-        WHERE c.cstatus = 1 AND c.cid = :cid'''
-        self.db.cursor.execute(sql, {'cid': cid})
-        ckdata = self.db.cursor.fetchone()
-        # 確認ダイアログを表示
-        ok = xbmcgui.Dialog().yesno(self.STR(30152), self.STR(30153) % ckdata['title'])
-        if ok:
-            # DBから削除
-            sql = 'DELETE FROM contents WHERE cid = :cid'
-            self.db.cursor.execute(sql, {'cid': cid})
-            self.refresh()
     
-    def alert(self, message):
-        xbmcgui.Dialog().ok(self.STR(30160), message)
+    def confirm_play(self, path):
+        ok = xbmcgui.Dialog().yesno(self.STR(30152), self.STR(30158))
+        if ok:
+            xbmc.executebuiltin('PlayMedia(%s)' % path)
+    
+    def confirm_cancel(self, cid):
+        ok = xbmcgui.Dialog().yesno(self.STR(30152), self.STR(30159))
+        if ok:
+            self.db.cursor.execute('DELETE FROM contents WHERE cid = :cid', {'cid': cid})
+            self.refresh()
+
+    def show_error(self, cid):
+        ok = xbmcgui.Dialog().yesno(self.STR(30152), self.STR(30160))
+        if ok:
+            self.db.cursor.execute('SELECT description FROM contents WHERE cid = :cid', {'cid': cid})
+            description, = self.db.cursor.fetchone()
+            xbmcgui.Dialog().textviewer(self.STR(30153), description)
 
     def _add_download(self, cksdata):
         cstatus = cksdata['cstatus']
@@ -93,21 +93,20 @@ class Contents(Common):
         self.contextmenu = []
         if cstatus < 0:
             self._contextmenu(self.STR(30112), {'action': 'delete_download', 'cid': cksdata['cid']})
-        elif cstatus == 1:
-            self._contextmenu(self.STR(30117), {'action': 'cancel_download', 'cid': cksdata['cid']})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # 再生するファイルのパス
-        if cstatus == -1:
-            url = os.path.join(self.CONTENTS_PATH, cksdata['dirname'], cksdata['filename'])
-        elif cstatus == 1:
-            query = urlencode({'action': 'alert_download', 'message': self.STR(30161)})
+        path = os.path.join(self.CONTENTS_PATH, cksdata['dirname'], cksdata['filename'])
+        if cstatus == -1:  # 正常
+            url = path
+        elif cstatus > 1:  # 保存中
+            query = urlencode({'action': 'confirm_play', 'path': path})
             url = '%s?%s' % (sys.argv[0], query)
-        elif cstatus > 1:
-            query = urlencode({'action': 'alert_download', 'message': self.STR(30162)})
+        elif cstatus == 1:  # 予約中
+            query = urlencode({'action': 'confirm_cancel', 'cid': cksdata['cid']})
             url = '%s?%s' % (sys.argv[0], query)
-        else:
-            query = urlencode({'action': 'alert_download', 'message': self.STR(30163)})
+        else:  # エラー
+            query = urlencode({'action': 'show_error', 'cid': cksdata['cid']})
             url = '%s?%s' % (sys.argv[0], query)
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
@@ -129,10 +128,12 @@ class Contents(Common):
         format = d.strftime(format)
         date = format % weekdays[w]
         # カラー
-        if ckdata['cstatus'] > 0:
+        if ckdata['cstatus'] > 1:  # 保存中
+            title = '[COLOR white]%s-%s[/COLOR]  [COLOR white]%s[/COLOR]' % (date, end, ckdata['title'])
+        elif ckdata['cstatus'] == 1:  # 予約中
+            title = '[COLOR lightgray]%s-%s[/COLOR]  [COLOR lightgray]%s[/COLOR]' % (date, end, ckdata['title'])
+        elif ckdata['cstatus'] < -1:  # エラー
             title = '[COLOR gray]%s-%s[/COLOR]  [COLOR gray]%s[/COLOR]' % (date, end, ckdata['title'])
-        elif ckdata['cstatus'] < -1:
-            title = '[COLOR red]%s-%s[/COLOR]  [COLOR red]%s[/COLOR]' % (date, end, ckdata['title'])
         elif w == 6 or self.db.is_holiday(d.strftime('%Y-%m-%d')):
             title = '[COLOR red]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date, end, ckdata['title'])
         elif w == 5:

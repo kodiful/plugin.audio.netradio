@@ -101,11 +101,11 @@ msgid "Delete file of \"%s\"?"
 msgstr ""
 
 msgctxt "#30152"
-msgid "Confirm deletion"
+msgid "Confirm play"
 msgstr ""
 
 msgctxt "#30153"
-msgid "Cancel download of \"%s\"?"
+msgid "Error info"
 msgstr ""
 
 msgctxt "#30154"
@@ -124,24 +124,16 @@ msgctxt "#30157"
 msgid "Delete keyword settings and downloaded files for \"%s\"?"
 msgstr ""
 
-#
-# ok
-#
+msgctxt "#30158"
+msgid "Downloading. Do you continue downloading and play?"
+msgstr ""
+
+msgctxt "#30159"
+msgid "Download has not started. Do you cancel the download?"
+msgstr ""
 
 msgctxt "#30160"
-msgid "File info"
-msgstr ""
-
-msgctxt "#30161"
-msgid "Scheduled (Cancelable from context menu)"
-msgstr ""
-
-msgctxt "#30162"
-msgid "Unable to play due to being downloaded"
-msgstr ""
-
-msgctxt "#30163"
-msgid "Unable to play due to download failure"
+msgid "Unable to play due to failed download. Do you see error info?"
 msgstr ""
 
 #

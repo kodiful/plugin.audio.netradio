@@ -35,12 +35,12 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
             if os.path.exists(mp3_file):
                 os.remove(mp3_file)
         # ダウンロード済み以外の番組情報を削除
-        db.cursor.execute('SELECT k.dirname, c.filename FROM contents AS c JOIN keywords as k ON c.kid = k.kid WHERE c.cstatus != -1')
+        db.cursor.execute('SELECT k.dirname, c.filename FROM contents AS c JOIN keywords as k ON c.kid = k.kid WHERE c.cstatus != -1 or c.end > NOW()')
         for dirname, filename in db.cursor.fetchall():
             mp3_file = os.path.join(self.CONTENTS_PATH, dirname, filename)
             if os.path.exists(mp3_file):
                 os.remove(mp3_file)
-        db.cursor.execute('DELETE FROM contents WHERE cstatus != -1')
+        db.cursor.execute('DELETE FROM contents WHERE cstatus != -1 or end > NOW()')
         # 番組表更新予定時間を初期化
         db.cursor.execute("UPDATE stations SET nextaired = '1970-01-01 09:00:00'")
         # 設定画面をデフォルトに設定

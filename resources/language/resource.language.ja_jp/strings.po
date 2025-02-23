@@ -98,15 +98,15 @@ msgstr "削除確認"
 
 msgctxt "#30151"
 msgid "Delete file of \"%s\"?"
-msgstr "\"%s\" のファイルを削除しますか"
+msgstr "\"%s\" のファイルを削除しますか？"
 
 msgctxt "#30152"
-msgid "Confirm deletion"
-msgstr "キャンセル確認"
+msgid "Confirm play"
+msgstr "再生確認"
 
 msgctxt "#30153"
-msgid "Cancel download of \"%s\"?"
-msgstr "\"%s\"のダウンロードをキャンセルしますか"
+msgid "Error info"
+msgstr "エラー情報"
 
 msgctxt "#30154"
 msgid "Confirm deletion"
@@ -124,25 +124,17 @@ msgctxt "#30157"
 msgid "Delete keyword settings and downloaded files for \"%s\"?"
 msgstr "\"%s\" のキーワード設定と保存済みファイルを削除しますか？"
 
-#
-# ok
-#
+msgctxt "#30158"
+msgid "Downloading. Do you continue downloading and play?"
+msgstr "保存中です。保存を継続したまま再生しますか？"
+
+msgctxt "#30159"
+msgid "Download has not started. Do you cancel the download?"
+msgstr "保存が開始されていません。保存をキャンセルしますか？"
 
 msgctxt "#30160"
-msgid "File info"
-msgstr "ファイル情報"
-
-msgctxt "#30161"
-msgid "Scheduled (Cancelable from context menu)"
-msgstr "予約中（コンテクストメニューからキャンセルできます）"
-
-msgctxt "#30162"
-msgid "Unable to play due to being downloaded"
-msgstr "保存中のため再生できません"
-
-msgctxt "#30163"
-msgid "Unable to play due to download failure"
-msgstr "保存に失敗したため再生できません"
+msgid "Unable to play due to failed download. Do you see error info?"
+msgstr "保存を失敗したため再生できません。エラー情報を表示しますか？"
 
 #
 # default settings

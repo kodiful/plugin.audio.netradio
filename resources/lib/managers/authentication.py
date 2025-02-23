@@ -95,7 +95,16 @@ class AuthenticationManager(Common):
         auth = Authenticator()
         if auth.response['authed'] == 0:
             # 認証失敗を通知
-            self.notify('radiko authentication failed', error=True)
+            self.notify('authentication failed', error=True)
+        # DBに格納されている認証情報を取得
+        db.cursor.execute('SELECT area_id FROM auth')
+        area_id, = db.cursor.fetchone()
+        # 認証結果を通知
+        if auth.response['area_id'] != area_id:
+            # 地域/都道府県を取得
+            db.cursor.execute('SELECT region, pref FROM cities WHERE area_id = :area_id', {'area_id': auth.response['area_id']})
+            region, pref = db.cursor.fetchone()
+            self.notify(f'Region verified as {region}/{pref}')
         # 認証情報をDBに書き込む
         data = auth.response
         set_clause = ', '.join([f'{key} = ?' for key in data.keys()])

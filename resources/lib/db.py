@@ -192,27 +192,31 @@ class DB(Common):
         # データを補完
         title = data['title']
         description = self.description(data)
+        station = data['station']
+        start = data['start']
+        end = data['end']
+        filename = os.path.basename(mp3_file) if mp3_file else self.filename(station, start, end)
         duration = int(MP3(mp3_file).info.length) if mp3_file else 0
         # 放送局設定
-        sql = 'SELECT sid, top FROM stations WHERE station = :station AND region = :region AND pref = :pref'
+        sql = 'SELECT sid, top, vis FROM stations WHERE station = :station AND region = :region AND pref = :pref'
         self.cursor.execute(sql, {'station': data['station'], 'region': data['region'], 'pref': data['pref']})
-        sid, top = self.cursor.fetchone()
+        sid, top, vis = self.cursor.fetchone()
         # キーワード設定（kid, filename, cstatus）
         if kid > 0:
             if mp3_file:
-                kid, filename, cstatus = kid, os.path.basename(mp3_file), -1  # ダウンロード済み
+                kid, filename, cstatus = kid, filename, -1  # ダウンロード済み
             else:
                 kid, filename, cstatus = 0, '', 0
         elif kid == -1:
-            if self.GET('download') == 'true' and top == 1:
-                kid, filename, cstatus = kid, self.filename(data), 1  # ダウンロード予定
+            if self.GET('download') == 'true' and top * vis == 1:
+                kid, filename, cstatus = kid, filename, 1  # ダウンロード予定
             else:
                 kid, filename, cstatus = 0, '', 0
         else:
-            if self.GET('download') == 'true' and top == 1:
-                kid = self.keyword_match(data, title, description)
+            if self.GET('download') == 'true':
+                kid = self.keyword_match(title, description, station, start, top * vis)
                 if kid > 0:
-                    filename, cstatus = self.filename(data), 1  # ダウンロード予定
+                    filename, cstatus = filename, 1  # ダウンロード予定
                 else:
                     filename, cstatus = '', 0
             else:
@@ -223,16 +227,16 @@ class DB(Common):
             'kid': kid,
             'cstatus': cstatus,
             'filename': filename,
-            'title': data['title'],
-            'start': data['start'],
-            'end': data['end'],
-            'station': data['station'],
+            'title': title,
+            'start': start,
+            'end': end,
+            'station': station,
             'duration': duration,
-            'act': data['act'],
-            'info': data['info'],
-            'desc': data['desc'],
+            'act': data.get('act', ''),
+            'info': data.get('info', ''),
+            'desc': data.get('desc', ''),
             'description': description,
-            'site': data['site'],
+            'site': data.get('site', ''),
             'version': self.ADDON_VERSION,
             'modified': self.now()
         }
@@ -331,16 +335,15 @@ class DB(Common):
         path = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', f'{kid}.png')
         create_qrcode(url, path)
         # 既存のcontentsと照合
-        sql = '''SELECT * 
+        sql = '''SELECT c.cid, c.title, c.description, c.station, c.start, c.end, s.top, s.vis 
         FROM contents AS c JOIN stations AS s ON c.sid = s.sid 
         WHERE c.cstatus = 0 AND c.end > NOW()'''
         self.cursor.execute(sql)
-        for csdata in self.cursor.fetchall():
-            kid = self.keyword_match(dict(csdata), csdata['title'], csdata['description'])
-            filename = self.filename(dict(csdata))
+        for cid, title, description, station, start, end, top, vis in self.cursor.fetchall():
+            kid = self.keyword_match(title, description, station, start, top * vis)
             if kid > 0:
                 sql = 'UPDATE contents SET kid = :kid, filename = :filename, cstatus = 1 WHERE cid = :cid'
-                self.cursor.execute(sql, {'cid': csdata['cid'], 'kid': kid, 'filename': filename})
+                self.cursor.execute(sql, {'cid': cid, 'kid': kid, 'filename': self.filename(station, start, end)})
 
     def delete_keyword(self, kid):
         sql = 'DELETE FROM keywords WHERE kid = :kid'
@@ -369,27 +372,29 @@ class DB(Common):
                 description += f'<p class="{key}">{value}</p>'
         return description
     
-    def filename(self, cdata):
-        station = cdata['station']
-        start = cdata['start']  # 2025-02-04 21:24:00
-        end = cdata['end']
+    def filename(self, station, start, end):
+        # 2025-02-04 21:24:00
         filename = f'{start[0:4]}-{start[5:7]}{start[8:10]}-{start[11:13]}{start[14:16]}-{end[11:13]}{end[14:16]} {station}.mp3'
         return filename
     
-    def keyword_match(self, cdata, title, description):
-        sql = "SELECT kid, keyword, match, weekday, station FROM keywords WHERE kstatus = 1"
-        self.cursor.execute(sql)
-        for kid, keyword, match, weekday, station in self.cursor.fetchall():
-            #today = datetime.strptime(cdata['start'], '%Y-%m-%d %H:%M:%S')
-            #today = today.weekday()
-            today = self.weekday(cdata['start'])
-            if weekday != 7 and weekday != today:
+    def keyword_match(self, title, description, station, start, topvis):
+        # startを曜日に変換
+        start = self.weekday(start)
+        # 各キーワード設定と照合
+        self.cursor.execute('SELECT kid, keyword, match, weekday, station FROM keywords WHERE kstatus = 1')
+        for kid, keyword, match, weekday, source in self.cursor.fetchall():
+            # 曜日
+            if weekday != 7 and weekday != start:
                 continue
-            if station != '' and station != cdata['station']:
-                continue
+            # キーワード
             if match == 0 and title.find(keyword) < 0:
                 continue
-            if match == 1 and description.find(keyword) < 0:
+            if match == 1 and title.find(keyword) < 0 and description.find(keyword) < 0:
+                continue
+            # 放送局
+            if source == '' and topvis == 0:
+                continue
+            if source != '' and source != station:
                 continue
             return kid
         else:
@@ -419,17 +424,18 @@ class DB(Common):
     
     def search_by_station(self, protocol, station):
         # 放送局名の表記の揺れを解決して名寄せする
-        sql = f'SELECT code, region, pref, city, station, site, SJ, LR, SR, SP FROM master WHERE {protocol} = :station'
+        sql = f'SELECT code, region, pref, city, station, site, SJ, LR, SR, SP, SD FROM master WHERE {protocol} = :station'
         self.cursor.execute(sql, {'station': station})
         results = self.cursor.fetchone()
         if results:
-            code, region, pref, city, station, site, SJ, LR, SR, SP = results
+            code, region, pref, city, station, site, SJ, LR, SR, SP, SD = results
             # 優先するprotocolを判定する
             status = False
             if LR: status = protocol == 'LR'
             elif SJ: status = protocol == 'SJ'
             elif SP: status = protocol == 'SP'
             elif SR: status = protocol == 'SR'
+            elif SD: status = protocol == 'SD'
             return code, region, pref, city, station, site, status
         else:
             return None

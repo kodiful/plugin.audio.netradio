@@ -139,7 +139,7 @@ class Transfer(Common):
                 'delay': 0,
             }
         # プラグインの放送局フォルダ直下のjsonフォルダにあるjsonファイルから読み込む
-        for json_file in [os.path.join(self.DATA_PATH, 'stations', 'json', f'{protocol}.json') for protocol in ('NHK', 'RDK', 'SJ', 'LR', 'SP', 'SR')]:
+        for json_file in [os.path.join(self.DATA_PATH, 'stations', 'json', f'{protocol}.json') for protocol in ('NHK', 'RDK', 'LR', 'SJ', 'SP', 'SR', 'SD')]:
             with open(json_file, encoding='utf-8') as f:
                 # jsonファイルを読み込む
                 for data in json.loads(f.read()):

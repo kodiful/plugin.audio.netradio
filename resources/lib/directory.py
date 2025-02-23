@@ -44,7 +44,7 @@ class Directory(ScheduleManager):
                 self._add_station(sdata)
                 stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'COMM':
-            protocols = "('SJ', 'LR', 'SP', 'SR')"
+            protocols = "('LR', 'SJ', 'SP', 'SR', 'SD')"
             if region == '北海道': pref = '北海道'
             if region is None:  # 地域リスト
                 sql = 'SELECT DISTINCT region FROM stations WHERE protocol IN %s ORDER BY code' % protocols
@@ -72,6 +72,7 @@ class Directory(ScheduleManager):
                 WHEN 'LR' THEN 3
                 WHEN 'SP' THEN 3
                 WHEN 'SR' THEN 3
+                WHEN 'SD' THEN 3
                 WHEN 'USER' THEN 4
                 ELSE 9
             END, code, station'''
@@ -110,7 +111,8 @@ class Directory(ScheduleManager):
         xbmcgui.Dialog().textviewer(self.STR(30609), description)
 
     def showhide(self, sid, top):
-        self.db.cursor.execute('UPDATE stations SET top = :top WHERE sid = :sid', {'sid': sid, 'top': top})
+        sql = 'UPDATE stations SET top = :top WHERE (protocol, station) = (SELECT protocol, station FROM stations WHERE sid = :sid)'
+        self.db.cursor.execute(sql, {'sid': sid, 'top': top})
         self.refresh(top)  # トップに追加したときはトップ画面へ
 
     def _setup_directory(self):
