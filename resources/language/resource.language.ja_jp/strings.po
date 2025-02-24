@@ -32,9 +32,13 @@ msgctxt "#30003"
 msgid "Community Radio"
 msgstr "コミュニティラジオ"
 
-msgctxt "#30004"
-msgid "Other saved/saving contents"
-msgstr "その他の保存中/保存済みの番組"
+msgctxt "#30010"
+msgid "Saved contents (by keyword)"
+msgstr "キーワード別"
+
+msgctxt "#30011"
+msgid "Saved contents (by station)"
+msgstr "放送局別"
 
 #
 # for contextmenus

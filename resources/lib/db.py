@@ -4,11 +4,10 @@ import os
 import sqlite3
 import threading
 from datetime import datetime, timezone, timedelta
-from mutagen.mp3 import MP3
 
 from resources.lib.common import Common
 from resources.lib.dbstuff.schema import Schema
-from resources.lib.dbstuff.utilities import Utilities, load_logo, create_qrcode
+from resources.lib.dbstuff.utilities import Utilities, load_logo
 
 
 # DBの共有インスタンスを格納するスレッドローカルデータ
@@ -189,10 +188,6 @@ class DB(Common, Schema, Utilities):
         dirname = str(kid)
         sql = 'UPDATE keywords SET dirname = :dirname WHERE kid = :kid'
         self.cursor.execute(sql, {'kid': kid, 'dirname': dirname})
-        # 画像作成
-        url = '/'.join([self.GET('rssurl'), dirname, 'rss.xml'])
-        path = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', f'{kid}.png')
-        create_qrcode(url, path)
         # 既存のcontentsと照合
         sql = '''SELECT c.cid, c.title, c.description, c.station, c.start, c.end, s.top, s.vis 
         FROM contents AS c JOIN stations AS s ON c.sid = s.sid 

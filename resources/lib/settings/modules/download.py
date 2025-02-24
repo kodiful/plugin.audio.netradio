@@ -23,7 +23,7 @@ class Download(Common):
 
     def set(self):
         cid = self.GET('cid')
-        sql = 'SELECT protocol, station, start, end FROM contents WHERE cid = :cid'
+        sql = 'SELECT s.protocol, c.station, c.start, c.end FROM contents AS c JOIN stations AS s ON c.sid = s.sid WHERE c.cid = :cid'
         self.db.cursor.execute(sql, {'cid': int(cid)})
         protocol, station, start, end = self.db.cursor.fetchone()
         filename = self.db.filename(station, start, end)

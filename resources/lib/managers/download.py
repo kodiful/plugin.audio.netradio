@@ -100,7 +100,7 @@ def downloader(cid, kid, filename, protocol, key, title, end, direct, queue):
         # ID3タグを書き込む
         db.write_id3(mp3_file, cid)
         # RSSを更新する
-        Contents().create_rss(kid, keyword, dirname)
+        Contents().update_rss()
         # websocket停止
         url = LocalProxy.proxy('success', cid=cid)
         try:

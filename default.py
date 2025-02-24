@@ -45,6 +45,8 @@ if __name__ == '__main__':
     elif action == 'show_info':
         sid = args.get('sid', 0)
         Directory().show_info(int(sid))
+    elif action == 'show_qrcode':
+        Directory().show_qrcode(args.get('url'))
     elif action == 'add_to_top':
         sid = args.get('sid', 0)
         Directory().showhide(int(sid), 1)
@@ -88,8 +90,9 @@ if __name__ == '__main__':
 
     # ダウンロード
     elif action == 'show_downloads':
-        kid = args.get('kid')
-        Contents().show(int(kid))
+        kid = args.get('kid', 0)
+        sid = args.get('sid', 0)
+        Contents().show(kid=int(kid), sid=int(sid))
     elif action == 'delete_download':
         cid = args.get('cid')
         Contents().delete(int(cid))
@@ -116,7 +119,7 @@ if __name__ == '__main__':
         else:
             Common.notify('Unsupported on %s' % os_)
     elif action == 'update_rss':
-        Contents().update_rss()
+        Contents().update_rss(notify=True)
 
     # アドオン設定
     elif action == 'settings':

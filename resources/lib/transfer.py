@@ -7,7 +7,7 @@ import json
 from mutagen.mp3 import MP3
 
 from resources.lib.common import Common
-from resources.lib.db import ThreadLocal, create_qrcode
+from resources.lib.db import ThreadLocal
 from resources.lib.contents import Contents
 
 
@@ -206,6 +206,8 @@ class Transfer(Common):
         for item in glob.glob(os.path.join(self.PROFILE_PATH, '*')):
             if os.path.basename(item) == '~backup':
                 continue
+            if os.path.basename(item) == os.path.basename(self.DB_FILE):
+                continue
             if os.path.isfile(item):
                 shutil.copy(item, os.path.join(destdir, os.path.basename(item)))
             if os.path.isdir(item):
@@ -247,10 +249,6 @@ class Transfer(Common):
         placeholders = ', '.join(['?' for _ in values])
         sql = f'INSERT INTO keywords ({columns}) VALUES ({placeholders})'
         self.db.cursor.execute(sql, list(values.values()))
-        # QRコード画像作成
-        url = '/'.join([self.GET('rssurl'), values['dirname'], 'rss.xml'])
-        path = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', str(values['kid']) + '.png')
-        create_qrcode(url, path)
 
     def postprocess(self):
         # ファイル/ディレクトリ削除

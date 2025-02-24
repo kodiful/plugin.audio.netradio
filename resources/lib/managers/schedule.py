@@ -4,7 +4,6 @@ import time
 import importlib
 import threading
 import json
-from datetime import datetime, timedelta
 import xbmc
 
 from resources.lib.common import Common

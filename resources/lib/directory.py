@@ -3,8 +3,11 @@
 import sys
 import os
 import re
+from qrcode import QRCode
+from sqlite3 import dbapi2 as sqlite
 from urllib.parse import urlencode
 
+import xbmc
 import xbmcgui
 import xbmcplugin
 
@@ -34,14 +37,14 @@ class Directory(ScheduleManager):
             sql = 'SELECT * FROM stations WHERE protocol = :protocol AND vis = 1 ORDER BY station'
             self.db.cursor.execute(sql, {'protocol': 'NHK'})
             for sdata in self.db.cursor.fetchall():
-                self._add_station(sdata)
+                self._add_oastation(sdata)
                 stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'RDK':
             # RDKの放送局一覧を表示
             sql = 'SELECT * FROM stations WHERE protocol = :protocol AND vis = 1 ORDER BY station'
             self.db.cursor.execute(sql, {'protocol': 'RDK'})
             for sdata in self.db.cursor.fetchall():
-                self._add_station(sdata)
+                self._add_oastation(sdata)
                 stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'COMM':
             protocols = "('LR', 'SJ', 'SP', 'SR', 'SD')"
@@ -60,10 +63,36 @@ class Directory(ScheduleManager):
                 sql = 'SELECT * FROM stations WHERE protocol IN %s AND region = :region AND pref = :pref AND vis = 1 ORDER BY code' % protocols
                 self.db.cursor.execute(sql, {'region': region, 'pref': pref})
                 for sdata in self.db.cursor.fetchall():
-                    self._add_station(sdata)
+                    self._add_oastation(sdata)
                     stations.append((sdata['protocol'], sdata['sid'], 1))
+        elif protocol == 'keyword':
+            # 保存ファイルのキーワード一覧を表示
+            sql = 'SELECT kid, keyword, dirname FROM keywords WHERE kid != -1 ORDER BY keyword'
+            self.db.cursor.execute(sql)
+            for kid, keyword, dirname in self.db.cursor.fetchall():
+                self._add_keyword(kid, keyword, dirname)
+        elif protocol == 'dlstation':
+            # 保存ファイルの放送局一覧を表示
+            sql = '''SELECT DISTINCT c.station, s.protocol, s.sid 
+            FROM contents AS c 
+            JOIN stations AS s ON c.sid = s.sid
+            WHERE c.kid = -1 ORDER BY
+            CASE s.protocol
+                WHEN 'NHK' THEN 1
+                WHEN 'RDK' THEN 2
+                WHEN 'SJ' THEN 3
+                WHEN 'LR' THEN 3
+                WHEN 'SP' THEN 3
+                WHEN 'SR' THEN 3
+                WHEN 'SD' THEN 3
+                WHEN 'USER' THEN 4
+                ELSE 9
+            END, s.code, s.station'''
+            self.db.cursor.execute(sql)
+            for station, protocol, sid in self.db.cursor.fetchall():
+                self._add_dlstation(sid, protocol, station)
         else:
-            # トップページの放送局一覧を表示
+            # トップ画面の放送局一覧を表示
             sql = '''SELECT * FROM stations WHERE top = 1 AND vis = 1 ORDER BY
             CASE protocol
                 WHEN 'NHK' THEN 1
@@ -78,12 +107,10 @@ class Directory(ScheduleManager):
             END, code, station'''
             self.db.cursor.execute(sql)
             for sdata in self.db.cursor.fetchall():
-                self._add_station(sdata)
+                self._add_oastation(sdata)
                 stations.append((sdata['protocol'], sdata['sid'], 1))
             # ディレクトリの一覧を表示
             self._setup_directory()
-            # キーワードの一覧を表示
-            self._setup_keywords()
         # 番組表取得
         self.maintain_schedule(stations)
         # リストアイテム追加完了
@@ -109,6 +136,11 @@ class Directory(ScheduleManager):
         else:
             description = self.STR(30610)
         xbmcgui.Dialog().textviewer(self.STR(30609), description)
+
+    def show_qrcode(self, url):
+        path = os.path.join(self.PROFILE_PATH, 'qr.png')
+        self._qrcode(url, path, True)
+        xbmc.executebuiltin('ShowPicture(%s)' % path)
 
     def showhide(self, sid, top):
         sql = 'UPDATE stations SET top = :top WHERE (protocol, station) = (SELECT protocol, station FROM stations WHERE sid = :sid)'
@@ -143,17 +175,25 @@ class Directory(ScheduleManager):
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show_stations', 'protocol': 'COMM'})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
+        # 保存ファイル（キーワード別）
+        li = xbmcgui.ListItem('[COLOR lightgreen]%s[/COLOR]' % self.STR(30010))
+        self.setArt(li, 'set')
+        # コンテクストメニュー
+        self.contextmenu = []
+        self._contextmenu(self.STR(30100), {'action': 'settings'})
+        li.addContextMenuItems(self.contextmenu, replaceItems=True)
+        query = urlencode({'action': 'show_stations', 'protocol': 'keyword'})
+        xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
+        # 保存ファイル（キーワード別）
+        li = xbmcgui.ListItem('[COLOR lightgreen]%s[/COLOR]' % self.STR(30011))
+        self.setArt(li, 'set')
+        # コンテクストメニュー
+        self.contextmenu = []
+        self._contextmenu(self.STR(30101), {'action': 'settings'})
+        li.addContextMenuItems(self.contextmenu, replaceItems=True)
+        query = urlencode({'action': 'show_stations', 'protocol': 'dlstation'})
+        xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
     
-    def _setup_keywords(self):
-        sql = '''SELECT kid, keyword, dirname FROM keywords ORDER BY
-        CASE kid
-            WHEN -1 THEN 1
-            ELSE 0
-        END, keyword COLLATE NOCASE'''
-        self.db.cursor.execute(sql)
-        for kid, keyword, dirname in self.db.cursor.fetchall():
-            self._add_keyword(kid, keyword, dirname)
-
     def _add_directory(self, region, pref=None):
         # listitemを追加する
         li = xbmcgui.ListItem(pref or region)
@@ -169,7 +209,7 @@ class Directory(ScheduleManager):
             query = urlencode({'action': 'show_stations', 'protocol': 'COMM', 'region': region, 'pref': pref})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
-    def _add_station(self, sdata):
+    def _add_oastation(self, sdata):
         # listitemを追加する
         li = xbmcgui.ListItem(self._title(sdata))
         li.setProperty('IsPlayable', 'true')
@@ -204,20 +244,38 @@ class Directory(ScheduleManager):
         self.setArt(li, 'set' if kid == -1 else 'playlist')
         # コンテクストメニュー
         self.contextmenu = []
-        if kid == -1:
-            self._contextmenu(self.STR(30110), {'action': 'get_timer'})
-        elif kid > 0:
+        if kid > 0:
             self._contextmenu(self.STR(30108), {'action': 'get_keyword', 'kid': kid})
         if self.GET('rss') == 'true':
-            qr = os.path.join(self.PROFILE_PATH, 'keywords', 'qr', f'{kid}.png')
-            self.contextmenu.append((self.STR(30118), f'ShowPicture({qr})'))
+            url = '/'.join([self.GET('rssurl'), dirname, 'rss.xml'])
+            self._contextmenu(self.STR(30118), {'action': 'show_qrcode', 'url': url})
         self._contextmenu(self.STR(30119), {'action': 'open_folder', 'dirname': dirname})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # リストアイテムを追加
         query = urlencode({'action': 'show_downloads', 'kid': kid})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
-        
+
+    def _add_dlstation(self, sid, protocol, station):
+        # listitemを追加する
+        li = xbmcgui.ListItem(station)
+        # サムネイル画像
+        self.setArt(li, 'satellite')
+        image = os.path.join(self.PROFILE_PATH, 'stations', 'logo', protocol, station + '.png')
+        li.setArt({'thumb': image, 'icon': image})
+        # コンテクストメニュー
+        self.contextmenu = []
+        self._contextmenu(self.STR(30108), {'action': 'get_station', 'sid': sid})
+        if self.GET('rss') == 'true':
+            url = '/'.join([self.GET('rssurl'), '0', protocol, station, 'rss.xml'])
+            self._contextmenu(self.STR(30118), {'action': 'show_qrcode', 'url': url})
+        self._contextmenu(self.STR(30119), {'action': 'open_folder', 'dirname': os.path.join('0', protocol, station)})
+        self._contextmenu(self.STR(30100), {'action': 'settings'})
+        li.addContextMenuItems(self.contextmenu, replaceItems=True)
+        # リストアイテムを追加
+        query = urlencode({'action': 'show_downloads', 'sid': sid})
+        xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
+     
     def _title(self, sdata):
         # コミュニティ放送局用に都市名を追加
         basename = sdata['station']
@@ -251,3 +309,24 @@ class Directory(ScheduleManager):
 
     def _contextmenu(self, name, args):
         self.contextmenu.append((name, 'RunPlugin(%s?%s)' % (sys.argv[0], urlencode(args))))
+
+    def _qrcode(self, url, path, force=False):
+        # ファイルを削除
+        if force and os.path.exists(path):
+            os.remove(path)
+        # DBから画像のキャッシュを削除
+        conn = sqlite.connect(self.IMAGE_CACHE)
+        sql = 'DELETE FROM texture WHERE url = :path'
+        conn.cursor().execute(sql, {'path': path})
+        conn.commit()
+        conn.close()
+        # 画像がある場合はなにもしない
+        if os.path.exists(path):
+            return
+        # 画像格納用のディレクトリを用意
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        # 画像を生成
+        qr = QRCode(version=1, box_size=10, border=4)
+        qr.add_data(re.sub(r'^http(s?)://', r'podcast\1://', url))
+        qr.make(fit=True)
+        qr.make_image(fill_color="black", back_color="white").save(path, 'PNG')

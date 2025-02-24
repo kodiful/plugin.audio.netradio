@@ -3,8 +3,6 @@
 import sys
 import os
 import locale
-import html
-import shutil
 from urllib.parse import urlencode
 
 import xbmc
@@ -13,6 +11,8 @@ import xbmcgui
 
 from resources.lib.common import Common
 from resources.lib.db import ThreadLocal
+from resources.lib.rss.keywords import Keywords
+from resources.lib.rss.stations import Stations
 
 
 class Contents(Common):
@@ -23,14 +23,23 @@ class Contents(Common):
         # ロケール設定
         locale.setlocale(locale.LC_ALL, '')
 
-    def show(self, kid):
-        sql = '''SELECT *
-        FROM contents c 
-        JOIN keywords k ON c.kid = k.kid
-        JOIN stations s ON c.sid = s.sid
-        WHERE c.kid = :kid AND c.cstatus != 0
-        ORDER BY c.start DESC'''
-        self.db.cursor.execute(sql, {'kid': kid})
+    def show(self, kid=0, sid=0):
+        if kid > 0:
+            sql = '''SELECT *
+            FROM contents AS c 
+            JOIN keywords AS k ON c.kid = k.kid
+            JOIN stations AS s ON c.sid = s.sid
+            WHERE c.kid = :kid AND c.cstatus != 0
+            ORDER BY c.start DESC'''
+            self.db.cursor.execute(sql, {'kid': kid})
+        if sid > 0:
+            sql = '''SELECT *
+            FROM contents AS c
+            JOIN keywords AS k ON c.kid = k.kid
+            JOIN stations AS s ON c.sid = s.sid
+            WHERE c.sid = :sid AND c.cstatus != 0 AND c.kid = -1
+            ORDER BY c.start DESC'''
+            self.db.cursor.execute(sql, {'sid': sid})
         for cksdata in self.db.cursor.fetchall():
             # リストアイテムを追加
             self._add_download(cksdata)
@@ -145,114 +154,23 @@ class Contents(Common):
     def _contextmenu(self, name, args):
         self.contextmenu.append((name, 'RunPlugin(%s?%s)' % (sys.argv[0], urlencode(args))))
 
-    def update_rss(self):
+    def update_rss(self, notify=False):
         # RSS設定がされていない場合は終了
         if self.GET('rss') == 'false': return
-        # RSS作成
-        sql = 'SELECT kid, keyword, dirname FROM keywords'
+        # キーワードRSS作成
+        sql = 'SELECT keyword, dirname, kid FROM keywords WHERE kid > 0'
         self.db.cursor.execute(sql)
-        for kid, keyword, dirname in self.db.cursor.fetchall():
-            self.create_rss(kid, keyword, dirname)
-        # インデクス作成
-        self.create_index()
+        for keyword, dirname, kid in self.db.cursor.fetchall():
+            Keywords(keyword, dirname).create_rss(kid)
+        # キーワードインデクス作成
+        Keywords('NetRadio Client', '.').create_index()
+        # 放送局RSS作成
+        sql = 'SELECT DISTINCT c.station, s.protocol, s.sid FROM contents AS c JOIN stations AS s ON c.sid = s.sid WHERE c.kid = -1'
+        self.db.cursor.execute(sql)
+        for station, protocol, sid in self.db.cursor.fetchall():
+            Stations(station, protocol).create_rss(sid)
+        # 放送局インデクス作成
+        Stations('NetRadio Client', '.').create_index()
         # 完了通知
-        self.notify('RSS has been updated')
-
-    def create_rss(self, kid, keyword, dirname):
-        # RSS設定がされていない場合は終了
-        if self.GET('rss') == 'false': return
-        # templates
-        with open(os.path.join(self.DATA_PATH, 'rss', 'header.xml'), 'r', encoding='utf-8') as f:
-            header = f.read()
-        with open(os.path.join(self.DATA_PATH, 'rss', 'body.xml'), 'r', encoding='utf-8') as f:
-            body = f.read()
-        with open(os.path.join(self.DATA_PATH, 'rss', 'footer.xml'), 'r', encoding='utf-8') as f:
-            footer = f.read()
-        # 時刻表記のロケール設定                                                                                                                                                             
-        locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
-        # open writer
-        if os.path.exists(os.path.join(self.CONTENTS_PATH, dirname)) is False:
-            os.makedirs(os.path.join(self.CONTENTS_PATH, dirname), exist_ok=True)
-        writer = open(os.path.join(self.CONTENTS_PATH, dirname, 'rss.xml'), 'w', encoding='utf-8')
-        # write header
-        writer.write(header.format(image='icon.png', title=html.escape(keyword)))
-        # body
-        sql = '''SELECT filename, title, start, station, description, site, duration
-        FROM contents
-        WHERE kid = :kid AND cstatus = -1
-        ORDER BY start DESC'''
-        self.db.cursor.execute(sql, {'kid': kid})
-        for filename, title, start, station, description, site, duration in self.db.cursor.fetchall():
-            writer.write(
-                body.format(
-                    title=html.escape(title),
-                    date=self._date(start),
-                    url=site,
-                    filename=filename,
-                    description=html.escape(description),
-                    pubdate=self._pubdate(start),
-                    station=station,
-                    duration='%02d:%02d:%02d' % (duration // 3600, duration // 60 % 60, duration % 60),
-                    filesize=os.path.getsize(os.path.join(self.CONTENTS_PATH, dirname, filename))
-                )
-            )
-        # write footer
-        writer.write(footer)
-        # close writer
-        writer.close()
-        # RSSから参照できるように、スタイルシートとアイコン画像をダウンロードフォルダにコピーする
-        for filename in ('stylesheet.xsl', 'icon.png'):
-            shutil.copy(os.path.join(self.DATA_PATH, 'rss', filename), os.path.join(self.CONTENTS_PATH, dirname, filename))
-
-    def create_index(self):
-        # templates
-        with open(os.path.join(self.DATA_PATH, 'rss', 'header.xml'), 'r', encoding='utf-8') as f:
-            header = f.read()
-        with open(os.path.join(self.DATA_PATH, 'rss', 'body.xml'), 'r', encoding='utf-8') as f:
-            body = f.read()
-        with open(os.path.join(self.DATA_PATH, 'rss', 'footer.xml'), 'r', encoding='utf-8') as f:
-            footer = f.read()
-        # open writer
-        if os.path.exists(os.path.join(self.CONTENTS_PATH)) is False:
-            os.makedirs(os.path.join(self.CONTENTS_PATH), exist_ok=True)
-        writer = open(os.path.join(self.CONTENTS_PATH, 'index.xml'), 'w', encoding='utf-8')
-        # write header
-        writer.write(header.format(image='icon.png', title='NetRadio Client'))
-        # body
-        sql = '''SELECT keyword, dirname FROM keywords ORDER BY 
-        CASE kid
-            WHEN -1 THEN 1
-            ELSE 0
-        END, keyword COLLATE NOCASE'''
-        self.db.cursor.execute(sql, {})
-        for keyword, dirname in self.db.cursor.fetchall():
-            writer.write(
-                body.format(
-                    title=html.escape(keyword),
-                    date='',
-                    url=f'{dirname}/rss.xml',
-                    filename='',
-                    description='',
-                    pubdate='',
-                    station='',
-                    duration='',
-                    filesize=''
-                )
-            )
-        # write footer
-        writer.write(footer)
-        # close writer
-        writer.close()
-        # RSSから参照できるように、スタイルシートとアイコン画像をダウンロードフォルダにコピーする
-        for filename in ('stylesheet.xsl', 'icon.png'):
-            shutil.copy(os.path.join(self.DATA_PATH, 'rss', filename), os.path.join(self.CONTENTS_PATH, filename))
-
-    def _date(self, date):
-        # "2023-04-20 14:00:00" -> "2023-04-20"
-        return date[0:10]
-
-    def _pubdate(self, date):
-        # "2023-04-20 14:00:00" -> "Thu, 20 Apr 2023 14:00:00 +0900"
-        pubdate = self.datetime(date).strftime('%a, %d %b %Y %H:%M:%S +0900')
-        return pubdate
-    
+        if notify:
+            self.notify('RSS has been updated')

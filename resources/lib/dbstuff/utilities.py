@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import os
-import re
 import html
 import shutil
 import urllib.request
 import urllib.error
 from mutagen.id3 import ID3, TIT2, TDRC, WPUB, TPUB, COMM
 from PIL import Image
-from qrcode import QRCode
 from sqlite3 import dbapi2 as sqlite
 
 from resources.lib.common import Common
@@ -163,26 +161,3 @@ def load_logo(item, dir, force=False):
         # 画像が取得できないときはデフォルトアイコンで代替する
         icon = os.path.join(Common.PLUGIN_PATH, 'resources', 'data', 'icons', 'audiodsp.png')
         shutil.copy(icon, path)
-
-
-# QRコードのサムネイル画像を作成
-def create_qrcode(url, path, force=False):
-    # ファイルを削除
-    if force and os.path.exists(path):
-        os.remove(path)
-    # DBから画像のキャッシュを削除
-    conn = sqlite.connect(Common.IMAGE_CACHE)
-    sql = 'DELETE FROM texture WHERE url = :path'
-    conn.cursor().execute(sql, {'path': path})
-    conn.commit()
-    conn.close()
-    # 画像がある場合はなにもしない
-    if os.path.exists(path):
-        return
-    # 画像格納用のディレクトリを用意
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    # 画像を生成
-    qr = QRCode(version=1, box_size=10, border=4)
-    qr.add_data(re.sub(r'^http(s?)://', r'podcast\1://', url))
-    qr.make(fit=True)
-    qr.make_image(fill_color="black", back_color="white").save(path, 'PNG')
