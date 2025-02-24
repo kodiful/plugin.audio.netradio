@@ -32,8 +32,12 @@ msgctxt "#30003"
 msgid "Community Radio"
 msgstr ""
 
-msgctxt "#30004"
-msgid "Other saved/saving contents"
+msgctxt "#30010"
+msgid "Saved contents (by keyword)"
+msgstr ""
+
+msgctxt "#30011"
+msgid "Saved contents (by station)"
 msgstr ""
 
 #
