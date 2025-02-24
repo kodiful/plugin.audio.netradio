@@ -28,7 +28,7 @@ class Schema():
     # -2: failed
     # -1: downloaded
     # 0: pass
-    # 1: pending
+    # 1: scheduled
     # 2: threaded
     # 3: downloading
 

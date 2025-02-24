@@ -7,8 +7,8 @@ from datetime import datetime, timezone, timedelta
 from mutagen.mp3 import MP3
 
 from resources.lib.common import Common
-from resources.lib.db_schema import Schema
-from resources.lib.db_utilities import Utilities, load_logo, create_qrcode
+from resources.lib.dbstuff.schema import Schema
+from resources.lib.dbstuff.utilities import Utilities, load_logo, create_qrcode
 
 
 # DBの共有インスタンスを格納するスレッドローカルデータ
@@ -55,7 +55,7 @@ class DB(Common, Schema, Utilities):
         end = data['end']
         filename = os.path.basename(mp3_file) if mp3_file else self.filename(station, start, end)
         duration = int(MP3(mp3_file).info.length) if mp3_file else 0
-        # 放送局設定
+        # 放送局判定（station, region, prefからsidを判定）
         sql = 'SELECT sid, top, vis FROM stations WHERE station = :station AND region = :region AND pref = :pref'
         self.cursor.execute(sql, {'station': data['station'], 'region': data['region'], 'pref': data['pref']})
         sid, top, vis = self.cursor.fetchone()
