@@ -130,7 +130,7 @@ msgstr "保存中です。保存を継続したまま再生しますか？"
 
 msgctxt "#30159"
 msgid "Download has not started. Do you cancel the download?"
-msgstr "保存が開始されていません。保存をキャンセルしますか？"
+msgstr "保存を待機中です。保存をキャンセルしますか？"
 
 msgctxt "#30160"
 msgid "Unable to play due to failed download. Do you see error info?"

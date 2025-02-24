@@ -66,6 +66,9 @@ class Common(Main):
             self.log(f'parse error:', self.URL)
             self.log(e)
             return 0
+        # 番組情報が0の場合はエラーとして扱う（rinsaikanto）
+        if len(buf) == 0:
+            return -1
         # 抽出した番組情報をDBに挿入
         for item in buf:
             if self.db.add(item) > 0:
