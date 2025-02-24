@@ -18,7 +18,13 @@ class Keyword(Common):
         sql = '''SELECT s.station
         FROM status JOIN json_each(status.front) AS je ON je.value = s.sid JOIN stations AS s ON je.value = s.sid'''
         self.db.cursor.execute(sql)
-        self.stations = [self.STR(30529)] + [station for station, in self.db.cursor.fetchall()]
+        self.stations = [station for station, in self.db.cursor.fetchall()]
+        # 表示中の放送局が無い場合はトップ画面の放送局リストを取得
+        if len(self.stations) == 0:
+            self.db.cursor.execute('SELECT station FROM stations WHERE top = 1 AND vis = 1')
+            self.stations = [station for station, in self.db.cursor.fetchall()]
+        # リストの先頭に"トップ画面の放送局"を追加
+        self.stations = [self.STR(30529)] + self.stations        
 
     def prep(self):
         # テンプレート

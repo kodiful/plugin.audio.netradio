@@ -29,7 +29,6 @@
   <category label="30400">
     <setting label="30401" id="ffmpeg" type="file" default=""/>
     <setting label="30402" id="port" type="number" default="8088"/>
-    <setting label="30403" id="autoexec" type="bool" default="false"/>
     <setting label="30404" id="debug" type="bool" default="false"/>
   </category>
 </settings>

@@ -161,7 +161,7 @@ class Directory(ScheduleManager):
         self.setArt(li, 'folder')
         # コンテクストメニュー
         self.contextmenu = []
-        self._contextmenu('self.STR(30100)', {'action': 'settings'})
+        self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         if pref is None:
             query = urlencode({'action': 'show_stations', 'protocol': 'COMM', 'region': region})

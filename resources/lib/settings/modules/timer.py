@@ -18,7 +18,11 @@ class Timer(Common):
         FROM status JOIN json_each(status.front) AS je ON je.value = s.sid JOIN stations AS s ON je.value = s.sid'''
         self.db.cursor.execute(sql)
         self.stations = [station for station, in self.db.cursor.fetchall()]
-
+        # 表示中の放送局が無い場合はトップ画面の放送局リストを取得
+        if len(self.stations) == 0:
+            self.db.cursor.execute('SELECT station FROM stations WHERE top = 1 AND vis = 1')
+            self.stations = [station for station, in self.db.cursor.fetchall()]            
+    
     def prep(self):
         # テンプレート
         with open(os.path.join(self.SETTINGS_PATH, 'modules', 'timer.xml')) as f:
@@ -67,16 +71,18 @@ class Timer(Common):
             'title': title,
             'start': start,
             'end': end,
+            'filename': os.path.join(protocol, station, self.db.filename(station, start, end)),
             'act': '',
             'info': '',
             'desc': description,
             'site': site,
+            'kid': -1,  # タイマー保存時の値
             'region': region,
             'pref': pref
         }
         # !!!ここでデータのバリデーション
         # 仮想番組としてcontentsテーブルに書き込む
-        result = self.db.add(data, kid=-1)
+        result = self.db.add(data)
         if result == 0:
             # 既存の予約と(sid, start, kid)が競合する場合は通知
             self.notify('Conflicting with other settings')

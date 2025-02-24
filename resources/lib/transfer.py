@@ -4,6 +4,7 @@ import os
 import shutil
 import glob
 import json
+from mutagen.mp3 import MP3
 
 from resources.lib.common import Common
 from resources.lib.db import ThreadLocal, create_qrcode
@@ -56,10 +57,13 @@ class Transfer(Common):
                 'title': data['title'],
                 'start': start,
                 'end': end,
+                'filename': '',
+                'duration': 0,
                 'act': data['act'],
                 'info': data['info'],
                 'desc': data['desc'],
                 'site': data['url'] or '',
+                'kid': '',
                 'region': region,
                 'pref': pref
             }
@@ -99,13 +103,18 @@ class Transfer(Common):
                         self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station']})
                         key, region, pref = self.db.cursor.fetchone()
                     # DBに挿入
-                    lastrowid = self.db.add(convert(data, key, region, pref), kid, mp3_file)
+                    data = convert(data, key, region, pref)
+                    data.update({
+                        'filename': os.path.basename(mp3_file),
+                        'duration': int(MP3(mp3_file).info.length),
+                        'kid': kid
+                    })
+                    lastrowid = self.db.add(data)
                     # DBの情報をmp3ファイルにID3タグとして書き込む
                     self.db.write_id3(mp3_file, lastrowid)
                     # mp3ファイル名の移動先のファイル名を取得
                     sql = 'SELECT filename FROM contents WHERE cid = :cid'
                     self.db.cursor.execute(sql, {'cid': lastrowid})
-                    filename = os.path.basename(mp3_file)
                     # mp3ファイルをリネームして移動
                     destdir = os.path.join(Common.CONTENTS_PATH, dirname)
                     os.makedirs(destdir, exist_ok=True)

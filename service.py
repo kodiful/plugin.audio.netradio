@@ -7,8 +7,6 @@ import threading
 import subprocess
 import logging
 
-import xbmc
-
 # extディレクトリをパスに追加
 sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'extra'))
 
@@ -65,9 +63,6 @@ if __name__ == '__main__':
         # DBインスタンスを終了
         ThreadLocal.db.conn.close()
         ThreadLocal.db = None
-        # アドオンを起動
-        if Common.GET('autoexec') == 'true':
-            xbmc.executebuiltin(f'RunAddon({Common.ADDON_ID})')
     else:
         # ffmpegのパスが確認できない場合は通知
         Common.notify('FFmpeg not found', error=True)

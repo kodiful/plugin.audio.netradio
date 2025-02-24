@@ -212,10 +212,6 @@ msgctxt "#30402"
 msgid "Port number"
 msgstr "ポート番号"
 
-msgctxt "#30403"
-msgid "Autoexec"
-msgstr "自動起動"
-
 msgctxt "#30404"
 msgid "Debug"
 msgstr "デバッグ"

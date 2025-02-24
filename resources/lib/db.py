@@ -43,9 +43,9 @@ class DB(Common, Schema, Utilities):
             return int(dt.timestamp())
         self.conn.create_function('EPOCH', 1, epoch)
 
-    def add(self, data, kid=0, mp3_file=None):
-        # 終了済みだったら何もしない
-        if mp3_file is None and data['end'] < self.now():
+    def add(self, data):
+        # 新規番組で終了時刻が過去になっている場合は何もしない
+        if data.get('duration') is None and data['end'] < self.now():
             return 0
         # データを補完
         title = data['title']
@@ -53,15 +53,16 @@ class DB(Common, Schema, Utilities):
         station = data['station']
         start = data['start']
         end = data['end']
-        filename = os.path.basename(mp3_file) if mp3_file else self.filename(station, start, end)
-        duration = int(MP3(mp3_file).info.length) if mp3_file else 0
+        filename = data.get('filename', self.filename(station, start, end))
+        duration = data.get('duration', 0)
         # 放送局判定（station, region, prefからsidを判定）
         sql = 'SELECT sid, top, vis FROM stations WHERE station = :station AND region = :region AND pref = :pref'
         self.cursor.execute(sql, {'station': data['station'], 'region': data['region'], 'pref': data['pref']})
         sid, top, vis = self.cursor.fetchone()
         # キーワード設定（kid, filename, cstatus）
+        kid = data.get('kid', 0)
         if kid > 0:
-            if mp3_file:
+            if duration > 0:
                 kid, filename, cstatus = kid, filename, -1  # ダウンロード済み
             else:
                 kid, filename, cstatus = 0, '', 0
@@ -81,20 +82,20 @@ class DB(Common, Schema, Utilities):
                 kid, filename, cstatus = 0, '', 0
         # DBに投入
         values = {
-            'sid': sid,
-            'kid': kid,
             'cstatus': cstatus,
-            'filename': filename,
+            'station': station,
             'title': title,
             'start': start,
             'end': end,
-            'station': station,
+            'filename': filename,
             'duration': duration,
             'act': data.get('act', ''),
             'info': data.get('info', ''),
             'desc': data.get('desc', ''),
             'description': description,
             'site': data.get('site', ''),
+            'sid': sid,
+            'kid': kid,
             'version': self.ADDON_VERSION,
             'modified': self.now()
         }

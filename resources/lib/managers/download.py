@@ -71,9 +71,8 @@ def downloader(cid, kid, filename, protocol, key, title, end, direct, queue):
     db.cursor.execute(sql, {'kid': kid})
     keyword, dirname = db.cursor.fetchone()
     # 出力ファイル
-    download_path = os.path.join(Common.CONTENTS_PATH, dirname)
-    os.makedirs(download_path, exist_ok=True)
-    mp3_file = os.path.join(download_path, filename)
+    mp3_file = os.path.join(Common.CONTENTS_PATH, dirname, filename)
+    os.makedirs(os.path.dirname(mp3_file), exist_ok=True)
     # ffmpeg実行
     kwargs = {'acodec': 'libmp3lame', 'b:a': bitrate, 'v': 'warning'}
     # RDKでは-fオプションを明示的に指定しないとエラーになる
