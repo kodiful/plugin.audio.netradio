@@ -189,7 +189,7 @@ class Directory(ScheduleManager):
         self.setArt(li, 'set')
         # コンテクストメニュー
         self.contextmenu = []
-        self._contextmenu(self.STR(30101), {'action': 'settings'})
+        self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show_stations', 'protocol': 'dlstation'})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
