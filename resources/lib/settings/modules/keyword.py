@@ -5,6 +5,7 @@ import shutil
 from datetime import datetime
 from resources.lib.settings.common import Common
 from resources.lib.contents import Contents
+from resources.lib.rss.keywords import Keywords
 
 import xbmc
 import xbmcgui
@@ -84,9 +85,9 @@ class Keyword(Common):
         # keywordテーブルに書き込む
         self.db.add_keyword(settings)
         # RSSインデクス再作成
-        Contents().create_index()
+        Keywords().create_index()
         # 再描画
-        self.refresh(True)  # キーワード設定を新規作成したのでトップ画面へ
+        self.refresh()
 
     def delete(self):
         # キーワード情報取得

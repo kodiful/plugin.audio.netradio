@@ -45,7 +45,7 @@ class Common:
     CONTENTS_PATH = GET('folder')
 
     # 更新確認のインターバル（秒）
-    CHECK_INTERVAL = 30
+    CHECK_INTERVAL = 3
 
     # radiko認証のインターバル（秒）
     AUTH_INTERVAL = 3600

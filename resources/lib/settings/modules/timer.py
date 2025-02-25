@@ -3,6 +3,7 @@
 import os
 from datetime import datetime, timedelta
 from resources.lib.settings.common import Common
+from resources.lib.rss.stations import Stations
 
 import xbmc
 
@@ -81,7 +82,9 @@ class Timer(Common):
         }
         # !!!ここでデータのバリデーション
         # 仮想番組としてcontentsテーブルに書き込む
-        result = self.db.add(data)
-        if result == 0:
-            # 既存の予約と(sid, start, kid)が競合する場合は通知
-            self.notify('Conflicting with other settings')
+        self.db.add(data)
+        # RSSインデクス再作成
+        Stations().create_index()
+        # 再描画
+        self.refresh()
+        

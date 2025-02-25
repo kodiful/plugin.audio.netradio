@@ -4,7 +4,6 @@ import os
 import shutil
 import threading
 import queue
-import time
 
 import xbmc
 
@@ -73,10 +72,7 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
             # ダウンロード開始判定
             self.maintain_download()
             # CHECK_INTERVALの間待機
-            t = time.time()
-            dt = t - int(t)
-            dt += int(t) % self.CHECK_INTERVAL
-            monitor.waitForAbort(self.CHECK_INTERVAL - dt)  # 更新時刻がCHECK_INTERVALの倍数になるように端数を調整
+            monitor.waitForAbort(self.CHECK_INTERVAL)
         # ローカルプロキシを終了
         self.log('shutting down local proxy.')
         self.httpd.shutdown()

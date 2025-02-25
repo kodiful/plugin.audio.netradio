@@ -4,6 +4,7 @@ import os
 import html
 
 from resources.lib.settings.common import Common
+from resources.lib.rss.stations import Stations
 
 
 class Download(Common):
@@ -29,3 +30,7 @@ class Download(Common):
         filename = self.db.filename(station, start, end)
         sql = 'UPDATE contents SET cstatus = 1, filename = :filename, kid = -1 WHERE cstatus = 0 AND cid = :cid'
         self.db.cursor.execute(sql, {'cid': int(cid), 'filename': os.path.join(protocol, station, filename)})
+        # RSSインデクス再作成
+        Stations().create_index()
+        # 再描画
+        self.refresh()
