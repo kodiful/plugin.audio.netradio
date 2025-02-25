@@ -87,7 +87,7 @@ class Directory(ScheduleManager):
                 WHEN 'SD' THEN 3
                 WHEN 'USER' THEN 4
                 ELSE 9
-            END, s.code, s.station'''
+            END, s.code, s.key'''
             self.db.cursor.execute(sql)
             for station, protocol, sid in self.db.cursor.fetchall():
                 self._add_dlstation(sid, protocol, station)
@@ -104,7 +104,7 @@ class Directory(ScheduleManager):
                 WHEN 'SD' THEN 3
                 WHEN 'USER' THEN 4
                 ELSE 9
-            END, code, station'''
+            END, code, key'''
             self.db.cursor.execute(sql)
             for sdata in self.db.cursor.fetchall():
                 self._add_oastation(sdata)
@@ -180,6 +180,10 @@ class Directory(ScheduleManager):
         self.setArt(li, 'set')
         # コンテクストメニュー
         self.contextmenu = []
+        if self.GET('rss') == 'true':
+            url = '/'.join([self.GET('rssurl'), 'keywords.xml'])
+            self._contextmenu(self.STR(30118), {'action': 'show_qrcode', 'url': url})
+        self._contextmenu(self.STR(30119), {'action': 'open_folder', 'dirname': '.'})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show_stations', 'protocol': 'keyword'})
@@ -189,6 +193,10 @@ class Directory(ScheduleManager):
         self.setArt(li, 'set')
         # コンテクストメニュー
         self.contextmenu = []
+        if self.GET('rss') == 'true':
+            url = '/'.join([self.GET('rssurl'), 'stations.xml'])
+            self._contextmenu(self.STR(30118), {'action': 'show_qrcode', 'url': url})
+        self._contextmenu(self.STR(30119), {'action': 'open_folder', 'dirname': '.'})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show_stations', 'protocol': 'dlstation'})

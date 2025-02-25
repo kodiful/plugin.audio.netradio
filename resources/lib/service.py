@@ -25,29 +25,20 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
         db.cursor.executescript(db.sql_auth_init)
         # statusテーブルを初期化
         db.cursor.executescript(db.sql_status_init)
-        # ダウンロードを失敗/中断したmp3ファイルを削除
-        sql = '''SELECT c.filename, k.dirname 
-        FROM contents c JOIN keywords k ON c.kid = k.kid
-        WHERE c.cstatus = -2 or c.cstatus = 3'''
-        db.cursor.execute(sql)
-        for filename, dirname in db.cursor.fetchall():
-            mp3_file = os.path.join(db.CONTENTS_PATH, dirname, filename)
-            if os.path.exists(mp3_file):
-                os.remove(mp3_file)
         # ダウンロード済み以外の番組情報を削除
-        db.cursor.execute('SELECT k.dirname, c.filename FROM contents AS c JOIN keywords as k ON c.kid = k.kid WHERE c.cstatus != -1 or c.end > NOW()')
+        db.cursor.execute('''SELECT k.dirname, c.filename
+                          FROM contents AS c JOIN keywords as k ON c.kid = k.kid
+                          WHERE c.cstatus != -1 or c.end > NOW()''')
         for dirname, filename in db.cursor.fetchall():
             mp3_file = os.path.join(self.CONTENTS_PATH, dirname, filename)
             if os.path.exists(mp3_file):
                 os.remove(mp3_file)
-        db.cursor.execute('DELETE FROM contents WHERE cstatus != -1 or end > NOW()')
+        db.cursor.execute('''DELETE FROM contents
+                          WHERE cstatus != -1 or end > NOW()''')
         # 番組表更新予定時間を初期化
         db.cursor.execute("UPDATE stations SET nextaired = '1970-01-01 09:00:00'")
         # 設定画面をデフォルトに設定
         shutil.copy(os.path.join(Common.DATA_PATH, 'settings', 'default.xml'), Common.DIALOG_FILE)
-        # PROFILE_PATH/keywords/qrを初期化
-        if os.path.exists(os.path.join(self.PROFILE_PATH, 'keywords', 'qr')) is False:
-            os.makedirs(os.path.join(self.PROFILE_PATH, 'keywords', 'qr'), exist_ok=True)
         # PROFILE_PATH/scheduleを初期化
         if os.path.exists(os.path.join(self.PROFILE_PATH, 'schedule')) is False:
             os.makedirs(os.path.join(self.PROFILE_PATH, 'schedule'), exist_ok=True)
@@ -85,7 +76,7 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
             t = time.time()
             dt = t - int(t)
             dt += int(t) % self.CHECK_INTERVAL
-            monitor.waitForAbort(self.CHECK_INTERVAL - dt)
+            monitor.waitForAbort(self.CHECK_INTERVAL - dt)  # 更新時刻がCHECK_INTERVALの倍数になるように端数を調整
         # ローカルプロキシを終了
         self.log('shutting down local proxy.')
         self.httpd.shutdown()
