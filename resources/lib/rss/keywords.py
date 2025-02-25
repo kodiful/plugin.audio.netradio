@@ -8,9 +8,11 @@ from resources.lib.rss.common import Common, decorator
 
 class Keywords(Common):
 
-    def __init__(self, keyword, dirname):
+    def __init__(self, keyword='', dirname=''):
         super().__init__()
         # RSS生成メソッドにデコレータを適用
+        self.keyword = keyword
+        self.dirname = dirname
         self.create_rss = decorator(self, keyword, dirname, 'rss.xml')(self.create_rss)        
         self.create_index = decorator(self, 'NetRadio Client', '.', 'keywords.xml')(self.create_index)        
 
@@ -31,7 +33,7 @@ class Keywords(Common):
                     pubdate=self._pubdate(start),
                     station=station,
                     duration='%02d:%02d:%02d' % (duration // 3600, duration // 60 % 60, duration % 60),
-                    filesize=os.path.getsize(os.path.join(self.path, filename))
+                    filesize=os.path.getsize(os.path.join(self.CONTENTS_PATH, self.dirname, filename))
                 )
             )
 

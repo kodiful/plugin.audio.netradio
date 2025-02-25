@@ -20,6 +20,55 @@ class Settings(Common):
         self.keyword = flags & self.KEYWORD
 
     def get(self, kid=0, sid=0):
+        if sid > 0:
+            # 放送中の番組を検索
+            sql = 'SELECT * FROM contents WHERE sid = :sid AND end > NOW() AND kid > -1 ORDER BY start'
+            self.db.cursor.execute(sql, {'sid': sid})
+            onair = [data for data in self.db.cursor.fetchall()]
+            # 放送中の番組保存をconfirm
+            yesno = xbmcgui.Dialog().yesnocustom(self.STR(30491), self.STR(30161), self.STR(30492))
+            if yesno == 0:
+                # キャンセル
+                pass
+            elif yesno == 1:
+                if len(onair) > 0:
+                    # 放送中の番組を保存
+                    self.get1_download(onair[0]['cid'])
+                else:
+                    # 番組情報が取得できないときの処理を選択
+                    yesno = xbmcgui.Dialog().yesnocustom(self.STR(30491), self.STR(30162) % self.GET('period'), self.STR(30492))
+                    if yesno == 0:
+                        # キャンセル
+                        pass
+                    elif yesno == 1:
+                        # デフォルト値でタイマー保存
+                        sql = 'SELECT station FROM stations WHERE sid = :sid'
+                        self.db.cursor.execute(sql, {'sid': sid})
+                        station, = self.db.cursor.fetchone()
+                        start = self.now()
+                        end = self.now(minutes=int(self.GET('period')))
+                        self.get1_timer(station, station, start, end)
+                    elif yesno == 2:
+                        # 詳細設定
+                        self.get2(kid, sid)
+            elif yesno == 2:
+                # 詳細設定
+                self.get2(kid, sid)
+        else:
+            # 詳細設定
+            self.get2(kid, sid)
+
+    def get1_download(self, cid=0):
+        download = Download()
+        download.get(cid)
+        download.set()
+
+    def get1_timer(self, station, title, start, end):
+        timer = Timer()
+        timer.get( station, title, start, end)
+        timer.set()
+
+    def get2(self, kid=0, sid=0):
         kid = kid
         sid = sid
         cid = 0

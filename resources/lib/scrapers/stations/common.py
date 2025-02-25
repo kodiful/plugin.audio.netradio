@@ -7,15 +7,15 @@ import gzip
 import io
 import unicodedata
 
-from resources.lib.common import Common as Main
+from resources.lib.common import Common
 from resources.lib.db import ThreadLocal
 
 
-class Common(Main):
+class Common(Common):
 
-    LOGO_PATH = os.path.join(Main.DATA_PATH, 'stations', 'logo')
-    SOURCE_PATH = os.path.join(Main.DATA_PATH, 'stations', 'source')
-    JSON_PATH = os.path.join(Main.DATA_PATH, 'stations', 'json')
+    LOGO_PATH = os.path.join(Common.DATA_PATH, 'stations', 'logo')
+    SOURCE_PATH = os.path.join(Common.DATA_PATH, 'stations', 'source')
+    JSON_PATH = os.path.join(Common.DATA_PATH, 'stations', 'json')
 
     def __init__(self, protocol=None):
         # DBの共有インスタンス

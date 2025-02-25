@@ -6,11 +6,10 @@ import urllib.parse
 import shutil
 import subprocess
 import platform
-import logging
 
 import xbmc
 
-# extディレクトリをパスに追加
+# extraディレクトリをパッケージのパスに追加
 sys.path.append(os.path.join(os.path.dirname(__file__), 'resources', 'extra'))
 
 from resources.lib.common import Common
@@ -22,9 +21,6 @@ from resources.lib.settings.stations import Stations
 
 
 if __name__ == '__main__':
-
-    # ログレベルをWARNING以上に設定
-    logging.basicConfig(level=logging.WARNING)
 
     # DBインスタンスを作成
     ThreadLocal.db = DB()
@@ -91,8 +87,9 @@ if __name__ == '__main__':
     # ダウンロード
     elif action == 'show_downloads':
         kid = args.get('kid', 0)
-        sid = args.get('sid', 0)
-        Contents().show(kid=int(kid), sid=int(sid))
+        protocol = args.get('protocol', '')
+        station = args.get('station', '')
+        Contents().show(kid=int(kid), protocol=protocol, station=station)
     elif action == 'delete_download':
         cid = args.get('cid')
         Contents().delete(int(cid))

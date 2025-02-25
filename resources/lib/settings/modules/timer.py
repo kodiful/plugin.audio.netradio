@@ -9,8 +9,6 @@ import xbmc
 
 class Timer(Common):
     
-    DURATION = 30
-
     def __init__(self):
         super().__init__()
         # 表示中の放送局リストを取得
@@ -43,7 +41,8 @@ class Timer(Common):
         if end:
             end = self.datetime(end)
         else:
-            end = datetime.now() + timedelta(minutes=self.DURATION)
+            dt = self.GET('period')
+            end = datetime.now() + timedelta(minutes=int(dt))
         # デフォルト設定
         self.SET('title', title or station)
         self.SET('date0', start.strftime('%Y-%m-%d'))

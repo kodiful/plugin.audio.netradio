@@ -32,7 +32,7 @@ class Utilities():
         for key in ('act', 'desc', 'info'):
             value = data.get(key)
             if value:
-                description += f'<p class="{key}">{html.escape(value)}</p>'
+                description += f'<p class="{key}">{value}</p>'
         return description
     
     def filename(self, station, start, end):

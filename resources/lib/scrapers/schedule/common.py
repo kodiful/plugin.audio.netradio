@@ -2,20 +2,21 @@
 
 import urllib.request
 import os
-import re
+import html
 import unicodedata
 import json
 import gzip
 import io
+from bs4 import BeautifulSoup
 
-from resources.lib.common import Common as Main
+from resources.lib.common import Common
 from resources.lib.db import ThreadLocal
 
 
-class Common(Main):
+class Common(Common):
 
-    SOURCE_PATH = os.path.join(Main.PROFILE_PATH, 'schedule', 'source')
-    JSON_PATH = os.path.join(Main.PROFILE_PATH, 'schedule', 'json')
+    SOURCE_PATH = os.path.join(Common.PROFILE_PATH, 'schedule', 'source')
+    JSON_PATH = os.path.join(Common.PROFILE_PATH, 'schedule', 'json')
     
     def __init__(self, protocol):
         # DBの共有インスタンス
@@ -115,12 +116,9 @@ class Common(Main):
     @staticmethod
     def normalize(text):
         if text is None: return ''
-        text = re.sub('～', '〜', text)
-        text = re.sub('（', '(', text)
-        text = re.sub('）', ')', text)
-        text = re.sub('[\r\n\t]', ' ', text)
         text = unicodedata.normalize('NFKC', text)
-        text = re.sub('[ ]{2,}', ' ', text)
+        text = BeautifulSoup(text, 'html.parser').prettify()
+        text = html.unescape(text)
         return text.strip()
 
 

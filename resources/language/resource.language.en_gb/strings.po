@@ -140,6 +140,15 @@ msgctxt "#30160"
 msgid "Unable to play due to failed download. Do you see error info?"
 msgstr ""
 
+msgctxt "#30161"
+msgid "Do you download the current onair?"
+msgstr ""
+
+msgctxt "#30162"
+msgid "'Schedule information cannot be obtained, so the program will be downloaded for the next %s minutes.\nIf you save it anyway, select \"Yes\"."
+msgstr ""
+
+
 #
 # default settings
 #
@@ -173,7 +182,7 @@ msgid "Download streaming"
 msgstr ""
 
 msgctxt "#30304"
-msgid "Bitrate"
+msgid "Bitrate (bps)"
 msgstr ""
 
 msgctxt "#30305"
@@ -184,8 +193,8 @@ msgctxt "#30306"
 msgid "[COLOR lightgreen]Open folder[/COLOR]"
 msgstr ""
 
-msgctxt "#30308"
-msgid "[COLOR lightgreen]Clear Folder[/COLOR]"
+msgctxt "#30307"
+msgid "Default period for timer download (min)"
 msgstr ""
 
 msgctxt "#30309"
@@ -229,6 +238,14 @@ msgid "Program"
 msgstr ""
 
 msgctxt "#30491"
+msgid "Save settings"
+msgstr ""
+
+msgctxt "#30492"
+msgid "Advanced settings"
+msgstr ""
+
+msgctxt "#30493"
 msgid "Save \"%s\""
 msgstr ""
 

@@ -73,7 +73,7 @@ class Directory(ScheduleManager):
                 self._add_keyword(kid, keyword, dirname)
         elif protocol == 'dlstation':
             # 保存ファイルの放送局一覧を表示
-            sql = '''SELECT DISTINCT c.station, s.protocol, s.sid 
+            sql = '''SELECT DISTINCT s.protocol, s.station
             FROM contents AS c 
             JOIN stations AS s ON c.sid = s.sid
             WHERE c.kid = -1 ORDER BY
@@ -89,8 +89,8 @@ class Directory(ScheduleManager):
                 ELSE 9
             END, s.code, s.key'''
             self.db.cursor.execute(sql)
-            for station, protocol, sid in self.db.cursor.fetchall():
-                self._add_dlstation(sid, protocol, station)
+            for protocol, station in self.db.cursor.fetchall():
+                self._add_dlstation(protocol, station)
         else:
             # トップ画面の放送局一覧を表示
             sql = '''SELECT * FROM stations WHERE top = 1 AND vis = 1 ORDER BY
@@ -264,7 +264,7 @@ class Directory(ScheduleManager):
         query = urlencode({'action': 'show_downloads', 'kid': kid})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
-    def _add_dlstation(self, sid, protocol, station):
+    def _add_dlstation(self, protocol, station):
         # listitemを追加する
         li = xbmcgui.ListItem(station)
         # サムネイル画像
@@ -273,7 +273,6 @@ class Directory(ScheduleManager):
         li.setArt({'thumb': image, 'icon': image})
         # コンテクストメニュー
         self.contextmenu = []
-        self._contextmenu(self.STR(30108), {'action': 'get_station', 'sid': sid})
         if self.GET('rss') == 'true':
             url = '/'.join([self.GET('rssurl'), '0', protocol, station, 'rss.xml'])
             self._contextmenu(self.STR(30118), {'action': 'show_qrcode', 'url': url})
@@ -281,7 +280,7 @@ class Directory(ScheduleManager):
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # リストアイテムを追加
-        query = urlencode({'action': 'show_downloads', 'sid': sid})
+        query = urlencode({'action': 'show_downloads', 'protocol': protocol, 'station': station})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
      
     def _title(self, sdata):

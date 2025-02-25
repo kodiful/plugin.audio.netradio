@@ -140,6 +140,15 @@ msgctxt "#30160"
 msgid "Unable to play due to failed download. Do you see error info?"
 msgstr "保存を失敗したため再生できません。エラー情報を表示しますか？"
 
+msgctxt "#30161"
+msgid "Do you download the current onair?"
+msgstr "放送中の番組を保存しますか？"
+
+msgctxt "#30162"
+msgid "'Schedule information cannot be obtained, so the program will be downloaded for the next %s minutes.\nIf you save it anyway, select \"Yes\"."
+msgstr "番組情報が取得できないため今から%s分間を保存します。\nこのまま保存する場合は\"はい\"を選択してください。\n保存する時間などを変更する場合は\"詳細設定\"を選択してください。"
+
+
 #
 # default settings
 #
@@ -173,8 +182,8 @@ msgid "Download streaming"
 msgstr "番組保存"
 
 msgctxt "#30304"
-msgid "Bitrate"
-msgstr "ビットレート"
+msgid "Bitrate (bps)"
+msgstr "ビットレート（bps）"
 
 msgctxt "#30305"
 msgid "Path to folder"
@@ -184,9 +193,9 @@ msgctxt "#30306"
 msgid "[COLOR lightgreen]Open folder[/COLOR]"
 msgstr "[COLOR lightgreen]保存フォルダを開く[/COLOR]"
 
-msgctxt "#30308"
-msgid "[COLOR lightgreen]Clear Folder[/COLOR]"
-msgstr "[COLOR lightgreen]保存フォルダをクリアする[/COLOR]"
+msgctxt "#30307"
+msgid "Default period for timer download (min)"
+msgstr "タイマー保存のデフォルト値（分）"
 
 msgctxt "#30309"
 msgid "Create RSS"
@@ -229,6 +238,14 @@ msgid "Program"
 msgstr "番組設定"
 
 msgctxt "#30491"
+msgid "Save settings"
+msgstr "保存設定"
+
+msgctxt "#30492"
+msgid "Advanced settings"
+msgstr "詳細設定"
+
+msgctxt "#30493"
 msgid "Save \"%s\""
 msgstr "[COLOR lightgreen]%s  を保存する[/COLOR]"
 

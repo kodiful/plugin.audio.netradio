@@ -119,10 +119,10 @@ class Common:
         return calendar.weekday(year, month, day)
     
     @staticmethod
-    def now(hours=0):
+    def now(hours=0, minutes=0):
         # 2025-02-22 05:35:43
-        if hours > 0:
-            now = datetime.now() + timedelta(hours=hours)
+        if hours > 0 or minutes > 0:
+            now = datetime.now() + timedelta(hours=hours, minutes=minutes)
         else:
             now = datetime.now()
         return now.strftime("%Y-%m-%d %H:%M:%S")

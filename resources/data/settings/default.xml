@@ -17,13 +17,14 @@
   <category label="30300">
     <setting label="30303" id="download" type="bool" default="false"/>
     <setting label="30304" id="bitrate" type="labelenum" default="192k" values="auto|192k|160k|128k|96k|64k" enable="eq(-1,true)"/>
-    <setting label="30305" id="folder" type="folder" default="" enable="eq(-2,true)"/>
-    <setting label="30306" type="action" option="close" action="RunPlugin(plugin://$ID/?action=open_folder)" enable="eq(-3,true)"/>
+    <setting label="30307" id="period" type="labelenum" default="30" values="5|10|15|20|30|60|90|120" enable="eq(-2,true)"/>
+    <setting label="30305" id="folder" type="folder" default="" enable="eq(-3,true)"/>
+    <setting label="30306" type="action" option="close" action="RunPlugin(plugin://$ID/?action=open_folder)" enable="eq(-4,true)"/>
     <!--RSS-->
-    <setting label="30309" id="rss" type="bool" default="false" enable="eq(-4,true)"/>
-    <setting label="30310" id="rssurl" type="text" default="" enable="eq(-1,true)+eq(-5,true)"/>
-    <setting label="30312" id="rssnum" type="labelenum" values="5|10|20|50|100|unlimited" default="unlimited" enable="eq(-2,true)+!eq(-1,)+eq(-6,true)"/>
-    <setting label="30311" type="action" option="close" action="RunPlugin(plugin://$ID/?action=update_rss)" enable="eq(-3,true)+!eq(-2,)+eq(-7,true)"/>
+    <setting label="30309" id="rss" type="bool" default="false" enable="eq(-5,true)"/>
+    <setting label="30310" id="rssurl" type="text" default="" enable="eq(-1,true)+eq(-6,true)"/>
+    <setting label="30312" id="rssnum" type="labelenum" values="5|10|20|50|100|unlimited" default="unlimited" enable="eq(-2,true)+!eq(-1,)+eq(-7,true)"/>
+    <setting label="30311" type="action" option="close" action="RunPlugin(plugin://$ID/?action=update_rss)" enable="eq(-3,true)+!eq(-2,)+eq(-8,true)"/>
   </category>
   <!--その他-->
   <category label="30400">

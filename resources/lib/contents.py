@@ -23,23 +23,23 @@ class Contents(Common):
         # ロケール設定
         locale.setlocale(locale.LC_ALL, '')
 
-    def show(self, kid=0, sid=0):
+    def show(self, kid=0, protocol='', station=''):
         if kid > 0:
             sql = '''SELECT *
             FROM contents AS c 
             JOIN keywords AS k ON c.kid = k.kid
             JOIN stations AS s ON c.sid = s.sid
-            WHERE c.kid = :kid AND c.cstatus != 0
+            WHERE c.cstatus != 0 AND c.kid = :kid 
             ORDER BY c.start DESC'''
             self.db.cursor.execute(sql, {'kid': kid})
-        if sid > 0:
+        if protocol != '' and station != '':
             sql = '''SELECT *
             FROM contents AS c
             JOIN keywords AS k ON c.kid = k.kid
             JOIN stations AS s ON c.sid = s.sid
-            WHERE c.sid = :sid AND c.cstatus != 0 AND c.kid = -1
+            WHERE c.cstatus != 0 AND c.kid = -1 AND s.protocol = :protocol AND s.station = :station
             ORDER BY c.start DESC'''
-            self.db.cursor.execute(sql, {'sid': sid})
+            self.db.cursor.execute(sql, {'protocol': protocol, 'station': station})
         for cksdata in self.db.cursor.fetchall():
             # リストアイテムを追加
             self._add_download(cksdata)
@@ -163,14 +163,14 @@ class Contents(Common):
         for keyword, dirname, kid in self.db.cursor.fetchall():
             Keywords(keyword, dirname).create_rss(kid)
         # キーワードインデクス作成
-        Keywords('NetRadio Client', '.').create_index()
+        Keywords().create_index()
         # 放送局RSS作成
-        sql = 'SELECT DISTINCT c.station, s.protocol, s.sid FROM contents AS c JOIN stations AS s ON c.sid = s.sid WHERE c.kid = -1'
+        sql = 'SELECT DISTINCT s.protocol, c.station FROM contents AS c JOIN stations AS s ON c.sid = s.sid WHERE c.cstatus = -1 AND c.kid = -1'
         self.db.cursor.execute(sql)
-        for station, protocol, sid in self.db.cursor.fetchall():
-            Stations(station, protocol).create_rss(sid)
+        for protocol, station in self.db.cursor.fetchall():
+            Stations(protocol, station).create_rss()
         # 放送局インデクス作成
-        Stations('NetRadio Client', '.').create_index()
+        Stations().create_index()
         # 完了通知
         if notify:
             self.notify('RSS has been updated')
