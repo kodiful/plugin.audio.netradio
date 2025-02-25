@@ -209,7 +209,7 @@ class Transfer(Common):
             if os.path.basename(item) == os.path.basename(self.DB_FILE):
                 continue
             if os.path.isfile(item):
-                shutil.move(item, destdir)
+                shutil.copy(item, os.path.join(destdir, os.path.basename(item)))
             if os.path.isdir(item):
                 shutil.copytree(item, os.path.join(destdir, os.path.basename(item)))
         # CONTENTS_PATHの退避先のディレクトリを用意

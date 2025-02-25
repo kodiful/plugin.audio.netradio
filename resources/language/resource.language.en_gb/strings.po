@@ -33,11 +33,11 @@ msgid "Community Radio"
 msgstr ""
 
 msgctxt "#30010"
-msgid "Saved contents (by keyword)"
+msgid "Archive (classified by keyword)"
 msgstr ""
 
 msgctxt "#30011"
-msgid "Saved contents (by station)"
+msgid "Archive (classified by station)"
 msgstr ""
 
 #
