@@ -7,7 +7,6 @@ import queue
 
 import xbmc
 
-from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal
 from resources.lib.localproxy import LocalProxy
 from resources.lib.managers.authentication import AuthenticationManager
@@ -37,7 +36,7 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
         # 番組表更新予定時間を初期化
         db.cursor.execute("UPDATE stations SET nextaired = '1970-01-01 09:00:00'")
         # 設定画面をデフォルトに設定
-        shutil.copy(os.path.join(Common.DATA_PATH, 'settings', 'default.xml'), Common.DIALOG_FILE)
+        shutil.copy(os.path.join(self.DATA_PATH, 'settings', 'default.xml'), self.DIALOG_FILE)
         # PROFILE_PATH/scheduleを初期化
         if os.path.exists(os.path.join(self.PROFILE_PATH, 'schedule')) is False:
             os.makedirs(os.path.join(self.PROFILE_PATH, 'schedule'), exist_ok=True)
