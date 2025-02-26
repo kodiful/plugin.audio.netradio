@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-import html
 import shutil
 import urllib.request
 import urllib.error

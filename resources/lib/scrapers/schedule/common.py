@@ -80,18 +80,10 @@ class Common(Common):
         # DBへ挿入した番組情報の数を返す
         return count
 
-    def get_nextaired(self):
-        sql = 'SELECT nextaired FROM stations WHERE sid = :sid'
-        self.db.cursor.execute(sql, {'sid': self.sid})
-        nextaired, = self.db.cursor.fetchone()
-        return nextaired
-
-    def _get_nextaired(self):
-        sql = '''
-        SELECT MIN(c.end)
+    def search_nextaired(self):
+        sql = '''SELECT MIN(c.end)
         FROM contents AS c JOIN stations AS s ON c.sid = s.sid
-        WHERE c.end > NOW() AND c.sid = :sid
-        '''
+        WHERE c.end > NOW() AND c.sid = :sid'''
         self.db.cursor.execute(sql, {'sid': self.sid})
         try:
             nextaired, = self.db.cursor.fetchone()
@@ -100,18 +92,38 @@ class Common(Common):
         return nextaired
 
     def set_nextaired(self, hours=0):
-        sql = '''
-        UPDATE stations
-        SET nextaired = :nextaired
-        WHERE sid = :sid
-        '''
+        sql = 'UPDATE stations SET nextaired = :nextaired WHERE sid = :sid'
         if hours == 0:
-            nextaired = self._get_nextaired()
+            nextaired = self.search_nextaired()
         else:
-            nextaired = self.now(hours)
+            nextaired = self.now(hours=hours)
         self.db.cursor.execute(sql, {'nextaired': nextaired, 'sid': self.sid})
         return nextaired
+
+    def get_nextaired(self):
+        sql = 'SELECT nextaired FROM stations WHERE sid = :sid'
+        self.db.cursor.execute(sql, {'sid': self.sid})
+        nextaired, = self.db.cursor.fetchone()
+        return nextaired
+
+    def count_scheduled(self):
+        sql = '''SELECT COUNT(c.end)
+        FROM contents AS c JOIN stations AS s ON c.sid = s.sid
+        WHERE c.end > NOW() AND c.sid = :sid'''
+        self.db.cursor.execute(sql, {'sid': self.sid})
+        scheduled, = self.db.cursor.fetchone()
+        return scheduled
     
+    def set_scheduled(self, scheduled):
+        sql = 'UPDATE stations SET scheduled = :scheduled WHERE sid = :sid'
+        self.db.cursor.execute(sql, {'scheduled': scheduled, 'sid': self.sid})
+
+    def get_scheduled(self):
+        sql = 'SELECT scheduled FROM stations WHERE sid = :sid'
+        self.db.cursor.execute(sql, {'sid': self.sid})
+        scheduled, = self.db.cursor.fetchone()
+        return scheduled
+
     # 文字列を正規化する
     @staticmethod
     def normalize(text):

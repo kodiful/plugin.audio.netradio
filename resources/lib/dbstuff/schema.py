@@ -55,6 +55,7 @@ class Schema():
         site TEXT,
         direct TEXT,
         delay INTEGER,
+        scheduled INTEGER,
         nextaired TEXT,
         version TEXT,
         modified TEXT
@@ -129,11 +130,10 @@ class Schema():
 
     sql_status = '''
     CREATE TABLE IF NOT EXISTS status(
-        front TEXT,
-        refresh TEXT
+        front TEXT
     )'''
 
     sql_status_init = '''
     DELETE FROM status;
-    INSERT INTO status VALUES('[]', '1970-01-01 09:00:00');
+    INSERT INTO status VALUES('[]');
     '''

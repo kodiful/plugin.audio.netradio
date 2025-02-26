@@ -122,16 +122,22 @@ def scheduler(protocol, sid, visible):
         # このスレッドの放送局が表示中、かつ表示中画面がこのアドオン画面だったら再描画する
         if visible == 1 and (path == argv or path.startswith(f'{argv}?action=show')):
             # 番組情報に更新があったら即時再描画する
-            if count != 0:                    
+            if count != 0:
+                # 再描画
                 Common.refresh()
-                db.cursor.execute('UPDATE status SET refresh = NOW()')  # 再描画時刻を記録
+                # 番組数をカウント
+                current = worker.scraper.count_scheduled()
+                # 番組数を記録
+                worker.scraper.set_scheduled(current)
             else:
-                # 前回の再描画より1秒以上経過していたら再描画
-                db.cursor.execute('SELECT refresh FROM status')
-                refresh, = db.cursor.fetchone()
-                if now > Common.datetime(refresh).timestamp() + 1:                    
+                # 番組数をカウント
+                current = worker.scraper.count_scheduled()
+                # 記録されている番組数と比較して差異があったら再描画する
+                if current != worker.scraper.get_scheduled():
+                    # 再描画
                     Common.refresh()
-                    db.cursor.execute('UPDATE status SET refresh = NOW()')  # 再描画時刻を記録
+                    # 番組数を記録
+                    worker.scraper.set_scheduled(current)
     # スレッドのDBインスタンスを終了
     ThreadLocal.db.conn.close()
     ThreadLocal.db = None

@@ -16,12 +16,12 @@ class Keywords(Common):
         self.create_rss = decorator(self, keyword, dirname, 'rss.xml')(self.create_rss)        
         self.create_index = decorator(self, 'NetRadio Client', '.', 'keywords.xml')(self.create_index)        
 
-    def create_rss(self, kid):
-        sql = '''SELECT filename, title, start, station, description, site, duration
-        FROM contents
-        WHERE kid = :kid AND cstatus = -1
-        ORDER BY start DESC'''
-        self.db.cursor.execute(sql, {'kid': kid})
+    def create_rss(self):
+        sql = '''SELECT c.filename, c.title, c.start, c.station, c.description, c.site, c.duration
+        FROM contents AS c JOIN keywords as k ON c.kid = k.kid
+        WHERE c.cstatus = -1 AND c.kid > 0 AND k.keyword = :keyword AND k.dirname = :dirname
+        ORDER BY c.start DESC'''
+        self.db.cursor.execute(sql, {'keyword': self.keyword, 'dirname': self.dirname})
         for filename, title, start, station, description, site, duration in self.db.cursor.fetchall():
             self.writer.write(
                 self.body.format(
@@ -38,10 +38,10 @@ class Keywords(Common):
             )
 
     def create_index(self):
-        sql = '''SELECT keyword, dirname
-        FROM keywords
-        WHERE kid > 0
-        ORDER BY keyword COLLATE NOCASE'''
+        sql = '''SELECT DISTINCT  k.keyword, k.dirname
+        FROM contents AS c JOIN keywords AS k ON c.kid = k.kid
+        WHERE c.cstatus = -1 AND c.kid > 0
+        ORDER BY k.keyword COLLATE NOCASE'''
         self.db.cursor.execute(sql, {})
         for keyword, dirname in self.db.cursor.fetchall():
             self.writer.write(

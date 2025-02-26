@@ -45,7 +45,7 @@ class Common:
     CONTENTS_PATH = GET('folder')
 
     # 更新確認のインターバル（秒）
-    CHECK_INTERVAL = 3
+    CHECK_INTERVAL = 10
 
     # radiko認証のインターバル（秒）
     AUTH_INTERVAL = 3600
@@ -53,7 +53,7 @@ class Common:
     # user-agent
     USER_AGENT = 'python'
 
-    # HLS
+    # hls
     HLS_CACHE_PATH = os.path.join(PROFILE_PATH, 'hls_cache')
     HLS_FILE = 'hls.m3u8'
     HLS_TIME = 5

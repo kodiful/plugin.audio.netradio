@@ -20,7 +20,7 @@ class Stations(Common):
         sql = '''SELECT c.filename, c.title, c.start, c.station, c.description, c.site, c.duration
         FROM contents AS c JOIN stations AS s ON c.sid = s.sid
         WHERE c.cstatus = -1 AND c.kid = -1 AND s.protocol = :protocol AND s.station = :station
-        ORDER BY start DESC'''
+        ORDER BY c.start DESC'''
         self.db.cursor.execute(sql, {'protocol': self.protocol, 'station': self.station})
         for filename, title, start, station, description, site, duration in self.db.cursor.fetchall():
             self.writer.write(

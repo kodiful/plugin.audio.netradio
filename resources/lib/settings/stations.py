@@ -12,8 +12,6 @@ from resources.lib.db import ThreadLocal
 
 class Stations(Common):
 
-    KEYS = ('protocol', 'sid', 'station', 'description', 'direct', 'logo', 'site')
-
     def __init__(self):
         # DBの共有インスタンス
         self.db = ThreadLocal.db
@@ -55,7 +53,7 @@ class Stations(Common):
 
     def set(self):
         # 設定後の値
-        settings = dict([(key, self.GET(key)) for key in self.KEYS])
+        settings = dict([(key, self.GET(key)) for key in ('protocol', 'sid', 'station', 'description', 'direct', 'logo', 'site')])
         if settings['protocol'] == 'USER':
             # 不足している値を補完
             settings.update({'key': ''})

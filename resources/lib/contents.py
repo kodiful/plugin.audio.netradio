@@ -76,7 +76,11 @@ class Contents(Common):
     def confirm_cancel(self, cid):
         ok = xbmcgui.Dialog().yesno(self.STR(30152), self.STR(30159))
         if ok:
-            self.db.cursor.execute('DELETE FROM contents WHERE cid = :cid', {'cid': cid})
+            # タイマー予約を削除
+            result = self.db.cursor.execute('DELETE FROM contents WHERE cid = :cid AND kid = -1', {'cid': cid})
+            if result.rowcount == 0:
+                # タイマー予約の削除ができないときは、キーワード予約の設定をリセット
+                self.db.cursor.execute('UPDATE contents SET cstatus = 0, kid = 0 WHERE cid = :cid AND kid > 0', {'cid': cid})
             self.refresh()
 
     def show_error(self, cid):
@@ -158,14 +162,18 @@ class Contents(Common):
         # RSS設定がされていない場合は終了
         if self.GET('rss') == 'false': return
         # キーワードRSS作成
-        sql = 'SELECT keyword, dirname, kid FROM keywords WHERE kid > 0'
+        sql = '''SELECT DISTINCT k.keyword, k.dirname
+        FROM contents AS c JOIN keywords AS k ON c.kid = k.kid
+        WHERE c.cstatus = -1 AND c.kid > 0'''
         self.db.cursor.execute(sql)
-        for keyword, dirname, kid in self.db.cursor.fetchall():
-            Keywords(keyword, dirname).create_rss(kid)
+        for keyword, dirname in self.db.cursor.fetchall():
+            Keywords(keyword, dirname).create_rss()
         # キーワードインデクス作成
         Keywords().create_index()
         # 放送局RSS作成
-        sql = 'SELECT DISTINCT s.protocol, c.station FROM contents AS c JOIN stations AS s ON c.sid = s.sid WHERE c.cstatus = -1 AND c.kid = -1'
+        sql = '''SELECT DISTINCT s.protocol, c.station
+        FROM contents AS c JOIN stations AS s ON c.sid = s.sid
+        WHERE c.cstatus = -1 AND c.kid = -1'''
         self.db.cursor.execute(sql)
         for protocol, station in self.db.cursor.fetchall():
             Stations(protocol, station).create_rss()

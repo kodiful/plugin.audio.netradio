@@ -144,6 +144,7 @@ class DB(Common, Schema, Utilities):
             'site': data.get('site'),
             'direct': data.get('direct', ''),
             'delay': data.get('delay', 0),
+            'scheduled': 0,
             'nextaired': '1970-01-01 09:00:00',
             'version': self.ADDON_VERSION,
             'modified': self.now()
