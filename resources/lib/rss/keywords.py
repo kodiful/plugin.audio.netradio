@@ -29,7 +29,7 @@ class Keywords(Common):
                     date=self._date(start),
                     url=site,
                     filename=filename,
-                    description=description,
+                    description=description.replace('<br>','<br/>'),  # add replace for compatibility
                     pubdate=self._pubdate(start),
                     station=station,
                     duration='%02d:%02d:%02d' % (duration // 3600, duration // 60 % 60, duration % 60),

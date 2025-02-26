@@ -126,11 +126,12 @@ class Common(Common):
 
     # 文字列を正規化する
     @staticmethod
-    def normalize(text):
+    def normalize(text, unescape=True):
         if text is None: return ''
         text = unicodedata.normalize('NFKC', text)
-        text = BeautifulSoup(text, 'html.parser').prettify()
-        text = html.unescape(text)
+        if unescape:
+            text = html.unescape(text)
+            text = BeautifulSoup(text, 'html.parser').prettify()
         return text.strip()
 
 

@@ -21,15 +21,20 @@ class Scraper(Common):
         data = json.loads(data)
         buf = []
         for item in data:
+            title = item['title']
+            start = item['start']
+            end = item['end']
+            act = item.get('performer', '')
+            info = item.get('sub_title', '')
             prog = {
                 'station': self.station,
                 'protocol': self.PROTOCOL,
                 'key': self.key,
-                'title': self.normalize(item['title']),
-                'start': self._datetime(item['start']),
-                'end': self._datetime(item['end']),
-                'act': item.get('performer', ''),
-                'info': item.get('sub_title', ''),
+                'title': self.normalize(title, False),
+                'start': self._datetime(start),
+                'end': self._datetime(end),
+                'act': self.normalize(act, False),
+                'info': self.normalize(info, False),
                 'desc': '',
                 'site': self.site,
                 'region': self.region,

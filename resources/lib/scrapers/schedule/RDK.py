@@ -28,16 +28,22 @@ class Scraper(Common):
             proglist = s['progs']['prog']
             if type(proglist) == 'dict': proglist = [proglist]  # 1番組だけのときはdictなのでlist化する
             for p in proglist:
+                title = p['title']
+                start = p['@ft']
+                end = p['@to']
+                act = p['pfm']
+                info = p['info']
+                desc = p['desc']
                 prog = {
                     'station': station,
                     'protocol': self.PROTOCOL,
                     'key': id,
-                    'title': self.normalize(p['title']),
-                    'start': self._datetime(p['@ft']),
-                    'end': self._datetime(p['@to']),
-                    'act': self.normalize(p['pfm']),
-                    'info': self.normalize(p['info']),
-                    'desc': self.normalize(p['desc']),
+                    'title': self.normalize(title),
+                    'start': self._datetime(start),
+                    'end': self._datetime(end),
+                    'act': self.normalize(act),
+                    'info': self.normalize(info),
+                    'desc': self.normalize(desc),
                     'site': p['url'] or '',
                     'region': self.region,
                     'pref': self.pref

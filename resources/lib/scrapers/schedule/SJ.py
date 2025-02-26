@@ -23,14 +23,18 @@ class Scraper(Common):
         # 番組情報をリスト化
         buf = []
         for item in data.values():
+            title = item['title']
+            start = item['air_start']
+            end = item['air_end']
+            act = item.get('performer', '')
             prog = {
                 'station': self.station,
                 'protocol': self.PROTOCOL,
                 'key': self.key,
-                'title': self.normalize(item['title']),
-                'start': self._datetime(item['air_start']),
-                'end': self._datetime(item['air_end']),
-                'act': item.get('performer', ''),
+                'title': self.normalize(title, False),
+                'start': self._datetime(start),
+                'end': self._datetime(end),
+                'act': self.normalize(act, False),
                 'info': '',
                 'desc': '',
                 'site': self.site,

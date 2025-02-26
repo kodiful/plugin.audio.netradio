@@ -47,16 +47,22 @@ class Scraper(Common):
         return buf
 
     def subparse(self, data, id, station):
+        title = data['title']
+        start = data['start_time']
+        end = data['end_time']
+        act = data['act']
+        info = data['subtitle']
+        desc = data['music']
         prog = {
             'station': station,
             'protocol': self.PROTOCOL,
             'key': id,
-            'title': self.normalize(data['title']),
-            'start': self._datetime(data['start_time']),
-            'end': self._datetime(data['end_time']),
-            'act': self.normalize(data['act']),
-            'info': self.normalize(data['subtitle']),
-            'desc': self.normalize(data['music']),
+            'title': self.normalize(title, False),
+            'start': self._datetime(start),
+            'end': self._datetime(end),
+            'act': self.normalize(act, False),
+            'info': self.normalize(info, False),
+            'desc': self.normalize(desc, False),
             'site': data['url']['pc'] or '',
             'region': self.region,
             'pref': ''

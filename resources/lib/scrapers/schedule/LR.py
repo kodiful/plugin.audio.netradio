@@ -51,7 +51,7 @@ class Scraper(Common):
                 'end': end,
                 'act': '',
                 'info': '',
-                'desc': desc,
+                'desc': self.normalize(desc),
                 'site': self.site,
                 'region': self.region,
                 'pref': self.pref
