@@ -53,7 +53,7 @@ msgid "Station settings"
 msgstr "放送局設定"
 
 msgctxt "#30105"
-msgid "Save settings"
+msgid "Download settings"
 msgstr "保存設定"
 
 msgctxt "#30108"
@@ -140,14 +140,17 @@ msgctxt "#30160"
 msgid "Unable to play due to failed download. Do you see error info?"
 msgstr "保存を失敗したため再生できません。エラー情報を表示しますか？"
 
-msgctxt "#30161"
-msgid "Do you download the current onair?"
-msgstr "放送中の番組を保存しますか？"
-
 msgctxt "#30162"
-msgid "'Schedule information cannot be obtained, so the program will be downloaded for the next %s minutes.\nIf you save it anyway, select \"Yes\"."
-msgstr "番組情報が取得できないため今から%s分間を保存します。\nこのまま保存する場合は\"はい\"を選択してください。\n保存する時間などを変更する場合は\"詳細設定\"を選択してください。"
+msgid "'Schedule information cannot be obtained, so the program will be downloaded for the next %s minutes.\nIf you download it anyway, select \"Yes\"."
+msgstr "番組情報が取得できないため今から%s分間の放送を保存します。\nこのまま保存する場合は\"はい\"を選択してください。\n保存する時間などを変更する場合は\"詳細設定\"を選択してください。"
 
+msgctxt "#30163"
+msgid "Do you download \"%s\"?"
+msgstr "\"%s\" を保存しますか？"
+
+msgctxt "#30164"
+msgid "Do you download the onair?"
+msgstr "放送中の番組を保存しますか？"
 
 #
 # default settings
@@ -195,7 +198,7 @@ msgstr "[COLOR lightgreen]保存フォルダを開く[/COLOR]"
 
 msgctxt "#30307"
 msgid "Default period for timer download (min)"
-msgstr "タイマー保存のデフォルト値（分）"
+msgstr "タイマー保存時間（分）"
 
 msgctxt "#30309"
 msgid "Create RSS"
@@ -238,7 +241,7 @@ msgid "Program"
 msgstr "番組設定"
 
 msgctxt "#30491"
-msgid "Save settings"
+msgid "Download settings"
 msgstr "保存設定"
 
 msgctxt "#30492"
@@ -246,8 +249,8 @@ msgid "Advanced settings"
 msgstr "詳細設定"
 
 msgctxt "#30493"
-msgid "Save \"%s\""
-msgstr "[COLOR lightgreen]%s  を保存する[/COLOR]"
+msgid "[COLOR lightgreen]Download \"%s\"[/COLOR]"
+msgstr "[COLOR lightgreen]\"%s\" を保存する[/COLOR]"
 
 #
 # keyword settings

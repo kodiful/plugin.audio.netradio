@@ -76,13 +76,15 @@ class Scraper(Common):
     
     def search_nextaired0(self):
         # NHK全体の直近更新時間
-        sql = '''SELECT MIN(c.end)
-        FROM contents AS c JOIN stations AS s ON c.sid = s.sid
-        WHERE c.end > NOW() AND s.protocol = :protocol AND s.region = :region'''
+        sql = '''SELECT c.start FROM contents AS c JOIN stations AS s ON c.sid = s.sid
+        WHERE c.end > NOW() AND s.protocol = :protocol AND s.region = :region ORDER BY c.start LIMIT 1 OFFSET 1'''
         self.db.cursor.execute(sql, {'protocol': self.PROTOCOL, 'region': self.region})
-        nextaired0, = self.db.cursor.fetchone()
-        return nextaired0
-        
+        try:
+            nextaired, = self.db.cursor.fetchone()
+        except TypeError:
+            nextaired = '1970-01-01 09:00:00'
+        return nextaired
+
     def set_nextaired0(self):
         # 直近更新時間を取得する
         nextaired0 = self.search_nextaired0()

@@ -60,13 +60,15 @@ class Scraper(Common):
 
     def search_nextaired0(self):
         # RDK全体の直近更新時間を取得する
-        sql = '''SELECT MIN(c.end)
-        FROM contents AS c JOIN stations AS s ON c.sid = s.sid
-        WHERE c.end > NOW() AND s.protocol = :protocol AND s.pref = :pref'''
+        sql = '''SELECT c.start FROM contents AS c JOIN stations AS s ON c.sid = s.sid
+        WHERE c.end > NOW() AND s.protocol = :protocol AND s.pref = :pref ORDER BY c.start LIMIT 1 OFFSET 1'''
         self.db.cursor.execute(sql, {'protocol': self.PROTOCOL, 'pref': self.pref})
-        nextaired0, = self.db.cursor.fetchone()
-        return nextaired0
-        
+        try:
+            nextaired, = self.db.cursor.fetchone()
+        except TypeError:
+            nextaired = '1970-01-01 09:00:00'
+        return nextaired
+
     def set_nextaired0(self):
         # 直近更新時間を取得する
         nextaired0 = self.search_nextaired0()

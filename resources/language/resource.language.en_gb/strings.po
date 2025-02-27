@@ -53,7 +53,7 @@ msgid "Station settings"
 msgstr ""
 
 msgctxt "#30105"
-msgid "Save settings"
+msgid "Download settings"
 msgstr ""
 
 msgctxt "#30108"
@@ -140,14 +140,17 @@ msgctxt "#30160"
 msgid "Unable to play due to failed download. Do you see error info?"
 msgstr ""
 
-msgctxt "#30161"
-msgid "Do you download the current onair?"
-msgstr ""
-
 msgctxt "#30162"
-msgid "'Schedule information cannot be obtained, so the program will be downloaded for the next %s minutes.\nIf you save it anyway, select \"Yes\"."
+msgid "'Schedule information cannot be obtained, so the program will be downloaded for the next %s minutes.\nIf you download it anyway, select \"Yes\"."
 msgstr ""
 
+msgctxt "#30163"
+msgid "Do you download \"%s\"?"
+msgstr ""
+
+msgctxt "#30164"
+msgid "Do you download the onair?"
+msgstr ""
 
 #
 # default settings
@@ -238,7 +241,7 @@ msgid "Program"
 msgstr ""
 
 msgctxt "#30491"
-msgid "Save settings"
+msgid "Download settings"
 msgstr ""
 
 msgctxt "#30492"
@@ -246,7 +249,7 @@ msgid "Advanced settings"
 msgstr ""
 
 msgctxt "#30493"
-msgid "Save \"%s\""
+msgid "[COLOR lightgreen]Download \"%s\"[/COLOR]"
 msgstr ""
 
 #

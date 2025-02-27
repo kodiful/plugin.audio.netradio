@@ -80,25 +80,18 @@ class Common(Common):
         # DBへ挿入した番組情報の数を返す
         return count
 
-    def search_nextaired0(self):
-        sql = '''SELECT c.end FROM contents AS c JOIN stations AS s ON c.sid = s.sid
-        WHERE c.end > NOW() AND c.sid = :sid ORDER BY c.end LIMIT 1 OFFSET 0'''
-        self.db.cursor.execute(sql, {'sid': self.sid})
-        try:
-            nextaired, = self.db.cursor.fetchone()
-        except TypeError:
-            nextaired = '1970-01-01 09:00:00'
-        return nextaired
-
-    def search_nextaired1(self):
+    def search_nextaired(self):
         sql = '''SELECT c.start FROM contents AS c JOIN stations AS s ON c.sid = s.sid
-        WHERE c.end > NOW() AND c.sid = :sid ORDER BY c.end LIMIT 1 OFFSET 1'''
+        WHERE c.end > NOW() AND c.sid = :sid ORDER BY c.start LIMIT 1 OFFSET 1'''
         self.db.cursor.execute(sql, {'sid': self.sid})
         try:
             nextaired, = self.db.cursor.fetchone()
         except TypeError:
             nextaired = '1970-01-01 09:00:00'
         return nextaired
+    
+    search_nextaired0 = search_nextaired
+    search_nextaired1 = search_nextaired
 
     def get_nextaired(self):
         sql = 'SELECT nextaired0, nextaired1 FROM stations WHERE sid = :sid'

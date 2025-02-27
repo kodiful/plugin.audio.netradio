@@ -26,7 +26,10 @@ class Settings(Common):
             self.db.cursor.execute(sql, {'sid': sid})
             onair = [data for data in self.db.cursor.fetchall()]
             # 放送中の番組保存をconfirm
-            yesno = xbmcgui.Dialog().yesnocustom(self.STR(30491), self.STR(30161), self.STR(30492))
+            if len(onair) > 0:
+                yesno = xbmcgui.Dialog().yesnocustom(self.STR(30491), self.STR(30163) % onair[0]['title'], self.STR(30492))
+            else:
+                yesno = xbmcgui.Dialog().yesnocustom(self.STR(30491), self.STR(30164), self.STR(30492))
             if yesno == 0:
                 # キャンセル
                 pass
