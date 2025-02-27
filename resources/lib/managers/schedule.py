@@ -13,23 +13,6 @@ from resources.lib.db import DB, ThreadLocal
 from resources.lib.scrapers.schedule.common import DummyScraper
 
 
-class Scheduler(Common):
-
-    def __init__(self, protocol, sid):
-        self.protocol = protocol
-        self.sid = sid
-        # DBの共有インスタンス
-        self.db = ThreadLocal.db
-        # Scraperのインスタンス
-        try:
-            module_name = f'resources.lib.scrapers.schedule.{protocol}'
-            module = importlib.import_module(module_name)
-            Scraper = getattr(module, 'Scraper')
-            self.scraper = Scraper(sid)
-        except ModuleNotFoundError:
-            self.scraper = DummyScraper(sid)
-
-
 class ScheduleManager(Common):
 
     def __init__(self, region, pref):
@@ -89,37 +72,44 @@ class ScheduleManager(Common):
         for thread in threads:
             thread.join()
 
+
 def scheduler(protocol, sid, visible):
     # スレッドのDBインスタンスを作成
     ThreadLocal.db = DB()
+    # scraperを初期化
+    try:
+        module_name = f'resources.lib.scrapers.schedule.{protocol}'
+        module = importlib.import_module(module_name)
+        Scraper = getattr(module, 'Scraper')
+        scraper = Scraper(sid)
+    except ModuleNotFoundError:
+        scraper = DummyScraper(sid)
+    nextaired0, nextaired1 = scraper.get_nextaired()
     # 現在時刻
     now = Common.now()
-    # workerを初期化
-    worker = Scheduler(protocol, sid)
-    nextaired0, nextaired1 = worker.scraper.get_nextaired()
     # 再描画フラグ
     refresh = False
     # 番組情報の更新予定時刻を超えていたら実行
     if now > nextaired0:
         # 番組データを取得
-        count = worker.scraper.update()
+        count = scraper.update()
         if count > 0:
             refresh = visible
-            worker.scraper.set_nextaired0()  # DBを更新
+            scraper.set_nextaired0()  # DBを更新
         if count == -1:
             # エラーで取得できなかった場合、NHK, RDK以外は24時間後に再実行
             if protocol not in ('NHK', 'RDK'):
                 refresh = visible
-                worker.scraper.set_nextaired0(hours=24)  # DBを更新
-                nextaired1 = worker.scraper.set_nextaired1(hours=24)  # DBを更新
+                scraper.set_nextaired0(hours=24)  # DBを更新
+                nextaired1 = scraper.set_nextaired1(hours=24)  # DBを更新
     # 表示中の放送局で表示時刻を超えていたら実行
     if now > nextaired1:
         # 表示中の時刻を確認
-        nearest = worker.scraper.search_nextaired1()
+        nearest = scraper.search_nextaired1()
         # 記録されている時刻と異なっていたら再描画する
         if nearest != nextaired1:
             refresh = visible
-            worker.scraper.set_nextaired1()  # DBを更新
+            scraper.set_nextaired1()  # DBを更新
     # 再描画
     if refresh:
         # 表示中画面がこのアドオン画面だったら再描画する
