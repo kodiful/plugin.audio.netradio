@@ -287,7 +287,7 @@ class Directory(ScheduleManager):
         # コミュニティ放送局用に都市名を追加
         basename = sdata['station']
         if sdata['protocol'] not in ('NHK', 'RDK', 'USER'):
-            basename += f"({sdata['pref']}{sdata['city']})"
+            basename += '(%s)' % sdata['city']
         station = basename
         # 番組情報等を追加
         sql = '''SELECT title, start, end
@@ -302,9 +302,9 @@ class Directory(ScheduleManager):
             station += f'[COLOR {color}] ▶ {text}[/COLOR]'
         # 番組情報が取得できない場合
         if len(contents) == 0:
-            self.db.cursor.execute('SELECT nextaired FROM stations WHERE sid = :sid', {'sid': sdata['sid']})
-            nextaired, = self.db.cursor.fetchone()
-            if nextaired < self.now():
+            self.db.cursor.execute('SELECT nextaired0, nextaired1 FROM stations WHERE sid = :sid', {'sid': sdata['sid']})
+            _, nextaired1 = self.db.cursor.fetchone()
+            if nextaired1 < self.now():
                 # 取得中表示
                 text = self.STR(30700)
                 station += f'[COLOR gray] ▶ {text}[/COLOR]'

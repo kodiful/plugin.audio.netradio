@@ -145,7 +145,8 @@ class DB(Common, Schema, Utilities):
             'direct': data.get('direct', ''),
             'delay': data.get('delay', 0),
             'scheduled': 0,
-            'nextaired': '1970-01-01 09:00:00',
+            'nextaired0': '1970-01-01 09:00:00',
+            'nextaired1': '1970-01-01 09:00:00',
             'version': self.ADDON_VERSION,
             'modified': self.now()
         }

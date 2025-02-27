@@ -4,11 +4,13 @@ import time
 import importlib
 import threading
 import json
+import queue
+
 import xbmc
 
 from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal
-from resources.lib.scrapers.schedule.common import NullScraper
+from resources.lib.scrapers.schedule.common import DummyScraper
 
 
 class Scheduler(Common):
@@ -25,20 +27,7 @@ class Scheduler(Common):
             Scraper = getattr(module, 'Scraper')
             self.scraper = Scraper(sid)
         except ModuleNotFoundError:
-            self.scraper = NullScraper(sid)
-        # nextaired初期値設定
-        self.nextaired = self.scraper.get_nextaired()
-
-    def update(self):
-        # 番組データを取得
-        count = self.scraper.update()
-        if count > 0:
-            self.nextaired = self.scraper.set_nextaired()
-        if count == -1:
-            # エラーで取得できなかった場合、NHK, RDK以外は1時間後に設定
-            if  self.protocol not in ('NHK', 'RDK'):
-                self.nextaired = self.scraper.set_nextaired(hours=1)
-        return count
+            self.scraper = DummyScraper(sid)
 
 
 class ScheduleManager(Common):
@@ -47,97 +36,97 @@ class ScheduleManager(Common):
         self.region = region
         self.pref = pref
 
-    def maintain_schedule(self, visible_stations=None):
+    def maintain_schedule(self, vis=None):
         # DBの共有インスタンス
         db = ThreadLocal.db
-        if visible_stations is None:
-            # 更新対象の放送局の指定がない場合（monitorによる定期実行の場合）は、更新対象の放送局のリストを作成する
-            interesting_stations = []
-            # 表示中の放送局をリストに追加
+        # まずNHK、RDKを更新
+        self.maintain_nhk_and_rdk()
+        # 番組情報を更新する放送局のリストを作成
+        stations = []
+        if vis is None:
+            # 表示中の放送局をリストに格納
             sql = '''SELECT s.protocol, s.sid
             FROM status JOIN json_each(status.front) AS je ON je.value = s.sid JOIN stations AS s ON je.value = s.sid'''
             db.cursor.execute(sql)
-            interesting_stations.extend([(protocol, sid, 1) for (protocol, sid) in db.cursor.fetchall()])
+            stations.extend([(protocol, sid, 1) for (protocol, sid) in db.cursor.fetchall()])
             # トップ（ダウンロード対象）の放送局をリストに格納
             sql = 'SELECT protocol, sid FROM stations WHERE top = 1 AND vis = 1'
             db.cursor.execute(sql)
-            interesting_stations.extend([(protocol, sid, 0) for (protocol, sid) in db.cursor.fetchall()])
-            # ユニーク化する
-            stations = self._filter(interesting_stations)
+            stations.extend([(protocol, sid, 0) for (protocol, sid) in db.cursor.fetchall()])
         else:
-            # 表示中の放送局をstatusテーブルに格納
+            # 表示中の放送局をリストに格納
+            stations.extend(vis)
+            # 表示中の放送局をDBに格納
             sql = 'UPDATE status SET front = :front'
-            self.db.cursor.execute(sql, {'front': json.dumps(list(map(lambda x: x[1], visible_stations)))})
-            # 表示中の放送局を更新対象の放送局とする
-            stations = self._filter(visible_stations)
-        # 放送局毎に更新予定時刻を個別のスレッドで確認し必要があれば再描画する
+            self.db.cursor.execute(sql, {'front': json.dumps(list(map(lambda x: x[1], vis)))})
+        # 更新実行
+        for protocol, sid, visible in stations:
+            thread = threading.Thread(target=scheduler, args=[protocol, sid, visible], daemon=True)
+            thread.start()
+
+    def maintain_nhk_and_rdk(self):
+        # DBの共有インスタンス
+        db = ThreadLocal.db
+        # 番組情報を更新する放送局のリストを作成
+        stations = []
+        # NHKから一つリストに追加
+        sql = '''SELECT protocol, sid FROM stations 
+        WHERE protocol = 'NHK' AND region = :region ORDER BY sid LIMIT 1'''
+        db.cursor.execute(sql, {'region': self.region})
+        stations.extend([(protocol, sid, 0) for (protocol, sid) in db.cursor.fetchall()])
+        # RDKから一つリストに追加
+        sql = '''SELECT protocol, sid FROM stations 
+        WHERE protocol = 'RDK' AND pref = :pref ORDER BY sid LIMIT 1'''
+        db.cursor.execute(sql, {'pref': self.pref})
+        stations.extend([(protocol, sid, 0) for (protocol, sid) in db.cursor.fetchall()])
+        # 更新実行
         threads = []
         for protocol, sid, visible in stations:
             thread = threading.Thread(target=scheduler, args=[protocol, sid, visible], daemon=True)
             thread.start()
             threads.append(thread)
-        # 更新対象の放送局の指定がない場合（monitorによる定期実行の場合）はすべてのスレッドが完了するまで待つ
-        if visible_stations is None:
-            for thread in threads:
-                thread.join()
-
-    def _filter(self, tuples):
-        # [(protocol, sid, visible), ...] visible = 1 を優先、NHKとRDKはsidに関わらず一つだけ
-        nhk = list(filter(lambda x: x[0] == 'NHK', tuples))
-        rdk = list(filter(lambda x: x[0] == 'RDK', tuples))
-        others = list(filter(lambda x: x[0] not in ('NHK', 'RDK'), tuples))
-        # nfkとrdkからvisible=1を優先して一つだけ採用
-        nhk = sorted(nhk, key=lambda x: x[2], reverse=True)[0:1]
-        rdk = sorted(rdk, key=lambda x: x[2], reverse=True)[0:1]
-        # othersをフィルタリング
-        seen = set()
-        result = []
-        # まずvisible=1の要素を優先して追加
-        for protocol, sid, visible in set(others):
-            if visible == 1:
-                seen.add((protocol, sid))  # (protocol, sid)を記録
-                result.append((protocol, sid, visible))
-        # visible=1の(protocol, sid)が追加されていない場合のみvisible=0を追加
-        for protocol, sid, visible in set(others):
-            if visible == 0 and (protocol, sid) not in seen:
-                result.append((protocol, sid, visible))
-        return nhk + rdk + result
-
+        # すべてのスレッドが完了するまで待つ
+        for thread in threads:
+            thread.join()
 
 def scheduler(protocol, sid, visible):
     # スレッドのDBインスタンスを作成
-    db = ThreadLocal.db = DB()
+    ThreadLocal.db = DB()
     # 現在時刻
-    now = time.time()
+    now = Common.now()
     # workerを初期化
     worker = Scheduler(protocol, sid)
-    # 更新予定時刻を過ぎていたら
-    nextaired = Common.datetime(worker.nextaired).timestamp()
-    if now > nextaired:
-        # 番組情報の更新を確認
-        count = worker.update()
-        # 表示中画面を確認
-        path = xbmc.getInfoLabel('Container.FolderPath')
-        argv = 'plugin://%s/' % Common.ADDON_ID
-        # このスレッドの放送局が表示中、かつ表示中画面がこのアドオン画面だったら再描画する
-        if visible == 1 and (path == argv or path.startswith(f'{argv}?action=show')):
-            # 番組情報に更新があったら即時再描画する
-            if count != 0:
-                # 再描画
+    nextaired0, nextaired1 = worker.scraper.get_nextaired()
+    # 再描画フラグ
+    refresh = False
+    # 番組情報の更新予定時刻を超えていたら実行
+    if now > nextaired0:
+        # 番組データを取得
+        count = worker.scraper.update()
+        if count > 0:
+            refresh = visible
+            worker.scraper.set_nextaired0()  # DBを更新
+        if count == -1:
+            # エラーで取得できなかった場合、NHK, RDK以外は24時間後に再実行
+            if protocol not in ('NHK', 'RDK'):
+                refresh = visible
+                worker.scraper.set_nextaired0(hours=24)  # DBを更新
+                nextaired1 = worker.scraper.set_nextaired1(hours=24)  # DBを更新
+    # 表示中の放送局で表示時刻を超えていたら実行
+    if now > nextaired1:
+        # 表示中の時刻を確認
+        nearest = worker.scraper.search_nextaired1()
+        # 記録されている時刻と異なっていたら再描画する
+        if nearest != nextaired1:
+            refresh = visible
+            worker.scraper.set_nextaired1()  # DBを更新
+    # 再描画
+    if refresh:
+        # 表示中画面がこのアドオン画面だったら再描画する
+            path = xbmc.getInfoLabel('Container.FolderPath')
+            argv = 'plugin://%s/' % Common.ADDON_ID
+            if path == argv or path.startswith(f'{argv}?action=show'):
                 Common.refresh()
-                # 番組数をカウント
-                current = worker.scraper.count_scheduled()
-                # 番組数を記録
-                worker.scraper.set_scheduled(current)
-            else:
-                # 番組数をカウント
-                current = worker.scraper.count_scheduled()
-                # 記録されている番組数と比較して差異があったら再描画する
-                if current != worker.scraper.get_scheduled():
-                    # 再描画
-                    Common.refresh()
-                    # 番組数を記録
-                    worker.scraper.set_scheduled(current)
     # スレッドのDBインスタンスを終了
     ThreadLocal.db.conn.close()
     ThreadLocal.db = None

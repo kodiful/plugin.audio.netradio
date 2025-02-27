@@ -56,7 +56,8 @@ class Schema():
         direct TEXT,
         delay INTEGER,
         scheduled INTEGER,
-        nextaired TEXT,
+        nextaired0 TEXT,
+        nextaired1 TEXT,
         version TEXT,
         modified TEXT
     )'''

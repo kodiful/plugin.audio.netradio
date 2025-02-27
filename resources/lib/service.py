@@ -34,7 +34,7 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
         db.cursor.execute('''DELETE FROM contents
                           WHERE cstatus != -1 or end > NOW()''')
         # 番組表更新予定時間を初期化
-        db.cursor.execute("UPDATE stations SET nextaired = '1970-01-01 09:00:00'")
+        db.cursor.execute("UPDATE stations SET nextaired0 = '1970-01-01 09:00:00', nextaired1 = '1970-01-01 09:00:00'")
         # 設定画面をデフォルトに設定
         shutil.copy(os.path.join(self.DATA_PATH, 'settings', 'default.xml'), self.DIALOG_FILE)
         # PROFILE_PATH/scheduleを初期化

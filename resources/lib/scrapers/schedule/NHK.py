@@ -57,12 +57,12 @@ class Scraper(Common):
             'station': station,
             'protocol': self.PROTOCOL,
             'key': id,
-            'title': self.normalize(title, False),
+            'title': self.normalize(title),
             'start': self._datetime(start),
             'end': self._datetime(end),
-            'act': self.normalize(act, False),
-            'info': self.normalize(info, False),
-            'desc': self.normalize(desc, False),
+            'act': self.normalize(act),
+            'info': self.normalize(info),
+            'desc': self.normalize(desc),
             'site': data['url']['pc'] or '',
             'region': self.region,
             'pref': ''
@@ -74,32 +74,24 @@ class Scraper(Common):
         datetime_obj = datetime.fromisoformat(t)
         return datetime_obj.strftime('%Y-%m-%d %H:%M:%S')
     
-    def get_nextaired(self):
-        sql = 'SELECT MIN(nextaired) FROM stations AS s WHERE s.protocol = :protocol AND s.region = :region'
-        self.db.cursor.execute(sql, {'protocol': self.PROTOCOL, 'region': self.region})
-        nextaired, = self.db.cursor.fetchone()
-        return nextaired
-    
-    def _get_nextaired(self):
-        sql = '''
-        SELECT MIN(c.end)
+    def search_nextaired0(self):
+        # NHK全体の直近更新時間
+        sql = '''SELECT MIN(c.end)
         FROM contents AS c JOIN stations AS s ON c.sid = s.sid
-        WHERE c.end > NOW() AND s.protocol = :protocol AND s.region = :region
-        '''
+        WHERE c.end > NOW() AND s.protocol = :protocol AND s.region = :region'''
         self.db.cursor.execute(sql, {'protocol': self.PROTOCOL, 'region': self.region})
-        nextaired, = self.db.cursor.fetchone()
-        return nextaired
-
-    def set_nextaired(self):
-        sql = '''
-        UPDATE stations
-        SET nextaired = :nextaired
-        WHERE protocol = :protocol AND region = :region
-        '''
-        nextaired = self._get_nextaired()
-        self.db.cursor.execute(sql, {'nextaired': nextaired, 'protocol': self.PROTOCOL, 'region': self.region})
-        return nextaired
-
+        nextaired0, = self.db.cursor.fetchone()
+        return nextaired0
+        
+    def set_nextaired0(self):
+        # 直近更新時間を取得する
+        nextaired0 = self.search_nextaired0()
+        # NHK全体の直近更新時間を更新する
+        sql = '''UPDATE stations
+        SET nextaired0 = :nextaired0
+        WHERE protocol = :protocol AND region = :region'''
+        self.db.cursor.execute(sql, {'nextaired0': nextaired0, 'protocol': self.PROTOCOL, 'region': self.region})
+        return nextaired0
 
 
 # https://api.nhk.or.jp/r5/pg2/now/4/130/netradio.json

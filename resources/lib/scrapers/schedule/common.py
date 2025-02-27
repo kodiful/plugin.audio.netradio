@@ -80,62 +80,63 @@ class Common(Common):
         # DBへ挿入した番組情報の数を返す
         return count
 
-    def search_nextaired(self):
-        sql = '''SELECT MIN(c.end)
-        FROM contents AS c JOIN stations AS s ON c.sid = s.sid
-        WHERE c.end > NOW() AND c.sid = :sid'''
+    def search_nextaired0(self):
+        sql = '''SELECT c.end FROM contents AS c JOIN stations AS s ON c.sid = s.sid
+        WHERE c.end > NOW() AND c.sid = :sid ORDER BY c.end LIMIT 1 OFFSET 0'''
         self.db.cursor.execute(sql, {'sid': self.sid})
         try:
             nextaired, = self.db.cursor.fetchone()
         except TypeError:
-            nextaired = ''
+            nextaired = '1970-01-01 09:00:00'
         return nextaired
 
-    def set_nextaired(self, hours=0):
-        sql = 'UPDATE stations SET nextaired = :nextaired WHERE sid = :sid'
-        if hours == 0:
-            nextaired = self.search_nextaired()
-        else:
-            nextaired = self.now(hours=hours)
-        self.db.cursor.execute(sql, {'nextaired': nextaired, 'sid': self.sid})
+    def search_nextaired1(self):
+        sql = '''SELECT c.start FROM contents AS c JOIN stations AS s ON c.sid = s.sid
+        WHERE c.end > NOW() AND c.sid = :sid ORDER BY c.end LIMIT 1 OFFSET 1'''
+        self.db.cursor.execute(sql, {'sid': self.sid})
+        try:
+            nextaired, = self.db.cursor.fetchone()
+        except TypeError:
+            nextaired = '1970-01-01 09:00:00'
         return nextaired
 
     def get_nextaired(self):
-        sql = 'SELECT nextaired FROM stations WHERE sid = :sid'
+        sql = 'SELECT nextaired0, nextaired1 FROM stations WHERE sid = :sid'
         self.db.cursor.execute(sql, {'sid': self.sid})
-        nextaired, = self.db.cursor.fetchone()
-        return nextaired
+        nextaired0, nextaired1 = self.db.cursor.fetchone()
+        return nextaired0, nextaired1
 
-    def count_scheduled(self):
-        sql = '''SELECT COUNT(c.end)
-        FROM contents AS c JOIN stations AS s ON c.sid = s.sid
-        WHERE c.end > NOW() AND c.sid = :sid'''
-        self.db.cursor.execute(sql, {'sid': self.sid})
-        scheduled, = self.db.cursor.fetchone()
-        return scheduled
-    
-    def set_scheduled(self, scheduled):
-        sql = 'UPDATE stations SET scheduled = :scheduled WHERE sid = :sid'
-        self.db.cursor.execute(sql, {'scheduled': scheduled, 'sid': self.sid})
+    def set_nextaired0(self, hours=0):
+        if hours == 0:
+            nextaired0 = self.search_nextaired0()
+        else:
+            nextaired0 = self.now(hours=hours)
+        sql = 'UPDATE stations SET nextaired0 = :nextaired0 WHERE sid = :sid'
+        self.db.cursor.execute(sql, {'nextaired0': nextaired0, 'sid': self.sid})
+        return nextaired0
 
-    def get_scheduled(self):
-        sql = 'SELECT scheduled FROM stations WHERE sid = :sid'
-        self.db.cursor.execute(sql, {'sid': self.sid})
-        scheduled, = self.db.cursor.fetchone()
-        return scheduled
+    def set_nextaired1(self, hours=0):
+        if hours == 0:
+            nextaired1 = self.search_nextaired1()
+        else:
+            nextaired1 = self.now(hours=hours)
+        sql = 'UPDATE stations SET nextaired1 = :nextaired1 WHERE sid = :sid'
+        self.db.cursor.execute(sql, {'nextaired1': nextaired1, 'sid': self.sid})
+        return nextaired1
 
     # 文字列を正規化する
     @staticmethod
-    def normalize(text, unescape=True):
+    def normalize(text, unescape=False, parser=False):
         if text is None: return ''
         text = unicodedata.normalize('NFKC', text)
         if unescape:
             text = html.unescape(text)
+        if parser:
             text = BeautifulSoup(text, 'html.parser').prettify()
         return text.strip()
 
 
-class NullScraper(Common):
+class DummyScraper(Common):
     
     def __init__(self, sid):
         # DBの共有インスタンス
@@ -145,17 +146,11 @@ class NullScraper(Common):
         self.station, self.key, self.region, self.pref, self.site = self.db.cursor.fetchone()
 
     def update(self):
-        nextaired = self.get_nextaired()
-        return 1 if nextaired < self.now() else 0
-    
-    def get_nextaired(self):
-        self.db.cursor.execute('SELECT nextaired FROM stations WHERE sid = :sid', {'sid': self.sid})
-        nextaired, = self.db.cursor.fetchone()
-        return nextaired
+        _, nextaired1 = self.get_nextaired()
+        return 1 if nextaired1 < self.now() else 0
 
-    def set_nextaired(self):
-        nextaired = self.now(hours=1)
-        sql = 'UPDATE stations SET nextaired = :nextaired WHERE sid = :sid'
-        self.db.cursor.execute(sql, {'nextaired': nextaired, 'sid': self.sid})
-        return nextaired
-    
+    def search_nextaired0(self):
+        return self.now(hours=24)
+
+    def search_nextaired1(self):
+        return self.now(hours=24)

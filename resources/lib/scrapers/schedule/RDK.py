@@ -38,12 +38,12 @@ class Scraper(Common):
                     'station': station,
                     'protocol': self.PROTOCOL,
                     'key': id,
-                    'title': self.normalize(title),
+                    'title': self.normalize(title, unescape=True),
                     'start': self._datetime(start),
                     'end': self._datetime(end),
-                    'act': self.normalize(act),
-                    'info': self.normalize(info),
-                    'desc': self.normalize(desc),
+                    'act': self.normalize(act, unescape=True, parser=True),
+                    'info': self.normalize(info, unescape=True, parser=True),
+                    'desc': self.normalize(desc, unescape=True, parser=True),
                     'site': p['url'] or '',
                     'region': self.region,
                     'pref': self.pref
@@ -58,31 +58,24 @@ class Scraper(Common):
         #return dt.strftime('%Y-%m-%d %H:%M:%S')
         return f'{t[0:4]}-{t[4:6]}-{t[6:8]} {t[8:10]}:{t[10:12]}:{t[12:14]}'
 
-    def get_nextaired(self):
-        sql = 'SELECT MIN(nextaired) FROM stations AS s WHERE s.protocol = :protocol AND s.pref = :pref'
-        self.db.cursor.execute(sql, {'protocol': self.PROTOCOL, 'pref': self.pref})
-        nextaired, = self.db.cursor.fetchone()
-        return nextaired
-    
-    def _get_nextaired(self):
-        sql = '''
-        SELECT MIN(c.end)
+    def search_nextaired0(self):
+        # RDK全体の直近更新時間を取得する
+        sql = '''SELECT MIN(c.end)
         FROM contents AS c JOIN stations AS s ON c.sid = s.sid
-        WHERE c.end > NOW() AND s.protocol = :protocol AND s.pref = :pref
-        '''
+        WHERE c.end > NOW() AND s.protocol = :protocol AND s.pref = :pref'''
         self.db.cursor.execute(sql, {'protocol': self.PROTOCOL, 'pref': self.pref})
-        nextaired, = self.db.cursor.fetchone()
-        return nextaired
-
-    def set_nextaired(self):
-        sql = '''
-        UPDATE stations
-        SET nextaired = :nextaired
-        WHERE protocol = :protocol AND pref = :pref
-        '''
-        nextaired = self._get_nextaired()
-        self.db.cursor.execute(sql, {'nextaired': nextaired, 'protocol': self.PROTOCOL, 'pref': self.pref})
-        return nextaired
+        nextaired0, = self.db.cursor.fetchone()
+        return nextaired0
+        
+    def set_nextaired0(self):
+        # 直近更新時間を取得する
+        nextaired0 = self.search_nextaired0()
+        # RDK全体の直近更新時間を更新する
+        sql = '''UPDATE stations
+        SET nextaired0 = :nextaired0
+        WHERE protocol = :protocol AND pref = :pref'''
+        self.db.cursor.execute(sql, {'nextaired0': nextaired0, 'protocol': self.PROTOCOL, 'pref': self.pref})
+        return nextaired0
 
 
 # https://radiko.jp/v3/program/now/JP13.xml
