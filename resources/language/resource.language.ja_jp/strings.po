@@ -41,6 +41,22 @@ msgid "Archive (classified by station)"
 msgstr "アーカイブ（放送局別）"
 
 #
+# for startup
+#
+
+msgctxt "#30020"
+msgid "Restart Kodi"
+msgstr "Kodiを再起動してください"
+
+msgctxt "#30021"
+msgid "Can't start serivice"
+msgstr "サービスを起動できません"
+
+msgctxt "#30022"
+msgid "Locate ffmpeg"
+msgstr "ffmpegの場所を指定してください"
+
+#
 # for contextmenus
 #
 

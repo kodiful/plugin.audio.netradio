@@ -41,6 +41,22 @@ msgid "Archive (classified by station)"
 msgstr ""
 
 #
+# for startup
+#
+
+msgctxt "#30020"
+msgid "Restart Kodi"
+msgstr ""
+
+msgctxt "#30021"
+msgid "Can't start serivice"
+msgstr ""
+
+msgctxt "#30022"
+msgid "Locate ffmpeg"
+msgstr ""
+
+#
 # for contextmenus
 #
 

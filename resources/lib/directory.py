@@ -150,7 +150,7 @@ class Directory(ScheduleManager):
     def _setup_directory(self):
         # NHKラジオ
         li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30001))
-        self.setArt(li, 'folder')
+        self.setArt(li, 'satellite')
         # コンテクストメニュー
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
@@ -159,7 +159,7 @@ class Directory(ScheduleManager):
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # 民放ラジオ(radiko)
         li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30002))
-        self.setArt(li, 'folder')
+        self.setArt(li, 'satellite')
         # コンテクストメニュー
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
@@ -168,7 +168,7 @@ class Directory(ScheduleManager):
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # コミュニティラジオ
         li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30003))
-        self.setArt(li, 'folder')
+        self.setArt(li, 'satellite')
         # コンテクストメニュー
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
@@ -206,7 +206,7 @@ class Directory(ScheduleManager):
         # listitemを追加する
         li = xbmcgui.ListItem(pref or region)
         # サムネイル画像
-        self.setArt(li, 'folder')
+        self.setArt(li, 'satellite')
         # コンテクストメニュー
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
