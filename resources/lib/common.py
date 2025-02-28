@@ -42,7 +42,7 @@ class Common:
     IMAGE_CACHE = os.path.join(xbmcvfs.translatePath('special://database'), 'Textures13.db')
 
     # contents directory
-    CONTENTS_PATH = GET('satellite')
+    CONTENTS_PATH = GET('folder')
 
     # 更新確認のインターバル（秒）
     CHECK_INTERVAL = 10

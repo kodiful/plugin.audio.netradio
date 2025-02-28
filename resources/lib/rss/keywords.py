@@ -23,19 +23,23 @@ class Keywords(Common):
         ORDER BY c.start DESC'''
         self.db.cursor.execute(sql, {'keyword': self.keyword, 'dirname': self.dirname})
         for filename, title, start, station, description, site, duration in self.db.cursor.fetchall():
-            self.writer.write(
-                self.body.format(
-                    title=html.escape(title),
-                    date=self._date(start),
-                    url=site,
-                    filename=filename,
-                    description=description.replace('<br>','<br/>'),  # add replace for compatibility
-                    pubdate=self._pubdate(start),
-                    station=station,
-                    duration='%02d:%02d:%02d' % (duration // 3600, duration // 60 % 60, duration % 60),
-                    filesize=os.path.getsize(os.path.join(self.CONTENTS_PATH, self.dirname, filename))
+            mp3_file = os.path.join(self.CONTENTS_PATH, self.dirname, filename)
+            if os.path.exists(mp3_file):
+                self.writer.write(
+                    self.body.format(
+                        title=html.escape(title),
+                        date=self._date(start),
+                        url=site,
+                        filename=filename,
+                        description=description.replace('<br>','<br/>'),  # add replace for compatibility
+                        pubdate=self._pubdate(start),
+                        station=station,
+                        duration='%02d:%02d:%02d' % (duration // 3600, duration // 60 % 60, duration % 60),
+                        filesize=os.path.getsize(mp3_file)
+                    )
                 )
-            )
+            else:
+                self.log('mp3 file not found:', mp3_file)
 
     def create_index(self):
         sql = '''SELECT DISTINCT  k.keyword, k.dirname

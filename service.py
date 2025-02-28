@@ -19,12 +19,12 @@ from resources.lib.transfer import Transfer
 
 def set_ffmpeg(message):
     xbmcgui.Dialog().ok(Common.ADDON_NAME, message)
-    ffmpeg = xbmcgui.Dialog().browse(1, Common.ADDON_NAME, 'files')
-    if ffmpeg:
-        Common.SET('ffmpeg', ffmpeg)
-        xbmcgui.Dialog().ok(Common.ADDON_NAME, Common.STR(30020))
+    path = xbmcgui.Dialog().browse(1, Common.ADDON_NAME, 'files')
+    if path:
+        Common.SET('ffmpeg', path)
+        xbmcgui.Dialog().ok(Common.ADDON_NAME, Common.STR(30020))  # Kodiを再起動してください
     else:
-        xbmcgui.Dialog().ok(Common.ADDON_NAME, Common.STR(30021))
+        xbmcgui.Dialog().ok(Common.ADDON_NAME, Common.STR(30021))  # サービスを起動できません
     sys.exit()
 
 if __name__ == '__main__':
@@ -33,13 +33,13 @@ if __name__ == '__main__':
     socket.setdefaulttimeout(60)
 
     # ffmpegの起動を確認
-    ffmpeg = Common.GET('ffmpeg')
-    if ffmpeg and os.path.exists(ffmpeg):
+    path = Common.GET('ffmpeg')
+    if path and os.path.exists(path):
         PATH = os.environ['PATH']
         if os.name == 'nt':
-            os.environ['PATH'] = '%s;%s' % (ffmpeg, PATH)
+            os.environ['PATH'] = '%s;%s' % (os.path.dirname(path), PATH)
         else:
-            os.environ['PATH'] = '%s:%s' % (os.path.dirname(ffmpeg), PATH)
+            os.environ['PATH'] = '%s:%s' % (os.path.dirname(path), PATH)
         # ffmpegの起動を確認
         p = subprocess.Popen(['ffmpeg'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         status = p.stdout.readline().decode('utf-8', errors='shift_jis').strip()
@@ -51,14 +51,15 @@ if __name__ == '__main__':
         # NG => "'ffmpeg' は、内部コマンドまたは外部コマンド、" + "操作可能なプログラムまたはバッチ ファイルとして認識されていません。"
         if status.find('ffmpeg version') == -1:
             xbmcgui.Dialog().ok(Common.ADDON_NAME, status)
-            set_ffmpeg(Common.STR(30022))
+            set_ffmpeg(Common.STR(30022))  # ffmpegの場所を指定してください
     else:
-        set_ffmpeg(Common.STR(30022))
+        set_ffmpeg(Common.STR(30022))  # ffmpegの場所を指定してください
     
     # DBファイルの有無をチェック
     exists =  os.path.exists(Common.DB_FILE)
     # DBインスタンスを作成
     ThreadLocal.db = DB()
+
     # DBファイルがない場合は既存データをインポート
     if exists is False:
         Common.notify('Transferring data...')
@@ -69,6 +70,7 @@ if __name__ == '__main__':
     # 別スレッドでサービスを起動
     thread = threading.Thread(target=service.monitor, daemon=True)
     thread.start()
+
     # DBインスタンスを終了
     ThreadLocal.db.conn.close()
     ThreadLocal.db = None
