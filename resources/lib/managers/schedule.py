@@ -113,10 +113,10 @@ def scheduler(protocol, sid, visible):
     # 再描画
     if refresh:
         # 表示中画面がこのアドオン画面だったら再描画する
-            path = xbmc.getInfoLabel('Container.FolderPath')
-            argv = 'plugin://%s/' % Common.ADDON_ID
-            if path == argv or path.startswith(f'{argv}?action=show'):
-                Common.refresh()
+        path = xbmc.getInfoLabel('Container.FolderPath')
+        argv = 'plugin://%s/' % Common.ADDON_ID
+        if path == argv or path.startswith(f'{argv}?action=show_stations'):
+            Common.refresh()
     # スレッドのDBインスタンスを終了
     ThreadLocal.db.conn.close()
     ThreadLocal.db = None

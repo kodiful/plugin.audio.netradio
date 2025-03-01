@@ -92,14 +92,10 @@ if __name__ == '__main__':
     elif action == 'delete_download':
         cid = args.get('cid')
         Contents().delete(int(cid))
-    elif action == 'confirm_play':
-        Contents().confirm_play(args.get('path'))
-    elif action == 'confirm_cancel':
+    elif action == 'play_download':
         cid = args.get('cid')
-        Contents().confirm_cancel(int(cid))
-    elif action == 'show_error':
-        cid = args.get('cid')
-        Contents().show_error(int(cid))
+        cstatus = args.get('cstatus')
+        Contents().play(int(cid), int(cstatus))
     elif action == 'get_download':
         sid = args.get('sid', 0)
         Settings(flags=7).get(sid=int(sid))

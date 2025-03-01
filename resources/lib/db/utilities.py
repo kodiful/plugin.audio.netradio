@@ -43,7 +43,7 @@ class Utilities():
         # startを曜日に変換
         start = self.weekday(start)
         # 各キーワード設定と照合
-        self.cursor.execute('SELECT kid, keyword, match, weekday, station FROM keywords WHERE kstatus = 1')
+        self.cursor.execute('SELECT kid, keyword, match, weekday, station FROM keywords WHERE kstatus = 1 ORDER BY kid DESC')
         for kid, keyword, match, weekday, source in self.cursor.fetchall():
             # 曜日
             if weekday != 7 and weekday != start:

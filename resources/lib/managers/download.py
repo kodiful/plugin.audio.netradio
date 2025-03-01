@@ -7,6 +7,8 @@ import urllib.request
 import ffmpeg  # https://github.com/kkroening/ffmpeg-python
 from mutagen.mp3 import MP3
 
+import xbmc
+
 from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal
 from resources.lib.localproxy import LocalProxy
@@ -111,6 +113,11 @@ def downloader(cid, kid, filename, protocol, key, title, end, direct, queue):
             Common.log(f'request error (code={e.code}):', url)
         except Exception as e:
             Common.log(e)
+        # 表示中画面がこのアドオン画面だったら再描画する
+        path = xbmc.getInfoLabel('Container.FolderPath')
+        argv = 'plugin://%s/' % Common.ADDON_ID
+        if path == argv or path.startswith(f'{argv}?action=show_downloads'):
+            Common.refresh()
         # 完了通知
         Common.notify('Download complete "%s"' % title)
         # ログ

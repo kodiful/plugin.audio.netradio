@@ -34,14 +34,14 @@ class Directory(ScheduleManager):
         # 表示
         if protocol == 'NHK':
             # NHKの放送局一覧を表示
-            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND vis = 1 ORDER BY station'
+            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND vis = 1 ORDER BY key'
             self.db.cursor.execute(sql, {'protocol': 'NHK'})
             for sdata in self.db.cursor.fetchall():
                 self._add_oastation(sdata)
                 stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'RDK':
             # RDKの放送局一覧を表示
-            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND vis = 1 ORDER BY station'
+            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND vis = 1 ORDER BY key'
             self.db.cursor.execute(sql, {'protocol': 'RDK'})
             for sdata in self.db.cursor.fetchall():
                 self._add_oastation(sdata)
@@ -67,7 +67,7 @@ class Directory(ScheduleManager):
                     stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'keyword':
             # 保存ファイルのキーワード一覧を表示
-            sql = 'SELECT kid, keyword, dirname FROM keywords WHERE kid != -1 ORDER BY keyword'
+            sql = 'SELECT kid, keyword, dirname FROM keywords WHERE kid != -1 ORDER BY kid DESC'
             self.db.cursor.execute(sql)
             for kid, keyword, dirname in self.db.cursor.fetchall():
                 self._add_keyword(kid, keyword, dirname)

@@ -66,35 +66,43 @@ class Contents(Common):
             sql = 'DELETE FROM contents WHERE cid = :cid'
             self.db.cursor.execute(sql, {'cid': cid})
             self.refresh()
-    
-    def confirm_play(self, path):
-        ok = xbmcgui.Dialog().yesno(self.STR(30152), self.STR(30158))
-        if ok:
-            xbmc.executebuiltin('PlayMedia(%s)' % path)
-    
-    def confirm_cancel(self, cid):
-        ok = xbmcgui.Dialog().yesno(self.STR(30152), self.STR(30159))
-        if ok:
-            # タイマー予約を削除
-            result = self.db.cursor.execute('DELETE FROM contents WHERE cid = :cid AND kid = -1', {'cid': cid})
-            if result.rowcount == 0:
-                # タイマー予約の削除ができないときは、キーワード予約の設定をリセット
-                self.db.cursor.execute('UPDATE contents SET cstatus = 0, kid = 0 WHERE cid = :cid AND kid > 0', {'cid': cid})
-            self.refresh()
 
-    def show_error(self, cid):
-        ok = xbmcgui.Dialog().yesno(self.STR(30152), self.STR(30160))
-        if ok:
-            self.db.cursor.execute('SELECT description FROM contents WHERE cid = :cid', {'cid': cid})
-            description, = self.db.cursor.fetchone()
-            xbmcgui.Dialog().textviewer(self.STR(30153), description)
+    def play(self, cid, laststatus):
+        # 再生するファイルの情報を取得
+        sql = '''SELECT c.cstatus, c.filename, k.dirname
+        FROM contents c JOIN keywords k ON c.kid = k.kid
+        WHERE c.cid = :cid'''
+        self.db.cursor.execute(sql, {'cid': cid})
+        cstatus, filename, dirname = self.db.cursor.fetchone()
+        # ファイルのパス
+        path = os.path.join(self.CONTENTS_PATH, dirname, filename)
+        # cstatusに応じて処理
+        if cstatus == -1:  # 正常
+            xbmc.executebuiltin('PlayMedia("%s")' % path)
+        elif cstatus > 1:  # 保存中
+            ok = xbmcgui.Dialog().yesno(self.STR(30152), self.STR(30158))  # 保存中です。保存を継続したまま再生しますか？
+            if ok:
+                xbmc.executebuiltin('PlayMedia("%s")' % path)
+        elif cstatus == 1:  # 予約中
+            ok = xbmcgui.Dialog().yesno(self.STR(30152), self.STR(30159))  # 保存を待機中です。保存をキャンセルしますか？
+            if ok:
+                # タイマー予約を削除
+                result = self.db.cursor.execute('DELETE FROM contents WHERE cid = :cid AND kid = -1', {'cid': cid})
+                if result.rowcount == 0:
+                    # タイマー予約の削除ができないときは、キーワード予約の設定をリセット
+                    self.db.cursor.execute('UPDATE contents SET cstatus = 0, kid = 0 WHERE cid = :cid AND kid > 0', {'cid': cid})
+                self.refresh()
+        else:  # エラー
+            ok = xbmcgui.Dialog().yesno(self.STR(30152), self.STR(30160))  # 保存を失敗したため再生できません。エラー情報を表示しますか？
+            if ok:
+                self.db.cursor.execute('SELECT description FROM contents WHERE cid = :cid', {'cid': cid})
+                description, = self.db.cursor.fetchone()
+                xbmcgui.Dialog().textviewer(self.STR(30153), description)
 
     def _add_download(self, cksdata):
         cstatus = cksdata['cstatus']
         # listitemを追加する    
         li = xbmcgui.ListItem(self._title(cksdata))
-        if cstatus == -1:
-            li.setProperty('IsPlayable', 'true')
         # メタデータ設定
         tag = li.getMusicInfoTag()
         tag.setTitle(cksdata['title'])
@@ -103,23 +111,13 @@ class Contents(Common):
         li.setArt({'thumb': logo, 'icon': logo})
         # コンテクストメニュー
         self.contextmenu = []
-        if cstatus < 0:
+        if cstatus == -1:
             self._contextmenu(self.STR(30112), {'action': 'delete_download', 'cid': cksdata['cid']})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        # 再生するファイルのパス
-        path = os.path.join(self.CONTENTS_PATH, cksdata['dirname'], cksdata['filename'])
-        if cstatus == -1:  # 正常
-            url = path
-        elif cstatus > 1:  # 保存中
-            query = urlencode({'action': 'confirm_play', 'path': path})
-            url = '%s?%s' % (sys.argv[0], query)
-        elif cstatus == 1:  # 予約中
-            query = urlencode({'action': 'confirm_cancel', 'cid': cksdata['cid']})
-            url = '%s?%s' % (sys.argv[0], query)
-        else:  # エラー
-            query = urlencode({'action': 'show_error', 'cid': cksdata['cid']})
-            url = '%s?%s' % (sys.argv[0], query)
+        # ファイル再生
+        query = urlencode({'action': 'play_download', 'cid': cksdata['cid'], 'cstatus': cksdata['cstatus']})
+        url = '%s?%s' % (sys.argv[0], query)
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
 

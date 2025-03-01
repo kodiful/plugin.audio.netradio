@@ -46,7 +46,7 @@ class Timer(Common):
             dt = self.GET('period')
             end = datetime.now() + timedelta(minutes=int(dt))
         # デフォルト設定
-        self.SET('title', title or station)
+        self.SET('title', title or station or 'untitled')
         self.SET('date0', start.strftime('%Y-%m-%d'))
         self.SET('time0', start.strftime('%H:%M'))
         self.SET('date1', end.strftime('%Y-%m-%d'))
