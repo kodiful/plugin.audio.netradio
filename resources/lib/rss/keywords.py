@@ -3,7 +3,7 @@
 import os
 import html
 
-from resources.lib.rss.common import Common, decorator
+from .common import Common, decorator
 
 
 class Keywords(Common):

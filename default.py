@@ -16,8 +16,7 @@ from resources.lib.common import Common
 from resources.lib.db import DB, ThreadLocal
 from resources.lib.directory import Directory
 from resources.lib.contents import Contents
-from resources.lib.settings.settings import Settings
-from resources.lib.settings.stations import Stations
+from resources.lib.settings import Settings, Stations
 
 
 if __name__ == '__main__':

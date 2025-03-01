@@ -3,12 +3,12 @@
 import os
 import shutil
 from datetime import datetime
-from resources.lib.settings.common import Common
-from resources.lib.contents import Contents
-from resources.lib.rss.keywords import Keywords
 
 import xbmc
 import xbmcgui
+
+from .common import Common
+from resources.lib.rss import Keywords
 
 
 class Keyword(Common):
@@ -105,6 +105,6 @@ class Keyword(Common):
             # キーワード削除
             self.db.delete_keyword(kid)
             # RSSインデクス再作成
-            Contents().create_index()
+            Keywords().create_index()
             # 再描画
             self.refresh()

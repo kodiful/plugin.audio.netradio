@@ -11,8 +11,7 @@ import xbmcgui
 
 from resources.lib.common import Common
 from resources.lib.db import ThreadLocal
-from resources.lib.rss.keywords import Keywords
-from resources.lib.rss.stations import Stations
+from resources.lib.rss import Keywords, Stations
 
 
 class Contents(Common):

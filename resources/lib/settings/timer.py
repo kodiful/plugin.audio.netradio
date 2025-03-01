@@ -2,8 +2,9 @@
 
 import os
 from datetime import datetime, timedelta
-from resources.lib.settings.common import Common
-from resources.lib.rss.stations import Stations
+
+from .common import Common
+from resources.lib.rss import Stations
 
 import xbmc
 

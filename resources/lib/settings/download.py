@@ -3,8 +3,8 @@
 import os
 import html
 
-from resources.lib.settings.common import Common
-from resources.lib.rss.stations import Stations
+from .common import Common
+from resources.lib.rss import Stations
 
 
 class Download(Common):

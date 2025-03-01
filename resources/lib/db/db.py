@@ -6,8 +6,8 @@ import threading
 from datetime import datetime, timezone, timedelta
 
 from resources.lib.common import Common
-from resources.lib.dbstuff.schema import Schema
-from resources.lib.dbstuff.utilities import Utilities, load_logo
+from .schema import Schema
+from .utilities import Utilities, load_logo
 
 
 # DBの共有インスタンスを格納するスレッドローカルデータ

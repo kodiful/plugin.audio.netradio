@@ -2,10 +2,11 @@
 
 import os
 import shutil
-from resources.lib.settings.common import Common
-from resources.lib.settings.modules.download import Download
-from resources.lib.settings.modules.timer import Timer
-from resources.lib.settings.modules.keyword import Keyword
+
+from .common import Common
+from .download import Download
+from .timer import Timer
+from .keyword import Keyword
 
 import xbmc
 import xbmcgui

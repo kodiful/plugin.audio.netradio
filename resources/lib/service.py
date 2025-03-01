@@ -9,9 +9,7 @@ import xbmc
 
 from resources.lib.db import DB, ThreadLocal
 from resources.lib.localproxy import LocalProxy
-from resources.lib.managers.authentication import AuthenticationManager
-from resources.lib.managers.schedule import ScheduleManager
-from resources.lib.managers.download import DownloadManager
+from resources.lib.managers import AuthenticationManager, ScheduleManager, DownloadManager
 
 
 class Service(AuthenticationManager, ScheduleManager, DownloadManager):
