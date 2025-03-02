@@ -13,10 +13,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023545/nhkradiruikr1/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -32,10 +29,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -67,10 +61,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023543/nhkradiruhkr1/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -86,10 +77,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -121,10 +109,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023229/nhkradiruakr1/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -140,10 +125,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -175,10 +157,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023510/nhkradiruckr1/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -194,10 +173,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -229,10 +205,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023508/nhkradirubkr1/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -248,10 +221,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -283,10 +253,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023512/nhkradirufkr1/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -302,10 +269,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -337,10 +301,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023547/nhkradiruzkr1/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -356,10 +317,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -391,10 +349,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023541/nhkradirulkr1/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,
@@ -410,10 +365,7 @@
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
         "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
-        "delay": 35,
-        "display": 1,
-        "schedule": 1,
-        "download": 1
+        "delay": 35
     },
     {
         "top": 1,

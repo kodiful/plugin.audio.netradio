@@ -57,10 +57,7 @@ class Scraper(Common):
                 'description': '',
                 'site': 'https://www.nhk.or.jp/radio/',
                 'direct': section.r1hls.text,
-                'delay': 35,
-                'display': 1,
-                'schedule': 1,
-                'download': 1
+                'delay': 35
             })
             buf.append({
                 'top': 1,
@@ -76,10 +73,7 @@ class Scraper(Common):
                 'description': '',
                 'site': 'https://www.nhk.or.jp/radio/',
                 'direct': section.r2hls.text,
-                'delay': 35,
-                'display': 1,
-                'schedule': 1,
-                'download': 1
+                'delay': 35
             })
             buf.append({
                 'top': 1,
