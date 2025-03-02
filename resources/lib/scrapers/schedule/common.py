@@ -126,6 +126,8 @@ class Common(Common):
             text = html.unescape(text)
         if parser:
             text = BeautifulSoup(text, 'html.parser').prettify()
+        text = text.replace('<', '＜').replace('>', '＞')
+        text = text.replace('🎤', '')  # レディオモモ
         return text.strip()
 
 

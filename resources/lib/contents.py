@@ -67,7 +67,7 @@ class Contents(Common):
             self.db.cursor.execute(sql, {'cid': cid})
             self.refresh()
 
-    def play(self, cid, laststatus):
+    def play(self, cid):
         # 再生するファイルの情報を取得
         sql = '''SELECT c.cstatus, c.filename, k.dirname
         FROM contents c JOIN keywords k ON c.kid = k.kid
@@ -116,7 +116,7 @@ class Contents(Common):
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ファイル再生
-        query = urlencode({'action': 'play_download', 'cid': cksdata['cid'], 'cstatus': cksdata['cstatus']})
+        query = urlencode({'action': 'play_download', 'cid': cksdata['cid']})
         url = '%s?%s' % (sys.argv[0], query)
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)

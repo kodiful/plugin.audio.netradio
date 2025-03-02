@@ -94,8 +94,7 @@ if __name__ == '__main__':
         Contents().delete(int(cid))
     elif action == 'play_download':
         cid = args.get('cid')
-        cstatus = args.get('cstatus')
-        Contents().play(int(cid), int(cstatus))
+        Contents().play(int(cid))
     elif action == 'get_download':
         sid = args.get('sid', 0)
         Settings(flags=7).get(sid=int(sid))
