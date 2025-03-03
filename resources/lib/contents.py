@@ -36,7 +36,7 @@ class Contents(Common):
             FROM contents AS c
             JOIN keywords AS k ON c.kid = k.kid
             JOIN stations AS s ON c.sid = s.sid
-            WHERE c.cstatus != 0 AND c.kid = -1 AND s.protocol = :protocol AND s.station = :station
+            WHERE c.cstatus != 0 AND s.protocol = :protocol AND s.station = :station
             ORDER BY c.start DESC'''
             self.db.cursor.execute(sql, {'protocol': protocol, 'station': station})
         for cksdata in self.db.cursor.fetchall():
@@ -173,7 +173,7 @@ class Contents(Common):
         # 放送局RSS作成
         sql = '''SELECT DISTINCT s.protocol, c.station
         FROM contents AS c JOIN stations AS s ON c.sid = s.sid
-        WHERE c.cstatus = -1 AND c.kid = -1'''
+        WHERE c.cstatus = -1'''
         self.db.cursor.execute(sql)
         for protocol, station in self.db.cursor.fetchall():
             Stations(protocol, station).create_rss()

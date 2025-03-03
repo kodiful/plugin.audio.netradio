@@ -17,14 +17,15 @@ class Stations(Common):
         self.create_index = decorator(self, 'NetRadio Client', '.', 'stations.xml')(self.create_index)        
 
     def create_rss(self):
-        sql = '''SELECT c.filename, c.title, c.start, c.description, c.site, c.duration
+        sql = '''SELECT k.dirname, c.filename, c.title, c.start, c.description, c.site, c.duration
         FROM contents AS c
         JOIN stations AS s ON c.sid = s.sid
+        JOIN keywords AS k ON c.kid = k.kid
         WHERE c.cstatus = -1 AND s.protocol = :protocol AND s.station = :station
         ORDER BY c.start DESC'''
         self.db.cursor.execute(sql, {'protocol': self.protocol, 'station': self.station})
-        for filename, title, start, description, site, duration in self.db.cursor.fetchall():
-            mp3_file = os.path.join(self.CONTENTS_PATH, '0', self.protocol, self.station, filename)
+        for dirname, filename, title, start, description, site, duration in self.db.cursor.fetchall():
+            mp3_file = os.path.join(self.CONTENTS_PATH, dirname, self.protocol, self.station, filename)
             if os.path.exists(mp3_file):
                 self.writer.write(
                     self.body.format(
@@ -44,8 +45,10 @@ class Stations(Common):
 
     def create_index(self):
         sql = '''SELECT DISTINCT s.protocol, c.station
-        FROM contents AS c JOIN stations AS s ON c.sid = s.sid
-        WHERE c.cstatus = -1 AND c.kid = -1
+        FROM contents AS c
+        JOIN stations AS s ON c.sid = s.sid
+        JOIN keywords AS k ON c.kid = k.kid
+        WHERE c.cstatus = -1
         ORDER BY
         CASE s.protocol
             WHEN 'NHK' THEN 1

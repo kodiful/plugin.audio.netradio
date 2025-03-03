@@ -76,7 +76,7 @@ class Directory(ScheduleManager):
             sql = '''SELECT DISTINCT s.protocol, s.station
             FROM contents AS c 
             JOIN stations AS s ON c.sid = s.sid
-            WHERE c.kid = -1 ORDER BY
+            WHERE c.cstatus != 0 ORDER BY
             CASE s.protocol
                 WHEN 'NHK' THEN 1
                 WHEN 'RDK' THEN 2

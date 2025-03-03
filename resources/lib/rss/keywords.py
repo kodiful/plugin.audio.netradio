@@ -47,7 +47,7 @@ class Keywords(Common):
         sql = '''SELECT DISTINCT  k.keyword, k.dirname
         FROM contents AS c JOIN keywords AS k ON c.kid = k.kid
         WHERE c.cstatus = -1 AND c.kid > 0
-        ORDER BY k.keyword COLLATE NOCASE'''
+        ORDER BY k.kid DESC'''
         self.db.cursor.execute(sql, {})
         for keyword, dirname in self.db.cursor.fetchall():
             self.writer.write(

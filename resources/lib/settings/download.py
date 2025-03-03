@@ -29,7 +29,7 @@ class Download(Common):
         protocol, station, start, end = self.db.cursor.fetchone()
         filename = self.db.filename(station, start, end)
         sql = 'UPDATE contents SET cstatus = 1, filename = :filename, kid = -1 WHERE cstatus = 0 AND cid = :cid'
-        self.db.cursor.execute(sql, {'cid': int(cid), 'filename': os.path.join(protocol, station, filename)})
+        self.db.cursor.execute(sql, {'cid': int(cid), 'filename': filename})
         # RSSインデクス再作成
         Stations().create_index()
         # 再描画

@@ -72,7 +72,7 @@ class Timer(Common):
             'title': title,
             'start': start,
             'end': end,
-            'filename': os.path.join(protocol, station, self.db.filename(station, start, end)),
+            'filename': self.db.filename(station, start, end),
             'act': '',
             'info': '',
             'desc': description,
