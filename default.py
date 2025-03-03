@@ -101,7 +101,7 @@ if __name__ == '__main__':
     elif action == 'set_download':
         Settings().set(action)
     elif action == 'open_folder':
-        path = os.path.join(Common.CONTENTS_PATH, args.get('dirname', ''))
+        path = Common.CONTENTS_PATH
         os_ = platform.system()
         if os_ == 'Windows':
             subprocess.Popen(['explorer', path], shell=True)

@@ -49,17 +49,18 @@ class Contents(Common):
 
     def delete(self, cid):
         # 削除するファイルの情報を取得
-        sql = '''SELECT *
-        FROM contents c 
-        JOIN keywords k ON c.kid = k.kid
+        sql = '''SELECT k.dirname, s.protocol, s.station, c.filename, c.title
+        FROM contents AS c 
+        JOIN stations AS s ON c.sid = s.sid
+        JOIN keywords AS k ON c.kid = k.kid
         WHERE c.cid = :cid'''
         self.db.cursor.execute(sql, {'cid': cid})
-        ckdata = self.db.cursor.fetchone()
+        dirname, protocol, station, filename, title = self.db.cursor.fetchone()
         # 確認ダイアログを表示
-        ok = xbmcgui.Dialog().yesno(self.STR(30150), self.STR(30151) % ckdata['title'])
+        ok = xbmcgui.Dialog().yesno(self.STR(30150), self.STR(30151) % title)
         if ok:
             # ファイルを削除
-            path = os.path.join(self.CONTENTS_PATH, ckdata['dirname'], ckdata['filename'])
+            path = os.path.join(self.CONTENTS_PATH, dirname, protocol, station, filename)
             if os.path.exists(path):
                 os.remove(path)
             # DBから削除
@@ -69,13 +70,15 @@ class Contents(Common):
 
     def play(self, cid):
         # 再生するファイルの情報を取得
-        sql = '''SELECT c.cstatus, c.filename, k.dirname
-        FROM contents c JOIN keywords k ON c.kid = k.kid
+        sql = '''SELECT c.cstatus, k.dirname, s.protocol, s.station, c.filename
+        FROM contents AS c
+        JOIN stations AS s ON c.sid = s.sid
+        JOIN keywords AS k ON c.kid = k.kid
         WHERE c.cid = :cid'''
         self.db.cursor.execute(sql, {'cid': cid})
-        cstatus, filename, dirname = self.db.cursor.fetchone()
+        cstatus, dirname, protocol, station, filename = self.db.cursor.fetchone()
         # ファイルのパス
-        path = os.path.join(self.CONTENTS_PATH, dirname, filename)
+        path = os.path.join(self.CONTENTS_PATH, dirname, protocol, station, filename)
         # cstatusに応じて処理
         if cstatus == -1:  # 正常
             xbmc.executebuiltin('PlayMedia("%s")' % path)

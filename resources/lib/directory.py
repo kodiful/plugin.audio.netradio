@@ -67,7 +67,7 @@ class Directory(ScheduleManager):
                     stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'keyword':
             # 保存ファイルのキーワード一覧を表示
-            sql = 'SELECT kid, keyword, dirname FROM keywords WHERE kid != -1 ORDER BY kid DESC'
+            sql = 'SELECT kid, keyword, dirname FROM keywords WHERE kid > 0 ORDER BY kid DESC'
             self.db.cursor.execute(sql)
             for kid, keyword, dirname in self.db.cursor.fetchall():
                 self._add_keyword(kid, keyword, dirname)
@@ -111,6 +111,9 @@ class Directory(ScheduleManager):
                 stations.append((sdata['protocol'], sdata['sid'], 1))
             # ディレクトリの一覧を表示
             self._setup_directory()
+            # アーカイブの一覧を表示
+            if self.GET('download') == 'true':
+                self._setup_archives()
         # 番組表取得
         self.maintain_schedule(stations)
         # リストアイテム追加完了
@@ -175,6 +178,8 @@ class Directory(ScheduleManager):
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show_stations', 'protocol': 'COMM'})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
+
+    def _setup_archives(self):
         # 保存ファイル（キーワード別）
         li = xbmcgui.ListItem('[COLOR lightgreen]%s[/COLOR]' % self.STR(30010))
         self.setArt(li, 'set')
@@ -183,7 +188,6 @@ class Directory(ScheduleManager):
         if self.GET('rss') == 'true':
             url = '/'.join([self.GET('rssurl'), 'keywords.xml'])
             self._contextmenu(self.STR(30118), {'action': 'show_qrcode', 'url': url})
-        self._contextmenu(self.STR(30119), {'action': 'open_folder', 'dirname': '.'})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show_stations', 'protocol': 'keyword'})
@@ -196,7 +200,6 @@ class Directory(ScheduleManager):
         if self.GET('rss') == 'true':
             url = '/'.join([self.GET('rssurl'), 'stations.xml'])
             self._contextmenu(self.STR(30118), {'action': 'show_qrcode', 'url': url})
-        self._contextmenu(self.STR(30119), {'action': 'open_folder', 'dirname': '.'})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show_stations', 'protocol': 'station'})
@@ -249,7 +252,7 @@ class Directory(ScheduleManager):
         # listitemを追加する
         li = xbmcgui.ListItem(keyword)
         # サムネイル画像
-        self.setArt(li, 'set' if kid == -1 else 'playlist')
+        self.setArt(li, 'playlist')
         # コンテクストメニュー
         self.contextmenu = []
         if kid > 0:
@@ -257,7 +260,6 @@ class Directory(ScheduleManager):
         if self.GET('rss') == 'true':
             url = '/'.join([self.GET('rssurl'), dirname, 'rss.xml'])
             self._contextmenu(self.STR(30118), {'action': 'show_qrcode', 'url': url})
-        self._contextmenu(self.STR(30119), {'action': 'open_folder', 'dirname': dirname})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # リストアイテムを追加
@@ -276,7 +278,6 @@ class Directory(ScheduleManager):
         if self.GET('rss') == 'true':
             url = '/'.join([self.GET('rssurl'), '0', protocol, station, 'rss.xml'])
             self._contextmenu(self.STR(30118), {'action': 'show_qrcode', 'url': url})
-        self._contextmenu(self.STR(30119), {'action': 'open_folder', 'dirname': os.path.join('0', protocol, station)})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # リストアイテムを追加

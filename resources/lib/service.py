@@ -22,11 +22,13 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
         # statusテーブルを初期化
         db.cursor.executescript(db.sql_status_init)
         # ダウンロード済み以外の番組情報を削除
-        db.cursor.execute('''SELECT k.dirname, c.filename
-                          FROM contents AS c JOIN keywords as k ON c.kid = k.kid
+        db.cursor.execute('''SELECT k.dirname, s.protocol, s.station, c.filename
+                          FROM contents AS c
+                          JOIN stations AS s ON c.sid = s.sid
+                          JOIN keywords as k ON c.kid = k.kid
                           WHERE c.cstatus != -1 or c.end > NOW()''')
-        for dirname, filename in db.cursor.fetchall():
-            mp3_file = os.path.join(self.CONTENTS_PATH, dirname, filename)
+        for dirname, protocol, station, filename in db.cursor.fetchall():
+            mp3_file = os.path.join(self.CONTENTS_PATH, dirname, protocol, station, filename)
             if os.path.exists(mp3_file):
                 os.remove(mp3_file)
         db.cursor.execute('''DELETE FROM contents

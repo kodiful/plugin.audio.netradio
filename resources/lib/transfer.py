@@ -115,8 +115,8 @@ class Transfer(Common):
                     # mp3ファイル名の移動先のファイル名を取得
                     sql = 'SELECT filename FROM contents WHERE cid = :cid'
                     self.db.cursor.execute(sql, {'cid': lastrowid})
-                    # mp3ファイルをリネームして移動
-                    destdir = os.path.join(Common.CONTENTS_PATH, dirname)
+                    # mp3ファイルを移動
+                    destdir = os.path.join(Common.CONTENTS_PATH, dirname, protocol, data['station'])
                     os.makedirs(destdir, exist_ok=True)
                     shutil.move(mp3_file, destdir)
             # 不要なファイルを退避

@@ -17,20 +17,22 @@ class Keywords(Common):
         self.create_index = decorator(self, 'NetRadio Client', '.', 'keywords.xml')(self.create_index)        
 
     def create_rss(self):
-        sql = '''SELECT c.filename, c.title, c.start, c.station, c.description, c.site, c.duration
-        FROM contents AS c JOIN keywords as k ON c.kid = k.kid
+        sql = '''SELECT c.filename, c.title, c.start, c.description, c.site, c.duration, s.protocol, s.station
+        FROM contents AS c
+        JOIN stations AS s ON c.sid = s.sid
+        JOIN keywords AS k ON c.kid = k.kid
         WHERE c.cstatus = -1 AND c.kid > 0 AND k.keyword = :keyword AND k.dirname = :dirname
         ORDER BY c.start DESC'''
         self.db.cursor.execute(sql, {'keyword': self.keyword, 'dirname': self.dirname})
-        for filename, title, start, station, description, site, duration in self.db.cursor.fetchall():
-            mp3_file = os.path.join(self.CONTENTS_PATH, self.dirname, filename)
+        for filename, title, start, description, site, duration, protocol, station in self.db.cursor.fetchall():
+            mp3_file = os.path.join(self.CONTENTS_PATH, self.dirname, protocol, station, filename)
             if os.path.exists(mp3_file):
                 self.writer.write(
                     self.body.format(
                         title=html.escape(title),
                         date=self._date(start),
                         url=site,
-                        filename=filename,
+                        filename=f'{protocol}/{station}/{filename}',
                         description=description.replace('<br>','<br/>'),  # add replace for compatibility
                         pubdate=self._pubdate(start),
                         station=station,

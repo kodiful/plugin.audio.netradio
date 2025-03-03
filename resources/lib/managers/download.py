@@ -26,17 +26,17 @@ class DownloadManager(Common):
         # DBの共有インスタンス
         db = ThreadLocal.db
         # 保留中(cstatus=1)の番組、かつDOWNLOAD_PREPARATION以内に開始する番組を検索
-        sql = '''SELECT c.cid, c.kid, c.filename, s.protocol, s.key, c.title, EPOCH(c.start) as t, EPOCH(c.end), s.direct, s.delay
+        sql = '''SELECT c.cid, EPOCH(c.start) as t, EPOCH(c.end), s.delay
         FROM contents c JOIN stations s ON c.sid = s.sid
         WHERE c.cstatus = 1 AND t - EPOCH(NOW()) < :threshold
         ORDER BY c.start'''
         db.cursor.execute(sql, {'threshold': self.DOWNLOAD_PREPARATION})
         # ダウンロードを予約
-        for cid, kid, filename, protocol, key, title, start, end, direct, delay in db.cursor.fetchall():
+        for cid, start, end, delay in db.cursor.fetchall():
             start = start + delay - self.DOWNLOAD_MARGIN  # 開始時刻
             end = end + delay + self.DOWNLOAD_MARGIN  # 終了時刻
             # ダウンロードを予約
-            args = [cid, kid, filename, protocol, key, title, end, direct, self.queue]
+            args = [cid, end, self.queue]
             thread = threading.Timer(start - int(time.time()), downloader, args=args)
             thread.start()
             # 待機中(cstatus=2)に更新
@@ -44,9 +44,17 @@ class DownloadManager(Common):
             db.cursor.execute(sql, {'cid': cid})
 
 
-def downloader(cid, kid, filename, protocol, key, title, end, direct, queue):
+def downloader(cid, end, queue):
     # スレッドのDBインスタンスを作成
     db = ThreadLocal.db = DB()
+    # 番組情報
+    sql = '''SELECT c.title, c.filename, s.protocol, s.station, s.key, s.direct, k.dirname
+    FROM contents AS c
+    JOIN stations AS s ON c.sid = s.sid
+    JOIN keywords AS k ON c.kid = k.kid
+    WHERE c.cid = :cid'''
+    db.cursor.execute(sql, {'cid': cid})
+    title, filename, protocol, station, key, direct, dirname = db.cursor.fetchone()
     # radiko認証
     sql = 'SELECT auth_token FROM auth'
     db.cursor.execute(sql)
@@ -68,12 +76,8 @@ def downloader(cid, kid, filename, protocol, key, title, end, direct, queue):
             bitrate = '96k'
         else:
             bitrate = '64k'
-    # 出力ディレクトリ
-    sql = 'SELECT keyword, dirname FROM keywords WHERE kid = :kid'
-    db.cursor.execute(sql, {'kid': kid})
-    keyword, dirname = db.cursor.fetchone()
     # 出力ファイル
-    mp3_file = os.path.join(Common.CONTENTS_PATH, dirname, filename)
+    mp3_file = os.path.join(Common.CONTENTS_PATH, dirname, protocol, station, filename)
     os.makedirs(os.path.dirname(mp3_file), exist_ok=True)
     # ffmpeg実行
     kwargs = {'acodec': 'libmp3lame', 'b:a': bitrate, 'v': 'warning'}

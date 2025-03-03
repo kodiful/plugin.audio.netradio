@@ -17,23 +17,24 @@ class Stations(Common):
         self.create_index = decorator(self, 'NetRadio Client', '.', 'stations.xml')(self.create_index)        
 
     def create_rss(self):
-        sql = '''SELECT c.filename, c.title, c.start, c.station, c.description, c.site, c.duration
-        FROM contents AS c JOIN stations AS s ON c.sid = s.sid
-        WHERE c.cstatus = -1 AND c.kid = -1 AND s.protocol = :protocol AND s.station = :station
+        sql = '''SELECT c.filename, c.title, c.start, c.description, c.site, c.duration
+        FROM contents AS c
+        JOIN stations AS s ON c.sid = s.sid
+        WHERE c.cstatus = -1 AND s.protocol = :protocol AND s.station = :station
         ORDER BY c.start DESC'''
         self.db.cursor.execute(sql, {'protocol': self.protocol, 'station': self.station})
-        for filename, title, start, station, description, site, duration in self.db.cursor.fetchall():
-            mp3_file = os.path.join(self.CONTENTS_PATH, '0', filename)
+        for filename, title, start, description, site, duration in self.db.cursor.fetchall():
+            mp3_file = os.path.join(self.CONTENTS_PATH, '0', self.protocol, self.station, filename)
             if os.path.exists(mp3_file):
                 self.writer.write(
                     self.body.format(
                         title=html.escape(title),
                         date=self._date(start),
                         url=site,
-                        filename=f'../../{filename}',
+                        filename=f'{filename}',
                         description=description.replace('<br>','<br/>'),  # add replace for compatibility
                         pubdate=self._pubdate(start),
-                        station=station,
+                        station=self.station,
                         duration='%02d:%02d:%02d' % (duration // 3600, duration // 60 % 60, duration % 60),
                         filesize=os.path.getsize(mp3_file)
                     )
@@ -42,7 +43,7 @@ class Stations(Common):
                 self.log('mp3 file not found:', mp3_file)
 
     def create_index(self):
-        sql = '''SELECT DISTINCT c.station, s.protocol 
+        sql = '''SELECT DISTINCT s.protocol, c.station
         FROM contents AS c JOIN stations AS s ON c.sid = s.sid
         WHERE c.cstatus = -1 AND c.kid = -1
         ORDER BY
@@ -58,7 +59,7 @@ class Stations(Common):
             ELSE 9
         END, s.code, s.key'''
         self.db.cursor.execute(sql)
-        for station, protocol in self.db.cursor.fetchall():
+        for protocol, station in self.db.cursor.fetchall():
             self.writer.write(
                 self.body.format(
                     title=html.escape(station),

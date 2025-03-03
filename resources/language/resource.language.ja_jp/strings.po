@@ -25,20 +25,20 @@ msgid "NHK Radio"
 msgstr "NHKラジオ"
 
 msgctxt "#30002"
-msgid "Commercial Radio(radiko)"
-msgstr "民放ラジオ(radiko)"
+msgid "Commercial Radio (radiko)"
+msgstr "民放ラジオ (radiko)"
 
 msgctxt "#30003"
 msgid "Community Radio"
 msgstr "コミュニティラジオ"
 
 msgctxt "#30010"
-msgid "Archive (classified by keyword)"
-msgstr "アーカイブ（キーワード別）"
+msgid "Classification by keywords"
+msgstr "キーワード別"
 
 msgctxt "#30011"
-msgid "Archive (classified by station)"
-msgstr "アーカイブ（放送局別）"
+msgid "Classification by stations"
+msgstr "放送局別"
 
 #
 # for startup
