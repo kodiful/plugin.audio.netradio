@@ -71,7 +71,7 @@ class Directory(ScheduleManager):
             self.db.cursor.execute(sql)
             for kid, keyword, dirname in self.db.cursor.fetchall():
                 self._add_keyword(kid, keyword, dirname)
-        elif protocol == 'dlstation':
+        elif protocol == 'station':
             # 保存ファイルの放送局一覧を表示
             sql = '''SELECT DISTINCT s.protocol, s.station
             FROM contents AS c 
@@ -90,7 +90,7 @@ class Directory(ScheduleManager):
             END, s.code, s.key'''
             self.db.cursor.execute(sql)
             for protocol, station in self.db.cursor.fetchall():
-                self._add_dlstation(protocol, station)
+                self._add_station(protocol, station)
         else:
             # トップ画面の放送局一覧を表示
             sql = '''SELECT * FROM stations WHERE top = 1 AND vis = 1 ORDER BY
@@ -199,7 +199,7 @@ class Directory(ScheduleManager):
         self._contextmenu(self.STR(30119), {'action': 'open_folder', 'dirname': '.'})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show_stations', 'protocol': 'dlstation'})
+        query = urlencode({'action': 'show_stations', 'protocol': 'station'})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
     
     def _add_directory(self, region, pref=None):
@@ -264,7 +264,7 @@ class Directory(ScheduleManager):
         query = urlencode({'action': 'show_downloads', 'kid': kid})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
-    def _add_dlstation(self, protocol, station):
+    def _add_station(self, protocol, station):
         # listitemを追加する
         li = xbmcgui.ListItem(station)
         # サムネイル画像
