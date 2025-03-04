@@ -32,7 +32,7 @@ class Stations(Common):
                         title=html.escape(title),
                         date=self._date(start),
                         url=site,
-                        filename=f'{filename}',
+                        filename=f'../../../{dirname}/{self.protocol}/{self.station}/{filename}',
                         description=description.replace('<br>','<br/>'),  # add replace for compatibility
                         pubdate=self._pubdate(start),
                         station=self.station,
