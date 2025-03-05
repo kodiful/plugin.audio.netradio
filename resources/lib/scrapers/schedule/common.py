@@ -2,12 +2,9 @@
 
 import urllib.request
 import os
-import html
-import unicodedata
 import json
 import gzip
 import io
-from bs4 import BeautifulSoup
 
 from resources.lib.common import Common
 from resources.lib.db import ThreadLocal
@@ -116,20 +113,6 @@ class Common(Common):
         sql = 'UPDATE stations SET nextaired1 = :nextaired1 WHERE sid = :sid'
         self.db.cursor.execute(sql, {'nextaired1': nextaired1, 'sid': self.sid})
         return nextaired1
-
-    # 文字列を正規化する
-    @staticmethod
-    def normalize(text, unescape=False, parser=False):
-        if text is None: return ''
-        text = unicodedata.normalize('NFKC', text)
-        if unescape:
-            text = html.unescape(text)
-        if parser:
-            text = BeautifulSoup(text, 'html.parser').prettify()
-        text = text.replace('<', '＜').replace('>', '＞')
-        text = text.replace('🎤', '')  # レディオモモ
-        text = text.replace('\n', ' ')  # FM HOT 839
-        return text.strip()
 
 
 class DummyScraper(Common):

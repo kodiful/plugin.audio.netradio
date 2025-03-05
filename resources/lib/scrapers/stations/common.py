@@ -2,10 +2,8 @@
 
 import urllib
 import os
-import re
 import gzip
 import io
-import unicodedata
 
 from resources.lib.common import Common
 from resources.lib.db import ThreadLocal
@@ -63,14 +61,3 @@ class Common(Common):
             self.log(f'parse error:', self.URL)
             self.log(e)
         return sorted(buf, key=lambda x: x['code'])
-  
-    # 文字列を正規化する
-    @staticmethod
-    def normalize(text):
-        text = re.sub('～', '〜', text)
-        text = re.sub('（', '(', text)
-        text = re.sub('）', ')', text)
-        text = re.sub('[\r\n\t]', ' ', text)
-        text = unicodedata.normalize('NFKC', text)
-        text = re.sub('[ ]{2,}', ' ', text)
-        return text.strip()

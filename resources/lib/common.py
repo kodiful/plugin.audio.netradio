@@ -5,7 +5,11 @@ import sys
 import calendar
 import traceback
 import inspect
+import html
+import re
+import unicodedata
 from datetime import datetime, timedelta
+from bs4 import BeautifulSoup
 
 import xbmc
 import xbmcaddon
@@ -138,5 +142,23 @@ class Common:
             xbmc.executebuiltin('Container.Update(%s,replace)' % sys.argv[0])
         else:
             xbmc.executebuiltin('Container.Refresh')
+
+    @staticmethod
+    def normalize(text, unescape=False, parser=False):
+        if text is None: return ''
+        text = re.sub('＜', '&LT;', text)
+        text = re.sub('＞', '&GT;', text)
+        text = re.sub('～', '〜', text)  # 全角チルダ(U+FF5E) -> 波ダッシュ(U+301C)
+        text = unicodedata.normalize('NFKC', text)  # 全角チルダは半角チルダ(~)に変換されるが波ダッシュは変換されない
+        text = re.sub('&LT;', '＜', text)
+        text = re.sub('&GT;', '＞', text)
+        text = re.sub('🎤', ' ', text)  # レディオモモ
+        if unescape:
+            text = html.unescape(text)
+        if parser:
+            text = BeautifulSoup(text, 'html.parser').prettify()
+        text = re.sub('[\r\n\t]', ' ', text)
+        text = re.sub('[ ]{2,}', ' ', text)
+        return text.strip()
 
 

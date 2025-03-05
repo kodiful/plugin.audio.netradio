@@ -1,7 +1,7 @@
     <item>
       <title>{title} {date}</title>
       <link>{url}</link>
-      <description>{description}</description>
+      <description><![CDATA[{description}]]></description>
       <category></category>
       <pubDate>{pubdate}</pubDate>
       <source>{station}</source>
@@ -9,7 +9,7 @@
       <enclosure url="{filename}" length="{filesize}" type="audio/mp3" />
       <itunes:explicit>no</itunes:explicit>
       <itunes:duration>{duration}</itunes:duration>
-      <itunes:summary>{description}</itunes:summary>
+      <itunes:summary><![CDATA[{description}]]></itunes:summary>
       <itunes:author>{station}</itunes:author>
       <dc:creator>{station}</dc:creator>
     </item>
