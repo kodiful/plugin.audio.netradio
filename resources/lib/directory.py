@@ -37,14 +37,14 @@ class Directory(ScheduleManager):
             sql = 'SELECT * FROM stations WHERE protocol = :protocol AND vis = 1 ORDER BY key'
             self.db.cursor.execute(sql, {'protocol': 'NHK'})
             for sdata in self.db.cursor.fetchall():
-                self._add_oastation(sdata)
+                self._add_station_onair(sdata)
                 stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'RDK':
             # RDKの放送局一覧を表示
             sql = 'SELECT * FROM stations WHERE protocol = :protocol AND vis = 1 ORDER BY key'
             self.db.cursor.execute(sql, {'protocol': 'RDK'})
             for sdata in self.db.cursor.fetchall():
-                self._add_oastation(sdata)
+                self._add_station_onair(sdata)
                 stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'COMM':
             protocols = "('LR', 'SJ', 'SP', 'SR', 'SD')"
@@ -63,14 +63,14 @@ class Directory(ScheduleManager):
                 sql = 'SELECT * FROM stations WHERE protocol IN %s AND region = :region AND pref = :pref AND vis = 1 ORDER BY code' % protocols
                 self.db.cursor.execute(sql, {'region': region, 'pref': pref})
                 for sdata in self.db.cursor.fetchall():
-                    self._add_oastation(sdata)
+                    self._add_station_onair(sdata)
                     stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'keyword':
             # 保存ファイルのキーワード一覧を表示
             sql = 'SELECT kid, keyword, dirname FROM keywords WHERE kid > 0 ORDER BY kid DESC'
             self.db.cursor.execute(sql)
             for kid, keyword, dirname in self.db.cursor.fetchall():
-                self._add_keyword(kid, keyword, dirname)
+                self._add_keyword_item(kid, keyword, dirname)
         elif protocol == 'station':
             # 保存ファイルの放送局一覧を表示
             sql = '''SELECT DISTINCT s.protocol, s.station
@@ -90,7 +90,7 @@ class Directory(ScheduleManager):
             END, s.code, s.key'''
             self.db.cursor.execute(sql)
             for protocol, station in self.db.cursor.fetchall():
-                self._add_station(protocol, station)
+                self._add_station_item(protocol, station)
         else:
             # トップ画面の放送局一覧を表示
             sql = '''SELECT * FROM stations WHERE top = 1 AND vis = 1 ORDER BY
@@ -107,7 +107,7 @@ class Directory(ScheduleManager):
             END, code, key'''
             self.db.cursor.execute(sql)
             for sdata in self.db.cursor.fetchall():
-                self._add_oastation(sdata)
+                self._add_station_onair(sdata)
                 stations.append((sdata['protocol'], sdata['sid'], 1))
             # ディレクトリの一覧を表示
             self._setup_directory()
@@ -221,7 +221,7 @@ class Directory(ScheduleManager):
             query = urlencode({'action': 'show_stations', 'protocol': 'COMM', 'region': region, 'pref': pref})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
-    def _add_oastation(self, sdata):
+    def _add_station_onair(self, sdata):
         # listitemを追加する
         li = xbmcgui.ListItem(self._title(sdata))
         li.setProperty('IsPlayable', 'true')
@@ -249,7 +249,7 @@ class Directory(ScheduleManager):
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
 
-    def _add_keyword(self, kid, keyword, dirname):
+    def _add_keyword_item(self, kid, keyword, dirname):
         # listitemを追加する
         li = xbmcgui.ListItem(keyword)
         # サムネイル画像
@@ -267,7 +267,7 @@ class Directory(ScheduleManager):
         query = urlencode({'action': 'show_downloads', 'kid': kid})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
-    def _add_station(self, protocol, station):
+    def _add_station_item(self, protocol, station):
         # listitemを追加する
         li = xbmcgui.ListItem(station)
         # サムネイル画像
