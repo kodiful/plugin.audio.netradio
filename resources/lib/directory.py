@@ -135,6 +135,7 @@ class Directory(ScheduleManager):
             description = re.sub(r'<p class="(?:act|info|desc)">(.*?)</p>', r'\1\n\n', description)
             description = re.sub(r'<br */>', r'\n', description)
             description = re.sub(r'<.*?>', '', description)
+            description = re.sub(r' *\n *', r'\n', description)
             description = re.sub(r'\n{3,}', r'\n\n', description)
         else:
             description = self.STR(30610)
