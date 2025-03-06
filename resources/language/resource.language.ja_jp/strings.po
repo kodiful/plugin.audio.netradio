@@ -40,6 +40,10 @@ msgctxt "#30011"
 msgid "Classification by stations"
 msgstr "放送局別"
 
+msgctxt "#30012"
+msgid "Classification by date"
+msgstr "日付別"
+
 #
 # for startup
 #
@@ -484,9 +488,9 @@ msgstr "番組情報が取得できません"
 # for common use
 #
 
-msgctxt "#30919"
-msgid "%Y/%m/%d(%%s) %H:%M"
-msgstr "%Y年%m月%d日(%%s) %H:%M"
+msgctxt "#30918"
+msgid "%Y/%m/%d(%%s)"
+msgstr "%Y年%m月%d日(%%s)"
 
 msgctxt "#30920"
 msgid "Mon,Tue,Wed,Thu,Fri,Sat,Sun"

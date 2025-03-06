@@ -160,5 +160,3 @@ class Common:
         text = re.sub('[\r\n\t]', ' ', text)
         text = re.sub('[ ]{2,}', ' ', text)
         return text.strip()
-
-

@@ -88,7 +88,8 @@ if __name__ == '__main__':
         kid = args.get('kid', 0)
         protocol = args.get('protocol', '')
         station = args.get('station', '')
-        Contents().show(kid=int(kid), protocol=protocol, station=station)
+        startdate = args.get('startdate', '')
+        Contents().show(kid=int(kid), protocol=protocol, station=station, startdate=startdate)
     elif action == 'info_download':
         cid = args.get('cid')
         Contents().info(int(cid))

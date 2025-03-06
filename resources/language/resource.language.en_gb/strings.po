@@ -40,6 +40,10 @@ msgctxt "#30011"
 msgid "Classification by stations"
 msgstr ""
 
+msgctxt "#30012"
+msgid "Classification by date"
+msgstr ""
+
 #
 # for startup
 #
@@ -484,8 +488,8 @@ msgstr ""
 # for common use
 #
 
-msgctxt "#30919"
-msgid "%Y/%m/%d(%%s) %H:%M"
+msgctxt "#30918"
+msgid "%Y/%m/%d(%%s)"
 msgstr ""
 
 msgctxt "#30920"

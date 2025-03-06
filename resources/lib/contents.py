@@ -23,7 +23,7 @@ class Contents(Common):
         # ロケール設定
         locale.setlocale(locale.LC_ALL, '')
 
-    def show(self, kid=0, protocol='', station=''):
+    def show(self, kid=0, protocol='', station='', startdate=''):
         if kid > 0:
             sql = '''SELECT *
             FROM contents AS c 
@@ -40,6 +40,14 @@ class Contents(Common):
             WHERE c.cstatus != 0 AND s.protocol = :protocol AND s.station = :station
             ORDER BY c.start DESC'''
             self.db.cursor.execute(sql, {'protocol': protocol, 'station': station})
+        if startdate != '':
+            sql = '''SELECT *
+            FROM contents AS c
+            JOIN keywords AS k ON c.kid = k.kid
+            JOIN stations AS s ON c.sid = s.sid
+            WHERE c.cstatus != 0 AND SUBSTR(c.start, 0, 11) = :startdate
+            ORDER BY c.start DESC'''
+            self.db.cursor.execute(sql, {'startdate': startdate})
         for cksdata in self.db.cursor.fetchall():
             # リストアイテムを追加
             self._add_download(cksdata)
@@ -143,34 +151,28 @@ class Contents(Common):
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
 
     def _title(self, ckdata):
-        # %Y年%m月%d日(%%s) %H:%M
-        format = self.STR(30919)
-        # 月,火,水,木,金,土,日
-        weekdays = self.STR(30920)
-        weekdays = weekdays.split(',')
-        # 放送開始時刻
-        #d = datetime.strptime(ckdata['start'], '%Y-%m-%d %H:%M:%S')
-        #w = d.weekday()
+        # 日付
         d = self.datetime(ckdata['start'])
         w = self.weekday(ckdata['start'])
-        # 放送終了時刻
+        date = d.strftime(self.STR(30918)) % self.STR(30920).split(',')[w]  # 2025年03月06日(木)
+        # 時刻
+        start = ckdata['start'][11:16]
         end = ckdata['end'][11:16]
-        # 8月31日(土)
-        format = d.strftime(format)
-        date = format % weekdays[w]
-        # カラー
-        if ckdata['cstatus'] > 1:  # 保存中
-            title = '[COLOR white]%s-%s[/COLOR]  [COLOR white]%s[/COLOR]' % (date, end, ckdata['title'])
-        elif ckdata['cstatus'] == 1:  # 予約中
-            title = '[COLOR lightgray]%s-%s[/COLOR]  [COLOR lightgray]%s[/COLOR]' % (date, end, ckdata['title'])
-        elif ckdata['cstatus'] < -1:  # エラー
-            title = '[COLOR gray]%s-%s[/COLOR]  [COLOR gray]%s[/COLOR]' % (date, end, ckdata['title'])
+        # タイトル
+        title = ckdata['title']
+        cstatus = ckdata['cstatus']
+        if cstatus > 1:  # 保存中
+            title = f'[COLOR white]{date} {start}-{end}[/COLOR]  [COLOR white]{title}[/COLOR]'
+        elif cstatus == 1:  # 予約中
+            title = f'[COLOR lightgray]{date} {start}-{end}[/COLOR]  [COLOR lightgray]{title}[/COLOR]'
+        elif cstatus < -1:  # エラー
+            title = f'[COLOR gray]{date} {start}-{end}[/COLOR]  [COLOR gray]{title}[/COLOR]'
         elif w == 6 or self.db.is_holiday(d.strftime('%Y-%m-%d')):
-            title = '[COLOR red]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date, end, ckdata['title'])
+            title = f'[COLOR red]{date} {start}-{end}[/COLOR]  [COLOR khaki]{title}[/COLOR]'
         elif w == 5:
-            title = '[COLOR blue]%s-%s[/COLOR]  [COLOR khaki]%s[/COLOR]' % (date, end, ckdata['title'])
+            title = f'[COLOR blue]{date} {start}-{end}[/COLOR]  [COLOR khaki]{title}[/COLOR]'
         else:
-            title = '%s-%s  [COLOR khaki]%s[/COLOR]' % (date, end, ckdata['title'])
+            title = f'{date} {start}-{end}  [COLOR khaki]{title}[/COLOR]'
         return title
 
     def _contextmenu(self, name, args):

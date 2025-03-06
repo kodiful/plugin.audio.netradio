@@ -3,6 +3,7 @@
 import sys
 import os
 import re
+import locale
 from qrcode import QRCode
 from sqlite3 import dbapi2 as sqlite
 from urllib.parse import urlencode
@@ -21,6 +22,8 @@ class Directory(ScheduleManager):
     def __init__(self):
         # DBの共有インスタンス
         self.db = ThreadLocal.db
+        # ロケール設定
+        locale.setlocale(locale.LC_ALL, '')  # strftimeのエラー回避のため
         # radiko認証
         sql = "SELECT auth_token, region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
         self.db.cursor.execute(sql)
@@ -91,6 +94,12 @@ class Directory(ScheduleManager):
             self.db.cursor.execute(sql)
             for protocol, station in self.db.cursor.fetchall():
                 self._add_station_item(protocol, station)
+        elif protocol == 'startdate':
+            # 保存ファイルの日付一覧を表示
+            sql = 'SELECT DISTINCT SUBSTR(start, 0, 11) FROM contents WHERE cstatus != 0 ORDER BY start DESC'
+            self.db.cursor.execute(sql)
+            for startdate, in self.db.cursor.fetchall():
+                self._add_startdate_item(startdate)
         else:
             # トップ画面の放送局一覧を表示
             sql = '''SELECT * FROM stations WHERE top = 1 AND vis = 1 ORDER BY
@@ -205,6 +214,15 @@ class Directory(ScheduleManager):
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show_stations', 'protocol': 'station'})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
+        # 保存ファイル（日付別）
+        li = xbmcgui.ListItem('[COLOR lightgreen]%s[/COLOR]' % self.STR(30012))
+        self.setArt(li, 'set')
+        # コンテクストメニュー
+        self.contextmenu = []
+        self._contextmenu(self.STR(30100), {'action': 'settings'})
+        li.addContextMenuItems(self.contextmenu, replaceItems=True)
+        query = urlencode({'action': 'show_stations', 'protocol': 'startdate'})
+        xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
     
     def _add_directory(self, region, pref=None):
         # listitemを追加する
@@ -284,7 +302,31 @@ class Directory(ScheduleManager):
         # リストアイテムを追加
         query = urlencode({'action': 'show_downloads', 'protocol': protocol, 'station': station})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
-     
+
+    def _add_startdate_item(self, startdate):
+        # 日付
+        d = self.datetime(f'{startdate} 00:00:00')
+        w = self.weekday(f'{startdate} 00:00:00')
+        date = d.strftime(self.STR(30918)) % self.STR(30920).split(',')[w]  # 2025年03月06日(木)
+        # タイトル
+        if w == 6 or self.db.is_holiday(f'{startdate} 00:00:00'):
+            title = f'[COLOR red]{date}[/COLOR]'
+        elif w == 5:
+            title = f'[COLOR blue]{date}[/COLOR]'
+        else:
+            title = date
+        # listitemを追加する
+        li = xbmcgui.ListItem(title)
+        # サムネイル画像
+        self.setArt(li, 'calendar')
+        # コンテクストメニュー
+        self.contextmenu = []
+        self._contextmenu(self.STR(30100), {'action': 'settings'})
+        li.addContextMenuItems(self.contextmenu, replaceItems=True)
+        # リストアイテムを追加
+        query = urlencode({'action': 'show_downloads', 'startdate': startdate})
+        xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
+
     def _title(self, sdata):
         # コミュニティ放送局用に都市名を追加
         basename = sdata['station']
