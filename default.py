@@ -37,7 +37,7 @@ if __name__ == '__main__':
         region = args.get('region')
         pref = args.get('pref')
         Directory().show(protocol, region, pref)
-    elif action == 'show_info':
+    elif action == 'info_onair':
         sid = args.get('sid')
         Directory().info(int(sid))
     elif action == 'show_qrcode':
@@ -88,8 +88,8 @@ if __name__ == '__main__':
         kid = args.get('kid', 0)
         protocol = args.get('protocol', '')
         station = args.get('station', '')
-        startdate = args.get('startdate', '')
-        Contents().show(kid=int(kid), protocol=protocol, station=station, startdate=startdate)
+        date = args.get('date', '')
+        Contents().show(kid=int(kid), protocol=protocol, station=station, date=date)
     elif action == 'info_download':
         cid = args.get('cid')
         Contents().info(int(cid))

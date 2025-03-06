@@ -23,7 +23,7 @@ class Contents(Common):
         # ロケール設定
         locale.setlocale(locale.LC_ALL, '')
 
-    def show(self, kid=0, protocol='', station='', startdate=''):
+    def show(self, kid=0, protocol='', station='', date=''):
         if kid > 0:
             sql = '''SELECT *
             FROM contents AS c 
@@ -40,14 +40,14 @@ class Contents(Common):
             WHERE c.cstatus != 0 AND s.protocol = :protocol AND s.station = :station
             ORDER BY c.start DESC'''
             self.db.cursor.execute(sql, {'protocol': protocol, 'station': station})
-        if startdate != '':
+        if date != '':
             sql = '''SELECT *
             FROM contents AS c
             JOIN keywords AS k ON c.kid = k.kid
             JOIN stations AS s ON c.sid = s.sid
-            WHERE c.cstatus != 0 AND SUBSTR(c.start, 0, 11) = :startdate
+            WHERE c.cstatus != 0 AND SUBSTR(c.start, 0, 11) = :date
             ORDER BY c.start DESC'''
-            self.db.cursor.execute(sql, {'startdate': startdate})
+            self.db.cursor.execute(sql, {'date': date})
         for cksdata in self.db.cursor.fetchall():
             # リストアイテムを追加
             self._add_download(cksdata)
@@ -117,14 +117,7 @@ class Contents(Common):
         self.db.cursor.execute(sql, {'cid': cid})
         description, = self.db.cursor.fetchone()
         # テキストを整形
-        if description:
-            description = re.sub(r'<p class="(?:act|info|desc)">(.*?)</p>', r'\1\n\n', description)
-            description = re.sub(r'<br */>', r'\n', description)
-            description = re.sub(r'<.*?>', '', description)
-            description = re.sub(r' *\n *', r'\n', description)
-            description = re.sub(r'\n{3,}', r'\n\n', description)
-        else:
-            description = self.STR(30610)
+        description = self.sanitize(description) if description else self.STR(30610)
         xbmcgui.Dialog().textviewer(self.STR(30609), description)
 
     def _add_download(self, cksdata):

@@ -160,3 +160,12 @@ class Common:
         text = re.sub('[\r\n\t]', ' ', text)
         text = re.sub('[ ]{2,}', ' ', text)
         return text.strip()
+
+    @staticmethod
+    def sanitize(description):
+        description = re.sub(r'<p class="(?:act|info|desc)">(.*?)</p>', r'\1\n\n', description)
+        description = re.sub(r'<br */>', r'\n', description)
+        description = re.sub(r'<.*?>', '', description)
+        description = re.sub(r' *\n *', r'\n', description)
+        description = re.sub(r'\n{3,}', r'\n\n', description)
+        return description

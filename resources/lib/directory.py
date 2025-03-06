@@ -40,14 +40,14 @@ class Directory(ScheduleManager):
             sql = 'SELECT * FROM stations WHERE protocol = :protocol AND vis = 1 ORDER BY key'
             self.db.cursor.execute(sql, {'protocol': 'NHK'})
             for sdata in self.db.cursor.fetchall():
-                self._add_station_onair(sdata)
+                self._add_onair(sdata)
                 stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'RDK':
             # RDKの放送局一覧を表示
             sql = 'SELECT * FROM stations WHERE protocol = :protocol AND vis = 1 ORDER BY key'
             self.db.cursor.execute(sql, {'protocol': 'RDK'})
             for sdata in self.db.cursor.fetchall():
-                self._add_station_onair(sdata)
+                self._add_onair(sdata)
                 stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'COMM':
             protocols = "('LR', 'SJ', 'SP', 'SR', 'SD')"
@@ -66,14 +66,14 @@ class Directory(ScheduleManager):
                 sql = 'SELECT * FROM stations WHERE protocol IN %s AND region = :region AND pref = :pref AND vis = 1 ORDER BY code' % protocols
                 self.db.cursor.execute(sql, {'region': region, 'pref': pref})
                 for sdata in self.db.cursor.fetchall():
-                    self._add_station_onair(sdata)
+                    self._add_onair(sdata)
                     stations.append((sdata['protocol'], sdata['sid'], 1))
         elif protocol == 'keyword':
             # 保存ファイルのキーワード一覧を表示
             sql = 'SELECT kid, keyword, dirname FROM keywords WHERE kid > 0 ORDER BY kid DESC'
             self.db.cursor.execute(sql)
             for kid, keyword, dirname in self.db.cursor.fetchall():
-                self._add_keyword_item(kid, keyword, dirname)
+                self._add_keyword(kid, keyword, dirname)
         elif protocol == 'station':
             # 保存ファイルの放送局一覧を表示
             sql = '''SELECT DISTINCT s.protocol, s.station
@@ -93,13 +93,13 @@ class Directory(ScheduleManager):
             END, s.code, s.key'''
             self.db.cursor.execute(sql)
             for protocol, station in self.db.cursor.fetchall():
-                self._add_station_item(protocol, station)
-        elif protocol == 'startdate':
+                self._add_station(protocol, station)
+        elif protocol == 'date':
             # 保存ファイルの日付一覧を表示
             sql = 'SELECT DISTINCT SUBSTR(start, 0, 11) FROM contents WHERE cstatus != 0 ORDER BY start DESC'
             self.db.cursor.execute(sql)
-            for startdate, in self.db.cursor.fetchall():
-                self._add_startdate_item(startdate)
+            for date, in self.db.cursor.fetchall():
+                self._add_date(date)
         else:
             # トップ画面の放送局一覧を表示
             sql = '''SELECT * FROM stations WHERE top = 1 AND vis = 1 ORDER BY
@@ -116,7 +116,7 @@ class Directory(ScheduleManager):
             END, code, key'''
             self.db.cursor.execute(sql)
             for sdata in self.db.cursor.fetchall():
-                self._add_station_onair(sdata)
+                self._add_onair(sdata)
                 stations.append((sdata['protocol'], sdata['sid'], 1))
             # ディレクトリの一覧を表示
             self._setup_directory()
@@ -140,14 +140,7 @@ class Directory(ScheduleManager):
         # 選択された番組の情報を表示
         _, description = data[index]
         # テキストを整形
-        if description:
-            description = re.sub(r'<p class="(?:act|info|desc)">(.*?)</p>', r'\1\n\n', description)
-            description = re.sub(r'<br */>', r'\n', description)
-            description = re.sub(r'<.*?>', '', description)
-            description = re.sub(r' *\n *', r'\n', description)
-            description = re.sub(r'\n{3,}', r'\n\n', description)
-        else:
-            description = self.STR(30610)
+        description = self.sanitize(description) if description else self.STR(30610)
         xbmcgui.Dialog().textviewer(self.STR(30609), description)
 
     def show_qrcode(self, url):
@@ -221,7 +214,7 @@ class Directory(ScheduleManager):
         self.contextmenu = []
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show_stations', 'protocol': 'startdate'})
+        query = urlencode({'action': 'show_stations', 'protocol': 'date'})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
     
     def _add_directory(self, region, pref=None):
@@ -239,7 +232,7 @@ class Directory(ScheduleManager):
             query = urlencode({'action': 'show_stations', 'protocol': 'COMM', 'region': region, 'pref': pref})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
-    def _add_station_onair(self, sdata):
+    def _add_onair(self, sdata):
         # listitemを追加する
         li = xbmcgui.ListItem(self._title(sdata))
         li.setProperty('IsPlayable', 'true')
@@ -252,7 +245,7 @@ class Directory(ScheduleManager):
         li.setArt({'thumb': image, 'icon': image})
         # コンテクストメニュー
         self.contextmenu = []
-        self._contextmenu(self.STR(30111), {'action': 'show_info', 'sid': sdata['sid']})
+        self._contextmenu(self.STR(30111), {'action': 'info_onair', 'sid': sdata['sid']})
         self._contextmenu(self.STR(30105), {'action': 'get_download', 'sid': sdata['sid']})
         self._contextmenu(self.STR(30104), {'action': 'get_station', 'sid': sdata['sid']})
         if sdata['protocol'] != 'USER':
@@ -267,7 +260,7 @@ class Directory(ScheduleManager):
         # リストアイテムを追加
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
 
-    def _add_keyword_item(self, kid, keyword, dirname):
+    def _add_keyword(self, kid, keyword, dirname):
         # listitemを追加する
         li = xbmcgui.ListItem(keyword)
         # サムネイル画像
@@ -285,7 +278,7 @@ class Directory(ScheduleManager):
         query = urlencode({'action': 'show_downloads', 'kid': kid})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
-    def _add_station_item(self, protocol, station):
+    def _add_station(self, protocol, station):
         # listitemを追加する
         li = xbmcgui.ListItem(station)
         # サムネイル画像
@@ -303,18 +296,16 @@ class Directory(ScheduleManager):
         query = urlencode({'action': 'show_downloads', 'protocol': protocol, 'station': station})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
-    def _add_startdate_item(self, startdate):
+    def _add_date(self, date):
         # 日付
-        d = self.datetime(f'{startdate} 00:00:00')
-        w = self.weekday(f'{startdate} 00:00:00')
-        date = d.strftime(self.STR(30918)) % self.STR(30920).split(',')[w]  # 2025年03月06日(木)
+        d = self.datetime(f'{date} 00:00:00')
+        w = self.weekday(f'{date} 00:00:00')
         # タイトル
-        if w == 6 or self.db.is_holiday(f'{startdate} 00:00:00'):
-            title = f'[COLOR red]{date}[/COLOR]'
+        title = d.strftime(self.STR(30918)) % self.STR(30920).split(',')[w]  # 2025年03月06日(木)
+        if w == 6 or self.db.is_holiday(f'{date} 00:00:00'):
+            title = f'[COLOR red]{title}[/COLOR]'
         elif w == 5:
-            title = f'[COLOR blue]{date}[/COLOR]'
-        else:
-            title = date
+            title = f'[COLOR blue]{title}[/COLOR]'
         # listitemを追加する
         li = xbmcgui.ListItem(title)
         # サムネイル画像
@@ -324,7 +315,7 @@ class Directory(ScheduleManager):
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # リストアイテムを追加
-        query = urlencode({'action': 'show_downloads', 'startdate': startdate})
+        query = urlencode({'action': 'show_downloads', 'date': date})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
     def _title(self, sdata):
