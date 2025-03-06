@@ -2,6 +2,7 @@
 
 import sys
 import os
+import re
 import locale
 from urllib.parse import urlencode
 
@@ -102,6 +103,22 @@ class Contents(Common):
                 description, = self.db.cursor.fetchone()
                 xbmcgui.Dialog().textviewer(self.STR(30153), description)
 
+    def info(self, cid):
+        # 番組情報を検索
+        sql = 'SELECT description FROM contents WHERE cid = :cid'
+        self.db.cursor.execute(sql, {'cid': cid})
+        description, = self.db.cursor.fetchone()
+        # テキストを整形
+        if description:
+            description = re.sub(r'<p class="(?:act|info|desc)">(.*?)</p>', r'\1\n\n', description)
+            description = re.sub(r'<br */>', r'\n', description)
+            description = re.sub(r'<.*?>', '', description)
+            description = re.sub(r' *\n *', r'\n', description)
+            description = re.sub(r'\n{3,}', r'\n\n', description)
+        else:
+            description = self.STR(30610)
+        xbmcgui.Dialog().textviewer(self.STR(30609), description)
+
     def _add_download(self, cksdata):
         cstatus = cksdata['cstatus']
         # listitemを追加する    
@@ -114,6 +131,7 @@ class Contents(Common):
         li.setArt({'thumb': logo, 'icon': logo})
         # コンテクストメニュー
         self.contextmenu = []
+        self._contextmenu(self.STR(30111), {'action': 'info_download', 'cid': cksdata['cid']})
         if cstatus == -1:
             self._contextmenu(self.STR(30112), {'action': 'delete_download', 'cid': cksdata['cid']})
         self._contextmenu(self.STR(30100), {'action': 'settings'})

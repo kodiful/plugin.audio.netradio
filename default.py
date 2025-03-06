@@ -38,8 +38,8 @@ if __name__ == '__main__':
         pref = args.get('pref')
         Directory().show(protocol, region, pref)
     elif action == 'show_info':
-        sid = args.get('sid', 0)
-        Directory().show_info(int(sid))
+        sid = args.get('sid')
+        Directory().info(int(sid))
     elif action == 'show_qrcode':
         Directory().show_qrcode(args.get('url'))
     elif action == 'add_to_top':
@@ -89,6 +89,9 @@ if __name__ == '__main__':
         protocol = args.get('protocol', '')
         station = args.get('station', '')
         Contents().show(kid=int(kid), protocol=protocol, station=station)
+    elif action == 'info_download':
+        cid = args.get('cid')
+        Contents().info(int(cid))
     elif action == 'delete_download':
         cid = args.get('cid')
         Contents().delete(int(cid))

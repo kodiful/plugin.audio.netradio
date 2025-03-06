@@ -119,7 +119,7 @@ class Directory(ScheduleManager):
         # リストアイテム追加完了
         xbmcplugin.endOfDirectory(int(sys.argv[1]), succeeded=True)
 
-    def show_info(self, sid):
+    def info(self, sid):
         # 番組情報を検索
         sql = 'SELECT title, description FROM contents WHERE sid = :sid AND end > NOW() ORDER BY start LIMIT 2'
         self.db.cursor.execute(sql, {'sid': sid})
