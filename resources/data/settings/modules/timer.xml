@@ -4,6 +4,6 @@
     <setting label="30553" id="time0" default="12:34" type="time"/>
     <setting label="30554" id="date1" type="date"/>
     <setting label="30555" id="time1" default="12:34" type="time"/>
-    <setting label="30556" id="station" type="select" values="{stations}"/>
+    <setting label="30556" id="tstation" type="select" values="{stations}"/>
     <setting label="30557" type="action" option="close" action="RunPlugin(plugin://$ID/?action=set_timer)" enable="!eq(-6,)+!eq(-1,)"/>
   </category>

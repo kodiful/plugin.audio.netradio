@@ -51,14 +51,14 @@ class Timer(Common):
         self.SET('time0', start.strftime('%H:%M'))
         self.SET('date1', end.strftime('%Y-%m-%d'))
         self.SET('time1', end.strftime('%H:%M'))
-        self.SET('station', station or self.stations[0])
+        self.SET('tstation', station or self.stations[0])
 
     def set(self):
         # 設定後の値
-        keys = ('title', 'date0', 'time0', 'date1', 'time1', 'station')
+        keys = ('title', 'date0', 'time0', 'date1', 'time1', 'tstation')
         settings = dict([(key, self.GET(key)) for key in keys])
         # 仮想番組データ
-        station = settings['station']
+        station = settings['tstation']
         title = settings['title']
         sql = 'SELECT protocol, key, region, pref, description, site FROM stations WHERE vis = 1 AND station = :station'
         self.db.cursor.execute(sql, {'station': station})

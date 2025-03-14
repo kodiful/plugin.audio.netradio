@@ -46,7 +46,7 @@ class Keyword(Common):
             self.SET('keyword', keyword)
             self.SET('match', str(match))
             self.SET('weekday', str(weekday))
-            self.SET('station', station or self.stations[0])
+            self.SET('kstation', station or self.stations[0])
         elif sid > 0:
             # 番組情報からのキーワード設定
             weekday = datetime.today().weekday()  # 今日の曜日を月(0)-日(6)で返す
@@ -55,7 +55,7 @@ class Keyword(Common):
             self.SET('keyword', title)
             self.SET('match', '0')  # 番組名のみ
             self.SET('weekday', str(weekday))
-            self.SET('station', station)
+            self.SET('kstation', station)
         else:
             # 新規キーワード設定
             weekday = datetime.today().weekday()  # 今日の曜日を月(0)-日(6)で返す
@@ -64,23 +64,24 @@ class Keyword(Common):
             self.SET('keyword', '')
             self.SET('match', '0')  # 番組名のみ
             self.SET('weekday', str(weekday))
-            self.SET('station', self.stations[0])
+            self.SET('kstation', self.stations[0])
 
     def set(self):
         # 設定後の値
-        keys = ('kid', 'kstatus', 'keyword', 'match', 'weekday', 'station')
+        keys = ('kid', 'kstatus', 'keyword', 'match', 'weekday', 'kstation')
         settings = dict([(key, self.GET(key)) for key in keys])
         # kstatusをDB用に型変換する
         settings['kstatus'] = 1 if settings['kstatus'] == 'true' else 0
-        settings['station'] = '' if settings['station'] == self.stations[0] else settings['station']
+        # "トップ画面の放送局"が選択された場合は""に置換する
+        settings['kstation'] = '' if settings['kstation'] == self.stations[0] else settings['kstation']
         # 放送局を指定する場合はtop=1を設定する
-        if settings['station']:
-            if settings['station'].startswith('NHK'):
+        if settings['kstation']:
+            if settings['kstation'].startswith('NHK'):
                 sql = "UPDATE stations SET top = 1 WHERE protocol = 'NHK' AND station = :station"
-                self.db.cursor.execute(sql, {'station': settings['station']})
+                self.db.cursor.execute(sql, {'station': settings['kstation']})
             else:
                 sql = "UPDATE stations SET top = 1 WHERE station = :station"
-                self.db.cursor.execute(sql, {'station': settings['station']})
+                self.db.cursor.execute(sql, {'station': settings['kstation']})
         # !!!ここでデータのバリデーション
         # keywordテーブルに書き込む
         self.db.add_keyword(settings)
