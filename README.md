@@ -1,6 +1,6 @@
 # Kodiアドオン：ネットラジオクライアント
 
-![トップ画面](https://github.com/user-attachments/assets/c289378c-5c6e-4ef4-afb5-aa37de064239)
+![トップ画面](https://github.com/user-attachments/assets/73955277-28b1-4878-9833-d13b91c83ab4)
 
 [NHKラジオ](http://www.nhk.or.jp/radio/)、[民放ラジオ（radiko.jp）](http://radiko.jp)、コミュニティラジオが提供するインターネットラジオ放送を聴いたり、番組をファイル保存できるKodiアドオンです。
 Windows、macOSで動作検証しています。
@@ -70,7 +70,7 @@ OS側でパスの修正ができない場合は、[アドオン設定画面-そ�
 トップ画面は、放送局表示部、ディレクトリ表示部、キーワード表示部から構成されます。
 初期状態はディレクトリ表示部のみで、これに対して放送局やキーワードを追加することで、放送局表示部、キーワード表示部を含むトップ画面が構成されます。
 
-![トップ画面](https://user-images.githubusercontent.com/12268536/233762697-6339fd83-a782-43e2-bb28-b47f844913a8.png)
+![トップ画面](https://github.com/user-attachments/assets/73955277-28b1-4878-9833-d13b91c83ab4)
 
 ### 放送局表示部
 
