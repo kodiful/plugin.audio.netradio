@@ -160,6 +160,13 @@ RSS生成のための情報として使われます。
 
 任意の情報が入力できます。入力した情報は放送局名に続いて画面に表示されます。
 
+## 番組設定画面
+
+![番組設定画面](https://github.com/user-attachments/assets/c83c0529-e12e-467d-96ed-302ef16ca511)
+
+## タイマー設定画面
+
+![タイマー設定画面](https://github.com/user-attachments/assets/4d8f2808-ed94-4627-b45d-18ff2ed9ed3b)
 
 ## キーワード設定画面
 
@@ -168,7 +175,7 @@ RSS生成のための情報として使われます。
 NHKラジオまたは民放ラジオ（radiko.jp）の放送局を右クリックして表示されるコンテクストメニューから「キーワードを追加する」を選択して開くことができます。
 [アドオン設定画面-一般](#アドオン設定画面-一般)からも開くことができます。
 
-![キーワード設定画面](https://user-images.githubusercontent.com/12268536/233762692-fa24cd8c-74b0-46e0-8402-0c9b709b776a.png)
+![キーワード設定画面](https://github.com/user-attachments/assets/9872b295-bdcc-41d8-8b76-3f46ec37695e)
 
 ### キーワード
 
