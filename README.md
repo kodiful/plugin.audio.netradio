@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/b2c222fc-7693-4adf-9d1a-caab91113443)# Kodiアドオン：ネットラジオクライアント
+# Kodiアドオン：ネットラジオクライアント
 
 ![トップ画面](https://github.com/user-attachments/assets/73955277-28b1-4878-9833-d13b91c83ab4)
 
