@@ -1,7 +1,6 @@
 # Kodiアドオン：ネットラジオクライアント
 
-![トップ画面](https://user-images.githubusercontent.com/12268536/233762697-6339fd83-a782-43e2-bb28-b47f844913a8.png)
-![トップ画面](https://github.com/user-attachments/assets/59b423be-4800-401b-9d2f-00d680f70aa1)
+![トップ画面](https://github.com/user-attachments/assets/c289378c-5c6e-4ef4-afb5-aa37de064239)
 
 [NHKラジオ](http://www.nhk.or.jp/radio/)、[民放ラジオ（radiko.jp）](http://radiko.jp)ほかが提供するインターネットラジオ放送局を聴いたり、番組をファイル保存できるKodiアドオンです。
 Windows、macOSで動作検証しています。
