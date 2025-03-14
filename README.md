@@ -2,7 +2,7 @@
 
 ![トップ画面](https://github.com/user-attachments/assets/c289378c-5c6e-4ef4-afb5-aa37de064239)
 
-[NHKラジオ](http://www.nhk.or.jp/radio/)、[民放ラジオ（radiko.jp）](http://radiko.jp)ほかが提供するインターネットラジオ放送局を聴いたり、番組をファイル保存できるKodiアドオンです。
+[NHKラジオ](http://www.nhk.or.jp/radio/)、[民放ラジオ（radiko.jp）](http://radiko.jp)、コミュニティラジオが提供するインターネットラジオ放送を聴いたり、番組をファイル保存できるKodiアドオンです。
 Windows、macOSで動作検証しています。
 
 
