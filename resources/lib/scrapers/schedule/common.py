@@ -14,7 +14,7 @@ class Common(Common):
 
     SOURCE_PATH = os.path.join(Common.PROFILE_PATH, 'schedule', 'source')
     JSON_PATH = os.path.join(Common.PROFILE_PATH, 'schedule', 'json')
-    
+
     def __init__(self, protocol):
         # DBの共有インスタンス
         self.db = ThreadLocal.db
@@ -86,7 +86,7 @@ class Common(Common):
         except TypeError:
             nextaired = '1970-01-01 09:00:00'
         return nextaired
-    
+
     search_nextaired0 = search_nextaired
     search_nextaired1 = search_nextaired
 
@@ -116,7 +116,7 @@ class Common(Common):
 
 
 class DummyScraper(Common):
-    
+
     def __init__(self, sid):
         # DBの共有インスタンス
         self.db = ThreadLocal.db

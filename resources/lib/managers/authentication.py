@@ -90,7 +90,7 @@ class AuthenticationManager(Common):
         # 現在時刻
         now = time.time()
         if now < self.update_auth:
-            return           
+            return
         # radiko認証
         auth = Authenticator()
         if auth.response['authed'] == 0:

@@ -26,10 +26,10 @@ class Contents(Common):
     def show(self, kid=0, protocol='', station='', date=''):
         if kid > 0:
             sql = '''SELECT *
-            FROM contents AS c 
+            FROM contents AS c
             JOIN keywords AS k ON c.kid = k.kid
             JOIN stations AS s ON c.sid = s.sid
-            WHERE c.cstatus != 0 AND c.kid = :kid 
+            WHERE c.cstatus != 0 AND c.kid = :kid
             ORDER BY c.start DESC'''
             self.db.cursor.execute(sql, {'kid': kid})
         if protocol != '' and station != '':
@@ -59,7 +59,7 @@ class Contents(Common):
     def delete(self, cid):
         # 削除するファイルの情報を取得
         sql = '''SELECT k.dirname, s.protocol, s.station, c.filename, c.title
-        FROM contents AS c 
+        FROM contents AS c
         JOIN stations AS s ON c.sid = s.sid
         JOIN keywords AS k ON c.kid = k.kid
         WHERE c.cid = :cid'''
@@ -122,7 +122,7 @@ class Contents(Common):
 
     def _add_download(self, cksdata):
         cstatus = cksdata['cstatus']
-        # listitemを追加する    
+        # listitemを追加する
         li = xbmcgui.ListItem(self._title(cksdata))
         # メタデータ設定
         tag = li.getMusicInfoTag()

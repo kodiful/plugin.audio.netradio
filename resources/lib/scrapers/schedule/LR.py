@@ -70,10 +70,10 @@ class Scraper(Common):
     <p class="channelName">
         FM ABASHIRI
     </p>
-<!--    
+<!--
     <p class="twitterUserName">
-                <script type="text/javascript" src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>    
-        <a href="https://twitter.com/ListenRadio_058" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-dnt="true">ListenRadio_058 さんをフォロー</a>   
+                <script type="text/javascript" src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <a href="https://twitter.com/ListenRadio_058" class="twitter-follow-button" data-show-count="false" data-lang="ja" data-dnt="true">ListenRadio_058 さんをフォロー</a>
     </p>
 -->
     <a href="/" class="scheduleIcon TopLink" id="returnIndex" >

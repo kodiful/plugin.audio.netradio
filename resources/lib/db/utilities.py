@@ -33,12 +33,12 @@ class Utilities():
             if value:
                 description += f'<p class="{key}">{value}</p>'
         return description
-    
+
     def filename(self, station, start, end):
         # 2025-02-04 21:24:00
         filename = f'{start[0:4]}-{start[5:7]}{start[8:10]}-{start[11:13]}{start[14:16]}-{end[11:13]}{end[14:16]} {station}.mp3'
         return filename
-    
+
     def keyword_match(self, title, description, station, start, topvis):
         # startを曜日に変換
         start = self.weekday(start)
@@ -69,7 +69,7 @@ class Utilities():
         self.cursor.execute(sql, {'pref': pref})
         area_id, = self.cursor.fetchone()
         return area_id
-    
+
     # 都道府県、市区町村を検索する
     def search_by_radiko(self, area_id):
         # JP14
@@ -77,13 +77,13 @@ class Utilities():
         self.cursor.execute(sql, {'area_id': area_id})
         code, region, pref, city  = self.cursor.fetchone()
         return code, region, pref, city
-    
+
     def search_by_joined(self, place):
         # 神奈川県横浜市
         sql = "SELECT code, region, pref, city FROM cities WHERE INSTR(:place, pref) = 1 AND INSTR(:place, city) = LENGTH(pref) + 1"
         self.cursor.execute(sql, {'place': place})
         return self.cursor.fetchone()
-    
+
     def search_by_station(self, protocol, station):
         # 放送局名の表記の揺れを解決して名寄せする
         sql = f'SELECT code, region, pref, city, station, site, SJ, LR, SR, SP, SD FROM master WHERE {protocol} = :station'

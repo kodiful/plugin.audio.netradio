@@ -67,7 +67,7 @@ if __name__ == '__main__':
             subprocess.call(['open', url])
         else:
             Common.notify('Unsupported on %s' % os_)
-            
+
     # キーワード
     elif action == 'get_keyword':
         kid = args.get('kid', 0)
@@ -76,7 +76,7 @@ if __name__ == '__main__':
         Settings().set(action)
     elif action == 'delete_keyword':
         Settings().set(action)
-    
+
     # タイマー
     elif action == 'get_timer':
         Settings(flags=2).get()

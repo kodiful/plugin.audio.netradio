@@ -12,7 +12,7 @@ from resources.lib.rss import Keywords
 
 
 class Keyword(Common):
-        
+
     def __init__(self):
         super().__init__()
         # 表示中の放送局リストを取得
@@ -25,7 +25,7 @@ class Keyword(Common):
             self.db.cursor.execute('SELECT station FROM stations WHERE top = 1 AND vis = 1')
             self.stations = [station for station, in self.db.cursor.fetchall()]
         # リストの先頭に"トップ画面の放送局"を追加
-        self.stations = [self.STR(30529)] + self.stations        
+        self.stations = [self.STR(30529)] + self.stations
 
     def prep(self):
         # テンプレート
@@ -33,7 +33,7 @@ class Keyword(Common):
             self.template = f.read()
         # テンプレートのstationsを置換
         self.template = self.template.format(stations='|'.join(self.stations))
- 
+
     def get(self, kid=0, sid=0, title='', station=''):
         xbmc.sleep(1000)
         if kid > 0:

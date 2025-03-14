@@ -127,7 +127,7 @@ class DB(Common, Schema, Utilities):
         placeholders = ', '.join(['?' for _ in values])
         sql = f'INSERT INTO holidays ({columns}) VALUES ({placeholders})'
         self.cursor.execute(sql, list(values.values()))
-    
+
     def add_station(self, data, top=0, vis=1):
         values = {
             'top': data.get('top', top),
@@ -191,8 +191,8 @@ class DB(Common, Schema, Utilities):
         sql = 'UPDATE keywords SET dirname = :dirname WHERE kid = :kid'
         self.cursor.execute(sql, {'kid': kid, 'dirname': dirname})
         # 既存のcontentsと照合
-        sql = '''SELECT c.cid, c.title, c.description, c.station, c.start, c.end, s.top, s.vis 
-        FROM contents AS c JOIN stations AS s ON c.sid = s.sid 
+        sql = '''SELECT c.cid, c.title, c.description, c.station, c.start, c.end, s.top, s.vis
+        FROM contents AS c JOIN stations AS s ON c.sid = s.sid
         WHERE c.cstatus = 0 AND c.end > NOW()'''
         self.cursor.execute(sql)
         for cid, title, description, station, start, end, top, vis in self.cursor.fetchall():

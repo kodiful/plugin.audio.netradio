@@ -121,7 +121,7 @@ class Common:
         date, _ = datetime_str.split(' ')
         year, month, day = map(int, date.split('-'))
         return calendar.weekday(year, month, day)
-    
+
     @staticmethod
     def now(hours=0, minutes=0):
         # 2025-02-22 05:35:43

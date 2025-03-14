@@ -36,11 +36,11 @@ def decorator(this, title, dirname, filename):
 
 
 class Common(Common):
-    
+
     def __init__(self):
         # DBの共有インスタンス
         self.db = ThreadLocal.db
-        # 時刻表記のロケール設定                                                                                                                                                             
+        # 時刻表記のロケール設定
         locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
         # templates
         with open(os.path.join(self.DATA_PATH, 'rss', 'header.xml'), 'r', encoding='utf-8') as f:

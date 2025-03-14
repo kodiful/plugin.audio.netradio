@@ -227,7 +227,7 @@ class WebSocket(Common):
                 # 再生されているコンテンツがないのでwebsocket停止
                 self.log('no player and close websocket')
                 ws.close()
-    
+
     def on_close(self, ws, status, message):
         # 変換プロセスを停止
         self.ffmpeg.kill()  # ffmpegのPopenオブジェクトを停止

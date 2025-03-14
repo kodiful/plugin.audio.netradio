@@ -59,7 +59,7 @@ class Scraper(Common):
                     'delay': 0
                 })
         return buf
-        
+
 
 # https://fmplapla.com
 

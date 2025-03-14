@@ -73,7 +73,7 @@ class Scraper(Common):
         # 2023-04-20T05:00:00+09:00 -> 2023-04-20 05:00:00
         datetime_obj = datetime.fromisoformat(t)
         return datetime_obj.strftime('%Y-%m-%d %H:%M:%S')
-    
+
     def search_nextaired0(self):
         # NHK全体の直近更新時間
         sql = '''SELECT c.start FROM contents AS c JOIN stations AS s ON c.sid = s.sid

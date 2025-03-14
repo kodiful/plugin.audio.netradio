@@ -77,7 +77,7 @@ class Directory(ScheduleManager):
         elif protocol == 'station':
             # 保存ファイルの放送局一覧を表示
             sql = '''SELECT DISTINCT s.protocol, s.station
-            FROM contents AS c 
+            FROM contents AS c
             JOIN stations AS s ON c.sid = s.sid
             WHERE c.cstatus != 0 ORDER BY
             CASE s.protocol
@@ -216,7 +216,7 @@ class Directory(ScheduleManager):
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show_stations', 'protocol': 'date'})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
-    
+
     def _add_directory(self, region, pref=None):
         # listitemを追加する
         li = xbmcgui.ListItem(pref or region)

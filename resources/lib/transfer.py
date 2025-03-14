@@ -97,7 +97,7 @@ class Transfer(Common):
                         key, region, pref = self.db.cursor.fetchone()
                     elif protocol == 'RDK' and auth_pref != '':
                         sql = f'{sql} AND pref = :pref'
-                        self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station'], 'pref': auth_pref})                            
+                        self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station'], 'pref': auth_pref})
                         key, region, pref = self.db.cursor.fetchone()
                     else:
                         self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station']})

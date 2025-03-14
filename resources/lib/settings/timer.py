@@ -10,7 +10,7 @@ import xbmc
 
 
 class Timer(Common):
-    
+
     def __init__(self):
         super().__init__()
         # 表示中の放送局リストを取得
@@ -21,15 +21,15 @@ class Timer(Common):
         # 表示中の放送局が無い場合はトップ画面の放送局リストを取得
         if len(self.stations) == 0:
             self.db.cursor.execute('SELECT station FROM stations WHERE top = 1 AND vis = 1')
-            self.stations = [station for station, in self.db.cursor.fetchall()]            
-    
+            self.stations = [station for station, in self.db.cursor.fetchall()]
+
     def prep(self):
         # テンプレート
         with open(os.path.join(self.SETTINGS_PATH, 'modules', 'timer.xml')) as f:
             self.template = f.read()
         # テンプレートのstationsを置換
         self.template = self.template.format(stations='|'.join(self.stations))
- 
+
     def get(self, station, title, start, end):
         xbmc.sleep(1000)
         # 時刻
@@ -88,4 +88,3 @@ class Timer(Common):
         Stations().create_index()
         # 再描画
         self.refresh()
-        

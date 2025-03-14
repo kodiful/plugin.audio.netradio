@@ -130,7 +130,7 @@ class Settings(Common):
         # 1秒待って設定画面をデフォルトに戻す
         xbmc.sleep(1000)
         shutil.copy(os.path.join(self.SETTINGS_PATH, 'default.xml'), self.DIALOG_FILE)
-                    
+
     def set(self, action):
         if action == 'set_download':
             Download().set()

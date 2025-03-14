@@ -8,7 +8,7 @@ from resources.lib.rss import Stations
 
 
 class Download(Common):
-    
+
     def __init__(self):
         super().__init__()
 

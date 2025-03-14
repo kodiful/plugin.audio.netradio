@@ -13,8 +13,8 @@ class Stations(Common):
         # RSS生成メソッドにデコレータを適用
         self.protocol = protocol
         self.station = station
-        self.create_rss = decorator(self, station, os.path.join('0', protocol, station), 'rss.xml')(self.create_rss)        
-        self.create_index = decorator(self, 'NetRadio Client', '.', 'stations.xml')(self.create_index)        
+        self.create_rss = decorator(self, station, os.path.join('0', protocol, station), 'rss.xml')(self.create_rss)
+        self.create_index = decorator(self, 'NetRadio Client', '.', 'stations.xml')(self.create_index)
 
     def create_rss(self):
         sql = '''SELECT k.dirname, c.filename, c.title, c.start, c.description, c.site, c.duration

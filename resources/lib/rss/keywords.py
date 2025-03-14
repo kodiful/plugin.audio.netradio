@@ -13,8 +13,8 @@ class Keywords(Common):
         # RSS生成メソッドにデコレータを適用
         self.keyword = keyword
         self.dirname = dirname
-        self.create_rss = decorator(self, keyword, dirname, 'rss.xml')(self.create_rss)        
-        self.create_index = decorator(self, 'NetRadio Client', '.', 'keywords.xml')(self.create_index)        
+        self.create_rss = decorator(self, keyword, dirname, 'rss.xml')(self.create_rss)
+        self.create_index = decorator(self, 'NetRadio Client', '.', 'keywords.xml')(self.create_index)
 
     def create_rss(self):
         sql = '''SELECT c.filename, c.title, c.start, c.description, c.site, c.duration, s.protocol, s.station

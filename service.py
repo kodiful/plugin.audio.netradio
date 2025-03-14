@@ -54,7 +54,7 @@ if __name__ == '__main__':
             set_ffmpeg(Common.STR(30022))  # ffmpegの場所を指定してください
     else:
         set_ffmpeg(Common.STR(30022))  # ffmpegの場所を指定してください
-    
+
     # DBファイルの有無をチェック
     exists =  os.path.exists(Common.DB_FILE)
     # DBインスタンスを作成

@@ -53,12 +53,12 @@ class ScheduleManager(Common):
         # 番組情報を更新する放送局のリストを作成
         stations = []
         # NHKから一つリストに追加
-        sql = '''SELECT protocol, sid FROM stations 
+        sql = '''SELECT protocol, sid FROM stations
         WHERE protocol = 'NHK' AND region = :region ORDER BY sid LIMIT 1'''
         db.cursor.execute(sql, {'region': self.region})
         stations.extend([(protocol, sid, 0) for (protocol, sid) in db.cursor.fetchall()])
         # RDKから一つリストに追加
-        sql = '''SELECT protocol, sid FROM stations 
+        sql = '''SELECT protocol, sid FROM stations
         WHERE protocol = 'RDK' AND pref = :pref ORDER BY sid LIMIT 1'''
         db.cursor.execute(sql, {'pref': self.pref})
         stations.extend([(protocol, sid, 0) for (protocol, sid) in db.cursor.fetchall()])
