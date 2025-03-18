@@ -36,7 +36,7 @@
     "LR": "",
     "SR": "",
     "SP": "",
-    "SD": "mms://hdv5.nkansai.tv/shiroishi"
+    "SD": "mmsh://hdv5.nkansai.tv/shiroishi"
   },
   {
     "station": "FMアップル",
@@ -3544,7 +3544,7 @@
     "site": "http://www.starcornfm.com/",
     "SJ": "",
     "LR": "",
-    "SR": "スターコーンFM",
+    "SR": "",
     "SP": "",
     "SD": ""
   },

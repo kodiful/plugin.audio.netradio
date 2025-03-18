@@ -94,21 +94,5 @@
         "site": "https://www.fm-moov.com/",
         "direct": "http://csra.fm/asx/fmmoov.asx",
         "delay": 0
-    },
-    {
-        "top": 0,
-        "vis": 1,
-        "protocol": "SR",
-        "key": "",
-        "station": "スターコーンFM",
-        "code": "406473",
-        "region": "九州沖縄",
-        "pref": "福岡県",
-        "city": "築上町",
-        "logo": "http://csra.fm/logo/starcornfm.png",
-        "description": "",
-        "site": "http://www.starcornfm.com/",
-        "direct": "mms://hdv.nkansai.tv/starcorn",
-        "delay": 0
     }
 ]
