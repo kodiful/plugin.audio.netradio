@@ -73,7 +73,7 @@ class Keyword(Common):
         # kstatusをDB用に型変換する
         settings['kstatus'] = 1 if settings['kstatus'] == 'true' else 0
         # "トップ画面の放送局"が選択された場合は""に置換する
-        settings['kstation'] = '' if settings['kstation'] == self.stations[0] else settings['kstation']
+        settings['station'] = '' if settings['kstation'] == self.stations[0] else settings['kstation']
         # 放送局を指定する場合はtop=1を設定する
         if settings['kstation']:
             if settings['kstation'].startswith('NHK'):
