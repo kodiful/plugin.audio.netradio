@@ -137,8 +137,8 @@ msgid "Confirm deletion"
 msgstr "削除確認"
 
 msgctxt "#30155"
-msgid "Delete station settings for \"%s\"?"
-msgstr "\"%s\" の放送局設定を削除しますか？"
+msgid "Delete station settings and downloaded files for \"%s\"?"
+msgstr "\"%s\" の放送局設定と保存済みファイルを削除しますか？"
 
 msgctxt "#30156"
 msgid "Confirm deletion"

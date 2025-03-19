@@ -137,7 +137,7 @@ msgid "Confirm deletion"
 msgstr ""
 
 msgctxt "#30155"
-msgid "Delete station settings for \"%s\"?"
+msgid "Delete station settings and downloaded files for \"%s\"?"
 msgstr ""
 
 msgctxt "#30156"

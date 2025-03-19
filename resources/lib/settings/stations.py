@@ -64,12 +64,24 @@ class Stations(Common):
             self.refresh(True)  # 放送局を新規作成したのでトップ画面へ
 
     def delete(self, sid):
-        # キーワード情報取得
-        sql = 'SELECT station FROM stations WHERE sid = :sid'
+        # 放送局情報取得
+        sql = 'SELECT protocol, station FROM stations WHERE sid = :sid'
         self.db.cursor.execute(sql, {'sid': sid})
-        station, = self.db.cursor.fetchone()
+        protocol, station = self.db.cursor.fetchone()
         ok = xbmcgui.Dialog().yesno(self.STR(30154), self.STR(30155) % station)
         if ok:
+            # ファイル検索
+            sql = '''SELECT DISTINCT k.dirname
+            FROM contents AS c
+            JOIN keywords AS k ON c.kid = k.kid
+            WHERE c.sid = :sid'''
+            self.db.cursor.execute(sql, {'sid': sid})
+            # ファイル削除
+            for dirname, in self.db.cursor.fetchall():
+                download_path = os.path.join(self.CONTENTS_PATH, dirname, protocol, station)
+                if os.path.exists(download_path):
+                    shutil.rmtree(download_path)
+            # 放送局削除
             self.db.delete_station(sid)
+            # 再描画
             self.refresh()
-
