@@ -16,9 +16,7 @@ class Keyword(Common):
     def __init__(self):
         super().__init__()
         # 表示中の放送局リストを取得
-        sql = '''SELECT s.station
-        FROM status JOIN json_each(status.front) AS je ON je.value = s.sid JOIN stations AS s ON je.value = s.sid'''
-        self.db.cursor.execute(sql)
+        self.db.cursor.execute(f'SELECT station FROM stations WHERE sid in {self.db.front_stations()}')
         self.stations = [station for station, in self.db.cursor.fetchall()]
         # 表示中の放送局が無い場合はトップ画面の放送局リストを取得
         if len(self.stations) == 0:

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import json
 import shutil
 import urllib.request
 import urllib.error
@@ -12,6 +13,12 @@ from resources.lib.common import Common
 
 
 class Utilities():
+
+    def front_stations(self):
+        sql = 'SELECT front FROM status'
+        self.cursor.execute(sql)
+        front, = self.cursor.fetchone()
+        return tuple(json.loads(front))
 
     def write_id3(self, mp3_file, cid):
         sql = 'SELECT * FROM contents WHERE cid = :cid'

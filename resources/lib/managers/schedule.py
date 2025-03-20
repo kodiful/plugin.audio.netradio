@@ -28,8 +28,7 @@ class ScheduleManager(Common):
         stations = []
         if vis is None:
             # 表示中の放送局をリストに格納
-            sql = '''SELECT s.protocol, s.sid
-            FROM status JOIN json_each(status.front) AS je ON je.value = s.sid JOIN stations AS s ON je.value = s.sid'''
+            sql = f'SELECT protocol, sid FROM stations WHERE sid IN {db.front_stations()}'
             db.cursor.execute(sql)
             stations.extend([(protocol, sid, 1) for (protocol, sid) in db.cursor.fetchall()])
             # トップ（ダウンロード対象）の放送局をリストに格納
