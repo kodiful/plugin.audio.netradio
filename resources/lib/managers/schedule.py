@@ -27,12 +27,14 @@ class ScheduleManager(Common):
         # 番組情報を更新する放送局のリストを作成
         stations = []
         if vis is None:
+            # 表示中の放送局
+            front_stations = db.front_stations()
             # 表示中の放送局をリストに格納
-            sql = f'SELECT protocol, sid FROM stations WHERE sid IN {db.front_stations()}'
+            sql = f'SELECT protocol, sid FROM stations WHERE sid IN {front_stations}'
             db.cursor.execute(sql)
             stations.extend([(protocol, sid, 1) for (protocol, sid) in db.cursor.fetchall()])
-            # トップ（ダウンロード対象）の放送局をリストに格納
-            sql = 'SELECT protocol, sid FROM stations WHERE top = 1 AND vis = 1'
+            # 表示されていない放送局のうちトップ（ダウンロード対象）の放送局をリストに格納
+            sql = 'SELECT protocol, sid FROM stations WHERE top = 1 AND vis = 1 AND sid NOT IN {front_stations}'
             db.cursor.execute(sql)
             stations.extend([(protocol, sid, 0) for (protocol, sid) in db.cursor.fetchall()])
         else:

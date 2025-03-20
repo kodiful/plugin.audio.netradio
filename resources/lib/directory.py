@@ -30,8 +30,6 @@ class Directory(ScheduleManager):
         self.token, self.region, self.pref = self.db.cursor.fetchone()
 
     def show(self, protocol=None, region=None, pref=None):
-        # 表示中の放送局を格納するリスト
-        front = []
         # 番組表取得フラグ
         stations = []
         # 表示
