@@ -8,12 +8,15 @@ import inspect
 import html
 import re
 import unicodedata
+import warnings
 from datetime import datetime, timedelta
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 
 import xbmc
 import xbmcaddon
 import xbmcvfs
+
+warnings.filterwarnings('ignore', category=MarkupResemblesLocatorWarning)
 
 
 class Common:
