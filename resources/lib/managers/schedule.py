@@ -34,7 +34,7 @@ class ScheduleManager(Common):
             db.cursor.execute(sql)
             stations.extend([(protocol, sid, 1) for (protocol, sid) in db.cursor.fetchall()])
             # 表示されていない放送局のうちトップ（ダウンロード対象）の放送局をリストに格納
-            sql = 'SELECT protocol, sid FROM stations WHERE top = 1 AND vis = 1 AND sid NOT IN {front_stations}'
+            sql = f'SELECT protocol, sid FROM stations WHERE top = 1 AND vis = 1 AND sid NOT IN {front_stations}'
             db.cursor.execute(sql)
             stations.extend([(protocol, sid, 0) for (protocol, sid) in db.cursor.fetchall()])
         else:
