@@ -172,3 +172,11 @@ class Common:
         description = re.sub(r' *\n *', r'\n', description)
         description = re.sub(r'\n{3,}', r'\n\n', description)
         return description
+
+    @staticmethod
+    def is_enabled(key):
+        download = Common.GET('download') == 'true' and os.path.exists(Common.GET('folder'))
+        if key == 'download':
+            return download
+        if key == 'rss':
+            return download and Common.GET('rss') == 'true' and Common.GET('rssurl') != ''

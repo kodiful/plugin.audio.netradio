@@ -173,7 +173,7 @@ class Contents(Common):
 
     def update_rss(self, notify=False):
         # RSS設定がされていない場合は終了
-        if self.GET('rss') == 'false': return
+        if self.is_enabled('rss') is False: return
         # キーワードRSS作成
         sql = '''SELECT DISTINCT k.keyword, k.dirname
         FROM contents AS c JOIN keywords AS k ON c.kid = k.kid

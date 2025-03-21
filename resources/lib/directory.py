@@ -119,7 +119,7 @@ class Directory(ScheduleManager):
             # ディレクトリの一覧を表示
             self._setup_directory()
             # アーカイブの一覧を表示
-            if self.GET('download') == 'true':
+            if self.is_enabled('download'):
                 self._setup_archives()
         # 番組表取得
         self.maintain_schedule(stations)
@@ -186,7 +186,7 @@ class Directory(ScheduleManager):
         self.setArt(li, 'set')
         # コンテクストメニュー
         self.contextmenu = []
-        if self.GET('rss') == 'true':
+        if self.is_enabled('rss'):
             url = '/'.join([self.GET('rssurl'), 'keywords.xml'])
             self._contextmenu(self.STR(30118), {'action': 'show_qrcode', 'url': url})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
@@ -198,7 +198,7 @@ class Directory(ScheduleManager):
         self.setArt(li, 'set')
         # コンテクストメニュー
         self.contextmenu = []
-        if self.GET('rss') == 'true':
+        if self.is_enabled('rss'):
             url = '/'.join([self.GET('rssurl'), 'stations.xml'])
             self._contextmenu(self.STR(30118), {'action': 'show_qrcode', 'url': url})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
@@ -267,7 +267,7 @@ class Directory(ScheduleManager):
         self.contextmenu = []
         if kid > 0:
             self._contextmenu(self.STR(30108), {'action': 'get_keyword', 'kid': kid})
-        if self.GET('rss') == 'true':
+        if self.is_enabled('rss'):
             url = '/'.join([self.GET('rssurl'), dirname, 'rss.xml'])
             self._contextmenu(self.STR(30118), {'action': 'show_qrcode', 'url': url})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
@@ -285,7 +285,7 @@ class Directory(ScheduleManager):
         li.setArt({'thumb': image, 'icon': image})
         # コンテクストメニュー
         self.contextmenu = []
-        if self.GET('rss') == 'true':
+        if self.is_enabled('rss'):
             url = '/'.join([self.GET('rssurl'), '0', protocol, station, 'rss.xml'])
             self._contextmenu(self.STR(30118), {'action': 'show_qrcode', 'url': url})
         self._contextmenu(self.STR(30100), {'action': 'settings'})
