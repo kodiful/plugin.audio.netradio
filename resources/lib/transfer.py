@@ -82,43 +82,46 @@ class Transfer(Common):
                 kid, dirname = 0, '0'
             # キーワードのmp3ファイルを検索
             for mp3_file in glob.glob(os.path.join(origdir, '*.mp3')):
-                # 対応するjsonファイル
-                json_file = '%s.json' % os.path.splitext(mp3_file)[0]
-                if os.path.exists(json_file):
-                    # jsonファイルを読み込む
-                    with open(json_file, encoding='utf-8') as f:
-                        data = json.loads(f.read())
-                    # key, region, prefを推定
-                    protocol = self.PROTOCOL[data['type']]
-                    sql = 'SELECT key, region, pref FROM stations WHERE protocol = :protocol AND station = :station'
-                    if protocol == 'NHK' and auth_region != '':
-                        sql = f'{sql} AND region = :region'
-                        self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station'], 'region': auth_region})
-                        key, region, pref = self.db.cursor.fetchone()
-                    elif protocol == 'RDK' and auth_pref != '':
-                        sql = f'{sql} AND pref = :pref'
-                        self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station'], 'pref': auth_pref})
-                        key, region, pref = self.db.cursor.fetchone()
-                    else:
-                        self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station']})
-                        key, region, pref = self.db.cursor.fetchone()
-                    # DBに挿入
-                    data = convert(data, key, region, pref)
-                    data.update({
-                        'filename': os.path.basename(mp3_file),
-                        'duration': int(MP3(mp3_file).info.length),
-                        'kid': kid
-                    })
-                    lastrowid = self.db.add(data)
-                    # DBの情報をmp3ファイルにID3タグとして書き込む
-                    self.db.write_id3(mp3_file, lastrowid)
-                    # mp3ファイル名の移動先のファイル名を取得
-                    sql = 'SELECT filename FROM contents WHERE cid = :cid'
-                    self.db.cursor.execute(sql, {'cid': lastrowid})
-                    # mp3ファイルを移動
-                    destdir = os.path.join(Common.CONTENTS_PATH, dirname, protocol, data['station'])
-                    os.makedirs(destdir, exist_ok=True)
-                    shutil.move(mp3_file, destdir)
+                try:
+                    # 対応するjsonファイル
+                    json_file = '%s.json' % os.path.splitext(mp3_file)[0]
+                    if os.path.exists(json_file):
+                        # jsonファイルを読み込む
+                        with open(json_file, encoding='utf-8') as f:
+                            data = json.loads(f.read())
+                        # key, region, prefを推定
+                        protocol = self.PROTOCOL[data['type']]
+                        sql = 'SELECT key, region, pref FROM stations WHERE protocol = :protocol AND station = :station'
+                        if protocol == 'NHK' and auth_region != '':
+                            sql = f'{sql} AND region = :region'
+                            self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station'], 'region': auth_region})
+                            key, region, pref = self.db.cursor.fetchone()
+                        elif protocol == 'RDK' and auth_pref != '':
+                            sql = f'{sql} AND pref = :pref'
+                            self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station'], 'pref': auth_pref})
+                            key, region, pref = self.db.cursor.fetchone()
+                        else:
+                            self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station']})
+                            key, region, pref = self.db.cursor.fetchone()
+                        # DBに挿入
+                        data = convert(data, key, region, pref)
+                        data.update({
+                            'filename': os.path.basename(mp3_file),
+                            'duration': int(MP3(mp3_file).info.length),
+                            'kid': kid
+                        })
+                        lastrowid = self.db.add(data)
+                        # DBの情報をmp3ファイルにID3タグとして書き込む
+                        self.db.write_id3(mp3_file, lastrowid)
+                        # mp3ファイル名の移動先のファイル名を取得
+                        sql = 'SELECT filename FROM contents WHERE cid = :cid'
+                        self.db.cursor.execute(sql, {'cid': lastrowid})
+                        # mp3ファイルを移動
+                        destdir = os.path.join(Common.CONTENTS_PATH, dirname, protocol, data['station'])
+                        os.makedirs(destdir, exist_ok=True)
+                        shutil.move(mp3_file, destdir)
+                except Exception as e:
+                    self.log('transfer failed:', mp3_file, e)
             # 不要なファイルを退避
             destdir = os.path.join(Common.CONTENTS_PATH, '~backup')
             os.makedirs(destdir, exist_ok=True)
