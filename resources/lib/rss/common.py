@@ -42,6 +42,13 @@ class Common(Common):
         self.db = ThreadLocal.db
         # 時刻表記のロケール設定
         locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
+        # 時刻表記のロケール設定は_pubdateの変換結果に影響する
+        # 'en_US.UTF-8' -> 'Wed, 02 Apr 2025 09:17:52 +0900'
+        # 'ja_JP.UTF-8' -> '水, 02  4 2025 09:18:04 +0900'
+        # ロケールがインストールされていない／有効になっていない場合は、
+        # /etc/locale.gen で en_US.UTF-8 の行がコメントアウトされていないことを確認して、
+        # sudo locale-gen en_US.UTF-8
+        # を実行する
         # templates
         with open(os.path.join(self.DATA_PATH, 'rss', 'header.xml'), 'r', encoding='utf-8') as f:
             self.header = f.read()
