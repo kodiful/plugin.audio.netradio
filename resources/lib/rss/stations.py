@@ -22,7 +22,7 @@ class Stations(Common):
         JOIN stations AS s ON c.sid = s.sid
         JOIN keywords AS k ON c.kid = k.kid
         WHERE c.cstatus = -1 AND s.protocol = :protocol AND s.station = :station
-        ORDER BY c.start DESC'''
+        ORDER BY substr(c.start, 1, 10) DESC, substr(c.start, 12) ASC'''  # 2025-03-31 20:15:00
         self.db.cursor.execute(sql, {'protocol': self.protocol, 'station': self.station})
         for dirname, filename, title, start, description, site, duration in self.db.cursor.fetchall():
             mp3_file = os.path.join(self.CONTENTS_PATH, dirname, self.protocol, self.station, filename)
