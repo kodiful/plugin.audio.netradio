@@ -22,7 +22,7 @@ class Keywords(Common):
         JOIN stations AS s ON c.sid = s.sid
         JOIN keywords AS k ON c.kid = k.kid
         WHERE c.cstatus = -1 AND c.kid > 0 AND k.keyword = :keyword AND k.dirname = :dirname
-        ORDER BY substr(c.start, 1, 10) DESC, substr(c.start, 12) ASC'''  # 2025-03-31 20:15:00
+        ORDER BY SUBSTR(c.start, 1, 10) DESC, SUBSTR(c.start, 12) ASC'''  # 2025-03-31 20:15:00
         self.db.cursor.execute(sql, {'keyword': self.keyword, 'dirname': self.dirname})
         for filename, title, start, description, site, duration, protocol, station in self.db.cursor.fetchall():
             mp3_file = os.path.join(self.CONTENTS_PATH, self.dirname, protocol, station, filename)
