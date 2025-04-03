@@ -30,7 +30,7 @@ class Contents(Common):
             JOIN keywords AS k ON c.kid = k.kid
             JOIN stations AS s ON c.sid = s.sid
             WHERE c.cstatus != 0 AND c.kid = :kid
-            ORDER BY c.start DESC'''
+            ORDER BY SUBSTR(c.start, 1, 10) DESC, SUBSTR(c.start, 12) ASC'''
             self.db.cursor.execute(sql, {'kid': kid})
         if protocol != '' and station != '':
             sql = '''SELECT *
@@ -38,15 +38,15 @@ class Contents(Common):
             JOIN keywords AS k ON c.kid = k.kid
             JOIN stations AS s ON c.sid = s.sid
             WHERE c.cstatus != 0 AND s.protocol = :protocol AND s.station = :station
-            ORDER BY c.start DESC'''
+            ORDER BY SUBSTR(c.start, 1, 10) DESC, SUBSTR(c.start, 12) ASC'''
             self.db.cursor.execute(sql, {'protocol': protocol, 'station': station})
         if date != '':
             sql = '''SELECT *
             FROM contents AS c
             JOIN keywords AS k ON c.kid = k.kid
             JOIN stations AS s ON c.sid = s.sid
-            WHERE c.cstatus != 0 AND SUBSTR(c.start, 0, 11) = :date
-            ORDER BY c.start DESC'''
+            WHERE c.cstatus != 0 AND SUBSTR(c.start, 1, 10) = :date
+            ORDER BY SUBSTR(c.start, 1, 10) DESC, SUBSTR(c.start, 12) ASC'''
             self.db.cursor.execute(sql, {'date': date})
         for cksdata in self.db.cursor.fetchall():
             # リストアイテムを追加

@@ -94,7 +94,7 @@ class Directory(ScheduleManager):
                 self._add_station(protocol, station)
         elif protocol == 'date':
             # 保存ファイルの日付一覧を表示
-            sql = 'SELECT DISTINCT SUBSTR(start, 0, 11) FROM contents WHERE cstatus != 0 ORDER BY start DESC'
+            sql = 'SELECT DISTINCT SUBSTR(start, 1, 10) FROM contents WHERE cstatus != 0 ORDER BY start DESC'
             self.db.cursor.execute(sql)
             for date, in self.db.cursor.fetchall():
                 self._add_date(date)
