@@ -4,7 +4,7 @@ import socket
 import urllib.request
 import urllib.parse
 import json
-import websocket
+import websocket  # https://github.com/websocket-client/websocket-client
 import threading
 import ffmpeg
 import os
@@ -24,7 +24,7 @@ class LocalProxy(HTTPServer, Common):
         # ポート番号
         self.port = self.GET('port')
         # スレッドリスト
-        self.threads = {}
+        self.threadlist = {}
         # ポート番号が取得できたらHTTPサーバを準備する
         if self.port:
             # ポートが利用可能か確認する
@@ -38,11 +38,6 @@ class LocalProxy(HTTPServer, Common):
                 self.notify('Localproxy port %s is busy' % self.port)
         else:
             self.notify('Localproxy port is not defined')
-
-    def threads_status(self):
-        for cid, item in self.threads.items():
-            thread = item['thread']
-            self.log('cid:', cid, 'ident:', thread.ident, 'is_alive:', thread.is_alive())
 
     @staticmethod
     def proxy(protocol, key='', direct='', token='', cid='0'):
@@ -58,16 +53,10 @@ class LocalProxy(HTTPServer, Common):
             return direct  # mmsプロトコルのurlを302でリダイレクトさせようとするとエラーになるので直接アクセスさせることにする
         port = Common.GET('port')
         query = urllib.parse.urlencode(kwargs)
-        return f'http://127.0.0.1:{port}/?{query}'
+        return f'http://127.0.0.1:{port}/play?{query}'
 
 
 class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
-
-    def do_HEAD(self):
-        self.do_request()
-
-    def do_GET(self):
-        self.do_request()
 
     def log_message(self, format, *args):
         # デフォルトのログ出力を抑制する
@@ -75,7 +64,36 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
         # args: ('GET /abort;pBVVfZdW HTTP/1.1', '200', '-')
         return
 
-    def do_request(self):
+    def do_HEAD(self):
+        try:
+            # HTTPリクエストをパースする
+            request = urllib.parse.urlparse(self.path)
+            # パスに応じて処理
+            if request.path == '/':
+                self.send_response(200)
+                self.send_header('Content-Type', 'text/html')
+                self.end_headers()
+            elif request.path == '/play':
+                self.send_response(302)
+                self.end_headers()
+            elif request.path.endswith('.m3u8'):
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/x-mpegurl')
+                self.end_headers()
+            elif request.path.endswith('.ts'):
+                self.send_response(200)
+                self.send_header('Content-Type', 'video/mp2t')
+                self.end_headers()
+            else:
+                self.send_response(404)
+                self.end_headers()
+        except Exception as e:
+            self.send_response(500)
+            self.end_headers()
+            self.log(e)
+
+
+    def do_GET(self):
         try:
             # HTTPリクエストをパースする
             request = urllib.parse.urlparse(self.path)
@@ -86,6 +104,12 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
 
             # パスに応じて処理
             if request.path == '/':
+                self.send_response(200)
+                self.send_header('Content-Type', 'text/html')
+                self.end_headers()
+                html = self.threadlist2html()
+                self.wfile.write(html.encode())
+            elif request.path == '/play':
                 # protocolに応じて処理
                 self.do_proxy(params['protocol'], params)
             elif request.path.endswith('.m3u8'):
@@ -109,20 +133,19 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
                 self.end_headers()
                 self.wfile.write(b'404 Not Found')
         except Exception as e:
-            self.log(e)
             self.send_response(500)
             self.end_headers()
             self.wfile.write(b'500 Internal Server Error')
+            self.log(e)
 
     def do_proxy(self, protocol, params):
-        # スレッドの状態を書き出す（デバッグ用）
-        #self.server.threads_status()
         # 競合する既存スレッドを停止
         cid = params['cid']
-        item = self.server.threads.get(cid)
+        item = self.server.threadlist.get(cid)
         if item and item['thread'].is_alive():
-            self.log('competitive thread found and close websocket:', item['thread'].ident)
+            self.log('new thread found and close websocket:', item['thread'].ident)
             item['ws'].ws.close()
+            item['status'] = 'new player'
         # protocolに応じて処理
         if protocol == 'success':  # ↑で競合する既存スレッドを停止したのでそのまま終了
             self.send_response(200)
@@ -144,17 +167,17 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             if protocol == 'SJ':
                 url = f'https://api.radimo.smen.biz/api/v1/select_stream?station={key}&channel=0&quality=high&burst=5'
                 req = urllib.request.Request(url)
-            else:  # SP
+            if protocol == 'SP':
                 url = f'https://fmplapla.com/api/select_stream?station={key}&burst=5'
                 req = urllib.request.Request(url, headers={'Origin': 'https://fmplapla.com'}, method='POST')
             res = urllib.request.urlopen(req)
             data = json.loads(res.read())
             # websocketを作成
-            ws = WebSocket(data['location'], data['token'], cid, self)
+            ws = WebSocket(data['location'], data['token'], cid, self.server, self.path)
             # スレッドを作成
             thread = threading.Thread(target=ws.start, daemon=True)
             # スレッドリストに格納
-            self.server.threads[cid] = {'thread': thread, 'ws': ws}
+            self.server.threadlist[cid] = {'key': key, 'protocol': protocol, 'thread': thread, 'ws': ws, 'cid': cid, 'status': ''}
             # スレッド起動
             thread.start()
             # HLS_FILEが生成されるまで3秒待つ
@@ -169,18 +192,51 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             self.end_headers()
             self.wfile.write(b'404 Not Found')
 
+    def threadlist2html(self):
+        # リスト化
+        data = [['cid', 'key', 'protocol', 'thread.ident', 'thread.is_alive', 'ws.sock.connected', 'status']]
+        for dir, item in self.server.threadlist.items():
+            key = item.get('key')
+            protocol = item.get('protocol')
+            thread = item.get('thread')
+            ws = item.get('ws')
+            cid = item.get('cid')
+            status = item.get('status')
+            data.append([cid, key, protocol, thread.ident, thread.is_alive(), ws.ws.sock and ws.ws.sock.connected, status])
+        # hrmlに変換
+        html = ['<table>']
+        html.append('<thead>')
+        for row in data[:1]:
+            html.append('<tr>')
+            html.extend([f'<th>{cell}</th>' for cell in row])
+            html.append('</tr>')
+        html.append('</thead>')
+        html.append('<tbody>')
+        for row in data[1:]:
+            html.append('<tr>')
+            html.extend([f'<td>{cell}</td>' for cell in row])
+            html.append('</tr>')
+        html.append('</tbody>')
+        html.append('</table>')
+        # ページに埋め込む
+        with open(os.path.join(self.DATA_PATH, 'html', 'template.html')) as f:
+            template = f.read()
+        return template.format(table='\n'.join(html))
+
 
 class WebSocket(Common):
 
-    def __init__(self, location, token, cid, parent):
+    def __init__(self, location, token, cid, server, path):
         self.location = location
         self.token = token
         self.cid = cid
         self.dir = os.path.join(self.HLS_CACHE_PATH, cid)
-        self.parent = parent
+        self.server = server
+        self.path = path
 
     def start(self):
-        self.thread = self.parent.server.threads[self.cid]['thread']
+        self.threaddata = self.server.threadlist.get(self.cid)
+        self.thread = self.threaddata['thread']
         self.log('start websocket:', self.thread.ident)
         # キャッシュをクリア
         self._cleanup()
@@ -218,15 +274,17 @@ class WebSocket(Common):
             if xbmc.Player().isPlaying():
                 item = xbmc.Player().getPlayingItem()
                 # item.getPath(): "http://127.0.0.1:8088/?cid=0&protocol=SJ&key=fmblueshonan"
-                # self.parent.path: "/?cid=0&protocol=SJ&key=fmblueshonan"
-                if item.getPath().find(self.parent.path) < 0:
+                # self.path: "/?cid=0&protocol=SJ&key=fmblueshonan"
+                if item.getPath().find(self.path) < 0:
                     # スレッドと違うコンテンツが再生されているのでwebsocket停止
-                    self.log('competitive player found and close websocket:', item.getPath())
+                    self.log('new player found and close websocket:', item.getPath())
                     ws.close()
+                    self.threaddata['status'] = 'new player'
             else:
                 # 再生されているコンテンツがないのでwebsocket停止
                 self.log('no player and close websocket')
                 ws.close()
+                self.threaddata['status'] = 'no player'
 
     def on_close(self, ws, status, message):
         # 変換プロセスを停止
