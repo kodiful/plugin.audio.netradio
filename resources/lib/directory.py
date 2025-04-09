@@ -193,7 +193,7 @@ class Directory(ScheduleManager):
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         query = urlencode({'action': 'show_stations', 'protocol': 'keyword'})
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
-        # 保存ファイル（キーワード別）
+        # 保存ファイル（放送局別）
         li = xbmcgui.ListItem('[COLOR lightgreen]%s[/COLOR]' % self.STR(30011))
         self.setArt(li, 'set')
         # コンテクストメニュー
@@ -295,17 +295,8 @@ class Directory(ScheduleManager):
         xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
 
     def _add_date(self, date):
-        # 日付
-        d = self.datetime(f'{date} 00:00:00')
-        w = self.weekday(f'{date} 00:00:00')
-        # タイトル
-        title = d.strftime(self.STR(30918)) % self.STR(30920).split(',')[w]  # 2025年03月06日(木)
-        if w == 6 or self.db.is_holiday(f'{date} 00:00:00'):
-            title = f'[COLOR red]{title}[/COLOR]'
-        elif w == 5:
-            title = f'[COLOR blue]{title}[/COLOR]'
         # listitemを追加する
-        li = xbmcgui.ListItem(title)
+        li = xbmcgui.ListItem(self.db.convert(date, self.STR(30919)))
         # サムネイル画像
         self.setArt(li, 'calendar')
         # コンテクストメニュー

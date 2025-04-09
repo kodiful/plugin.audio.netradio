@@ -56,12 +56,11 @@ if __name__ == '__main__':
         sys.exit()
 
     # DBファイルの有無をチェック
-    exists =  os.path.exists(Common.DB_FILE)
+    require_transfer = os.path.exists(Common.DB_FILE) is False
     # DBインスタンスを作成
     ThreadLocal.db = DB()
-
     # DBファイルがない場合は既存データをインポート
-    if exists is False:
+    if require_transfer:
         Common.notify('Transferring data...')
         Transfer().run()
 

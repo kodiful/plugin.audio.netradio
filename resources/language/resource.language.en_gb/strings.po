@@ -488,10 +488,10 @@ msgstr ""
 # for common use
 #
 
-msgctxt "#30918"
-msgid "%Y/%m/%d(%%s)"
+msgctxt "#30919"
+msgid "%Y/%m/%d(%a)"
 msgstr ""
 
-msgctxt "#30920"
-msgid "Mon,Tue,Wed,Thu,Fri,Sat,Sun"
+msgctxt "#30921"
+msgid "%Y/%m/%d(%a) %H:%M - %%s"
 msgstr ""

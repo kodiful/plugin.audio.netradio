@@ -488,10 +488,10 @@ msgstr "番組情報が取得できません"
 # for common use
 #
 
-msgctxt "#30918"
-msgid "%Y/%m/%d(%%s)"
-msgstr "%Y年%m月%d日(%%s)"
+msgctxt "#30919"
+msgid "%Y/%m/%d(%a)"
+msgstr "%Y年%m月%d日(%a)"
 
-msgctxt "#30920"
-msgid "Mon,Tue,Wed,Thu,Fri,Sat,Sun"
-msgstr "月,火,水,木,金,土,日"
+msgctxt "#30921"
+msgid "%Y/%m/%d(%a) %H:%M - %%s"
+msgstr "%Y年%m月%d日(%a) %H:%M - %%s"

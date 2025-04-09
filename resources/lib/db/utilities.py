@@ -3,6 +3,7 @@
 import os
 import json
 import shutil
+import locale
 import urllib.request
 import urllib.error
 from mutagen.id3 import ID3, TIT2, TDRC, WPUB, TPUB, COMM
@@ -12,7 +13,7 @@ from sqlite3 import dbapi2 as sqlite
 from resources.lib.common import Common
 
 
-class Utilities():
+class Utilities(Common):
 
     def front_stations(self):
         sql = 'SELECT front FROM status'
@@ -111,10 +112,27 @@ class Utilities():
 
     # 祝祭日を判定する
     def is_holiday(self, date):
-        sql = 'SELECT COUNT(date) FROM holidays WHERE date = :date'
+        sql = 'SELECT name FROM holidays WHERE date = :date'
         self.cursor.execute(sql, {'date': date})
-        count, = self.cursor.fetchone()
-        return count > 0
+        name = self.cursor.fetchone()
+        return name
+
+    def convert(self, timestamp, format, color=None):
+        # timestamp: 2025-04-05 12:34:00
+        # format: %Y年%m月%d日(%a) %H:%M
+        # return: [COLOR blue]2025年04月05日(土) 12:34[/COLOR]
+        locale.setlocale(locale.LC_ALL, '')  # 言語に応じた日付フォーマット用設定
+        text = self.datetime(timestamp).strftime(format)
+        w = self.weekday(timestamp)
+        if color:
+            text = f'[COLOR {color}]{text}[/COLOR]'
+        elif self.is_holiday(timestamp[:10]):  # 祝祭日
+            text = f'[COLOR red]{text}[/COLOR]'
+        elif w == 6:  # 日曜日
+            text = f'[COLOR red]{text}[/COLOR]'
+        elif w == 5:  # 土曜日
+            text = f'[COLOR blue]{text}[/COLOR]'
+        return text
 
 
 # ロゴ画像を取得してサムネイル画像を作成

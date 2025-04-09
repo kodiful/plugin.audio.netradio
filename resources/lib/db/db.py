@@ -5,7 +5,6 @@ import sqlite3
 import threading
 from datetime import datetime, timezone, timedelta
 
-from resources.lib.common import Common
 from .schema import Schema
 from .utilities import Utilities, load_logo
 
@@ -14,7 +13,7 @@ from .utilities import Utilities, load_logo
 ThreadLocal = threading.local()
 
 
-class DB(Common, Schema, Utilities):
+class DB(Schema, Utilities):
 
     def __init__(self):
         # DBへ接続

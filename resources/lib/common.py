@@ -93,35 +93,36 @@ class Common:
         # ログレベル、メッセージを設定
         if isinstance(messages[0], Exception):
             level = xbmc.LOGERROR
-            message = '\n'.join([
-                ''.join(list(traceback.TracebackException.from_exception(messages[0]).format())),
-                ' '.join(map(lambda x: str(x), messages[1:]))
-            ])
+            message = '\n'.join(list(map(lambda x: x.strip(), traceback.TracebackException.from_exception(messages[0]).format())))
+            if len(messages[1:]) > 0:
+                message += ': ' + ' '.join(map(lambda x: str(x), messages[1:]))
         else:
             level = xbmc.LOGINFO
             frame = inspect.currentframe().f_back
             filename = os.path.basename(frame.f_code.co_filename)
             lineno = frame.f_lineno
             name = frame.f_code.co_name
-            message = ': '.join([
-                addon.getAddonInfo('id'),
-                f'{filename}({lineno}) {name}',
-                ' '.join(map(lambda x: str(x), messages))])
+            id = addon.getAddonInfo('id')
+            message = f'Addon "{id}", File "{filename}", line {lineno}, in {name}'
+            if len(messages) > 0:
+                message += ': ' + ' '.join(map(lambda x: str(x), messages))
         # ログ出力
         xbmc.log(message, level)
 
     @staticmethod
-    def datetime(datetime_str):
+    def datetime(datetimestr):
         # 2023-04-20 05:00:00 -> datetime(2023, 4, 20, 5, 0, 0)
-        date, time = datetime_str.split(' ')
+        datetimestr = datetimestr + '1970-01-01 00:00:00'[len(datetimestr):]  # padding
+        date, time = datetimestr.split(' ')
         year, month, day = map(int, date.split('-'))
         h, m, s = map(int, time.split(':'))
         return datetime(year, month, day, h, m, s)
 
     @staticmethod
-    def weekday(datetime_str):
+    def weekday(datetimestr):
         # 2023-04-20 05:00:00 -> calendar.weekday(2023, 4, 20) -> 3
-        date, _ = datetime_str.split(' ')
+        datetimestr = datetimestr + '1970-01-01 00:00:00'[len(datetimestr):]  # padding
+        date, _ = datetimestr.split(' ')
         year, month, day = map(int, date.split('-'))
         return calendar.weekday(year, month, day)
 
