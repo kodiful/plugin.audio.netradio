@@ -93,7 +93,7 @@ def downloader(cid, end, queue):
     # 開始通知
     Common.notify(f'Download started "{title}"')
     # ログ
-    Common.log(f'[{process.pid}] Download started.')
+    Common.log(f'Download started (pid={process.pid}).')
     # ダウンロード終了を待つ
     process.wait()
     # ダウンロード結果に応じて後処理

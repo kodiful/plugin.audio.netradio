@@ -16,6 +16,9 @@
   </extension>
   <extension point="xbmc.service" library="service.py" />
   <extension point="xbmc.addon.metadata">
+    <assets>
+      <icon>icon.png</icon>
+    </assets>
     <platform>all</platform>
     <summary lang="en_GB">NetRadio Client</summary>
     <summary lang="ja_JP">NetRadio Client</summary>
@@ -23,6 +26,7 @@
     <description lang="ja_JP">NHKラジオ, 民放ラジオ(radiko.jp)ほかを聴くことができます</description>
     <disclaimer lang="en_GB">Works on Windows &amp; macOS</disclaimer>
     <disclaimer lang="ja_JP">WindowsとmacOSで動作。</disclaimer>
-    <website>http://kodiful.com/</website>
+    <website>https://kodiful.com/</website>
+    <source>https://github.com/kodiful/plugin.audio.netradio</source>
   </extension>
 </addon>

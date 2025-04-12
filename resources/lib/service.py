@@ -54,7 +54,7 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
         # 開始
         self.log('enter monitor.')
         # 監視開始を通知
-        self.notify('Starting service', time=3000)
+        self.notify('Starting service', duration=3000)
         # スレッドのDBインスタンスを作成
         db = ThreadLocal.db = DB()
         # 認証予定時刻

@@ -248,10 +248,6 @@ msgctxt "#30402"
 msgid "Port number"
 msgstr "ポート番号"
 
-msgctxt "#30404"
-msgid "Debug"
-msgstr "デバッグ"
-
 #
 # download settings
 #
