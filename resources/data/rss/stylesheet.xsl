@@ -59,6 +59,8 @@
           float: right;
           width: 200px;
           margin-bottom: 20px;
+          border-radius: 5px;
+          background-color: #005C82;
           }
           #channel-image img {
           width: 200px;
