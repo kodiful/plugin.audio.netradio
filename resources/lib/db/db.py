@@ -60,7 +60,8 @@ class DB(Schema, Utilities):
         try:
             sid, top, vis = self.cursor.fetchone()
         except TypeError:
-            self.log('unknown station:', data['station'], error=True)
+            import xbmc
+            self.log('unknown station:', data['station'], level=xbmc.LOGERROR)
             return 0
         # キーワード設定（kid, filename, cstatus）
         kid = data.get('kid', 0)
