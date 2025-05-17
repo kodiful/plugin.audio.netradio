@@ -57,7 +57,11 @@ class DB(Schema, Utilities):
         # 放送局判定（station, region, prefからsidを判定）
         sql = 'SELECT sid, top, vis FROM stations WHERE station = :station AND region = :region AND pref = :pref'
         self.cursor.execute(sql, {'station': data['station'], 'region': data['region'], 'pref': data['pref']})
-        sid, top, vis = self.cursor.fetchone()
+        try:
+            sid, top, vis = self.cursor.fetchone()
+        except TypeError:
+            self.log('unknown station:', data['station'], error=True)
+            return 0
         # キーワード設定（kid, filename, cstatus）
         kid = data.get('kid', 0)
         if kid > 0:
