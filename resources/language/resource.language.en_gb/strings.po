@@ -480,6 +480,10 @@ msgctxt "#30701"
 msgid "(Content info is currently unavailable)"
 msgstr ""
 
+msgctxt "#30702"
+msgid "\"%s\" has been added"
+msgstr ""
+
 #
 # for common use
 #

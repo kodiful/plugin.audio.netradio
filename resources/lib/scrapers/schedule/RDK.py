@@ -52,6 +52,31 @@ class Scraper(Common):
             buf += progs
         return buf
 
+    def maintain(self, data):
+        from resources.lib.scrapers.stations.RDK import Scraper as StationsScraper
+        import urllib.request
+        # 放送局情報のxmlをHTTPリクエスト
+        area_id = self.db.search_by_pref(data['pref'])
+        code, _, _, _ = self.db.search_by_radiko(area_id)
+        scraper = StationsScraper(area_id)
+        req = urllib.request.Request(scraper.URL)
+        res = urllib.request.urlopen(req)
+        xmldata = res.read()
+        # パースしてロゴ情報を取得する
+        import xml.etree.ElementTree as ET
+        root = ET.fromstring(xmldata.decode())
+        for station in root.findall('.//station'):
+            sid = station.find('id')
+            if sid is not None and sid.text == data['key']:
+                for logo in station.findall('logo'):
+                    if logo.attrib.get('width') == '448':
+                        data = data.copy()
+                        data.update({'logo': logo.text.strip(), 'code': code, 'site': station.find('href').text})
+                        self.db.add_station(data, top=1, vis=1)
+                        self.notify(self.STR(30702) % data['station'])  # 通知
+                        return 1
+        return 0
+    
     def _datetime(self, t):
         # 20231110120000 -> 2023-11-10 12:00:00
         #dt = datetime.strptime(t, '%Y%m%d%H%M%S')

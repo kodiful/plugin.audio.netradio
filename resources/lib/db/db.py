@@ -62,7 +62,7 @@ class DB(Schema, Utilities):
         except TypeError:
             import xbmc
             self.log('unknown station:', data['station'], level=xbmc.LOGERROR)
-            return 0
+            return -1
         # キーワード設定（kid, filename, cstatus）
         kid = data.get('kid', 0)
         if kid > 0:

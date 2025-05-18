@@ -29,6 +29,11 @@ class Common(Common):
         # to be overwritten
         return []
 
+    # 未知の放送局情報を補完する
+    def maintain(self, data):
+        # to be overwritten
+        return 0
+
     # 一連の処理を実行する
     def update(self):
         # DBへ挿入する番組情報の数を初期化
@@ -69,14 +74,20 @@ class Common(Common):
             return -1
         # 抽出した番組情報をDBに挿入
         for item in buf:
-            if self.db.add(item) > 0:
+            status = self.db.add(item)
+            if status > 0:
                 count += 1  # DBに挿入された番組情報があればカウントアップする
+            elif status < 0:
+                # 対応する放送局が見つからない場合は放送局情報をDBに追加する（RDKのみ実装）
+                if self.maintain(item) == 0:
+                    import xbmc
+                    self.log('"%s" not found' % item['station'], level=xbmc.LOGERROR)
         # パース結果をjsonファイルに保存
         with open(self.JSON_FILE, 'wb') as f:
             f.write(json.dumps(buf, ensure_ascii=False, indent=4).encode('utf-8'))
         # DBへ挿入した番組情報の数を返す
         return count
-
+            
     def search_nextaired(self):
         sql = '''SELECT c.start FROM contents AS c JOIN stations AS s ON c.sid = s.sid
         WHERE c.end > NOW() AND c.sid = :sid ORDER BY c.start LIMIT 1 OFFSET 1'''

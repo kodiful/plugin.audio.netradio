@@ -480,6 +480,10 @@ msgctxt "#30701"
 msgid "(Content info is currently unavailable)"
 msgstr "番組情報が取得できません"
 
+msgctxt "#30702"
+msgid "\"%s\" has been added"
+msgstr "\"%s\" が追加されました"
+
 #
 # for common use
 #
