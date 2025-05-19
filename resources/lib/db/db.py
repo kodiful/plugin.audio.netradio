@@ -18,7 +18,7 @@ class DB(Schema, Utilities):
     def __init__(self):
         # DBへ接続
         #self.conn = sqlite3.connect(self.DB_FILE, isolation_level=None)
-        self.conn = sqlite3.connect(self.DB_FILE, isolation_level=None, check_same_thread=False)  # add option for windows
+        self.conn = sqlite3.connect(self.DB_FILE, isolation_level=None, check_same_thread=False, timeout=10.0)  # add option for windows
         self.conn.row_factory = sqlite3.Row
         self.cursor = self.conn.cursor()
         # テーブルを初期化
