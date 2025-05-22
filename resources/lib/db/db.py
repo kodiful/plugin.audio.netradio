@@ -107,8 +107,12 @@ class DB(Schema, Utilities):
         columns = ', '.join(values.keys())
         placeholders = ', '.join(['?' for _ in values])
         sql = f'INSERT OR IGNORE INTO contents ({columns}) VALUES ({placeholders})'
-        result = self.cursor.execute(sql, list(values.values()))
-        return result.rowcount and self.cursor.lastrowid
+        try:
+            result = self.cursor.execute(sql, list(values.values()))
+            return result.rowcount and self.cursor.lastrowid
+        except sqlite3.OperationalError as e:  # catch errors especially for Raspberry Pi OS
+            self.log(e)
+            return 0
 
     def add_master(self, values):
         values.update({
