@@ -40,16 +40,16 @@ class Scraper(Common):
             (data['r3'], 'NHK3', f'NHK-FM({station})')):
             buf += [
                 #self.subparse(data['previous'], id, station),
-                self.subparse(data['present'], id, station),
+                self.subparse(data['present'], id, station) if data.get('present') else self.dummy_present(data, id, station),
                 self.subparse(data['following'], id, station),
             ]
         return buf
 
     def subparse(self, data, id, station):
         # sub-objects
-        identifierGroup = data.get('identifierGroup', {'genre': []})
+        #identifierGroup = data.get('identifierGroup', {'genre': []})
         misc = data.get('misc', {'actList': []})
-        about = data.get('about', {'PartOfSeries': {'canonical': ''}})
+        about = data.get('about', {'partOfSeries': {'canonical': ''}})
         # properties
         title = data['name']
         start = data['startDate']
@@ -57,7 +57,7 @@ class Scraper(Common):
         act = ', '.join(map(lambda x: x['name'], misc['actList']))
         info = ''
         desc = data['description']
-        prog = {
+        return {
             'station': station,
             'protocol': self.PROTOCOL,
             'key': id,
@@ -67,11 +67,10 @@ class Scraper(Common):
             'act': self.normalize(act),
             'info': self.normalize(info),
             'desc': self.normalize(desc),
-            'site': about['partOfSeries'].get('canonical'),
+            'site': about['partOfSeries'].get('canonical', ''),
             'region': self.region,
             'pref': ''
         }
-        return prog
 
     def _datetime(self, t):
         # 2023-04-20T05:00:00+09:00 -> 2023-04-20 05:00:00
@@ -99,6 +98,24 @@ class Scraper(Common):
         self.db.cursor.execute(sql, {'nextaired0': nextaired0, 'protocol': self.PROTOCOL, 'region': self.region})
         return nextaired0
 
+    def dummy_present(self, data, id, station):
+        start = data['previous']['endDate']
+        end = data['following']['startDate']
+        return {
+            'station': station,
+            'protocol': self.PROTOCOL,
+            'key': id,
+            'title': '放送休止中',
+            'start': self._datetime(start),
+            'end': self._datetime(end),
+            'act': '',
+            'info': '',
+            'desc': '',
+            'site': '',
+            'region': self.region,
+            'pref': ''
+        }
+    
 
 # https://api.nhk.jp/r7/pg/now/radio/130/now.json
 
