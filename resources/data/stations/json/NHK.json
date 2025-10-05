@@ -12,7 +12,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023545/nhkradiruikr1/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/6/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -28,7 +28,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r2-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/4/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -44,7 +44,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/fm-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023546/nhkradiruikfm/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/7/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -60,7 +60,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023543/nhkradiruhkr1/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/8/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -76,7 +76,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r2-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/4/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -92,7 +92,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/fm-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023544/nhkradiruhkfm/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/9/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -108,7 +108,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023229/nhkradiruakr1/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/3/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -124,7 +124,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r2-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/4/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -140,7 +140,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/fm-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023507/nhkradiruakfm/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/5/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -156,7 +156,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023510/nhkradiruckr1/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/10/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -172,7 +172,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r2-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/4/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -188,7 +188,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/fm-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023511/nhkradiruckfm/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/11/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -204,7 +204,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023508/nhkradirubkr1/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/12/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -220,7 +220,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r2-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/4/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -236,7 +236,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/fm-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023509/nhkradirubkfm/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/13/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -252,7 +252,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023512/nhkradirufkr1/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/14/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -268,7 +268,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r2-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/4/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -284,7 +284,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/fm-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023513/nhkradirufkfm/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/15/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -300,7 +300,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023547/nhkradiruzkr1/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/16/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -316,7 +316,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r2-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/4/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -332,7 +332,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/fm-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023548/nhkradiruzkfm/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/17/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -348,7 +348,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023541/nhkradirulkr1/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/18/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -364,7 +364,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/r2-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/4/joined/master.m3u8",
         "delay": 35
     },
     {
@@ -380,7 +380,7 @@
         "logo": "https://www.nhk.or.jp/common/img/media/fm-200x200.png",
         "description": "",
         "site": "https://www.nhk.or.jp/radio/",
-        "direct": "https://radio-stream.nhk.jp/hls/live/2023542/nhkradirulkfm/master.m3u8",
+        "direct": "https://simul.drdi.st.nhk/live/19/joined/master.m3u8",
         "delay": 35
     }
 ]

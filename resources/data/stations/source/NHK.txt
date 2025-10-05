@@ -12,9 +12,9 @@
 			<apikey>700</apikey>
 			<areakey>010</areakey>
 			
-			<r1hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023545/nhkradiruikr1/master.m3u8]]></r1hls>
-			<r2hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8]]></r2hls>
-			<fmhls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023546/nhkradiruikfm/master.m3u8]]></fmhls>
+			<r1hls><![CDATA[https://simul.drdi.st.nhk/live/6/joined/master.m3u8]]></r1hls>
+			<r2hls><![CDATA[https://simul.drdi.st.nhk/live/4/joined/master.m3u8]]></r2hls>
+			<fmhls><![CDATA[https://simul.drdi.st.nhk/live/7/joined/master.m3u8]]></fmhls>
 			
 		</data>
 		<data>
@@ -23,9 +23,9 @@
 			<apikey>600</apikey>
 			<areakey>040</areakey>
 			
-			<r1hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023543/nhkradiruhkr1/master.m3u8]]></r1hls>
-			<r2hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8]]></r2hls>
-			<fmhls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023544/nhkradiruhkfm/master.m3u8]]></fmhls>
+			<r1hls><![CDATA[https://simul.drdi.st.nhk/live/8/joined/master.m3u8]]></r1hls>
+			<r2hls><![CDATA[https://simul.drdi.st.nhk/live/4/joined/master.m3u8]]></r2hls>
+			<fmhls><![CDATA[https://simul.drdi.st.nhk/live/9/joined/master.m3u8]]></fmhls>
 			
 		</data>
 		<data>
@@ -34,9 +34,9 @@
 			<apikey>001</apikey>
 			<areakey>130</areakey>
 
-			<r1hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023229/nhkradiruakr1/master.m3u8]]></r1hls>
-			<r2hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8]]></r2hls>
-			<fmhls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023507/nhkradiruakfm/master.m3u8]]></fmhls>
+			<r1hls><![CDATA[https://simul.drdi.st.nhk/live/3/joined/master.m3u8]]></r1hls>
+			<r2hls><![CDATA[https://simul.drdi.st.nhk/live/4/joined/master.m3u8]]></r2hls>
+			<fmhls><![CDATA[https://simul.drdi.st.nhk/live/5/joined/master.m3u8]]></fmhls>
 		</data>
 		<data>
 			<areajp>名古屋</areajp>
@@ -44,9 +44,9 @@
 			<apikey>300</apikey>
 			<areakey>230</areakey>
 			
-			<r1hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023510/nhkradiruckr1/master.m3u8]]></r1hls>
-			<r2hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8]]></r2hls>
-			<fmhls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023511/nhkradiruckfm/master.m3u8]]></fmhls>
+			<r1hls><![CDATA[https://simul.drdi.st.nhk/live/10/joined/master.m3u8]]></r1hls>
+			<r2hls><![CDATA[https://simul.drdi.st.nhk/live/4/joined/master.m3u8]]></r2hls>
+			<fmhls><![CDATA[https://simul.drdi.st.nhk/live/11/joined/master.m3u8]]></fmhls>
 			
 		</data>
 		<data>
@@ -55,9 +55,9 @@
 			<apikey>200</apikey>
 			<areakey>270</areakey>
 			
-			<r1hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023508/nhkradirubkr1/master.m3u8]]></r1hls>
-			<r2hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8]]></r2hls>
-			<fmhls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023509/nhkradirubkfm/master.m3u8]]></fmhls>
+			<r1hls><![CDATA[https://simul.drdi.st.nhk/live/12/joined/master.m3u8]]></r1hls>
+			<r2hls><![CDATA[https://simul.drdi.st.nhk/live/4/joined/master.m3u8]]></r2hls>
+			<fmhls><![CDATA[https://simul.drdi.st.nhk/live/13/joined/master.m3u8]]></fmhls>
 			
 		</data>
 		<data>
@@ -66,9 +66,9 @@
 			<apikey>400</apikey>
 			<areakey>340</areakey>
 			
-			<r1hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023512/nhkradirufkr1/master.m3u8]]></r1hls>
-			<r2hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8]]></r2hls>
-			<fmhls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023513/nhkradirufkfm/master.m3u8]]></fmhls>
+			<r1hls><![CDATA[https://simul.drdi.st.nhk/live/14/joined/master.m3u8]]></r1hls>
+			<r2hls><![CDATA[https://simul.drdi.st.nhk/live/4/joined/master.m3u8]]></r2hls>
+			<fmhls><![CDATA[https://simul.drdi.st.nhk/live/15/joined/master.m3u8]]></fmhls>
 			
 		</data>
 		<data>
@@ -77,9 +77,9 @@
 			<apikey>800</apikey>
 			<areakey>380</areakey>
 			
-			<r1hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023547/nhkradiruzkr1/master.m3u8]]></r1hls>
-			<r2hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8]]></r2hls>
-			<fmhls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023548/nhkradiruzkfm/master.m3u8]]></fmhls>
+			<r1hls><![CDATA[https://simul.drdi.st.nhk/live/16/joined/master.m3u8]]></r1hls>
+			<r2hls><![CDATA[https://simul.drdi.st.nhk/live/4/joined/master.m3u8]]></r2hls>
+			<fmhls><![CDATA[https://simul.drdi.st.nhk/live/17/joined/master.m3u8]]></fmhls>
 			
 		</data>
 		<data>
@@ -88,21 +88,21 @@
 			<apikey>501</apikey>
 			<areakey>400</areakey>
 			
-			<r1hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023541/nhkradirulkr1/master.m3u8]]></r1hls>
-			<r2hls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023501/nhkradiruakr2/master.m3u8]]></r2hls>
-			<fmhls><![CDATA[https://radio-stream.nhk.jp/hls/live/2023542/nhkradirulkfm/master.m3u8]]></fmhls>
+			<r1hls><![CDATA[https://simul.drdi.st.nhk/live/18/joined/master.m3u8]]></r1hls>
+			<r2hls><![CDATA[https://simul.drdi.st.nhk/live/4/joined/master.m3u8]]></r2hls>
+			<fmhls><![CDATA[https://simul.drdi.st.nhk/live/19/joined/master.m3u8]]></fmhls>
 			
 		</data>
 	</stream_url>
 	
 	<!-- noa api -->
-	<url_program_noa><![CDATA[//api.nhk.or.jp/r5/pg2/now/4/{area}/netradio.json]]></url_program_noa>
+	<url_program_noa><![CDATA[//api.nhk.jp/r7/pg/now/radio/{area}/now.json]]></url_program_noa>
 
 	<!-- program detail api -->
-	<url_program_day><![CDATA[//api.nhk.or.jp/r5/pg2/list/4/{area}/{service}/[YYYY-MM-DD].json]]></url_program_day>
+	<url_program_day><![CDATA[//api.nhk.jp/r7/pg/date/{service}/{area}/[YYYY-MM-DD].json]]></url_program_day>
 
 	<!-- program info api -->
-	<url_program_detail><![CDATA[//api.nhk.or.jp/r5/pg2/info/4/{area}/{service}/{dateid}.json]]></url_program_detail>
+	<url_program_detail><![CDATA[//api.nhk.jp/r7/t/broadcastevent/be/{broadcastEventId}.json]]></url_program_detail>
 
 	<!-- tweet cgi @radiru -->
 	<radiru_twitter_timeline><![CDATA[//cgi4.nhk.or.jp/tweet/api/tweet.cgi?twname=nhk_radiru]]></radiru_twitter_timeline>

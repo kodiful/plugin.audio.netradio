@@ -9,7 +9,7 @@ from resources.lib.scrapers.schedule.common import Common
 class Scraper(Common):
 
     PROTOCOL = 'NHK'
-    URL = 'https://api.nhk.or.jp/r5/pg2/now/4/{region}/netradio.json'
+    URL = 'https://api.nhk.jp/r7/pg/now/radio/{region}/now.json'
 
     # 地域
     REGION = {
@@ -32,13 +32,12 @@ class Scraper(Common):
 
     def parse(self, data):
         data = json.loads(data)
-        data = data['nowonair_list']
-        station = data['n1']['following']['area']['name']
+        station = data['r1']['following']['location']['name']
         buf = []
         for data, id, station in (
-            (data['n1'], 'NHK1', f'NHKラジオ第1({station})'),
-            (data['n2'], 'NHK2', f'NHKラジオ第2'),
-            (data['n3'], 'NHK3', f'NHK-FM({station})')):
+            (data['r1'], 'NHK1', f'NHKラジオ第1({station})'),
+            (data['r2'], 'NHK2', f'NHKラジオ第2'),
+            (data['r3'], 'NHK3', f'NHK-FM({station})')):
             buf += [
                 #self.subparse(data['previous'], id, station),
                 self.subparse(data['present'], id, station),
@@ -47,12 +46,17 @@ class Scraper(Common):
         return buf
 
     def subparse(self, data, id, station):
-        title = data['title']
-        start = data['start_time']
-        end = data['end_time']
-        act = data['act']
-        info = data['subtitle']
-        desc = data['music']
+        # sub-objects
+        identifierGroup = data.get('identifierGroup', {'genre': []})
+        misc = data.get('misc', {'actList': []})
+        about = data.get('about', {'PartOfSeries': {'canonical': ''}})
+        # properties
+        title = data['name']
+        start = data['startDate']
+        end = data['endDate']
+        act = ', '.join(map(lambda x: x['name'], misc['actList']))
+        info = ''
+        desc = data['description']
         prog = {
             'station': station,
             'protocol': self.PROTOCOL,
@@ -63,7 +67,7 @@ class Scraper(Common):
             'act': self.normalize(act),
             'info': self.normalize(info),
             'desc': self.normalize(desc),
-            'site': data['url']['pc'] or '',
+            'site': about['partOfSeries'].get('canonical'),
             'region': self.region,
             'pref': ''
         }
@@ -96,1639 +100,2413 @@ class Scraper(Common):
         return nextaired0
 
 
-# https://api.nhk.or.jp/r5/pg2/now/4/130/netradio.json
+# https://api.nhk.jp/r7/pg/now/radio/130/now.json
 
 '''
 {
-    "nowonair_list": {
-        "n1": {
-            "previous": {
-                "id": "2025021266583",
-                "area": {
-                    "id": "130",
-                    "name": "東京"
-                },
-                "date": "2025-02-12",
-                "service": {
-                    "id": "n1",
-                    "name": "NHKネットラジオ第1",
-                    "images": {
-                        "logo_s": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r1-100x50.png",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "logo_m": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r1-200x100.png",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logo_l": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badgeSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r1/r1-badge.svg",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "badge": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r1/r1-badge.svg",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logoSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r1/r1-icon.svg",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badge9x4": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r1/r1-badge9x4.svg",
-                            "width": "180",
-                            "height": "80"
-                        }
-                    }
-                },
-                "event_id": "66583",
-                "start_time": "2025-02-12T14:00:00+09:00",
-                "end_time": "2025-02-12T14:05:00+09:00",
-                "genre": [
-                    "0000"
-                ],
-                "title": "ニュース",
-                "subtitle": "",
-                "content": "",
-                "images": {
-                    "logo_l": {
-                        "url": ""
-                    },
-                    "thumbnail_m": {
-                        "url": ""
-                    },
-                    "hsk_posterframe": {
-                        "url": ""
-                    }
-                },
-                "info": "",
-                "act": "",
-                "music": "",
-                "free": "",
-                "rate": "",
-                "flags": {
-                    "sound": "01",
-                    "teletext": "0",
-                    "databroad": "0",
-                    "rebroad": "0",
-                    "multivoice": "0",
-                    "interactive": "0",
-                    "shuwa": "0",
-                    "oneseg": "0",
-                    "subchannel": "",
-                    "honyo": "0",
-                    "hybridcastid": "0",
-                    "kido": "0",
-                    "gashitsu": "0",
-                    "sozai": "11",
-                    "eizo": "0",
-                    "marume": "0",
-                    "bantype": "01",
-                    "dohaishin": "0",
-                    "hayamodoshi": "0",
-                    "minogashi": "0",
-                    "nod": "0"
-                },
-                "change": [],
-                "lastupdate": "2025-02-04T10:29:39+09:00",
-                "site_id": "1336",
-                "url": {
-                    "pc": "https://www.nhk.or.jp/radionews/",
-                    "short": "https://nhk.jp/P1336",
-                    "nod": "",
-                    "nod_portal": ""
-                },
-                "keywords": [],
-                "hashtags": [],
-                "codes": {
-                    "code": "3331453",
-                    "split1": [
-                        "3331",
-                        "453"
-                    ]
-                },
-                "ch": {
-                    "id": "",
-                    "name": "",
-                    "station": "首都圏"
-                },
-                "hsk": {
-                    "system_unique_id": "",
-                    "concurrent_delivery": "",
-                    "early_back_delivery": "",
-                    "passed_delivery": "",
-                    "nod_delivery": "",
-                    "passed_start_date_time": "",
-                    "passed_end_date_time": "",
-                    "passed_delivery_period": "",
-                    "passed_length": "",
-                    "early_back_delivery_reusable_flag": "",
-                    "passed_type": "",
-                    "genban_edit_flag": "",
-                    "genban_caption_flag": "",
-                    "news_xml_url": "",
-                    "posterframe_image_url": "",
-                    "qf_flag": "",
-                    "qf_program_name": "",
-                    "update_date_time": "",
-                    "passed_delivery_readyable_flag": "",
-                    "program_kind": "",
-                    "flow_code": "",
-                    "audio_mode1": "",
-                    "audio_mode2": "",
-                    "marume_id": "",
-                    "epg_disp_id": "",
-                    "event_share_gtv": "",
-                    "event_share_gtv_sub": "",
-                    "event_share_etv": "",
-                    "event_share_etv_sub": "",
-                    "event_share_bs": "",
-                    "event_share_bs_sub": "",
-                    "kido": "",
-                    "kidofuyo": "",
-                    "shikiiki": "",
-                    "broadcast_range": "",
-                    "video_descriptor": "",
-                    "rewritable_event_id": "",
-                    "variable_speed_flag": ""
-                },
-                "plus": {
-                    "stream_id": "",
-                    "stream_fmt": ""
-                },
-                "extra": {
-                    "pr_movies": []
-                },
-                "play_control": {
-                    "simul": false,
-                    "dvr": false,
-                    "vod": false,
-                    "multi": ""
-                },
-                "published_period_from": "",
-                "published_period_to": ""
+    "r1": {
+        "previous": {
+            "type": "BroadcastEvent",
+            "id": "r1-130-2025100566690",
+            "name": "ニュース",
+            "description": "",
+            "startDate": "2025-10-05T15:00:03+09:00",
+            "endDate": "2025-10-05T15:05:00+09:00",
+            "location": {
+                "id": "001",
+                "name": "東京"
             },
-            "present": {
-                "id": "2025021266584",
-                "area": {
-                    "id": "130",
-                    "name": "東京"
-                },
-                "date": "2025-02-12",
-                "service": {
-                    "id": "n1",
-                    "name": "NHKネットラジオ第1",
-                    "images": {
-                        "logo_s": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r1-100x50.png",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "logo_m": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r1-200x100.png",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logo_l": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badgeSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r1/r1-badge.svg",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "badge": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r1/r1-badge.svg",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logoSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r1/r1-icon.svg",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badge9x4": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r1/r1-badge9x4.svg",
-                            "width": "180",
-                            "height": "80"
-                        }
-                    }
-                },
-                "event_id": "66584",
-                "start_time": "2025-02-12T14:05:00+09:00",
-                "end_time": "2025-02-12T14:55:00+09:00",
+            "identifierGroup": {
+                "broadcastEventId": "r1-130-2025100566690",
+                "radioEpisodeId": "GPJ3N51K91",
+                "radioEpisodeName": "2025年10月5日午後3:00",
+                "radioSeriesId": "18439M2W42",
+                "radioSeriesName": "ニュース",
+                "serviceId": "r1",
+                "areaId": "130",
+                "stationId": "001",
+                "date": "2025-10-05",
+                "eventId": "66690",
                 "genre": [
-                    "0202"
-                ],
-                "title": "まんまる　午後２時台　まちのわ",
-                "subtitle": "２時台は【まちのわ】列島リレーニュースなど、各地の話題をお送りする時間。水曜日は「ラジオの処方箋」。東京藝術大学が中心になった取り組みとの連携企画をお届け！",
-                "content": "２時台は、各地の話題をお送りする時間、題して【まちのわ】。前半は「音の処方箋」。東京藝術大学が中心に取り組んでいる連携企画をお届け。様々な音をきっかけによりよい毎日のヒントを探ります。きょうは、ＮＨＫラジオの番組「音の風景」から、厳寒のこの季節にしか聞くことのできない音を紹介します。さらに後半は、各地の放送局を結んでお伝えする「列島リレーニュース」です。",
-                "images": {
-                    "logo_l": {
-                        "url": "https://www.nhk.jp/static/assets/images/radioseries/rs/GNWPP74MG4/GNWPP74MG4-logo_914966dc8043e920cf2ba69370cfbcef.png",
-                        "width": "640",
-                        "height": "640"
-                    },
-                    "thumbnail_m": {
-                        "url": "https://www.nhk.jp/static/assets/images/radioseries/rs/GNWPP74MG4/GNWPP74MG4-eyecatch_0a8f524786306c83b8e4d1cc4532962a.png",
-                        "width": "640",
-                        "height": "360"
-                    },
-                    "hsk_posterframe": {
-                        "url": ""
+                    {
+                        "id": "0000",
+                        "name1": "ニュース/報道",
+                        "name2": "定時・総合"
                     }
-                },
-                "info": "",
-                "act": "浜島直子，高山哲哉，伊藤達矢",
-                "music": "",
-                "free": "",
-                "rate": "",
-                "flags": {
-                    "sound": "01",
-                    "teletext": "0",
-                    "databroad": "0",
-                    "rebroad": "0",
-                    "multivoice": "0",
-                    "interactive": "0",
-                    "shuwa": "0",
-                    "oneseg": "0",
-                    "subchannel": "",
-                    "honyo": "0",
-                    "hybridcastid": "0",
-                    "kido": "0",
-                    "gashitsu": "0",
-                    "sozai": "11",
-                    "eizo": "0",
-                    "marume": "0",
-                    "bantype": "01",
-                    "dohaishin": "0",
-                    "hayamodoshi": "0",
-                    "minogashi": "0",
-                    "nod": "0"
-                },
-                "change": [],
-                "lastupdate": "2025-02-05T11:57:00+09:00",
-                "site_id": "8863",
-                "url": {
-                    "pc": "https://www.nhk.jp/p/manmaru/rs/GNWPP74MG4/",
-                    "short": "https://nhk.jp/P8863",
-                    "nod": "",
-                    "nod_portal": ""
-                },
-                "keywords": [
-                    "まんまる"
-                ],
-                "hashtags": [],
-                "codes": {
-                    "code": "3851908",
-                    "split1": [
-                        "3851",
-                        "908"
-                    ]
-                },
-                "ch": {
-                    "id": "",
-                    "name": "",
-                    "station": "首都圏"
-                },
-                "hsk": {
-                    "system_unique_id": "",
-                    "concurrent_delivery": "",
-                    "early_back_delivery": "",
-                    "passed_delivery": "",
-                    "nod_delivery": "",
-                    "passed_start_date_time": "",
-                    "passed_end_date_time": "",
-                    "passed_delivery_period": "",
-                    "passed_length": "",
-                    "early_back_delivery_reusable_flag": "",
-                    "passed_type": "",
-                    "genban_edit_flag": "",
-                    "genban_caption_flag": "",
-                    "news_xml_url": "",
-                    "posterframe_image_url": "",
-                    "qf_flag": "",
-                    "qf_program_name": "",
-                    "update_date_time": "",
-                    "passed_delivery_readyable_flag": "",
-                    "program_kind": "",
-                    "flow_code": "",
-                    "audio_mode1": "",
-                    "audio_mode2": "",
-                    "marume_id": "",
-                    "epg_disp_id": "",
-                    "event_share_gtv": "",
-                    "event_share_gtv_sub": "",
-                    "event_share_etv": "",
-                    "event_share_etv_sub": "",
-                    "event_share_bs": "",
-                    "event_share_bs_sub": "",
-                    "kido": "",
-                    "kidofuyo": "",
-                    "shikiiki": "",
-                    "broadcast_range": "",
-                    "video_descriptor": "",
-                    "rewritable_event_id": "",
-                    "variable_speed_flag": ""
-                },
-                "plus": {
-                    "stream_id": "",
-                    "stream_fmt": ""
-                },
-                "extra": {
-                    "pr_movies": []
-                },
-                "play_control": {
-                    "simul": false,
-                    "dvr": false,
-                    "vod": false,
-                    "multi": ""
-                },
-                "published_period_from": "",
-                "published_period_to": ""
+                ]
             },
-            "following": {
-                "id": "2025021266585",
-                "area": {
-                    "id": "130",
-                    "name": "東京"
-                },
-                "date": "2025-02-12",
-                "service": {
-                    "id": "n1",
-                    "name": "NHKネットラジオ第1",
-                    "images": {
-                        "logo_s": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r1-100x50.png",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "logo_m": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r1-200x100.png",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logo_l": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r1-200x200.png",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badgeSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r1/r1-badge.svg",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "badge": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r1/r1-badge.svg",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logoSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r1/r1-icon.svg",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badge9x4": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r1/r1-badge9x4.svg",
-                            "width": "180",
-                            "height": "80"
+            "misc": {
+                "displayVideoMode": "none",
+                "displayVideoRange": "sdr",
+                "displayAudioMode": [],
+                "audioMode": [],
+                "supportCaption": false,
+                "supportSign": false,
+                "supportHybridcast": false,
+                "supportDataBroadcast": false,
+                "isInteractive": false,
+                "isChangeable": false,
+                "releaseLevel": "original",
+                "programType": "program",
+                "coverage": "nationwide",
+                "actList": [],
+                "musicList": [],
+                "eventShareStatus": "single",
+                "playControlSimul": true
+            },
+            "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r1-130-2025100566690.json",
+            "about": {
+                "id": "GPJ3N51K91",
+                "name": "2025年10月5日午後3:00",
+                "identifierGroup": {
+                    "radioEpisodeId": "GPJ3N51K91",
+                    "radioSeriesId": "18439M2W42",
+                    "radioEpisodeName": "2025年10月5日午後3:00",
+                    "radioSeriesName": "ニュース",
+                    "hashtag": [],
+                    "formatGenreTag": [
+                        {
+                            "id": "01",
+                            "name": "報道"
                         }
-                    }
-                },
-                "event_id": "66585",
-                "start_time": "2025-02-12T14:55:00+09:00",
-                "end_time": "2025-02-12T15:00:00+09:00",
-                "genre": [
-                    "0009",
-                    "0000"
-                ],
-                "title": "ニュース・気象情報・交通情報",
-                "subtitle": "",
-                "content": "",
-                "images": {
-                    "logo_l": {
-                        "url": ""
-                    },
-                    "thumbnail_m": {
-                        "url": ""
-                    },
-                    "hsk_posterframe": {
-                        "url": ""
-                    }
-                },
-                "info": "",
-                "act": "",
-                "music": "",
-                "free": "　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　",
-                "rate": "",
-                "flags": {
-                    "sound": "01",
-                    "teletext": "0",
-                    "databroad": "0",
-                    "rebroad": "0",
-                    "multivoice": "0",
-                    "interactive": "0",
-                    "shuwa": "0",
-                    "oneseg": "0",
-                    "subchannel": "",
-                    "honyo": "0",
-                    "hybridcastid": "0",
-                    "kido": "0",
-                    "gashitsu": "0",
-                    "sozai": "11",
-                    "eizo": "0",
-                    "marume": "0",
-                    "bantype": "01",
-                    "dohaishin": "0",
-                    "hayamodoshi": "0",
-                    "minogashi": "0",
-                    "nod": "0"
-                },
-                "change": [],
-                "lastupdate": "2025-02-04T10:29:39+09:00",
-                "site_id": "1336",
-                "url": {
-                    "pc": "https://www.nhk.or.jp/radionews/",
-                    "short": "https://nhk.jp/P1336",
-                    "nod": "",
-                    "nod_portal": ""
-                },
-                "keywords": [],
-                "hashtags": [],
-                "codes": {
-                    "code": "3301764",
-                    "split1": [
-                        "3301",
-                        "764"
                     ]
                 },
-                "ch": {
-                    "id": "",
-                    "name": "",
-                    "station": "首都圏"
+                "keyword": [],
+                "description": "",
+                "partOfSeries": {
+                    "id": "18439M2W42",
+                    "name": "ニュース",
+                    "detailedSeriesNameRuby": "にゅーす",
+                    "identifierGroup": {
+                        "radioSeriesId": "18439M2W42",
+                        "radioSeriesPlaylistId": "series-rep-18439M2W42",
+                        "radioSeriesUId": "1b7ad214-3c58-5b9d-823e-1cbb4faeb415",
+                        "radioSeriesName": "ニュース",
+                        "hashtag": []
+                    },
+                    "keyword": [],
+                    "detailedSynonym": [],
+                    "sameAs": [
+                        {
+                            "name": "ラジオニュース",
+                            "url": "https://www.nhk.or.jp/radionews/"
+                        }
+                    ],
+                    "description": "「ニュース」の番組シリーズです",
+                    "detailedCatch": "",
+                    "logo": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/18439M2W42/18439M2W42-logo_f3fd85b05547a8ce638c07aafda16d1e.png",
+                            "width": 1080,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/18439M2W42/18439M2W42-logo_a5c82e14690bd789f8cfe7afd6c782cb.png",
+                            "width": 640,
+                            "height": 640
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/18439M2W42/18439M2W42-logo_25afd4d4c0aab390c131c2a9cd4e1b3c.png",
+                            "width": 200,
+                            "height": 200
+                        }
+                    },
+                    "eyecatch": {
+                        "large": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/18439M2W42/18439M2W42-eyecatch_c963c6bbc6954e8a56558f84785d4079.jpg",
+                            "width": 3840,
+                            "height": 2160
+                        },
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/18439M2W42/18439M2W42-eyecatch_0c97620268efb78d8e63d2547b716c49.jpg",
+                            "width": 1920,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/18439M2W42/18439M2W42-eyecatch_6cff57e4cf46dbf579750008620b122e.jpg",
+                            "width": 1280,
+                            "height": 720
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/18439M2W42/18439M2W42-eyecatch_599ceb94642453f8d3038eba4dcfd357.jpg",
+                            "width": 640,
+                            "height": 360
+                        }
+                    },
+                    "hero": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/18439M2W42/18439M2W42-hero_dc8ce87bf27cafaca943c97b35a36f17.png",
+                            "width": 1920,
+                            "height": 640
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/18439M2W42/18439M2W42-hero_3757e74faf670030bd3c963e42c775da.png",
+                            "width": 1080,
+                            "height": 360
+                        }
+                    },
+                    "style": {
+                        "textLight": "#000000",
+                        "textDark": "#FFFFFF",
+                        "linkLight": "#6D7883",
+                        "linkDark": "#84919E",
+                        "primaryLight": "#84919E",
+                        "primaryDark": "#84919E"
+                    },
+                    "additionalProperty": {
+                        "publishLevel": "notyet",
+                        "layoutPattern": "summary",
+                        "episodeOrderBy": "releasedEvent",
+                        "availableOnPlus": false,
+                        "enableVariablePlayBackSpeedControl": false,
+                        "optional": [],
+                        "seriesPackStatus": "notPacked",
+                        "supportMedia": [
+                            "@screen"
+                        ],
+                        "supportMusicList": true,
+                        "supportPlusEmbed": true
+                    },
+                    "url": "https://api.nhk.jp/r7/t/radioseries/rs/18439M2W42.json",
+                    "itemUrl": "https://api.nhk.jp/r7/l/radioepisode/rs/18439M2W42.json?order=desc&offset=0&size=10"
                 },
-                "hsk": {
-                    "system_unique_id": "",
-                    "concurrent_delivery": "",
-                    "early_back_delivery": "",
-                    "passed_delivery": "",
-                    "nod_delivery": "",
-                    "passed_start_date_time": "",
-                    "passed_end_date_time": "",
-                    "passed_delivery_period": "",
-                    "passed_length": "",
-                    "early_back_delivery_reusable_flag": "",
-                    "passed_type": "",
-                    "genban_edit_flag": "",
-                    "genban_caption_flag": "",
-                    "news_xml_url": "",
-                    "posterframe_image_url": "",
-                    "qf_flag": "",
-                    "qf_program_name": "",
-                    "update_date_time": "",
-                    "passed_delivery_readyable_flag": "",
-                    "program_kind": "",
-                    "flow_code": "",
-                    "audio_mode1": "",
-                    "audio_mode2": "",
-                    "marume_id": "",
-                    "epg_disp_id": "",
-                    "event_share_gtv": "",
-                    "event_share_gtv_sub": "",
-                    "event_share_etv": "",
-                    "event_share_etv_sub": "",
-                    "event_share_bs": "",
-                    "event_share_bs_sub": "",
-                    "kido": "",
-                    "kidofuyo": "",
-                    "shikiiki": "",
-                    "broadcast_range": "",
-                    "video_descriptor": "",
-                    "rewritable_event_id": "",
-                    "variable_speed_flag": ""
-                },
-                "plus": {
-                    "stream_id": "",
-                    "stream_fmt": ""
-                },
-                "extra": {
-                    "pr_movies": []
-                },
-                "play_control": {
-                    "simul": false,
-                    "dvr": false,
-                    "vod": false,
-                    "multi": ""
-                },
-                "published_period_from": "",
-                "published_period_to": ""
-            }
+                "eyecatchList": [],
+                "url": "https://api.nhk.jp/r7/t/radioepisode/re/GPJ3N51K91.json",
+                "additionalProperty": {},
+                "audio": [
+                    {
+                        "id": "radiruOriginal-r1-130-2025100566690",
+                        "name": "ニュース 2025年10月5日午後3:00",
+                        "description": "",
+                        "url": "https://www.nhk.or.jp/radio/player/ondemand.html?p=18439M2W42_01_4274621",
+                        "identifierGroup": {
+                            "environmentId": "radiruOriginal",
+                            "broadcastEventId": "r1-130-2025100566690",
+                            "streamType": "vod"
+                        },
+                        "detailedContentStatus": {
+                            "environmentId": "radiruOriginal",
+                            "streamType": "vod",
+                            "contentStatus": "ready"
+                        },
+                        "detailedContent": [
+                            {
+                                "name": "hls_widevine",
+                                "contentUrl": "https://vod-stream.nhk.jp/radioondemand/r/18439M2W42/s/stream_18439M2W42_5c96a7f00def169e630dd9c14e48195e/index.m3u8",
+                                "encodingFormat": []
+                            }
+                        ],
+                        "duration": "PT4M57S",
+                        "publication": [
+                            {
+                                "id": "r1-130-2025100566690",
+                                "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r1-130-2025100566690.json",
+                                "isLiveBroadcast": false
+                            }
+                        ],
+                        "hasPart": [],
+                        "expires": "2025-10-12T15:05:00+09:00"
+                    }
+                ]
+            },
+            "isLiveBroadcast": false,
+            "detailedDescription": {
+                "epg40": "ニュース",
+                "epg80": "",
+                "epgInformation": "",
+                "epg200": ""
+            },
+            "duration": "PT4M57S",
+            "posterframeList": []
         },
-        "n2": {
-            "previous": {
-                "id": "2025021266676",
-                "area": {
-                    "id": "130",
-                    "name": "東京"
-                },
-                "date": "2025-02-12",
-                "service": {
-                    "id": "n2",
-                    "name": "NHKネットラジオ第2",
-                    "images": {
-                        "logo_s": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r2-100x50.png",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "logo_m": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r2-200x100.png",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logo_l": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r2-200x200.png",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badgeSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r2/r2-badge.svg",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "badge": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r2/r2-badge.svg",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logoSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r2/r2-icon.svg",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badge9x4": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r2/r2-badge9x4.svg",
-                            "width": "180",
-                            "height": "80"
-                        }
-                    }
-                },
-                "event_id": "66676",
-                "start_time": "2025-02-12T14:10:00+09:00",
-                "end_time": "2025-02-12T14:20:00+09:00",
-                "genre": [
-                    "0000"
-                ],
-                "title": "ロシア語ニュース",
-                "subtitle": "",
-                "content": "",
-                "images": {
-                    "logo_l": {
-                        "url": ""
-                    },
-                    "thumbnail_m": {
-                        "url": ""
-                    },
-                    "hsk_posterframe": {
-                        "url": ""
-                    }
-                },
-                "info": "",
-                "act": "",
-                "music": "",
-                "free": "",
-                "rate": "",
-                "flags": {
-                    "sound": "01",
-                    "teletext": "0",
-                    "databroad": "0",
-                    "rebroad": "0",
-                    "multivoice": "0",
-                    "interactive": "0",
-                    "shuwa": "0",
-                    "oneseg": "0",
-                    "subchannel": "",
-                    "honyo": "0",
-                    "hybridcastid": "0",
-                    "kido": "0",
-                    "gashitsu": "0",
-                    "sozai": "09",
-                    "eizo": "0",
-                    "marume": "0",
-                    "bantype": "01",
-                    "dohaishin": "0",
-                    "hayamodoshi": "0",
-                    "minogashi": "0",
-                    "nod": "0"
-                },
-                "change": [],
-                "lastupdate": "2025-02-04T16:33:42+09:00",
-                "site_id": "6415",
-                "url": {
-                    "pc": "https://www3.nhk.or.jp/nhkworld/ru/news/",
-                    "short": "https://nhk.jp/P6415",
-                    "nod": "",
-                    "nod_portal": ""
-                },
-                "keywords": [],
-                "hashtags": [],
-                "codes": {
-                    "code": "3380000",
-                    "split1": [
-                        "3380",
-                        "000"
-                    ]
-                },
-                "ch": {
-                    "id": "",
-                    "name": "",
-                    "station": "首都圏"
-                },
-                "hsk": {
-                    "system_unique_id": "",
-                    "concurrent_delivery": "",
-                    "early_back_delivery": "",
-                    "passed_delivery": "",
-                    "nod_delivery": "",
-                    "passed_start_date_time": "",
-                    "passed_end_date_time": "",
-                    "passed_delivery_period": "",
-                    "passed_length": "",
-                    "early_back_delivery_reusable_flag": "",
-                    "passed_type": "",
-                    "genban_edit_flag": "",
-                    "genban_caption_flag": "",
-                    "news_xml_url": "",
-                    "posterframe_image_url": "",
-                    "qf_flag": "",
-                    "qf_program_name": "",
-                    "update_date_time": "",
-                    "passed_delivery_readyable_flag": "",
-                    "program_kind": "",
-                    "flow_code": "",
-                    "audio_mode1": "",
-                    "audio_mode2": "",
-                    "marume_id": "",
-                    "epg_disp_id": "",
-                    "event_share_gtv": "",
-                    "event_share_gtv_sub": "",
-                    "event_share_etv": "",
-                    "event_share_etv_sub": "",
-                    "event_share_bs": "",
-                    "event_share_bs_sub": "",
-                    "kido": "",
-                    "kidofuyo": "",
-                    "shikiiki": "",
-                    "broadcast_range": "",
-                    "video_descriptor": "",
-                    "rewritable_event_id": "",
-                    "variable_speed_flag": ""
-                },
-                "plus": {
-                    "stream_id": "",
-                    "stream_fmt": ""
-                },
-                "extra": {
-                    "pr_movies": []
-                },
-                "play_control": {
-                    "simul": false,
-                    "dvr": false,
-                    "vod": false,
-                    "multi": ""
-                },
-                "published_period_from": "",
-                "published_period_to": ""
+        "present": {
+            "type": "BroadcastEvent",
+            "id": "r1-130-2025100566691",
+            "name": "さまよえるパパたちへ～パパだって話したい子育て話～　１０月５日",
+            "description": "",
+            "startDate": "2025-10-05T15:05:00+09:00",
+            "endDate": "2025-10-05T15:55:00+09:00",
+            "location": {
+                "id": "001",
+                "name": "東京"
             },
-            "present": {
-                "id": "2025021266677",
-                "area": {
-                    "id": "130",
-                    "name": "東京"
-                },
-                "date": "2025-02-12",
-                "service": {
-                    "id": "n2",
-                    "name": "NHKネットラジオ第2",
-                    "images": {
-                        "logo_s": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r2-100x50.png",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "logo_m": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r2-200x100.png",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logo_l": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r2-200x200.png",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badgeSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r2/r2-badge.svg",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "badge": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r2/r2-badge.svg",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logoSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r2/r2-icon.svg",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badge9x4": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r2/r2-badge9x4.svg",
-                            "width": "180",
-                            "height": "80"
-                        }
-                    }
-                },
-                "event_id": "66677",
-                "start_time": "2025-02-12T14:20:00+09:00",
-                "end_time": "2025-02-12T14:25:00+09:00",
+            "identifierGroup": {
+                "broadcastEventId": "r1-130-2025100566691",
+                "radioEpisodeId": "Z55R43QNL9",
+                "radioEpisodeName": "〜パパだって話したい子育て話〜 10月5日",
+                "radioSeriesId": "3RG2R1Y6NW",
+                "radioSeriesName": "さまよえるパパたちへ",
+                "serviceId": "r1",
+                "areaId": "130",
+                "stationId": "001",
+                "date": "2025-10-05",
+                "eventId": "66691",
                 "genre": [
-                    "0807"
-                ],
-                "title": "音の風景「里山のぬくもり・菊炭～大阪～」",
-                "subtitle": "【２０１３年３月９日初回放送のアーカイブ】【語り】阿部陽子　▽大阪府能勢町。多くの茶人に愛された菊炭（きくすみ）。姿も音も美しいその魅力を伝えます。",
-                "content": "断面が菊の花のように見える菊炭。茶人・千利休も愛した菊炭の産地で炭職人を追いました。過酷な作業とは裏腹に、菊炭の燃える音は繊細。透き通る美しい響きをお届けします。",
-                "images": {
-                    "logo_l": {
-                        "url": "https://www.nhk.jp/static/assets/images/radioseries/rs/5P6KW7QL6X/5P6KW7QL6X-logo_402d922d20af19ae02763803ce5a8a7c.jpg",
-                        "width": "640",
-                        "height": "640"
-                    },
-                    "thumbnail_m": {
-                        "url": "https://www.nhk.jp/static/assets/images/radioseries/rs/5P6KW7QL6X/5P6KW7QL6X-eyecatch_9c102476bbb1380d3118d64cdba4bc9e.jpg",
-                        "width": "640",
-                        "height": "360"
-                    },
-                    "hsk_posterframe": {
-                        "url": ""
+                    {
+                        "id": "0504",
+                        "name1": "バラエティ",
+                        "name2": "音楽バラエティ"
                     }
-                },
-                "info": "",
-                "act": "【語り】阿部陽子",
-                "music": "",
-                "free": "",
-                "rate": "",
-                "flags": {
-                    "sound": "01",
-                    "teletext": "0",
-                    "databroad": "0",
-                    "rebroad": "0",
-                    "multivoice": "0",
-                    "interactive": "0",
-                    "shuwa": "0",
-                    "oneseg": "0",
-                    "subchannel": "",
-                    "honyo": "0",
-                    "hybridcastid": "0",
-                    "kido": "0",
-                    "gashitsu": "0",
-                    "sozai": "23",
-                    "eizo": "0",
-                    "marume": "0",
-                    "bantype": "01",
-                    "dohaishin": "0",
-                    "hayamodoshi": "0",
-                    "minogashi": "0",
-                    "nod": "0"
-                },
-                "change": [],
-                "lastupdate": "2025-02-04T16:33:42+09:00",
-                "site_id": "442",
-                "url": {
-                    "pc": "https://www.nhk.jp/p/oto/rs/5P6KW7QL6X/",
-                    "short": "https://nhk.jp/P442",
-                    "nod": "",
-                    "nod_portal": ""
-                },
-                "keywords": [
-                    "音の風景",
-                    "おとのふうけい",
-                    "5分間",
-                    "録音機",
-                    "音響デザイナー"
                 ],
-                "hashtags": [],
-                "codes": {
-                    "code": "3506575",
-                    "split1": [
-                        "3506",
-                        "575"
-                    ]
-                },
-                "ch": {
-                    "id": "",
-                    "name": "",
-                    "station": "首都圏"
-                },
-                "hsk": {
-                    "system_unique_id": "",
-                    "concurrent_delivery": "",
-                    "early_back_delivery": "",
-                    "passed_delivery": "",
-                    "nod_delivery": "",
-                    "passed_start_date_time": "",
-                    "passed_end_date_time": "",
-                    "passed_delivery_period": "",
-                    "passed_length": "",
-                    "early_back_delivery_reusable_flag": "",
-                    "passed_type": "",
-                    "genban_edit_flag": "",
-                    "genban_caption_flag": "",
-                    "news_xml_url": "",
-                    "posterframe_image_url": "",
-                    "qf_flag": "",
-                    "qf_program_name": "",
-                    "update_date_time": "",
-                    "passed_delivery_readyable_flag": "",
-                    "program_kind": "",
-                    "flow_code": "",
-                    "audio_mode1": "",
-                    "audio_mode2": "",
-                    "marume_id": "",
-                    "epg_disp_id": "",
-                    "event_share_gtv": "",
-                    "event_share_gtv_sub": "",
-                    "event_share_etv": "",
-                    "event_share_etv_sub": "",
-                    "event_share_bs": "",
-                    "event_share_bs_sub": "",
-                    "kido": "",
-                    "kidofuyo": "",
-                    "shikiiki": "",
-                    "broadcast_range": "",
-                    "video_descriptor": "",
-                    "rewritable_event_id": "",
-                    "variable_speed_flag": ""
-                },
-                "plus": {
-                    "stream_id": "",
-                    "stream_fmt": ""
-                },
-                "extra": {
-                    "pr_movies": []
-                },
-                "play_control": {
-                    "simul": false,
-                    "dvr": false,
-                    "vod": false,
-                    "multi": ""
-                },
-                "published_period_from": "",
-                "published_period_to": ""
+                "siteId": "8832"
             },
-            "following": {
-                "id": "2025021266678",
-                "area": {
-                    "id": "130",
-                    "name": "東京"
-                },
-                "date": "2025-02-12",
-                "service": {
-                    "id": "n2",
-                    "name": "NHKネットラジオ第2",
-                    "images": {
-                        "logo_s": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r2-100x50.png",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "logo_m": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r2-200x100.png",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logo_l": {
-                            "url": "https://www.nhk.or.jp/common/img/media/r2-200x200.png",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badgeSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r2/r2-badge.svg",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "badge": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r2/r2-badge.svg",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logoSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r2/r2-icon.svg",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badge9x4": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r2/r2-badge9x4.svg",
-                            "width": "180",
-                            "height": "80"
+            "misc": {
+                "displayVideoMode": "none",
+                "displayVideoRange": "sdr",
+                "displayAudioMode": [],
+                "audioMode": [],
+                "supportCaption": false,
+                "supportSign": false,
+                "supportHybridcast": false,
+                "supportDataBroadcast": false,
+                "isInteractive": false,
+                "isChangeable": false,
+                "releaseLevel": "original",
+                "programType": "program",
+                "coverage": "nationwide",
+                "actList": [
+                    {
+                        "role": "出演",
+                        "name": "ダイアモンド☆ユカイ",
+                        "nameRuby": "ﾀﾞｲｱﾓﾝﾄﾞ･ﾕｶｲ"
+                    },
+                    {
+                        "role": "出演",
+                        "name": "山本博",
+                        "nameRuby": "ﾔﾏﾓﾄﾋﾛｼ"
+                    },
+                    {
+                        "role": "出演",
+                        "name": "杉浦太陽",
+                        "nameRuby": "ｽｷﾞｳﾗﾀｲﾖｳ"
+                    }
+                ],
+                "musicList": [],
+                "eventShareStatus": "single",
+                "playControlSimul": true
+            },
+            "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r1-130-2025100566691.json",
+            "about": {
+                "id": "Z55R43QNL9",
+                "name": "〜パパだって話したい子育て話〜 10月5日",
+                "detailedEpisodeNameRuby": "",
+                "identifierGroup": {
+                    "radioEpisodeId": "Z55R43QNL9",
+                    "radioSeriesId": "3RG2R1Y6NW",
+                    "radioEpisodeName": "〜パパだって話したい子育て話〜 10月5日",
+                    "radioSeriesName": "さまよえるパパたちへ",
+                    "hashtag": [],
+                    "siteId": "8832",
+                    "aliasId": "samapapa",
+                    "formatGenreTag": [
+                        {
+                            "id": "05",
+                            "name": "バラエティ"
                         }
-                    }
-                },
-                "event_id": "66678",
-                "start_time": "2025-02-12T14:25:00+09:00",
-                "end_time": "2025-02-12T14:30:00+09:00",
-                "genre": [
-                    "0402"
-                ],
-                "title": "名曲の小箱「バイオリン協奏曲　ホ短調」",
-                "subtitle": "",
-                "content": "　メンデルスゾーン作曲　（バイオリン）篠崎史紀　（管弦楽）ＮＨＫ交響楽団　（指揮）飯守泰次郎",
-                "images": {
-                    "logo_l": {
-                        "url": "https://www.nhk.jp/static/assets/images/radioseries/rs/JVNLM8WZGJ/JVNLM8WZGJ-logo_b92722efad9cc4de2e532fb38e780093.png",
-                        "width": "640",
-                        "height": "640"
-                    },
-                    "thumbnail_m": {
-                        "url": "https://www.nhk.jp/static/assets/images/radioseries/rs/JVNLM8WZGJ/JVNLM8WZGJ-eyecatch_e636d527f0ce163ebf3e23615fe5a21e.png",
-                        "width": "640",
-                        "height": "360"
-                    },
-                    "hsk_posterframe": {
-                        "url": ""
-                    }
-                },
-                "info": "",
-                "act": "篠崎史紀，飯守泰次郎",
-                "music": "",
-                "free": "「バイオリン協奏曲　ホ短調」　　　　　　　　　　　　　　　　\n　　　　　　　　　　　　　　　　　　　　メンデルスゾーン作曲\n　　　　　　　　　　　　　　　　　　　（バイオリン）篠崎史紀\n　　　　　　　　　　　　　　　　　　（管弦楽）ＮＨＫ交響楽団\n　　　　　　　　　　　　　　　　　　　　　（指揮）飯守泰次郎",
-                "rate": "",
-                "flags": {
-                    "sound": "01",
-                    "teletext": "0",
-                    "databroad": "0",
-                    "rebroad": "0",
-                    "multivoice": "0",
-                    "interactive": "0",
-                    "shuwa": "0",
-                    "oneseg": "0",
-                    "subchannel": "",
-                    "honyo": "0",
-                    "hybridcastid": "0",
-                    "kido": "0",
-                    "gashitsu": "0",
-                    "sozai": "23",
-                    "eizo": "0",
-                    "marume": "0",
-                    "bantype": "01",
-                    "dohaishin": "0",
-                    "hayamodoshi": "0",
-                    "minogashi": "0",
-                    "nod": "0"
-                },
-                "change": [],
-                "lastupdate": "2025-02-04T16:33:42+09:00",
-                "site_id": "309",
-                "url": {
-                    "pc": "https://www.nhk.jp/p/kobako/rs/JVNLM8WZGJ/",
-                    "short": "https://nhk.jp/P309",
-                    "nod": "",
-                    "nod_portal": ""
-                },
-                "keywords": [
-                    "名曲の小箱",
-                    "めいきょくのこばこ"
-                ],
-                "hashtags": [],
-                "codes": {
-                    "code": "3815087",
-                    "split1": [
-                        "3815",
-                        "087"
+                    ],
+                    "themeGenreTag": [
+                        {
+                            "id": "070",
+                            "name": "音楽全般"
+                        }
                     ]
                 },
-                "ch": {
-                    "id": "",
-                    "name": "",
-                    "station": "首都圏"
+                "keyword": [],
+                "description": "ダイアモンド☆ユカイ，山本博，杉浦太陽",
+                "partOfSeries": {
+                    "id": "3RG2R1Y6NW",
+                    "name": "さまよえるパパたちへ",
+                    "detailedSeriesNameRuby": "さまよえるぱぱたちへ",
+                    "identifierGroup": {
+                        "radioSeriesId": "3RG2R1Y6NW",
+                        "radioSeriesPlaylistId": "series-rep-3RG2R1Y6NW",
+                        "radioSeriesUId": "83c2f17d-b203-5ded-bf44-e6578eccfdaf",
+                        "radioSeriesName": "さまよえるパパたちへ",
+                        "hashtag": [],
+                        "siteId": "8832",
+                        "aliasId": "samapapa",
+                        "formatGenre": [
+                            {
+                                "id": "05",
+                                "name": "バラエティ"
+                            }
+                        ],
+                        "themeGenre": [
+                            {
+                                "id": "070",
+                                "name": "音楽全般"
+                            }
+                        ]
+                    },
+                    "keyword": [],
+                    "detailedSynonym": [],
+                    "sameAs": [
+                        {
+                            "name": "メッセージ　パパたちからのお悩みはこちらから",
+                            "url": "https://forms.nhk.jp/jfe/form/SV_3QrOkYfQD1zFhzw"
+                        }
+                    ],
+                    "canonical": "https://www.nhk.jp/p/samapapa/rs/3RG2R1Y6NW/",
+                    "description": "男性が育児をすることは当たり前な時代。\nパパだって悩んでます！迷ってます！そしてパパだって語りたい！\n日々育児に奮闘するパパたちの思い、子育て体験、\nこれからの時代におけるパパこそ出来る子育てのヒントを徹底トーク！\n未来のパパたちにも捧げる、パパたちによるパパたちのための番組！\n",
+                    "detailedCatch": "子育て　家庭生活　迷えるパパたち　集まれ！",
+                    "logo": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/3RG2R1Y6NW/3RG2R1Y6NW-logo_5f09731fcd6810db18f724f7ab969ac8.jpg",
+                            "width": 1080,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/3RG2R1Y6NW/3RG2R1Y6NW-logo_d79f60de7f68f4aebe4fee353213e271.jpg",
+                            "width": 640,
+                            "height": 640
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/3RG2R1Y6NW/3RG2R1Y6NW-logo_201014f7c353bbe82dbff4b750acd772.jpg",
+                            "width": 200,
+                            "height": 200
+                        }
+                    },
+                    "eyecatch": {
+                        "large": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/3RG2R1Y6NW/3RG2R1Y6NW-eyecatch_3b842bd7c2c573381a5b925ea20255c5.jpg",
+                            "width": 3840,
+                            "height": 2160
+                        },
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/3RG2R1Y6NW/3RG2R1Y6NW-eyecatch_148de96b5f36a39edbc28e7b904232e8.jpg",
+                            "width": 1920,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/3RG2R1Y6NW/3RG2R1Y6NW-eyecatch_e17ae6083508dd0fc42cf1fc8be7c22b.jpg",
+                            "width": 1280,
+                            "height": 720
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/3RG2R1Y6NW/3RG2R1Y6NW-eyecatch_02be06096fe7c16256b18de99551485b.jpg",
+                            "width": 640,
+                            "height": 360
+                        }
+                    },
+                    "hero": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/3RG2R1Y6NW/3RG2R1Y6NW-hero_2ec421274a7d9f94f265ca0dc5f7a799.jpg",
+                            "width": 1920,
+                            "height": 640
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/3RG2R1Y6NW/3RG2R1Y6NW-hero_4b5a78f8b09da761fbc3cb1ad4a24da7.jpg",
+                            "width": 1080,
+                            "height": 360
+                        }
+                    },
+                    "style": {
+                        "textLight": "#000000",
+                        "textDark": "#FFFFFF",
+                        "linkLight": "#990099",
+                        "linkDark": "#C46BC4",
+                        "primaryLight": "#990099",
+                        "primaryDark": "#B13CB1"
+                    },
+                    "additionalProperty": {
+                        "publishLevel": "full",
+                        "layoutPattern": "summary",
+                        "episodeOrderBy": "releasedEvent",
+                        "availableOnPlus": false,
+                        "enableVariablePlayBackSpeedControl": false,
+                        "optional": [],
+                        "seriesPackStatus": "notPacked",
+                        "supportMedia": [
+                            "@screen"
+                        ],
+                        "supportMusicList": true,
+                        "supportPlusEmbed": true
+                    },
+                    "url": "https://api.nhk.jp/r7/t/radioseries/rs/3RG2R1Y6NW.json",
+                    "itemUrl": "https://api.nhk.jp/r7/l/radioepisode/rs/3RG2R1Y6NW.json?order=desc&offset=0&size=10"
                 },
-                "hsk": {
-                    "system_unique_id": "",
-                    "concurrent_delivery": "",
-                    "early_back_delivery": "",
-                    "passed_delivery": "",
-                    "nod_delivery": "",
-                    "passed_start_date_time": "",
-                    "passed_end_date_time": "",
-                    "passed_delivery_period": "",
-                    "passed_length": "",
-                    "early_back_delivery_reusable_flag": "",
-                    "passed_type": "",
-                    "genban_edit_flag": "",
-                    "genban_caption_flag": "",
-                    "news_xml_url": "",
-                    "posterframe_image_url": "",
-                    "qf_flag": "",
-                    "qf_program_name": "",
-                    "update_date_time": "",
-                    "passed_delivery_readyable_flag": "",
-                    "program_kind": "",
-                    "flow_code": "",
-                    "audio_mode1": "",
-                    "audio_mode2": "",
-                    "marume_id": "",
-                    "epg_disp_id": "",
-                    "event_share_gtv": "",
-                    "event_share_gtv_sub": "",
-                    "event_share_etv": "",
-                    "event_share_etv_sub": "",
-                    "event_share_bs": "",
-                    "event_share_bs_sub": "",
-                    "kido": "",
-                    "kidofuyo": "",
-                    "shikiiki": "",
-                    "broadcast_range": "",
-                    "video_descriptor": "",
-                    "rewritable_event_id": "",
-                    "variable_speed_flag": ""
+                "eyecatch": {
+                    "large": {
+                        "url": "https://img.nhk.jp/static/assets/images/radioepisode/re/Z55R43QNL9/Z55R43QNL9-eyecatch_f207c10eb2983f79e64cce9d4b6029d2.jpg",
+                        "width": 3840,
+                        "height": 2160
+                    },
+                    "main": {
+                        "url": "https://img.nhk.jp/static/assets/images/radioepisode/re/Z55R43QNL9/Z55R43QNL9-eyecatch_8de16947f7a89a9f096969e866108556.jpg",
+                        "width": 1920,
+                        "height": 1080
+                    },
+                    "medium": {
+                        "url": "https://img.nhk.jp/static/assets/images/radioepisode/re/Z55R43QNL9/Z55R43QNL9-eyecatch_76a922af1962b7a0b9c95379e95363b6.jpg",
+                        "width": 1280,
+                        "height": 720
+                    },
+                    "small": {
+                        "url": "https://img.nhk.jp/static/assets/images/radioepisode/re/Z55R43QNL9/Z55R43QNL9-eyecatch_adf59eb3a66cb7d33e96c3e6aacf8cd4.jpg",
+                        "width": 640,
+                        "height": 360
+                    }
                 },
-                "plus": {
-                    "stream_id": "",
-                    "stream_fmt": ""
-                },
-                "extra": {
-                    "pr_movies": []
-                },
-                "play_control": {
-                    "simul": false,
-                    "dvr": false,
-                    "vod": false,
-                    "multi": ""
-                },
-                "published_period_from": "",
-                "published_period_to": ""
-            }
+                "eyecatchList": [],
+                "url": "https://api.nhk.jp/r7/t/radioepisode/re/Z55R43QNL9.json",
+                "canonical": "https://www.nhk.jp/p/samapapa/rs/3RG2R1Y6NW/episode/re/Z55R43QNL9/",
+                "additionalProperty": {},
+                "audio": [
+                    {
+                        "id": "radiruOriginal-r1-130-2025100566691",
+                        "name": "さまよえるパパたちへ 〜パパだって話したい子育て話〜 10月5日",
+                        "description": "",
+                        "url": "",
+                        "identifierGroup": {
+                            "environmentId": "radiruOriginal",
+                            "broadcastEventId": "r1-130-2025100566691",
+                            "streamType": "vod"
+                        },
+                        "detailedContentStatus": {
+                            "environmentId": "radiruOriginal",
+                            "streamType": "vod",
+                            "contentStatus": "notyet"
+                        },
+                        "detailedContent": [],
+                        "duration": "PT50M",
+                        "publication": [
+                            {
+                                "id": "r1-130-2025100566691",
+                                "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r1-130-2025100566691.json",
+                                "isLiveBroadcast": false
+                            }
+                        ],
+                        "expires": "2025-10-12T15:55:00+09:00"
+                    }
+                ]
+            },
+            "isLiveBroadcast": false,
+            "detailedDescription": {
+                "epg40": "さまよえるパパたちへ～パパだって話したい子育て話～　１０月５日",
+                "epg80": "ダイアモンド☆ユカイ，山本博，杉浦太陽",
+                "epgInformation": "",
+                "epg200": ""
+            },
+            "duration": "PT50M",
+            "posterframeList": []
         },
-        "n3": {
-            "previous": {
-                "id": "2025021267778",
-                "area": {
-                    "id": "130",
-                    "name": "東京"
-                },
-                "date": "2025-02-12",
-                "service": {
-                    "id": "n3",
-                    "name": "NHKネットラジオFM",
-                    "images": {
-                        "logo_s": {
-                            "url": "https://www.nhk.or.jp/common/img/media/fm-100x50.png",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "logo_m": {
-                            "url": "https://www.nhk.or.jp/common/img/media/fm-200x100.png",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logo_l": {
-                            "url": "https://www.nhk.or.jp/common/img/media/fm-200x200.png",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badgeSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r3/r3-badge.svg",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "badge": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r3/r3-badge.svg",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logoSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r3/r3-icon.svg",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badge9x4": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r3/r3-badge9x4.svg",
-                            "width": "180",
-                            "height": "80"
-                        }
-                    }
-                },
-                "event_id": "67778",
-                "start_time": "2025-02-12T12:30:00+09:00",
-                "end_time": "2025-02-12T14:00:00+09:00",
-                "genre": [
-                    "0404",
-                    "0400"
-                ],
-                "title": "歌謡スクランブル　選▽都倉俊一作品集",
-                "subtitle": "逢地真理子",
-                "content": "",
-                "images": {
-                    "logo_l": {
-                        "url": "https://www.nhk.jp/static/assets/images/radioseries/rs/N8M9ZPVK4L/N8M9ZPVK4L-logo_0141e360b27dfefcfbe5df80ccd3c259.jpg",
-                        "width": "640",
-                        "height": "640"
-                    },
-                    "thumbnail_m": {
-                        "url": "https://www.nhk.jp/static/assets/images/radioseries/rs/N8M9ZPVK4L/N8M9ZPVK4L-eyecatch_049b29ee9ae48f357fe55d8e6d21988b.jpg",
-                        "width": "640",
-                        "height": "360"
-                    },
-                    "hsk_posterframe": {
-                        "url": ""
-                    }
-                },
-                "info": "",
-                "act": "逢地真理子",
-                "music": "「あなたの心に」\n中山千夏\n（３分０２秒）\n＜ビクター　ＶＩＣＬ６１０１５＞\n\n「昨日・今日・明日」\n井上順\n（２分４１秒）\n＜ＥＭＩ　ＴＯＣＴ１０７２１－２＞\n\n「天使になれない」\n和田アキ子\n（３分１３秒）\n＜ワーナー　ＷＰＣＬ７４５＞\n\n「地球はひとつ」\nフォーリーブス\n（２分４８秒）\n＜ソニー　ＭＨＣＬ６５＞\n\n「どうにも　とまらない」\n山本リンダ\n（２分４９秒）\n＜ポニーキャニオン　ＰＣＣＳ０００８１＞\n\n「個人授業」\nフィンガー５\n（３分０１秒）\n＜ユニバーサル　ＵＰＣＹ９２７８＞\n\n「今日もどこかでデビルマン」\n十田敬三\n（２分５４秒）\n＜コロムビア　ＣＯＣＣ１０８０３＞\n\n「ひと夏の経験」\n山口百恵\n（２分３８秒）\n＜ソニー　ＭＨＣＬ１０９－１０＞\n\n「ジョニィへの伝言」\nペドロ＆カプリシャス\n（３分３４秒）\n＜ワーナー　ＷＰＣＬ１３１９２＞\n\n「青春時代」\nアリス\n（２分４６秒）\n＜ユニバーサル　ＵＩＣＺ６００４＞\n\n「同棲時代」\n大信田礼子\n（３分０９秒）\n＜ソニー　ＳＲＣＬ３９１９＞\n\n「逃避行」\n麻生よう子\n（３分４５秒）\n＜ソニー　ＳＲＣＬ３９１９＞\n\n「ペッパー警部」\nピンク・レディー\n（３分１３秒）\n＜ビクター　ＶＩＣＬ５２３６＞\n\n「渚のシンドバッド」\nピンク・レディー\n（２分３３秒）\n＜ビクター　ＶＩＣＬ５２３６＞\n\n「ウォンテッド（指名手配）」\nピンク・レディー\n（３分２２秒）\n＜ビクター　ＶＩＣＬ５２３６＞\n\n「ＵＦＯ」\nピンク・レディー\n（３分１２秒）\n＜ビクター　ＶＩＣＬ５２３６＞\n\n「あずさ２号」\n狩人\n（４分５６秒）\n＜ビクター　ＶＩＣＬ６１０１７＞\n\n「Ｌｕｉ－Ｌｕｉ（ルイ・ルイ）」\n太川陽介\n（３分３５秒）\n＜ビクター　ＶＩＣＬ７０１５５＞\n\n「ハリウッド・スキャンダル」\n郷ひろみ\n（３分５３秒）\n＜ソニー　ＳＲＣＬ３９２１＞\n\n「パープル・シャドウ」\n高田みづえ\n（３分１８秒）\n＜テイチク　ＴＥＣＮ１５２５２＞\n\n「赤頭巾ちゃん御用心」\nレイジー\n（２分４９秒）\n＜ＢＭＧファンハウス　ＢＶＣＫ３７０１７＞\n\n「私のハートはストップモーション」\n桑江知子\n（３分３７秒）\n＜ソニー　ＳＲＣＬ４９０８－９＞\n\n「君はマグノリアの花の如く」\n大地真央\n（３分２８秒）\n＜コロムビア　ＣＯＣＰ４０２５６＞\n\n「メッセージ」\n都倉俊一\n（４分０６秒）\n＜キング　ＫＩＣＳ１４０９＞\n\n「五番街のマリーへ」\nペドロ＆カプリシャス\n（３分５４秒）\n＜ワーナー　ＷＰＣＬ１３１９２＞\n",
-                "free": "",
-                "rate": "",
-                "flags": {
-                    "sound": "03",
-                    "teletext": "0",
-                    "databroad": "0",
-                    "rebroad": "0",
-                    "multivoice": "0",
-                    "interactive": "0",
-                    "shuwa": "0",
-                    "oneseg": "0",
-                    "subchannel": "",
-                    "honyo": "1",
-                    "hybridcastid": "0",
-                    "kido": "0",
-                    "gashitsu": "0",
-                    "sozai": "23",
-                    "eizo": "0",
-                    "marume": "0",
-                    "bantype": "01",
-                    "dohaishin": "0",
-                    "hayamodoshi": "0",
-                    "minogashi": "0",
-                    "nod": "0"
-                },
-                "change": [],
-                "lastupdate": "2025-02-04T16:33:18+09:00",
-                "site_id": "444",
-                "url": {
-                    "pc": "https://www.nhk.jp/p/kayou/rs/N8M9ZPVK4L/",
-                    "short": "https://nhk.jp/P444",
-                    "nod": "",
-                    "nod_portal": ""
-                },
-                "keywords": [
-                    "歌謡スクランブル",
-                    "かようすくらんぶる"
-                ],
-                "hashtags": [],
-                "codes": {
-                    "code": "4776924",
-                    "split1": [
-                        "4776",
-                        "924"
-                    ]
-                },
-                "ch": {
-                    "id": "",
-                    "name": "",
-                    "station": "首都圏"
-                },
-                "hsk": {
-                    "system_unique_id": "",
-                    "concurrent_delivery": "",
-                    "early_back_delivery": "",
-                    "passed_delivery": "",
-                    "nod_delivery": "",
-                    "passed_start_date_time": "",
-                    "passed_end_date_time": "",
-                    "passed_delivery_period": "",
-                    "passed_length": "",
-                    "early_back_delivery_reusable_flag": "",
-                    "passed_type": "",
-                    "genban_edit_flag": "",
-                    "genban_caption_flag": "",
-                    "news_xml_url": "",
-                    "posterframe_image_url": "",
-                    "qf_flag": "",
-                    "qf_program_name": "",
-                    "update_date_time": "",
-                    "passed_delivery_readyable_flag": "",
-                    "program_kind": "",
-                    "flow_code": "",
-                    "audio_mode1": "",
-                    "audio_mode2": "",
-                    "marume_id": "",
-                    "epg_disp_id": "",
-                    "event_share_gtv": "",
-                    "event_share_gtv_sub": "",
-                    "event_share_etv": "",
-                    "event_share_etv_sub": "",
-                    "event_share_bs": "",
-                    "event_share_bs_sub": "",
-                    "kido": "",
-                    "kidofuyo": "",
-                    "shikiiki": "",
-                    "broadcast_range": "",
-                    "video_descriptor": "",
-                    "rewritable_event_id": "",
-                    "variable_speed_flag": ""
-                },
-                "plus": {
-                    "stream_id": "",
-                    "stream_fmt": ""
-                },
-                "extra": {
-                    "pr_movies": []
-                },
-                "play_control": {
-                    "simul": false,
-                    "dvr": false,
-                    "vod": false,
-                    "multi": ""
-                },
-                "published_period_from": "",
-                "published_period_to": ""
+        "following": {
+            "type": "BroadcastEvent",
+            "id": "r1-130-2025100566692",
+            "name": "全国気象情報・全国交通情報",
+            "description": "",
+            "startDate": "2025-10-05T15:55:00+09:00",
+            "endDate": "2025-10-05T16:00:03+09:00",
+            "location": {
+                "id": "001",
+                "name": "東京"
             },
-            "present": {
-                "id": "2025021266750",
-                "area": {
-                    "id": "130",
-                    "name": "東京"
-                },
-                "date": "2025-02-12",
-                "service": {
-                    "id": "n3",
-                    "name": "NHKネットラジオFM",
-                    "images": {
-                        "logo_s": {
-                            "url": "https://www.nhk.or.jp/common/img/media/fm-100x50.png",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "logo_m": {
-                            "url": "https://www.nhk.or.jp/common/img/media/fm-200x100.png",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logo_l": {
-                            "url": "https://www.nhk.or.jp/common/img/media/fm-200x200.png",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badgeSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r3/r3-badge.svg",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "badge": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r3/r3-badge.svg",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logoSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r3/r3-icon.svg",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badge9x4": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r3/r3-badge9x4.svg",
-                            "width": "180",
-                            "height": "80"
-                        }
-                    }
-                },
-                "event_id": "66750",
-                "start_time": "2025-02-12T14:00:00+09:00",
-                "end_time": "2025-02-12T15:50:00+09:00",
+            "identifierGroup": {
+                "broadcastEventId": "r1-130-2025100566692",
+                "serviceId": "r1",
+                "areaId": "130",
+                "stationId": "001",
+                "date": "2025-10-05",
+                "eventId": "66692",
                 "genre": [
-                    "0402"
-                ],
-                "title": "クラシックの庭　選　アルヴェーンの交響曲第４番",
-                "subtitle": "登レイナ",
-                "content": "",
-                "images": {
-                    "logo_l": {
-                        "url": "https://www.nhk.jp/static/assets/images/radioseries/rs/LG96ZW5KZ4/LG96ZW5KZ4-logo_1b338ad05d63663074f2c1a3479c8627.jpg",
-                        "width": "640",
-                        "height": "640"
-                    },
-                    "thumbnail_m": {
-                        "url": "https://www.nhk.jp/static/assets/images/radioseries/rs/LG96ZW5KZ4/LG96ZW5KZ4-eyecatch_a67c6e949325016c0724f2ed3eec8a2f.jpg",
-                        "width": "640",
-                        "height": "360"
-                    },
-                    "hsk_posterframe": {
-                        "url": ""
+                    {
+                        "id": "0000",
+                        "name1": "ニュース/報道",
+                        "name2": "定時・総合"
                     }
-                },
-                "info": "",
-                "act": "登レイナ",
-                "music": "「リチェルカーレ」\nウィラールト:作曲\n（演奏）ピッファロ\n（４分２４秒）\n＜Ｕｎｉｖｅｒｓａｌ　Ｍｕｓｉｃ　ＰＯＣＡ１１１９＞\n\n「歌劇「セビリアの理髪師」から「今の歌声は」」\nロッシーニ:作曲\n（ソプラノ）マリア・カラス、（管弦楽）フィルハーモニア管弦楽団、（指揮）トゥルリオ・セラフィン\n（６分４８秒）\n＜ＥＭＩ　ＣＣ３３－３４７６＞\n\n「ハバネラ形式のヴォカリーズ」\nラヴェル:作曲\n（ソプラノ）ナタリー・デセイ、（管弦楽）ベルリン交響楽団、（指揮）ミヒャエル・シェーンヴァント\n（３分２０秒）\n＜ＥＭＩ　ＴＯＣＥ９７２５＞\n\n「交響曲第３番「広がり」」\nニルセン:作曲\n（管弦楽）デンマーク王立管弦楽団、（指揮）パーヴォ・ベルグルンド\n（３５分２０秒）\n＜ＢＭＧビクター　ＢＶＣＣ－１０７４＞\n\n「交響曲　第４番」\nアルヴェーン:作曲\n（管弦楽）ストックホルム・フィルハーモニー管弦楽団、（指揮）ネーメ・ヤルヴィ\n（４７分２１秒）\n＜ＢＩＳ　ＫＫＣＣ－２０６３＞\n",
-                "free": "",
-                "rate": "",
-                "flags": {
-                    "sound": "03",
-                    "teletext": "0",
-                    "databroad": "0",
-                    "rebroad": "0",
-                    "multivoice": "0",
-                    "interactive": "0",
-                    "shuwa": "0",
-                    "oneseg": "0",
-                    "subchannel": "",
-                    "honyo": "1",
-                    "hybridcastid": "0",
-                    "kido": "0",
-                    "gashitsu": "0",
-                    "sozai": "23",
-                    "eizo": "0",
-                    "marume": "0",
-                    "bantype": "01",
-                    "dohaishin": "0",
-                    "hayamodoshi": "0",
-                    "minogashi": "0",
-                    "nod": "0"
-                },
-                "change": [],
-                "lastupdate": "2025-02-04T16:33:18+09:00",
-                "site_id": "8917",
-                "url": {
-                    "pc": "https://www.nhk.jp/p/rs/LG96ZW5KZ4/",
-                    "short": "https://nhk.jp/P8917",
-                    "nod": "",
-                    "nod_portal": ""
-                },
-                "keywords": [
-                    "クラシックの庭",
-                    "くらしっくのにわ"
-                ],
-                "hashtags": [],
-                "codes": {
-                    "code": "3848055",
-                    "split1": [
-                        "3848",
-                        "055"
-                    ]
-                },
-                "ch": {
-                    "id": "",
-                    "name": "",
-                    "station": "首都圏"
-                },
-                "hsk": {
-                    "system_unique_id": "",
-                    "concurrent_delivery": "",
-                    "early_back_delivery": "",
-                    "passed_delivery": "",
-                    "nod_delivery": "",
-                    "passed_start_date_time": "",
-                    "passed_end_date_time": "",
-                    "passed_delivery_period": "",
-                    "passed_length": "",
-                    "early_back_delivery_reusable_flag": "",
-                    "passed_type": "",
-                    "genban_edit_flag": "",
-                    "genban_caption_flag": "",
-                    "news_xml_url": "",
-                    "posterframe_image_url": "",
-                    "qf_flag": "",
-                    "qf_program_name": "",
-                    "update_date_time": "",
-                    "passed_delivery_readyable_flag": "",
-                    "program_kind": "",
-                    "flow_code": "",
-                    "audio_mode1": "",
-                    "audio_mode2": "",
-                    "marume_id": "",
-                    "epg_disp_id": "",
-                    "event_share_gtv": "",
-                    "event_share_gtv_sub": "",
-                    "event_share_etv": "",
-                    "event_share_etv_sub": "",
-                    "event_share_bs": "",
-                    "event_share_bs_sub": "",
-                    "kido": "",
-                    "kidofuyo": "",
-                    "shikiiki": "",
-                    "broadcast_range": "",
-                    "video_descriptor": "",
-                    "rewritable_event_id": "",
-                    "variable_speed_flag": ""
-                },
-                "plus": {
-                    "stream_id": "",
-                    "stream_fmt": ""
-                },
-                "extra": {
-                    "pr_movies": []
-                },
-                "play_control": {
-                    "simul": false,
-                    "dvr": false,
-                    "vod": false,
-                    "multi": ""
-                },
-                "published_period_from": "",
-                "published_period_to": ""
+                ]
             },
-            "following": {
-                "id": "2025021266751",
-                "area": {
-                    "id": "130",
-                    "name": "東京"
+            "misc": {
+                "displayVideoMode": "none",
+                "displayVideoRange": "sdr",
+                "displayAudioMode": [],
+                "audioMode": [],
+                "supportCaption": false,
+                "supportSign": false,
+                "supportHybridcast": false,
+                "supportDataBroadcast": false,
+                "isInteractive": false,
+                "isChangeable": false,
+                "releaseLevel": "original",
+                "programType": "program",
+                "coverage": "nationwide",
+                "actList": [],
+                "musicList": [],
+                "eventShareStatus": "single",
+                "playControlSimul": true
+            },
+            "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r1-130-2025100566692.json",
+            "isLiveBroadcast": false,
+            "detailedDescription": {
+                "epg40": "全国気象情報・全国交通情報",
+                "epg80": "",
+                "epgInformation": "",
+                "epg200": ""
+            },
+            "duration": "PT5M3S",
+            "posterframeList": []
+        },
+        "publishedOn": {
+            "type": "BroadcastService",
+            "id": "bs-r1-130",
+            "name": "NHKラジオ第1放送",
+            "url": "https://api.nhk.jp/r7/t/broadcastservice/bs/r1-130.json",
+            "broadcastDisplayName": "NHKラジオ第1・東京",
+            "videoFormat": [],
+            "encodingFormat": [
+                "audio/aac"
+            ],
+            "identifierGroup": {
+                "serviceId": "r1",
+                "serviceName": "NHKラジオ第1",
+                "areaId": "130",
+                "areaName": "東京",
+                "channelId": null,
+                "channelKey": null,
+                "channelAreaName": "東京",
+                "channelStationName": "首都圏",
+                "shortenedName": "NHKラジオ第1",
+                "shortenedDisplayName": "ラジオ第1",
+                "multiChannelDisplayName": null
+            },
+            "logo": {
+                "main": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r1/r1-logo.svg",
+                    "width": 1080,
+                    "height": 1080
                 },
-                "date": "2025-02-12",
-                "service": {
-                    "id": "n3",
-                    "name": "NHKネットラジオFM",
-                    "images": {
-                        "logo_s": {
-                            "url": "https://www.nhk.or.jp/common/img/media/fm-100x50.png",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "logo_m": {
-                            "url": "https://www.nhk.or.jp/common/img/media/fm-200x100.png",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logo_l": {
-                            "url": "https://www.nhk.or.jp/common/img/media/fm-200x200.png",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badgeSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r3/r3-badge.svg",
-                            "width": "100",
-                            "height": "50"
-                        },
-                        "badge": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r3/r3-badge.svg",
-                            "width": "200",
-                            "height": "100"
-                        },
-                        "logoSmall": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r3/r3-icon.svg",
-                            "width": "200",
-                            "height": "200"
-                        },
-                        "badge9x4": {
-                            "url": "https://www.nhk.jp/assets/images/broadcastservice/bs/r3/r3-badge9x4.svg",
-                            "width": "180",
-                            "height": "80"
-                        }
-                    }
+                "medium": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r1/r1-logo.svg",
+                    "width": 640,
+                    "height": 640
                 },
-                "event_id": "66751",
-                "start_time": "2025-02-12T15:50:00+09:00",
-                "end_time": "2025-02-12T15:55:00+09:00",
+                "small": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r1/r1-logo.svg",
+                    "width": 200,
+                    "height": 200
+                }
+            },
+            "eyecatch": {
+                "large": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r1/r1-eyecatch.svg",
+                    "width": 3840,
+                    "height": 2160
+                },
+                "main": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r1/r1-eyecatch.svg",
+                    "width": 1920,
+                    "height": 1080
+                },
+                "medium": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r1/r1-eyecatch.svg",
+                    "width": 640,
+                    "height": 360
+                },
+                "small": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r1/r1-eyecatch.svg",
+                    "width": 320,
+                    "height": 180
+                }
+            },
+            "hero": {
+                "main": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r1/r1-hero.svg",
+                    "width": 1920,
+                    "height": 640
+                },
+                "medium": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r1/r1-hero.svg",
+                    "width": 1080,
+                    "height": 360
+                }
+            },
+            "badge9x4": {
+                "main": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r1/r1-badge9x4.svg",
+                    "width": 180,
+                    "height": 80
+                },
+                "small": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r1/r1-badge9x4.svg",
+                    "width": 90,
+                    "height": 40
+                }
+            }
+        }
+    },
+    "r2": {
+        "previous": {
+            "type": "BroadcastEvent",
+            "id": "r2-130-2025100566774",
+            "name": "まいにちハングル講座　ラップ　ｄｅ　チャレッソＹＯ！（３）",
+            "description": "【講師】近畿大学准教授…小島大輝，【出演】イ・ユンジョン，ユン・チャンビン",
+            "startDate": "2025-10-05T14:45:00+09:00",
+            "endDate": "2025-10-05T15:00:03+09:00",
+            "location": {
+                "id": "001",
+                "name": "東京"
+            },
+            "identifierGroup": {
+                "broadcastEventId": "r2-130-2025100566774",
+                "radioEpisodeId": "7Y55628X7L",
+                "radioEpisodeName": "ラップ de チャレッソYO! (3)",
+                "radioSeriesId": "LR47WW9K14",
+                "radioSeriesName": "まいにちハングル講座",
+                "serviceId": "r2",
+                "areaId": "130",
+                "stationId": "001",
+                "date": "2025-10-05",
+                "eventId": "66774",
                 "genre": [
-                    "0807"
-                ],
-                "title": "音の風景「軽井沢の夜～長野」",
-                "subtitle": "【初回放送】２０２５年２月３日【語り】荒木　さくら▽　長野県軽井沢町。早春、森の小さな池のほとりで夜を待つと現れたのは…。",
-                "content": "生きものたちが躍動する早春の軽井沢。森の小さな池のほとりで夜を待つと聴こえてきたのは…。キツネやフクロウなど、生きものたちの知られざる姿を音で楽しむ５分間です。",
-                "images": {
-                    "logo_l": {
-                        "url": "https://www.nhk.jp/static/assets/images/radioseries/rs/5P6KW7QL6X/5P6KW7QL6X-logo_402d922d20af19ae02763803ce5a8a7c.jpg",
-                        "width": "640",
-                        "height": "640"
+                    {
+                        "id": "1007",
+                        "name1": "趣味/教育",
+                        "name2": "会話・語学"
                     },
-                    "thumbnail_m": {
-                        "url": "https://www.nhk.jp/static/assets/images/radioseries/rs/5P6KW7QL6X/5P6KW7QL6X-eyecatch_9c102476bbb1380d3118d64cdba4bc9e.jpg",
-                        "width": "640",
-                        "height": "360"
+                    {
+                        "id": "1011",
+                        "name1": "趣味/教育",
+                        "name2": "生涯教育・資格"
                     },
-                    "hsk_posterframe": {
-                        "url": ""
+                    {
+                        "id": "1010",
+                        "name1": "趣味/教育",
+                        "name2": "大学生・受験"
                     }
-                },
-                "info": "",
-                "act": "【語り】荒木さくら",
-                "music": "",
-                "free": "",
-                "rate": "",
-                "flags": {
-                    "sound": "03",
-                    "teletext": "0",
-                    "databroad": "0",
-                    "rebroad": "0",
-                    "multivoice": "0",
-                    "interactive": "0",
-                    "shuwa": "0",
-                    "oneseg": "0",
-                    "subchannel": "",
-                    "honyo": "0",
-                    "hybridcastid": "0",
-                    "kido": "0",
-                    "gashitsu": "0",
-                    "sozai": "23",
-                    "eizo": "0",
-                    "marume": "0",
-                    "bantype": "01",
-                    "dohaishin": "0",
-                    "hayamodoshi": "0",
-                    "minogashi": "0",
-                    "nod": "0"
-                },
-                "change": [],
-                "lastupdate": "2025-02-04T16:33:18+09:00",
-                "site_id": "442",
-                "url": {
-                    "pc": "https://www.nhk.jp/p/oto/rs/5P6KW7QL6X/",
-                    "short": "https://nhk.jp/P442",
-                    "nod": "",
-                    "nod_portal": ""
-                },
-                "keywords": [
-                    "音の風景",
-                    "おとのふうけい",
-                    "5分間",
-                    "録音機",
-                    "音響デザイナー"
                 ],
-                "hashtags": [],
-                "codes": {
-                    "code": "3506181",
-                    "split1": [
-                        "3506",
-                        "181"
+                "siteId": "0951"
+            },
+            "misc": {
+                "displayVideoMode": "none",
+                "displayVideoRange": "sdr",
+                "displayAudioMode": [],
+                "audioMode": [],
+                "supportCaption": false,
+                "supportSign": false,
+                "supportHybridcast": false,
+                "supportDataBroadcast": false,
+                "isInteractive": false,
+                "isChangeable": false,
+                "releaseLevel": "normal",
+                "programType": "program",
+                "coverage": "nationwide",
+                "actList": [
+                    {
+                        "role": "講師",
+                        "title": "近畿大学准教授",
+                        "name": "小島大輝",
+                        "nameRuby": "ｺｼﾞﾏﾀﾞｲｷ"
+                    },
+                    {
+                        "role": "出演",
+                        "name": "イ・ユンジョン",
+                        "nameRuby": "ｲ･ﾕﾝｼﾞｮﾝ"
+                    },
+                    {
+                        "role": "出演",
+                        "name": "ユン・チャンビン",
+                        "nameRuby": "ﾕﾝ･ﾁｬﾝﾋﾞﾝ"
+                    }
+                ],
+                "musicList": [],
+                "eventShareStatus": "single",
+                "playControlSimul": true
+            },
+            "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r2-130-2025100566774.json",
+            "about": {
+                "id": "7Y55628X7L",
+                "name": "ラップ de チャレッソYO! (3)",
+                "identifierGroup": {
+                    "radioEpisodeId": "7Y55628X7L",
+                    "radioSeriesId": "LR47WW9K14",
+                    "radioEpisodeName": "ラップ de チャレッソYO! (3)",
+                    "radioSeriesName": "まいにちハングル講座",
+                    "hashtag": [],
+                    "siteId": "0951",
+                    "formatGenreTag": [
+                        {
+                            "id": "09",
+                            "name": "講座"
+                        }
+                    ],
+                    "themeGenreTag": [
+                        {
+                            "id": "101",
+                            "name": "語学"
+                        }
                     ]
                 },
-                "ch": {
-                    "id": "",
-                    "name": "",
-                    "station": "首都圏"
+                "keyword": [],
+                "description": "ナ行、マ行、ラ行の子音が読めて書けるようになりましょう！",
+                "partOfSeries": {
+                    "id": "LR47WW9K14",
+                    "name": "まいにちハングル講座",
+                    "detailedSeriesNameRuby": "まいにちはんぐるこうざ",
+                    "identifierGroup": {
+                        "radioSeriesId": "LR47WW9K14",
+                        "radioSeriesPlaylistId": "series-rep-LR47WW9K14",
+                        "radioSeriesUId": "361cdaf6-b789-58dd-aa22-1838a8d776f3",
+                        "radioSeriesName": "まいにちハングル講座",
+                        "hashtag": [],
+                        "siteId": "0951",
+                        "formatGenre": [
+                            {
+                                "id": "09",
+                                "name": "講座"
+                            }
+                        ]
+                    },
+                    "keyword": [],
+                    "detailedSynonym": [],
+                    "sameAs": [],
+                    "canonical": "https://www.nhk.jp/p/rs/LR47WW9K14/",
+                    "description": "わかりやすく・親しみやすく、ゼロから文字・発音・文法などの基礎を積み上げていく講座です。リズムにのってラップ風に声を出す練習法で、単語や活用を楽しく身につけていきましょう。（２０２４年４～９月の再放送）",
+                    "detailedCatch": "ラップ de チャレッソYO！",
+                    "logo": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-logo_5f54a67be8c4eb9a642e8a722580a905.jpg",
+                            "width": 1080,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-logo_1a25b4ed1f1c4c9064947548bbdadc8a.jpg",
+                            "width": 640,
+                            "height": 640
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-logo_5f9764c76ddd240ed7c7afe8c8e6be81.jpg",
+                            "width": 200,
+                            "height": 200
+                        }
+                    },
+                    "eyecatch": {
+                        "large": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-eyecatch_fe4336a18e2d7f9f0ecdc13f01371d58.jpg",
+                            "width": 3840,
+                            "height": 2160
+                        },
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-eyecatch_50e84774111735ee01fd76615592b07e.jpg",
+                            "width": 1920,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-eyecatch_1efebe0b1a9ab024d087988e273d1a8c.jpg",
+                            "width": 1280,
+                            "height": 720
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-eyecatch_91bd6d43742becdcaf4be3e9b91e7772.jpg",
+                            "width": 640,
+                            "height": 360
+                        }
+                    },
+                    "hero": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-hero_9ab657182854b161722998cea6382313.jpg",
+                            "width": 1920,
+                            "height": 640
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-hero_7c1235030e5420a42af73e9861309b52.jpg",
+                            "width": 1080,
+                            "height": 360
+                        }
+                    },
+                    "style": {
+                        "textLight": "#000000",
+                        "textDark": "#FFFFFF",
+                        "linkLight": "#7B7700",
+                        "linkDark": "#FAF100",
+                        "primaryLight": "#9B9500",
+                        "primaryDark": "#FAF100"
+                    },
+                    "additionalProperty": {
+                        "publishLevel": "full",
+                        "layoutPattern": "summary",
+                        "episodeOrderBy": "recentEvent",
+                        "availableOnPlus": false,
+                        "enableVariablePlayBackSpeedControl": false,
+                        "optional": [],
+                        "seriesPackStatus": "notPacked",
+                        "supportMedia": [
+                            "@screen"
+                        ],
+                        "supportMusicList": true,
+                        "supportPlusEmbed": true
+                    },
+                    "url": "https://api.nhk.jp/r7/t/radioseries/rs/LR47WW9K14.json",
+                    "itemUrl": "https://api.nhk.jp/r7/l/radioepisode/rs/LR47WW9K14.json?order=desc&offset=0&size=10"
                 },
-                "hsk": {
-                    "system_unique_id": "",
-                    "concurrent_delivery": "",
-                    "early_back_delivery": "",
-                    "passed_delivery": "",
-                    "nod_delivery": "",
-                    "passed_start_date_time": "",
-                    "passed_end_date_time": "",
-                    "passed_delivery_period": "",
-                    "passed_length": "",
-                    "early_back_delivery_reusable_flag": "",
-                    "passed_type": "",
-                    "genban_edit_flag": "",
-                    "genban_caption_flag": "",
-                    "news_xml_url": "",
-                    "posterframe_image_url": "",
-                    "qf_flag": "",
-                    "qf_program_name": "",
-                    "update_date_time": "",
-                    "passed_delivery_readyable_flag": "",
-                    "program_kind": "",
-                    "flow_code": "",
-                    "audio_mode1": "",
-                    "audio_mode2": "",
-                    "marume_id": "",
-                    "epg_disp_id": "",
-                    "event_share_gtv": "",
-                    "event_share_gtv_sub": "",
-                    "event_share_etv": "",
-                    "event_share_etv_sub": "",
-                    "event_share_bs": "",
-                    "event_share_bs_sub": "",
-                    "kido": "",
-                    "kidofuyo": "",
-                    "shikiiki": "",
-                    "broadcast_range": "",
-                    "video_descriptor": "",
-                    "rewritable_event_id": "",
-                    "variable_speed_flag": ""
+                "eyecatchList": [],
+                "url": "https://api.nhk.jp/r7/t/radioepisode/re/7Y55628X7L.json",
+                "canonical": "https://www.nhk.jp/p/rs/LR47WW9K14/episode/re/7Y55628X7L/",
+                "additionalProperty": {},
+                "audio": [
+                    {
+                        "id": "radiruOriginal-r2-130-2025100175669",
+                        "name": "まいにちハングル講座 ラップ de チャレッソYO! (3)",
+                        "description": "【講師】近畿大学准教授…小島大輝，【出演】イ・ユンジョン，ユン・チャンビン",
+                        "url": "https://www.nhk.or.jp/radio/player/ondemand.html?p=LR47WW9K14_01_4273803",
+                        "identifierGroup": {
+                            "environmentId": "radiruOriginal",
+                            "broadcastEventId": "r2-130-2025100175669",
+                            "streamType": "vod"
+                        },
+                        "detailedContentStatus": {
+                            "environmentId": "radiruOriginal",
+                            "streamType": "vod",
+                            "contentStatus": "ready"
+                        },
+                        "detailedContent": [
+                            {
+                                "name": "hls_widevine",
+                                "contentUrl": "https://vod-stream.nhk.jp/radioondemand/r/LR47WW9K14/s/stream_LR47WW9K14_e46f97b05e2e1e7c93ce5d86ee33af8b/index.m3u8",
+                                "encodingFormat": []
+                            }
+                        ],
+                        "duration": "PT14M57S",
+                        "publication": [
+                            {
+                                "id": "r2-130-2025100175669",
+                                "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r2-130-2025100175669.json",
+                                "isLiveBroadcast": false
+                            }
+                        ],
+                        "hasPart": [],
+                        "expires": "2025-10-08T08:15:00+09:00"
+                    }
+                ]
+            },
+            "isLiveBroadcast": false,
+            "detailedDescription": {
+                "epg40": "まいにちハングル講座　ラップ　ｄｅ　チャレッソＹＯ！（３）",
+                "epg80": "ナ行、マ行、ラ行の子音が読めて書けるようになりましょう！",
+                "epgInformation": "",
+                "epg200": "【講師】近畿大学准教授…小島大輝，【出演】イ・ユンジョン，ユン・チャンビン"
+            },
+            "duration": "PT15M3S",
+            "posterframeList": []
+        },
+        "present": {
+            "type": "BroadcastEvent",
+            "id": "r2-130-2025100566776",
+            "name": "まいにちハングル講座　ラップ　ｄｅ　チャレッソＹＯ！（４）",
+            "description": "【講師】近畿大学准教授…小島大輝，【出演】イ・ユンジョン，ユン・チャンビン",
+            "startDate": "2025-10-05T15:00:03+09:00",
+            "endDate": "2025-10-05T15:15:00+09:00",
+            "location": {
+                "id": "001",
+                "name": "東京"
+            },
+            "identifierGroup": {
+                "broadcastEventId": "r2-130-2025100566776",
+                "radioEpisodeId": "99364V18WW",
+                "radioEpisodeName": "ラップ de チャレッソYO! (4)",
+                "radioSeriesId": "LR47WW9K14",
+                "radioSeriesName": "まいにちハングル講座",
+                "serviceId": "r2",
+                "areaId": "130",
+                "stationId": "001",
+                "date": "2025-10-05",
+                "eventId": "66776",
+                "genre": [
+                    {
+                        "id": "1007",
+                        "name1": "趣味/教育",
+                        "name2": "会話・語学"
+                    },
+                    {
+                        "id": "1011",
+                        "name1": "趣味/教育",
+                        "name2": "生涯教育・資格"
+                    },
+                    {
+                        "id": "1010",
+                        "name1": "趣味/教育",
+                        "name2": "大学生・受験"
+                    }
+                ],
+                "siteId": "0951"
+            },
+            "misc": {
+                "displayVideoMode": "none",
+                "displayVideoRange": "sdr",
+                "displayAudioMode": [],
+                "audioMode": [],
+                "supportCaption": false,
+                "supportSign": false,
+                "supportHybridcast": false,
+                "supportDataBroadcast": false,
+                "isInteractive": false,
+                "isChangeable": false,
+                "releaseLevel": "normal",
+                "programType": "program",
+                "coverage": "nationwide",
+                "actList": [
+                    {
+                        "role": "講師",
+                        "title": "近畿大学准教授",
+                        "name": "小島大輝",
+                        "nameRuby": "ｺｼﾞﾏﾀﾞｲｷ"
+                    },
+                    {
+                        "role": "出演",
+                        "name": "イ・ユンジョン",
+                        "nameRuby": "ｲ･ﾕﾝｼﾞｮﾝ"
+                    },
+                    {
+                        "role": "出演",
+                        "name": "ユン・チャンビン",
+                        "nameRuby": "ﾕﾝ･ﾁｬﾝﾋﾞﾝ"
+                    }
+                ],
+                "musicList": [],
+                "eventShareStatus": "single",
+                "playControlSimul": true
+            },
+            "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r2-130-2025100566776.json",
+            "about": {
+                "id": "99364V18WW",
+                "name": "ラップ de チャレッソYO! (4)",
+                "identifierGroup": {
+                    "radioEpisodeId": "99364V18WW",
+                    "radioSeriesId": "LR47WW9K14",
+                    "radioEpisodeName": "ラップ de チャレッソYO! (4)",
+                    "radioSeriesName": "まいにちハングル講座",
+                    "hashtag": [],
+                    "siteId": "0951",
+                    "formatGenreTag": [
+                        {
+                            "id": "09",
+                            "name": "講座"
+                        }
+                    ],
+                    "themeGenreTag": [
+                        {
+                            "id": "101",
+                            "name": "語学"
+                        }
+                    ]
                 },
-                "plus": {
-                    "stream_id": "",
-                    "stream_fmt": ""
+                "keyword": [],
+                "description": "ヤ行が読めて書けるようになりましょう！",
+                "partOfSeries": {
+                    "id": "LR47WW9K14",
+                    "name": "まいにちハングル講座",
+                    "detailedSeriesNameRuby": "まいにちはんぐるこうざ",
+                    "identifierGroup": {
+                        "radioSeriesId": "LR47WW9K14",
+                        "radioSeriesPlaylistId": "series-rep-LR47WW9K14",
+                        "radioSeriesUId": "361cdaf6-b789-58dd-aa22-1838a8d776f3",
+                        "radioSeriesName": "まいにちハングル講座",
+                        "hashtag": [],
+                        "siteId": "0951",
+                        "formatGenre": [
+                            {
+                                "id": "09",
+                                "name": "講座"
+                            }
+                        ]
+                    },
+                    "keyword": [],
+                    "detailedSynonym": [],
+                    "sameAs": [],
+                    "canonical": "https://www.nhk.jp/p/rs/LR47WW9K14/",
+                    "description": "わかりやすく・親しみやすく、ゼロから文字・発音・文法などの基礎を積み上げていく講座です。リズムにのってラップ風に声を出す練習法で、単語や活用を楽しく身につけていきましょう。（２０２４年４～９月の再放送）",
+                    "detailedCatch": "ラップ de チャレッソYO！",
+                    "logo": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-logo_5f54a67be8c4eb9a642e8a722580a905.jpg",
+                            "width": 1080,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-logo_1a25b4ed1f1c4c9064947548bbdadc8a.jpg",
+                            "width": 640,
+                            "height": 640
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-logo_5f9764c76ddd240ed7c7afe8c8e6be81.jpg",
+                            "width": 200,
+                            "height": 200
+                        }
+                    },
+                    "eyecatch": {
+                        "large": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-eyecatch_fe4336a18e2d7f9f0ecdc13f01371d58.jpg",
+                            "width": 3840,
+                            "height": 2160
+                        },
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-eyecatch_50e84774111735ee01fd76615592b07e.jpg",
+                            "width": 1920,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-eyecatch_1efebe0b1a9ab024d087988e273d1a8c.jpg",
+                            "width": 1280,
+                            "height": 720
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-eyecatch_91bd6d43742becdcaf4be3e9b91e7772.jpg",
+                            "width": 640,
+                            "height": 360
+                        }
+                    },
+                    "hero": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-hero_9ab657182854b161722998cea6382313.jpg",
+                            "width": 1920,
+                            "height": 640
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-hero_7c1235030e5420a42af73e9861309b52.jpg",
+                            "width": 1080,
+                            "height": 360
+                        }
+                    },
+                    "style": {
+                        "textLight": "#000000",
+                        "textDark": "#FFFFFF",
+                        "linkLight": "#7B7700",
+                        "linkDark": "#FAF100",
+                        "primaryLight": "#9B9500",
+                        "primaryDark": "#FAF100"
+                    },
+                    "additionalProperty": {
+                        "publishLevel": "full",
+                        "layoutPattern": "summary",
+                        "episodeOrderBy": "recentEvent",
+                        "availableOnPlus": false,
+                        "enableVariablePlayBackSpeedControl": false,
+                        "optional": [],
+                        "seriesPackStatus": "notPacked",
+                        "supportMedia": [
+                            "@screen"
+                        ],
+                        "supportMusicList": true,
+                        "supportPlusEmbed": true
+                    },
+                    "url": "https://api.nhk.jp/r7/t/radioseries/rs/LR47WW9K14.json",
+                    "itemUrl": "https://api.nhk.jp/r7/l/radioepisode/rs/LR47WW9K14.json?order=desc&offset=0&size=10"
                 },
-                "extra": {
-                    "pr_movies": []
+                "eyecatchList": [],
+                "url": "https://api.nhk.jp/r7/t/radioepisode/re/99364V18WW.json",
+                "canonical": "https://www.nhk.jp/p/rs/LR47WW9K14/episode/re/99364V18WW/",
+                "additionalProperty": {},
+                "audio": [
+                    {
+                        "id": "radiruOriginal-r2-130-2025100275939",
+                        "name": "まいにちハングル講座 ラップ de チャレッソYO! (4)",
+                        "description": "【講師】近畿大学准教授…小島大輝，【出演】イ・ユンジョン，ユン・チャンビン",
+                        "url": "https://www.nhk.or.jp/radio/player/ondemand.html?p=LR47WW9K14_01_4274005",
+                        "identifierGroup": {
+                            "environmentId": "radiruOriginal",
+                            "broadcastEventId": "r2-130-2025100275939",
+                            "streamType": "vod"
+                        },
+                        "detailedContentStatus": {
+                            "environmentId": "radiruOriginal",
+                            "streamType": "vod",
+                            "contentStatus": "ready"
+                        },
+                        "detailedContent": [
+                            {
+                                "name": "hls_widevine",
+                                "contentUrl": "https://vod-stream.nhk.jp/radioondemand/r/LR47WW9K14/s/stream_LR47WW9K14_27b348934c9b0e54c30cd6d4fb4d964c/index.m3u8",
+                                "encodingFormat": []
+                            }
+                        ],
+                        "duration": "PT14M57S",
+                        "publication": [
+                            {
+                                "id": "r2-130-2025100275939",
+                                "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r2-130-2025100275939.json",
+                                "isLiveBroadcast": false
+                            }
+                        ],
+                        "hasPart": [],
+                        "expires": "2025-10-09T08:15:00+09:00"
+                    }
+                ]
+            },
+            "isLiveBroadcast": false,
+            "detailedDescription": {
+                "epg40": "まいにちハングル講座　ラップ　ｄｅ　チャレッソＹＯ！（４）",
+                "epg80": "ヤ行が読めて書けるようになりましょう！",
+                "epgInformation": "",
+                "epg200": "【講師】近畿大学准教授…小島大輝，【出演】イ・ユンジョン，ユン・チャンビン"
+            },
+            "duration": "PT14M57S",
+            "posterframeList": []
+        },
+        "following": {
+            "type": "BroadcastEvent",
+            "id": "r2-130-2025100566777",
+            "name": "まいにちハングル講座　ラップ　ｄｅ　チャレッソＹＯ！（５）",
+            "description": "【講師】近畿大学准教授…小島大輝，【出演】イ・ユンジョン，ユン・チャンビン",
+            "startDate": "2025-10-05T15:15:00+09:00",
+            "endDate": "2025-10-05T15:30:00+09:00",
+            "location": {
+                "id": "001",
+                "name": "東京"
+            },
+            "identifierGroup": {
+                "broadcastEventId": "r2-130-2025100566777",
+                "radioEpisodeId": "GP5GNNXRRP",
+                "radioEpisodeName": "ラップ de チャレッソYO! (5)",
+                "radioSeriesId": "LR47WW9K14",
+                "radioSeriesName": "まいにちハングル講座",
+                "serviceId": "r2",
+                "areaId": "130",
+                "stationId": "001",
+                "date": "2025-10-05",
+                "eventId": "66777",
+                "genre": [
+                    {
+                        "id": "1007",
+                        "name1": "趣味/教育",
+                        "name2": "会話・語学"
+                    },
+                    {
+                        "id": "1011",
+                        "name1": "趣味/教育",
+                        "name2": "生涯教育・資格"
+                    },
+                    {
+                        "id": "1010",
+                        "name1": "趣味/教育",
+                        "name2": "大学生・受験"
+                    }
+                ],
+                "siteId": "0951"
+            },
+            "misc": {
+                "displayVideoMode": "none",
+                "displayVideoRange": "sdr",
+                "displayAudioMode": [],
+                "audioMode": [],
+                "supportCaption": false,
+                "supportSign": false,
+                "supportHybridcast": false,
+                "supportDataBroadcast": false,
+                "isInteractive": false,
+                "isChangeable": false,
+                "releaseLevel": "normal",
+                "programType": "program",
+                "coverage": "nationwide",
+                "actList": [
+                    {
+                        "role": "講師",
+                        "title": "近畿大学准教授",
+                        "name": "小島大輝",
+                        "nameRuby": "ｺｼﾞﾏﾀﾞｲｷ"
+                    },
+                    {
+                        "role": "出演",
+                        "name": "イ・ユンジョン",
+                        "nameRuby": "ｲ･ﾕﾝｼﾞｮﾝ"
+                    },
+                    {
+                        "role": "出演",
+                        "name": "ユン・チャンビン",
+                        "nameRuby": "ﾕﾝ･ﾁｬﾝﾋﾞﾝ"
+                    }
+                ],
+                "musicList": [],
+                "eventShareStatus": "single",
+                "playControlSimul": true
+            },
+            "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r2-130-2025100566777.json",
+            "about": {
+                "id": "GP5GNNXRRP",
+                "name": "ラップ de チャレッソYO! (5)",
+                "identifierGroup": {
+                    "radioEpisodeId": "GP5GNNXRRP",
+                    "radioSeriesId": "LR47WW9K14",
+                    "radioEpisodeName": "ラップ de チャレッソYO! (5)",
+                    "radioSeriesName": "まいにちハングル講座",
+                    "hashtag": [],
+                    "siteId": "0951",
+                    "formatGenreTag": [
+                        {
+                            "id": "09",
+                            "name": "講座"
+                        }
+                    ],
+                    "themeGenreTag": [
+                        {
+                            "id": "101",
+                            "name": "語学"
+                        }
+                    ]
                 },
-                "play_control": {
-                    "simul": false,
-                    "dvr": false,
-                    "vod": false,
-                    "multi": ""
+                "keyword": [],
+                "description": "今週のハンぐるり",
+                "partOfSeries": {
+                    "id": "LR47WW9K14",
+                    "name": "まいにちハングル講座",
+                    "detailedSeriesNameRuby": "まいにちはんぐるこうざ",
+                    "identifierGroup": {
+                        "radioSeriesId": "LR47WW9K14",
+                        "radioSeriesPlaylistId": "series-rep-LR47WW9K14",
+                        "radioSeriesUId": "361cdaf6-b789-58dd-aa22-1838a8d776f3",
+                        "radioSeriesName": "まいにちハングル講座",
+                        "hashtag": [],
+                        "siteId": "0951",
+                        "formatGenre": [
+                            {
+                                "id": "09",
+                                "name": "講座"
+                            }
+                        ]
+                    },
+                    "keyword": [],
+                    "detailedSynonym": [],
+                    "sameAs": [],
+                    "canonical": "https://www.nhk.jp/p/rs/LR47WW9K14/",
+                    "description": "わかりやすく・親しみやすく、ゼロから文字・発音・文法などの基礎を積み上げていく講座です。リズムにのってラップ風に声を出す練習法で、単語や活用を楽しく身につけていきましょう。（２０２４年４～９月の再放送）",
+                    "detailedCatch": "ラップ de チャレッソYO！",
+                    "logo": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-logo_5f54a67be8c4eb9a642e8a722580a905.jpg",
+                            "width": 1080,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-logo_1a25b4ed1f1c4c9064947548bbdadc8a.jpg",
+                            "width": 640,
+                            "height": 640
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-logo_5f9764c76ddd240ed7c7afe8c8e6be81.jpg",
+                            "width": 200,
+                            "height": 200
+                        }
+                    },
+                    "eyecatch": {
+                        "large": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-eyecatch_fe4336a18e2d7f9f0ecdc13f01371d58.jpg",
+                            "width": 3840,
+                            "height": 2160
+                        },
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-eyecatch_50e84774111735ee01fd76615592b07e.jpg",
+                            "width": 1920,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-eyecatch_1efebe0b1a9ab024d087988e273d1a8c.jpg",
+                            "width": 1280,
+                            "height": 720
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-eyecatch_91bd6d43742becdcaf4be3e9b91e7772.jpg",
+                            "width": 640,
+                            "height": 360
+                        }
+                    },
+                    "hero": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-hero_9ab657182854b161722998cea6382313.jpg",
+                            "width": 1920,
+                            "height": 640
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/LR47WW9K14/LR47WW9K14-hero_7c1235030e5420a42af73e9861309b52.jpg",
+                            "width": 1080,
+                            "height": 360
+                        }
+                    },
+                    "style": {
+                        "textLight": "#000000",
+                        "textDark": "#FFFFFF",
+                        "linkLight": "#7B7700",
+                        "linkDark": "#FAF100",
+                        "primaryLight": "#9B9500",
+                        "primaryDark": "#FAF100"
+                    },
+                    "additionalProperty": {
+                        "publishLevel": "full",
+                        "layoutPattern": "summary",
+                        "episodeOrderBy": "recentEvent",
+                        "availableOnPlus": false,
+                        "enableVariablePlayBackSpeedControl": false,
+                        "optional": [],
+                        "seriesPackStatus": "notPacked",
+                        "supportMedia": [
+                            "@screen"
+                        ],
+                        "supportMusicList": true,
+                        "supportPlusEmbed": true
+                    },
+                    "url": "https://api.nhk.jp/r7/t/radioseries/rs/LR47WW9K14.json",
+                    "itemUrl": "https://api.nhk.jp/r7/l/radioepisode/rs/LR47WW9K14.json?order=desc&offset=0&size=10"
                 },
-                "published_period_from": "",
-                "published_period_to": ""
+                "eyecatchList": [],
+                "url": "https://api.nhk.jp/r7/t/radioepisode/re/GP5GNNXRRP.json",
+                "canonical": "https://www.nhk.jp/p/rs/LR47WW9K14/episode/re/GP5GNNXRRP/",
+                "additionalProperty": {},
+                "audio": [
+                    {
+                        "id": "radiruOriginal-r2-130-2025100366214",
+                        "name": "まいにちハングル講座 ラップ de チャレッソYO! (5)",
+                        "description": "【講師】近畿大学准教授…小島大輝，【出演】イ・ユンジョン，ユン・チャンビン",
+                        "url": "https://www.nhk.or.jp/radio/player/ondemand.html?p=LR47WW9K14_01_4274321",
+                        "identifierGroup": {
+                            "environmentId": "radiruOriginal",
+                            "broadcastEventId": "r2-130-2025100366214",
+                            "streamType": "vod"
+                        },
+                        "detailedContentStatus": {
+                            "environmentId": "radiruOriginal",
+                            "streamType": "vod",
+                            "contentStatus": "ready"
+                        },
+                        "detailedContent": [
+                            {
+                                "name": "hls_widevine",
+                                "contentUrl": "https://vod-stream.nhk.jp/radioondemand/r/LR47WW9K14/s/stream_LR47WW9K14_242c362693fa7c33fa55bc79d30d14cf/index.m3u8",
+                                "encodingFormat": []
+                            }
+                        ],
+                        "duration": "PT14M57S",
+                        "publication": [
+                            {
+                                "id": "r2-130-2025100366214",
+                                "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r2-130-2025100366214.json",
+                                "isLiveBroadcast": false
+                            }
+                        ],
+                        "hasPart": [],
+                        "expires": "2025-10-10T08:15:00+09:00"
+                    }
+                ]
+            },
+            "isLiveBroadcast": false,
+            "detailedDescription": {
+                "epg40": "まいにちハングル講座　ラップ　ｄｅ　チャレッソＹＯ！（５）",
+                "epg80": "今週のハンぐるり",
+                "epgInformation": "",
+                "epg200": "【講師】近畿大学准教授…小島大輝，【出演】イ・ユンジョン，ユン・チャンビン"
+            },
+            "duration": "PT15M",
+            "posterframeList": []
+        },
+        "publishedOn": {
+            "type": "BroadcastService",
+            "id": "bs-r2-130",
+            "name": "NHKラジオ第2放送",
+            "url": "https://api.nhk.jp/r7/t/broadcastservice/bs/r2-130.json",
+            "broadcastDisplayName": "NHKラジオ第2",
+            "videoFormat": [],
+            "encodingFormat": [
+                "audio/aac"
+            ],
+            "identifierGroup": {
+                "serviceId": "r2",
+                "serviceName": "NHKラジオ第2",
+                "areaId": "130",
+                "areaName": "東京",
+                "channelId": null,
+                "channelKey": null,
+                "channelAreaName": "東京",
+                "channelStationName": "首都圏",
+                "shortenedName": "NHKラジオ第2",
+                "shortenedDisplayName": "ラジオ第2",
+                "multiChannelDisplayName": null
+            },
+            "logo": {
+                "main": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r2/r2-logo.svg",
+                    "width": 1080,
+                    "height": 1080
+                },
+                "medium": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r2/r2-logo.svg",
+                    "width": 640,
+                    "height": 640
+                },
+                "small": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r2/r2-logo.svg",
+                    "width": 200,
+                    "height": 200
+                }
+            },
+            "eyecatch": {
+                "large": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r2/r2-eyecatch.svg",
+                    "width": 3840,
+                    "height": 2160
+                },
+                "main": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r2/r2-eyecatch.svg",
+                    "width": 1920,
+                    "height": 1080
+                },
+                "medium": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r2/r2-eyecatch.svg",
+                    "width": 640,
+                    "height": 360
+                },
+                "small": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r2/r2-eyecatch.svg",
+                    "width": 320,
+                    "height": 180
+                }
+            },
+            "hero": {
+                "main": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r2/r2-hero.svg",
+                    "width": 1920,
+                    "height": 640
+                },
+                "medium": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r2/r2-hero.svg",
+                    "width": 1080,
+                    "height": 360
+                }
+            },
+            "badge9x4": {
+                "main": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r2/r2-badge9x4.svg",
+                    "width": 180,
+                    "height": 80
+                },
+                "small": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r2/r2-badge9x4.svg",
+                    "width": 90,
+                    "height": 40
+                }
+            }
+        }
+    },
+    "r3": {
+        "previous": {
+            "type": "BroadcastEvent",
+            "id": "r3-130-2025100566858",
+            "name": "みんなのうた「青空とオスカー・ピーターソン」／「ハナ」",
+            "description": "",
+            "startDate": "2025-10-05T13:55:00+09:00",
+            "endDate": "2025-10-05T14:00:03+09:00",
+            "location": {
+                "id": "001",
+                "name": "東京"
+            },
+            "identifierGroup": {
+                "broadcastEventId": "r3-130-2025100566858",
+                "radioEpisodeId": "BQ7JQYMMYJ",
+                "radioEpisodeName": "「青空とオスカー・ピーターソン」/「ハナ」",
+                "radioSeriesId": "GPVXV8GJ9V",
+                "radioSeriesName": "みんなのうた （R1 R2 FM）",
+                "serviceId": "r3",
+                "areaId": "130",
+                "stationId": "001",
+                "date": "2025-10-05",
+                "eventId": "66858",
+                "genre": [
+                    {
+                        "id": "0400",
+                        "name1": "音楽",
+                        "name2": "国内ロック・ポップス"
+                    },
+                    {
+                        "id": "0409",
+                        "name1": "音楽",
+                        "name2": "童謡・キッズ"
+                    },
+                    {
+                        "id": "0504",
+                        "name1": "バラエティ",
+                        "name2": "音楽バラエティ"
+                    }
+                ]
+            },
+            "misc": {
+                "displayVideoMode": "none",
+                "displayVideoRange": "sdr",
+                "displayAudioMode": [],
+                "audioMode": [],
+                "supportCaption": false,
+                "supportSign": false,
+                "supportHybridcast": false,
+                "supportDataBroadcast": false,
+                "isInteractive": false,
+                "isChangeable": false,
+                "releaseLevel": "normal",
+                "programType": "program",
+                "coverage": "nationwide",
+                "actList": [],
+                "musicList": [],
+                "eventShareStatus": "single",
+                "playControlSimul": true
+            },
+            "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r3-130-2025100566858.json",
+            "about": {
+                "id": "BQ7JQYMMYJ",
+                "name": "「青空とオスカー・ピーターソン」/「ハナ」",
+                "identifierGroup": {
+                    "radioEpisodeId": "BQ7JQYMMYJ",
+                    "radioSeriesId": "GPVXV8GJ9V",
+                    "radioEpisodeName": "「青空とオスカー・ピーターソン」/「ハナ」",
+                    "radioSeriesName": "みんなのうた （R1 R2 FM）",
+                    "hashtag": [],
+                    "formatGenreTag": [
+                        {
+                            "id": "05",
+                            "name": "バラエティ"
+                        }
+                    ],
+                    "themeGenreTag": [
+                        {
+                            "id": "071",
+                            "name": "国内ポップス"
+                        },
+                        {
+                            "id": "077",
+                            "name": "キッズ音楽"
+                        },
+                        {
+                            "id": "070",
+                            "name": "音楽全般"
+                        }
+                    ]
+                },
+                "keyword": [],
+                "description": "",
+                "partOfSeries": {
+                    "id": "GPVXV8GJ9V",
+                    "name": "みんなのうた （R1 R2 FM）",
+                    "detailedSeriesNameRuby": "みんなのうた　あーるわん　あーるつー　えふえむ",
+                    "identifierGroup": {
+                        "radioSeriesId": "GPVXV8GJ9V",
+                        "radioSeriesPlaylistId": "series-rep-GPVXV8GJ9V",
+                        "radioSeriesUId": "7c78079e-d869-5dcd-9621-69f4bc0f3127",
+                        "radioSeriesName": "みんなのうた （R1 R2 FM）",
+                        "hashtag": [],
+                        "themeGenre": [
+                            {
+                                "id": "070",
+                                "name": "音楽全般"
+                            }
+                        ]
+                    },
+                    "keyword": [],
+                    "detailedSynonym": [],
+                    "sameAs": [],
+                    "canonical": "https://www.nhk.jp/p/rs/GPVXV8GJ9V/",
+                    "description": "「みんなのうた」はNHKのテレビ・ラジオで放送されている5分間の音楽番組。「こどもたちに明るい健康な歌をとどけたい」というコンセプトで、１９６１年４月３日に放送をスタートしました。昭和、平成、令和・・・時代とともに、これまでお送りしてきた楽曲（うた）は、およそ１６００曲。\nこれからも２ヶ月ごとに４曲ほどの新たな楽曲、さらに懐かしい名曲たちもたっぷりお届けします。",
+                    "detailedCatch": "ラジオ（ラジオ第１・第２、NHK-FM）の放送情報をお届けします",
+                    "logo": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-logo_57226883daf0c7cc5b940da5330d0420.jpg",
+                            "width": 1080,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-logo_dfd3cb138345821ffdffb6e2591f2898.jpg",
+                            "width": 640,
+                            "height": 640
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-logo_d697ff3a73ca93916e7fe31d5ec5b261.jpg",
+                            "width": 200,
+                            "height": 200
+                        }
+                    },
+                    "eyecatch": {
+                        "large": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-eyecatch_df8aa9b18845de8661ef6fe911696c0e.jpg",
+                            "width": 3840,
+                            "height": 2160
+                        },
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-eyecatch_83d3405716a8acd1518794b80dccbc47.jpg",
+                            "width": 1920,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-eyecatch_5fed05c55b50c98f53cd7e9a972bddf2.jpg",
+                            "width": 1280,
+                            "height": 720
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-eyecatch_4e045f1fe08e57beb7212b6474f14e48.jpg",
+                            "width": 640,
+                            "height": 360
+                        }
+                    },
+                    "hero": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-hero_3c1181bd7c8e3792abe6bb7a9bfe653d.jpg",
+                            "width": 1920,
+                            "height": 640
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-hero_6cfce4be1bf01cddfa01c5933e5cc477.jpg",
+                            "width": 1080,
+                            "height": 360
+                        }
+                    },
+                    "style": {
+                        "textLight": "#000000",
+                        "textDark": "#FFFFFF",
+                        "linkLight": "#990099",
+                        "linkDark": "#C062C0",
+                        "primaryLight": "#990099",
+                        "primaryDark": "#AD32AD"
+                    },
+                    "additionalProperty": {
+                        "publishLevel": "full",
+                        "layoutPattern": "summary",
+                        "episodeOrderBy": "releasedEvent",
+                        "availableOnPlus": false,
+                        "enableVariablePlayBackSpeedControl": false,
+                        "optional": [],
+                        "seriesPackStatus": "notPacked",
+                        "supportMedia": [
+                            "@screen"
+                        ],
+                        "supportMusicList": true,
+                        "supportPlusEmbed": true
+                    },
+                    "url": "https://api.nhk.jp/r7/t/radioseries/rs/GPVXV8GJ9V.json",
+                    "itemUrl": "https://api.nhk.jp/r7/l/radioepisode/rs/GPVXV8GJ9V.json?order=desc&offset=0&size=10"
+                },
+                "eyecatchList": [],
+                "url": "https://api.nhk.jp/r7/t/radioepisode/re/BQ7JQYMMYJ.json",
+                "canonical": "https://www.nhk.jp/p/rs/GPVXV8GJ9V/episode/re/BQ7JQYMMYJ/",
+                "additionalProperty": {},
+                "audio": []
+            },
+            "isLiveBroadcast": false,
+            "detailedDescription": {
+                "epg40": "みんなのうた「青空とオスカー・ピーターソン」／「ハナ」",
+                "epg80": "",
+                "epgInformation": "",
+                "epg200": ""
+            },
+            "duration": "PT5M3S",
+            "posterframeList": []
+        },
+        "present": {
+            "type": "BroadcastEvent",
+            "id": "r3-130-2025100566860",
+            "name": "×（かける）クラシック▽第２５２駅　クラシック×変（１）",
+            "description": "▽涼しくなったかと思えば、真夏日が続いたり…変な気候だなぁと感じることが多い昨今。そこで１０月は「変」をテーマにクラシック音楽の世界を巡ります▽今週はリスナーが感じる「風変わりな作品や音楽家」が目白押し▽「今週の○○節」は映画音楽の巨匠モリコーネ。モリコーネ節のラスト月間突入ということで“シャレオツモリコーネ”と“美メロモリコーネ”の２曲紹介▽かけクラ川柳も通常運行中！久々の「献呈」コーナーも！",
+            "startDate": "2025-10-05T14:00:03+09:00",
+            "endDate": "2025-10-05T15:50:00+09:00",
+            "location": {
+                "id": "001",
+                "name": "東京"
+            },
+            "identifierGroup": {
+                "broadcastEventId": "r3-130-2025100566860",
+                "radioEpisodeId": "Y6XKJY2W1W",
+                "radioEpisodeName": "▽第252駅 クラシック×変(1)",
+                "radioSeriesId": "QM16JZPN81",
+                "radioSeriesName": "×(かける)クラシック",
+                "serviceId": "r3",
+                "areaId": "130",
+                "stationId": "001",
+                "date": "2025-10-05",
+                "eventId": "66860",
+                "genre": [
+                    {
+                        "id": "0402",
+                        "name1": "音楽",
+                        "name2": "クラシック・オペラ"
+                    }
+                ],
+                "siteId": "5945"
+            },
+            "misc": {
+                "displayVideoMode": "none",
+                "displayVideoRange": "sdr",
+                "displayAudioMode": [],
+                "audioMode": [],
+                "supportCaption": false,
+                "supportSign": false,
+                "supportHybridcast": false,
+                "supportDataBroadcast": false,
+                "isInteractive": false,
+                "isChangeable": false,
+                "releaseLevel": "original",
+                "programType": "program",
+                "coverage": "nationwide",
+                "actList": [
+                    {
+                        "name": "市川紗椰",
+                        "nameRuby": "ｲﾁｶﾜｻﾔ"
+                    },
+                    {
+                        "name": "上野耕平",
+                        "nameRuby": "ｳｴﾉｺｳﾍｲ"
+                    }
+                ],
+                "musicList": [
+                    {
+                        "name": "バレエ音楽「ロメオとジュリエット」から「モンタギュー家とキャピュレット家」",
+                        "nameruby": "",
+                        "lyricist": "",
+                        "composer": "プロコフィエフ",
+                        "arranger": "",
+                        "location": "",
+                        "provider": "",
+                        "label": "ＳＯＮＹ",
+                        "duration": "PT5M17S",
+                        "code": "SICC2082",
+                        "byArtist": [
+                            {
+                                "name": "ニューヨーク・フィルハーモニック",
+                                "role": "",
+                                "part": "管弦楽"
+                            },
+                            {
+                                "name": "ディミトリ・ミトロプーロス",
+                                "role": "",
+                                "part": "指揮"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "ロンド・ア・カプリッチョ「なくしたた小銭への怒り」",
+                        "nameruby": "",
+                        "lyricist": "",
+                        "composer": "ベートーベン",
+                        "arranger": "",
+                        "location": "",
+                        "provider": "",
+                        "label": "Ｄｅｕｔｓｃｈｅ　Ｇｒａｍｍｏｐｈｏｎ",
+                        "duration": "PT6M15S",
+                        "code": "UCCG1518",
+                        "byArtist": [
+                            {
+                                "name": "アリス・紗良・オット",
+                                "role": "",
+                                "part": "ピアノ"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "口琴とマンドーラのための協奏曲　ホ長調　から　第１楽章",
+                        "nameruby": "",
+                        "lyricist": "",
+                        "composer": "アルブレヒツベルガー",
+                        "arranger": "",
+                        "location": "",
+                        "provider": "",
+                        "label": "ＯＲＦＥＯ　ＩＮＴＥＲＮＡＴＩＯＮＡＬ",
+                        "duration": "PT6M30S",
+                        "code": "32CD10046",
+                        "byArtist": [
+                            {
+                                "name": "フリッツ・マイア",
+                                "role": "",
+                                "part": "口琴"
+                            },
+                            {
+                                "name": "ディーター・キルシュ",
+                                "role": "",
+                                "part": "マンドーラ"
+                            },
+                            {
+                                "name": "ミュンヘン室内管弦楽団",
+                                "role": "",
+                                "part": "管弦楽"
+                            },
+                            {
+                                "name": "ハンス・シュタートルマイア",
+                                "role": "",
+                                "part": "指揮"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "変",
+                        "nameruby": "",
+                        "lyricist": "ドリアン助川",
+                        "composer": "寺嶋陸也",
+                        "arranger": "",
+                        "location": "",
+                        "provider": "",
+                        "label": "フォンテック",
+                        "duration": "PT2M15S",
+                        "code": "EFCD25133",
+                        "byArtist": [
+                            {
+                                "name": "熊本大学教育学部附属中学校",
+                                "role": "",
+                                "part": "合唱"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "マドリガーレ集第３巻から「私の心はため息をついた～ああ，悲惨な，悪意にみちた知らせよ」",
+                        "nameruby": "",
+                        "lyricist": "",
+                        "composer": "カルロ・ジェズアルド",
+                        "arranger": "",
+                        "location": "",
+                        "provider": "",
+                        "label": "ＨＡＲＭＯＮＩＡ　ＭＵＮＤＩ",
+                        "duration": "PT3M40S",
+                        "code": "ANF197",
+                        "byArtist": [
+                            {
+                                "name": "レザール・フロリサン・アンサンブル",
+                                "role": "",
+                                "part": "演奏"
+                            },
+                            {
+                                "name": "ウィリアム・クリスティ",
+                                "role": "",
+                                "part": "指揮"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "映画「ある夕食のテーブル」メインテーマ",
+                        "nameruby": "",
+                        "lyricist": "",
+                        "composer": "モリコーネ",
+                        "arranger": "",
+                        "location": "",
+                        "provider": "",
+                        "label": "Ｋｉｎｇ",
+                        "duration": "PT4M31S",
+                        "code": "KICP843",
+                        "byArtist": [
+                            {
+                                "name": "オリジナル・サウンドトラック",
+                                "role": "",
+                                "part": ""
+                            }
+                        ]
+                    },
+                    {
+                        "name": "映画「ウエスタン」テーマ",
+                        "nameruby": "",
+                        "lyricist": "",
+                        "composer": "モリコーネ",
+                        "arranger": "",
+                        "location": "",
+                        "provider": "",
+                        "label": "ＢＭＧビクター",
+                        "duration": "PT3M31S",
+                        "code": "BVCP1038",
+                        "byArtist": [
+                            {
+                                "name": "オリジナル・サウンドトラック",
+                                "role": "",
+                                "part": ""
+                            }
+                        ]
+                    },
+                    {
+                        "name": "見上げてごらん夜の星を",
+                        "nameruby": "",
+                        "lyricist": "",
+                        "composer": "いずみたく",
+                        "arranger": "小原孝",
+                        "location": "",
+                        "provider": "",
+                        "label": "Ｋｉｎｇ",
+                        "duration": "PT3M51S",
+                        "code": "KICS1885",
+                        "byArtist": [
+                            {
+                                "name": "小原孝",
+                                "role": "",
+                                "part": "ピアノ"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "「Ｔｈｅ　Ｅｎｄ　ｏｆ　ｔｈｅ　Ｗｏｒｌｄ」から「Ｂｅｙｏｎｄ　ｔｈｅ　Ｗｏｒｌｄ」",
+                        "nameruby": "",
+                        "lyricist": "",
+                        "composer": "久石譲",
+                        "arranger": "",
+                        "location": "",
+                        "provider": "",
+                        "label": "ＵＮＩＶＥＲＳＡＬ",
+                        "duration": "PT7M11S",
+                        "code": "UMCK1321",
+                        "byArtist": [
+                            {
+                                "name": "ロンドン・ヴォイセズ",
+                                "role": "",
+                                "part": "合唱"
+                            },
+                            {
+                                "name": "ロンドン交響楽団",
+                                "role": "",
+                                "part": "管弦楽"
+                            },
+                            {
+                                "name": "久石譲",
+                                "role": "",
+                                "part": "指揮"
+                            }
+                        ]
+                    }
+                ],
+                "eventShareStatus": "single",
+                "playControlSimul": true
+            },
+            "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r3-130-2025100566860.json",
+            "about": {
+                "id": "Y6XKJY2W1W",
+                "name": "▽第252駅 クラシック×変(1)",
+                "identifierGroup": {
+                    "radioEpisodeId": "Y6XKJY2W1W",
+                    "radioSeriesId": "QM16JZPN81",
+                    "radioEpisodeName": "▽第252駅 クラシック×変(1)",
+                    "radioSeriesName": "×(かける)クラシック",
+                    "hashtag": [],
+                    "siteId": "5945",
+                    "aliasId": "kakecla",
+                    "themeGenreTag": [
+                        {
+                            "id": "073",
+                            "name": "クラシック"
+                        }
+                    ]
+                },
+                "keyword": [],
+                "description": "▽涼しくなったかと思えば、真夏日が続いたり…変な気候だなぁと感じることが多い昨今。そこで１０月は「変」をテーマにクラシック音楽の世界を巡ります▽今週はリスナーが感じる「風変わりな作品や音楽家」が目白押し▽「今週の○○節」は映画音楽の巨匠モリコーネ。モリコーネ節のラスト月間突入ということで“シャレオツモリコーネ”と“美メロモリコーネ”の２曲紹介▽かけクラ川柳も通常運行中！久々の「献呈」コーナーも！",
+                "partOfSeries": {
+                    "id": "QM16JZPN81",
+                    "name": "×(かける)クラシック",
+                    "detailedSeriesNameRuby": "かけるくらしっく",
+                    "identifierGroup": {
+                        "radioSeriesId": "QM16JZPN81",
+                        "radioSeriesPlaylistId": "series-rep-QM16JZPN81",
+                        "radioSeriesUId": "23cdc288-bb23-51b2-a660-33d9d0403911",
+                        "radioSeriesName": "×(かける)クラシック",
+                        "hashtag": [],
+                        "siteId": "5945",
+                        "aliasId": "kakecla"
+                    },
+                    "keyword": [],
+                    "detailedSynonym": [],
+                    "sameAs": [],
+                    "canonical": "https://www.nhk.jp/p/kakecla/rs/QM16JZPN81/",
+                    "description": "番組のキーワードは、ずばり、「○○○×（かける）クラシック」。モデルの市川紗椰＆サクソフォーン奏者の上野耕平が、クラシックとそれ以外の様々なジャンルを掛け合わせてご紹介！\nテーマとして○○○に入るのは、鉄道・小説・アニメ・旅行・ファッションといった趣味のジャンルから、恋愛・季節の話題まで様々。気軽なトークと音楽を“クロスオーバー”に楽しむ、クラシック・バラエティです。",
+                    "detailedCatch": "日常と音が出会うターミナル",
+                    "logo": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/QM16JZPN81/QM16JZPN81-logo_8a07849d8a4ce8747187f5dc989392b4.png",
+                            "width": 1080,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/QM16JZPN81/QM16JZPN81-logo_b492cb6ebf37bae0370a7475b06deff5.png",
+                            "width": 640,
+                            "height": 640
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/QM16JZPN81/QM16JZPN81-logo_80afddba801451597bbd9b75837d4c7b.png",
+                            "width": 200,
+                            "height": 200
+                        }
+                    },
+                    "eyecatch": {
+                        "large": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/QM16JZPN81/QM16JZPN81-eyecatch_8bfbe7f42cd3b78df3e5cb3122401448.jpg",
+                            "width": 3840,
+                            "height": 2160
+                        },
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/QM16JZPN81/QM16JZPN81-eyecatch_b4a3853077a29cf3631c43e270212c99.jpg",
+                            "width": 1920,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/QM16JZPN81/QM16JZPN81-eyecatch_907bef2811d561b5d8296b357ea683e4.jpg",
+                            "width": 1280,
+                            "height": 720
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/QM16JZPN81/QM16JZPN81-eyecatch_6d6be8d0523dfdc95212e70be444866b.jpg",
+                            "width": 640,
+                            "height": 360
+                        }
+                    },
+                    "hero": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/QM16JZPN81/QM16JZPN81-hero_ce7b6ce0d3990b369c40da7243d99f4f.jpg",
+                            "width": 1920,
+                            "height": 640
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/QM16JZPN81/QM16JZPN81-hero_32f1918b842028875c6de3a9a1702c1f.jpg",
+                            "width": 1080,
+                            "height": 360
+                        }
+                    },
+                    "style": {
+                        "textLight": "#000000",
+                        "textDark": "#FFFFFF",
+                        "linkLight": "#005AFF",
+                        "linkDark": "#4788FF",
+                        "primaryLight": "#005AFF",
+                        "primaryDark": "#0B61FF"
+                    },
+                    "additionalProperty": {
+                        "publishLevel": "full",
+                        "layoutPattern": "summary",
+                        "episodeOrderBy": "releasedEvent",
+                        "availableOnPlus": false,
+                        "enableVariablePlayBackSpeedControl": false,
+                        "optional": [],
+                        "seriesPackStatus": "notPacked",
+                        "supportMedia": [
+                            "@screen"
+                        ],
+                        "supportMusicList": true,
+                        "supportPlusEmbed": true
+                    },
+                    "url": "https://api.nhk.jp/r7/t/radioseries/rs/QM16JZPN81.json",
+                    "itemUrl": "https://api.nhk.jp/r7/l/radioepisode/rs/QM16JZPN81.json?order=desc&offset=0&size=10"
+                },
+                "eyecatchList": [],
+                "url": "https://api.nhk.jp/r7/t/radioepisode/re/Y6XKJY2W1W.json",
+                "canonical": "https://www.nhk.jp/p/kakecla/rs/QM16JZPN81/episode/re/Y6XKJY2W1W/",
+                "additionalProperty": {},
+                "audio": [
+                    {
+                        "id": "radiruOriginal-r3-130-2025100566860",
+                        "name": "×(かける)クラシック ▽第252駅 クラシック×変(1)",
+                        "description": "▽涼しくなったかと思えば、真夏日が続いたり…変な気候だなぁと感じることが多い昨今。そこで１０月は「変」をテーマにクラシック音楽の世界を巡ります▽今週はリスナーが感じる「風変わりな作品や音楽家」が目白押し▽「今週の○○節」は映画音楽の巨匠モリコーネ。モリコーネ節のラスト月間突入ということで“シャレオツモリコーネ”と“美メロモリコーネ”の２曲紹介▽かけクラ川柳も通常運行中！久々の「献呈」コーナーも！",
+                        "url": "",
+                        "identifierGroup": {
+                            "environmentId": "radiruOriginal",
+                            "broadcastEventId": "r3-130-2025100566860",
+                            "streamType": "vod"
+                        },
+                        "detailedContentStatus": {
+                            "environmentId": "radiruOriginal",
+                            "streamType": "vod",
+                            "contentStatus": "notyet"
+                        },
+                        "detailedContent": [],
+                        "duration": "PT1H49M57S",
+                        "publication": [
+                            {
+                                "id": "r3-130-2025100566860",
+                                "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r3-130-2025100566860.json",
+                                "isLiveBroadcast": false
+                            }
+                        ],
+                        "expires": "2025-10-12T15:50:00+09:00"
+                    }
+                ]
+            },
+            "isLiveBroadcast": false,
+            "detailedDescription": {
+                "epg40": "×（かける）クラシック▽第２５２駅　クラシック×変（１）",
+                "epg80": "×（かける）クラシック第２５２駅▽１０月のテーマ「変×クラシック」【ＭＣ】市川紗椰（モデル）、上野耕平（サクソフォーン奏者）",
+                "epgInformation": "",
+                "epg200": "▽涼しくなったかと思えば、真夏日が続いたり…変な気候だなぁと感じることが多い昨今。そこで１０月は「変」をテーマにクラシック音楽の世界を巡ります▽今週はリスナーが感じる「風変わりな作品や音楽家」が目白押し▽「今週の○○節」は映画音楽の巨匠モリコーネ。モリコーネ節のラスト月間突入ということで“シャレオツモリコーネ”と“美メロモリコーネ”の２曲紹介▽かけクラ川柳も通常運行中！久々の「献呈」コーナーも！"
+            },
+            "duration": "PT1H49M57S",
+            "posterframeList": []
+        },
+        "following": {
+            "type": "BroadcastEvent",
+            "id": "r3-130-2025100566861",
+            "name": "みんなのうた「おったまげったん」／「かくれんぼの達人」",
+            "description": "",
+            "startDate": "2025-10-05T15:50:00+09:00",
+            "endDate": "2025-10-05T15:55:00+09:00",
+            "location": {
+                "id": "001",
+                "name": "東京"
+            },
+            "identifierGroup": {
+                "broadcastEventId": "r3-130-2025100566861",
+                "radioEpisodeId": "ZZRW3Q4LP9",
+                "radioEpisodeName": "「おったまげったん」/「かくれんぼの達人」",
+                "radioSeriesId": "GPVXV8GJ9V",
+                "radioSeriesName": "みんなのうた （R1 R2 FM）",
+                "serviceId": "r3",
+                "areaId": "130",
+                "stationId": "001",
+                "date": "2025-10-05",
+                "eventId": "66861",
+                "genre": [
+                    {
+                        "id": "0400",
+                        "name1": "音楽",
+                        "name2": "国内ロック・ポップス"
+                    },
+                    {
+                        "id": "0409",
+                        "name1": "音楽",
+                        "name2": "童謡・キッズ"
+                    },
+                    {
+                        "id": "0504",
+                        "name1": "バラエティ",
+                        "name2": "音楽バラエティ"
+                    }
+                ]
+            },
+            "misc": {
+                "displayVideoMode": "none",
+                "displayVideoRange": "sdr",
+                "displayAudioMode": [],
+                "audioMode": [],
+                "supportCaption": false,
+                "supportSign": false,
+                "supportHybridcast": false,
+                "supportDataBroadcast": false,
+                "isInteractive": false,
+                "isChangeable": false,
+                "releaseLevel": "normal",
+                "programType": "program",
+                "coverage": "nationwide",
+                "actList": [],
+                "musicList": [],
+                "eventShareStatus": "single",
+                "playControlSimul": true
+            },
+            "url": "https://api.nhk.jp/r7/t/broadcastevent/be/r3-130-2025100566861.json",
+            "about": {
+                "id": "ZZRW3Q4LP9",
+                "name": "「おったまげったん」/「かくれんぼの達人」",
+                "identifierGroup": {
+                    "radioEpisodeId": "ZZRW3Q4LP9",
+                    "radioSeriesId": "GPVXV8GJ9V",
+                    "radioEpisodeName": "「おったまげったん」/「かくれんぼの達人」",
+                    "radioSeriesName": "みんなのうた （R1 R2 FM）",
+                    "hashtag": [],
+                    "formatGenreTag": [
+                        {
+                            "id": "05",
+                            "name": "バラエティ"
+                        }
+                    ],
+                    "themeGenreTag": [
+                        {
+                            "id": "071",
+                            "name": "国内ポップス"
+                        },
+                        {
+                            "id": "077",
+                            "name": "キッズ音楽"
+                        },
+                        {
+                            "id": "070",
+                            "name": "音楽全般"
+                        }
+                    ]
+                },
+                "keyword": [],
+                "description": "",
+                "partOfSeries": {
+                    "id": "GPVXV8GJ9V",
+                    "name": "みんなのうた （R1 R2 FM）",
+                    "detailedSeriesNameRuby": "みんなのうた　あーるわん　あーるつー　えふえむ",
+                    "identifierGroup": {
+                        "radioSeriesId": "GPVXV8GJ9V",
+                        "radioSeriesPlaylistId": "series-rep-GPVXV8GJ9V",
+                        "radioSeriesUId": "7c78079e-d869-5dcd-9621-69f4bc0f3127",
+                        "radioSeriesName": "みんなのうた （R1 R2 FM）",
+                        "hashtag": [],
+                        "themeGenre": [
+                            {
+                                "id": "070",
+                                "name": "音楽全般"
+                            }
+                        ]
+                    },
+                    "keyword": [],
+                    "detailedSynonym": [],
+                    "sameAs": [],
+                    "canonical": "https://www.nhk.jp/p/rs/GPVXV8GJ9V/",
+                    "description": "「みんなのうた」はNHKのテレビ・ラジオで放送されている5分間の音楽番組。「こどもたちに明るい健康な歌をとどけたい」というコンセプトで、１９６１年４月３日に放送をスタートしました。昭和、平成、令和・・・時代とともに、これまでお送りしてきた楽曲（うた）は、およそ１６００曲。\nこれからも２ヶ月ごとに４曲ほどの新たな楽曲、さらに懐かしい名曲たちもたっぷりお届けします。",
+                    "detailedCatch": "ラジオ（ラジオ第１・第２、NHK-FM）の放送情報をお届けします",
+                    "logo": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-logo_57226883daf0c7cc5b940da5330d0420.jpg",
+                            "width": 1080,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-logo_dfd3cb138345821ffdffb6e2591f2898.jpg",
+                            "width": 640,
+                            "height": 640
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-logo_d697ff3a73ca93916e7fe31d5ec5b261.jpg",
+                            "width": 200,
+                            "height": 200
+                        }
+                    },
+                    "eyecatch": {
+                        "large": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-eyecatch_df8aa9b18845de8661ef6fe911696c0e.jpg",
+                            "width": 3840,
+                            "height": 2160
+                        },
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-eyecatch_83d3405716a8acd1518794b80dccbc47.jpg",
+                            "width": 1920,
+                            "height": 1080
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-eyecatch_5fed05c55b50c98f53cd7e9a972bddf2.jpg",
+                            "width": 1280,
+                            "height": 720
+                        },
+                        "small": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-eyecatch_4e045f1fe08e57beb7212b6474f14e48.jpg",
+                            "width": 640,
+                            "height": 360
+                        }
+                    },
+                    "hero": {
+                        "main": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-hero_3c1181bd7c8e3792abe6bb7a9bfe653d.jpg",
+                            "width": 1920,
+                            "height": 640
+                        },
+                        "medium": {
+                            "url": "https://img.nhk.jp/static/assets/images/radioseries/rs/GPVXV8GJ9V/GPVXV8GJ9V-hero_6cfce4be1bf01cddfa01c5933e5cc477.jpg",
+                            "width": 1080,
+                            "height": 360
+                        }
+                    },
+                    "style": {
+                        "textLight": "#000000",
+                        "textDark": "#FFFFFF",
+                        "linkLight": "#990099",
+                        "linkDark": "#C062C0",
+                        "primaryLight": "#990099",
+                        "primaryDark": "#AD32AD"
+                    },
+                    "additionalProperty": {
+                        "publishLevel": "full",
+                        "layoutPattern": "summary",
+                        "episodeOrderBy": "releasedEvent",
+                        "availableOnPlus": false,
+                        "enableVariablePlayBackSpeedControl": false,
+                        "optional": [],
+                        "seriesPackStatus": "notPacked",
+                        "supportMedia": [
+                            "@screen"
+                        ],
+                        "supportMusicList": true,
+                        "supportPlusEmbed": true
+                    },
+                    "url": "https://api.nhk.jp/r7/t/radioseries/rs/GPVXV8GJ9V.json",
+                    "itemUrl": "https://api.nhk.jp/r7/l/radioepisode/rs/GPVXV8GJ9V.json?order=desc&offset=0&size=10"
+                },
+                "eyecatchList": [],
+                "url": "https://api.nhk.jp/r7/t/radioepisode/re/ZZRW3Q4LP9.json",
+                "canonical": "https://www.nhk.jp/p/rs/GPVXV8GJ9V/episode/re/ZZRW3Q4LP9/",
+                "additionalProperty": {},
+                "audio": []
+            },
+            "isLiveBroadcast": false,
+            "detailedDescription": {
+                "epg40": "みんなのうた「おったまげったん」／「かくれんぼの達人」",
+                "epg80": "",
+                "epgInformation": "",
+                "epg200": ""
+            },
+            "duration": "PT5M",
+            "posterframeList": []
+        },
+        "publishedOn": {
+            "type": "BroadcastService",
+            "id": "bs-r3-130",
+            "name": "NHK FM放送",
+            "url": "https://api.nhk.jp/r7/t/broadcastservice/bs/r3-130.json",
+            "broadcastDisplayName": "NHK FM・東京",
+            "videoFormat": [],
+            "encodingFormat": [
+                "audio/aac"
+            ],
+            "identifierGroup": {
+                "serviceId": "r3",
+                "serviceName": "NHK FM",
+                "areaId": "130",
+                "areaName": "東京",
+                "channelId": null,
+                "channelKey": null,
+                "channelAreaName": "東京",
+                "channelStationName": "首都圏",
+                "shortenedName": "NHK FM",
+                "shortenedDisplayName": "NHK FM",
+                "multiChannelDisplayName": null
+            },
+            "logo": {
+                "main": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r3/r3-logo.svg",
+                    "width": 1080,
+                    "height": 1080
+                },
+                "medium": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r3/r3-logo.svg",
+                    "width": 640,
+                    "height": 640
+                },
+                "small": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r3/r3-logo.svg",
+                    "width": 200,
+                    "height": 200
+                }
+            },
+            "eyecatch": {
+                "large": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r3/r3-eyecatch.svg",
+                    "width": 3840,
+                    "height": 2160
+                },
+                "main": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r3/r3-eyecatch.svg",
+                    "width": 1920,
+                    "height": 1080
+                },
+                "medium": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r3/r3-eyecatch.svg",
+                    "width": 640,
+                    "height": 360
+                },
+                "small": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r3/r3-eyecatch.svg",
+                    "width": 320,
+                    "height": 180
+                }
+            },
+            "hero": {
+                "main": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r3/r3-hero.svg",
+                    "width": 1920,
+                    "height": 640
+                },
+                "medium": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r3/r3-hero.svg",
+                    "width": 1080,
+                    "height": 360
+                }
+            },
+            "badge9x4": {
+                "main": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r3/r3-badge9x4.svg",
+                    "width": 180,
+                    "height": 80
+                },
+                "small": {
+                    "url": "https://img.nhk.jp/common/broadcastservice/bs/r3/r3-badge9x4.svg",
+                    "width": 90,
+                    "height": 40
+                }
             }
         }
     }
