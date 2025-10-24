@@ -92,21 +92,25 @@ class Common:
         # ログレベル、メッセージを設定
         if isinstance(messages[0], Exception):
             level = options.get('level', xbmc.LOGERROR)
-            message = '\nTraceback (most recent call last):\n' +  ''.join(traceback.format_stack())
-            message += '\n'.join(list(map(lambda x: x.strip(), traceback.TracebackException.from_exception(messages[0]).format())))
+            output = 'Traceback (most recent call last):\n'
+            for line in traceback.format_stack()[:-2]:
+                output += line
+            for line in list(traceback.TracebackException.from_exception(messages[0]).format())[1:]:
+                output += line
+            output = output.strip()
             if len(messages[1:]) > 0:
-                message += ': ' + ' '.join(map(lambda x: str(x), messages[1:]))
+                output += ': ' + ' '.join(map(lambda x: str(x), messages[1:]))
         else:
             level = options.get('level', xbmc.LOGINFO)
             frame = inspect.currentframe().f_back
             filename = os.path.basename(frame.f_code.co_filename)
             lineno = frame.f_lineno
             name = frame.f_code.co_name
-            message = f'Addon "{Common.ADDON_ID}", File "{filename}", line {lineno}, in {name}'
+            output = f'Addon "{Common.ADDON_ID}", File "{filename}", line {lineno}, in {name}'
             if len(messages) > 0:
-                message += ': ' + ' '.join(map(lambda x: str(x), messages))
+                output += ': ' + ' '.join(map(lambda x: str(x), messages))
         # ログ出力
-        xbmc.log(message, level)
+        xbmc.log(output, level)
 
     @staticmethod
     def datetime(datetimestr):
