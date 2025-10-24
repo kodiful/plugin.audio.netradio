@@ -22,8 +22,8 @@ warnings.filterwarnings('ignore', category=MarkupResemblesLocatorWarning)
 class Common:
 
     # addon
-    ADDON = xbmcaddon.Addon()
-    ADDON_ID = ADDON.getAddonInfo('id')
+    ADDON_ID = 'plugin.audio.netradio'
+    ADDON = xbmcaddon.Addon(ADDON_ID)
     ADDON_NAME = ADDON.getAddonInfo('name')
     ADDON_VERSION = ADDON.getAddonInfo('version')
 
@@ -68,9 +68,6 @@ class Common:
     # 通知
     @staticmethod
     def notify(*messages, **options):
-        # アドオン
-        addon = xbmcaddon.Addon()
-        name = addon.getAddonInfo('name')
         # デフォルト設定
         if options.get('error'):
             image = 'DefaultIconError.png'
@@ -85,19 +82,18 @@ class Common:
         # メッセージ
         messages = ' '.join(map(lambda x: str(x), messages))
         # ポップアップ通知
-        xbmc.executebuiltin(f'Notification("{name}","{messages}",{duration},"{image}")')
+        xbmc.executebuiltin(f'Notification("{Common.ADDON_NAME}","{messages}",{duration},"{image}")')
         # ログ出力
         Common.log(messages, level=level)
 
     # ログ
     @staticmethod
     def log(*messages, **options):
-        # アドオン
-        addon = xbmcaddon.Addon()
         # ログレベル、メッセージを設定
         if isinstance(messages[0], Exception):
             level = options.get('level', xbmc.LOGERROR)
-            message = '\n'.join(list(map(lambda x: x.strip(), traceback.TracebackException.from_exception(messages[0]).format())))
+            message = '\nTraceback (most recent call last):\n' +  ''.join(traceback.format_stack())
+            message += '\n'.join(list(map(lambda x: x.strip(), traceback.TracebackException.from_exception(messages[0]).format())))
             if len(messages[1:]) > 0:
                 message += ': ' + ' '.join(map(lambda x: str(x), messages[1:]))
         else:
@@ -106,8 +102,7 @@ class Common:
             filename = os.path.basename(frame.f_code.co_filename)
             lineno = frame.f_lineno
             name = frame.f_code.co_name
-            id = addon.getAddonInfo('id')
-            message = f'Addon "{id}", File "{filename}", line {lineno}, in {name}'
+            message = f'Addon "{Common.ADDON_ID}", File "{filename}", line {lineno}, in {name}'
             if len(messages) > 0:
                 message += ': ' + ' '.join(map(lambda x: str(x), messages))
         # ログ出力

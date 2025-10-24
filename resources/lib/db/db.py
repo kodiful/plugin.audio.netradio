@@ -20,6 +20,7 @@ class DB(Schema, Utilities):
         os.makedirs(os.path.dirname(self.DB_FILE), exist_ok=True)  # for the first time                                                                  
         #self.conn = sqlite3.connect(self.DB_FILE, isolation_level=None)
         self.conn = sqlite3.connect(self.DB_FILE, isolation_level=None, check_same_thread=False, timeout=10.0)  # add option for windows
+        self.conn.execute('PRAGMA journal_mode = WAL;')  # for concurrent access
         self.conn.row_factory = sqlite3.Row
         self.cursor = self.conn.cursor()
         # テーブルを初期化
