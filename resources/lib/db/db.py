@@ -3,6 +3,7 @@
 import os
 import sqlite3
 import threading
+import time
 from datetime import datetime, timezone, timedelta
 
 from .schema import Schema
@@ -48,7 +49,7 @@ class DB(Schema, Utilities):
         self.cursor.close()
         self.conn.close()
 
-    def add(self, data):
+    def add(self, data, retries=10):
         # 新規番組で終了時刻が過去になっている場合は何もしない
         if data.get('duration') is None and data['end'] < self.now():
             return 0
@@ -113,11 +114,22 @@ class DB(Schema, Utilities):
         columns = ', '.join(values.keys())
         placeholders = ', '.join(['?' for _ in values])
         sql = f'INSERT OR IGNORE INTO contents ({columns}) VALUES ({placeholders})'
-        try:
-            result = self.cursor.execute(sql, list(values.values()))
-            return result.rowcount and self.cursor.lastrowid
-        except sqlite3.OperationalError as e:  # catch errors especially for Raspberry Pi OS
-            self.log(e)
+        for i in range(retries):
+            try:
+                result = self.cursor.execute(sql, list(values.values()))
+                return result.rowcount and self.cursor.lastrowid
+            except sqlite3.OperationalError as e:
+                if 'database is locked' in str(e):
+                    self.log(f'database is locked, retrying... ({i+1}/{retries})')
+                    time.sleep(0.1)
+                    continue
+                self.log(e)
+                return 0
+            except Exception as e:
+                self.log(e)
+                return 0
+        else:
+            self.log(f'failed to add after {retries} retries.')
             return 0
 
     def add_master(self, values):
