@@ -82,6 +82,7 @@ class Service(AuthenticationManager, ScheduleManager, DownloadManager):
             if process.poll() is None:  # 実行中だったら
                 process.kill()
         # スレッドのDBインスタンスを終了
+        db.cursor.close()
         db.conn.close()
         # 監視終了を通知
         self.log('exit monitor.')
