@@ -44,6 +44,10 @@ class DB(Schema, Utilities):
             return int(dt.timestamp())
         self.conn.create_function('EPOCH', 1, epoch)
 
+    def close(self):
+        self.cursor.close()
+        self.conn.close()
+
     def add(self, data):
         # 新規番組で終了時刻が過去になっている場合は何もしない
         if data.get('duration') is None and data['end'] < self.now():

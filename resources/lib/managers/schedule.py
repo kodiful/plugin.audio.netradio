@@ -119,6 +119,5 @@ def scheduler(protocol, sid, visible):
         if path == argv or path.startswith(f'{argv}?action=show_stations'):
             Common.refresh()
     # スレッドのDBインスタンスを終了
-    ThreadLocal.db.cursor.close()
-    ThreadLocal.db.conn.close()
+    ThreadLocal.db.close()
     ThreadLocal.db = None

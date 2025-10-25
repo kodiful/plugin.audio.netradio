@@ -138,6 +138,5 @@ def downloader(cid, end, queue):
         Common.log(f'[{process.pid}] Download failed (returncode={process.returncode}).')
         Common.log(err)
     # スレッドのDBインスタンスを終了
-    ThreadLocal.db.cursor.close()
-    ThreadLocal.db.conn.close()
+    ThreadLocal.db.close()
     ThreadLocal.db = None

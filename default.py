@@ -127,6 +127,5 @@ if __name__ == '__main__':
         Common.log('undefined action:', action)
 
     # DBインスタンスを終了
-    ThreadLocal.db.cursor.close()
-    ThreadLocal.db.conn.close()
+    ThreadLocal.db.close()
     ThreadLocal.db = None
