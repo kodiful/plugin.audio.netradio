@@ -32,15 +32,7 @@ class Directory(ScheduleManager):
     def show(self, protocol=None, region=None, pref=None):
         # 番組表取得フラグ
         stations = []
-        # 表示
-        if protocol == 'NHK':
-            # NHKの放送局一覧を表示
-            sql = 'SELECT * FROM stations WHERE protocol = :protocol AND vis = 1 ORDER BY key'
-            self.db.cursor.execute(sql, {'protocol': 'NHK'})
-            for sdata in self.db.cursor.fetchall():
-                self._add_onair(sdata)
-                stations.append((sdata['protocol'], sdata['sid'], 1))
-        elif protocol == 'RDK':
+        if protocol == 'RDK':
             # RDKの放送局一覧を表示
             sql = 'SELECT * FROM stations WHERE protocol = :protocol AND vis = 1 ORDER BY key'
             self.db.cursor.execute(sql, {'protocol': 'RDK'})
@@ -79,7 +71,6 @@ class Directory(ScheduleManager):
             JOIN stations AS s ON c.sid = s.sid
             WHERE c.cstatus != 0 ORDER BY
             CASE s.protocol
-                WHEN 'NHK' THEN 1
                 WHEN 'RDK' THEN 2
                 WHEN 'SJ' THEN 3
                 WHEN 'LR' THEN 3
@@ -102,7 +93,6 @@ class Directory(ScheduleManager):
             # トップ画面の放送局一覧を表示
             sql = '''SELECT * FROM stations WHERE top = 1 AND vis = 1 ORDER BY
             CASE protocol
-                WHEN 'NHK' THEN 1
                 WHEN 'RDK' THEN 2
                 WHEN 'SJ' THEN 3
                 WHEN 'LR' THEN 3
@@ -152,15 +142,6 @@ class Directory(ScheduleManager):
         self.refresh(top)  # トップに追加したときはトップ画面へ
 
     def _setup_directory(self):
-        # NHKラジオ
-        li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30001))
-        self.setArt(li, 'satellite')
-        # コンテクストメニュー
-        self.contextmenu = []
-        self._contextmenu(self.STR(30100), {'action': 'settings'})
-        li.addContextMenuItems(self.contextmenu, replaceItems=True)
-        query = urlencode({'action': 'show_stations', 'protocol': 'NHK', 'region': self.region})
-        xbmcplugin.addDirectoryItem(int(sys.argv[1]), '%s?%s' % (sys.argv[0], query), listitem=li, isFolder=True)
         # 民放ラジオ(radiko)
         li = xbmcgui.ListItem('[COLOR orange]%s[/COLOR]' % self.STR(30002))
         self.setArt(li, 'satellite')
@@ -255,8 +236,11 @@ class Directory(ScheduleManager):
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL
         url = LocalProxy.proxy(sdata['protocol'], key=sdata['key'], direct=sdata['direct'], token=self.token)
-        # リストアイテムを追加
-        xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
+        if url is not None:
+            # リストアイテムを追加
+            xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)
+        else:
+            pass # 既存設定が無効になっている場合は無視
 
     def _add_keyword(self, kid, keyword, dirname):
         # listitemを追加する
@@ -310,7 +294,7 @@ class Directory(ScheduleManager):
     def _title(self, sdata):
         # コミュニティ放送局用に都市名を追加
         basename = sdata['station']
-        if sdata['protocol'] not in ('NHK', 'RDK', 'USER'):
+        if sdata['protocol'] not in ('RDK', 'USER'):
             basename += '(%s)' % sdata['city']
         station = basename
         # 番組情報等を追加

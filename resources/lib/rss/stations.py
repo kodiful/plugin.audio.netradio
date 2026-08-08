@@ -51,7 +51,6 @@ class Stations(Common):
         WHERE c.cstatus = -1
         ORDER BY
         CASE s.protocol
-            WHEN 'NHK' THEN 1
             WHEN 'RDK' THEN 2
             WHEN 'SJ' THEN 3
             WHEN 'LR' THEN 3

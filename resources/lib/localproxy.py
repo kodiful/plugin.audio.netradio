@@ -42,7 +42,23 @@ class LocalProxy(HTTPServer, Common):
     @staticmethod
     def proxy(protocol, key='', direct='', token='', cid='0'):
         if protocol == 'RDK':
-            kwargs = {'cid': cid, 'protocol': protocol, 'key': key, 'token': token}
+            # playlistのURL
+            playlist_url = f"https://si-f-radiko.smartstream.ne.jp/so/playlist.m3u8?station_id={key}&l=15&lsid=&type=b"
+            # station_id: 放送局ID
+            # l: バッファ長を表すパラメータ（通常は15）
+            # lsid: 視聴セッションを識別するランダムなID
+            # type: ストリーム種別（通常はb）
+            try:
+                # playlistを取得する
+                req = urllib.request.Request(playlist_url, headers={'x-radiko-authtoken': token})
+                res = urllib.request.urlopen(req)
+                data = res.read().decode('utf-8')
+                # medialistのURLを抽出する
+                medialist_url = data.splitlines()[-1]  # https://si-f-radiko.smartstream.ne.jp/medialist?session=4.fFL3SMVDd4bddzN7gUgPZ6&station_id=YFM&cython=1
+                kwargs = {'cid': cid, 'protocol': protocol, 'medialist_url': medialist_url, 'token': token}
+            except Exception as e:
+                Common.log('RDK proxy error:', e)
+                return None
         elif protocol == 'SJ':
             kwargs = {'cid': cid, 'protocol': protocol, 'key': key}
         elif protocol == 'SP':
@@ -152,13 +168,15 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             self.end_headers()
             self.wfile.write(b'200 OK')
         elif protocol == 'RDK':
-            key = params['key']
-            url = f"https://f-radiko.smartstream.ne.jp/{key}/_definst_/simul-stream.stream/playlist.m3u"
+            # .m3u8ファイルを取得する
+            url = params['medialist_url']  # https://si-f-radiko.smartstream.ne.jp/medialist?session=4.fFL3SMVDd4bddzN7gUgPZ6&station_id=YFM&cython=1
             token = params['token']
             req = urllib.request.Request(url, headers={'x-radiko-authtoken': token})
             res = urllib.request.urlopen(req)
             data = res.read()
+            # .m3u8ファイルの内容を返す
             self.send_response(200)
+            self.send_header('Content-Type', 'application/x-mpegurl')
             self.end_headers()
             self.wfile.write(data)
         elif protocol in ('SJ', 'SP'):

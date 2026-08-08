@@ -22,8 +22,8 @@ class ScheduleManager(Common):
     def maintain_schedule(self, vis=None):
         # DBの共有インスタンス
         db = ThreadLocal.db
-        # まずNHK、RDKを更新
-        self.maintain_nhk_and_rdk()
+        # まずRDKを更新
+        self.maintain_rdk()
         # 番組情報を更新する放送局のリストを作成
         stations = []
         if vis is None:
@@ -48,16 +48,11 @@ class ScheduleManager(Common):
             thread = threading.Thread(target=scheduler, args=[protocol, sid, visible], daemon=True)
             thread.start()
 
-    def maintain_nhk_and_rdk(self):
+    def maintain_rdk(self):
         # DBの共有インスタンス
         db = ThreadLocal.db
         # 番組情報を更新する放送局のリストを作成
         stations = []
-        # NHKから一つリストに追加
-        sql = '''SELECT protocol, sid FROM stations
-        WHERE protocol = 'NHK' AND region = :region ORDER BY sid LIMIT 1'''
-        db.cursor.execute(sql, {'region': self.region})
-        stations.extend([(protocol, sid, 0) for (protocol, sid) in db.cursor.fetchall()])
         # RDKから一つリストに追加
         sql = '''SELECT protocol, sid FROM stations
         WHERE protocol = 'RDK' AND pref = :pref ORDER BY sid LIMIT 1'''
@@ -98,8 +93,8 @@ def scheduler(protocol, sid, visible):
             refresh = visible
             scraper.set_nextaired0()  # DBを更新
         if count == -1:
-            # エラーで取得できなかった場合、NHK, RDK以外は24時間後に再実行
-            if protocol not in ('NHK', 'RDK'):
+            # エラーで取得できなかった場合、RDK以外は24時間後に再実行
+            if protocol != 'RDK':
                 refresh = visible
                 scraper.set_nextaired0(hours=24)  # DBを更新
                 nextaired1 = scraper.set_nextaired1(hours=24)  # DBを更新

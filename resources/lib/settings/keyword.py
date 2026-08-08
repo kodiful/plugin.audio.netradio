@@ -74,12 +74,8 @@ class Keyword(Common):
         settings['station'] = '' if settings['kstation'] == self.stations[0] else settings['kstation']
         # 放送局を指定する場合はtop=1を設定する
         if settings['kstation']:
-            if settings['kstation'].startswith('NHK'):
-                sql = "UPDATE stations SET top = 1 WHERE protocol = 'NHK' AND station = :station"
-                self.db.cursor.execute(sql, {'station': settings['kstation']})
-            else:
-                sql = "UPDATE stations SET top = 1 WHERE station = :station"
-                self.db.cursor.execute(sql, {'station': settings['kstation']})
+            sql = "UPDATE stations SET top = 1 WHERE station = :station"
+            self.db.cursor.execute(sql, {'station': settings['kstation']})
         # !!!ここでデータのバリデーション
         # keywordテーブルに書き込む
         self.db.add_keyword(settings)

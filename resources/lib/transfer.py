@@ -15,7 +15,6 @@ class Transfer(Common):
 
     # type -> protocol変換
     PROTOCOL = {
-        'nhkr': 'NHK',
         'radk': 'RDK',
         'jcba': 'SJ',
         'lsnr': 'LR',
@@ -92,11 +91,7 @@ class Transfer(Common):
                         # key, region, prefを推定
                         protocol = self.PROTOCOL[data['type']]
                         sql = 'SELECT key, region, pref FROM stations WHERE protocol = :protocol AND station = :station'
-                        if protocol == 'NHK' and auth_region != '':
-                            sql = f'{sql} AND region = :region'
-                            self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station'], 'region': auth_region})
-                            key, region, pref = self.db.cursor.fetchone()
-                        elif protocol == 'RDK' and auth_pref != '':
+                        if protocol == 'RDK' and auth_pref != '':
                             sql = f'{sql} AND pref = :pref'
                             self.db.cursor.execute(sql, {'protocol': protocol, 'station': data['station'], 'pref': auth_pref})
                             key, region, pref = self.db.cursor.fetchone()
@@ -151,7 +146,7 @@ class Transfer(Common):
                 'delay': 0,
             }
         # プラグインの放送局フォルダ直下のjsonフォルダにあるjsonファイルから読み込む
-        for json_file in [os.path.join(self.DATA_PATH, 'stations', 'json', f'{protocol}.json') for protocol in ('NHK', 'RDK', 'LR', 'SJ', 'SP', 'SR', 'SD')]:
+        for json_file in [os.path.join(self.DATA_PATH, 'stations', 'json', f'{protocol}.json') for protocol in ('RDK', 'LR', 'SJ', 'SP', 'SR', 'SD')]:
             with open(json_file, encoding='utf-8') as f:
                 # jsonファイルを読み込む
                 for data in json.loads(f.read()):
@@ -277,7 +272,6 @@ class Transfer(Common):
             os.path.join(self.PROFILE_PATH, 'stations', 'logo', 'fmpp'),
             os.path.join(self.PROFILE_PATH, 'stations', 'logo', 'jcba'),
             os.path.join(self.PROFILE_PATH, 'stations', 'logo', 'lsnr'),
-            os.path.join(self.PROFILE_PATH, 'stations', 'logo', 'nhkr'),
             os.path.join(self.PROFILE_PATH, 'stations', 'logo', 'radk')
         ]
         for item in items:
@@ -294,3 +288,8 @@ class Transfer(Common):
         self.import_keywords()
         self.import_contents()
         self.postprocess()
+
+    def purge_nhk(self):
+        # stationsテーブルからprotocolがNHKのレコードを削除する
+        sql = 'DELETE FROM stations WHERE protocol = :protocol'
+        self.db.cursor.execute(sql, {'protocol': 'NHK'})

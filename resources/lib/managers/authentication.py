@@ -50,9 +50,9 @@ class Authenticator(Common):
         except Exception as e:
             self.log(e)
             return
-        response['auth_token'] = auth1['X-Radiko-AuthToken']
-        response['key_offset'] = int(auth1['X-Radiko-KeyOffset'])
-        response['key_length'] = int(auth1['X-Radiko-KeyLength'])
+        response['auth_token'] = auth1['X-Radiko-AuthToken']  # vyGecYbpX-LyZP8Be3drjw
+        response['key_offset'] = int(auth1['X-Radiko-KeyOffset'])  # 17
+        response['key_length'] = int(auth1['X-Radiko-KeyLength'])  # 16
         return response
 
     # partialkeyを取得
@@ -65,10 +65,11 @@ class Authenticator(Common):
         # ヘッダ
         response['partial_key'] = self.createPartialKey(response)
         headers = {
-            'x-radiko-authtoken': response['auth_token'],
+            'x-radiko-authtoken': response['auth_token'],  # vyGecYbpX-LyZP8Be3drjw
             'x-radiko-device': 'pc',
-            'x-radiko-partialkey': response['partial_key'],
-            'x-radiko-user': 'dummy_user'
+            'x-radiko-partialkey': response['partial_key'],  # MWVmMmZkNjZjMzIyMDlkYQ==
+            'x-radiko-user': 'dummy_user',
+            'x-radiko-connection': 'wifi'
         }
         try:
             # リクエスト
@@ -108,8 +109,6 @@ class AuthenticationManager(Common):
         db.cursor.execute('SELECT region, pref FROM cities WHERE area_id = :area_id', {'area_id': data['area_id']})
         self.region, self.pref = db.cursor.fetchone()
         # 判定結果をstationsテーブルに反映する
-        sql = "UPDATE stations SET vis = CASE WHEN region = :region THEN 1 ELSE 0 END WHERE protocol = 'NHK'"
-        db.cursor.execute(sql, {'region': self.region})
         sql = "UPDATE stations SET vis = CASE WHEN pref = :pref THEN 1 ELSE 0 END WHERE protocol = 'RDK'"
         db.cursor.execute(sql, {'pref': self.pref})
         # 認証前後で地域、都道府県が異なる場合は通知

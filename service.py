@@ -63,10 +63,9 @@ if __name__ == '__main__':
     if require_transfer:
         Common.notify('Transferring data...')
         Transfer().run()
-
-    # 20251005アップデート（NHK放送局）
-    from resources.lib.updater.updater_20251005 import Updater_20251005 as Updater
-    Updater().run()
+    else:
+        # stationsテーブルからprotocolがNHKのレコードを削除する
+        Transfer().purge_nhk()
 
     # サービスを初期化
     service = Service()
