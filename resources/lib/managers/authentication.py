@@ -109,7 +109,7 @@ class AuthenticationManager(Common):
         db.cursor.execute('SELECT region, pref FROM cities WHERE area_id = :area_id', {'area_id': data['area_id']})
         self.region, self.pref = db.cursor.fetchone()
         # 判定結果をstationsテーブルに反映する
-        sql = "UPDATE stations SET vis = CASE WHEN pref = :pref THEN 1 ELSE 0 END WHERE protocol = 'RDK'"
+        sql = "UPDATE stations SET vis = CASE WHEN pref = :pref THEN 1 ELSE 0 END WHERE vis >= 0 AND protocol = 'RDK'"
         db.cursor.execute(sql, {'pref': self.pref})
         # 認証前後で地域、都道府県が異なる場合は通知
         if area_id != data['area_id']:

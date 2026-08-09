@@ -291,9 +291,10 @@ class Transfer(Common):
 
     def purge_nhk(self):
         # stationsテーブルからprotocolがNHKのレコードを削除する
-        sql = 'DELETE FROM stations WHERE protocol = :protocol'
+        sql = "UPDATE stations SET vis = -1 WHERE protocol = :protocol"
         self.db.cursor.execute(sql, {'protocol': 'NHK'})
-        sql = 'DELETE FROM stations WHERE station LIKE :station'
+        sql = 'UPDATE stations SET vis = -1 WHERE station LIKE :station'
         self.db.cursor.execute(sql, {'station': 'NHKラジオ第1%'})
-        sql = 'DELETE FROM stations WHERE station LIKE :station'
+        sql = 'UPDATE stations SET vis = -1 WHERE station LIKE :station'
         self.db.cursor.execute(sql, {'station': 'NHK-FM%'})
+
