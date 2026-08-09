@@ -41,24 +41,8 @@ class LocalProxy(HTTPServer, Common):
 
     @staticmethod
     def proxy(protocol, key='', direct='', token='', cid='0'):
-        if protocol == 'RDK':
-            # playlistのURL
-            playlist_url = f"https://si-f-radiko.smartstream.ne.jp/so/playlist.m3u8?station_id={key}&l=15&lsid=&type=b"
-            # station_id: 放送局ID
-            # l: バッファ長を表すパラメータ（通常は15）
-            # lsid: 視聴セッションを識別するランダムなID
-            # type: ストリーム種別（通常はb）
-            try:
-                # playlistを取得する
-                req = urllib.request.Request(playlist_url, headers={'x-radiko-authtoken': token})
-                res = urllib.request.urlopen(req)
-                data = res.read().decode('utf-8')
-                # medialistのURLを抽出する
-                medialist_url = data.splitlines()[-1]  # https://si-f-radiko.smartstream.ne.jp/medialist?session=4.fFL3SMVDd4bddzN7gUgPZ6&station_id=YFM&cython=1
-                kwargs = {'cid': cid, 'protocol': protocol, 'medialist_url': medialist_url, 'token': token}
-            except Exception as e:
-                Common.log('RDK proxy error:', e)
-                return None
+        if protocol == 'RDK': 
+            kwargs = {'cid': cid, 'protocol': protocol, 'key': key, 'token': token}
         elif protocol == 'SJ':
             kwargs = {'cid': cid, 'protocol': protocol, 'key': key}
         elif protocol == 'SP':
@@ -168,10 +152,21 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             self.end_headers()
             self.wfile.write(b'200 OK')
         elif protocol == 'RDK':
-            # .m3u8ファイルを取得する
-            url = params['medialist_url']  # https://si-f-radiko.smartstream.ne.jp/medialist?session=4.fFL3SMVDd4bddzN7gUgPZ6&station_id=YFM&cython=1
+            key = params['key']
             token = params['token']
-            req = urllib.request.Request(url, headers={'x-radiko-authtoken': token})
+            # station_id: 放送局ID
+            # l: バッファ長を表すパラメータ（通常は15）
+            # lsid: 視聴セッションを識別するランダムなID
+            # type: ストリーム種別（通常はb）
+            playlist_url = f"https://si-f-radiko.smartstream.ne.jp/so/playlist.m3u8?station_id={key}&l=15&lsid=&type=b"
+            # playlistを取得する
+            req = urllib.request.Request(playlist_url, headers={'x-radiko-authtoken': token})
+            res = urllib.request.urlopen(req)
+            data = res.read().decode('utf-8')
+            # medialistのURLを抽出する
+            medialist_url = data.splitlines()[-1]  # https://si-f-radiko.smartstream.ne.jp/medialist?session=4.fFL3SMVDd4bddzN7gUgPZ6&station_id=YFM&cython=1
+            # .m3u8ファイルを取得する
+            req = urllib.request.Request(medialist_url, headers={'x-radiko-authtoken': token})
             res = urllib.request.urlopen(req)
             data = res.read()
             # .m3u8ファイルの内容を返す
