@@ -55,12 +55,8 @@ def downloader(cid, end, queue):
     WHERE c.cid = :cid'''
     db.cursor.execute(sql, {'cid': cid})
     title, filename, protocol, station, key, direct, dirname = db.cursor.fetchone()
-    # radiko認証
-    sql = 'SELECT auth_token FROM auth'
-    db.cursor.execute(sql)
-    token, = db.cursor.fetchone()
     # ストリームURL
-    url = LocalProxy.proxy(protocol, key=key, direct=direct, token=token, cid=cid)
+    url = LocalProxy.proxy(protocol, key=key, direct=direct, cid=cid)
     # 時間
     duration = end - int(time.time())
     # ビットレート
