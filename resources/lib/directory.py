@@ -25,9 +25,9 @@ class Directory(ScheduleManager):
         # ロケール設定
         locale.setlocale(locale.LC_ALL, '')  # strftimeのエラー回避のため
         # radiko認証
-        sql = "SELECT auth_token, region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
+        sql = "SELECT region, pref FROM auth JOIN cities ON auth.area_id = cities.area_id WHERE cities.city = ''"
         self.db.cursor.execute(sql)
-        self.token, self.region, self.pref = self.db.cursor.fetchone()
+        self.region, self.pref = self.db.cursor.fetchone()
 
     def show(self, protocol=None, region=None, pref=None):
         # 番組表取得フラグ
@@ -235,7 +235,7 @@ class Directory(ScheduleManager):
         self._contextmenu(self.STR(30100), {'action': 'settings'})
         li.addContextMenuItems(self.contextmenu, replaceItems=True)
         # ストリームURL
-        url = LocalProxy.proxy(sdata['protocol'], key=sdata['key'], direct=sdata['direct'], token=self.token)
+        url = LocalProxy.proxy(sdata['protocol'], key=sdata['key'], direct=sdata['direct'])
         if url is not None:
             # リストアイテムを追加
             xbmcplugin.addDirectoryItem(int(sys.argv[1]), url, listitem=li, isFolder=False)

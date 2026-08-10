@@ -16,6 +16,7 @@ from http.server import SimpleHTTPRequestHandler
 import xbmc
 
 from resources.lib.common import Common
+from resources.lib.db import DB, ThreadLocal
 
 
 class LocalProxy(HTTPServer, Common):
@@ -40,9 +41,9 @@ class LocalProxy(HTTPServer, Common):
             self.notify('Localproxy port is not defined')
 
     @staticmethod
-    def proxy(protocol, key='', direct='', token='', cid='0'):
+    def proxy(protocol, key='', direct='', cid='0'):
         if protocol == 'RDK': 
-            kwargs = {'cid': cid, 'protocol': protocol, 'key': key, 'token': token}
+            kwargs = {'cid': cid, 'protocol': protocol, 'key': key}
         elif protocol == 'SJ':
             kwargs = {'cid': cid, 'protocol': protocol, 'key': key}
         elif protocol == 'SP':
@@ -57,6 +58,12 @@ class LocalProxy(HTTPServer, Common):
 
 
 class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
+
+    def __init__(self, request, client_address, server, directory=None):
+        # DBを初期化
+        self.db = ThreadLocal.db = DB()
+        # SimpleHTTPRequestHandlerを初期化
+        super().__init__(request, client_address, server, directory=directory)
 
     def log_message(self, format, *args):
         # デフォルトのログ出力を抑制する
@@ -153,7 +160,10 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
             self.wfile.write(b'200 OK')
         elif protocol == 'RDK':
             key = params['key']
-            token = params['token']
+            # DBからtokenを取得
+            sql = "SELECT auth_token FROM auth"
+            self.db.cursor.execute(sql)
+            token, = self.db.cursor.fetchone()
             # station_id: 放送局ID
             # l: バッファ長を表すパラメータ（通常は15）
             # lsid: 視聴セッションを識別するランダムなID
