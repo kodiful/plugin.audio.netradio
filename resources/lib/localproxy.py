@@ -16,7 +16,7 @@ from http.server import SimpleHTTPRequestHandler
 import xbmc
 
 from resources.lib.common import Common
-from resources.lib.db import DB, ThreadLocal
+from resources.lib.db import DB
 
 
 class LocalProxy(HTTPServer, Common):
@@ -60,8 +60,6 @@ class LocalProxy(HTTPServer, Common):
 class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
 
     def __init__(self, request, client_address, server, directory=None):
-        # DBを初期化
-        self.db = ThreadLocal.db = DB()
         # SimpleHTTPRequestHandlerを初期化
         super().__init__(request, client_address, server, directory=directory)
 
@@ -161,9 +159,11 @@ class LocalProxyHandler(SimpleHTTPRequestHandler, Common):
         elif protocol == 'RDK':
             key = params['key']
             # DBからtokenを取得
+            db = DB()
             sql = "SELECT auth_token FROM auth"
-            self.db.cursor.execute(sql)
-            token, = self.db.cursor.fetchone()
+            db.cursor.execute(sql)
+            token, = db.cursor.fetchone()
+            db.close()
             # station_id: 放送局ID
             # l: バッファ長を表すパラメータ（通常は15）
             # lsid: 視聴セッションを識別するランダムなID
