@@ -67,11 +67,9 @@ if __name__ == '__main__':
         # stationsテーブルからprotocolがNHKのレコードを削除する
         Transfer().purge_nhk()
 
-    # サービスを初期化
+    # サービスを起動
     service = Service()
-    # 別スレッドでサービスを起動
-    thread = threading.Thread(target=service.monitor, daemon=True)
-    thread.start()
+    service.monitor()
 
     # DBインスタンスを終了
     ThreadLocal.db.close()
